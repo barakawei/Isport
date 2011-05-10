@@ -13,4 +13,12 @@
     = javascript_include_tag :defaults
     = csrf_meta_tag
   %body
-    =yield
+    %header
+      .container
+        %div header
+    .container
+      .span-2
+        =yield 
+    %footer
+      .container
+        %ul link

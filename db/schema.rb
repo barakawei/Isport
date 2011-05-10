@@ -10,7 +10,41 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110508051528) do
+ActiveRecord::Schema.define(:version => 20110510010847) do
+
+  create_table "contacts", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "person_id"
+    t.boolean  "pending",    :default => true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "contacts", ["person_id", "pending"], :name => "index_contacts_on_person_id_and_pending"
+  add_index "contacts", ["user_id", "pending"], :name => "index_contacts_on_user_id_and_pending"
+
+  create_table "people", :force => true do |t|
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "people", ["user_id"], :name => "index_people_on_user_id", :unique => true
+
+  create_table "profiles", :force => true do |t|
+    t.string   "name",            :limit => 127
+    t.string   "image_url"
+    t.string   "image_url_small"
+    t.date     "birthday"
+    t.string   "gender"
+    t.text     "bio"
+    t.integer  "person_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "profiles", ["name"], :name => "index_profiles_on_name"
+  add_index "profiles", ["person_id"], :name => "index_profiles_on_person_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false
