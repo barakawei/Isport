@@ -14,6 +14,7 @@ gem 'devise_invitable'
 gem "jquery-rails"
 gem "hpricot"
 gem "ruby_parser"
+gem 'mini_magick'
 
 group :development, :test do
   gem 'rspec-rails'

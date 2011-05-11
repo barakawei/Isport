@@ -1,0 +1,15 @@
+=content_for :head do
+  :css
+    header{display:none;}
+.span-15.prepend-4.last{:style =>'position:relative;'}
+  %br
+  %br
+  .floation{:style => "min-height:300px;"}
+    = form_tag @profile,:method => :put,:multipart =>true,:id=>'update_profile_form' do
+      %div{:style => "width:360px"}
+        = render 'profiles/edit_public',:profile => @profile,:person =>@person
+        %br
+        %br
+        %br
+      .submit_block
+        =submit_tag t('submit')

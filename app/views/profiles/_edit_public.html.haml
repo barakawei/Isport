@@ -1,0 +1,10 @@
+-#   Copyright (c) 2010, Diaspora Inc.  This file is
+-#   licensed under the Affero General Public License version 3 or later.  See
+-#   the COPYRIGHT file.
+
+%h3
+  = t('profiles.edit.your_public_profile')
+
+%h4
+  = t('profiles.edit.your_name')
+  = text_field_tag 'profile[name]', profile.name, :placeholder => t('profiles.edit.name')

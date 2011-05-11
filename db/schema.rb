@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110510010847) do
+ActiveRecord::Schema.define(:version => 20110510123500) do
 
   create_table "contacts", :force => true do |t|
     t.integer  "user_id"
@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(:version => 20110510010847) do
   add_index "profiles", ["person_id"], :name => "index_profiles_on_person_id"
 
   create_table "users", :force => true do |t|
-    t.string   "email",                                 :default => "", :null => false
+    t.string   "email",                                 :default => "",   :null => false
     t.string   "encrypted_password",     :limit => 128, :default => ""
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -64,6 +64,8 @@ ActiveRecord::Schema.define(:version => 20110510010847) do
     t.integer  "invitation_limit"
     t.integer  "invited_by_id"
     t.string   "invited_by_type"
+    t.string   "name"
+    t.boolean  "getting_started",                       :default => true
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

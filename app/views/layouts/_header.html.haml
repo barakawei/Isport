@@ -1,0 +1,10 @@
+-if current_user
+  .container{:style => "position:relative;"}
+    =link_to image_tag('logo_small.png',:height => "16px",:width=>"161px",:class=>"diaspora_header_logo"),root_path
+    %ul#user_menu
+      .right &#9660;
+      = link_to current_user.profile.name,'#'
+    %ul#aspect_nav
+      %li{:class => ('selected')}
+        = link_to  'Home', root_path, :class => 'home_selector'
+      

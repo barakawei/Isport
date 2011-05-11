@@ -1,0 +1,19 @@
+zh:
+  submit: "保存并继续"
+  email: "电子邮箱"
+  password: "密码"
+  password_confirmation: "密码确认"
+  registrations: 
+    new: 
+      enter_email: "输入电子邮箱"
+      enter_password: "请输入密码"
+      enter_password_again: "请再输入一遍密码"
+      sign_up: "注册"
+      sign_up_for_isport: "注册一个Isport账号"
+  profiles:
+    edit:
+      your_public_profile: "您的公开资料"
+      your_private_profile: "您的私人资料"
+      your_name: "您的名字"
+      name: "名字"
+      

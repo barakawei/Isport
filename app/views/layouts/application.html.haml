@@ -14,11 +14,9 @@
     = csrf_meta_tag
   %body
     %header
-      .container
-        %div header
+      = render "layouts/header"
     .container
       .span-2
         =yield 
     %footer
       .container
-        %ul link

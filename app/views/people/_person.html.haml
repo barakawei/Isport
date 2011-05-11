@@ -1,0 +1,16 @@
+.stream_element{:id => person.id}
+  .right
+    -if person.user_id == current_user.id
+      =t('.thats_you')
+    -elsif contact && !contact.pending
+      =t('.already_connected')
+    -elsif (contact && contact.pending)
+      =t('.pending_request')
+    -elsif request && request.sender == person
+      =link_to t('.people.show.incoming_request'),{:controller => 'contacts',:action => 'new',:person_id => person.id},:class => 'share_with button', :rel => 'facebox'
+    -else
+      = link_to t('people.show.start_sharing'),{:controller => "contacts",:action => "new",:person_id => person.id},:class => 'share_with button',:rel => 'facebox'
+
+  .content
+    %span.form
+      =person.profile.name
