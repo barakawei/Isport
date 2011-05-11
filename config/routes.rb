@@ -1,6 +1,7 @@
 Isport::Application.routes.draw do
   devise_for :users, :controllers => { :registrations => "registrations" }
-
+  resources :events
+  devise_for :users
   resources :profiles
   resources :people
   root :to => "home#index"

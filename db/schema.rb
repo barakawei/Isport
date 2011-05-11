@@ -11,7 +11,6 @@
 # It's strongly recommended to check this file into your version control system.
 
 ActiveRecord::Schema.define(:version => 20110510123500) do
-
   create_table "contacts", :force => true do |t|
     t.integer  "user_id"
     t.integer  "person_id"
@@ -22,6 +21,18 @@ ActiveRecord::Schema.define(:version => 20110510123500) do
 
   add_index "contacts", ["person_id", "pending"], :name => "index_contacts_on_person_id_and_pending"
   add_index "contacts", ["user_id", "pending"], :name => "index_contacts_on_user_id_and_pending"
+
+  create_table "events", :force => true do |t|
+    t.datetime "start_at"
+    t.datetime "end_at"
+    t.string   "title"
+    t.text     "description"
+    t.string   "location"
+    t.integer  "subject_id"
+    t.boolean  "ispublic"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "people", :force => true do |t|
     t.integer  "user_id"
