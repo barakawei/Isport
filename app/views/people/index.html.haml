@@ -1,7 +1,5 @@
 -content_for :page_title do
   =t('search')
--content_for :head do
-  =include_javascripts :people
 .span-24.last
   -if params[:q].blank?
     %h2

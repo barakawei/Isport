@@ -75,3 +75,35 @@ form
 .container.body
   :margin
     :top 40px
+
+#global_search
+  :display inline
+  :position relative
+
+  form
+    :display inline
+
+    input
+      @include box-shadow(0,1px,0px,#444)
+
+      :display inline
+      :background-color #ccc
+      :border
+        :top 1px solid #111
+
+      :font
+        :size 12px
+
+      :border 1px solid #000
+
+      &:hover
+        :background-color #eee
+
+      &.active
+        :background-color #fafafa
+
+
+    input[type='search']
+      :width 250px
+      :padding 3px
+

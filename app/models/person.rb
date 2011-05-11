@@ -2,6 +2,7 @@ class Person < ActiveRecord::Base
   belongs_to :user
   has_many :contacts
   has_one :profile
+  scope :searchable, joins(:profile) 
   
   def self.search(query,user)
     return [] if query.to_s.blank? || query.to_s.length < 3
@@ -20,7 +21,7 @@ class Person < ActiveRecord::Base
       sql << where_clause
       tokens.concat([token,up_token])
     end
-    Person.where(sql,*tokens)
+    Person.searchable.where(sql,*tokens)
   end
   
 end

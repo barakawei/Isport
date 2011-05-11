@@ -22,4 +22,26 @@ class User < ActiveRecord::Base
     self.person = Person.new( opts[ :person ] )
     self
   end
+  
+  def send_contact_request_to(desired_contact)
+        contact = Contact.new(:person => desired_contact,
+                              :user => self,
+                              :pending => true)
+        if contact.save!
+          request = contact.dispatch_request
+          request
+        else
+          nil
+        end
+  end
+
+  def contact_for(person)
+        return nil unless person
+        contact_for_person_id(person.id)
+  end
+
+  def contact_for_person_id(person_id)
+        Contact.unscoped.where(:user_id => self.id, :person_id => person_id).first if person_id
+  end 
+  
 end

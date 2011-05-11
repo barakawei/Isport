@@ -7,9 +7,9 @@
     -elsif (contact && contact.pending)
       =t('.pending_request')
     -elsif request && request.sender == person
-      =link_to t('.people.show.incoming_request'),{:controller => 'contacts',:action => 'new',:person_id => person.id},:class => 'share_with button', :rel => 'facebox'
+      =link_to t('.people.show.incoming_request'),{:controller => 'contacts',:action => 'new',:person_id => person.id},:class => 'share_with button'
     -else
-      = link_to t('people.show.start_sharing'),{:controller => "contacts",:action => "new",:person_id => person.id},:class => 'share_with button',:rel => 'facebox'
+      = link_to t('people.show.start_sharing'),{:controller => "contacts",:action => "new",:person_id => person.id},:class => 'share_with button'
 
   .content
     %span.form

@@ -1,8 +1,8 @@
 class PeopleController < ApplicationController
   before_filter :authenticate_user!,:except =>[:show]
   respond_to :html
+
   def index
-    @aspect = :search
     params[:q] ||= params[:term]
     if params[:q][0] == 35 || params[:q][0] == '#'
       redirect_to "/p/?tag=#{params[:q].gsub("#","")}"
