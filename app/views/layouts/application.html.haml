@@ -4,8 +4,7 @@
     %title
       isport
     = stylesheet_link_tag :all
-    = stylesheet_link_tag "blueprint/screen",:media => 'screen'
-    = stylesheet_link_tag 'blueprint/print',:media => 'print'
+    = stylesheet_link_tag "blueprint/screen", :media => 'screen' 
     <!--[if lt IE 8]>
     = stylesheet_link_tag 'blueprint/ie',:media => 'screen'
     <![endif]-->
@@ -13,12 +12,11 @@
     = javascript_include_tag :defaults
     = csrf_meta_tag
   %body
-    %header
-      .container
-        %div header
-    .container
-      .span-2
+    .header
+      = render 'layouts/header' 
+    .container.body
+      .span-24.last
         =yield 
-    %footer
+    .footer
       .container
         %ul link
