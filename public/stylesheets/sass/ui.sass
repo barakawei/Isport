@@ -1,0 +1,56 @@
+@import "mixins"
+
+.button
+  @include border-radius(3px)
+  @include linear-gradient(#f6f6f6,#d0d0d0)
+
+  :font
+    :style normal
+    :weight bold
+    :family 'helvetica', sans-serif
+
+  :display inline
+
+  :padding 5px 5px
+  :min-width 26px
+
+  :font-size 13px
+  :line
+    :height 13px
+
+  :min-height 10px
+
+  :border 1px solid #aaa
+    :top 1px solid #ccc
+    :bottom 1px solid #666
+
+  :cursor pointer
+
+  :white-space nowrap
+
+  :color #4a4a4a
+  :text
+    :shadow 0 1px 1px #eee
+    :decoration none
+
+  &:hover
+    @include linear-gradient(#d6d6d6,#b0b0b0)
+
+    :text
+      :decoration none
+    :color #444
+
+  &:active
+    @include linear-gradient(#acacac,#808080)
+
+    :color #111
+    :text-shadow 0 1px 0 #ccc
+    :border 1px solid #666
+      :top 1px solid #333
+      :bottom 1px solid #888
+
+  img
+    :position relative
+    :height 20px
+    :width 20px
+    :top 6px

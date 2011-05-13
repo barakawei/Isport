@@ -9,8 +9,14 @@ zh:
   show: '去看看'
   edit: '编辑'
   destroy: '取消'
+  save: '确认'
   events_list: '所有活动'
   new_event: '发起活动'
+  edit_event: '编辑活动'
+  event_pic: '活动图片'
+  ispublic: '所有人可见'
+
+  
   
 
   date:

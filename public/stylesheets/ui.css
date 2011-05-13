@@ -1,0 +1,50 @@
+.button {
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  background: #e3e3e3;
+  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=$from, endColorstr=$to);
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient (GradientType=0, startColorstr=#f6f6f6, endColorstr=#d0d0d0)";
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#f6f6f6), to(#d0d0d0));
+  background: -moz-linear-gradient(top, #f6f6f6 0%, #d0d0d0 100%);
+  font-style: normal;
+  font-weight: bold;
+  font-family: "helvetica", sans-serif;
+  display: inline;
+  padding: 5px 5px;
+  min-width: 26px;
+  font-size: 13px;
+  line-height: 13px;
+  min-height: 10px;
+  border: 1px solid #aaaaaa;
+    border-top: 1px solid #cccccc;
+    border-bottom: 1px solid #666666;
+  cursor: pointer;
+  white-space: nowrap;
+  color: #4a4a4a;
+  text-shadow: 0 1px 1px #eeeeee;
+  text-decoration: none; }
+  .button:hover {
+    background: #c3c3c3;
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=$from, endColorstr=$to);
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient (GradientType=0, startColorstr=#d6d6d6, endColorstr=#b0b0b0)";
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#d6d6d6), to(#b0b0b0));
+    background: -moz-linear-gradient(top, #d6d6d6 0%, #b0b0b0 100%);
+    text-decoration: none;
+    color: #444444; }
+  .button:active {
+    background: #969696;
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=$from, endColorstr=$to);
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient (GradientType=0, startColorstr=#acacac, endColorstr=gray)";
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#acacac), to(gray));
+    background: -moz-linear-gradient(top, #acacac 0%, gray 100%);
+    color: #111111;
+    text-shadow: 0 1px 0 #cccccc;
+    border: 1px solid #666666;
+      border-top: 1px solid #333333;
+      border-bottom: 1px solid #888888; }
+  .button img {
+    position: relative;
+    height: 20px;
+    width: 20px;
+    top: 6px; }

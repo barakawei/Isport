@@ -27,10 +27,18 @@ ol, ul, li {
 
 form {
   position: relative; }
-  form input,
-  form textarea,
+  form input[type=checkbox] {
+    margin-top: 0.5em; }
+  form br.clear {
+    clear: left; }
+  form textarea {
+    font-size: 12px; }
   form label {
-    font-size: auto; }
+    float: left;
+    margin-top: 0.5em;
+    width: 6em; }
+  form .actions {
+    margin-top: 0.5em; }
 
 #content {
   background-color: white;
@@ -62,4 +70,4 @@ form {
       color: #3f8fba; }
 
 .container.body {
-  margin-top: 40px; }
+  margin-top: 45px; }
