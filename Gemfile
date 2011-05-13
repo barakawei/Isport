@@ -5,7 +5,9 @@ gem 'rails', '3.0.7'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
+gem 'json'
 gem 'mysql2', '< 0.3'
+gem 'jammit'
 gem 'will_paginate'
 gem 'devise'
 gem 'haml'

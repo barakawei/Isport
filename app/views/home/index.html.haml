@@ -1,1 +1,20 @@
-%div content
+.span-20
+  #events
+    enents list
+.span-4.last
+  #home_user
+    %h3{:style => "position:relative;"}
+      =current_user.name
+    =current_user.email
+    %b
+  #firend_lists.section
+    - if @contacts.length > 0
+      .contacts 
+        %h3 friend list
+        #ul 
+          - for contact in @contacts
+            %li= contact.person.name
+    - else
+      %h4
+        no friends      
+    

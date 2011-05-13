@@ -1,9 +1,16 @@
 Isport::Application.routes.draw do
+  devise_for :users, :controllers => { :registrations => "registrations" }
   resources :events
-
-  devise_for :users
-
+  resources :contacts
+  resources :profiles
+  resources :people
+  resources :posts
+  resources :photos
   root :to => "home#index"
+  controller :users do
+    match 'getting_started'         => :getting_started, :as => 'getting_started'
+  end
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

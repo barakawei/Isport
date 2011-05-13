@@ -1,0 +1,11 @@
+%h3
+  = t('profiles.edit.your_public_profile')
+
+%h4
+  = t('profiles.edit.your_name')
+  = text_field_tag 'profile[name]', profile.name, :placeholder => t('profiles.edit.name')
+%h4
+  = t('profiles.edit.your_photo')
+  = render 'photos/new_profile_photo', :person => person
+  
+

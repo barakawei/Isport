@@ -10,8 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110511074543) do
-
+ActiveRecord::Schema.define(:version => 20110513010604) do
   create_table "contacts", :force => true do |t|
     t.integer  "user_id"
     t.integer  "person_id"
@@ -44,8 +43,22 @@ ActiveRecord::Schema.define(:version => 20110511074543) do
 
   add_index "people", ["user_id"], :name => "index_people_on_user_id", :unique => true
 
+  create_table "posts", :force => true do |t|
+    t.integer  "author_id"
+    t.string   "type"
+    t.text     "content"
+    t.text     "remote_photo_path"
+    t.string   "remote_photo_name"
+    t.string   "processed_image"
+    t.string   "unprocessed_image"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "pending",           :default => false
+    t.string   "random_string"
+  end
+
   create_table "profiles", :force => true do |t|
-    t.string   "name",            :limit => 127
+    t.string   "name",             :limit => 127
     t.string   "image_url"
     t.string   "image_url_small"
     t.date     "birthday"
@@ -54,13 +67,22 @@ ActiveRecord::Schema.define(:version => 20110511074543) do
     t.integer  "person_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "image_url_medium"
+    t.string   "location"
   end
 
   add_index "profiles", ["name"], :name => "index_profiles_on_name"
   add_index "profiles", ["person_id"], :name => "index_profiles_on_person_id"
 
+  create_table "requests", :force => true do |t|
+    t.integer  "sender_id"
+    t.integer  "recipient_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", :force => true do |t|
-    t.string   "email",                                 :default => "", :null => false
+    t.string   "email",                                 :default => "",   :null => false
     t.string   "encrypted_password",     :limit => 128, :default => ""
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -77,6 +99,8 @@ ActiveRecord::Schema.define(:version => 20110511074543) do
     t.integer  "invitation_limit"
     t.integer  "invited_by_id"
     t.string   "invited_by_type"
+    t.string   "name"
+    t.boolean  "getting_started",                       :default => true
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

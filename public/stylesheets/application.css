@@ -71,3 +71,25 @@ form {
 
 .container.body {
   margin-top: 45px; }
+
+#global_search {
+  display: inline;
+  position: relative; }
+  #global_search form {
+    display: inline; }
+    #global_search form input {
+      -webkit-box-shadow: 0 1px 0px #444444;
+      -moz-box-shadow: 0 1px 0px #444444;
+      box-shadow: 0 1px 0px #444444;
+      display: inline;
+      background-color: #cccccc;
+      border-top: 1px solid #111111;
+      font-size: 12px;
+      border: 1px solid black; }
+      #global_search form input:hover {
+        background-color: #eeeeee; }
+      #global_search form input.active {
+        background-color: #fafafa; }
+    #global_search form input[type='search'] {
+      width: 250px;
+      padding: 3px; }
