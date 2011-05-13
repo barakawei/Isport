@@ -4,6 +4,8 @@ Isport::Application.routes.draw do
   resources :contacts
   resources :profiles
   resources :people
+  resources :posts
+  resources :photos
   root :to => "home#index"
   controller :users do
     match 'getting_started'         => :getting_started, :as => 'getting_started'

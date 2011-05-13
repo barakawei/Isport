@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :getting_started
   has_one :person
+  delegate :name,:to => :person
   has_many :contacts
   has_one :profile, :through => :person
 
@@ -43,5 +44,19 @@ class User < ActiveRecord::Base
   def contact_for_person_id(person_id)
         Contact.unscoped.where(:user_id => self.id, :person_id => person_id).first if person_id
   end 
+
+  def update_profile(params)
+    if photo = params.delete(:photo)
+      photo.update_attributes(:pending => false) if photo.pending
+      params[:image_url] = photo.url(:thumb_large)
+      params[:image_url_medium] = photo.url(:thumb_medium)
+      params[:image_url_small] = photo.url(:thumb_small)
+    end
+    if self.person.profile.update_attributes(params)
+      true
+    else
+      false
+    end
+  end
   
 end

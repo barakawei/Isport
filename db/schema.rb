@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110511063229) do
+ActiveRecord::Schema.define(:version => 20110513010604) do
 
   create_table "contacts", :force => true do |t|
     t.integer  "user_id"
@@ -43,8 +43,22 @@ ActiveRecord::Schema.define(:version => 20110511063229) do
 
   add_index "people", ["user_id"], :name => "index_people_on_user_id", :unique => true
 
+  create_table "posts", :force => true do |t|
+    t.integer  "author_id"
+    t.string   "type"
+    t.text     "content"
+    t.text     "remote_photo_path"
+    t.string   "remote_photo_name"
+    t.string   "processed_image"
+    t.string   "unprocessed_image"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "pending",           :default => false
+    t.string   "random_string"
+  end
+
   create_table "profiles", :force => true do |t|
-    t.string   "name",            :limit => 127
+    t.string   "name",             :limit => 127
     t.string   "image_url"
     t.string   "image_url_small"
     t.date     "birthday"
@@ -53,6 +67,8 @@ ActiveRecord::Schema.define(:version => 20110511063229) do
     t.integer  "person_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "image_url_medium"
+    t.string   "location"
   end
 
   add_index "profiles", ["name"], :name => "index_profiles_on_name"

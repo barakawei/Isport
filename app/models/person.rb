@@ -3,6 +3,7 @@ class Person < ActiveRecord::Base
   has_many :contacts
   has_one :profile
   scope :searchable, joins(:profile) 
+  delegate :name, :to => :profile
   
   def self.search(query,user)
     return [] if query.to_s.blank? || query.to_s.length < 3
