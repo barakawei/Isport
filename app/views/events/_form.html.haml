@@ -1,6 +1,5 @@
 = form_for @event, :html => { :multipart => true } do |f|
   .span-6
-    = image_tag(@event.avatar_url) if @event.avatar?
   .span-12.prepend-1.last
     -if @event.errors.any?
       #error_explanation
@@ -32,16 +31,9 @@
       = f.text_field :subject_id
       %br.clear
     .field
-      = f.label t('event_pic')+":"
-      = f.file_field :avatar
-      = f.hidden_field :avatar_cache
-      %br.clear
-    .field
       = f.label t('ispublic')+":" 
       = f.check_box :ispublic
       %br.clear
     .actions
       = f.submit t('save') 
     %p 
-      %h4.prepend-1.5 
-        = t('event_pic') 
