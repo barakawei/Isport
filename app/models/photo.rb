@@ -21,7 +21,7 @@ class Photo < Post
   end
 
   def update_remote_path
-    remote_path = "http://localhost:8888"+self.unprocessed_image.url
+    remote_path = "http://localhost:3000"+self.unprocessed_image.url
     name_start = remote_path.rindex '/'
     self.remote_photo_path = "#{remote_path.slice(0, name_start)}/"
     self.remote_photo_name = remote_path.slice(name_start + 1, remote_path.length)

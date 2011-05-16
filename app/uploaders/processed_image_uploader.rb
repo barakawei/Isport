@@ -16,7 +16,7 @@ class ProcessedImageUploader < CarrierWave::Uploader::Base
   end
 
   version :thumb_small do
-    process :resize_to_fill => [50,50]
+    process :resize_to_fill => [50,50] 
   end
   version :thumb_medium do
     process :resize_to_fill => [100,100]
@@ -25,7 +25,4 @@ class ProcessedImageUploader < CarrierWave::Uploader::Base
     process :resize_to_fill => [300,300]
   end
 
-  version :scaled_full do
-    process :resize_to_limit => [700,700]
-  end
 end

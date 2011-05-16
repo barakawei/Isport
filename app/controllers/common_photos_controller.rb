@@ -1,4 +1,4 @@
-class PhotosController < ApplicationController
+class CommonPhotosControllerController < ApplicationController
   respond_to :html, :json
 
   def create
@@ -22,11 +22,8 @@ class PhotosController < ApplicationController
     url_params = {:image_url => @photo.url(:thumb_large),
                   :image_url_medium => @photo.url(:thumb_medium),
                   :image_url_small => @photo.url(:thumb_small)}
-    if "event" == params[:photo][:model_name]
-        if params[:photo][:is_edit] == true 
-          puts params[ :photo ][:is_edit]
-          Event.update_avatar_urls(params, url_params)
-        end
+    if "event" == params[:model_type]
+        event.update_avatar_urls(params, url_params)
     end 
   end
 

@@ -1,6 +1,7 @@
 = form_for @event, :html => { :multipart => true } do |f|
-  .span-6
-  .span-12.prepend-1.last
+  .span-8 
+    = render "photos/new_event_photo", :event => @event, :is_edit => is_edit, :model_name => "event"
+  .span-10.prepend-1.last
     -if @event.errors.any?
       #error_explanation
         %h2= "#{pluralize(@event.errors.count, "error")} prohibited this event from being saved:"
