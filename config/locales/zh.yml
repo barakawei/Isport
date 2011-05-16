@@ -18,6 +18,7 @@ zh:
       your_private_profile: "您的私人资料"
       your_name: "您的名字"
       name: "名字"
+      your_photo: "您的照片"
   start_at: '开始时间'
   end_at: '结束时间'
   event_title: '活动名称'

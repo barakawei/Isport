@@ -6,16 +6,12 @@ javascripts:
   jquery:
     - public/javascripts/jquery.min.js
   main:
-    - public/javascripts/rails.js
+    - public/javascripts/jquery_ujs.js
     - public/javascripts/fileuploader-custom.js
-  photos:
-    - public/javascripts/photo-show.js
 
 stylesheets:
   default:
     - public/stylesheets/application.css
     - public/stylesheets/ui.css
     - public/stylesheets/fileuploader.css
-  rtl:
-    - public/stylesheets/rtl.css
  

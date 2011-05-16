@@ -13,12 +13,11 @@ gem 'devise'
 gem 'haml'
 gem 'sass'
 gem 'devise_invitable'
-gem "jquery-rails"
+gem "jquery-rails","1.0.2"
 gem "hpricot"
 gem "ruby_parser"
 gem 'mini_magick'
 gem 'carrierwave'
-gem 'mini_magick'
 
 group :development, :test do
   gem 'rspec-rails'

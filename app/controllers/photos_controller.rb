@@ -1,4 +1,5 @@
 class PhotosController < ApplicationController
+  before_filter :authenticate_user!
   respond_to :html, :json
 
   
@@ -15,13 +16,15 @@ class PhotosController < ApplicationController
           profile_params = {:image_url => @photo.url(:thumb_large),
                            :image_url_medium => @photo.url(:thumb_medium),
                            :image_url_small => @photo.url(:thumb_small)}
-          puts params[ :photo ]
-          update_profile(profile_params)
+          
+          current_user.profile.update_attributes(profile_params)
         end
-
+        
         respond_to do |format|
           format.json{ render(:layout => false , :json => {"success" => true, "data" => @photo}.to_json )}
         end
+
+
       else
         respond_with @photo, :location => photos_path, :error => message
       end
@@ -55,21 +58,4 @@ class PhotosController < ApplicationController
       Tempfile.send(:define_method, "original_filename") {return file_name}
       file
   end  
-
-  def update_profile(params)
-    if photo = params.delete(:photo)
-      photo.update_attributes(:pending => false) if photo.pending
-      params[:image_url] = photo.url(:thumb_large)
-      params[:image_url_medium] = photo.url(:thumb_medium)
-      params[:image_url_small] = photo.url(:thumb_small)
-    end
-    puts params
-    profile = Profile.where( :id => 7 ).first
-    if profile.update_attributes(params)
-      true
-    else
-      false
-    end
-  end
-
 end

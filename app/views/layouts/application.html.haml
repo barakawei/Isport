@@ -3,8 +3,11 @@
   %head
     %title
       isport
-    = stylesheet_link_tag :all
-    = stylesheet_link_tag "blueprint/screen", :media => 'screen' 
+    = stylesheet_link_tag "blueprint/screen", :media => 'screen'
+    = stylesheet_link_tag "blueprint/print", :media => 'print'
+    = include_stylesheets :default, :media => 'all'
+                       
+    
     <!--[if lt IE 8]>
     = stylesheet_link_tag 'blueprint/ie',:media => 'screen'
     <![endif]--> 
@@ -12,8 +15,9 @@
     = include_javascripts :jquery
     = include_javascripts :main
     = csrf_meta_tag
-  %body
-    .header
+    = yield(:head)
+  %body{:class => "#{yield(:body_class)}"}
+    %header{:class => ( 'landing' unless current_user)}
       = render 'layouts/header' 
     .container.body
       .span-24.last
