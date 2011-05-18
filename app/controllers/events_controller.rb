@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
-  # GET /events
-  # GET /events.xml
+  before_filter :authenticate_user!, :except => [:index, :show ]
+
   def index
     @events = Event.all
 
@@ -10,8 +10,6 @@ class EventsController < ApplicationController
     end
   end
 
-  # GET /events/1
-  # GET /events/1.xml
   def show
     @event = Event.find(params[:id])
 
@@ -21,8 +19,6 @@ class EventsController < ApplicationController
     end
   end
 
-  # GET /events/new
-  # GET /events/new.xml
   def new
     @event = Event.new
 
@@ -32,16 +28,13 @@ class EventsController < ApplicationController
     end
   end
 
-  # GET /events/1/edit
   def edit
     @event = Event.find(params[:id])
   end
 
-  # POST /events
-  # POST /events.xml
   def create
     @event = Event.new(params[:event])
-
+    @event.person = current_user.person
     respond_to do |format|
       if @event.save
         format.html { redirect_to(@event, :notice => 'Event was successfully created.') }
@@ -53,8 +46,6 @@ class EventsController < ApplicationController
     end
   end
 
-  # PUT /events/1
-  # PUT /events/1.xml
   def update
     @event = Event.find(params[:id])
 

@@ -31,7 +31,4 @@ module ApplicationHelper
   #{h(person.name)}
 </a>".html_safe
   end
-  
-  
->>>>>>> issue1
 end

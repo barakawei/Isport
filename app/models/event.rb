@@ -1,4 +1,5 @@
 class Event < ActiveRecord::Base
+  belongs_to :person
 
   def self.update_avatar_urls(params,url_params)
       event = find(params[:photo][:model_id])
@@ -38,6 +39,10 @@ class Event < ActiveRecord::Base
       super(url)
     else
     end
+  end
+
+  def is_owner(user)
+    return user.person.id == person_id
   end
 end
 
