@@ -35,7 +35,7 @@ class PeopleController < ApplicationController
   def show
     @person = Person.where(:id => params[:id]).first
     if @person
-      @contacts = @person.contacts 
+      @contacts = Contact.where( :user_id => @person.user ).all 
     end
   end
 end
