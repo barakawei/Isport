@@ -31,7 +31,7 @@ class PhotosController < ApplicationController
     end 
     
     if "profile" == params[:photo][:model_name]
-      current_user.profile.update_attributes(profile_params)
+      current_user.profile.update_attributes(url_params)
     end
   end
 

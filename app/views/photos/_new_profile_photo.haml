@@ -10,7 +10,7 @@
       function createUploader(){
         var uploader = new qq.FileUploaderBasic({
              element: document.getElementById('file-upload'),
-             params: { 'photo' : {'pending' : true,  'set_profile_photo': true, 'model_name': "profile", 'model_id': }},
+             params: { 'photo' : {'pending' : true,  'set_profile_photo': true, 'model_name': "profile" }},
              allowedExtensions: ['jpg', 'jpeg', 'png'],
              action: "#{photos_path}",
              debug: true,
