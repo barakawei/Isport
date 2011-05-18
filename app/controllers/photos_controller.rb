@@ -1,4 +1,5 @@
 class PhotosController < ApplicationController
+  before_filter :authenticate_user!
   respond_to :html, :json
 
   def create
@@ -9,6 +10,7 @@ class PhotosController < ApplicationController
       if @photo.save
         @photo.process
         updateUrls(params, @photo)
+
         respond_to do |format|
           format.json{ render(:layout => false , :json => {"success" => true, "data" => @photo}.to_json )}
         end
@@ -27,6 +29,10 @@ class PhotosController < ApplicationController
           Event.update_avatar_urls(params, url_params)
         end
     end 
+    
+    if "profile" == params[:photo][:model_name]
+      current_user.profile.update_attributes(profile_params)
+    end
   end
 
   private

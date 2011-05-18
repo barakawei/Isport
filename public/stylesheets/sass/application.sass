@@ -52,31 +52,6 @@ form
     :color #fff
   :border 1px solid #ccc
   :height 100%
-
-.header
-  @include box_shadow(0, 1px, 3px, #222)
-  @include linear_gradient(rgba(15,15,15,0.85), rgba(10,10,10,1))
-
-  :z-index 50
-  :padding 
-    :top 0px
-  :color #ccc
-
-  :position fixed
-  :width 100%
-  :height 40px
-
-  :top 0
-  :left 0
-
-  a.nav
-    :color #CCC
-    :text
-      :decoration none
-    :font
-      :size 20px
-    &:hover
-      :color $blue 
   
 .container.body
   :margin
@@ -112,6 +87,168 @@ form
     input[type='search']
       :width 250px
       :padding 3px
+  form
+    :display relative 
+
+.floating
+  @include box-shadow(0,1px,3px,#333)
+
+  :position relative
+  :padding 12px
+  :margin
+    :bottom 2em
+  :background
+    :color rgb(255,255,255)
+
+  :border
+    :bottom 1px solid #ccc
+    :top 1px solid #fff
+
+  .submit_block
+    :position absolute
+    :bottom 13px
+    :right 12px
+
+  form
+    :display relative
+
+
+input:not([type='submit']):not([type='reset']),
+textarea
+  @include border-radius(3px)
+
+  :font
+    :family 'Arial', 'Helvetica', sans-serif
+    :size 14px
+  :padding 0.3em
+  :display block
+  :width 100%
+  :border 1px solid #ccc
+  :height auto
+
+#profile_photo_upload
+  :margin
+    :top 5px
+  :min-height 100px
+  img
+    @include border-radius(5px)
+    @include box-shadow(0,1px,2px,#666)
+
+    :position absolute
+    :left 0
+    :height 100px
+    :width 100px
+
+  :padding
+    :left 120px
+
+header
+  @include box-shadow(0,1px,3px,#222)
+  @include linear-gradient(rgba(15,15,15,0.85),rgba(10,10,10,1))
+
+  :z-index 50
+  :padding 0
+    :top 2px
+  :color #CCC
+
+  :position fixed
+  :width 100%
+  :top 0
+  :left 0
+
+  a
+    :color #CCC
+
+    &:hover
+      :background none
+      :color #eee
+
+  &.landing
+    .right
+      :top 10px
+    :height 40px
+
+  ul#user_menu
+    @include border-radius(5px)
+
+    :overflow hidden
+    :white-space nowrap
+    :text-overflow ellipsis
+    :text-shadow 0 1px 0 #000
+
+    :width auto
+
+    :cursor pointer
+
+    :z-index 10
+    :padding 5px 0
+      :left 30px
+      :right 5px
+    :margin 0
+      :top -2px
+      :right -5px
+
+    :background
+      :color #000
+
+    :position absolute
+    :display inline
+
+    :top 5px
+    :right 0
+
+    &:hover
+      :background
+        :color #222
+
+    li
+      :display none
+
+      a
+        :display block
+        :padding 4px
+        :height 100%
+        &:hover
+          :background
+            :color $blue
+          :color #fff
+
+      &:first-child
+        :display inline
+        a
+          :height auto
+          :display inline
+          :padding
+            :right 15px
+          :color #CCC
+          &:hover
+            :background
+              :color #222
+            :text
+              :decoration none
+        .right
+          :right 5px
+
+    &.active
+      @include box-shadow(0,1px,2px,#333)
+
+      :margin
+        :top -3px
+        :right -6px
+      :background
+        :color #000
+      :border 1px solid #999
+
+      li
+        :display block
+
+    .avatar
+      :height 20px
+      :width 20px
+      :position absolute
+      :left 2px
+      :top 2px
+      :display block
 
 .list
   p
