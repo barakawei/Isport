@@ -10,15 +10,13 @@ body
   :margin 0
     :top 60px
   :background-color $background
-a
-  :color #107FC9
-  :color $blue
-  :text
-    :decoration none
-  &:hover
-    :color $blue
+
 p
   :word-wrap break-word
+
+a.nounderline
+  :text
+    :decoration none
 
 h1, h2, h3, h4, h5
   :color #333
@@ -35,12 +33,20 @@ ol, ul, li
 
 form
   :position relative
-  input,
-  textarea,
-  label
+  input[type=checkbox]
+    :margin-top 0.5em
+  br.clear
+    :clear left 
+  textarea
     :font
-      :size auto
-
+      :size 12px
+  label
+    :float left
+    :margin-top  0.5em
+    :width 6em
+  .actions
+    :margin-top 0.5em
+  
 #content
   :background
     :color #fff
@@ -49,7 +55,7 @@ form
   
 .container.body
   :margin
-    :top 40px
+    :top 45px
 
 #global_search
   :display inline
@@ -316,3 +322,6 @@ h1,h2,h3,h4
       :bottom 1px solid #ddd
       :top 1px solid #fff
 
+.list
+  p
+    :margin-bottom 0

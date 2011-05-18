@@ -1,31 +1,44 @@
-= form_for @event do |f|
-  -if @event.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@event.errors.count, "error")} prohibited this event from being saved:"
-      %ul
-        - @event.errors.full_messages.each do |msg|
-          %li= msg
+= form_for @event, :html => { :multipart => true } do |f|
+  .span-7 
+    = render "photos/new_event_photo", :event => @event, :is_edit => is_edit, :model_name => "event"
+  .span-10.prepend-1.last
+    -if @event.errors.any?
+      #error_explanation
+        %h2= "#{pluralize(@event.errors.count, "error")} prohibited this event from being saved:"
+        %ul
+          - @event.errors.full_messages.each do |msg|
+            %li= msg
 
-  .field
-    = f.label :start_at
-    = f.datetime_select :start_at
-  .field
-    = f.label :end_at
-    = f.datetime_select :end_at
-  .field
-    = f.label :title
-    = f.text_field :title
-  .field
-    = f.label :description
-    = f.text_area :description
-  .field
-    = f.label :location
-    = f.text_field :location
-  .field
-    = f.label :subject_id
-    = f.text_field :subject_id
-  .field
-    = f.label :ispublic
-    = f.check_box :ispublic
-  .actions
-    = f.submit 'Save'
+    .field
+      = f.label t('event_title') +":"
+      = f.text_field :title
+      %br.clear
+    .field
+      = f.label t('start_at')+":"
+      = f.datetime_select :start_at
+    .field
+      = f.label t('end_at')+":"
+      = f.datetime_select :end_at
+    .field
+      = f.label t('event_description')+":"
+      = f.text_area :description
+      %br.clear
+    .field
+      = f.label t('location')+":"
+      = f.text_field :location
+      %br.clear
+    .field
+      = f.label t('event_subject') +":"
+      = f.text_field :subject_id
+      %br.clear
+    .field.hide
+      = f.text_field :image_url
+      = f.text_field :image_url_medium
+      = f.text_field :image_url_small
+    .field
+      = f.label t('ispublic')+":" 
+      = f.check_box :ispublic
+      %br.clear
+    .actions
+      = f.submit t('save') 
+    %p 

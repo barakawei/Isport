@@ -27,6 +27,9 @@ module ApplicationHelper
   #{h(person.name)}
 </a>".html_safe
   end
-  
-  
+
+  def event_image_tag(event,size=nil)
+    "<img  class=\"avatar\"  src=\"#{event.image_url(size)}\" >".html_safe
+  end
+
 end

@@ -34,6 +34,6 @@ class Profile < ActiveRecord::Base
       super(url)
     else
     end
-  end
+  end 
 
 end

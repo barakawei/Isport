@@ -1,27 +1,28 @@
-%p#notice= notice
+.span-18
+  .span-7
+    = event_image_tag(@event, :thumb_large)
+  .span-7.prepend-1
+    %h2= @event.title
+    %p#notice= notice
+    %p
+      %b= t('start_at')+":"
+      = @event.start_at
+    %p
+      %b= t('end_at')+":"
+      = @event.end_at
+    %p
+      %b= t('location')+":"
+      = @event.location
+    %p
+      %b= t('event_subject')+":"
+      = @event.subject_id
+.span-5.last
 
-%p
-  %b Start at:
-  = @event.start_at
-%p
-  %b End at:
-  = @event.end_at
-%p
-  %b Title:
-  = @event.title
-%p
-  %b Description:
-  = @event.description
-%p
-  %b Location:
-  = @event.location
-%p
-  %b Subject:
-  = @event.subject_id
-%p
-  %b Ispublic:
-  = @event.ispublic
-
-= link_to 'Edit', edit_event_path(@event)
-\|
-= link_to 'Back', events_path
+.span-18
+  %br
+  %h4= t('event_description')+":"
+  %hr
+  %p= @event.description
+  %br
+  %hr
+  = link_to t('edit'), edit_event_path(@event), :class => "button"

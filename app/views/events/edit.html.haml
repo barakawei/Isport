@@ -1,7 +1,2 @@
-%h1 Editing event
-
-= render 'form'
-
-= link_to 'Show', @event
-\|
-= link_to 'Back', events_path
+%h2= t('edit_event') 
+= render 'form', :is_edit => true 
