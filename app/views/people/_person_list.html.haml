@@ -1,0 +1,19 @@
+#home_user
+  = person_image_link(@person)
+  %h3{:style => "position:relative;"}
+    =@person.name
+    .description
+      = link_to @person.email
+  %b
+  %b
+#friend_listings.section
+  %h4
+    - if @contacts.length > 0
+      %ul
+        %li
+          .contacts 
+            %h4="#{@contacts.length} friends"
+            - for contact in @contacts
+              = person_image_link(contact.person)
+    - else
+      no friends   

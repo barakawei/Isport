@@ -31,6 +31,13 @@ class PeopleController < ApplicationController
         :request => requests[p.id]
     }}
   end
+
+  def show
+    @person = Person.where(:id => params[:id]).first
+    if @person
+      @contacts = @person.contacts 
+    end
+  end
 end
 
 

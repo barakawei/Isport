@@ -11,6 +11,9 @@
     -else
       = link_to t('people.show.start_sharing'),{:controller => "contacts",:action => "new",:person_id => person.id},:class => 'share_with button'
 
+  = person_image_link(person)
+
   .content
-    %span.form
-      =person.profile.name
+    %span.from
+      =person_link(person)
+
