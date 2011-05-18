@@ -16,6 +16,9 @@
     %p
       %b= t('event_subject')+":"
       = @event.subject_id
+    %p
+      %b= t('event_owner')+":"
+      = @event.person.profile.name
 .span-5.last
 
 .span-18
@@ -25,4 +28,7 @@
   %p= @event.description
   %br
   %hr
-  = link_to t('edit'), edit_event_path(@event), :class => "button"
+
+.span-24
+  - if @event.is_owner(current_user)
+    = link_to t('edit'), edit_event_path(@event), :class => "button"

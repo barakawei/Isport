@@ -6,7 +6,7 @@ module ApplicationHelper
   def person_image_tag(person, size=:thumb_small)
     "<img alt=\"#{h(person.name)}\" class=\"avatar\" data-person_id=\"#{person.id}\" src=\"#{person.profile.image_url(size)}\" title=\"#{h(person.name)}\">".html_safe
   end
-    
+
   def owner_image_link
     person_image_link(current_user.person)
   end

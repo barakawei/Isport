@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110513080744) do
+ActiveRecord::Schema.define(:version => 20110518084034) do
 
   create_table "contacts", :force => true do |t|
     t.integer  "user_id"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(:version => 20110513080744) do
     t.string   "image_url"
     t.string   "image_url_medium"
     t.string   "image_url_small"
+    t.integer  "person_id"
   end
 
   create_table "people", :force => true do |t|

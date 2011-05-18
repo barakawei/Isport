@@ -24,6 +24,7 @@ zh:
   event_title: '活动名称'
   event_description: '活动描述'
   event_subject: '所属项目'
+  event_owner: '发起人'
   location: '地点'
   show: '去看看'
   edit: '编辑'
