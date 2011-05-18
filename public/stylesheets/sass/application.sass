@@ -143,6 +143,7 @@ header
   :z-index 50
   :padding 0
     :top 2px
+    :bottom 20px
   :color #CCC
 
   :position fixed
@@ -150,97 +151,168 @@ header
   :top 0
   :left 0
 
-  a
-    :color #CCC
+#home_user
+  :position relative
 
-    &:hover
-      :background none
-      :color #eee
-
-  &.landing
-    .right
-      :top 10px
-    :height 40px
-
-  ul#user_menu
-    @include border-radius(5px)
-
-    :overflow hidden
-    :white-space nowrap
-    :text-overflow ellipsis
-    :text-shadow 0 1px 0 #000
-
-    :width auto
-
-    :cursor pointer
-
-    :z-index 10
-    :padding 5px 0
-      :left 30px
-      :right 5px
-    :margin 0
-      :top -2px
-      :right -5px
-
-    :background
-      :color #000
-
+  img
     :position absolute
-    :display inline
+    :left 0
 
-    :top 5px
-    :right 0
+  h3
+    :position relative
+    :top 4px
+
+  :margin
+    :bottom 1em
+
+  :border
+    :bottom 1px solid #ccc
+
+  :padding
+    :left 60px
+
+h1,h2,h3,h4
+  .description
+    :font
+      :size 80%
+      :weight 200
+    :color #aaa
+    :margin
+      :top 0.5em 
+
+.section
+  :margin
+    :bottom 24px
+
+#friend_listings
+  .contacts
+    :margin
+      :top 6px
+  ul
+    :padding 0
+    :margin 0
+    > li
+      :position relative
+      :padding 8px 0
+      :border
+        :bottom 1px solid #ddd
+
+#friend_listings li
+  img
+    :margin
+      :right 2px
+      :bottom 0px
+    :width 29px
+    :height 29px
+
+  h5
+    :margin
+      :bottom 6px
+
+.stream_element
+  :position relative
+  :word-wrap break-word
+  :color #888
+
+  :font
+    :size 14px
+
+  a.author
+    :font
+      :weight bold
+    :color #444
+
+  .content
+    :margin
+      :top 0
+    :padding
+      :left 60px
+
+    :color #666
+    :font
+      :weight normal
+
+    p
+      :margin
+        :bottom 0px
+      :font
+        :size 13px
+      :line
+        :height 18px
+
+    .photo_attachments
+      :margin
+        :top 7px
+
+    img
+      :margin
+        :right 0
+      :max-width 100%
+
+    .stream_photo
+      :float left
+      :margin
+        :top 6px
+
+    .photo_description
+      :margin
+        :top 6px
+      :padding
+        :left 220px
+      :min-height 185px
+      :color #888
+      :font
+        :style italic
+
+    .small_text
+      :font
+        :size smaller
+
+    .info
+      :margin
+        :top 2px
+      :color #999
+      :font-size 11px
+
+    .comments
+      .info
+        :margin
+          :top -1px
+
+  .delete
+    @include opacity(0.6)
+    :padding 5px
 
     &:hover
-      :background
-        :color #222
+      @include opacity(1)
 
-    li
-      :display none
+  .right
+    :position absolute
+    :right 12px
 
+  .controls
+    :display none
+    :z-index 6
+    :color #999
+    a
+      :color #999
+      :font
+        :weight normal
+
+  &:hover, .comment:hover
+    > .controls
+      :display inline
+
+    .from
       a
-        :display block
-        :padding 4px
-        :height 100%
-        &:hover
-          :background
-            :color $blue
-          :color #fff
-
-      &:first-child
-        :display inline
-        a
-          :height auto
-          :display inline
-          :padding
-            :right 15px
-          :color #CCC
-          &:hover
-            :background
-              :color #222
-            :text
-              :decoration none
-        .right
-          :right 5px
-
-    &.active
-      @include box-shadow(0,1px,2px,#333)
-
-      :margin
-        :top -3px
-        :right -6px
-      :background
-        :color #000
-      :border 1px solid #999
-
-      li
-        :display block
-
-    .avatar
-      :height 20px
-      :width 20px
-      :position absolute
-      :left 2px
-      :top 2px
-      :display block
+        :color $blue
+.stream
+  .avatar
+    :float left
+  .stream_element
+    :padding 20px 20px
+    :min-height 50px
+    :border
+      :bottom 1px solid #ddd
+      :top 1px solid #fff
 

@@ -122,79 +122,121 @@ header {
   z-index: 50;
   padding: 0;
     padding-top: 2px;
+    padding-bottom: 20px;
   color: #cccccc;
   position: fixed;
   width: 100%;
   top: 0;
   left: 0; }
-  header a {
-    color: #cccccc; }
-    header a:hover {
-      background: none;
-      color: #eeeeee; }
-  header.landing {
-    height: 40px; }
-    header.landing .right {
-      top: 10px; }
-  header ul#user_menu {
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    text-shadow: 0 1px 0 black;
-    width: auto;
-    cursor: pointer;
-    z-index: 10;
-    padding: 5px 0;
-      padding-left: 30px;
-      padding-right: 5px;
-    margin: 0;
-      margin-top: -2px;
-      margin-right: -5px;
-    background-color: black;
+
+#home_user {
+  position: relative;
+  margin-bottom: 1em;
+  border-bottom: 1px solid #cccccc;
+  padding-left: 60px; }
+  #home_user img {
     position: absolute;
-    display: inline;
-    top: 5px;
-    right: 0; }
-    header ul#user_menu:hover {
-      background-color: #222222; }
-    header ul#user_menu li {
-      display: none; }
-      header ul#user_menu li a {
-        display: block;
-        padding: 4px;
-        height: 100%; }
-        header ul#user_menu li a:hover {
-          background-color: #3f8fba;
-          color: white; }
-      header ul#user_menu li:first-child {
-        display: inline; }
-        header ul#user_menu li:first-child a {
-          height: auto;
-          display: inline;
-          padding-right: 15px;
-          color: #cccccc; }
-          header ul#user_menu li:first-child a:hover {
-            background-color: #222222;
-            text-decoration: none; }
-        header ul#user_menu li:first-child .right {
-          right: 5px; }
-    header ul#user_menu.active {
-      -webkit-box-shadow: 0 1px 2px #333333;
-      -moz-box-shadow: 0 1px 2px #333333;
-      box-shadow: 0 1px 2px #333333;
-      margin-top: -3px;
-      margin-right: -6px;
-      background-color: black;
-      border: 1px solid #999999; }
-      header ul#user_menu.active li {
-        display: block; }
-    header ul#user_menu .avatar {
-      height: 20px;
-      width: 20px;
-      position: absolute;
-      left: 2px;
-      top: 2px;
-      display: block; }
+    left: 0; }
+  #home_user h3 {
+    position: relative;
+    top: 4px; }
+
+h1 .description, h2 .description, h3 .description, h4 .description {
+  font-size: 80%;
+  font-weight: 200;
+  color: #aaaaaa;
+  margin-top: 0.5em; }
+
+.section {
+  margin-bottom: 24px; }
+
+#friend_listings .contacts {
+  margin-top: 6px; }
+#friend_listings ul {
+  padding: 0;
+  margin: 0; }
+  #friend_listings ul > li {
+    position: relative;
+    padding: 8px 0;
+    border-bottom: 1px solid #dddddd; }
+
+#friend_listings li img {
+  margin-right: 2px;
+  margin-bottom: 0px;
+  width: 29px;
+  height: 29px; }
+#friend_listings li h5 {
+  margin-bottom: 6px; }
+
+.stream_element {
+  position: relative;
+  word-wrap: break-word;
+  color: #888888;
+  font-size: 14px; }
+  .stream_element a.author {
+    font-weight: bold;
+    color: #444444; }
+  .stream_element .content {
+    margin-top: 0;
+    padding-left: 60px;
+    color: #666666;
+    font-weight: normal; }
+    .stream_element .content p {
+      margin-bottom: 0px;
+      font-size: 13px;
+      line-height: 18px; }
+    .stream_element .content .photo_attachments {
+      margin-top: 7px; }
+    .stream_element .content img {
+      margin-right: 0;
+      max-width: 100%; }
+    .stream_element .content .stream_photo {
+      float: left;
+      margin-top: 6px; }
+    .stream_element .content .photo_description {
+      margin-top: 6px;
+      padding-left: 220px;
+      min-height: 185px;
+      color: #888888;
+      font-style: italic; }
+    .stream_element .content .small_text {
+      font-size: smaller; }
+    .stream_element .content .info {
+      margin-top: 2px;
+      color: #999999;
+      font-size: 11px; }
+    .stream_element .content .comments .info {
+      margin-top: -1px; }
+  .stream_element .delete {
+    filter: alpha(opacity=60);
+    -moz-opacity: 0.6;
+    -khtml-opacity: 0.6;
+    opacity: 0.6;
+    padding: 5px; }
+    .stream_element .delete:hover {
+      filter: alpha(opacity=100);
+      -moz-opacity: 1;
+      -khtml-opacity: 1;
+      opacity: 1; }
+  .stream_element .right {
+    position: absolute;
+    right: 12px; }
+  .stream_element .controls {
+    display: none;
+    z-index: 6;
+    color: #999999; }
+    .stream_element .controls a {
+      color: #999999;
+      font-weight: normal; }
+  .stream_element:hover > .controls, .stream_element .comment:hover > .controls {
+    display: inline; }
+  .stream_element:hover .from a, .stream_element .comment:hover .from a {
+    color: #3f8fba; }
+
+.stream .avatar {
+  float: left; }
+.stream .stream_element {
+  padding: 20px 20px;
+  min-height: 50px;
+  border-bottom: 1px solid #dddddd;
+  border-top: 1px solid white; }
