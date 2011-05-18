@@ -1,9 +1,9 @@
 .span-18
-  %h2= @event.title
-  %p#notice= notice
-
   .span-7
+    = event_image_tag(@event, :thumb_large)
   .span-7.prepend-1
+    %h2= @event.title
+    %p#notice= notice
     %p
       %b= t('start_at')+":"
       = @event.start_at

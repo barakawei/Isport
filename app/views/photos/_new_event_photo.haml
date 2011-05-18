@@ -1,5 +1,5 @@
 #event_photo_upload
-  = event_image_tag(event, :thumb_medium)
+  = event_image_tag(event, :thumb_large)
   %br
   #file-upload.button
     =t('upload')
@@ -43,6 +43,9 @@
 
               $("#event_photo_upload").find(".avatar").fadeTo(200,1);
               $("#event_photo_upload").find(".avatar").attr("src",url);
+              $("#event_image_url").val(responseJSON.data.photo.thumb_large);
+              $("#event_image_url_small").val(responseJSON.data.photo.thumb_small);
+              $("#event_image_url_medium").val(responseJSON.data.photo.thumb_medium);
              }
              
          });

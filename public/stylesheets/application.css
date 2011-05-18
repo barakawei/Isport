@@ -4,15 +4,11 @@ body {
     margin-top: 60px;
   background-color: #fcfcfc; }
 
-a {
-  color: #107fc9;
-  color: #3f8fba;
-  text-decoration: none; }
-  a:hover {
-    color: #3f8fba; }
-
 p {
   word-wrap: break-word; }
+
+a.nounderline {
+  text-decoration: none; }
 
 h1, h2, h3, h4, h5 {
   color: #333333;
@@ -93,3 +89,6 @@ form {
     #global_search form input[type='search'] {
       width: 250px;
       padding: 3px; }
+
+.list p {
+  margin-bottom: 0; }

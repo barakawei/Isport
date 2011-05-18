@@ -2,7 +2,7 @@ class Event < ActiveRecord::Base
 
   def self.update_avatar_urls(params,url_params)
       event = find(params[:photo][:model_id])
-      event.update_attributes(params)   
+      event.update_attributes(url_params)   
   end
 
   def image_url(size = :thumb_large)
