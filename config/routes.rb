@@ -7,6 +7,7 @@ Isport::Application.routes.draw do
   resources :posts
   resources :photos
   root :to => "home#index"
+  resource :user, :only => [:edit, :update, :destroy] 
   controller :users do
     match 'getting_started'         => :getting_started, :as => 'getting_started'
   end

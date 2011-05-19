@@ -7,8 +7,13 @@ body {
 p {
   word-wrap: break-word; }
 
-a.nounderline {
+a {
+  color: #107fc9;
+  color: #3f8fba;
   text-decoration: none; }
+  a:hover {
+    color: #3f8fba;
+    text-decoration: underline; }
 
 h1, h2, h3, h4, h5 {
   color: #333333;
@@ -23,18 +28,10 @@ ol, ul, li {
 
 form {
   position: relative; }
-  form input[type=checkbox] {
-    margin-top: 0.5em; }
-  form br.clear {
-    clear: left; }
-  form textarea {
-    font-size: 12px; }
+  form input,
+  form textarea,
   form label {
-    float: left;
-    margin-top: 0.5em;
-    width: 6em; }
-  form .actions {
-    margin-top: 0.5em; }
+    font-size: auto; }
 
 #content {
   background-color: white;
@@ -65,9 +62,6 @@ form {
     #global_search form input[type='search'] {
       width: 250px;
       padding: 3px; }
-
-.list p {
-  margin-bottom: 0; }
   #global_search form {
     display: relative; }
 
@@ -129,12 +123,83 @@ header {
   z-index: 50;
   padding: 0;
     padding-top: 2px;
-    padding-bottom: 20px;
+    padding-bottom: 30px;
   color: #cccccc;
   position: fixed;
   width: 100%;
   top: 0;
   left: 0; }
+  header a {
+    color: #cccccc; }
+    header a:hover {
+      background: none;
+      color: #eeeeee; }
+  header.landing {
+    height: 40px; }
+    header.landing .right {
+      top: 10px; }
+  header ul#user_menu {
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-shadow: 0 1px 0 black;
+    width: auto;
+    cursor: pointer;
+    z-index: 10;
+    padding: 5px 0;
+      padding-left: 30px;
+      padding-right: 5px;
+    margin: 0;
+      margin-top: -2px;
+      margin-right: -5px;
+    background-color: black;
+    position: absolute;
+    display: inline;
+    top: 5px;
+    right: 0; }
+    header ul#user_menu:hover {
+      background-color: #222222; }
+    header ul#user_menu li {
+      display: none; }
+      header ul#user_menu li a {
+        display: block;
+        padding: 4px;
+        height: 100%; }
+        header ul#user_menu li a:hover {
+          background-color: #3f8fba;
+          color: white; }
+      header ul#user_menu li:first-child {
+        display: inline; }
+        header ul#user_menu li:first-child a {
+          height: auto;
+          display: inline;
+          padding-right: 15px;
+          color: #cccccc; }
+          header ul#user_menu li:first-child a:hover {
+            background-color: #222222;
+            text-decoration: none; }
+        header ul#user_menu li:first-child .right {
+          right: 5px; }
+    header ul#user_menu.active {
+      -webkit-box-shadow: 0 1px 2px #333333;
+      -moz-box-shadow: 0 1px 2px #333333;
+      box-shadow: 0 1px 2px #333333;
+      margin-top: -3px;
+      margin-right: -6px;
+      background-color: black;
+      border: 1px solid #999999; }
+      header ul#user_menu.active li {
+        display: block; }
+    header ul#user_menu .avatar {
+      height: 20px;
+      width: 20px;
+      position: absolute;
+      left: 2px;
+      top: 2px;
+      display: block; }
 
 #home_user {
   position: relative;
@@ -247,3 +312,65 @@ h1 .description, h2 .description, h3 .description, h4 .description {
   min-height: 50px;
   border-bottom: 1px solid #dddddd;
   border-top: 1px solid white; }
+
+.list p {
+  margin-bottom: 0; }
+
+#login {
+  width: 600px;
+  padding-top: 10%;
+  padding-bottom: 20%;
+  text-align: center;
+  display: inline-block; }
+  #login form input,
+  #login form label {
+    font-size: 21px;
+    display: inline; }
+  #login form label {
+    top: 13px;
+    text-shadow: 0 1px 1px #cccccc; }
+  #login form input[type='text'],
+  #login form input[type='password'] {
+    -webkit-box-shadow: 0 1px 0px white, 0 -1px 0px #888888;
+    -moz-box-shadow: 0 1px 0px white, 0 -1px 0px #888888;
+    box-shadow: 0 1px 0px white, 0 -1px 0px #888888;
+    width: 180px;
+    max-width: 180px; }
+  #login form p {
+    display: inline-block;
+    position: relative;
+    width: 200px; }
+    #login form p:last-child {
+      margin-left: 3px; }
+    #login form p span {
+      display: block;
+      color: white; }
+      #login form p span.pod_location {
+        color: #888888; }
+    #login form p.submit {
+      width: auto;
+      bottom: 15px; }
+      #login form p.submit input {
+        width: auto;
+        position: relative;
+        height: 40px;
+        top: 0px;
+        color: #666666;
+        margin-bottom: 10px; }
+        #login form p.submit input:hover {
+          color: #444444; }
+
+label {
+  font-weight: normal;
+  color: #999999;
+  top: 3px;
+  left: 0.48em;
+  text-shadow: 0 1px 1px #eeeeee; }
+
+#remember_me input[type='checkbox'] {
+  display: inline;
+  height: auto !important;
+  top: 2px !important; }
+#remember_me label {
+  font-size: inherit !important;
+  position: static; }

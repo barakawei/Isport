@@ -8,7 +8,7 @@ class Person < ActiveRecord::Base
   delegate :email, :to => :user
   
   def self.search(query,user)
-    return [] if query.to_s.blank? || query.to_s.length < 3
+    return [] if query.to_s.blank? || query.to_s.length < 1
 
     where_clause = <<-SQL
       profiles.name LIKE ? OR

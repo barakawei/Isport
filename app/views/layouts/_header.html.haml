@@ -1,9 +1,16 @@
 .container{ :style => "position:relative;" }
   = link_to "酷玩吧", root_path, :class => 'nav'
-  #global_search
-    = form_tag(people_path, :method => 'get', :id => "global_search_form") do
-      = text_field_tag 'q', nil, :placeholder => t('search'), :type => 'search', :results => 5
-  
-  .right
-    = link_to "登录", root_path, :class => 'nav'
-
+  - if current_user 
+    #global_search
+      = form_tag(people_path, :method => 'get', :id => "global_search_form") do
+        = text_field_tag 'q', nil, :placeholder => t('search'), :type => 'search', :results => 5
+    %ul#user_menu
+      %li
+        .right
+          &#9660;
+        .avatar
+          = owner_image_tag(:thumb_small)
+        = link_to current_user.name, '#'
+      %li= link_to t('.settings'), edit_user_path
+      %li= link_to t('.logout'), destroy_user_session_path
+   

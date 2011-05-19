@@ -8,6 +8,7 @@ javascripts:
   main:
     - public/javascripts/jquery_ujs.js
     - public/javascripts/fileuploader-custom.js
+    - public/javascripts/view.js
 
 stylesheets:
   default:
