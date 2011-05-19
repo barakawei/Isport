@@ -1,29 +1,43 @@
-.span-18
+.span-24
   .span-7
     = event_image_tag(@event, :thumb_large)
-  .span-7.prepend-1
+  .span-6.last.prepend-1.right_border
     %h2= @event.title
     %p#notice= notice
     %p
-      %b= t('start_at')+":"
+      %b= t('events.start_at')+":"
       = @event.start_at
     %p
-      %b= t('end_at')+":"
+      %b= t('events.end_at')+":"
       = @event.end_at
     %p
-      %b= t('location')+":"
+      %b= t('events.location')+":"
       = @event.location
     %p
-      %b= t('event_subject')+":"
+      %b= t('events.event_subject')+":"
       = @event.subject_id
     %p
-      %b= t('event_owner')+":"
+      %b= t('events.event_owner')+":"
       = @event.person.profile.name
-.span-5.last
+  .span-3.last.left_padding
+    - unless is_participant_of(@event)  
+      = link_to t('events.apply'), url_for(:action=> "add_participant", :id => @event.id), :class => "button"
+      %br
+      = link_to t('events.recommend'), edit_event_path(@event), :class => "button" 
+    - else
+      %p
+        %h4= t('events.involved')
+      = link_to t('events.cancel_apply'), url_for(:action=> "remove_participant", :id => @event.id), :class => "button"
+  .span-6.prepend-1.last
+    %h4= t('events.participants') + ":"
+    - @event.participants.each do |person|
+      .span-2.last
+        = person_image_link(person) 
+      
 
 .span-18
   %br
-  %h4= t('event_description')+":"
+  %h4= t('events.event_description')+":"
   %hr
   %p= @event.description
   %br
@@ -31,4 +45,4 @@
 
 .span-24
   - if @event.is_owner(current_user)
-    = link_to t('edit'), edit_event_path(@event), :class => "button"
+    = link_to t('events.edit'), edit_event_path(@event), :class => "button"

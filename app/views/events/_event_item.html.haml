@@ -4,14 +4,14 @@
   %h3= link_to event.title, event, :class => "nounderline"
   %p#notice= notice
   %p
-    %b= t('start_at')+":"
+    %b= t('events.start_at')+":"
     = event.start_at
   %p
-    %b= t('end_at')+":"
+    %b= t('events.nd_at')+":"
     = event.end_at
   %p
-    %b= t('location')+":"
+    %b= t('events.location')+":"
     = event.location
   %p
-    %b= t('event_subject')+":"
+    %b= t('events.event_subject')+":"
     = event.subject_id

@@ -71,4 +71,18 @@ class EventsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  def add_participant
+    @event = Event.find(params[:id])
+    @event.participants << current_user.person
+    
+    redirect_to(event_url(@event))
+  end
+
+  def remove_participant
+    @event = Event.find(params[:id])
+    @event.participants.delete(current_user.person)
+    
+    redirect_to(event_url(@event))
+  end
 end
