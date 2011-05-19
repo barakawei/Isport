@@ -12,8 +12,8 @@
       %ul
         %li
           .contacts 
-            %h4="#{@contacts.length} friends"
+            %h4="#{@contacts.length} #{t( 'friends' )}"
             - for contact in @contacts
               = person_image_link(contact.person)
     - else
-      no friends   
+      =t('no_friends')   

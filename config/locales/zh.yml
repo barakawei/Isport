@@ -1,6 +1,8 @@
 zh:
   search: "搜索"
   settings: "设置"
+  no_friends: "没有好友"
+  friends: "个好友"
   start_sharing: "加为好友"
   incoming_request: "接受请求"
   pending_request: "请求中"
