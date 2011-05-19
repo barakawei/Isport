@@ -1,5 +1,7 @@
 class Event < ActiveRecord::Base
   belongs_to :person
+  has_many :involvements, :dependent => :destroy
+  has_many :participants, :through => :involvements, :source => :person
 
   def self.update_avatar_urls(params,url_params)
       event = find(params[:photo][:model_id])

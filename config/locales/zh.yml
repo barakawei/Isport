@@ -19,23 +19,29 @@ zh:
       your_name: "您的名字"
       name: "名字"
       your_photo: "您的照片"
-  start_at: '开始时间'
-  end_at: '结束时间'
-  event_title: '活动名称'
-  event_description: '活动描述'
-  event_subject: '所属项目'
-  event_owner: '发起人'
-  location: '地点'
-  show: '去看看'
-  edit: '编辑'
-  destroy: '取消'
-  save: '确认'
-  events_list: '所有活动'
-  new_event: '发起活动'
-  edit_event: '编辑活动'
-  event_pic: '活动图片'
-  ispublic: '所有人可见'
-
+  events:
+      start_at: '开始时间'
+      end_at: '结束时间'
+      event_title: '活动名称'
+      event_description: '活动描述'
+      event_subject: '所属项目'
+      event_owner: '发起人'
+      location: '地点'
+      show: '去看看'
+      edit: '编辑'
+      destroy: '取消'
+      save: '确认'
+      events_list: '所有活动'
+      new_event: '发起活动'
+      edit_event: '编辑活动'
+      event_pic: '活动图片'
+      ispublic: '所有人可见'
+      join: '我要参加'
+      recommend: '我要推荐'
+      apply: '我要报名'
+      cancel_apply: '取消报名'
+      involved: '我已经报名参加此活动'
+      participants: '此活动已报名人员'
   
   
 

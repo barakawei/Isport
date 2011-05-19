@@ -65,9 +65,6 @@ form {
     #global_search form input[type='search'] {
       width: 250px;
       padding: 3px; }
-
-.list p {
-  margin-bottom: 0; }
   #global_search form {
     display: relative; }
 
@@ -247,3 +244,6 @@ h1 .description, h2 .description, h3 .description, h4 .description {
   min-height: 50px;
   border-bottom: 1px solid #dddddd;
   border-top: 1px solid white; }
+
+.list p {
+  margin-bottom: 0; }

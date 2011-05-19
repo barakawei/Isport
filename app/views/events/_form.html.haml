@@ -10,25 +10,25 @@
             %li= msg
 
     .field
-      = f.label t('event_title') +":"
+      = f.label t('events.event_title') +":"
       = f.text_field :title
       %br.clear
     .field
-      = f.label t('start_at')+":"
+      = f.label t('events.start_at')+":"
       = f.datetime_select :start_at
     .field
-      = f.label t('end_at')+":"
+      = f.label t('events.end_at')+":"
       = f.datetime_select :end_at
     .field
-      = f.label t('event_description')+":"
+      = f.label t('events.event_description')+":"
       = f.text_area :description
       %br.clear
     .field
-      = f.label t('location')+":"
+      = f.label t('events.location')+":"
       = f.text_field :location
       %br.clear
     .field
-      = f.label t('event_subject') +":"
+      = f.label t('events.event_subject') +":"
       = f.text_field :subject_id
       %br.clear
     .field.hide
@@ -36,7 +36,7 @@
       = f.text_field :image_url_medium
       = f.text_field :image_url_small
     .field
-      = f.label t('ispublic')+":" 
+      = f.label t('events.ispublic')+":" 
       = f.check_box :ispublic
       %br.clear
     .actions
