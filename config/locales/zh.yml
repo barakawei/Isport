@@ -1,5 +1,12 @@
 zh:
   search: "搜索"
+  settings: "设置"
+  start_sharing: "加为好友"
+  incoming_request: "接受请求"
+  pending_request: "请求中"
+  already_connected: "你的好友"
+  thats_you: "自己"
+  logout: "退出"
   upload: "上传"
   submit: "保存并继续"
   email: "电子邮箱"

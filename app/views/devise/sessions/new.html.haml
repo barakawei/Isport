@@ -6,15 +6,12 @@
 .container{:style => 'text-align:center;'}
   #login
     %h1="Isport"
-    %br
-    %br
 
     = form_for(resource, :as =>resource_name,:url=> session_path(resource_name)) do |f|
       %p
         = f.label :email,t('email')
         = f.text_field :email
         %span.pod_location
-          ="email"
           %br
           %br
       %p

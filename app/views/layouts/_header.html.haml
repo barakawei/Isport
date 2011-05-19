@@ -11,6 +11,6 @@
         .avatar
           = owner_image_tag(:thumb_small)
         = link_to current_user.name, '#'
-      %li= link_to t('.settings'), edit_user_path
-      %li= link_to t('.logout'), destroy_user_session_path
+      %li= link_to t('settings'), edit_user_path
+      %li= link_to t('logout'), destroy_user_session_path
    
