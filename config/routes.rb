@@ -8,8 +8,11 @@ Isport::Application.routes.draw do
   resources :photos
   root :to => "home#index"
   resource :user, :only => [:edit, :update, :destroy] 
-  controller :users do
-    match 'getting_started'         => :getting_started, :as => 'getting_started'
+  controller :people do
+    match 'friends_request' => :friends_request
+  end
+   controller :users do
+    match 'getting_started' => :getting_started, :as => 'getting_started'
   end
   
   # The priority is based upon order of creation:

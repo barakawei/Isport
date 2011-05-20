@@ -1,7 +1,7 @@
 
 @import 'mixins'
 
-$blue: #3F8FBA
+$blue: #5179AC
 $red: #FF0000
 $background: rgb(252,252,252)
 
@@ -13,10 +13,16 @@ body
 
 p
   :word-wrap break-word
+  
+.new.friends_request
+  :background url("/images/icons/content_icons.png") no-repeat scroll 0 0px transparent
+  :background-position 0 -1720px
+  :padding-left 14px
+
 
 a
-  :color #107FC9
   :color $blue
+  :font-weight bold
   :text
     :decoration none
   &:hover
@@ -495,3 +501,7 @@ label
   label
     :font-size inherit !important
     :position static
+
+
+    
+

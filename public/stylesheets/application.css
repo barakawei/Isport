@@ -7,12 +7,17 @@ body {
 p {
   word-wrap: break-word; }
 
+.new.friends_request {
+  background: url("/images/icons/content_icons.png") no-repeat scroll 0 0px transparent;
+  background-position: 0 -1720px;
+  padding-left: 14px; }
+
 a {
-  color: #107fc9;
-  color: #3f8fba;
+  color: #5179ac;
+  font-weight: bold;
   text-decoration: none; }
   a:hover {
-    color: #3f8fba;
+    color: #5179ac;
     text-decoration: underline; }
 
 h1, h2, h3, h4, h5 {
@@ -169,7 +174,7 @@ header {
         padding: 4px;
         height: 100%; }
         header ul#user_menu li a:hover {
-          background-color: #3f8fba;
+          background-color: #5179ac;
           color: white; }
       header ul#user_menu li:first-child {
         display: inline; }
@@ -303,7 +308,7 @@ h1 .description, h2 .description, h3 .description, h4 .description {
   .stream_element:hover > .controls, .stream_element .comment:hover > .controls {
     display: inline; }
   .stream_element:hover .from a, .stream_element .comment:hover .from a {
-    color: #3f8fba; }
+    color: #5179ac; }
 
 .stream .avatar {
   float: left; }

@@ -14,6 +14,13 @@ class PeopleController < ApplicationController
     respond_with @people
   end
 
+  def friends_request
+    requests = Request.where( :recipient_id => current_user.person.id ).all
+    sender_ids = requests.map{ |r| r.sender_id }
+    @people = Person.where( :id => sender_ids )
+    render "people/friends_request"
+  end
+
   def hashes_for_people people
     ids = people.map{|p| p.id}
     requests ={}

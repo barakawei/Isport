@@ -3,7 +3,12 @@
   %h3{:style => "position:relative;"}
     =@person.name
     .description
-      = "Welcome back!"
+      -if current_user.person.id == @person.id && @requests_count == 0 
+        = "Welcome back!"
+      -elsif current_user.person.id == @person.id  && @requests_count != 0 
+        = link_to "#{@requests_count}个好友请求",{:controller => 'people', :action => 'friends_request'},:class => 'new friends_request'
+      -else 
+        = "remove friends"
   %b
   %b
 #friend_listings.section
