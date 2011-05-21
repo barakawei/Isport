@@ -34,7 +34,8 @@
       = link_to "#{@event.participants.size}"+ t('events.person'),
         url_for(:action => "show_participants", :id => @event.id), :class => "nounderline"
       = t('events.involvement')
-    = render 'event_participants', :participants => @participants, :perline => 3
+    = render :partial => 'event_participants', :locals => { :participants => @participants, 
+                                                            :perline => 3, :no_pagination => true } 
 
 .span-18
   %br

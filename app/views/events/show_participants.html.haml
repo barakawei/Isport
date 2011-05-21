@@ -1,16 +1,28 @@
 .span-16.colborder
   %h4.append-bottom= t("events.friend_participants", :count => @paged_friend_participants.size) + ":"
-  = render "event_participants", :participants => @paged_friend_participants,
-                                 :perline => 8
-  .span-16.append-bottom
-    = will_paginate @paged_friend_participants, pagination_options("friend_page")
-  
+  .span-16#friend_participants
+    = render :partial => "event_participants", :locals => { :participants => @paged_friend_participants, 
+                                                            :perline => 8, 
+                                                            :pagination_type => "friend_page"} 
   .span-16.prepend-top.append-bottom
     %h4= t("events.other_participants", :count => @paged_other_participants.size) + ":"
-  = render "event_participants", :participants => @paged_other_participants,
-                                 :perline => 8
-  .span-16
-    = will_paginate @paged_other_participants, pagination_options("other_page")
-
+  .span-16#other_participants
+    = render :partial => "event_participants", :locals => { :participants => @paged_other_participants,
+                                                            :perline => 8, 
+                                                            :pagination_type => "other_page" }
 .span-7.last
   = link_to t("back"), event_path(@event), :class => "button" 
+
+:javascript
+  $('#other_participants .pagination a').live('click', function(){
+    $.get(this.href, function(data) {
+      $('#other_participants').html(data);
+    });
+    return false;
+  });
+  $('#friend_participants .pagination a').live('click', function(){
+    $.get(this.href, function(data) {
+      $('#friend_participants').html(data);
+    });
+    return false;
+  });
