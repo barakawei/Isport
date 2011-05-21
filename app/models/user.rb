@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   delegate :name,:to => :person
   has_many :contacts
   has_one :profile, :through => :person
+  has_many :friends, :through => :contacts, :source => :person
 
   def self.build( opts={} )
     u = User.new( opts )

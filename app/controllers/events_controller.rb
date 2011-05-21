@@ -1,6 +1,9 @@
 class EventsController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show ]
 
+  PARTICIPANTS_LIMIT = 12
+  PARTICIPANTS_PER_PAGE = 8
+
   def index
     @events = Event.all
 
@@ -12,6 +15,7 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
+    @participants = @event.participants.order("created_at DESC").limit(PARTICIPANTS_LIMIT)
 
     respond_to do |format|
       format.html # show.html.erb
@@ -84,5 +88,17 @@ class EventsController < ApplicationController
     @event.participants.delete(current_user.person)
     
     redirect_to(event_url(@event))
+  end
+  
+  def show_participants
+    @event = Event.find(params[:id])
+    @participants =  @event.participants.order("created_at DESC")
+    @friends = current_user.friends
+    @friend_participants = @participants & @friends
+    @other_participants = @participants - @friend_participants  
+    @paged_friend_participants = @friend_participants.paginate(:page => params[:friend_page], 
+                                                               :per_page => PARTICIPANTS_PER_PAGE)
+    @paged_other_participants = @other_participants.paginate(:page => params[:other_page], 
+                                                               :per_page => PARTICIPANTS_PER_PAGE)
   end
 end

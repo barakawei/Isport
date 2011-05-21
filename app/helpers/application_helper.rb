@@ -31,4 +31,10 @@ module ApplicationHelper
   #{h(person.name)}
 </a>".html_safe
   end
+  
+  def pagination_options(param_name)
+    {:previous_label => t("pagination.previous"), 
+     :next_label => t("pagination.next"),
+     :param_name => param_name} 
+  end
 end

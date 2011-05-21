@@ -5,6 +5,7 @@ zh:
   email: "电子邮箱"
   password: "密码"
   password_confirmation: "密码确认"
+  back: "返回"
   registrations: 
     new: 
       enter_email: "输入电子邮箱"
@@ -42,8 +43,15 @@ zh:
       cancel_apply: '取消报名'
       involved: '我已经报名参加此活动'
       participants: '此活动已报名人员'
+      total: '共'
+      person: '人' 
+      involvement: '参加此活动'
+      friend_participants: '共 %{count} 位好友参加此活动'
+      other_participants: '其它 %{count} 位活动成员'
   
-  
+  pagination:
+    previous: "上一页"
+    next: "下一页" 
 
   date:
     formats:

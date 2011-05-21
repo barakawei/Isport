@@ -29,11 +29,12 @@
         %h4= t('events.involved')
       = link_to t('events.cancel_apply'), url_for(:action=> "remove_participant", :id => @event.id), :class => "button"
   .span-6.prepend-1.last
-    %h4= t('events.participants') + ":"
-    - @event.participants.each do |person|
-      .span-2.last
-        = person_image_link(person) 
-      
+    %h4
+      = t('events.total') 
+      = link_to "#{@event.participants.size}"+ t('events.person'),
+        url_for(:action => "show_participants", :id => @event.id), :class => "nounderline"
+      = t('events.involvement')
+    = render 'event_participants', :participants => @participants, :perline => 3
 
 .span-18
   %br
