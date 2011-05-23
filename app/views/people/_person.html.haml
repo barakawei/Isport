@@ -9,11 +9,21 @@
     -elsif request && request.sender == person
       =link_to t('incoming_request'),{:controller => 'contacts',:action => 'new',:person_id => person.id},:class => 'share_with button'
     -else
-      = link_to t('start_sharing'),{:controller => "contacts",:action => "new",:person_id => person.id},:class => 'share_with button'
+      = link_to t('start_sharing'),'#add_friend_request',:class => 'share_with button',:rel => 'facebox'
 
   = person_image_link(person)
 
   .content
     %span.from
       =person_link(person)
-
+    
+  .facebox_content
+    #add_friend_request
+      %h3="加为好友"
+      = form_for Request.new,:url => { :controller => 'contacts',:action => 'new' } do |r|
+        = r.text_area :message , :rows => 2
+        = r.hidden_field :person_id, :value => person.id
+        %br
+        = r.submit t('send'), :class => 'button'
+      
+      

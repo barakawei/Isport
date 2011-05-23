@@ -3,11 +3,13 @@
     ="#{@people.size}个好友请求"
 .span-15.append-1
   #people_stream.stream
-    -for person in @people
-      .stream_element{:id => person.id}
+    -for people in @people
+      .stream_element{:id => people[:person].id}
         .right
-          =link_to t('incoming_request'),{:controller => 'contacts',:action => 'new',:person_id => person.id},:class => 'share_with button' 
-        = person_image_link(person)
+          =link_to t('incoming_request'),{:controller => 'contacts',:action => 'new',:person_id => people[:person].id},:class => 'share_with button' 
+        = person_image_link(people[:person])
         .content
           %span.from
-            =person_link(person)
+            =person_link(people[:person])
+          .description
+            =people[:request].message

@@ -7,6 +7,10 @@ var View = {
 
     $(document.body)
       .click(this.userMenu.removeFocus);
+
+    jQuery(document).ready(function($) {
+      $('a[rel*=facebox]').facebox()
+    });
     
   },
    

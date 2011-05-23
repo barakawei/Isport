@@ -15,9 +15,16 @@ class PeopleController < ApplicationController
   end
 
   def friends_request
-    requests = Request.where( :recipient_id => current_user.person.id ).all
-    sender_ids = requests.map{ |r| r.sender_id }
-    @people = Person.where( :id => sender_ids )
+    requests ={}
+    sender_ids = []
+    Request.where( :recipient_id => current_user.person.id ).each do |r|
+      requests[ r.sender_id ] = r
+      sender_ids.push( r.sender_id )
+    end
+    @people = []
+    Person.where( :id => sender_ids ).each do |p|
+      @people.push({:person => p,:request => requests[ p.id ] } )
+    end
     render "people/friends_request"
   end
 

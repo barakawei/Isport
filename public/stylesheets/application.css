@@ -379,3 +379,6 @@ label {
 #remember_me label {
   font-size: inherit !important;
   position: static; }
+
+.facebox_content {
+  display: none; }
