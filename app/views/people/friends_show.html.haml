@@ -1,0 +1,12 @@
+.span-24.last
+  %h2#search_title
+    ="#{@friends.size}个好友"
+.span-15.append-2
+  .friends_set
+    %ul{ :class => 'friends'}
+      -for friend in @friends
+        %li{ :class => 'result' }
+          = person_image_link(friend)
+          %span.friend
+            =person_link(friend)
+

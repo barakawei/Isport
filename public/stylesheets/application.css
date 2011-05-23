@@ -128,7 +128,6 @@ header {
   z-index: 50;
   padding: 0;
     padding-top: 2px;
-    padding-bottom: 30px;
   color: #cccccc;
   position: fixed;
   width: 100%;
@@ -382,3 +381,60 @@ label {
 
 .facebox_content {
   display: none; }
+
+ul#menu_nav {
+  margin-top: 3px;
+  margin-bottom: 2px;
+  bottom: 0;
+  color: black;
+  position: relative;
+  padding: 0;
+    padding-bottom: 3px;
+  margin-bottom: 0; }
+  ul#menu_nav a:hover {
+    text-decoration: none; }
+  ul#menu_nav > li {
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    display: inline;
+    padding: 1px 8px;
+    margin: 0;
+      margin-right: 2px;
+    text-shadow: 0 1px 0 #444444;
+    color: #999999;
+    max-width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis; }
+    ul#menu_nav > li:hover {
+      background-color: black;
+      color: #eeeeee; }
+      ul#menu_nav > li:hover .aspect_selector_edit {
+        display: inline; }
+    ul#menu_nav > li.selected {
+      text-shadow: 0 1px 0 white;
+      font-weight: bold;
+      background-color: #ebebeb;
+      border-bottom: 1px solid white;
+      color: #444444; }
+      ul#menu_nav > li.selected:hover {
+        color: #888888; }
+      ul#menu_nav > li.selected a {
+        color: black; }
+
+ul {
+  padding: 0; }
+
+.result {
+  border-top: 1px solid #ededed;
+  float: left;
+  margin-top: 20px;
+  min-height: 59px;
+  overflow: hidden;
+  padding-top: 5px;
+  width: 190px; }
+
+.friend {
+  position: absolute;
+  padding-bottom: 10px;
+  padding-left: 10px; }

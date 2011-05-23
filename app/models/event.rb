@@ -44,7 +44,11 @@ class Event < ActiveRecord::Base
   end
 
   def is_owner(user)
-    return user.person.id == person_id
+    if user
+      return user.person.id == person_id
+    else
+      false
+    end
   end
 end
 

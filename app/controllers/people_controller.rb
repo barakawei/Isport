@@ -14,6 +14,12 @@ class PeopleController < ApplicationController
     respond_with @people
   end
 
+  def show_friends
+    @friends = current_user.friends
+    render "people/friends_show"
+
+  end
+
   def friends_request
     requests ={}
     sender_ids = []

@@ -20,5 +20,6 @@
             %h4="#{@contacts.length} #{t( 'friends' )}"
             - for contact in @contacts
               = person_image_link(contact.person)
+          =link_to t( 'more' ),{:controller => 'people',:action => 'show_friends'}
     - else
       =t('no_friends')   

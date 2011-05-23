@@ -11,6 +11,7 @@ Isport::Application.routes.draw do
   resource :user, :only => [:edit, :update, :destroy] 
   controller :people do
     match 'friends_request' => :friends_request
+    match 'show_friends' => :show_friends
   end
    controller :users do
     match 'getting_started' => :getting_started, :as => 'getting_started'
