@@ -1,4 +1,5 @@
 class Event < ActiveRecord::Base
+  validates_presence_of :title, :start_at, :description, :location
   belongs_to :person
   has_many :involvements, :dependent => :destroy
   has_many :participants, :through => :involvements, :source => :person

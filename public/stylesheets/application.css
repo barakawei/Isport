@@ -1,7 +1,5 @@
 body {
   padding: 2em;
-  margin: 0;
-    margin-top: 60px;
   background-color: #fcfcfc; }
 
 p {
@@ -247,3 +245,7 @@ h1 .description, h2 .description, h3 .description, h4 .description {
 
 .list p {
   margin-bottom: 0; }
+
+#error_explanation ul li {
+  list-style: disc outside none;
+  color: red; }
