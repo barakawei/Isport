@@ -7,6 +7,7 @@ class HomeController < ApplicationController
         return
       end
       @person = current_user.person
+      @requests_count = Request.where( :recipient_id => @person.id ).count
       @contacts = current_user.contacts
       render
     end

@@ -9,7 +9,7 @@ class Profile < ActiveRecord::Base
              else
                self[:image_url]
              end
-    result || '/images/user/default.png'
+    result || '/images/user/default_small.png'
   end
   
   def image_url= url

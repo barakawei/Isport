@@ -7,10 +7,6 @@ module ApplicationHelper
     "<img alt=\"#{h(person.name)}\" class=\"avatar\" data-person_id=\"#{person.id}\" src=\"#{person.profile.image_url(size)}\" title=\"#{h(person.name)}\">".html_safe
   end
 
-  def event_image_tag(event,size=nil)
-    "<img  class=\"avatar\"  src=\"#{event.image_url(size)}\" >".html_safe
-  end
-    
   def owner_image_link
     person_image_link(current_user.person)
   end
@@ -40,4 +36,9 @@ module ApplicationHelper
      :param_name => param_name,
      :params => param} 
   end
+
+  def event_image_tag(event,size=nil)
+    "<img  class=\"avatar\"  src=\"#{event.image_url(size)}\" >".html_safe
+  end
+
 end

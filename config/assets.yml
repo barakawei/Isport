@@ -8,10 +8,13 @@ javascripts:
   main:
     - public/javascripts/jquery_ujs.js
     - public/javascripts/fileuploader-custom.js
+    - public/javascripts/view.js
+    - public/javascripts/facebox.js
 
 stylesheets:
   default:
     - public/stylesheets/application.css
     - public/stylesheets/ui.css
     - public/stylesheets/fileuploader.css
+    - public/stylesheets/facebox.css
  

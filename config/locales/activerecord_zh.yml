@@ -1,0 +1,21 @@
+zh:
+  activerecord:
+    attributes:
+      event:
+        start_at: '开始时间'
+        end_at: '结束时间'
+        title: '活动名称'
+        description: '活动描述'
+        subject: '所属项目'
+        person: '发起人'
+        location: '地点'
+        ispublic: '是否公开'
+    errors:
+      event:
+        start_at: 
+          after: '必须晚于当前时间'
+        end_at:
+          after: '必须晚于开始时间' 
+
+
+                

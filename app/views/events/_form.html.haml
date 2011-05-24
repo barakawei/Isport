@@ -1,43 +1,38 @@
 = form_for @event, :html => { :multipart => true } do |f|
   .span-7 
     = render "photos/new_event_photo", :event => @event, :is_edit => is_edit, :model_name => "event"
-  .span-10.prepend-1.last
-    -if @event.errors.any?
-      #error_explanation
-        %ul
-          - @event.errors.full_messages.each do |msg|
-            %li= msg
-
+  .span-16.prepend-1.last
     .field
-      = f.label t('events.event_title') +":"
+      = f.label t('activerecord.attributes.event.title') +":"
       = f.text_field :title
-      %br.clear
+      = error_on(@event, :title)
     .field
-      = f.label t('events.start_at')+":"
+      = f.label t('activerecord.attributes.event.start_at')+":", :class => "inline"
       = f.datetime_select :start_at
+      = error_on(@event, :start_at)
     .field
-      = f.label t('events.end_at')+":"
+      = f.label t('activerecord.attributes.event.end_at')+":", :class => "inline"
       = f.datetime_select :end_at
+      = error_on(@event, :end_at)
     .field
-      = f.label t('events.event_description')+":"
-      = f.text_area :description
-      %br.clear
+      = f.label t('activerecord.attributes.event.description')+":"
+      = f.text_area :description, :rows => 12
+      = error_on(@event, :description)
     .field
-      = f.label t('events.location')+":"
+      = f.label t('activerecord.attributes.event.location')+":"
       = f.text_field :location
-      %br.clear
+      = error_on(@event, :location)
     .field
-      = f.label t('events.event_subject') +":"
+      = f.label t('activerecord.attributes.event.subject') +":"
       = f.text_field :subject_id
-      %br.clear
     .field.hide
       = f.text_field :image_url
       = f.text_field :image_url_medium
       = f.text_field :image_url_small
     .field
-      = f.label t('events.ispublic')+":" 
+      = f.label t('activerecord.attributes.event.ispublic')+":" , :class => "inline"
       = f.check_box :ispublic
       %br.clear
-    .actions
+    .field
       = f.submit t('events.save') 
     %p 

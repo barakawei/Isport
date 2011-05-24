@@ -1,0 +1,39 @@
+= content_for :head do
+  :css
+    header{display:none;}
+    footer{position:absolute;bottom:12px;}
+
+.container{:style => 'text-align:center;'}
+  #login
+    %h1="Isport"
+
+    = form_for(resource, :as =>resource_name,:url=> session_path(resource_name)) do |f|
+      %p
+        = f.label :email,t('email')
+        = f.text_field :email
+        %span.pod_location
+          %br
+          %br
+      %p
+        = f.label :password,t('password')
+        = f.password_field :password
+        %span
+          - if devise_mapping.recoverable? && controller_name != 'passwords'
+            =link_to t('devise.shared.links.forgot_your_password'),new_password_path(resource_name)
+          -else
+            \.
+          %br
+          -if devise_mapping.registerable? && controller_name !='registrations'
+            =link_to t('devise.shared.links.sign_up'),new_registration_path(resource_name)
+          -else
+            \.
+
+      %p.submit
+        =f.submit t('.sign_in'),:class => 'button'
+        %span#remember_me
+          -if devise_mapping.rememberable?
+            =f.check_box :remember_me
+            =f.label :remember_me,t('.remember_me')
+          -else
+            \.
+

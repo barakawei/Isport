@@ -18,6 +18,7 @@ gem "hpricot"
 gem "ruby_parser"
 gem 'mini_magick'
 gem 'carrierwave'
+gem 'date_validator'
 
 group :development, :test do
   gem 'rspec-rails'

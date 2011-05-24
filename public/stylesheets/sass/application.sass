@@ -1,7 +1,7 @@
 
 @import 'mixins'
 
-$blue: #3F8FBA
+$blue: #5179AC
 $red: #FF0000
 $background: rgb(252,252,252)
 
@@ -11,10 +11,22 @@ body
 
 p
   :word-wrap break-word
+  
+.new.friends_request
+  :background url("/images/icons/content_icons.png") no-repeat scroll 0 0px transparent
+  :background-position 0 -1720px
+  :padding-left 14px
 
-a.nounderline
+
+a
+  :color $blue
+  :font-weight bold
   :text
     :decoration none
+  &:hover
+    :color $blue
+    :text
+      :decoration underline
 
 h1, h2, h3, h4, h5
   :color #333
@@ -31,19 +43,12 @@ ol, ul, li
 
 form
   :position relative
-  input[type=checkbox]
-    :margin-top 0.5em
-  br.clear
-    :clear left 
-  textarea
-    :font
-      :size 12px
+  input,
+  textarea,
   label
-    :float left
-    :margin-top  0.5em
-    :width 6em
-  .actions
-    :margin-top 0.5em
+    :font
+      :size auto
+
   
 #content
   :background
@@ -111,7 +116,7 @@ form
     :display relative
 
 
-input:not([type='submit']):not([type='reset']),
+input:not([type='submit']):not([type='reset']):not([type='checkbox']),
 textarea
   @include border-radius(3px)
 
@@ -119,10 +124,13 @@ textarea
     :family 'Arial', 'Helvetica', sans-serif
     :size 14px
   :padding 0.3em
-  :display block
-  :width 100%
+  :display inline
+  :width 65%
   :border 1px solid #ccc
   :height auto
+
+input[type='submit']
+  :margin-top 1em
 
 #profile_photo_upload
   :margin
@@ -147,13 +155,108 @@ header
   :z-index 50
   :padding 0
     :top 2px
-    :bottom 20px
+    :bottom 30px
   :color #CCC
 
   :position fixed
   :width 100%
   :top 0
   :left 0
+
+  a
+    :color #CCC
+
+    &:hover
+      :background none
+      :color #eee
+
+  &.landing
+    .right
+      :top 10px
+    :height 40px
+
+  ul#user_menu
+    @include border-radius(5px)
+
+    :overflow hidden
+    :white-space nowrap
+    :text-overflow ellipsis
+    :text-shadow 0 1px 0 #000
+
+    :width auto
+
+    :cursor pointer
+
+    :z-index 10
+    :padding 5px 0
+      :left 30px
+      :right 5px
+    :margin 0
+      :top -2px
+      :right -5px
+
+    :background
+      :color #000
+
+    :position absolute
+    :display inline
+
+    :top 5px
+    :right 0
+
+    &:hover
+      :background
+        :color #222
+
+    li
+      :display none
+
+      a
+        :display block
+        :padding 4px
+        :height 100%
+        &:hover
+          :background
+            :color $blue
+          :color #fff
+
+      &:first-child
+        :display inline
+        a
+          :height auto
+          :display inline
+          :padding
+            :right 15px
+          :color #CCC
+          &:hover
+            :background
+              :color #222
+            :text
+              :decoration none
+        .right
+          :right 5px
+
+    &.active
+      @include box-shadow(0,1px,2px,#333)
+
+      :margin
+        :top -3px
+        :right -6px
+      :background
+        :color #000
+      :border 1px solid #999
+
+      li
+        :display block
+
+    .avatar
+      :height 20px
+      :width 20px
+      :position absolute
+      :left 2px
+      :top 2px
+      :display block
+ 
 
 #home_user
   :position relative
@@ -329,3 +432,99 @@ h1,h2,h3,h4
     li
       list-style: disc outside none
       color: red
+#login
+  :width 600px
+  :padding
+    :top 10%
+    :bottom 20%
+  :text
+    :align center
+  :display inline-block
+
+  form
+    input,
+    label
+      :font
+        :size 21px
+      :display inline
+
+    label
+      :top 13px
+      :text-shadow 0 1px 1px #ccc
+
+    input[type='text'],
+    input[type='password']
+      :-webkit-box-shadow 0 1px 0px #fff, 0 -1px 0px #888
+      :-moz-box-shadow 0 1px 0px #fff, 0 -1px 0px #888
+      :box-shadow 0 1px 0px #fff, 0 -1px 0px #888
+      :width 180px
+      :max-width 180px
+
+    p
+      :display inline-block
+      :position relative
+      :width 200px
+
+      &:last-child
+        :margin
+          :left 3px
+
+      span
+        :display block
+        :color #fff
+        &.pod_location
+          :color #888
+
+      &.submit
+        :width auto
+        :bottom 15px
+
+        input
+          :width auto
+          :position relative
+          :height 40px
+          :top 0px
+          :color #666
+          :margin
+            :bottom 10px
+          &:hover
+            :color #444
+
+
+label
+  :font
+    :weight normal
+  :color #999
+  :top 3px
+  :left 0.48em
+  :text
+    :shadow 0 1px 1px #eee
+#remember_me
+  input[type='checkbox']
+    :display inline
+    :height auto !important
+    :top 2px !important
+  label
+    :font-size inherit !important
+    :position static
+
+.facebox_content
+  :display none 
+
+form 
+  .field 
+    label
+      :display block   
+      :margin 1em 0 0 0
+    .inline 
+      :display inline
+    textarea
+      :margin
+        :bottom 0
+
+.validation-error
+  :color red
+  :margin-left 1em
+
+.field_with_errors
+  :display inline

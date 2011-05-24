@@ -1,5 +1,15 @@
 class Event < ActiveRecord::Base
-  validates_presence_of :title, :start_at, :description, :location
+  validates_presence_of :title, :start_at, :description, :location, 
+                        :message => I18n.t('activerecord.errors.messages.blank')
+  
+  validates_length_of :title, :maximum => 30
+  validates_length_of :description, :maximum => 800
+  validates :start_at, :date => { :after => Proc.new { Time.now }, 
+                                  :message => I18n.t('activerecord.errors.event.start_at.after')} 
+                       
+  validates :end_at, :date => { :after => :start_at,
+                                :message => I18n.t('activerecord.errors.event.end_at.after')}
+
   belongs_to :person
   has_many :involvements, :dependent => :destroy
   has_many :participants, :through => :involvements, :source => :person

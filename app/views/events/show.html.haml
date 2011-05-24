@@ -48,3 +48,4 @@
 .span-24
   - if @event.is_owner(current_user)
     = link_to t('events.edit'), edit_event_path(@event), :class => "button"
+  = link_to t('back'),  events_path, :class => "button"

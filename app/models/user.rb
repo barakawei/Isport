@@ -25,12 +25,12 @@ class User < ActiveRecord::Base
     self
   end
   
-  def send_contact_request_to(desired_contact)
+  def send_contact_request_to(desired_contact,message)
         contact = Contact.new(:person => desired_contact,
                               :user => self,
                               :pending => true)
         if contact.save!
-          request = contact.dispatch_request
+          request = contact.dispatch_request( message )
           request
         else
           nil

@@ -2,13 +2,13 @@ class Contact < ActiveRecord::Base
   belongs_to :user
   belongs_to :person
   
-  def dispatch_request
-    request = self.generate_request
+  def dispatch_request( message )
+    request = self.generate_request( message )
     request
   end
 
-  def generate_request
-    Request.new(:sender => self.user.person,:recipient => self.person)
+  def generate_request( message )
+    Request.new(:message => message,:sender => self.user.person,:recipient => self.person)
   end 
   
 end
