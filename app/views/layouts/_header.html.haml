@@ -1,3 +1,7 @@
+:javascript
+  $(function() {
+    $('##{@selected}').addClass( "selected" );
+  });
 .container{ :style => "position:relative;" }
   = link_to "酷玩吧", root_path, :class => 'nav'
   - if current_user 
@@ -14,12 +18,12 @@
       %li= link_to t('settings'), edit_user_path
       %li= link_to t('logout'), destroy_user_session_path
     %ul#menu_nav
-      %li{:class => 'selected'}
-        =link_to t('Home'), root_path
-      %li
-        =link_to t( 'Friends' ),{:controller => 'people',:action => 'show_friends'}
-      %li
-        =link_to t( 'Events' ),events_path
+      %li{:id =>  "home" }
+        =link_to t('home'), root_path
+      %li{ :id => "friends" }
+        =link_to t( 'friends' ),{:controller => 'people',:action => 'show_friends'}
+      %li{ :id => "events" }
+        =link_to t( 'events_link' ),events_path
 
 
 

@@ -16,6 +16,7 @@ class PeopleController < ApplicationController
 
   def show_friends
     @friends = current_user.friends
+    @selected = "friends"
     render "people/friends_show"
 
   end
@@ -55,7 +56,9 @@ class PeopleController < ApplicationController
   def show
     @person = Person.where(:id => params[:id]).first
     if @person
-      @contacts = Contact.where( :user_id => @person.user ).all 
+      @contact =  Contact.where( :user_id => @person.user.id ,:person_id => current_user.id).first
+      @request = Request.where( :sender_id => current_user.id,:recipient_id => @person.id ).first
+      @contacts = Contact.where( :user_id => @person.user.id,:pending => false ).all 
     end
   end
 end

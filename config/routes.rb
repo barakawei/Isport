@@ -16,6 +16,11 @@ Isport::Application.routes.draw do
    controller :users do
     match 'getting_started' => :getting_started, :as => 'getting_started'
   end
+
+  controller :contacts do
+    match 'remove_friend' => :remove_friend
+  end
+
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -1,8 +1,23 @@
 class ContactsController < ApplicationController
   def new
-    @person = Person.find(params[ :request ][:person_id])
-    @contact = request_to_person(@person,params[ :request ][:message])
+    if params[ :request ]
+      person_id = params[ :request ][:person_id]
+      message = params[ :request ][:message]
+    else
+      person_id = params[:person_id]
+      message = ''
+    end
+    @person = Person.find(person_id)
+    @contact = request_to_person(@person,message)
     @contact && @contact.persisted?
+    redirect_to :back
+  end
+
+  def remove_friend 
+    contact_user = Contact.where( :user_id => current_user.id, :person_id => params[ :person_id ] ).first
+    contact_user.destroy
+    contact_person = Contact.where( :user_id =>params[ :person_id ] , :person_id => current_user.id).first
+    contact_person.destroy
     redirect_to :back
   end
 

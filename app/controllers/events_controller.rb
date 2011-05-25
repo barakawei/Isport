@@ -6,7 +6,7 @@ class EventsController < ApplicationController
 
   def index
     @events = Event.all
-
+    @selected = "events"
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @events }
