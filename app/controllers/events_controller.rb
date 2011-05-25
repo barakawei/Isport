@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show ]
+  
 
   PARTICIPANTS_LIMIT = 12
   PARTICIPANTS_PER_PAGE = 40 
