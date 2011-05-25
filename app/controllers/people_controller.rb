@@ -56,9 +56,9 @@ class PeopleController < ApplicationController
   def show
     @person = Person.where(:id => params[:id]).first
     if @person
-      @contact =  Contact.where( :user_id => @person.user.id ,:person_id => current_user.id).first
+      @contact =  Contact.unscoped.where( :user_id => @person.user.id ,:person_id => current_user.id).first
       @request = Request.where( :sender_id => current_user.id,:recipient_id => @person.id ).first
-      @contacts = Contact.where( :user_id => @person.user.id,:pending => false ).all 
+      @contacts = Contact.where( :user_id => @person.user.id ).all 
     end
   end
 end
