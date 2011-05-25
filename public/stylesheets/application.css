@@ -1,7 +1,5 @@
 body {
   padding: 2em;
-  margin: 0;
-    margin-top: 60px;
   background-color: #fcfcfc; }
 
 p {
@@ -87,7 +85,7 @@ form {
   .floating form {
     display: relative; }
 
-input:not([type='submit']):not([type='reset']),
+input:not([type='submit']):not([type='reset']):not([type='checkbox']),
 textarea {
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
@@ -95,10 +93,13 @@ textarea {
   font-family: "Arial", "Helvetica", sans-serif;
   font-size: 14px;
   padding: 0.3em;
-  display: block;
-  width: 100%;
+  display: inline;
+  width: 65%;
   border: 1px solid #cccccc;
   height: auto; }
+
+input[type='submit'] {
+  margin-top: 1em; }
 
 #profile_photo_upload {
   margin-top: 5px;
@@ -320,6 +321,10 @@ h1 .description, h2 .description, h3 .description, h4 .description {
 .list p {
   margin-bottom: 0; }
 
+#error_explanation ul li {
+  list-style: disc outside none;
+  color: red; }
+
 #login {
   width: 600px;
   padding-top: 10%;
@@ -382,6 +387,14 @@ label {
 .facebox_content {
   display: none; }
 
+form .field label {
+  display: block;
+  margin: 1em 0 0 0; }
+form .field .inline {
+  display: inline; }
+form .field textarea {
+  margin-bottom: 0; }
+
 ul#menu_nav {
   margin-top: 3px;
   margin-bottom: 2px;
@@ -438,3 +451,15 @@ ul {
   position: absolute;
   padding-bottom: 10px;
   padding-left: 10px; }
+
+.validation-error {
+  color: red;
+  margin-left: 1em; }
+
+.field_with_errors {
+  display: inline; }
+
+p.medium_avatar {
+  width: 50px;
+  text-align: center;
+  margin-bottom: 0; }

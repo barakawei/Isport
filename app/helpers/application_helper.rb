@@ -27,7 +27,6 @@ module ApplicationHelper
   #{h(person.name)}
 </a>".html_safe
   end
-
   def event_image_tag(event,size=nil)
     "<img  class=\"avatar\"  src=\"#{event.image_url(size)}\" >".html_safe
   end
@@ -40,5 +39,9 @@ module ApplicationHelper
      :next_label => t("pagination.next"),
      :param_name => param_name,
      :params => param} 
+  end
+
+  def event_image_tag(event,size=nil)
+    "<img  class=\"avatar\"  src=\"#{event.image_url(size)}\" >".html_safe
   end
 end

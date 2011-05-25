@@ -11,17 +11,17 @@ class Photo < Post
     !processed_image.path.nil?
   end
 
-  def self.initialize(params = {})
+  def self.initialize(params = {}, ip, port)
     photo = Photo.new
     image_file = params[ :user_file] 
     photo.random_string = ActiveSupport::SecureRandom.hex(10) 
     photo.unprocessed_image.store!( image_file )
-    photo.update_remote_path
+    photo.update_remote_path(ip,port)
     photo
   end
 
-  def update_remote_path
-    remote_path = "http://localhost:8888"+self.unprocessed_image.url
+  def update_remote_path(ip, port)
+    remote_path = "http://#{ip}:#{port}"+self.unprocessed_image.url
     name_start = remote_path.rindex '/'
     self.remote_photo_path = "#{remote_path.slice(0, name_start)}/"
     self.remote_photo_name = remote_path.slice(name_start + 1, remote_path.length)

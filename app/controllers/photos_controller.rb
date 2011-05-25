@@ -5,7 +5,7 @@ class PhotosController < ApplicationController
   def create
     begin
       params[:photo][:user_file] = file_handler(params)
-      @photo = Photo.initialize( params[ :photo ] )
+      @photo = Photo.initialize(params[ :photo ], self.request.host, self.request.port)
 
       if @photo.save
         @photo.process
