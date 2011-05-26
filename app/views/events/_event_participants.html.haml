@@ -1,7 +1,7 @@
 -participants.each_with_index do |person, index|
   .span-2.append-bottom{:class => ("last" if (index+1)%perline == 0)}
     = person_image_link(person) 
-    %p.medium_avatar=link_to person.profile.name, person_path(person)
+    %span.medium_avatar=link_to person.profile.name, person_path(person)
 .span-16.append-bottom
   -unless defined?(no_pagination)
     = will_paginate participants, 

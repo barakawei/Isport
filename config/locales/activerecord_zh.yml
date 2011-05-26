@@ -16,6 +16,11 @@ zh:
           after: '必须晚于当前时间'
         end_at:
           after: '必须晚于开始时间' 
-
+    operations:
+      event:
+        cancel: '取消活动'
+        cancel_reason: '取消原因'
+        save: '确认'
+        cancel_notice: '已有%{count}人报名此活动, 确定要取消吗?'
 
                 

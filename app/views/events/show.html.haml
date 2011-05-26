@@ -1,33 +1,48 @@
 .span-24
-  .span-7
-    = event_image_tag(@event, :thumb_large)
-  .span-6.last.prepend-1.right_border
-    %h2= @event.title
-    %p#notice= notice
-    %p
-      %b= t('events.start_at')+":"
-      = @event.start_at
-    %p
-      %b= t('events.end_at')+":"
-      = @event.end_at
-    %p
-      %b= t('events.location')+":"
-      = @event.location
-    %p
-      %b= t('events.event_subject')+":"
-      = @event.subject_id
-    %p
-      %b= t('events.event_owner')+":"
-      = @event.person.profile.name
-  .span-3.last.left_padding
-    - unless is_participant_of(@event)  
-      = link_to t('events.apply'), url_for(:action=> "add_participant", :id => @event.id), :class => "button"
-      %br
-      = link_to t('events.recommend'), edit_event_path(@event), :class => "button" 
-    - else
+  .span-17
+    .span-7
+      = event_image_tag(@event, :thumb_large)
+    .span-6.last.prepend-1.right_border
+      %h2= @event.title
+      %p#notice= notice
       %p
-        %h4= t('events.involved')
-      = link_to t('events.cancel_apply'), url_for(:action=> "remove_participant", :id => @event.id), :class => "button"
+        %b= t('events.start_at')+":"
+        = @event.start_at
+      %p
+        %b= t('events.end_at')+":"
+        = @event.end_at
+      %p
+        %b= t('events.location')+":"
+        = @event.location
+      %p
+        %b= t('events.event_subject')+":"
+        = @event.subject_id
+      %p
+        %b= t('events.event_owner')+":"
+        = link_to @event.person.profile.name, person_path(@event.person)
+    .span-3.last.left_padding
+      - unless is_participant_of(@event)  
+        = link_to t('events.apply'), url_for(:action=> "add_participant", :id => @event.id), :class => "button"
+        %br
+        = link_to t('events.recommend'), edit_event_path(@event), :class => "button" 
+      - else
+        %p
+          %h4= t('events.involved')
+        = link_to t('events.cancel_apply'), url_for(:action=> "remove_participant", :id => @event.id), :class => "button"
+    .span-16.last
+      %br
+      %h4= t('events.event_description')+":"
+      %hr
+      %p= @event.description
+      %br
+      %hr
+    .span-16.last
+      .span-14
+        - if @event.is_owner(current_user)
+          = link_to t('events.edit'), edit_event_path(@event), :class => "button"
+        = link_to t('back'),  events_path, :class => "button"
+      .span-2.last
+        = link_to "取消活动",  "#cancel_event_request", :class => "button", :rel => 'facebox'
   .span-6.prepend-1.last
     %h4
       = t('events.total') 
@@ -37,15 +52,15 @@
     = render :partial => 'event_participants', :locals => { :participants => @participants, 
                                                             :perline => 3, :no_pagination => true } 
 
-.span-18
-  %br
-  %h4= t('events.event_description')+":"
-  %hr
-  %p= @event.description
-  %br
-  %hr
 
-.span-24
-  - if @event.is_owner(current_user)
-    = link_to t('events.edit'), edit_event_path(@event), :class => "button"
-  = link_to t('back'),  events_path, :class => "button"
+.facebox_content
+  #cancel_event_request
+    %h4
+      =  t('activerecord.operations.event.cancel_notice', :count => @event.participants.size)
+    %br
+    %h4= t('activerecord.operations.event.cancel_reason') + ":"
+    = form_tag event_path, :method => "delete" do
+      = hidden_field_tag :id, :value => @event.id
+      = text_area_tag :message
+      %br
+      = submit_tag t('activerecord.operations.event.save'), :class => 'button' 

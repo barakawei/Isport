@@ -1,5 +1,6 @@
 .span-3
-  = link_to image_tag(event.image_url_medium), event 
+  - if event.image_url_medium
+    = link_to image_tag(event.image_url_medium), event 
 .span-9.last.list
   %h3= link_to event.title, event, :class => "nounderline"
   %p#notice= notice
