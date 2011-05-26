@@ -6,7 +6,8 @@
     -for people in @people
       .stream_element{:id => people[:person].id}
         .right
-          =link_to t('incoming_request'),{:controller => 'contacts',:action => 'new',:person_id => people[:person].id},:class => 'share_with button' 
+          .button1.incoming_request
+            =link_to t('incoming_request'),{:controller => 'contacts',:action => 'new',:person_id => people[:person].id}
         = person_image_link(people[:person])
         .content
           %span.from

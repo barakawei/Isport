@@ -3,18 +3,21 @@
   %h3{:style => "position:relative;"}
     =@person.name
     .description
-      -if current_user.person.id == @person.id && @requests_count == 0 
+      -if current_user.person.id == @person.id && ( @requests_count == 0 || !@requests_count)
         = "Welcome back!"
       -elsif current_user.person.id == @person.id  && @requests_count != 0 
         = link_to "#{@requests_count}个好友请求",{:controller => 'people', :action => 'friends_request'},:class => 'new friends_request'
       -elsif @contact && !@contact.pending
-        =  link_to t( 'remove friend' ),{:controller => 'contacts', :action => 'remove_friend',:person_id => @person.id},:class => 'button'
+        .button1.remove_friend
+          = link_to t( 'remove_friend' ),{:controller => 'contacts', :action => 'remove_friend',:person_id => @person.id}
       -elsif @request
         =t('pending_request')
       -elsif  (@contact && @contact.pending)
-        =link_to t('incoming_request'),{:controller => 'contacts',:action => 'new',:person_id => person.id},:class => 'share_with button'
+        .button1.incoming_request
+          =link_to t('incoming_request'),{:controller => 'contacts',:action => 'new',:person_id => person.id}
       -else
-        = link_to t('start_sharing'),'#add_friend_request',:class => 'share_with button',:rel => 'facebox'
+        .button1.add_friend
+          = link_to t('start_sharing'),'#add_friend_request',:rel => 'facebox'
 
   %b
   %b
