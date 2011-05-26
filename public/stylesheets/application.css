@@ -459,7 +459,10 @@ ul {
 .field_with_errors {
   display: inline; }
 
-p.medium_avatar {
+span.medium_avatar {
+  display: inline-block;
   width: 50px;
+  overflow: hidden;
+  white_space: nowrap;
   text-align: center;
-  margin-bottom: 0; }
+  height: 30px; }

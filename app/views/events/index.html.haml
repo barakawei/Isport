@@ -1,8 +1,9 @@
-%h1= t 'events.events_list' 
-%br
-
+.span-24.prepend-top
+  .span-12
+    %h1= t 'events.events_list' 
+  .span-12.last
+    = link_to t('events.new_event'), new_event_path, :class => "button"
+.span-24.prepend-top
   - @events.each do |event|
     .span-12.last.append-bottom
       = render "event_item", :event => event      
-.span-24.prepend-top
-  = link_to t('events.new_event'), new_event_path, :class => "button"
