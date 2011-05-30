@@ -1,18 +1,32 @@
 .span-3
-  - if event.image_url_medium
-    = link_to image_tag(event.image_url_medium), event 
+  = link_to image_tag(event.image_url(:thumb_medium)), event
 .span-9.last.list
-  %h3= link_to event.title, event, :class => "nounderline"
   %p#notice= notice
-  %p
-    %b= t('events.start_at')+":"
-    = event.start_at
-  %p
-    %b= t('events.nd_at')+":"
-    = event.end_at
+  -if event.same_day
+    %p
+      %b
+        = t('events.period') + ":"
+      = l(event.start_at.to_date, :format => :short )  if event.current_year
+      = l(event.start_at.to_date, :format => :long )  unless event.current_year
+      = l(event.end_at.to_date, :format => :weekday)
+      = l(event.start_at, :format => :shortest) + " ~"
+      = l(event.end_at, :format => :shortest )
+  -else 
+    %p
+      %b= t('events.start_at')+":"
+      = l(event.start_at, :format => :long)
+    %p
+      %b= t('events.end_at')+":"
+      = l(event.end_at, :format => :long)
   %p
     %b= t('events.location')+":"
     = event.location
   %p
     %b= t('events.event_subject')+":"
     = event.subject_id
+  %p
+    %br
+    - if event.participants.size > 0
+      = t('events.short_involvement', :count => event.participants.size) + ", "
+    - if event.references.size > 0
+      = t('events.short_recommendation', :count => event.references.size)

@@ -1,9 +1,17 @@
 module EventsHelper
+  def is_reference_of(event)
+    unless current_user
+      false
+    else
+      event.references.include?(current_user.person)
+    end 
+  end
+
   def is_participant_of(event)
     unless current_user 
       false
     else
-      event.participants.include?(current_user.person) ? true : false
+      event.participants.include?(current_user.person)
     end
   end
 

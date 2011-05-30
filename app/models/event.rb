@@ -1,4 +1,5 @@
 class Event < ActiveRecord::Base
+  attr_accessor :same_day, :current_year
   validates_presence_of :title, :start_at, :description, :location, 
                         :message => I18n.t('activerecord.errors.messages.blank')
   
@@ -14,6 +15,10 @@ class Event < ActiveRecord::Base
   has_many :involvements, :dependent => :destroy
   has_many :participants, :through => :involvements, :source => :person
 
+  has_many :recommendations, :class_name => "EventRecommendation", 
+                             :dependent => :destroy, :foreign_key => "item_id"
+  has_many :references, :through => :recommendations, :source => :person
+
   def self.update_avatar_urls(params,url_params)
       event = find(params[:photo][:model_id])
       event.update_attributes(url_params)   
@@ -27,7 +32,7 @@ class Event < ActiveRecord::Base
              else
                self[:image_url]
              end
-    result || '/images/user/default.png'
+    result || default_url(size)
   end
   
   def image_url= url
@@ -60,6 +65,16 @@ class Event < ActiveRecord::Base
     else
       false
     end
+  end
+
+  private
+    
+  def default_url(size)
+     case size
+        when :thumb_medium then "/images/event/event_medium.jpg"
+        when :thumb_large   then "/images/event/event_large.jpg"
+        when :thumb_small   then "/images/event/event_small.jpg"
+     end
   end
 end
 

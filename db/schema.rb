@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110523080953) do
+ActiveRecord::Schema.define(:version => 20110527090126) do
 
   create_table "contacts", :force => true do |t|
     t.integer  "user_id"
@@ -84,6 +84,14 @@ ActiveRecord::Schema.define(:version => 20110523080953) do
 
   add_index "profiles", ["name"], :name => "index_profiles_on_name"
   add_index "profiles", ["person_id"], :name => "index_profiles_on_person_id"
+
+  create_table "recommendations", :force => true do |t|
+    t.integer  "item_id"
+    t.integer  "person_id"
+    t.string   "type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "requests", :force => true do |t|
     t.integer  "sender_id"

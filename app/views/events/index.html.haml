@@ -1,9 +1,12 @@
 .span-24.prepend-top
-  .span-12
+  .span-22
     %h1= t 'events.events_list' 
-  .span-12.last
+  .span-2.last
     = link_to t('events.new_event'), new_event_path, :class => "button"
-.span-24.prepend-top
-  - @events.each do |event|
+.span-24
+  - @events.each_with_index do |event, index|
+    -if index % 2 == 0
+      %hr
     .span-12.last.append-bottom
+      %h3= link_to event.title, event, :class => "nounderline"
       = render "event_item", :event => event      

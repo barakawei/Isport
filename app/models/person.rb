@@ -2,8 +2,14 @@ class Person < ActiveRecord::Base
   belongs_to :user
   has_many :contacts
   has_many :events
+
   has_many :involvements, :dependent => :destroy
   has_many :involved_events, :through => :involvements, :source => :event
+
+  has_many :event_recommendations, :dependent => :destroy
+  has_many :recommended_events, :through => :event_recommendations,
+           :source => :event
+   
   has_one :profile
   scope :searchable, joins(:profile) 
 
