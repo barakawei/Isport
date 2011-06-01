@@ -6,7 +6,6 @@
     = stylesheet_link_tag "blueprint/screen", :media => 'screen'
     = stylesheet_link_tag "blueprint/print", :media => 'print'
     = include_stylesheets :default, :media => 'all'
-    
     <!--[if lt IE 8]>
     = stylesheet_link_tag 'blueprint/ie',:media => 'screen'
     <![endif]--> 
@@ -17,13 +16,23 @@
 
     = include_javascripts :jquery
     = include_javascripts :main
+    = include_javascripts :jqueryui
     = csrf_meta_tag
-    = yield(:head)
+     
   %body{:class => "#{yield(:body_class)}"}
-    %header{:class => ( 'landing' unless current_user)}
+    .header{:class => ( 'landing' unless current_user)}
       = render 'layouts/header' 
+    .accout.hide
+      = link_to t('settings'), edit_user_path
+      = link_to t('logout'), destroy_user_session_path
+    %div
     .container.body
       .span-24.last
         =yield 
     .footer
       .container
+
+:javascript
+  $(function() {
+    $('.button').button();  
+  });

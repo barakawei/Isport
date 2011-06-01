@@ -7,10 +7,10 @@
       %p#notice= notice
       %p
         %b= t('events.start_at')+":"
-        = @event.start_at
+        = l(@event.start_at, :format => :long)
       %p
         %b= t('events.end_at')+":"
-        = @event.end_at
+        = l(@event.end_at, :format => :long)
       %p
         %b= t('events.location')+":"
         = @event.location
@@ -24,11 +24,22 @@
       - unless is_participant_of(@event)  
         = link_to t('events.apply'), url_for(:action=> "add_participant", :id => @event.id), :class => "button"
         %br
-        = link_to t('events.recommend'), edit_event_path(@event), :class => "button" 
       - else
         %p
           %h4= t('events.involved')
         = link_to t('events.cancel_apply'), url_for(:action=> "remove_participant", :id => @event.id), :class => "button"
+      - unless is_reference_of(@event)
+        = link_to t('events.recommend'), 
+                  url_for(:controller => "event_recommendations",:action => "add_reference",
+                          :id => @event.id), :class => "button" 
+      -else
+        %p
+          %br
+          %br
+          %h4= t('events.recommended') 
+        = link_to t('events.cancel_recommend'), 
+                  url_for(:controller => "event_recommendations", :action => "remove_reference",
+                          :id => @event.id), :class => "button"
     .span-16.last
       %br
       %h4= t('events.event_description')+":"
@@ -42,25 +53,46 @@
           = link_to t('events.edit'), edit_event_path(@event), :class => "button"
         = link_to t('back'),  events_path, :class => "button"
       .span-2.last
-        = link_to "取消活动",  "#cancel_event_request", :class => "button", :rel => 'facebox'
+        = link_to "取消活动",  "#cancel_event_request", :class => "button cancel_event", :rel => 'facebox'
   .span-6.prepend-1.last
-    %h4
-      = t('events.total') 
-      = link_to "#{@event.participants.size}"+ t('events.person'),
-        url_for(:action => "show_participants", :id => @event.id), :class => "nounderline"
-      = t('events.involvement')
-    = render :partial => 'event_participants', :locals => { :participants => @participants, 
-                                                            :perline => 3, :no_pagination => true } 
-
-
+    - if @event.participants.size > 0
+      %h4
+        = t('events.total') 
+        = link_to "#{@event.participants.size}"+ t('events.person'),
+          url_for(:action => "show_participants", :id => @event.id), :class => "nounderline"
+        = t('events.involvement')
+      = render :partial => 'event_participants', :locals => { :participants => @participants, 
+                                                              :perline => 3, :no_pagination => true } 
+    - else
+      %h4= t('events.no_participant')  
+    .span-6.last.prepend-top
+      -if @event.references.size > 0 
+        %h4
+          = t('events.total')
+          = link_to "#{@event.references.size}" + t('events.person'),
+            url_for(:action => "show_references", :id => @event.id), :class => "nounderline"
+          = t('events.recommendation')
+        = render :partial => 'event_references', :locals => { :references => @references, 
+                                                                :perline => 3, :no_pagination => true } 
+      - else
+        %h4= t('events.no_reference')
 .facebox_content
   #cancel_event_request
     %h4
       =  t('activerecord.operations.event.cancel_notice', :count => @event.participants.size)
     %br
     %h4= t('activerecord.operations.event.cancel_reason') + ":"
-    = form_tag event_path, :method => "delete" do
+    = form_tag event_path, :method => 'delete' do 
       = hidden_field_tag :id, :value => @event.id
       = text_area_tag :message
       %br
-      = submit_tag t('activerecord.operations.event.save'), :class => 'button' 
+      = submit_tag t('activerecord.operations.event.save'), :class => 'button'
+
+:javascript
+  $(function() {
+    $('.cancel_event').button({
+      icons: {
+        primary: 'ui-icon-closethick'
+      }
+    });  
+  });
