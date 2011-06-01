@@ -3,37 +3,59 @@
     header{display:none;}
     footer{position:absolute;bottom:12px;}
 
-.container{:style => 'text-align:center;'}
-  #login
-    %h1="Isport"
+.span-24.relative
+  .span-5.relative
+    %br
+  .login.span-16.relative
+    %h1=t("Isport")
 
     = form_for(resource, :as =>resource_name,:url=> session_path(resource_name)) do |f|
-      %p
-        = f.label :email,t('email')
-        = f.text_field :email
-        %span.pod_location
-          %br
-          %br
-      %p
-        = f.label :password,t('password')
-        = f.password_field :password
+      .reg_relative
+        .reg_input
+          = f.text_field :email, :id => "email"
+          = f.label :email,t('email'), :class => "email in_field"
+      .reg_relative
+        .reg_input.relative
+          = f.password_field :password, :id=> "password"
+          = f.label :password,t('password'), :class => "password in_field"
         %span
           - if devise_mapping.recoverable? && controller_name != 'passwords'
             =link_to t('devise.shared.links.forgot_your_password'),new_password_path(resource_name)
           -else
             \.
           %br
-          -if devise_mapping.registerable? && controller_name !='registrations'
-            =link_to t('devise.shared.links.sign_up'),new_registration_path(resource_name)
-          -else
-            \.
 
-      %p.submit
-        =f.submit t('.sign_in'),:class => 'button'
+      .reg_action
+        =f.submit t('.sign_in'), :class => "log_submit not-hovered"
         %span#remember_me
           -if devise_mapping.rememberable?
             =f.check_box :remember_me
-            =f.label :remember_me,t('.remember_me')
+            =f.label :remember_me,t('.remember_me'), :class=> "ckbox"
           -else
             \.
+  -if devise_mapping.registerable? && controller_name !='registrations'
+    =link_to t('devise.shared.links.sign_up'),new_registration_path(resource_name), :class => "reg_button"
+  -else
+    \.
 
+:javascript
+  $(".in_field").click(function() {
+    $(this).hide();
+    $(this).siblings("input").focus();
+  }); 
+
+  $("#email").add("#password").focus(function() {
+    $(this).siblings(".in_field").hide();
+  }); 
+
+  $("#email").add("#password").blur(function() {
+    field = $(this).siblings(".in_field")
+    if ($.trim($(this).val()) == '' ) {
+      $(this).val('');
+      field.show();
+    }
+  }); 
+  
+  $(".log_submit").hover(function() {
+    $(this).toggleClass("hovered not-hovered"); 
+  });

@@ -1,30 +1,37 @@
-:javascript
-  $(function() {
-    $('##{@selected}').addClass( "selected" );
-  });
-.container{ :style => "position:relative;" }
-  = link_to "酷玩吧", root_path, :class => 'nav'
-  - if current_user 
-    #global_search
+%span.logo
+  %h2= t('Isport')
+%ul.sections#sections
+  %li
+    =link_to t('home'), root_path
+  %li
+    =link_to t( 'friends' ),{:controller => 'people',:action => 'show_friends'}
+  %li
+    =link_to t( 'events_link' ),events_path
+
+    %li#search
       = form_tag(people_path, :method => 'get', :id => "global_search_form") do
         = text_field_tag 'q', nil, :placeholder => t('search'), :type => 'search', :results => 5
-    %ul#user_menu
-      %li
-        .right
-          &#9660;
-        .avatar
-          = owner_image_tag(:thumb_small)
-        = link_to current_user.name, '#'
-      %li= link_to t('settings'), edit_user_path
-      %li= link_to t('logout'), destroy_user_session_path
-    %ul#menu_nav
-      %li{:id =>  "home" }
-        =link_to t('home'), root_path
-      %li{ :id => "friends" }
-        =link_to t( 'friends' ),{:controller => 'people',:action => 'show_friends'}
-      %li{ :id => "events" }
-        =link_to t( 'events_link' ),events_path
+%ul.setting
+  %li
+    -if current_user
+      = link_to current_user.name, '#' ,:class => "current_user_link"
+
+    
+:javascript
+  $(function() {
+    var left = $('.setting').offset().left;
+    $('.accout').css("left", left+"px");
+
+
+    $('.current_user_link').click(function(e) {
+      $('.accout').toggleClass('hide');
+      e.stopPropagation();
+    });
+
+    $('html').click(function(e) {
+      $('.accout').addClass('hide');
+    });
+  });
 
 
 
-   

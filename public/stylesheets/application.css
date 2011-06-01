@@ -1,5 +1,4 @@
 body {
-  padding: 2em;
   background-color: #fcfcfc; }
 
 p {
@@ -42,7 +41,7 @@ form {
   height: 100%; }
 
 .container.body {
-  margin-top: 45px; }
+  margin-top: 50px; }
 
 #global_search {
   display: inline;
@@ -94,7 +93,7 @@ textarea {
   font-size: 14px;
   padding: 0.3em;
   display: inline;
-  width: 65%;
+  width: 100%;
   border: 1px solid #cccccc;
   height: auto; }
 
@@ -116,95 +115,6 @@ input[type='submit'] {
     left: 0;
     height: 100px;
     width: 100px; }
-
-header {
-  -webkit-box-shadow: 0 1px 3px #222222;
-  -moz-box-shadow: 0 1px 3px #222222;
-  box-shadow: 0 1px 3px #222222;
-  background: rgba(12, 12, 12, 0.925);
-  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=$from, endColorstr=$to);
-  -ms-filter: "progid:DXImageTransform.Microsoft.gradient (GradientType=0, startColorstr=rgba(15, 15, 15, 0.85), endColorstr=#0a0a0a)";
-  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(15, 15, 15, 0.85)), to(#0a0a0a));
-  background: -moz-linear-gradient(top, rgba(15, 15, 15, 0.85) 0%, #0a0a0a 100%);
-  z-index: 50;
-  padding: 0;
-    padding-top: 2px;
-  color: #cccccc;
-  position: fixed;
-  width: 100%;
-  top: 0;
-  left: 0; }
-  header a {
-    color: #cccccc; }
-    header a:hover {
-      background: none;
-      color: #eeeeee; }
-  header.landing {
-    height: 40px; }
-    header.landing .right {
-      top: 10px; }
-  header ul#user_menu {
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    text-shadow: 0 1px 0 black;
-    width: auto;
-    cursor: pointer;
-    z-index: 10;
-    padding: 5px 0;
-      padding-left: 30px;
-      padding-right: 5px;
-    margin: 0;
-      margin-top: -2px;
-      margin-right: -5px;
-    background-color: black;
-    position: absolute;
-    display: inline;
-    top: 5px;
-    right: 0; }
-    header ul#user_menu:hover {
-      background-color: #222222; }
-    header ul#user_menu li {
-      display: none; }
-      header ul#user_menu li a {
-        display: block;
-        padding: 4px;
-        height: 100%; }
-        header ul#user_menu li a:hover {
-          background-color: #5179ac;
-          color: white; }
-      header ul#user_menu li:first-child {
-        display: inline; }
-        header ul#user_menu li:first-child a {
-          height: auto;
-          display: inline;
-          padding-right: 15px;
-          color: #cccccc; }
-          header ul#user_menu li:first-child a:hover {
-            background-color: #222222;
-            text-decoration: none; }
-        header ul#user_menu li:first-child .right {
-          right: 5px; }
-    header ul#user_menu.active {
-      -webkit-box-shadow: 0 1px 2px #333333;
-      -moz-box-shadow: 0 1px 2px #333333;
-      box-shadow: 0 1px 2px #333333;
-      margin-top: -3px;
-      margin-right: -6px;
-      background-color: black;
-      border: 1px solid #999999; }
-      header ul#user_menu.active li {
-        display: block; }
-    header ul#user_menu .avatar {
-      height: 20px;
-      width: 20px;
-      position: absolute;
-      left: 2px;
-      top: 2px;
-      display: block; }
 
 #home_user {
   position: relative;
@@ -325,49 +235,69 @@ h1 .description, h2 .description, h3 .description, h4 .description {
   list-style: disc outside none;
   color: red; }
 
-#login {
-  width: 600px;
+.login {
   padding-top: 10%;
   padding-bottom: 20%;
-  text-align: center;
-  display: inline-block; }
-  #login form input,
-  #login form label {
-    font-size: 21px;
-    display: inline; }
-  #login form label {
-    top: 13px;
-    text-shadow: 0 1px 1px #cccccc; }
-  #login form input[type='text'],
-  #login form input[type='password'] {
-    -webkit-box-shadow: 0 1px 0px white, 0 -1px 0px #888888;
-    -moz-box-shadow: 0 1px 0px white, 0 -1px 0px #888888;
-    box-shadow: 0 1px 0px white, 0 -1px 0px #888888;
-    width: 180px;
-    max-width: 180px; }
-  #login form p {
-    display: inline-block;
+  width: 600px; }
+  .login h1 {
+    color: #5179ac; }
+  .login form input,
+  .login form label {
+    font-size: 20px;
+    text-shadow: 0 1px 1px #cccccc;
+    margin: 0; }
+  .login form label.in_field {
+    position: absolute;
+    top: 8px;
+    left: 8px; }
+  .login form input {
+    display: block; }
+  .login form input#email,
+  .login form input#password {
+    width: 194px;
+    height: 34px;
+    font-size: 18px;
+    line-height: 34px;
+    border: medium none;
+    background: none repeat scroll 0 0 transparent;
+    color: #324f65;
+    margin: 0 0;
+    padding: 0 0; }
+  .login form .reg_input {
+    background: url("/images/ui/reg-input.png") no-repeat scroll 0 0 transparent;
+    height: 34px;
+    border: medium none;
+    overflow: hidden;
     position: relative;
-    width: 200px; }
-    #login form p:last-child {
-      margin-left: 3px; }
-    #login form p span {
-      display: block;
-      color: white; }
-      #login form p span.pod_location {
-        color: #888888; }
-    #login form p.submit {
-      width: auto;
-      bottom: 15px; }
-      #login form p.submit input {
-        width: auto;
-        position: relative;
-        height: 40px;
-        top: 0px;
-        color: #666666;
-        margin-bottom: 10px; }
-        #login form p.submit input:hover {
-          color: #444444; }
+    padding: 4px;
+    width: 194px; }
+  .login form .reg_relative {
+    float: left;
+    margin-right: 8px;
+    position: relative; }
+  .login form .reg_action {
+    width: 100px;
+    float: left; }
+  .login form .log_submit {
+    background: url("/images/ui/log_submit.png") no-repeat 0 0 transparent;
+    border: medium none;
+    height: 40px;
+    width: 130px;
+    text-indent: -9999em; }
+  .login form .not_hovered {
+    background: url("/images/ui/log_submit.png") no-repeat left top transparent; }
+  .login form .hovered {
+    background: url("/images/ui/log_submit.png") no-repeat left bottom transparent; }
+
+a.reg_button {
+  display: block;
+  background: url("/images/ui/reg_button.png") no-repeat left top transparent;
+  height: 30px;
+  width: 60px;
+  text-indent: -9999em;
+  position: fixed;
+  right: 50px;
+  top: 50px; }
 
 label {
   font-weight: normal;
@@ -376,13 +306,14 @@ label {
   left: 0.48em;
   text-shadow: 0 1px 1px #eeeeee; }
 
-#remember_me input[type='checkbox'] {
+#remember_me input {
   display: inline;
   height: auto !important;
   top: 2px !important; }
-#remember_me label {
-  font-size: inherit !important;
-  position: static; }
+#remember_me label.ckbox {
+  font-size: 10px;
+  position: static;
+  color: #5179ac; }
 
 .facebox_content {
   display: none; }
@@ -467,3 +398,6 @@ span.medium_avatar {
   text-align: center;
   margin-bottom: 0;
   height: 30px; }
+
+.relative {
+  position: relative; }
