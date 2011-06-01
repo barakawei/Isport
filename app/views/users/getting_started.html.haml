@@ -6,7 +6,7 @@
   %br
   .floating{:style => "min-height:300px;"}
     = form_tag @profile,:method => :put,:multipart =>true,:id=>'update_profile_form' do
-      %div{:style => "width:360px"}
+      %div
         = render 'profiles/edit_public',:profile => @profile,:person =>@person
         %br
         %br
