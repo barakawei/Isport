@@ -11,6 +11,8 @@ var View = {
     jQuery(document).ready(function($) {
       $('a[rel*=facebox]').facebox()
     });
+
+    
     
   },
    
@@ -32,4 +34,5 @@ var View = {
  
 $(function() {
   View.initialize.apply(View);
+  $.fcbkListSelection("#fcbklist","400","60","4");
 });

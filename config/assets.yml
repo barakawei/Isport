@@ -10,7 +10,7 @@ javascripts:
     - public/javascripts/fileuploader-custom.js
     - public/javascripts/view.js
     - public/javascripts/facebox.js
-
+     
 stylesheets:
   default:
     - public/stylesheets/application.css

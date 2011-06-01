@@ -772,14 +772,7 @@ qq.UploadButton = function(o){
     this._element = this._options.element;
 
     // make button suitable container for input
-    qq.css(this._element, {
-        position: 'relative',
-        overflow: 'hidden',
-        // Make sure browse button is in the right side
-        // in Internet Explorer
-        direction: 'ltr'
-    });
-
+    
     this._input = this._createInput();
 };
 
@@ -812,14 +805,13 @@ qq.UploadButton.prototype = {
             // in Opera only 'browse' button
             // is clickable and it is located at
             // the right side of the input
-            right: 0,
             top: 0,
             //fontFamily: 'Arial',
             // 4 persons reported this, the max values that worked for them were 243, 236, 236, 118
-            //fontSize: '118px',
+            fontSize: '20px',
             margin: 0,
             padding: 0,
-            opacity: 0
+            opacity: 1
         });
 
         this._element.appendChild(input);
@@ -1017,6 +1009,11 @@ qq.extend(qq.UploadHandlerForm.prototype, {
         var iframe = this._createIframe(id);
         var form = this._createForm(iframe, params);
         form.appendChild(input);
+        var tokenName = $('meta[name="csrf-param"]').attr('content');
+        var tokenValue = $('meta[name="csrf-token"]').attr('content');
+        tokenInput = qq.toElement( '<input type="hidden" value="'+tokenValue+'" name="'+tokenName+'">' ); 
+
+        form.appendChild(tokenInput);
 
         var self = this;
         this._attachLoadEvent(iframe, function(){
@@ -1262,3 +1259,4 @@ qq.extend(qq.UploadHandlerXhr.prototype, {
         }
     }
 });
+

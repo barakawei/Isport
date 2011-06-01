@@ -77,7 +77,8 @@ form {
   margin-bottom: 2em;
   background-color: white;
   border-bottom: 1px solid #cccccc;
-  border-top: 1px solid white; }
+  border-top: 1px solid white;
+  behavior: url("javascripts/ie-css3.htc"); }
   .floating .submit_block {
     position: absolute;
     bottom: 13px;
