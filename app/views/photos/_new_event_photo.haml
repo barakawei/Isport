@@ -1,12 +1,14 @@
 #event_photo_upload
-  = event_image_tag(event, :thumb_large)
-  %br
-  #file-upload.button
-    =t('upload')
-  %br
-  %br
-    #fileInfo
-  #publisher_photo_upload
+  .img_contained  
+    = event_image_tag(event, :thumb_large)
+  .relative 
+    %div
+    #file-upload.button
+      upload
+    %br
+    %br
+      #fileInfo
+    #publisher_photo_upload
     :javascript
       function createUploader(){
         var uploader = new qq.FileUploaderBasic({
@@ -51,4 +53,5 @@
          });
        }
        window.onload = createUploader;
-    
+   
+   

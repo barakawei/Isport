@@ -16,11 +16,11 @@ javascripts:
 
 stylesheets:
   default:
-    - public/stylesheets/application.css
-    - public/stylesheets/ui.css
-    - public/stylesheets/fileuploader.css
-    - public/stylesheets/facebox.css
-    - public/stylesheets/header.css
+    - public/stylesheets/css/general/application/application.css
+    - public/stylesheets/css/general/ui/ui.css
+    - public/stylesheets/css/plugins/fileuploader.css
+    - public/stylesheets/css/plugins/facebox.css
+    - public/stylesheets/css/general/headings/header.css
     - public/javascripts/jquery-ui-1.8.13/css/custom-theme/jquery-ui-1.8.13.custom.css
 
  
