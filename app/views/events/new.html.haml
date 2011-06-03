@@ -1,3 +1,5 @@
+- content_for :head do
+  = include_stylesheets :forms, :media => 'all'
 %h1= t('events.new_event')
 = render 'form', :is_edit => false
 

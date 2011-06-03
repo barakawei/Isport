@@ -15,6 +15,10 @@ javascripts:
     - public/javascripts/jquery-ui-1.8.13/js/jquery-ui-1.8.13.custom.min.js
 
 stylesheets:
+  blueprint:
+    - public/stylesheets/css/plugins/blueprint/ie.css
+    - public/stylesheets/css/plugins/blueprint/screen.css
+    
   default:
     - public/stylesheets/css/general/application/application.css
     - public/stylesheets/css/general/ui/ui.css
@@ -22,5 +26,7 @@ stylesheets:
     - public/stylesheets/css/plugins/facebox.css
     - public/stylesheets/css/general/headings/header.css
     - public/javascripts/jquery-ui-1.8.13/css/custom-theme/jquery-ui-1.8.13.custom.css
+  forms:
+    - public/stylesheets/css/general/forms/events_form.css
 
  

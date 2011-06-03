@@ -321,8 +321,6 @@ label {
 form .field label {
   display: block;
   margin: 1em 0 0 0; }
-form .field .inline {
-  display: inline; }
 form .field textarea {
   margin-bottom: 0; }
 

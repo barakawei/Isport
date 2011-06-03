@@ -19,9 +19,8 @@
     
 :javascript
   $(function() {
-    var left = $('.setting').offset().left;
+    var left = $('.setting a').offset().left;
     $('.accout').css("left", left+"px");
-
 
     $('.current_user_link').click(function(e) {
       $('.accout').toggleClass('hide');

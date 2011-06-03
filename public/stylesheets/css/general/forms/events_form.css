@@ -1,0 +1,16 @@
+.event_form .top {
+  display: inline;
+  vertical-align: top; }
+.event_form input:not([type='submit']):not([type='reset']):not([type='checkbox']) {
+  width: 60%;
+  vertical-align: top; }
+.event_form textarea {
+  width: 60%;
+  vertical-align: top; }
+.event_form #event_submit {
+  margin-left: 5px; }
+.event_form .field label {
+  display: inline-block;
+  width: 60px; }
+.event_form input[type='checkbox'] {
+  vertical-align: text-top; }
