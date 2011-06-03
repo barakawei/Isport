@@ -16,7 +16,6 @@ javascripts:
 stylesheets:
   default:
     - public/stylesheets/application.css
-    - public/stylesheets/ui.css
     - public/stylesheets/fileuploader.css
     - public/stylesheets/facebox.css
     - public/stylesheets/header.css
