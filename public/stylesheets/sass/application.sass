@@ -1,4 +1,3 @@
-
 @import 'mixins'
 
 $blue: #5179AC
@@ -94,17 +93,11 @@ form
 
 .floating
   @include box-shadow(0,1px,3px,#333)
-
+  :behavior url(/javascripts/PIE.htc)
   :position relative
-  :padding 12px
-  :margin
-    :bottom 2em
+  :z-index 1
   :background
     :color rgb(255,255,255)
-
-  :border
-    :bottom 1px solid #ccc
-    :top 1px solid #fff
 
   .submit_block
     :position absolute
@@ -113,7 +106,6 @@ form
 
   form
     :display relative
-  :behavior url("javascripts/ie-css3.htc")
 
 input:not([type='submit']):not([type='reset']):not([type='checkbox']),
 textarea
@@ -151,22 +143,13 @@ input[type='submit']
 #home_user
   :position relative
 
-  img
-    :position absolute
-    :left 0
-
   h3
     :position relative
     :top 4px
 
-  :margin
-    :bottom 1em
 
   :border
     :bottom 1px solid #ccc
-
-  :padding
-    :left 60px
 
 h1,h2,h3,h4
   .description
@@ -177,34 +160,15 @@ h1,h2,h3,h4
     :margin
       :top 0.5em 
 
-.section
-  :margin
-    :bottom 24px
 
 #friend_listings
+  :position relative
+  :border
+    :bottom 1px solid #ccc
   .contacts
     :margin
       :top 6px
-  ul
-    :padding 0
-    :margin 0
-    > li
-      :position relative
-      :padding 8px 0
-      :border
-        :bottom 1px solid #ddd
 
-#friend_listings li
-  img
-    :margin
-      :right 2px
-      :bottom 0px
-    :width 29px
-    :height 29px
-
-  h5
-    :margin
-      :bottom 6px
 
 .stream_element
   :position relative
@@ -525,3 +489,4 @@ span.medium_avatar
 
 .relative
   :position relative
+

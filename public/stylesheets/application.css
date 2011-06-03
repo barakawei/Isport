@@ -71,13 +71,10 @@ form {
   -webkit-box-shadow: 0 1px 3px #333333;
   -moz-box-shadow: 0 1px 3px #333333;
   box-shadow: 0 1px 3px #333333;
+  behavior: url(/javascripts/PIE.htc);
   position: relative;
-  padding: 12px;
-  margin-bottom: 2em;
-  background-color: white;
-  border-bottom: 1px solid #cccccc;
-  border-top: 1px solid white;
-  behavior: url("javascripts/ie-css3.htc"); }
+  z-index: 1;
+  background-color: white; }
   .floating .submit_block {
     position: absolute;
     bottom: 13px;
@@ -119,12 +116,7 @@ input[type='submit'] {
 
 #home_user {
   position: relative;
-  margin-bottom: 1em;
-  border-bottom: 1px solid #cccccc;
-  padding-left: 60px; }
-  #home_user img {
-    position: absolute;
-    left: 0; }
+  border-bottom: 1px solid #cccccc; }
   #home_user h3 {
     position: relative;
     top: 4px; }
@@ -135,26 +127,11 @@ h1 .description, h2 .description, h3 .description, h4 .description {
   color: #aaaaaa;
   margin-top: 0.5em; }
 
-.section {
-  margin-bottom: 24px; }
-
-#friend_listings .contacts {
-  margin-top: 6px; }
-#friend_listings ul {
-  padding: 0;
-  margin: 0; }
-  #friend_listings ul > li {
-    position: relative;
-    padding: 8px 0;
-    border-bottom: 1px solid #dddddd; }
-
-#friend_listings li img {
-  margin-right: 2px;
-  margin-bottom: 0px;
-  width: 29px;
-  height: 29px; }
-#friend_listings li h5 {
-  margin-bottom: 6px; }
+#friend_listings {
+  position: relative;
+  border-bottom: 1px solid #cccccc; }
+  #friend_listings .contacts {
+    margin-top: 6px; }
 
 .stream_element {
   position: relative;

@@ -3,7 +3,7 @@
 
 %h4
   = t('profiles.edit.your_name')
-  = text_field_tag 'profile[name]', profile.name, :placeholder => t('profiles.edit.name')
+  = text_field_tag 'profile[name]', profile.name, :placeholder => t('profiles.edit.name'),:style=>"width: 100px",:required =>"required"
 %h4
   = t('profiles.edit.your_photo')
 %div

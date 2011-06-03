@@ -1,6 +1,6 @@
 #home_user
   = person_image_link(@person)
-  %h3{:style => "position:relative;"}
+  %h3{:style => "position:absolute;margin-left:60px;_margin-left:10px;*margin-left:10px;margin-top:-5px"}
     =@person.name
     .description
       -if current_user.person.id == @person.id && ( @requests_count == 0 || !@requests_count)
@@ -19,18 +19,11 @@
         .button1.add_friend
           = link_to t('start_sharing'),'#add_friend_request',:rel => 'facebox'
 
-  %b
-  %b
-#friend_listings.section
-  %h4
+#friend_listings
+  %h3
     - if @contacts.length > 0
       %ul
         %li
-          .contacts 
-            %h4=t( 'friends_count',:count => @contacts.length)
-            - for contact in @contacts
-              = person_image_link(contact.person)
-          =link_to t( 'more' ),{:controller => 'people',:action => 'show_friends'}
     - else
       =t('no_friends')   
 
