@@ -1,7 +1,7 @@
 = form_for @event, :html => { :multipart => true } do |f|
   .span-7 
     = render "photos/new_event_photo", :event => @event, :is_edit => is_edit, :model_name => "event"
-  .span-16.prepend-1.last
+  .span-16.prepend-1.last.event_form
     .field
       = f.label t('activerecord.attributes.event.title') +":"
       = f.text_field :title
