@@ -1,0 +1,440 @@
+@import '../ui/mixins'
+
+$blue: #5179AC
+$red: #FF0000
+$background: rgb(252,252,252)
+
+body
+  :background-color $background
+
+p
+  :word-wrap break-word
+  
+.new.friends_request
+  :background url("/images/layout/content_icons.png") no-repeat scroll 0 0px transparent
+  :background-position 0 -1720px
+  :padding-left 14px
+
+
+a
+  :color $blue
+  :font-weight bold
+  :text
+    :decoration none
+  &:hover
+    :color $blue
+    :text
+      :decoration underline
+
+ol, ul, li
+  :list-style none
+
+  
+.container.body
+  :margin
+    :top 50px
+
+.floating
+  @include box-shadow(0,1px,3px,#333)
+  :behavior url(/javascripts/PIE.htc)
+  :position relative
+  :z-index 1
+  :background
+    :color rgb(255,255,255)
+
+  .submit_block
+    :position absolute
+    :bottom 13px
+    :right 12px
+
+  form
+    :display relative
+
+input:not([type='submit']):not([type='reset']):not([type='checkbox']),
+textarea
+  @include border-radius(3px)
+
+  :font
+    :family 'Arial', 'Helvetica', sans-serif
+    :size 14px
+  :padding 0.3em
+  :display inline
+  :width 100%
+  :border 1px solid #ccc
+  :height auto
+
+input[type='submit']
+  :margin-top 1em
+
+#profile_photo_upload
+  :margin
+    :top 5px
+  :min-height 100px
+  img
+    @include border-radius(5px)
+    @include box-shadow(0,1px,2px,#666)
+
+    :position absolute
+    :left 0
+    :height 100px
+    :width 100px
+
+  :padding
+    :left 120px
+
+
+#home_user
+  :position relative
+
+  h3
+    :position relative
+    :top 4px
+
+
+  :border
+    :bottom 1px solid #ccc
+
+h1,h2,h3,h4
+  .description
+    :font
+      :size 80%
+      :weight 200
+    :color #aaa
+    :margin
+      :top 0.5em 
+
+
+#friend_listings
+  :position relative
+  :border
+    :bottom 1px solid #ccc
+  .contacts
+    :margin
+      :top 6px
+
+
+.stream_element
+  :position relative
+  :word-wrap break-word
+  :color #888
+
+  :font
+    :size 14px
+
+  a.author
+    :font
+      :weight bold
+    :color #444
+
+  .content
+    :margin
+      :top 0
+    :padding
+      :left 60px
+
+    :color #666
+    :font
+      :weight normal
+
+    p
+      :margin
+        :bottom 0px
+      :font
+        :size 13px
+      :line
+        :height 18px
+
+    .photo_attachments
+      :margin
+        :top 7px
+
+    img
+      :margin
+        :right 0
+      :max-width 100%
+
+    .stream_photo
+      :float left
+      :margin
+        :top 6px
+
+    .photo_description
+      :margin
+        :top 6px
+      :padding
+        :left 220px
+      :min-height 185px
+      :color #888
+      :font
+        :style italic
+
+    .small_text
+      :font
+        :size smaller
+
+    .info
+      :margin
+        :top 2px
+      :color #999
+      :font-size 11px
+
+    .comments
+      .info
+        :margin
+          :top -1px
+
+  .delete
+    @include opacity(0.6)
+    :padding 5px
+
+    &:hover
+      @include opacity(1)
+
+  .right
+    :position absolute
+    :right 12px
+
+  .controls
+    :display none
+    :z-index 6
+    :color #999
+    a
+      :color #999
+      :font
+        :weight normal
+
+  &:hover, .comment:hover
+    > .controls
+      :display inline
+
+    .from
+      a
+        :color $blue
+.stream
+  .avatar
+    :float left
+  .stream_element
+    :padding 20px 20px
+    :min-height 50px
+    :border
+      :bottom 1px solid #ddd
+      :top 1px solid #fff
+
+.list
+  p
+    :margin-bottom 0
+
+#error_explanation
+  ul
+    li
+      list-style: disc outside none
+      color: red
+
+.login
+  :padding
+    :top 10%
+    :bottom 20%
+  :width 600px
+
+  h1
+    :color $blue
+
+  form
+    input,
+    label
+      :font
+        :size 20px
+      :text-shadow 0 1px 1px #ccc
+      :margin 0 
+
+    label.in_field
+      :position absolute
+      :top 8px
+      :left 8px
+
+    input
+      :display block
+
+    input#email,
+    input#password
+      :width 194px 
+      :height 34px
+      :font-size 18px
+      :line-height 34px
+      :border medium none
+      :background none repeat scroll 0 0 transparent
+      :color #324f65
+      :margin 0 0
+      :padding 0 0
+    
+    .reg_input
+      background: url("/images/ui/reg-input.png") no-repeat scroll 0 0 transparent
+      height: 34px
+      border: medium none
+      overflow: hidden
+      position: relative
+      padding: 4px
+      width: 194px
+
+    .reg_relative
+      float: left
+      margin-right: 8px
+      position: relative
+
+    .reg_action
+      :width 100px
+      :float left
+
+    .log_submit
+      :background url("/images/ui/log_submit.png") no-repeat 0 0 transparent
+      :border medium none
+      :height 40px
+      :width 130px
+      :text-indent -9999em
+
+    .not_hovered
+      :background url("/images/ui/log_submit.png") no-repeat left top transparent
+      
+    .hovered
+      :background url("/images/ui/log_submit.png") no-repeat left bottom transparent
+    
+a.reg_button
+  :display block
+  :background url("/images/ui/reg_button.png") no-repeat left top transparent       
+  :height 30px
+  :width 60px
+  :text-indent -9999em
+  :position fixed 
+  :right 50px
+  :top 50px
+
+label
+  :font
+    :weight normal
+  :color #999
+  :top 3px
+  :left 0.48em
+  :text
+    :shadow 0 1px 1px #eee
+#remember_me
+  input
+    :display inline
+    :height auto !important
+    :top 2px !important
+  label.ckbox
+    :font-size 10px 
+    :position static
+    :color $blue 
+
+.facebox_content
+  :display none 
+
+form 
+  .field 
+    label
+      :display block   
+      :margin 1em 0 0 0
+    .inline 
+      :display inline
+    textarea
+      :margin
+        :bottom 0
+    
+ul#menu_nav
+  :margin
+    :top 3px
+    :bottom 2px
+  :bottom 0
+  :color #000
+
+  :position relative
+  :padding 0
+    :bottom 3px
+  :margin
+    :bottom 0
+
+  a:hover
+    :text
+      :decoration none
+
+  > li
+    @include border-radius(2px)
+
+    :display inline
+    :padding 1px 8px
+    :margin 0
+      :right 2px
+
+    :text-shadow 0 1px 0 #444
+
+    :color #999
+    :max-width 120px
+    :overflow hidden
+    :text-overflow ellipsis
+
+    
+    &:hover
+      :background
+        :color #000
+      :color #eee
+
+      .aspect_selector_edit
+        :display inline
+
+    &.selected
+      :text-shadow 0 1px 0 #fff
+      :font
+        :weight bold
+      :background
+        :color rgb(235,235,235)
+
+      :border
+        :bottom 1px solid #fff
+      :color #444
+      &:hover
+        :color #888
+      a
+        :color #000
+ul
+  :padding 0
+
+.result
+  :border-top 1px solid #EDEDED
+  :float left
+  :margin-top 20px
+  :min-height 59px
+  :overflow hidden
+  :padding 
+    :top 5px
+  :width 190px
+
+.friend
+  :position absolute
+  :padding
+    :bottom 10px
+    :left 10px
+
+.validation-error
+  :color red
+  :margin-left 1em
+
+.field_with_errors
+  :display inline
+
+span.medium_avatar
+  :display inline-block 
+  :width 50px
+  :overflow hidden
+  :white_space nowrap
+  :text-align center 
+  :margin-bottom 0
+  :height 30px
+
+.relative
+  :position relative
+
+.img_contained  
+  img
+    display: block
+#file-upload
+  :position relative

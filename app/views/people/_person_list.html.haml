@@ -20,12 +20,26 @@
           = link_to t('start_sharing'),'#add_friend_request',:rel => 'facebox'
 
 #friend_listings
-  %h3
+  %h4
     - if @contacts.length > 0
       %ul
         %li
+          .contacts
+            %h4=t( 'friends_count',:count => @contacts.length)
+            - for contact in @contacts
+              = person_image_link(contact.person)
+          =link_to t( 'more' ),{:controller => 'people',:action => 'show_friends'}
     - else
-      =t('no_friends')   
+      =t('no_friends')
+.facebox_content
+  #add_friend_request
+    %h3="加为好友"
+    = form_for Request.new,:url => { :controller => 'contacts',:action => 'new' } do |r|
+      = r.text_area :message , :rows => 2
+      = r.hidden_field :person_id, :value => @person.id
+      %br
+      = r.submit t('send'), :class => 'button' 
+  
 
 
 
