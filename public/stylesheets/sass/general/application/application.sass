@@ -38,14 +38,11 @@ ol, ul, li
   form
     :display relative
 
-input:not([type='submit']):not([type='reset']):not([type='checkbox']),
-  @include border-radius(3px)
+input
   :font
     :family 'Arial', 'Helvetica', sans-serif
     :size 14px
-  :padding 0.3em
   :display inline
-  :width 100%
   :border 1px solid #ccc
   :height auto
 
@@ -58,7 +55,7 @@ input:not([type='submit']):not([type='reset']):not([type='checkbox']),
     @include box-shadow(0,1px,2px,#666)
 
     :position absolute
-    :left 0
+    :left 10px
     :height 100px
     :width 100px
 

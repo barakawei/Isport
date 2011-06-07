@@ -1,6 +1,6 @@
 #home_user
   = person_image_link(@person)
-  %h3{:style => "position:absolute;margin-left:60px;_margin-left:10px;*margin-left:10px;margin-top:-5px"}
+  %h3.push-2
     =@person.name
     .description
       -if current_user.person.id == @person.id && ( @requests_count == 0 || !@requests_count)

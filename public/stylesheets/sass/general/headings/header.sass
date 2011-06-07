@@ -1,3 +1,4 @@
+@import '../ui/mixins'
 .header
   :background url("/images/ui/header_background.png") repeat-x scroll left top #4f8dbc
   :overflow hidden
@@ -42,22 +43,23 @@
         :font-weight bold
   
   li#search
-    :padding 10px 7px
     
     input
       :border 0 none
+      :margin-top 10px
+      :height 15px
       :color #8a8a8a
       :font-size 11px
-      :padding-right 18px
-      :width 95px
+      :width 120px
       :background url("/images/layout/button.png") repeat-x scroll 100% -492px #ffffff
+
     
   .setting
     :float right 
     :margin-right 100px
+    :display inline
    
     li 
-      :float none
       :position relative
 
 .accout
