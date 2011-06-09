@@ -26,7 +26,7 @@
           %br
 
       .reg_action
-        =f.submit t('.sign_in'), :class => "log_submit hovereffect"
+        =f.submit t('.sign_in'), :class => "log_submit"
         %span#remember_me
           -if devise_mapping.rememberable?
             =f.check_box :remember_me
@@ -55,6 +55,11 @@
       field.show();
     }
   });
+
+  $(".log_submit").hover(function() {
+    $(this).toggleClass("log_submit_hover");
+  });
+  
 
    
   

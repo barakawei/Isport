@@ -38,13 +38,15 @@ ol, ul, li
   form
     :display relative
 
-input
+input:not([type='submit']):not([type='reset']):not([type='checkbox']),
+textarea
+  @include border-radius(3px)
+
   :font
     :family 'Arial', 'Helvetica', sans-serif
     :size 14px
-  :display inline
-  :border 1px solid #ccc
-  :height auto
+  :padding 0.3em
+
 
 #profile_photo_upload
   :margin
@@ -75,13 +77,14 @@ h1,h2,h3,h4
   :position relative
   :font
     :size 14px
-
+  .avatar
+    :padding 20px 20px
+  .right
+    :padding 20px 20px
   .content
-    :margin
-      :top 0
-    :padding
-      :left 60px
-
+    :position absolute
+    :left 80px
+    :top 20px
     :color #666
     :font
       :weight normal
@@ -119,14 +122,12 @@ h1,h2,h3,h4
           :top -1px
   
 .stream
-  .avatar
-    :float left
   .stream_element
-    :padding 20px 20px
     :min-height 50px
     :border
       :bottom 1px solid #ddd
       :top 1px solid #fff
+
 
 label
   :font
@@ -165,3 +166,7 @@ span.medium_avatar
   :margin-bottom 0
   :height 30px
 
+#add_friend_request
+  textarea
+    :height 100px
+    :width 300px
