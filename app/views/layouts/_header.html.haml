@@ -4,9 +4,11 @@
   %li
     =link_to t('home'), root_path
   %li
-    =link_to t( 'friends' ),{:controller => 'people',:action => 'show_friends'}
+    =link_to t('friends'),{:controller => 'people',:action => 'show_friends'}
   %li
-    =link_to t( 'events_link' ),events_path
+    =link_to t('events_link'),events_path
+  %li
+    =link_to t('items_link'),items_path
 
     %li#search
       = form_tag(people_path, :method => 'get', :id => "global_search_form") do

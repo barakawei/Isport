@@ -1,0 +1,17 @@
+.span-24
+  .span-17
+    .span-7
+      = item_image_tag(@item, :thumb_large)
+    .span-6.last.prepend-1.right_border
+      %h2= @item.name
+      %p#notice= notice
+      %p
+        %b= t('items.name')+":"
+        = @item.name
+      %p
+        %b= t('items.description')+":"
+        = @item.description
+  .span-7.last
+    = link_to t('items.edit'), edit_item_path(@item), :class => "button"
+    = link_to t('back'),  items_path, :class => "button"
+

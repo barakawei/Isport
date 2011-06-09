@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110527090126) do
+ActiveRecord::Schema.define(:version => 20110609080538) do
 
   create_table "contacts", :force => true do |t|
     t.integer  "user_id"
@@ -44,6 +44,16 @@ ActiveRecord::Schema.define(:version => 20110527090126) do
     t.integer  "event_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "items", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "image_url_large"
+    t.string   "image_url_medium"
+    t.string   "image_url_small"
   end
 
   create_table "people", :force => true do |t|

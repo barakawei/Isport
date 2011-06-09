@@ -4,9 +4,8 @@
   .span-3.last
     = link_to t('events.new_event'), new_event_path, :class => "button new_event"   
 .span-24
+  %hr
   - @events.each_with_index do |event, index|
-    -if index % 2 == 0
-      %hr
     .span-12.last.append-bottom
       %h3= link_to event.title, event, :class => "nounderline"
       = render "event_item", :event => event      
