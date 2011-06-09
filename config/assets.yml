@@ -14,7 +14,6 @@ javascripts:
 
 stylesheets:
   blueprint:
-    - public/stylesheets/css/plugins/blueprint/ie.css
     - public/stylesheets/css/plugins/blueprint/screen.css
     
   default:

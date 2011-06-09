@@ -24,16 +24,17 @@
         = link_to @event.person.profile.name, person_path(@event.person)
     .span-3.last.left_padding
       - unless is_participant_of(@event)  
-        = link_to t('events.apply'), url_for(:action=> "add_participant", :id => @event.id), :class => "button"
-        %br
+        %p
+          = link_to t('events.apply'), url_for(:action=> "add_participant", :id => @event.id), :class => "button"
       - else
         %p
           %h4= t('events.involved')
-        = link_to t('events.cancel_apply'), url_for(:action=> "remove_participant", :id => @event.id), :class => "button"
+          = link_to t('events.cancel_apply'), url_for(:action=> "remove_participant", :id => @event.id), :class => "button"
       - unless is_reference_of(@event)
-        = link_to t('events.recommend'), 
-                  url_for(:controller => "event_recommendations",:action => "add_reference",
-                          :id => @event.id), :class => "button" 
+        %p
+          = link_to t('events.recommend'), 
+                    url_for(:controller => "event_recommendations",:action => "add_reference",
+                            :id => @event.id), :class => "button" 
       -else
         %p
           %br
@@ -65,8 +66,6 @@
         = t('events.involvement')
       = render :partial => 'event_participants', :locals => { :participants => @participants, 
                                                               :perline => 3, :no_pagination => true } 
-    - else
-      %h4= t('events.no_participant')  
     .span-6.last.prepend-top
       -if @event.references.size > 0 
         %h4
@@ -76,19 +75,18 @@
           = t('events.recommendation')
         = render :partial => 'event_references', :locals => { :references => @references, 
                                                                 :perline => 3, :no_pagination => true } 
-      - else
-        %h4= t('events.no_reference')
 .facebox_content
   #cancel_event_request
-    %h4
-      =  t('activerecord.operations.event.cancel_notice', :count => @event.participants.size)
-    %br
-    %h4= t('activerecord.operations.event.cancel_reason') + ":"
-    = form_tag event_path, :method => 'delete' do 
-      = hidden_field_tag :id, :value => @event.id
-      = text_area_tag :message
+    .span-8
+      %h4
+        =  t('activerecord.operations.event.cancel_notice', :count => @event.participants.size)
       %br
-      = submit_tag t('activerecord.operations.event.save'), :class => 'button'
+      %h4= t('activerecord.operations.event.cancel_reason') + ":"
+      = form_tag event_path, :method => 'delete' do 
+        = hidden_field_tag :id, :value => @event.id
+        = text_area_tag :message
+        %br
+        = submit_tag t('activerecord.operations.event.save'), :class => 'button'
 
 :javascript
   $(function() {
@@ -97,4 +95,6 @@
         primary: 'ui-icon-circle-close'
       }
     });  
+
+    $('.cancel_event').colorbox({ inline:true, href:"#cancel_event_request" });
   });
