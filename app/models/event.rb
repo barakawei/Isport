@@ -21,7 +21,8 @@ class Event < ActiveRecord::Base
 
   def self.update_avatar_urls(params,url_params)
       event = find(params[:photo][:model_id])
-      event.update_attributes(url_params)   
+      puts "********************"
+      puts event.update_attributes(url_params)
   end
 
   def image_url(size = :thumb_large)
@@ -35,30 +36,6 @@ class Event < ActiveRecord::Base
     result || default_url(size)
   end
   
-  def image_url= url
-    return image_url if url == ''
-    if url.nil? || url.match(/^https?:\/\//)
-      super(url)
-    else
-    end
-  end
-
-  def image_url_small= url
-    return image_url if url == ''
-    if url.nil? || url.match(/^https?:\/\//)
-      super(url)
-    else
-    end
-  end
-
-  def image_url_medium= url
-    return image_url if url == ''
-    if url.nil? || url.match(/^https?:\/\//)
-      super(url)
-    else
-    end
-  end
-
   def is_owner(user)
     if user
       return user.person.id == person_id

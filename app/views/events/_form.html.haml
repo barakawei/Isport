@@ -19,7 +19,7 @@
         = error_on(@event, :end_at)
       .field
         = f.label t('activerecord.attributes.event.description')+":"
-        = f.text_area :description, :rows => 12
+        = f.text_area :description
         = error_on(@event, :description)
       .field
         = f.label t('activerecord.attributes.event.location')+":"

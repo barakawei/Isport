@@ -26,7 +26,13 @@ stylesheets:
     - public/stylesheets/css/special_pages/home/index.css
     - public/stylesheets/css/special_pages/devise_sessions/new.css
     - public/javascripts/jquery-ui-1.8.13/css/custom-theme/jquery-ui-1.8.13.custom.css
+
   forms:
     - public/stylesheets/css/general/forms/events_form.css
+
+  sepcial_pages_events_index:
+    - public/stylesheets/css/special_pages/events/index.css
+  sepcial_pages_events_show:
+    - public/stylesheets/css/special_pages/events/show.css
 
  

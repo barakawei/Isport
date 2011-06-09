@@ -1,16 +1,25 @@
+#file-upload {
+  overflow: hidden; }
+
 .event_form .top {
   display: inline;
-  vertical-align: top; }
+  margin: 0; }
 .event_form input:not([type='submit']):not([type='reset']):not([type='checkbox']) {
   width: 60%;
   vertical-align: top; }
 .event_form textarea {
   width: 60%;
-  vertical-align: top; }
+  padding: 0;
+  vertical-align: top;
+  margin: 0;
+  font-size: 12px; }
 .event_form #event_submit {
   margin-left: 5px; }
-.event_form .field label {
-  display: inline-block;
-  width: 60px; }
+.event_form .field {
+  margin-bottom: 5px; }
+  .event_form .field label {
+    display: inline-block;
+    width: 60px; }
 .event_form input[type='checkbox'] {
-  vertical-align: text-top; }
+  vertical-align: text-bottom;
+  margin: 0; }
