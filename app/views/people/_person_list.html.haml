@@ -8,15 +8,15 @@
       -elsif current_user.person.id == @person.id  && @requests_count != 0 
         = link_to "#{@requests_count}个好友请求",{:controller => 'people', :action => 'friends_request'},:class => 'new friends_request'
       -elsif @contact && !@contact.pending
-        .button1.remove_friend
+        .button.remove_friend
           = link_to t( 'remove_friend' ),{:controller => 'contacts', :action => 'remove_friend',:person_id => @person.id}
       -elsif @request
         =t('pending_request')
       -elsif  (@contact && @contact.pending)
-        .button1.incoming_request
+        .button.incoming_request
           =link_to t('incoming_request'),{:controller => 'contacts',:action => 'new',:person_id => person.id}
       -else
-        .button1.add_friend
+        .button.add_friend
           = link_to t('start_sharing'),'#add_friend_request',:rel => 'facebox'
 
 #friend_listings

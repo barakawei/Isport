@@ -8,8 +8,7 @@
   color: #5179ac; }
 
 .login {
-  padding-top: 10%;
-  padding-bottom: 20%;
+  margin-top: 100px;
   width: 600px; }
   .login h1 {
     color: #5179ac; }
@@ -58,7 +57,7 @@
   width: 130px;
   text-indent: -9999em; }
 
-.log_submit:hover {
+.log_submit_hover {
   background: url("/images/ui/log_submit.png") no-repeat left bottom transparent; }
 
 a.reg_button {
