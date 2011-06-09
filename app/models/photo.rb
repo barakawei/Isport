@@ -13,6 +13,7 @@ class Photo < Post
 
   def self.initialize(params = {}, ip, port)
     photo = Photo.new
+    puts params
     image_file = params[ :user_file] 
     photo.random_string = ActiveSupport::SecureRandom.hex(10) 
     photo.unprocessed_image.store!( image_file )

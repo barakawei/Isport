@@ -1,5 +1,5 @@
 class PeopleController < ApplicationController
-  before_filter :authenticate_user!,:except =>[:show]
+  before_filter :authenticate_user!
   respond_to :html
 
   def index

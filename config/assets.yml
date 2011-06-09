@@ -8,10 +8,9 @@ javascripts:
   main:
     - public/javascripts/jquery_ujs.js
     - public/javascripts/fileuploader-custom.js
-    - public/javascripts/view.js
     - public/javascripts/facebox.js
+    - public/javascripts/html5.js
   jqueryui:
-    - public/javascripts/jquery-ui-1.8.13/js/jquery-1.5.1.min.js
     - public/javascripts/jquery-ui-1.8.13/js/jquery-ui-1.8.13.custom.min.js
 
 stylesheets:
@@ -21,10 +20,11 @@ stylesheets:
     
   default:
     - public/stylesheets/css/general/application/application.css
-    - public/stylesheets/css/general/ui/ui.css
     - public/stylesheets/css/plugins/fileuploader.css
     - public/stylesheets/css/plugins/facebox.css
     - public/stylesheets/css/general/headings/header.css
+    - public/stylesheets/css/special_pages/home/index.css
+    - public/stylesheets/css/special_pages/devise_sessions/new.css
     - public/javascripts/jquery-ui-1.8.13/css/custom-theme/jquery-ui-1.8.13.custom.css
   forms:
     - public/stylesheets/css/general/forms/events_form.css

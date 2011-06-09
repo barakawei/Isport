@@ -1,0 +1,20 @@
+#home_user {
+  position: relative;
+  border-bottom: 1px solid #cccccc; }
+  #home_user img {
+    margin-left: 20px; }
+  #home_user h3 {
+    position: absolute;
+    top: 4px;
+    left: 0px; }
+
+#friend_listings {
+  position: relative;
+  border-bottom: 1px solid #cccccc; }
+  #friend_listings .contacts {
+    margin-top: 6px; }
+
+.new.friends_request {
+  background: url("/images/layout/content_icons.png") no-repeat scroll 0 0px transparent;
+  background-position: 0 -1720px;
+  padding-left: 14px; }

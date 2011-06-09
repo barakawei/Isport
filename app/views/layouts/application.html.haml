@@ -6,15 +6,14 @@
     = include_stylesheets :default, :media => 'all'
     = include_stylesheets :blueprint, :media => 'screen'
     <!--[if lt IE 8]>
-    = stylesheet_link_tag 'blueprint/ie',:media => 'screen'
+    = stylesheet_link_tag 'css/plugins/blueprint/ie',:media => 'screen'
     <![endif]--> 
-
     = include_javascripts :jquery
     = include_javascripts :main
     = include_javascripts :jqueryui
     = csrf_meta_tag
-    = yield :head 
-
+    = yield :head
+     
   %body{:class => "#{yield(:body_class)}"}
     .header{:class => ( 'landing' unless current_user)}
       = render 'layouts/header' 
