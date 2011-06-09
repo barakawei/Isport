@@ -11,7 +11,7 @@
       .button.incoming_request
         =link_to t('incoming_request'),{:controller => 'contacts',:action => 'new',:person_id => person.id}
     -else
-      .button.add_friend{:id => person.id}
+      .button.add_friend{:id => person.id,:style=>"width:100px"}
         =t('start_sharing')
 
   = person_image_link(person)

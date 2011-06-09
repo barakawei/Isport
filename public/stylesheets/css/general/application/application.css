@@ -67,9 +67,14 @@ h1 .description, h2 .description, h3 .description, h4 .description {
 .stream_element {
   position: relative;
   font-size: 14px; }
+  .stream_element .avatar {
+    padding: 20px 20px; }
+  .stream_element .right {
+    padding: 20px 20px; }
   .stream_element .content {
-    margin-top: 0;
-    padding-left: 60px;
+    position: absolute;
+    left: 80px;
+    top: 20px;
     color: #666666;
     font-weight: normal; }
     .stream_element .content img {
@@ -93,10 +98,7 @@ h1 .description, h2 .description, h3 .description, h4 .description {
     .stream_element .content .comments .info {
       margin-top: -1px; }
 
-.stream .avatar {
-  float: left; }
 .stream .stream_element {
-  padding: 20px 20px;
   min-height: 50px;
   border-bottom: 1px solid #dddddd;
   border-top: 1px solid white; }

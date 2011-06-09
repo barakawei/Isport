@@ -9,6 +9,6 @@
       = form_tag @profile,:method => :put,:multipart =>true,:id=>'update_profile_form' do
         %div{ :style=>"padding: 10px" }
           = render 'profiles/edit_public',:profile => @profile,:person =>@person
-      .submit_block
-        =submit_tag t('submit'),:class => "button"
+        .submit_block
+          =submit_tag t('submit'),:class => "button"
 

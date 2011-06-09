@@ -19,22 +19,19 @@
         =render :partial => 'people/person',:locals=>hash
 .facebox_content
   #add_friend_request
-    %h3="加为好友"      = form_for Request.new,:url => { :controller => 'contacts',:action => 'new' } do |r|
-        = r.text_area :message , :rows => 1
-        = r.hidden_field :person_id, :value => "value"
-        %br
-        = r.submit t('send'), :class => 'button'
+    %h3
+      ="加为好友"      
+    = form_for Request.new,:url => { :controller => 'contacts',:action => 'new' } do |r|
+      = r.text_area :message , :rows => 1
+      = r.hidden_field :person_id, :value => "value"
+      %br
+      = r.submit t('send'), :class => 'button'
 :javascript
-  $(function() {
-    $( "#add_friend_request" ).dialog({
-      autoOpen: false,
-      width: 335,
-      height: 190
-      });
-
-    $( ".add_friend" ).click(function() {
-      $( "#request_person_id" ).val( this.id );
-      $( "#add_friend_request" ).dialog( "open" );
-      return false;
-      });
+  $(function(){
+  $( ".add_friend" ).click(function() {
+    $( "#request_person_id" ).val( this.id );
   });
+  $(".add_friend").colorbox({ inline:true, href:"#add_friend_request"});		
+
+  });
+  
