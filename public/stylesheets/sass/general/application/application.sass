@@ -1,0 +1,167 @@
+@import '../ui/mixins'
+
+$blue: #5179AC
+$red: #FF0000
+$background: rgb(252,252,252)
+
+body
+  :background-color $background
+  
+a
+  :color $blue
+  :font-weight bold
+  :text
+    :decoration none
+  &:hover
+    :color $blue
+    :text
+      :decoration underline
+ol, ul, li
+  :list-style none
+  
+.container.body
+  :padding
+    :top 50px
+
+.floating
+  @include box-shadow(0,1px,3px,#333)
+  :position relative
+  :z-index 1
+  :background
+    :color rgb(255,255,255)
+
+  .submit_block
+    :position absolute
+    :bottom 13px
+    :right 12px
+
+  form
+    :display relative
+
+input
+  :font
+    :family 'Arial', 'Helvetica', sans-serif
+    :size 14px
+  :display inline
+  :border 1px solid #ccc
+  :height auto
+
+#profile_photo_upload
+  :margin
+    :top 5px
+  :min-height 100px
+  img
+    @include border-radius(5px)
+    @include box-shadow(0,1px,2px,#666)
+
+    :position absolute
+    :left 10px
+    :height 100px
+    :width 100px
+
+  :padding
+    :left 120px
+
+h1,h2,h3,h4
+  .description
+    :font
+      :size 80%
+      :weight 200
+    :color #aaa
+    :margin
+      :top 0.5em 
+
+.stream_element
+  :position relative
+  :font
+    :size 14px
+
+  .content
+    :margin
+      :top 0
+    :padding
+      :left 60px
+
+    :color #666
+    :font
+      :weight normal
+    img
+      :margin
+        :right 0
+      :max-width 100%
+    .stream_photo
+      :float left
+      :margin
+        :top 6px
+    .photo_description
+      :margin
+        :top 6px
+      :padding
+        :left 220px
+      :min-height 185px
+      :color #888
+      :font
+        :style italic
+
+    .small_text
+      :font
+        :size smaller
+
+    .info
+      :margin
+        :top 2px
+      :color #999
+      :font-size 11px
+
+    .comments
+      .info
+        :margin
+          :top -1px
+  
+.stream
+  .avatar
+    :float left
+  .stream_element
+    :padding 20px 20px
+    :min-height 50px
+    :border
+      :bottom 1px solid #ddd
+      :top 1px solid #fff
+
+label
+  :font
+    :weight normal
+  :color #999
+  :top 3px
+  :left 0.48em
+  :text
+    :shadow 0 1px 1px #eee
+
+.facebox_content
+  :display none 
+
+.result
+  :border-top 1px solid #EDEDED
+  :float left
+  :margin-top 20px
+  :min-height 59px
+  :overflow hidden
+  :padding 
+    :top 5px
+  :width 190px
+
+.friend
+  :position absolute
+  :padding
+    :bottom 10px
+    :left 10px
+
+span.medium_avatar
+  :display inline-block 
+  :width 50px
+  :overflow hidden
+  :white_space nowrap
+  :text-align center 
+  :margin-bottom 0
+  :height 30px
+
