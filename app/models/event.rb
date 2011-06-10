@@ -21,7 +21,6 @@ class Event < ActiveRecord::Base
 
   def self.update_avatar_urls(params,url_params)
       event = find(params[:photo][:model_id])
-      puts "********************"
       puts event.update_attributes(url_params)
   end
 
@@ -33,7 +32,7 @@ class Event < ActiveRecord::Base
              else
                self[:image_url]
              end
-    result || default_url(size)
+    (result != nil && result.length > 0) ? result : default_url(size)
   end
   
   def is_owner(user)

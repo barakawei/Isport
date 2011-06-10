@@ -38,4 +38,12 @@
         %br.clear
       .field
         = f.submit t('events.save'), :class => "button"
+        = link_to t('back'), "#", :class => "button back" 
       %p 
+:javascript
+  $(function() {
+    $('a.back').click(function() {
+      parent.history.back();
+      return false; 
+    }); 
+  });
