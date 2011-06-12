@@ -29,9 +29,6 @@ module ApplicationHelper
   end
 
   def event_image_tag(event,size=nil)
-    puts "start******************"
-    puts event.image_url(size)
-    puts "end***************"
     "<img  class=\"avatar\"  src=\"#{event.image_url(size)}\" >".html_safe
   end
 

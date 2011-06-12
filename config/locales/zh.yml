@@ -43,6 +43,7 @@ zh:
       period: '活动时间'
       event_title: '活动名称'
       event_description: '活动描述'
+      event_comments: '活动评论'
       event_subject: '所属项目'
       event_owner: '发起人'
       location: '地点'

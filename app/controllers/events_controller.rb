@@ -21,6 +21,15 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @participants = @event.participants.order("created_at DESC").limit(LIMIT)
     @references = @event.references.order("created_at DESC").limit(LIMIT)
+
+    if current_user
+      @person = current_user.person
+      @comment = Comment.new(:person_id => @person.id,
+                             :item_id => @event.id)
+      @comment.type = "EventComment"
+    end
+
+    
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @event }

@@ -9,6 +9,8 @@ class Person < ActiveRecord::Base
   has_many :event_recommendations, :dependent => :destroy
   has_many :recommended_events, :through => :event_recommendations,
            :source => :event
+
+  has_many :comments, :dependent => :destroy 
    
   has_one :profile
   scope :searchable, joins(:profile) 

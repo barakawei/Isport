@@ -1,7 +1,20 @@
 - content_for :head do
   = include_stylesheets :forms, :media => 'all'
-%h1= t('events.new_event')
+  = include_stylesheets :sepcial_pages_events_common, :media => 'all'
+.span-24
+  .span-17
+    %h2.title= t('events.new_event')
+  .span-7.last
+    = link_to t('back'), "#", :class => "button back right" 
+  %hr
 = render 'form', :is_edit => false
+:javascript
+  $(function() {
+    $('a.back').click(function() {
+      parent.history.back();
+      return false; 
+    }); 
+  });
 
 
 

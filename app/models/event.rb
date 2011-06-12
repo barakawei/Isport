@@ -19,6 +19,11 @@ class Event < ActiveRecord::Base
                              :dependent => :destroy, :foreign_key => "item_id"
   has_many :references, :through => :recommendations, :source => :person
 
+
+  has_many :comments, :class_name => "EventComment",
+           :dependent => :destroy, :foreign_key => "item_id"
+  has_many :commentors, :through => :comments, :source => :person
+
   def self.update_avatar_urls(params,url_params)
       event = find(params[:photo][:model_id])
       puts event.update_attributes(url_params)

@@ -32,5 +32,9 @@ stylesheets:
     - public/stylesheets/css/special_pages/events/index.css
   sepcial_pages_events_show:
     - public/stylesheets/css/special_pages/events/show.css
+  sepcial_pages_events_edit:
+    - public/stylesheets/css/special_pages/events/edit.css
+  sepcial_pages_events_common:
+    - public/stylesheets/css/special_pages/events/common.css
 
  

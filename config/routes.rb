@@ -7,6 +7,8 @@ Isport::Application.routes.draw do
   resources :posts
   resources :photos
   resources :requests
+  resources :comments
+  
   root :to => "home#index"
   resource :user, :only => [:edit, :update, :destroy] 
   controller :people do
