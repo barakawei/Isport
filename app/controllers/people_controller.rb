@@ -64,7 +64,9 @@ class PeopleController < ApplicationController
 
   def friend_select
     @friends = current_user.friends
-    render "people/friends_select",:layout => false
+    respond_to do |format|
+      format.json{ render(:layout => false , :json => {"success" => true, "data" => @friends}.to_json )}
+    end
   end
 end
 

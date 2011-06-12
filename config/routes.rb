@@ -3,7 +3,6 @@ Isport::Application.routes.draw do
   resources :events
   resources :contacts
   resources :profiles
-  resources :people
   resources :posts
   resources :photos
   resources :requests
@@ -12,9 +11,11 @@ Isport::Application.routes.draw do
   controller :people do
     match 'friends_request' => :friends_request
     match 'show_friends' => :show_friends
-    match 'friend_select' => :friend_select
   end
-   controller :users do
+  match '/people/friend_select' => 'people#friend_select'
+  resources :people
+
+  controller :users do
     match 'getting_started' => :getting_started, :as => 'getting_started'
   end
 

@@ -35,5 +35,15 @@ class Person < ActiveRecord::Base
     end
     Person.searchable.where(sql,*tokens)
   end
+
+  def as_json(opts={})
+    {
+    :person => {
+        :id => self.id,
+        :name => self.name,
+        :image_url =>self.profile.image_url(:thumb_small)
+      }
+    }
+  end 
   
 end

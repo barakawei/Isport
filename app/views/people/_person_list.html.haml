@@ -30,7 +30,7 @@
           =link_to t( 'more' ),{:controller => 'people',:action => 'show_friends'}
     - else
       =t('no_friends')
-.facebox_content
+.colorbox_content
   #add_friend_request
     %h3="加为好友"
     = form_for Request.new,:url => { :controller => 'contacts',:action => 'new' } do |r|
@@ -43,25 +43,4 @@
   $(".add_friend").colorbox({ inline:true, href:"#add_friend_request"});		
 
   });
-  
 
-
-
-
-
-
-
-
-
-
-
-
-
-.facebox_content
-  #add_friend_request
-    %h3="加为好友"
-    = form_for Request.new,:url => { :controller => 'contacts',:action => 'new' } do |r|
-      = r.text_area :message , :rows => 2
-      = r.hidden_field :person_id, :value => @person.id
-      %br
-      = r.submit t('send'), :class => 'button' 

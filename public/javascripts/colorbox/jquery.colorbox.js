@@ -7,7 +7,7 @@
 	// See http://colorpowered.com/colorbox for details.
 	defaults = {
 		transition: "elastic",
-		speed: 300,
+		speed: 200,
 		width: false,
 		initialWidth: "600",
 		innerWidth: false,
