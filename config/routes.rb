@@ -12,6 +12,7 @@ Isport::Application.routes.draw do
   controller :people do
     match 'friends_request' => :friends_request
     match 'show_friends' => :show_friends
+    match 'friend_select' => :friend_select
   end
    controller :users do
     match 'getting_started' => :getting_started, :as => 'getting_started'

@@ -1,4 +1,11 @@
 .span-15.append-2
-  = 123    
+  =link_to "select",{:controller => 'people',:action => 'friend_select'},:class => "friend_select_input"
+
 .span-7.last
   = render 'people/person_list', :person => @person
+:javascript
+  $(document).ready(function() {
+  $(".friend_select_input").colorbox();		
+    
+  });   
+  
