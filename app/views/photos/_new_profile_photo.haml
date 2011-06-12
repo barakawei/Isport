@@ -1,7 +1,7 @@
 #profile_photo_upload
   = owner_image_tag(:thumb_medium) 
-  #file-upload.button
-    =t( 'upload' )
+  #file-upload.button{ :style => "overflow: hidden;width: 90px" }
+    = t( 'upload_photo' )
   %br
   %br
     #fileInfo

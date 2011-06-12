@@ -18,7 +18,7 @@ module EventsHelper
   def error_on(event, field)
     if @event.errors[field].any?
       %(<span class='validation-error'>
-        #{I18n.t("activerecord.attributes.event."+field.to_s)}#{@event.errors[field].flatten[0]}</span>).html_safe
+        *#{I18n.t("activerecord.attributes.event."+field.to_s)}#{@event.errors[field].flatten[0]}</span>).html_safe
     end
   end
 end

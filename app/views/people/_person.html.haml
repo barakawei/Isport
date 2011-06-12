@@ -1,18 +1,18 @@
-.stream_element{:id => person.id}
+.span-10.stream_element{:id => person.id}
   .right
     -if person.user_id == current_user.id
       =t('thats_you')
     -elsif contact && !contact.pending
-      .button1.remove_friend
+      .button.remove_friend
         = link_to t( 'remove_friend' ),{:controller => 'contacts', :action => 'remove_friend',:person_id => person.id}
     -elsif (contact && contact.pending)
       =t('pending_request')
     -elsif request && request.sender == person
-      .button1.incoming_request
+      .button.incoming_request
         =link_to t('incoming_request'),{:controller => 'contacts',:action => 'new',:person_id => person.id}
     -else
-      .button1.add_friend
-        = link_to t('start_sharing'),'#add_friend_request',:rel => 'facebox'
+      .button.add_friend{:id => person.id,:style=>"width:100px"}
+        =t('start_sharing')
 
   = person_image_link(person)
 
@@ -20,13 +20,6 @@
     %span.from
       =person_link(person)
     
-  .facebox_content
-    #add_friend_request
-      %h3="加为好友"
-      = form_for Request.new,:url => { :controller => 'contacts',:action => 'new' } do |r|
-        = r.text_area :message , :rows => 2
-        = r.hidden_field :person_id, :value => person.id
-        %br
-        = r.submit t('send'), :class => 'button'
-      
+
+  
       

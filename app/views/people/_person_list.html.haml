@@ -1,6 +1,6 @@
 #home_user
   = person_image_link(@person)
-  %h3{:style => "position:relative;"}
+  %h3.push-2
     =@person.name
     .description
       -if current_user.person.id == @person.id && ( @requests_count == 0 || !@requests_count)
@@ -8,31 +8,51 @@
       -elsif current_user.person.id == @person.id  && @requests_count != 0 
         = link_to "#{@requests_count}个好友请求",{:controller => 'people', :action => 'friends_request'},:class => 'new friends_request'
       -elsif @contact && !@contact.pending
-        .button1.remove_friend
+        .button.remove_friend
           = link_to t( 'remove_friend' ),{:controller => 'contacts', :action => 'remove_friend',:person_id => @person.id}
       -elsif @request
         =t('pending_request')
       -elsif  (@contact && @contact.pending)
-        .button1.incoming_request
+        .button.incoming_request
           =link_to t('incoming_request'),{:controller => 'contacts',:action => 'new',:person_id => person.id}
       -else
-        .button1.add_friend
+        .button.add_friend
           = link_to t('start_sharing'),'#add_friend_request',:rel => 'facebox'
 
-  %b
-  %b
-#friend_listings.section
+#friend_listings
   %h4
     - if @contacts.length > 0
       %ul
         %li
-          .contacts 
+          .contacts
             %h4=t( 'friends_count',:count => @contacts.length)
             - for contact in @contacts
               = person_image_link(contact.person)
           =link_to t( 'more' ),{:controller => 'people',:action => 'show_friends'}
     - else
-      =t('no_friends')   
+      =t('no_friends')
+.facebox_content
+  #add_friend_request
+    %h3="加为好友"
+    = form_for Request.new,:url => { :controller => 'contacts',:action => 'new' } do |r|
+      = r.text_area :message , :rows => 2
+      = r.hidden_field :person_id, :value => @person.id
+      %br
+      = r.submit t('send'), :class => 'button' 
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
 .facebox_content
   #add_friend_request
     %h3="加为好友"

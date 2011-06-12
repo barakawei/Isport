@@ -8,19 +8,31 @@ javascripts:
   main:
     - public/javascripts/jquery_ujs.js
     - public/javascripts/fileuploader-custom.js
-    - public/javascripts/view.js
-    - public/javascripts/facebox.js
   jqueryui:
-    - public/javascripts/jquery-ui-1.8.13/js/jquery-1.5.1.min.js
     - public/javascripts/jquery-ui-1.8.13/js/jquery-ui-1.8.13.custom.min.js
+    - public/javascripts/colorbox/jquery.colorbox.js
 
 stylesheets:
+  blueprint:
+    - public/stylesheets/css/plugins/blueprint/screen.css
+    
   default:
-    - public/stylesheets/application.css
-    - public/stylesheets/ui.css
-    - public/stylesheets/fileuploader.css
-    - public/stylesheets/facebox.css
-    - public/stylesheets/header.css
+    - public/stylesheets/css/general/application/application.css
+    - public/stylesheets/css/plugins/fileuploader.css
+    - public/stylesheets/css/general/headings/header.css
+    - public/stylesheets/css/special_pages/home/index.css
+    - public/stylesheets/css/special_pages/devise_sessions/new.css
     - public/javascripts/jquery-ui-1.8.13/css/custom-theme/jquery-ui-1.8.13.custom.css
+    - public/stylesheets/css/plugins/colorbox.css
 
+  forms:
+    - public/stylesheets/css/general/forms/events_form.css
+
+  sepcial_pages_events_index:
+    - public/stylesheets/css/special_pages/events/index.css
+  sepcial_pages_events_show:
+    - public/stylesheets/css/special_pages/events/show.css
+
+  sepcial_pages_items_show:
+    - public/stylesheets/css/special_pages/items/show.css
  

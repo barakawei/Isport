@@ -1,17 +1,28 @@
+-content_for :head do
+  = include_stylesheets :sepcial_pages_items_show, :media => 'all'
 .span-24
-  .span-17
-    .span-7
+  .span-18
+    .span-8
       = item_image_tag(@item, :thumb_large)
-    .span-6.last.prepend-1.right_border
+    .span-6.prepend-1.left_padding.right_border
       %h2= @item.name
       %p#notice= notice
       %p
-        %b= t('items.name')+":"
-        = @item.name
-      %p
-        %b= t('items.description')+":"
         = @item.description
-  .span-7.last
-    = link_to t('items.edit'), edit_item_path(@item), :class => "button"
-    = link_to t('back'),  items_path, :class => "button"
+    .span-3.last.left_padding
+      - unless is_fan_of(@item)
+        %p
+          = link_to t('items.like'), url_for(:action=> "add_fan", :id => @item.id), :class => "button"
+        %br
+          = t('items.likeinfo')
+      - else
+        %p
+          = link_to t('items.unlike'), url_for(:action=> "remove_fan", :id => @item.id), :class => "button" 
+        %br
+          = t('items.unlikeinfo')
+    %hr
+    .span-18
+      .span-14.left_padding
+        = link_to t('items.edit'), edit_item_path(@item), :class => "button"
+        = link_to t('items.back'),  items_path, :class => "button"
 

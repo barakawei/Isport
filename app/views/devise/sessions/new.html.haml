@@ -26,7 +26,7 @@
           %br
 
       .reg_action
-        =f.submit t('.sign_in'), :class => "log_submit not-hovered"
+        =f.submit t('.sign_in'), :class => "log_submit"
         %span#remember_me
           -if devise_mapping.rememberable?
             =f.check_box :remember_me
@@ -54,8 +54,19 @@
       $(this).val('');
       field.show();
     }
-  }); 
-  
-  $(".log_submit").hover(function() {
-    $(this).toggleClass("hovered not-hovered"); 
   });
+
+  $(".log_submit").hover(function() {
+    $(this).toggleClass("log_submit_hover");
+  });
+ 
+  $(document).ready(function() {
+    if ($.trim($('#email').val()) != '') {
+      $('#email').siblings(".in_field").hide();
+    }
+    if ($.trim($('#password').val()) != '') {
+      $('#password').siblings(".in_field").hide();
+    }
+  });
+   
+  

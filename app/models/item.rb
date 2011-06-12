@@ -2,6 +2,9 @@ class Item < ActiveRecord::Base
   validates :name, :presence => true
   validates :description, :presence => true
 
+  has_many :favorites, :dependent => :destroy
+  has_many :fans, :through => :favorites, :source => :person
+
   def image_url(size = :thumb_large)
     result = if size == :thumb_medium && self[:image_url_medium]
        self[:image_url_medium]
@@ -10,33 +13,9 @@ class Item < ActiveRecord::Base
      else
        self[:image_url_large]
      end
-    result || default_url(size)
+    (result != nil && result.length > 0) ? result : default_url(size)
   end
   
-  def image_url_large= url
-    return image_url if url == ''
-    if url.nil? || url.match(/^https?:\/\//)
-      super(url)
-    else
-    end
-  end
-
-  def image_url_small= url
-    return image_url if url == ''
-    if url.nil? || url.match(/^https?:\/\//)
-      super(url)
-    else
-    end
-  end
-
-  def image_url_medium= url
-    return image_url if url == ''
-    if url.nil? || url.match(/^https?:\/\//)
-      super(url)
-    else
-    end
-  end
-
   private
 
   def default_url(size)

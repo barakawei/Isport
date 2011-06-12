@@ -51,4 +51,13 @@
          });
        }
        window.onload = createUploader;
- 
+
+
+:javascript
+  $(function() {
+    $('#file-upload').button({
+      icons: {
+        primary: 'ui-icon-circle-arrow-n'
+      }
+    });  
+  });

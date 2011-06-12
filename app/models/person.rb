@@ -6,6 +6,9 @@ class Person < ActiveRecord::Base
   has_many :involvements, :dependent => :destroy
   has_many :involved_events, :through => :involvements, :source => :event
 
+  has_many :favorites, :dependent => :destroy
+  has_many :interests, :through => :favorites, :source => :item
+
   has_many :event_recommendations, :dependent => :destroy
   has_many :recommended_events, :through => :event_recommendations,
            :source => :event

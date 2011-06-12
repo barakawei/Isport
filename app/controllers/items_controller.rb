@@ -60,4 +60,18 @@ class ItemsController < ApplicationController
     end
   end
 
+  def add_fan
+    @item = Item.find(params[:id])
+    @item.fans << current_user.person
+    
+    redirect_to(item_url(@item))
+  end
+
+  def remove_fan
+    @item = Item.find(params[:id])
+    @item.fans.delete(current_user.person)
+    
+    redirect_to(item_url(@item))
+
+  end
 end

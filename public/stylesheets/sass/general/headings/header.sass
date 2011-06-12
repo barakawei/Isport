@@ -1,0 +1,73 @@
+@import '../ui/mixins'
+.header
+  :background url("/images/ui/header_background.png") repeat-x scroll left top #4f8dbc
+  :overflow hidden
+  :text-align left
+  :height 39px
+
+  .logo
+    :display inline-block
+    :float left
+    :margin-left 100px
+    :padding-top 3px
+    
+    h2
+      :color #ffffff
+
+  .sections
+    :float left
+    :font-size 12px
+    :padding-left 40px
+  ul
+    :list-style none
+    :padding
+      :left 0
+  li
+    float: left
+    margin-right: 1px
+    a
+      color: #ffffff
+      display: block
+      float: left
+      padding: 11px 10px
+      text-decoration: none
+
+      &:hover, .active 
+        :background-color #4275a1
+        :background-position left bottom
+        :color #ffffff
+        :text-decoration none 
+
+      .active
+        :font-size 11px
+        :font-weight bold
+  
+  li#search
+    
+    input
+      :border 0 none
+      :margin-top 10px
+      :height 15px
+      :color #8a8a8a
+      :font-size 11px
+      :width 120px
+      :background url("/images/layout/button.png") repeat-x scroll 100% -492px #ffffff
+
+    
+  .setting
+    :float right 
+    :margin-right 100px
+    :display inline
+   
+    li 
+      :position relative
+
+.accout
+  :position absolute
+  :width 52px
+  :border 1px solid black
+  :text-align center
+
+  a
+    :display block
+    :margin 5px 0 5px 0px

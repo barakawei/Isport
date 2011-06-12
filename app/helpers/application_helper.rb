@@ -27,7 +27,11 @@ module ApplicationHelper
   #{h(person.name)}
 </a>".html_safe
   end
+
   def event_image_tag(event,size=nil)
+    puts "start******************"
+    puts event.image_url(size)
+    puts "end***************"
     "<img  class=\"avatar\"  src=\"#{event.image_url(size)}\" >".html_safe
   end
 
@@ -36,15 +40,10 @@ module ApplicationHelper
   end
 
   def pagination_options(param_name, param)
-    puts "****************"
     puts param_name
     {:previous_label => t("pagination.previous"), 
      :next_label => t("pagination.next"),
      :param_name => param_name,
      :params => param} 
-  end
-
-  def event_image_tag(event,size=nil)
-    "<img  class=\"avatar\"  src=\"#{event.image_url(size)}\" >".html_safe
   end
 end

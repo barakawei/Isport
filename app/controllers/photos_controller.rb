@@ -4,7 +4,11 @@ class PhotosController < ApplicationController
 
   def create
     begin
-      params[:photo][:user_file] = file_handler(params)
+      if params[:authenticity_token] #upload with iframe
+        params[:photo][:user_file] =  params[ :qqfile ] 
+      else
+        params[:photo][:user_file] = file_handler(params)
+      end
       @photo = Photo.initialize(params[ :photo ], self.request.host, self.request.port)
 
       if @photo.save
@@ -12,7 +16,11 @@ class PhotosController < ApplicationController
         updateUrls(params, @photo)
 
         respond_to do |format|
-          format.json{ render(:layout => false , :json => {"success" => true, "data" => @photo}.to_json )}
+          if params[:authenticity_token] #upload with iframe
+            format.html{ render(:layout => false , :json => {"success" => true, "data" => @photo}.to_json )}
+          else
+            format.json{ render(:layout => false , :json => {"success" => true, "data" => @photo}.to_json )}
+          end
         end
       else
         respond_with @photo, :location => photos_path, :error => message
@@ -40,7 +48,7 @@ class PhotosController < ApplicationController
   def file_handler(params)
       ######################## dealing with local files #############
       # get file name
-      file_name = params[:qqfile]
+      file_name =  params[:qqfile]
       # get file content type
       att_content_type = (request.content_type.to_s == "") ? "application/octet-stream" : request.content_type.to_s
       # create tempora##l file
