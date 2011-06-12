@@ -29,12 +29,14 @@ module ApplicationHelper
   end
 
   def event_image_tag(event,size=nil)
+    puts "start******************"
+    puts event.image_url(size)
+    puts "end***************"
     "<img  class=\"avatar\"  src=\"#{event.image_url(size)}\" >".html_safe
   end
 
   
   def pagination_options(param_name, param)
-    puts "****************"
     puts param_name
     {:previous_label => t("pagination.previous"), 
      :next_label => t("pagination.next"),

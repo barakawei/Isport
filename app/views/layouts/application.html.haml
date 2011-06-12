@@ -3,8 +3,6 @@
   %head
     %title
       isport
-    = stylesheet_link_tag "css/plugins/blueprint/screen", :media => 'screen'
-    = stylesheet_link_tag "css/plugins/blueprint/print", :media => 'print'
     = include_stylesheets :default, :media => 'all'
     = include_javascripts :jquery
     = include_javascripts :main
@@ -18,14 +16,30 @@
     .accout.hide
       = link_to t('settings'), edit_user_path
       = link_to t('logout'), destroy_user_session_path
-    %div
     .container.body
       .span-24.last
         =yield 
+      .span-24
+        %br
+        %br
+        %br
     .footer
       .container
 
 :javascript
   $(function() {
     $('.button').button();  
+    if (!$.isEmptyObject($('.setting')[0])) {  
+      var left = $('.setting a').offset().left;
+      $('.accout').css("left", left+"px");
+
+      $('.current_user_link').click(function(e) {
+        $('.accout').toggleClass('hide');
+        e.stopPropagation();
+      });
+
+      $('html').click(function(e) {
+        $('.accout').addClass('hide');
+      });
+    }
   });

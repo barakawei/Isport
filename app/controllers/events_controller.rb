@@ -2,7 +2,7 @@ class EventsController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show ]
 
   LIMIT = 12
-  PER_PAGE = 2 
+  PER_PAGE = 32 
 
   def index
     @events = Event.all

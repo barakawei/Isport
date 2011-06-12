@@ -11,27 +11,12 @@
     %li#search
       = form_tag(people_path, :method => 'get', :id => "global_search_form") do
         = text_field_tag 'q', nil, :placeholder => t('search'), :type => 'search', :results => 5
-%ul.setting
-  %li
-    -if current_user
+-if current_user
+  %ul.setting
+    %li
       = link_to current_user.name, '#' ,:class => "current_user_link"
 
     
-:javascript
-  $(function() {
-    var left = $('.setting').offset().left;
-    $('.accout').css("left", left+"px");
-
-
-    $('.current_user_link').click(function(e) {
-      $('.accout').toggleClass('hide');
-      e.stopPropagation();
-    });
-
-    $('html').click(function(e) {
-      $('.accout').addClass('hide');
-    });
-  });
 
 
 

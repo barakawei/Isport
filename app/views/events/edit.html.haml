@@ -1,2 +1,4 @@
+- content_for :head do
+  = include_stylesheets :forms, :media => 'all'
 %h2= t('events.edit_event') 
 = render 'form', :is_edit => true 

@@ -31,7 +31,6 @@
     #cboxMiddleRight{width:25px; background:url(/images/colorbox/border2.png) repeat-y -25px 0;}
     #cboxContent{background:#fff; overflow:hidden;}
         #cboxError{padding:50px; border:1px solid #ccc;}
-        #cboxLoadedContent{margin-bottom:20px;}
         #cboxTitle{position:absolute; bottom:0px; left:0; text-align:center; width:100%; color:#999;}
         #cboxCurrent{position:absolute; bottom:0px; left:100px; color:#999;}
         #cboxSlideshow{position:absolute; bottom:0px; right:42px; color:#444;}

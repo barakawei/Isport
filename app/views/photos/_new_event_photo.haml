@@ -3,8 +3,8 @@
     = event_image_tag(event, :thumb_large)
   .relative 
     %div
-    #file-upload.button
-      upload
+    #file-upload
+      =t('upload')
     %br
     %br
       #fileInfo
@@ -54,4 +54,11 @@
        }
        window.onload = createUploader;
    
-   
+:javascript
+  $(function() {
+    $('#file-upload').button({
+      icons: {
+        primary: 'ui-icon-circle-arrow-n'
+      }
+    });  
+  });

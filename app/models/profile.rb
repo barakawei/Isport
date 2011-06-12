@@ -11,29 +11,4 @@ class Profile < ActiveRecord::Base
              end
     result || '/images/user/default_small.png'
   end
-  
-  def image_url= url
-    return image_url if url == ''
-    if url.nil? || url.match(/^https?:\/\//)
-      super(url)
-    else
-    end
-  end
-
-  def image_url_small= url
-    return image_url if url == ''
-    if url.nil? || url.match(/^https?:\/\//)
-      super(url)
-    else
-    end
-  end
-
-  def image_url_medium= url
-    return image_url if url == ''
-    if url.nil? || url.match(/^https?:\/\//)
-      super(url)
-    else
-    end
-  end 
-
 end

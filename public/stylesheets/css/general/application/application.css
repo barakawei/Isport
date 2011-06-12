@@ -13,7 +13,7 @@ ol, ul, li {
   list-style: none; }
 
 .container.body {
-  margin-top: 50px; }
+  padding-top: 50px; }
 
 .floating {
   -webkit-box-shadow: 0 1px 3px #333333;

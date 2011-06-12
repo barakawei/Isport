@@ -17,6 +17,9 @@ javascripts:
 
 
 stylesheets:
+  blueprint:
+    - public/stylesheets/css/plugins/blueprint/screen.css
+    
   default:
     - public/stylesheets/css/general/application/application.css
     - public/stylesheets/css/plugins/fileuploader.css
@@ -26,4 +29,12 @@ stylesheets:
     - public/javascripts/jquery-ui-1.8.13/css/custom-theme/jquery-ui-1.8.13.custom.css
     - public/stylesheets/css/plugins/colorbox.css
     - public/stylesheets/css/plugins/fcbklistselection.css
+
+  forms:
+    - public/stylesheets/css/general/forms/events_form.css
+
+  sepcial_pages_events_index:
+    - public/stylesheets/css/special_pages/events/index.css
+  sepcial_pages_events_show:
+    - public/stylesheets/css/special_pages/events/show.css
  
