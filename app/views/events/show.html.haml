@@ -24,7 +24,7 @@
         = @event.location
       %p
         %b= t('events.event_subject')+":"
-        = @event.subject_id
+        = @event.item.name
       %p
         %b= t('events.event_owner')+":"
         = link_to @event.person.profile.name, person_path(@event.person)

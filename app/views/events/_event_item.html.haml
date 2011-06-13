@@ -23,7 +23,7 @@
     = event.location
   %p
     %b= t('events.event_subject')+":"
-    = event.subject_id
+    = event.item.name
   %p
     %br
     - if event.participants.size > 0

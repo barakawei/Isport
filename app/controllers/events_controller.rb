@@ -33,7 +33,7 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
-
+    @items = Item.find(:all, :select => 'id, name')
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @event }
@@ -42,6 +42,7 @@ class EventsController < ApplicationController
 
   def edit
     @event = Event.find(params[:id])
+    @items = Item.find(:all, :select => 'id, name')
   end
 
   def create

@@ -9,7 +9,7 @@
         = error_on(@event, :title)
       .field.inline
         = f.label t('activerecord.attributes.event.subject') +":"
-        = f.text_field :subject_id
+        = collection_select(:event, :subject_id, @items, :id, :name)
       .field
         = f.label t('activerecord.attributes.event.start_at')+":"
         .top
