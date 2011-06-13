@@ -1,0 +1,18 @@
+= form_for @item, :html => { :multipart => true } do |f|
+  .span-7 
+    = render "photos/new_item_photo", :item => @item, :is_edit => is_edit, :model_name => "item"
+  .span-16.prepend-1.last
+    .field
+      = f.label t('items.name') +":"
+      = f.text_field :name
+    .field
+      = f.label t('items.description')+":"
+      = f.text_area :description, :rows => 12
+    .field.hide
+      = f.text_field :image_url_large
+      = f.text_field :image_url_medium
+      = f.text_field :image_url_small
+    .field
+      = f.submit t('items.save'), :class => "button"
+    %p
+

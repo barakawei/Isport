@@ -37,4 +37,6 @@ stylesheets:
   sepcial_pages_events_common:
     - public/stylesheets/css/special_pages/events/common.css
 
+  sepcial_pages_items_show:
+    - public/stylesheets/css/special_pages/items/show.css
  

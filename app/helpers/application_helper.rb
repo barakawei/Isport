@@ -32,7 +32,10 @@ module ApplicationHelper
     "<img  class=\"avatar\"  src=\"#{event.image_url(size)}\" >".html_safe
   end
 
-  
+  def item_image_tag(item,size=nil)
+    "<img  class=\"avatar\"  src=\"#{item.image_url(size)}\" >".html_safe
+  end
+
   def pagination_options(param_name, param)
     {:previous_label => t("pagination.previous"), 
      :next_label => t("pagination.next"),
