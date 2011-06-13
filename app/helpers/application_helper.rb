@@ -34,10 +34,9 @@ module ApplicationHelper
 
   
   def pagination_options(param_name, param)
-    puts param_name
     {:previous_label => t("pagination.previous"), 
      :next_label => t("pagination.next"),
-     :param_name => param_name,
+     :param_name => (param_name == nil) ? :page : param_name,
      :params => param} 
   end
 end

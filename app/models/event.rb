@@ -1,4 +1,6 @@
 class Event < ActiveRecord::Base
+  COMMENT_PER_PAGE = 5 
+
   attr_accessor :same_day, :current_year
   validates_presence_of :title, :start_at, :description, :location, 
                         :message => I18n.t('activerecord.errors.messages.blank')
@@ -47,6 +49,19 @@ class Event < ActiveRecord::Base
       false
     end
   end
+  
+  def paginated_comments(page)
+    @comments = self.comments.order("created_at ASC")
+    total_pages = @comments.size / COMMENT_PER_PAGE 
+    if page == nil
+      if @comments.size % COMMENT_PER_PAGE != 0
+        total_pages += 1
+      end
+      page = total_pages 
+    end
+     paged_comments = @comments.paginate(:page => page,
+                                         :per_page => COMMENT_PER_PAGE) 
+  end 
 
   private
     

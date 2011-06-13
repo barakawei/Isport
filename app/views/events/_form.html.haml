@@ -7,6 +7,9 @@
         = f.label t('activerecord.attributes.event.title') +":"
         = f.text_field :title
         = error_on(@event, :title)
+      .field.inline
+        = f.label t('activerecord.attributes.event.subject') +":"
+        = f.text_field :subject_id
       .field
         = f.label t('activerecord.attributes.event.start_at')+":"
         .top
@@ -25,9 +28,6 @@
         = f.label t('activerecord.attributes.event.location')+":"
         = f.text_field :location
         = error_on(@event, :location)
-      .field.inline
-        = f.label t('activerecord.attributes.event.subject') +":"
-        = f.text_field :subject_id
       .field.hide
         = f.text_field :image_url
         = f.text_field :image_url_medium

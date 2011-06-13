@@ -10,9 +10,9 @@
         = link_to t('events.edit_event'), edit_event_path(@event), :class => "button right edit_event"
     %hr
   .span-17
-    .span-8
+    .span-5.event_pic
       = event_image_tag(@event, :thumb_large)
-    .span-6.last
+    .span-8.last
       %p
         %b= t('events.start_at')+":"
         = l(@event.start_at, :format => :long)
@@ -57,35 +57,10 @@
     .span-16.last.comments_area.prepend-top
       %h4= t('events.event_comments')+":"
       %hr
-    - @event.comments.each do |comment|
-      - person = comment.person
-      .post_show.span-15
-        = person_image_link(person)
-        .content
-          %span.comment_line.name
-            = link_to person.name, person_path(person) 
-            %span.grey
-              = l(comment.created_at, :format => :long)
-            %span.person_id.hide
-              = person.id
-            %span.right.respond
-              = link_to "回复", '#'
-          %span.comment_line
-            = comment.content
-    .post_area.span-15
-      = form_for @comment, do |c|
-        = person_image_link(@person)
-        .hide
-          = c.number_field :item_id
-          = c.text_field :type
-          = c.number_field :person_id
-        .content
-          = c.text_area :content
-          = submit_tag t('activerecord.operations.event.comment'), :class => 'button'
-
-    .span-16.last
-      .span-13
-      .span-3.last
+      = render :partial => "event_comments",  :locals => { :event => @event,
+                                                     :author => @person,
+                                                     :comments => @comments,
+                                                     :comment => @comment}
   .span-6.prepend-1.last
     - if @event.participants.size > 0
       %h4
@@ -114,10 +89,3 @@
     });
   });
 
-  $('.respond a').click(function() {
-     $('.post_area textarea').focus();
-     var value = $('.respond a').html();
-     value += $('.content .name a').html() + ":";
-     $('.post_area textarea').val(value);
-     return false;
-  });

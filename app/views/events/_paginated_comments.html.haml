@@ -1,0 +1,10 @@
+= will_paginate comments,
+                pagination_options(nil, {:action => "paginate_comments",
+                                   :id => event.id }) 
+.span-16#paginated_event_comments
+= render :partial => "event_comments",  :locals => { :event => event,
+                                                     :person => person,
+                                                     :comments => comments,
+                                                     :comment => comment}
+
+$()
