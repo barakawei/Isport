@@ -2,8 +2,26 @@
   border-right: 1px solid #dddddd; }
 
 .left_padding {
-  padding-left: 8px; }
+  padding-left: 14px; }
 
 .right_padding {
-  padding-right: 5px; }
+  padding-right: 0px; }
 
+span.event_title {
+  display: inline-block;
+  font-weight: bold;
+  width: 60px;
+  overflow: hidden;
+  white_space: nowrap;
+  text-align: left;
+  margin-bottom: 0;
+  height: 50px; 
+}
+
+span.event_detail{
+  width: 120px;
+  overflow: hidden;
+  text-align: right;
+  margin-bottom: 0;
+  height: 20px; 
+}

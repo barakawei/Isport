@@ -22,6 +22,17 @@ module ApplicationHelper
     end
   end
 
+  def event_image_link(event, opts = {})
+    return "" if event.nil?
+    if opts[:to] == :photos
+      link_to event_image_tag(event, :thumb_small), event_photos_path(event)
+    else
+      "<a href='/events/#{event.id}'>
+  #{event_image_tag(event, :thumb_small)}
+</a>".html_safe
+    end
+  end
+
   def person_link(person, opts={})
     "<a href='/people/#{person.id}' class='#{opts[:class]}'>
   #{h(person.name)}
@@ -29,7 +40,7 @@ module ApplicationHelper
   end
 
   def event_image_tag(event,size=nil)
-    "<img  class=\"avatar\"  src=\"#{event.image_url(size)}\" >".html_safe
+    "<img title=\"#{h(event.title)}\" class=\"avatar\"  src=\"#{event.image_url(size)}\" >".html_safe
   end
 
   def item_image_tag(item,size=nil)

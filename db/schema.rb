@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110612143731) do
+ActiveRecord::Schema.define(:version => 20110613084651) do
 
   create_table "comments", :force => true do |t|
     t.integer  "person_id"
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(:version => 20110612143731) do
     t.string   "image_url_medium"
     t.string   "image_url_small"
     t.integer  "person_id"
+    t.integer  "item_id"
   end
 
   create_table "favorites", :force => true do |t|
