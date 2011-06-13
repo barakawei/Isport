@@ -50,6 +50,7 @@ class EventsController < ApplicationController
     @event.person = current_user.person
     respond_to do |format|
       if @event.save
+        Item.find(@event.subject_id).events << @comment
         format.html { redirect_to(@event, :notice => 'Event was successfully created.') }
         format.xml  { render :xml => @event, :status => :created, :location => @event }
       else
