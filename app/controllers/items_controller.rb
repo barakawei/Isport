@@ -1,6 +1,8 @@
 class ItemsController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show ]
 
+  LIMIT = 20
+
   def index
     @items = Item.all
 
@@ -12,6 +14,7 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
+    @events = @item.events.where("start_at > Time.now").order("start_at DESC").limit(LIMIT)
 
     respond_to do |format|
       format.html # show.html.erb
@@ -72,6 +75,5 @@ class ItemsController < ApplicationController
     @item.fans.delete(current_user.person)
     
     redirect_to(item_url(@item))
-
   end
 end

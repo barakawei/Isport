@@ -1,15 +1,15 @@
 -content_for :head do
   = include_stylesheets :sepcial_pages_items_show, :media => 'all'
 .span-24
-  .span-18
-    .span-8
+  .span-17
+    .span-5
       = item_image_tag(@item, :thumb_large)
-    .span-6.prepend-1.left_padding.right_border
+    .span-7.prepend-1.left_padding.right_border
       %h2= @item.name
       %p#notice= notice
       %p
         = @item.description
-    .span-3.last.left_padding
+    .span-4.last.left_padding
       - unless is_fan_of(@item)
         %p
           = link_to t('items.like'), url_for(:action=> "add_fan", :id => @item.id), :class => "button"
@@ -21,8 +21,27 @@
         %br
           = t('items.unlikeinfo')
     %hr
-    .span-18
-      .span-14.left_padding
+    .span-17
+      .span-12.left_padding
         = link_to t('items.edit'), edit_item_path(@item), :class => "button"
         = link_to t('items.back'),  items_path, :class => "button"
+  .span-6.last
+    .span-6.left_padding
+      %h4= t('items.events')
+    .span-6
+      - @item.events.each_with_index do |event, index|
+        .span-2.left_padding
+          = event_image_link(event) 
+        .span-3.right_padding
+          %span.event_detail= l(event.start_at, :format => :short)
+          %br
+          %span.event_detail= t('events.location')+":"
+          =event.location
+          %br
+          - if event.participants.size > 0
+            = t('events.short_involvement', :count => event.participants.size) + ", "
+          - if event.references.size > 0
+            = t('events.short_recommendation', :count => event.references.size)
+        %br
+
 

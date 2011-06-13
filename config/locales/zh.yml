@@ -89,6 +89,7 @@ zh:
       likeinfo: "选择喜欢，我们会更多的向您推荐属于此项目的活动"
       unlike: "不再喜欢"
       unlikeinfo: "不再喜欢，我们将不再向您推荐属于此项目的活动"
+      events: "近期活动"
 
   pagination:
     previous: "上一页"

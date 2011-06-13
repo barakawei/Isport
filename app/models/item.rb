@@ -5,6 +5,8 @@ class Item < ActiveRecord::Base
   has_many :favorites, :dependent => :destroy
   has_many :fans, :through => :favorites, :source => :person
 
+  has_many :events
+
   def image_url(size = :thumb_large)
     result = if size == :thumb_medium && self[:image_url_medium]
        self[:image_url_medium]
