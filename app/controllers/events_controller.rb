@@ -21,6 +21,10 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @participants = @event.participants.order("created_at DESC").limit(LIMIT)
     @references = @event.references.order("created_at DESC").limit(LIMIT)
+    @comments = @event.paginated_comments(params[:page])
+
+    new_comment
+    
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @event }
@@ -29,7 +33,7 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
-
+    @items = Item.find(:all, :select => 'id, name')
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @event }
@@ -38,6 +42,7 @@ class EventsController < ApplicationController
 
   def edit
     @event = Event.find(params[:id])
+    @items = Item.find(:all, :select => 'id, name')
   end
 
   def create
@@ -113,6 +118,17 @@ class EventsController < ApplicationController
                                                   :perline => 8, :pagination_type => pagination_type } 
   end
 
+  def paginate_comments
+    @event = Event.find(params[:id])
+    @comments = @event.paginated_comments(params[:page])
+
+    new_comment
+    render  "_event_comments",  :layout => false, :locals => { :event => @event,
+                                                   :author=> @person,
+                                               :comments => @comments,
+                                               :comment => @comment}
+  end
+
   def paginate_references
     get_references 
     
@@ -125,6 +141,8 @@ class EventsController < ApplicationController
   end
   
   private
+  
+  
   
   def get_participants
     @event = Event.find(params[:id])
@@ -149,5 +167,14 @@ class EventsController < ApplicationController
     @paged_other_references = @other_references.paginate(:page => params[:other_page],
 
                                                            :per_page => PER_PAGE) 
+  end
+
+  def new_comment
+      if current_user
+        @person = current_user.person
+        @comment = Comment.new(:person_id => @person.id,
+                               :item_id => @event.id)
+        @comment.type = "EventComment"
+      end
   end
 end

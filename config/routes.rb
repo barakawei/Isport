@@ -7,6 +7,7 @@ Isport::Application.routes.draw do
   resources :posts
   resources :photos
   resources :requests
+  resources :comments
   resources :items
 
   root :to => "home#index"

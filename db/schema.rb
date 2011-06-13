@@ -12,6 +12,15 @@
 
 ActiveRecord::Schema.define(:version => 20110613084651) do
 
+  create_table "comments", :force => true do |t|
+    t.integer  "person_id"
+    t.text     "content"
+    t.integer  "item_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "type"
+  end
+
   create_table "contacts", :force => true do |t|
     t.integer  "user_id"
     t.integer  "person_id"

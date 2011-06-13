@@ -30,18 +30,19 @@
       %h4= t('items.events')
     .span-6
       - @item.events.each_with_index do |event, index|
-        .span-2.left_padding
-          = event_image_link(event) 
-        .span-3.right_padding
-          %span.event_detail= l(event.start_at, :format => :short)
-          %br
-          %span.event_detail= t('events.location')+":"
-          =event.location
-          %br
-          - if event.participants.size > 0
-            = t('events.short_involvement', :count => event.participants.size) + ", "
-          - if event.references.size > 0
-            = t('events.short_recommendation', :count => event.references.size)
+        .span-6
+          .span-2.left_padding
+            = event_image_link(event) 
+          .span-3.last
+            %span.event_detail= l(event.start_at, :format => :short)
+            %br
+            %span.event_detail= t('events.location')+":"
+            =event.location
+            %br
+            - if event.participants.size > 0
+              = t('events.short_involvement', :count => event.participants.size) + ", "
+            - if event.references.size > 0
+              = t('events.short_recommendation', :count => event.references.size)
         %br
 
 

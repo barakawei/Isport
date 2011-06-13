@@ -1,14 +1,15 @@
 - content_for :head do
   = include_stylesheets :sepcial_pages_events_index, :media => 'all'
+  = include_stylesheets :sepcial_pages_events_common, :media => 'all'
 .span-24.prepend-top
   .span-21
-    %h1= t 'events.events_list' 
+    %h2.title= t 'events.events_list' 
   .span-3.last
-    = link_to t('events.new_event'), new_event_path, :class => "button new_event"   
+    = link_to t('events.new_event'), new_event_path, :class => "button new_event right"   
 .span-24
   %hr
   - @events.each_with_index do |event, index|
-    .span-12.last.append-bottom
+    .span-12.last.append-bottom.event_item
       %h3= link_to event.title, event, :class => "nounderline"
       = render "event_item", :event => event      
 

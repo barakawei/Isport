@@ -1,4 +1,41 @@
+-content_for :head do
+  = include_stylesheets :sepcial_pages_events_edit, :media => 'all'
+  = include_stylesheets :sepcial_pages_events_common, :media => 'all'
 - content_for :head do
   = include_stylesheets :forms, :media => 'all'
-%h2= t('events.edit_event') 
+.span-24
+  .span-17
+    %h2.title= t('events.edit_event') 
+  .span-7.last
+    = link_to t('back'), "#", :class => "button back right" 
+    = link_to "取消活动",  "#cancel_event_request", :class => "button cancel_event right", :rel => 'facebox'
+  %hr    
 = render 'form', :is_edit => true 
+
+.facebox_content
+  #cancel_event_request
+    .span-8
+      %h4
+        =  t('activerecord.operations.event.cancel_notice', :count => @event.participants.size)
+      %br
+      %h4= t('activerecord.operations.event.cancel_reason') + ":"
+      = form_tag event_path, :method => 'delete' do 
+        = hidden_field_tag :id, :value => @event.id
+        = text_area_tag :message
+        %br
+        = submit_tag t('activerecord.operations.event.save'), :class => 'button'
+
+:javascript
+  $(function() {
+    $('a.back').click(function() {
+      parent.history.back();
+      return false; 
+    }); 
+  });
+  $('.cancel_event').button({
+    icons: {
+      primary: 'ui-icon-trash'
+    }
+  });  
+
+  $('.cancel_event').colorbox({ inline:true, href:"#cancel_event_request" });
