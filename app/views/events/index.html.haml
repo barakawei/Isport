@@ -8,10 +8,13 @@
     = link_to t('events.new_event'), new_event_path, :class => "button new_event right"   
 .span-24
   %hr
-  - @events.each_with_index do |event, index|
-    .span-12.last.append-bottom.event_item
-      %h3= link_to event.title, event, :class => "nounderline"
-      = render "event_item", :event => event      
+  .span-18.border
+    - @events.each_with_index do |event, index|
+      .span-9.last.append-bottom.event_item
+        %h3= link_to trim_info(event.title,20), event, :class => "nounderline title"
+        = render "event_item", :event => event      
+  .span-6.last
+
 
 :javascript
   $(function() {

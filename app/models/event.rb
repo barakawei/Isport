@@ -2,7 +2,7 @@ class Event < ActiveRecord::Base
   COMMENT_PER_PAGE = 5 
 
   attr_accessor :same_day, :current_year
-  validates_presence_of :title, :start_at, :description, :location, 
+  validates_presence_of :title, :start_at, :description, :location, :subject_id,
                         :message => I18n.t('activerecord.errors.messages.blank')
   
   validates_length_of :title, :maximum => 30
@@ -12,6 +12,7 @@ class Event < ActiveRecord::Base
                        
   validates :end_at, :date => { :after => :start_at,
                                 :message => I18n.t('activerecord.errors.event.end_at.after')}
+
 
   belongs_to :person
   has_many :involvements, :dependent => :destroy

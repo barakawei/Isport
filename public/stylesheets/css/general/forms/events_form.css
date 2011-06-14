@@ -2,7 +2,7 @@
   overflow: hidden; }
 
 .event_form .top {
-  display: inline;
+  display: inline-block;
   margin: 0; }
 .event_form input:not([type='submit']):not([type='reset']):not([type='checkbox']) {
   width: 60%;
@@ -22,6 +22,8 @@
 .event_form input[type='checkbox'] {
   vertical-align: text-bottom;
   margin: 0; }
+.event_form .subject .field_with_errors {
+  width: auto; }
 .event_form .field_with_errors {
   display: inline-block;
   width: 60%; }

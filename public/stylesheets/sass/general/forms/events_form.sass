@@ -2,7 +2,7 @@
   :overflow hidden
 .event_form
   .top
-    :display inline
+    :display inline-block
     :margin 0
 
   input:not([type='submit']):not([type='reset']):not([type='checkbox'])
@@ -26,10 +26,15 @@
   input[type='checkbox']
     :vertical-align text-bottom 
     :margin 0
+  
+  .subject
+    .field_with_errors
+      :width auto
 
   .field_with_errors
     :display inline-block 
     :width 60%
+
 
     input:not([type='submit']):not([type='reset']):not([type='checkbox'])
       :width 100%

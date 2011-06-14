@@ -21,4 +21,11 @@ module EventsHelper
         *#{I18n.t("activerecord.attributes.event."+field.to_s)}#{@event.errors[field].flatten[0]}</span>).html_safe
     end
   end
+  
+  def trim_info(info, size)
+    if info.size > size 
+      info = info[0, size] + "..."
+    end
+    info
+  end
 end

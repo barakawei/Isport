@@ -1,2 +1,6 @@
-.event_item p {
-  margin: 0; }
+.event_item {
+  overflow: hidden; }
+  .event_item p {
+    margin: 0; }
+  .event_item .title {
+    white-space: nowrap; }

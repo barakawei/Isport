@@ -7,6 +7,7 @@ zh:
         title: '活动名称'
         description: '活动描述'
         subject: '所属项目'
+        subject_id: '所属项目'
         person: '发起人'
         location: '地点'
         ispublic: '是否公开'
