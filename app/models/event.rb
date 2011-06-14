@@ -55,12 +55,13 @@ class Event < ActiveRecord::Base
     @comments = self.comments.order("created_at ASC")
     total_pages = @comments.size / COMMENT_PER_PAGE 
     if page == nil
-      if @comments.size % COMMENT_PER_PAGE != 0
+      if @comments.size % COMMENT_PER_PAGE != 0 || total_pages == 0
         total_pages += 1
       end
       page = total_pages 
     end
-     paged_comments = @comments.paginate(:page => page,
+    
+    paged_comments = @comments.paginate(:page => page,
                                          :per_page => COMMENT_PER_PAGE) 
   end 
 
