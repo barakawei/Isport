@@ -29,7 +29,7 @@
     .span-6.left_padding
       %h4= t('items.events')
     .span-6
-      - @item.events.each_with_index do |event, index|
+      - @events.each_with_index do |event, index|
         .span-6
           .span-2.left_padding
             = event_image_link(event) 
@@ -43,6 +43,6 @@
               = t('events.short_involvement', :count => event.participants.size) + ", "
             - if event.references.size > 0
               = t('events.short_recommendation', :count => event.references.size)
-        %br
+        %hr
 
 

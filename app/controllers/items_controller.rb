@@ -1,7 +1,8 @@
 class ItemsController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show ]
 
-  LIMIT = 20
+  EVELIMIT = 8
+  ACTLIMIT = 10
 
   def index
     @items = Item.all
@@ -14,7 +15,8 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
-    @events = @item.events.where("start_at > Time.now").order("start_at DESC").limit(LIMIT)
+    @events = @item.events.reject{|n| n.start_at.past?}.sort_by{|u| u.start_at}.slice(0, EVELIMIT)
+    @actors = @item.fans.slice(0,ACTLIMIT)
 
     respond_to do |format|
       format.html # show.html.erb

@@ -6,4 +6,5 @@ module ItemsHelper
       item.fans.include?(current_user.person) 
     end
   end
+
 end
