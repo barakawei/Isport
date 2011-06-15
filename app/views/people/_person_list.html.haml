@@ -17,8 +17,7 @@
           =link_to t('incoming_request'),{:controller => 'contacts',:action => 'new',:person_id => person.id}
       -else
         .button.add_friend
-          = link_to t('start_sharing'),'#add_friend_request',:rel => 'facebox'
-
+          = link_to t('start_sharing')
 #friend_listings
   %h4
     - if @contacts.length > 0
@@ -39,6 +38,11 @@
       = r.hidden_field :person_id, :value => @person.id
       %br
       = r.submit t('send'), :class => 'button' 
+:javascript
+  $(function(){
+  $(".add_friend").colorbox({ inline:true, href:"#add_friend_request"});		
+
+  });
   
 
 
