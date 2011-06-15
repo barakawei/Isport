@@ -20,11 +20,23 @@
           = link_to t('items.unlike'), url_for(:action=> "remove_fan", :id => @item.id), :class => "button" 
         %br
           = t('items.unlikeinfo')
-    %hr
     .span-17
-      .span-12.left_padding
-        = link_to t('items.edit'), edit_item_path(@item), :class => "button"
-        = link_to t('items.back'),  items_path, :class => "button"
+      = link_to t('items.edit'), edit_item_path(@item), :class => "button"
+      = link_to t('items.back'),  items_path, :class => "button"
+      .dash_bottom
+    .span-17
+      .span-2.left_close
+        %h4
+          =@item.name
+          = t('items.mavin')
+      .span-12.left_close
+        %span.event_detail= t('items.mavinfo')
+      %br
+      .span-17
+        -@actors.each_with_index do |person, index|
+          .span-2.left_close
+            = person_image_link(person) 
+            %span.medium_avatar=link_to person.profile.name, person_path(person)
   .span-6.last
     .span-6.left_padding
       %h4= t('items.events')
@@ -43,6 +55,7 @@
               = t('events.short_involvement', :count => event.participants.size) + ", "
             - if event.references.size > 0
               = t('events.short_recommendation', :count => event.references.size)
-        %hr
+            .dash_top
+        %br
 
 

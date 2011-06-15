@@ -1,11 +1,26 @@
 .right_border {
-  border-right: 1px solid #dddddd; }
+  border-right: 1px solid #dddddd; 
+  margin-left: 5px;
+  margin-right: 5px; }
+
+.dash_top {
+  border-bottom: 1px dashed #DDDDDD;
+  margin-bottom: 10px; } 
+
+.dash_bottom {
+  border-bottom: 1px dashed #DDDDDD;
+  margin-bottom: 10px; 
+  margin-top: 10px; }
 
 .left_padding {
   padding-left: 14px; }
 
 .right_padding {
   padding-right: 0px; }
+
+.left_close {
+  padding-left: 0px;  
+}
 
 span.event_title {
   display: inline-block;
@@ -14,7 +29,7 @@ span.event_title {
   overflow: hidden;
   white_space: nowrap;
   text-align: left;
-  margin-bottom: 0;
+  margin-bottom: 0px;
   height: 50px; 
 }
 
@@ -22,6 +37,6 @@ span.event_detail{
   width: 120px;
   overflow: hidden;
   text-align: right;
-  margin-bottom: 0;
+  margin-bottom: 0px;
   height: 20px; 
 }
