@@ -5,13 +5,17 @@ class EventsController < ApplicationController
   PER_PAGE = 32 
 
   def index
-    @events = Event.all
     @selected = "events"
+    user_favorites_item_events
+    hottest_events = hottest_event
+    @events = Event.all - hottest_event
+    @hottest_event = hottest_events.first
+
     @events.each do |event|
       event.same_day = (event.start_at.beginning_of_day == event.end_at.beginning_of_day)
-      event.current_year = (event.start_at.year == Time.now.year)
+      event.current_year = (event.start_at.year == Time.now.year) 
     end
-    respond_to do |format|
+   respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @events }
     end
@@ -176,5 +180,20 @@ class EventsController < ApplicationController
                                :item_id => @event.id)
         @comment.type = "EventComment"
       end
+  end
+
+  def hottest_event
+    hottest_event = Event.find(:all, :joins=>" INNER JOIN involvements on events.id = involvements.event_id",
+               :select => "events.*, count(*) count",
+               :group => 'involvements.event_id',
+               :order => 'count desc',
+               :limit => 1)
+  end
+
+  def user_favorites_item_events
+    @favorite_items = current_user.person.interests.limit(5)   
+    @favorite_items.each  do |item|
+      @item_event_size = item.events.size
+    end
   end
 end

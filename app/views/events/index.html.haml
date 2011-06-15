@@ -1,19 +1,69 @@
 - content_for :head do
   = include_stylesheets :sepcial_pages_events_index, :media => 'all'
   = include_stylesheets :sepcial_pages_events_common, :media => 'all'
-.span-24.prepend-top
-  .span-21
-    %h2.title= t 'events.events_list' 
-  .span-3.last
-    = link_to t('events.new_event'), new_event_path, :class => "button new_event right"   
+.span-24.prepend-top.filter_bar 
+  .span-15
+    %span.left
+      %h2.title= t 'events.events_list' 
+      %h4= link_to "今天", '#', :class => "border" 
+      %h4= link_to "最近一周", '#',:class => "border"  
+      %h4= link_to "周末", '#' ,:class => "border"  
+      %h4= link_to "全部", '#' ,:class => "border"  
+      =text_field_tag 'date',  "选择日期", :readonly => true, :class => "blue"
+  .span-9.last.filter_bar
+    %span.right
+      %h2
+        %br 
+      %h4= link_to "按开始时间排序", '#' ,:class => "border"  
+      %h4= link_to "按人气排序", '#' 
+      = link_to t('events.new_event'), new_event_path, :class => "new_event right"   
 .span-24
   %hr
   .span-18.border
-    - @events.each_with_index do |event, index|
-      .span-9.last.append-bottom.event_item
-        %h3= link_to trim_info(event.title,20), event, :class => "nounderline title"
-        = render "event_item", :event => event      
+    .span-18.hot_event.append-bottom
+      %h3.hot_title.blue= "人气活动："
+      .span-5.pic
+        = event_image_link(@hottest_event, :thumb_large)
+      .span-8.last.border
+        %h3= link_to @hottest_event.title, event_path(@hottest_event)
+        %p
+          %b= t('events.start_at')+":"
+          = l(@hottest_event.start_at, :format => :long)
+        %p
+          %b= t('events.end_at')+":"
+          = l(@hottest_event.end_at, :format => :long)
+        %p
+          %b= t('events.location')+":"
+          = @hottest_event.location 
+        %p
+          %b= t('events.event_subject')+":"
+          = @hottest_event.item.name
+        %p.blue
+          - if @hottest_event.participants.size > 0
+            = t('events.short_involvement', :count => @hottest_event.participants.size) + ","
+          - if @hottest_event.references.size > 0
+            = t('events.short_recommendation', :count => @hottest_event.references.size)+ ","
+          - if @hottest_event.comments.size > 0
+            = t('events.comments_count', :count => @hottest_event.comments.size)
+      .span-4.last.owner
+        %b= t('events.event_owner')+":"
+        %p
+          = person_image_link(@hottest_event.person)
+          = link_to @hottest_event.person.profile.name, person_path(@hottest_event.person)
+          
+    .span-18
+      - @events.each_with_index do |event, index|
+        .span-9.last.append-bottom.event_item
+          %h3= link_to trim_info(event.title,20), event, :class => "nounderline title"
+          = render "event_item", :event => event      
   .span-6.last
+    .span-5.filter_area
+      %h4.blue="我喜欢的项目:" 
+      %hr
+      - @favorite_items.each do |item|
+        %p
+          =item.name + "(#{@item_event_size.to_s})"
+    
 
 
 :javascript
@@ -23,4 +73,8 @@
         primary: 'ui-icon-circle-plus'
       }
     });  
+    $("#date").datepicker(); 
+    $("#date").hover(function() {
+      $(this).toggleClass('underline');  
+    });
   });

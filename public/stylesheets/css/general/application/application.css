@@ -1,6 +1,9 @@
 body {
   background-color: #fcfcfc; }
 
+.blue {
+  color: #5179ac; }
+
 a {
   color: #5179ac;
   font-weight: bold;
