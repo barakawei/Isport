@@ -1,0 +1,31 @@
+.span-18.hot_event.append-bottom
+  %h3.hot_title.blue= "人气活动："
+  .span-5.pic
+    = event_image_link(hottest_event, :thumb_large)
+  .span-8.last.border
+    %h3= link_to hottest_event.title, event_path(hottest_event)
+    %p
+      %b= t('events.start_at')+":"
+      = l(hottest_event.start_at, :format => :long)
+    %p
+      %b= t('events.end_at')+":"
+      = l(hottest_event.end_at, :format => :long)
+    %p
+      %b= t('events.location')+":"
+      = hottest_event.location 
+    %p
+      %b= t('events.event_subject')+":"
+      = hottest_event.item.name
+    %p.blue
+      - if hottest_event.participants.size > 0
+        = t('events.short_involvement', :count => hottest_event.participants.size) + ","
+      - if hottest_event.references.size > 0
+        = t('events.short_recommendation', :count => hottest_event.references.size)+ ","
+      - if hottest_event.comments.size > 0
+        = t('events.comments_count', :count => hottest_event.comments.size)
+  .span-4.last.owner
+    %b= t('events.event_owner')+":"
+    %p
+      = person_image_link(hottest_event.person)
+      = link_to hottest_event.person.profile.name, person_path(hottest_event.person)
+

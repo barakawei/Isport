@@ -28,4 +28,18 @@ module EventsHelper
     end
     info
   end
+
+  def filter_path(time_filter_path,item_id, sort_type)
+    case time_filter_path
+    when "today" 
+      events_today_path(item_id, sort_type) 
+    when "week" 
+      events_week_path(item_id, sort_type) 
+    when "weekends" 
+      events_weekends_path(item_id, sort_type) 
+    when "alltime" 
+      events_alltime_path(item_id, sort_type) 
+    else
+    end  
+  end
 end
