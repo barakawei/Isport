@@ -1,14 +1,42 @@
+-content_for :head do
+  = include_stylesheets :sepcial_pages_items_show, :media => 'all'
 .span-24.prepend-top
-  .span-21
-    %h1= t 'items.items_list' 
-  .span-3.last
-    = link_to t('items.new_item'), new_item_path, :class => 'butten new_item'
-.span-24
-  %hr
-  - @items.each_with_index do |item, index|
-    .span-6.last.append-bottom
-      %h3= link_to item.name, item, :class => "nounderline"
-      = render "item_detail", :item => item      
+  .span-18
+    .span-18
+      .span-15
+        %h1= t 'items.items_list' 
+      .span-3.last
+        = link_to t('items.new_item'), new_item_path, :class => 'butten new_item'
+    .span-18
+      .dash_top
+    .span-18
+      - @items.each_with_index do |item, index|
+        .span-3.left_close{:class => ("last" if (index+1)%6 == 0)}
+          .span-3
+            = item_image_link(item, :size => :thumb_medium)
+          %br
+          .span-3
+            = link_to item.name, item, :class => "nounderline"
+            %span.detail
+              =item.fans.size
+              = t ('items.fans')
+  .span-5
+    .span-5.left_padding
+      %h4= link_to t('items.myitems'), myitems_path, :class => "nounderline"
+    .span-5
+      - @myitems.each_with_index do |item, index|
+        .span-5
+          .span-2.left_padding
+            = item_image_link(item, :size => :thumb_small) 
+          .span-2.last
+            %span.detail= link_to item.name, item, :class => "nounderline"
+            %br
+            %span.detail
+              = item.fans.size
+              = t ('items.fans')
+            %br
+            .dash_top
+        %br
 
 :javascript
   $(function() {
