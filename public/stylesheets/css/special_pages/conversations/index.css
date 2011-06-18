@@ -1,0 +1,113 @@
+#left_pane {
+  background-color: #dddddd;
+  border-right: 1px solid #999999;
+  position: fixed;
+  z-index: 4;
+  width: 320px; }
+
+#left_pane_header {
+  margin-top: 5px;
+  margin-left: 5px;
+  margin-right: 5px; }
+
+#conversation_inbox {
+  background-color: #f3f3f3;
+  height: 100%; }
+
+#no_conversation_text {
+  color: #cccccc;
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 160px;
+  text-align: center; }
+
+#no_conversation_action {
+  font-size: 12px;
+  text-align: center; }
+
+.conversation:hover:not(.selected) {
+  background-color: #fafafa;
+  cursor: pointer; }
+
+.conversation.selected {
+  background-color: #3f8fba;
+  border-bottom: 1px solid #327294;
+  border-top: 1px solid #327294; }
+  .conversation.selected .last_author {
+    color: white; }
+  .conversation.selected .subject {
+    color: white; }
+  .conversation.selected .timeago {
+    color: #eeeeee; }
+
+.conversation {
+  border-bottom: 1px solid #dddddd;
+  border-top: 1px solid white;
+  padding-top: 10px;
+  padding-bottom: 10px; }
+  .conversation .timeago {
+    color: #3f8fba;
+    border: medium none;
+    font-weight: normal;
+    margin-left: 70px;
+    text-align: right; }
+  .conversation .avatar {
+    display: inline;
+    float: left;
+    height: 35px;
+    margin-right: 10px;
+    margin-left: 10px;
+    width: 35px; }
+  .conversation .last_author {
+    color: #777777;
+    font-size: 12px; }
+  .conversation .subject {
+    color: #444444;
+    font-size: 13px;
+    font-weight: bold;
+    overflow: hidden;
+    white-space: nowrap; }
+    .conversation .subject .message_count {
+      background-color: #999999;
+      position: absolute;
+      margin-left: 220px;
+      color: #eeeeee;
+      font-size: 12px;
+      font-weight: normal;
+      padding: 0 5px;
+      -moz-border-radius: 5px;
+      -webkit-border-radius: 5px;
+      border-radius: 5px;
+      behavior: url(/javascripts/PIE.htc); }
+
+.avatars {
+  margin-top: 9px;
+  text-align: right; }
+
+.conversation_participants {
+  background-color: #fcfcfc;
+  border-bottom: 1px solid #666666;
+  -webkit-box-shadow: 0 3px 3px -3px #333333;
+  -moz-box-shadow: 0 3px 3px -3px #333333;
+  box-shadow: 0 3px 3px -3px #333333;
+  behavior: url(/javascripts/PIE.htc);
+  line-height: 0;
+  margin-top: -50px;
+  margin-bottom: 50px;
+  padding: 50px 20px 10px;
+  position: fixed;
+  z-index: 3; }
+  .conversation_participants .avatar {
+    width: 30px;
+    height: 30px; }
+
+.stream_element.new_message {
+  border-bottom: none; }
+  .stream_element.new_message textarea {
+    height: 100px;
+    width: 100%; }
+
+.content .timeago {
+  border: medium none;
+  color: #999999;
+  text-decoration: none; }

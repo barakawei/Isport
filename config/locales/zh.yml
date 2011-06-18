@@ -23,6 +23,7 @@ zh:
   password: "密码"
   password_confirmation: "密码确认"
   back: "返回"
+  inbox: "信箱"
   registrations: 
     new: 
       enter_email: "输入电子邮箱"

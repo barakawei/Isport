@@ -1,0 +1,14 @@
+.stream_element{:data=>{:guid=>message.id}}
+  = person_image_link(message.person, :size => :thumb_small)
+
+  .content
+    .from
+      = person_link(message.person, :class => 'author')
+      %time.timeago{:datetime => message.created_at}
+        =how_long_ago( message )
+
+    %p
+      = message.text
+:javascript
+  jQuery("abbr.timeago").timeago();
+

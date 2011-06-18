@@ -7,6 +7,13 @@
     =link_to t( 'friends' ),{:controller => 'people',:action => 'show_friends'}
   %li
     =link_to t( 'events_link' ),events_path
+  %li
+    %a{:href => conversations_path}
+      =t( 'inbox' )
+      -if current_user && @unread_message_count != 0
+        %span.message_count
+          %span
+            %span=@unread_message_count
 
     %li#search
       = form_tag(people_path, :method => 'get', :id => "global_search_form") do

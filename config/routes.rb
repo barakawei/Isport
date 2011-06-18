@@ -6,6 +6,12 @@ Isport::Application.routes.draw do
   resources :posts
   resources :photos
   resources :requests
+  resources :conversations do
+    resources :messages, :only => [:create, :show]
+    delete 'visibility' => 'conversation_visibilities#destroy'
+  end
+  
+  resources :conversation_visibilities
   root :to => "home#index"
   resource :user, :only => [:edit, :update, :destroy] 
   controller :people do

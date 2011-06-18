@@ -1,0 +1,31 @@
+#left_pane.span-7
+  #left_pane_header
+    #new_conversation.right
+      .new_message
+        =link_to "新消息",new_conversation_path,:class=>"button new_message_action"
+    %h3
+      = t( 'inbox' )
+  #conversation_inbox
+    - if @conversations.count > 0
+      .stream.conversations
+        = render :partial => 'conversations/conversation', :collection => @conversations, :locals => {:authors => @authors, :unread_counts => @unread_counts,:selected_id => ((@conversation.id) if @conversation)}
+      = will_paginate @conversations
+    - else
+      %br
+      %br
+      %br
+      %br
+      %div{:style => 'text-align:center;'}
+        %i
+          = t('.no_messages')
+#conversation_show.span-16.prepend-8.last
+  - if @conversation
+    = render 'conversations/show', :conversation => @conversation
+  - else
+    #no_conversation_text
+      = "未选中对话"
+    #no_conversation_action
+      = link_to "发送新消息",new_conversation_path,:class=>"new_message_action" 
+      
+:javascript 
+  $(".new_message_action").colorbox();

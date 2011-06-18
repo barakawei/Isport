@@ -7,40 +7,15 @@
         = "Welcome back!"
       -elsif current_user.person.id == @person.id  && @requests_count != 0 
         = link_to "#{@requests_count}个好友请求",{:controller => 'people', :action => 'friends_request'},:class => 'new friends_request'
-      -elsif @contact && !@contact.pending
-        .button.remove_friend
-          = link_to t( 'remove_friend' ),{:controller => 'contacts', :action => 'remove_friend',:person_id => @person.id}
-      -elsif @request
-        =t('pending_request')
-      -elsif  (@contact && @contact.pending)
-        .button.incoming_request
-          =link_to t('incoming_request'),{:controller => 'contacts',:action => 'new',:person_id => person.id}
-      -else
-        .button.add_friend
-          = link_to t('start_sharing')
 #friend_listings
-  %h4
-    - if @contacts.length > 0
-      %ul
-        %li
-          .contacts
-            %h4=t( 'friends_count',:count => @contacts.length)
-            - for contact in @contacts
-              = person_image_link(contact.person)
-          =link_to t( 'more' ),{:controller => 'people',:action => 'show_friends'}
-    - else
-      =t('no_friends')
-.colorbox_content
-  #add_friend_request
-    %h3="加为好友"
-    = form_for Request.new,:url => { :controller => 'contacts',:action => 'new' } do |r|
-      = r.text_area :message , :rows => 2
-      = r.hidden_field :person_id, :value => @person.id
-      %br
-      = r.submit t('send'), :class => 'button' 
-:javascript
-  $(function(){
-  $(".add_friend").colorbox({ inline:true, href:"#add_friend_request"});		
-
-  });
+  - if @contacts.length > 0
+    .contacts
+      %h3
+        =t( 'friends_count',:count => @contacts.length)
+      - for contact in @contacts
+        = person_image_link(contact.person)
+      %h4
+        =link_to t( 'more' ),{:controller => 'people',:action => 'show_friends'}
+  - else
+    =t('no_friends')
 

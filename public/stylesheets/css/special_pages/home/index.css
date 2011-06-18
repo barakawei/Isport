@@ -1,8 +1,6 @@
 #home_user {
   position: relative;
   border-bottom: 1px solid #cccccc; }
-  #home_user img {
-    margin-left: 20px; }
   #home_user h3 {
     position: absolute;
     top: 4px;

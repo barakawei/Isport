@@ -21,10 +21,10 @@ ol, ul, li
   
 .container.body
   :padding
-    :top 50px
+    :top 60px
 
 .floating
-  @include box-shadow(0,1px,3px,#333)
+  @include box-shadow(0,1px,3px,0,#333)
   :position relative
   :z-index 1
   :background
@@ -54,7 +54,7 @@ textarea
   :min-height 100px
   img
     @include border-radius(5px)
-    @include box-shadow(0,1px,2px,#666)
+    @include box-shadow(0,1px,2px,0,#666)
 
     :position absolute
     :left 10px
@@ -74,6 +74,8 @@ h1,h2,h3,h4
       :top 0.5em 
 
 .stream_element
+  .author
+    :color #444444
   :position relative
   :font
     :size 14px
