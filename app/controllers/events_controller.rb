@@ -11,9 +11,10 @@ class EventsController < ApplicationController
   def index
     get_filters   
     user_favorites_item_events
-    @hottest_event = hottest_event.first
+    @hottest_events = hottest_event
     @events = Event.order("start_at asc")
     @time_filter_path = TIME_FILTER_WEEK
+    get_my_events
     process_event_time
     filte_by_popularity
   end
@@ -23,6 +24,7 @@ class EventsController < ApplicationController
     user_favorites_item_events("today")
     @events = (@item_filter == nil) ? Event.today.order("start_at asc")
                                     : Item.find(@item_filter).events.today.order("start_at asc")
+    get_my_events
     process_event_time
     filte_by_popularity
     render :action => "index"
@@ -35,9 +37,33 @@ class EventsController < ApplicationController
     @events = (@item_filter == nil) ? Event.this_week.order("start_at asc")
                                     : Item.find(@item_filter).events.this_week.order("start_at asc")
     @time_filter_path = TIME_FILTER_WEEK
+    get_my_events
     process_event_time
     filte_by_popularity
     render :action => "index"
+  end
+
+  def my_events
+    @type = params[:type]
+    @events = []
+    @removable = false
+    case @type
+    when "joined"
+      @events = current_user.person.involved_events
+      @removable = true
+    when "recommended"
+      @events = current_user.person.recommended_events
+      @removable = true
+    when "friend_joined"
+      current_user.friends.each do |friend|
+        @events += friend.involved_events
+      end
+    when "friend_recommended"
+      current_user.friends.each do |friend|
+        @events += friend.recommended_events
+      end
+    else
+    end
   end
 
   def events_at_weekends
@@ -46,6 +72,7 @@ class EventsController < ApplicationController
     @events = (@item_filter == nil) ? Event.weekends.order("start_at asc")
                                     : Item.find(@item_filter).events.weekends.order("start_at asc")
     @time_filter_path = TIME_FILTER_WEEKENDS
+    get_my_events
     process_event_time
     filte_by_popularity
     render :action => "index"
@@ -57,6 +84,7 @@ class EventsController < ApplicationController
     @events = (@item_filter == nil) ? Event.order("start_at asc")
                                     : Item.find(@item_filter).events.order("start_at asc")
     @time_filter_path = TIME_FILTER_ALL
+    get_my_events
     process_event_time
     filte_by_popularity
     render :action => "index"
@@ -141,7 +169,7 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @event.participants.delete(current_user.person)
     
-    redirect_to(event_url(@event))
+    redirect_to :back
   end
   
   def show_participants
@@ -248,7 +276,7 @@ class EventsController < ApplicationController
                :select => "events.*, count(*) count",
                :group => 'involvements.event_id',
                :order => 'count desc',
-               :limit => 1)
+               :limit => 3)
   end
 
   def user_favorites_item_events(time_filter_path="week")
@@ -265,5 +293,16 @@ class EventsController < ApplicationController
       @favorite_items.each  {|item| @item_event_size << item.events.size }
     else
     end  
+  end
+
+  def get_my_events
+    @joined_events = current_user.person.involved_events
+    @recommended_events = current_user.person.recommended_events
+    @friend_joined_events = []
+    @friend_recommended_events = []
+    current_user.friends.each do |friend|
+      @friend_joined_events += friend.involved_events
+      @friend_recommended_events += friend.recommended_events
+    end
   end
 end

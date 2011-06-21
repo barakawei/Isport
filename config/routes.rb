@@ -32,6 +32,7 @@ Isport::Application.routes.draw do
           :constraints => { :id => /[1-9]\d*/, :sort => /(by_starttime)|(by_popularity)/}
     match '/events/alltime(/:id)(/:sort)' => :events_all_time, :as => 'events_alltime', 
           :constraints => { :id => /[1-9]\d*/, :sort => /(by_starttime)|(by_popularity)/}
+    match '/events/mine(/:type)' => :my_events, :as => 'my_events'
     match '/events/:date(/:id)(/:sort)' => :events_at_date_selected, :as => 'events_date_selected', 
           :constraints => { :id => /[1-9]\d*/, :sort => /(by_starttime)|(by_popularity)/,
                             :date => /((((19|20)(([02468][048])|([13579][26]))-02-29))|((20[0-9][0-9])|(19[0-9][0-9]))-((((0[1-9])|(1[0-2]))-((0[1-9])|(1\d)|(2[0-8])))|((((0[13578])|(1[02]))-31)|(((0[1,3-9])|(1[0-2]))-(29|30)))))/}

@@ -42,4 +42,19 @@ module EventsHelper
     else
     end  
   end
+
+  def remove_type(type)
+    I18n.t("events.remove_type.#{type}")  
+  end
+  
+  def get_link_by_type(type, event)
+    case type
+    when "joined"
+      link_to t('events.save'), url_for(:action => "remove_participant", 
+                                        :id => event.id), :class => "button" 
+    when "recommended"
+      link_to t('events.save'), url_for(:controller => "event_recommendations", 
+                                        :action => "remove_reference", :id => event.id), :class => "button" 
+    end 
+  end
 end

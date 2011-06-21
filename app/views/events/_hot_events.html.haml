@@ -1,4 +1,4 @@
-.span-18.hot_event.append-bottom
+.span-18.hot_event
   %h3.hot_title.blue= "人气活动："
   .span-5.pic
     = event_image_link(hottest_event, :thumb_large)
@@ -28,4 +28,7 @@
     %p
       = person_image_link(hottest_event.person)
       = link_to hottest_event.person.profile.name, person_path(hottest_event.person)
+    %span.nav.right
+      = link_to "<", "#", :class => "pre"
+      = link_to ">", "#", :class => "next"
 

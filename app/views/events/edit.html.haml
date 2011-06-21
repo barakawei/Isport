@@ -14,7 +14,7 @@
 
 .facebox_content
   #cancel_event_request
-    .span-8
+    .span-10.box_content
       %h4
         =  t('activerecord.operations.event.cancel_notice', :count => @event.participants.size)
       %br
@@ -38,4 +38,4 @@
     }
   });  
 
-  $('.cancel_event').colorbox({ inline:true, href:"#cancel_event_request" });
+  $('.cancel_event').colorbox({ inline:true, href:"#cancel_event_request", opacity:0.5 });

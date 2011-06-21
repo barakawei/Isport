@@ -7,7 +7,8 @@
 
 .hot_event {
   background-color: #ebf3f7;
-  padding: 10px 0px 20px 0px; }
+  padding: 10px 0px 20px 0px;
+  margin-bottom: 5px; }
   .hot_event p {
     margin-bottom: 10px; }
   .hot_event .pic {
@@ -16,6 +17,8 @@
   .hot_event .owner a {
     display: inline-block;
     vertical-align: top; }
+  .hot_event .nav a {
+    display: inline-block; }
   .hot_event .hot_title {
     display: block;
     margin: 0 0 10px 20px; }
@@ -41,3 +44,7 @@
 
 .underline {
   text-decoration: underline; }
+
+.hot_events {
+  overflow: hidden;
+  height: 260px; }

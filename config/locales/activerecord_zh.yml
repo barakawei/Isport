@@ -24,6 +24,7 @@ zh:
         save: '确认'
         cancel_notice: '已有%{count}人报名此活动, 确定要取消吗?'
         comment: '发表评论'
+        remove_event_from_list: '确定不再%{type}此活动?'
       comment:
         response: '回复'
 

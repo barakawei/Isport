@@ -5,28 +5,29 @@
   .span-15
     %span.left
       %h2.title= t 'events.events_list' 
-      %h4.border= link_to_unless_current "今天", events_today_path(@item_filter, @sort_filter)
-      %h4.border= link_to_unless_current "最近一周", events_week_path(@item_filter, @sort_filter)
-      %h4.border= link_to_unless_current "周末",  events_weekends_path(@item_filter, @sort_filter)
-      %h4.border= link_to_unless_current "全部时间", events_alltime_path(@item_filter, @sort_filter)
-      =text_field_tag 'date',  "选择日期", :readonly => true, :class => "blue"
+      %h4.border= link_to_unless_current t('filter.time.today'), events_today_path(@item_filter, @sort_filter)
+      %h4.border= link_to_unless_current t('filter.time.this_week'), events_week_path(@item_filter, @sort_filter)
+      %h4.border= link_to_unless_current t('filter.time.weekends'),  events_weekends_path(@item_filter, @sort_filter)
+      %h4.border= link_to_unless_current t('filter.time.alltime'), events_alltime_path(@item_filter, @sort_filter)
+      =text_field_tag 'date', t('filter.time.select_time'), :readonly => true, :class => "blue"
   .span-9.last.filter_bar
     %span.right
       %h2
         %br 
-      %h4.border= link_to_unless_current "按开始时间排序", filter_path(@time_filter_path, @item_filter, "by_starttime")
-      %h4.border= link_to_unless_current "按人气排序", filter_path(@time_filter_path, @item_filter, "by_popularity") 
+      %h4.border= link_to_unless_current t('filter.sort.by_starttime'), filter_path(@time_filter_path, @item_filter, "by_starttime")
+      %h4.border= link_to_unless_current t('filter.sort.by_popularity'), filter_path(@time_filter_path, @item_filter, "by_popularity") 
       = link_to t('events.new_event'), new_event_path, :class => "new_event right"   
 .span-24
   %hr
-  .span-18.border
-    - if @hottest_event
-      = render "hot_events", :hottest_event => @hottest_event         
-    .span-18
-      - @events.each_with_index do |event, index|
+  .span-18
+    - if @hottest_events
+      .span-18.hot_events
+        - @hottest_events.each_with_index do |hot_event, index| 
+          = render "hot_events", :hottest_event => hot_event, :index => index
+    .span-18.prepend-top
+      - @events.each_with_index do |event|
         .span-9.last.append-bottom.event_item
-          %h3= link_to trim_info(event.title,20), event, :class => "nounderline title"
-          = render "event_item", :event => event      
+          = render "event_item", :event => event
   .span-6.last
     .span-5.filter_area
       %h4="我喜欢的项目:" 
@@ -34,8 +35,12 @@
       - @favorite_items.each_with_index do |item, index|
         %p
           %h4=link_to_unless_current item.name + "(#{@item_event_size[index].to_s})", filter_path(@time_filter_path, item.id, @sort_filter)
+      %hr.space
       %hr
-      %h4="我参加的活动:" 
+      %h4=link_to t('events.joined_events_link', :count => @joined_events.size), my_events_path("joined")
+      %h4=link_to t('events.recommended_events_link', :count => @recommended_events.size), my_events_path("recommended")
+      %h4=link_to t('events.friend_joined_events_link', :count => @friend_joined_events.size), my_events_path("friend_joined")
+      %h4=link_to t('events.friend_recommended_events_link', :count => @friend_recommended_events.size), my_events_path("friend_recommended")
     
 
 
@@ -50,4 +55,20 @@
     $("#date").hover(function() {
       $(this).toggleClass('underline');  
     });
+  });
+
+  $('.hot_event .nav .pre').click(function() {
+    $('.hot_event:last').css({'margin-top': 0, 'margin-bottom': '5px'})
+    $('.hot_event:first').before($('.hot_event:last'));
+    $('.hot_event:first').css('margin-top', '-500px');
+    $('.hot_event:first').animate({marginTop: '0px', marginBottom: '5px'}, 300);
+    return false;
+  });
+
+  $('.hot_event .nav .next').click(function() {
+    $('.hot_event:first').animate({marginTop: '-300px'}, 300, function() {
+      $('.hot_event:last').after($('.hot_event:first'));
+      $('.hot_event:last').css({'margin-top': 0, 'margin-bottom': '5px'});
+    });
+    return false;
   });
