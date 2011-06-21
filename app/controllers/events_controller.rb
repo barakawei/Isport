@@ -280,29 +280,33 @@ class EventsController < ApplicationController
   end
 
   def user_favorites_item_events(time_filter_path="week")
-    @favorite_items = current_user.person.interests.limit(5)   
-    @item_event_size = [] 
-    case time_filter_path
-    when "today"
-      @favorite_items.each {|item| @item_event_size << item.events.today.size }
-    when "week" 
-      @favorite_items.each  {|item| @item_event_size << item.events.this_week.size }
-    when "weekends" 
-      @favorite_items.each  {|item| @item_event_size << item.events.weekends.size }
-    when "alltime" 
-      @favorite_items.each  {|item| @item_event_size << item.events.size }
-    else
-    end  
+    if current_user
+      @favorite_items = current_user.person.interests.limit(5)   
+      @item_event_size = [] 
+      case time_filter_path
+      when "today"
+        @favorite_items.each {|item| @item_event_size << item.events.today.size }
+      when "week" 
+        @favorite_items.each  {|item| @item_event_size << item.events.this_week.size }
+      when "weekends" 
+        @favorite_items.each  {|item| @item_event_size << item.events.weekends.size }
+      when "alltime" 
+        @favorite_items.each  {|item| @item_event_size << item.events.size }
+      else
+      end  
+    end
   end
 
   def get_my_events
-    @joined_events = current_user.person.involved_events
-    @recommended_events = current_user.person.recommended_events
-    @friend_joined_events = []
-    @friend_recommended_events = []
-    current_user.friends.each do |friend|
-      @friend_joined_events += friend.involved_events
-      @friend_recommended_events += friend.recommended_events
+    if current_user
+      @joined_events = current_user.person.involved_events
+      @recommended_events = current_user.person.recommended_events
+      @friend_joined_events = []
+      @friend_recommended_events = []
+      current_user.friends.each do |friend|
+        @friend_joined_events += friend.involved_events
+        @friend_recommended_events += friend.recommended_events
+      end
     end
   end
 end

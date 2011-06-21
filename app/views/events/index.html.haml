@@ -29,18 +29,19 @@
         .span-9.last.append-bottom.event_item
           = render "event_item", :event => event
   .span-6.last
-    .span-5.filter_area
-      %h4="我喜欢的项目:" 
-      %hr
-      - @favorite_items.each_with_index do |item, index|
-        %p
-          %h4=link_to_unless_current item.name + "(#{@item_event_size[index].to_s})", filter_path(@time_filter_path, item.id, @sort_filter)
-      %hr.space
-      %hr
-      %h4=link_to t('events.joined_events_link', :count => @joined_events.size), my_events_path("joined")
-      %h4=link_to t('events.recommended_events_link', :count => @recommended_events.size), my_events_path("recommended")
-      %h4=link_to t('events.friend_joined_events_link', :count => @friend_joined_events.size), my_events_path("friend_joined")
-      %h4=link_to t('events.friend_recommended_events_link', :count => @friend_recommended_events.size), my_events_path("friend_recommended")
+    - if current_user
+      .span-5.filter_area
+        %h4="我喜欢的项目:" 
+        %hr
+        - @favorite_items.each_with_index do |item, index|
+          %p
+            %h4=link_to_unless_current item.name + "(#{@item_event_size[index].to_s})", filter_path(@time_filter_path, item.id, @sort_filter)
+        %hr.space
+        %hr
+        %h4=link_to t('events.joined_events_link', :count => @joined_events.size), my_events_path("joined")
+        %h4=link_to t('events.recommended_events_link', :count => @recommended_events.size), my_events_path("recommended")
+        %h4=link_to t('events.friend_joined_events_link', :count => @friend_joined_events.size), my_events_path("friend_joined")
+        %h4=link_to t('events.friend_recommended_events_link', :count => @friend_recommended_events.size), my_events_path("friend_recommended")
     
 
 
