@@ -40,5 +40,4 @@ class Person < ActiveRecord::Base
     end
     Person.searchable.where(sql,*tokens)
   end
-  
 end

@@ -1,8 +1,10 @@
 class Event < ActiveRecord::Base
   COMMENT_PER_PAGE = 5 
+  SORT_BY_STARTTIME = "by_starttime"
+  SORT_BY_POPULARITY= "by_popularity"
 
   attr_accessor :same_day, :current_year
-  validates_presence_of :title, :start_at, :description, :location, 
+  validates_presence_of :title, :start_at, :description, :location, :subject_id,
                         :message => I18n.t('activerecord.errors.messages.blank')
   
   validates_length_of :title, :maximum => 30
@@ -12,6 +14,7 @@ class Event < ActiveRecord::Base
                        
   validates :end_at, :date => { :after => :start_at,
                                 :message => I18n.t('activerecord.errors.event.end_at.after')}
+
 
   belongs_to :person
   has_many :involvements, :dependent => :destroy
@@ -26,6 +29,12 @@ class Event < ActiveRecord::Base
   has_many :commentors, :through => :comments, :source => :person
 
   belongs_to :item, :foreign_key => "subject_id"
+
+  scope :this_week, lambda { where("start_at > ? and start_at < ?", Time.now.beginning_of_week,
+                             Time.now.end_of_week) }
+
+  scope :today, lambda { where("start_at >= ? and start_at <= ?", Time.now.beginning_of_day, Time.now.end_of_day) }
+  scope :weekends, lambda {where("DAYOFWEEK(start_at) = 7 or DAYOFWEEK(start_at) = 1") }
 
   def self.update_avatar_urls(params,url_params)
       event = find(params[:photo][:model_id])

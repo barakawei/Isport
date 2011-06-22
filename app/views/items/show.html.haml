@@ -50,7 +50,7 @@
       - @events.each_with_index do |event, index|
         .span-6
           .span-2.left_padding
-            = event_image_link(event, :size => :thumb_small) 
+            = event_image_link(event, :thumb_small) 
           .span-3.last
             %span.detail= l(event.start_at, :format => :short)
             %br

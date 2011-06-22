@@ -22,15 +22,9 @@ module ApplicationHelper
     end
   end
 
-  def event_image_link(event, opts = {})
-    return "" if event.nil?
-    if opts[:to] == :photos
-      link_to event_image_tag(event, opts[:size]), event_photos_path(event)
-    else
-      "<a href='/events/#{event.id}'>
-  #{event_image_tag(event, opts[:size])}
-</a>".html_safe
-    end
+
+  def event_image_link(event, size)
+    link_to event_image_tag(event, size), event_path(event)
   end
 
   def item_image_link(item, opts={})

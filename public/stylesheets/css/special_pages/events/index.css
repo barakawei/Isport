@@ -1,2 +1,50 @@
-.event_item p {
-  margin: 0; }
+.event_item {
+  overflow: hidden; }
+  .event_item p {
+    margin: 0; }
+  .event_item .title {
+    white-space: nowrap; }
+
+.hot_event {
+  background-color: #ebf3f7;
+  padding: 10px 0px 20px 0px;
+  margin-bottom: 5px; }
+  .hot_event p {
+    margin-bottom: 10px; }
+  .hot_event .pic {
+    margin-left: 20px;
+    margin-right: 20px; }
+  .hot_event .owner a {
+    display: inline-block;
+    vertical-align: top; }
+  .hot_event .nav a {
+    display: inline-block; }
+  .hot_event .hot_title {
+    display: block;
+    margin: 0 0 10px 20px; }
+
+.filter_area {
+  background-color: #f8f8f8;
+  height: 500px;
+  padding: 20px; }
+
+.filter_bar h4, .filter_bar h2 {
+  display: inline-block;
+  margin-bottom: 0; }
+.filter_bar h2 {
+  margin-right: 20px; }
+.filter_bar a {
+  display: inline-block; }
+
+#date {
+  border: none;
+  color: #5179ac;
+  width: 75px;
+  padding: 0; }
+
+.underline {
+  text-decoration: underline; }
+
+.hot_events {
+  overflow: hidden;
+  height: 260px; }

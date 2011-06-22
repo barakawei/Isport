@@ -2,7 +2,7 @@
   overflow: hidden; }
 
 .event_form .top {
-  display: inline;
+  display: inline-block;
   margin: 0; }
 .event_form input:not([type='submit']):not([type='reset']):not([type='checkbox']) {
   width: 60%;

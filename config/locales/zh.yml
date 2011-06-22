@@ -24,6 +24,18 @@ zh:
   password: "密码"
   password_confirmation: "密码确认"
   back: "返回"
+  operations:
+    delete: '删除'
+  filter:
+    time:
+      today: "今天"
+      this_week: "本周"
+      weekends: "周末"
+      alltime: "全部时间"
+      select_time: "选择时间"
+    sort:
+      by_starttime: "按开始时间排序"
+      by_popularity: "按人气排序" 
   registrations: 
     new: 
       enter_email: "输入电子邮箱"
@@ -69,14 +81,27 @@ zh:
       person: '人' 
       involvement: '参加此活动:'
       recommendation: '推荐此活动:'
-      short_involvement: '%{count}人参加'
-      short_recommendation: '%{count}人推荐'
+      short_involvement: '%{count}人参加 '
+      short_recommendation: '%{count}人推荐 '
       friend_participants: '共 %{count} 位好友参加了此活动'
       other_participants: '其它 %{count} 人也参加了此活动'
       friend_references: '共%{count}位好友推荐了此活动'
       other_references: '其他%{count}人也推荐了此活动'
+      comments_count: '%{count}条评论'
       no_participant: '暂时还没有人报名，赶快报名参加吧!'
       no_reference: '暂时还没有人推荐此活动，赶快推荐一下吧!'
+      joined_events_link: '我参加的活动(%{count})'
+      recommended_events_link: '我推荐的活动(%{count})'
+      friend_joined_events_link: '好友参加的活动(%{count})'
+      friend_recommended_events_link: '好友推荐的活动(%{count})'  
+      joined_events: '我参加的活动'
+      recommended_events: '我推荐的活动'
+      friend_joined_events: '好友参加的活动'
+      friend_recommended_events: '好友推荐的活动'
+      my_events: '我的活动'
+      remove_type:
+        joined: '参加'
+        recommended: '推荐'
  
   items:
       items_list: "所有项目"
