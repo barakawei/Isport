@@ -6,7 +6,8 @@
       .span-15
         %h1= t 'items.items_list' 
       .span-3.last
-        = link_to t('items.new_item'), new_item_path, :class => 'butten new_item'
+        - if is_admin
+          = link_to t('items.new_item'), new_item_path, :class => 'butten new_item'
     .span-18
       .dash_top
     .span-18

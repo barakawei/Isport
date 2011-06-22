@@ -3,9 +3,20 @@ class ItemsController < ApplicationController
 
   EVELIMIT = 8
   ACTLIMIT = 8
+  ITELIMIT = 3
+
+  def myitems
+    @items = current_user.person.interests 
+
+    respond_to do |format|
+      format.html # myitems.html.haml
+      format.xml  { render :xml => @items }
+    end
+  end
 
   def index
     @items = Item.all
+    @myitems = current_user.person.interests.slice(0, ITELIMIT) 
 
     respond_to do |format|
       format.html # index.html.erb

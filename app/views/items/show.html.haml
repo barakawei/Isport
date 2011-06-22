@@ -4,7 +4,7 @@
   .span-17
     .span-5
       = item_image_tag(@item, :thumb_large)
-    .span-7.prepend-1.left_padding.right_border
+    .span-7.left_padding.right_border
       %h2= @item.name
       %p#notice= notice
       %p
@@ -20,8 +20,14 @@
           = link_to t('items.unlike'), url_for(:action=> "remove_fan", :id => @item.id), :class => "button" 
         %br
           = t('items.unlikeinfo')
+      %br
+        = t('items.all')
+        = @item.fans.size
+        = t('items.fans')
     .span-17
-      = link_to t('items.edit'), edit_item_path(@item), :class => "button"
+      - if is_admin
+        = link_to t('items.edit'), edit_item_path(@item), :class => "button"
+
       = link_to t('items.back'), items_path, :class => "button"
       .dash_bottom
     .span-17
