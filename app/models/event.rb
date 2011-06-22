@@ -2,19 +2,24 @@ class Event < ActiveRecord::Base
   COMMENT_PER_PAGE = 5 
   SORT_BY_STARTTIME = "by_starttime"
   SORT_BY_POPULARITY= "by_popularity"
+  PARTICIPANTS_LIMIT_MIN = 0
+  PARTICIPANTS_LIMIT_MAX = 100 
 
   attr_accessor :same_day, :current_year
   validates_presence_of :title, :start_at, :description, :location, :subject_id,
+                        :participants_limit,
                         :message => I18n.t('activerecord.errors.messages.blank')
   
   validates_length_of :title, :maximum => 30
   validates_length_of :description, :maximum => 800
-  validates :start_at, :date => { :after => Proc.new { Time.now }, 
-                                  :message => I18n.t('activerecord.errors.event.start_at.after')} 
-                       
+  validates_numericality_of :participants_limit, :only_integer => true,
+                            :greater_than => PARTICIPANTS_LIMIT_MIN,
+                            :less_than_or_equal_to => PARTICIPANTS_LIMIT_MAX
+
   validates :end_at, :date => { :after => :start_at,
                                 :message => I18n.t('activerecord.errors.event.end_at.after')}
 
+  validate :participants_limit_cannot_be_less_than_current_participants
 
   belongs_to :person
   has_many :involvements, :dependent => :destroy
@@ -75,6 +80,26 @@ class Event < ActiveRecord::Base
                                          :per_page => COMMENT_PER_PAGE) 
   end 
 
+  def participants_full? 
+    self.participants_limit <=  self.participants.size 
+  end
+
+  def participants_remained
+    self.participants_limit - self.participants.size
+  end
+
+  def ongoing?
+    self.start_at <= Time.now  && self.end_at > (Time.now)
+  end
+
+  def over?
+    self.end_at < Time.now
+  end
+
+  def not_started?
+    self.start_at > Time.now
+  end
+
   private
     
   def default_url(size)
@@ -84,5 +109,10 @@ class Event < ActiveRecord::Base
         when :thumb_small   then "/images/event/event_small.jpg"
      end
   end
+  
+  def participants_limit_cannot_be_less_than_current_participants
+    if self.participants_limit < self.participants.size
+      errors.add(:participants_limit, I18n.t('activerecord.errors.event.participants_limit.less_than_current'));
+    end
+  end
 end
-

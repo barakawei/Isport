@@ -161,8 +161,8 @@ class EventsController < ApplicationController
   def add_participant
     @event = Event.find(params[:id])
     @event.participants << current_user.person
-    
-    redirect_to(event_url(@event))
+
+    redirect_to :back
   end
 
   def remove_participant
@@ -309,4 +309,5 @@ class EventsController < ApplicationController
       end
     end
   end
+
 end

@@ -57,4 +57,34 @@ module EventsHelper
                                         :action => "remove_reference", :id => event.id), :class => "button" 
     end 
   end
+
+  def event_application_link(event)
+    unless is_participant_of(event) 
+      if event.ongoing?
+        "<h4 class=\"top\">#{I18n.t('events.ongoing.application_stopped')}</h4>".html_safe 
+      elsif event.over?
+        "<h4 class=\"top\">#{I18n.t('events.over.application_stopped')}</h4>".html_safe 
+      elsif event.participants_full? 
+        "<h4 class=\"top\">#{I18n.t('events.participants_full')}</h4>".html_safe  
+      else
+        "<p>#{link_to t('events.apply'), url_for(:action=> "add_participant", :id => event.id), :class => "button"
+  }</p>".html_safe  
+      end
+    else
+      ("<h4 class=\"top\">#{I18n.t('events.involved')}</h4>" +
+      "<p>#{link_to t('events.cancel_apply'), 
+            url_for(:action=> "remove_participant", 
+            :id => event.id), :class => "button"}</p>").html_safe
+    end
+  end
+  def event_status(event)
+    status = if event.ongoing?  
+              I18n.t('events.status.ongoing')
+             elsif event.over?  
+              I18n.t('events.status.over')
+             else 
+              I18n.t('events.status.not_started'); 
+             end
+  end
+
 end

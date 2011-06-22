@@ -14,11 +14,13 @@
   .hot_event .pic {
     margin-left: 20px;
     margin-right: 20px; }
+  .hot_event .operation {
+    height: 100px; }
   .hot_event .owner a {
     display: inline-block;
     vertical-align: top; }
-  .hot_event .nav a {
-    display: inline-block; }
+  .hot_event .owner .nav a {
+    display: block; }
   .hot_event .hot_title {
     display: block;
     margin: 0 0 10px 20px; }

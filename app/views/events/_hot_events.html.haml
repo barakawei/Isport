@@ -18,17 +18,22 @@
       = hottest_event.item.name
     %p.blue
       - if hottest_event.participants.size > 0
-        = t('events.short_involvement', :count => hottest_event.participants.size) + ","
+        = t('events.short_involvement', :count => hottest_event.participants.size)  
       - if hottest_event.references.size > 0
-        = t('events.short_recommendation', :count => hottest_event.references.size)+ ","
+        = "," + t('events.short_recommendation', :count => hottest_event.references.size)
       - if hottest_event.comments.size > 0
-        = t('events.comments_count', :count => hottest_event.comments.size)
-  .span-4.last.owner
-    %b= t('events.event_owner')+":"
-    %p
-      = person_image_link(hottest_event.person)
-      = link_to hottest_event.person.profile.name, person_path(hottest_event.person)
-    %span.nav.right
-      = link_to "<", "#", :class => "pre"
-      = link_to ">", "#", :class => "next"
+        = "," + t('events.comments_count', :count => hottest_event.comments.size)
+  .span-4.last
+    .span-4.operation
+      = event_application_link(hottest_event)
+    .span-4.owner
+      .span-3
+        %b= t('events.event_owner')+":"
+        %p
+          = person_image_link(hottest_event.person)
+          = link_to hottest_event.person.profile.name, person_path(hottest_event.person)
+      .span-1.last
+        %span.nav.right
+          = link_to "^", "#", :class => "pre"
+          = link_to "v", "#", :class => "next"
 

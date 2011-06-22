@@ -99,10 +99,20 @@ zh:
       friend_joined_events: '好友参加的活动'
       friend_recommended_events: '好友推荐的活动'
       my_events: '我的活动'
+      remained_participants: '剩余名额'
       remove_type:
         joined: '参加'
         recommended: '推荐'
- 
+      participants_full: '人数已满,报名停止'
+      ongoing:
+        application_stopped: '活动在进行中,报名停止'
+      over:
+        application_stopped: '活动已结束,报名停止'
+      status:
+        ongoing: '进行中'
+        over: '已结束'
+        participants_full: '未开始(已报满)'
+        not_started: '未开始'
   items:
       items_list: "所有项目"
       new_item: "添加项目"

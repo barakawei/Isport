@@ -27,7 +27,6 @@
     = event.item.name
   %p
     %br
-    - if event.participants.size > 0
-      = t('events.short_involvement', :count => event.participants.size) + ", "
-    - if event.references.size > 0
-      = t('events.short_recommendation', :count => event.references.size)
+    = event_status(event)
+    = ": " + t('events.short_involvement', :count => event.participants.size) + ", "
+    = t('events.short_recommendation', :count => event.references.size)

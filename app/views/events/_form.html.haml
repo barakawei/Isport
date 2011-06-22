@@ -29,6 +29,10 @@
         = f.label t('activerecord.attributes.event.location')+":"
         = f.text_field :location
         = error_on(@event, :location)
+      .field#participants_limit
+        = f.label t('activerecord.attributes.event.participants_limit')+":"
+        = f.text_field :participants_limit
+        = error_on(@event, :participants_limit)
       .field.hide
         = f.text_field :image_url
         = f.text_field :image_url_medium
