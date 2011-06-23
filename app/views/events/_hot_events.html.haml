@@ -1,5 +1,7 @@
 .span-18.hot_event
   %h3.hot_title.blue= "人气活动："
+  .nav_box.left
+    = link_to "<", "#", :class => "pre"
   .span-5.pic
     = event_image_link(hottest_event, :thumb_large)
   .span-8.last.border
@@ -24,16 +26,16 @@
       - if hottest_event.comments.size > 0
         = "," + t('events.comments_count', :count => hottest_event.comments.size)
   .span-4.last
-    .span-4.operation
-      = event_application_link(hottest_event)
-    .span-4.owner
-      .span-3
-        %b= t('events.event_owner')+":"
-        %p
-          = person_image_link(hottest_event.person)
-          = link_to hottest_event.person.profile.name, person_path(hottest_event.person)
-      .span-1.last
-        %span.nav.right
-          = link_to "^", "#", :class => "pre"
-          = link_to "v", "#", :class => "next"
+    .span-3
+      .span-3.operation
+        = event_application_link(hottest_event)
+      .span-3.owner
+        .span-3
+          %b= t('events.event_owner')+":"
+          %p
+            = person_image_link(hottest_event.person)
+            = link_to hottest_event.person.profile.name, person_path(hottest_event.person)
+    .span-1.last
+      %div.nav_box.right
+        = link_to ">", "#", :class => "next right"
 

@@ -40,6 +40,7 @@ module EventsHelper
     when "alltime" 
       events_alltime_path(item_id, sort_type) 
     else
+      events_date_selected_path(time_filter_path.to_s, item_id, sort_type)
     end  
   end
 

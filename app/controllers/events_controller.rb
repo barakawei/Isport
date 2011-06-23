@@ -20,6 +20,7 @@ class EventsController < ApplicationController
   end
 
   def events_today
+    @time_filter_path = TIME_FILTER_TODAY
     get_filters   
     user_favorites_item_events("today")
     @events = (@item_filter == nil) ? Event.today.order("start_at asc")
@@ -28,7 +29,6 @@ class EventsController < ApplicationController
     process_event_time
     filte_by_popularity
     render :action => "index"
-    @time_filter_path = TIME_FILTER_TODAY
   end
 
   def events_in_this_week
@@ -40,6 +40,18 @@ class EventsController < ApplicationController
     get_my_events
     process_event_time
     filte_by_popularity
+    render :action => "index"
+  end
+
+  def events_at_date_selected
+    date = params[:date].to_date
+    user_favorites_item_events(date.to_s)
+    @events = (@item_filter == nil) ? Event.on_date(date).order("start_at asc")
+                                    : Item.find(@item_filter).events.on_date(date).order("start_at asc")
+    get_my_events
+    process_event_time
+    filte_by_popularity
+    @time_filter_path = date.to_s 
     render :action => "index"
   end
 
@@ -293,6 +305,8 @@ class EventsController < ApplicationController
       when "alltime" 
         @favorite_items.each  {|item| @item_event_size << item.events.size }
       else
+        date = time_filter_path.to_date
+        @favorite_items.each  {|item| @item_event_size << item.events.on_date(date).size }
       end  
     end
   end

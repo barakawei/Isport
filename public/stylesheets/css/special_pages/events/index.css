@@ -5,14 +5,19 @@
   .event_item .title {
     white-space: nowrap; }
 
+.item_next {
+  margin-right: -800px; }
+
 .hot_event {
   background-color: #ebf3f7;
   padding: 10px 0px 20px 0px;
   margin-bottom: 5px; }
+  .hot_event .nav_box {
+    width: 20px;
+    padding-top: 80px; }
   .hot_event p {
     margin-bottom: 10px; }
   .hot_event .pic {
-    margin-left: 20px;
     margin-right: 20px; }
   .hot_event .operation {
     height: 100px; }

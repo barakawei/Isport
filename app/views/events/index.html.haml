@@ -56,20 +56,41 @@
     $("#date").hover(function() {
       $(this).toggleClass('underline');  
     });
+    fill_dateinput();
   });
 
-  $('.hot_event .nav .pre').click(function() {
-    $('.hot_event:last').css({'margin-top': 0, 'margin-bottom': '5px'})
+  $('.hot_event .nav_box .pre').click(function() {
+    $('.hot_event:first').css({'float': 'right'});
+    $('.hot_event:last').css({'margin-left': '-800px' });
     $('.hot_event:first').before($('.hot_event:last'));
-    $('.hot_event:first').css('margin-top', '-500px');
-    $('.hot_event:first').animate({marginTop: '0px', marginBottom: '5px'}, 300);
+    $('.hot_event:first').next().animate({marginRight: '-800px'}, 300, function(){
+      $('.hot_event:first').next().css({'float': 'left', 'marginRight': '10px',
+                                        'marginLeft': '0px'});
+    });
+    $('.hot_event:first').animate({marginLeft: '0px'}, 300);
     return false;
   });
 
-  $('.hot_event .nav .next').click(function() {
-    $('.hot_event:first').animate({marginTop: '-300px'}, 300, function() {
+  $('.hot_event .nav_box .next').click(function() {
+    $('.hot_event').next().css({'margin-right': '-800px', 'margin-left': '0px'});
+    $('.hot_event:first').animate({marginLeft: '-800px'}, 300, function() {
       $('.hot_event:last').after($('.hot_event:first'));
-      $('.hot_event:last').css({'margin-top': 0, 'margin-bottom': '5px'});
+      $('.hot_event:last').css({'margin-right': '10px', 'margin-left': '0px'});
     });
+    $('.hot_event').next().animate({marginRight: '10px'}, 300);
     return false;
   });
+
+  $('input#date').change(function() {
+    var path = "/events/"+ $('input#date').val() + "/#{@sort_filter}"
+    $(location).attr('href', path);
+    return false;
+  });
+
+  function fill_dateinput() {
+    var datestr = "#{@time_filter_path}";
+    var s = datestr.split("-")
+    if (s.length == 3) {
+      $('#date').val(datestr);
+    }
+  }

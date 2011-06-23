@@ -41,6 +41,7 @@ class Event < ActiveRecord::Base
 
   scope :today, lambda { where("start_at >= ? and start_at <= ?", Time.now.beginning_of_day, Time.now.end_of_day) }
   scope :weekends, lambda {where("DAYOFWEEK(start_at) = 7 or DAYOFWEEK(start_at) = 1") }
+  scope :on_date, lambda {|date| where("start_at >= ? and start_at <= ?", date.beginning_of_day, date.end_of_day )}
 
   def self.update_avatar_urls(params,url_params)
       event = find(params[:photo][:model_id])
