@@ -29,12 +29,11 @@
         = link_to t('items.edit'), edit_item_path(@item), :class => "button"
 
       = link_to t('items.back'), items_path, :class => "button"
-      .dash_bottom
+      .dash_middle
     .span-17
       .span-2.left_close
         %h4
-          =@item.name
-          = t('items.mavin')
+          =@item.name + t('items.mavin')
       .span-12.left_close
         %span.detail= t('items.mavinfo')
       %br
@@ -52,16 +51,14 @@
           .span-2.left_padding
             = event_image_link(event, :thumb_small) 
           .span-3.last
-            %span.detail= l(event.start_at, :format => :short)
-            %br
-            %span.detail= t('events.location')+":"
-            =event.location
-            %br
-            - if event.participants.size > 0
-              = t('events.short_involvement', :count => event.participants.size) + ", "
-            - if event.references.size > 0
-              = t('events.short_recommendation', :count => event.references.size)
-            .dash_top
+            %span.eveinfo= l(event.start_at, :format => :short)
+            %span.eveinfo= t('events.location')+":"+ event.location
+            %span.eveinfo
+              - if event.participants.size > 0
+                = t('events.short_involvement', :count => event.participants.size) + ", "
+              - if event.references.size > 0
+                = t('events.short_recommendation', :count => event.references.size)
+                .dash_top
         %br
 
 

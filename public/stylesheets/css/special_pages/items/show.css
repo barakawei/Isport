@@ -5,35 +5,80 @@
 
 .dash_top {
   border-bottom: 1px dashed #DDDDDD;
-  margin-bottom: 10px; } 
+  margin-bottom: 10px; 
+  margin-left: 20px; } 
+
+.dash_middle {
+  border-bottom: 1px dashed #DDDDDD;
+  margin-bottom: 10px; 
+  margin-top: 10px; 
+}
 
 .dash_bottom {
   border-bottom: 1px dashed #DDDDDD;
-  margin-bottom: 10px; 
-  margin-top: 10px; }
+  margin-bottom: 0px; }
 
 .left_padding {
   padding-left: 14px; }
 
-.right_padding {
-  padding-right: 0px; }
+.right_float {
+  float: right; }
 
 .left_close {
   padding-left: 0px;  
 }
 
-span.title {
-  width: 120px;
-  overflow: hidden;
-  text-align: left;
-  margin-bottom: 0px;
-  height: 20px; 
+.myitemlist{
+  margin-top: 30px;
 }
 
-span.detail{
-  width: 120px;
-  overflow: hidden;
-  text-align: right;
-  margin-bottom: 0px;
-  height: 20px; 
+.image {
+  float: left;
+  width: 200px;
 }
+
+.imageitem {
+  float: left;
+}
+
+.imageboard {
+  float:left;
+  width: 800px;
+}
+
+.iteminfo {
+  float: left;
+  width: 200px;
+}
+
+span.title {
+  overflow: show;
+  text-align: left;
+  float: left;
+  display: inline;
+  height: 20px; }
+
+span.detail {
+  overflow: hidden;
+  float: right;
+  text-align: right; 
+  white-space:nowrap;
+  margin-right: 10px; }
+
+span.eveinfo {
+  overflow: hidden;
+  float: right;
+  white-space:nowrap;
+  width: 120px; 
+  position:relative;
+  text-align: right; }
+
+span.itemsg {
+  overflow: hidden;
+  float: right;
+  white-space:nowrap;
+  width: 80px; 
+  position:relative;
+  text-align: right; }
+
+

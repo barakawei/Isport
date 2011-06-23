@@ -12,10 +12,8 @@
           = item_image_link(item, :size => :thumb_medium)
         %br
         .span-3
-          = link_to item.name, item, :class => "nounderline"
-          %span.detail
-            =item.fans.size
-            = t ('items.fans')
+          %span.title= link_to item.name, item, :class => "nounderline"
+          %span.detail=item.fans.size.to_s + t('items.fans')
 
 :javascript
   $(function() {
