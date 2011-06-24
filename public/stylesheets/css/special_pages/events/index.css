@@ -1,5 +1,6 @@
 .event_item {
-  overflow: hidden; }
+  overflow: hidden;
+  height: 140px; }
   .event_item p {
     margin: 0; }
   .event_item .title {
@@ -36,12 +37,10 @@
   padding: 20px; }
 
 .filter_bar h4, .filter_bar h2 {
-  display: inline-block;
+  display: inline;
   margin-bottom: 0; }
 .filter_bar h2 {
   margin-right: 20px; }
-.filter_bar a {
-  display: inline-block; }
 
 #date {
   border: none;

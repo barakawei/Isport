@@ -36,6 +36,7 @@ zh:
     sort:
       by_starttime: "按开始时间排序"
       by_popularity: "按人气排序" 
+  inbox: "信箱"
   registrations: 
     new: 
       enter_email: "输入电子邮箱"

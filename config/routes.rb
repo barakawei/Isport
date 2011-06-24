@@ -2,12 +2,18 @@ Isport::Application.routes.draw do
   devise_for :users, :controllers => { :registrations => "registrations" }
   resources :contacts
   resources :profiles
-  resources :people
   resources :posts
   resources :photos
   resources :requests
   resources :comments
   resources :items
+
+  resources :conversations do
+    resources :messages, :only => [:create, :show]
+    delete 'visibility' => 'conversation_visibilities#destroy'
+  end
+  
+  resources :conversation_visibilities
 
   root :to => "home#index"
   resource :user, :only => [:edit, :update, :destroy] 
@@ -15,7 +21,10 @@ Isport::Application.routes.draw do
     match 'friends_request' => :friends_request
     match 'show_friends' => :show_friends
   end
-   controller :users do
+  match '/people/friend_select' => 'people#friend_select'
+  resources :people
+
+  controller :users do
     match 'getting_started' => :getting_started, :as => 'getting_started'
   end
 

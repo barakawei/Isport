@@ -1,5 +1,51 @@
-.span-15.append-2
-  #events
-    enents list
-.span-7.last
-  = render 'people/person_list'
+.span-8
+  .avatar
+    =person_image_tag(@person,:thumb_large )
+  .information{ :style =>"border-top: 1px solid #CCCCCC" }
+.span-10
+  #content
+    %h2=@person.name
+  .action
+    -if @contact && !@contact.pending
+      .button.remove_friend
+        = link_to t( 'remove_friend' ),{:controller => 'contacts', :action => 'remove_friend',:person_id => @person.id}
+    -elsif @request
+      =t('pending_request')
+    -elsif  (@contact && @contact.pending)
+      .button.incoming_request
+        =link_to t('incoming_request'),{:controller => 'contacts',:action => 'new',:person_id => person.id}
+    -else
+      .button.add_friend
+        =link_to t('start_sharing')
+    .button.private_message
+      ="private message"
+
+.span-6.last
+  #friend_listings
+    - if @contacts.length > 0
+      .contacts
+        %h3{ :style=>"border-bottom: 1px solid #CCCCCC" }
+          =t( 'friends_count',:count => @contacts.length)
+        - for contact in @contacts
+          = person_image_link(contact.person)
+        %h4
+          =link_to t( 'more' ),{:controller => 'people',:action => 'show_friends'}
+    - else
+      =t('no_friends')
+.colorbox_content
+  #add_friend_request
+    %h3="加为好友"
+    = form_for Request.new,:url => { :controller => 'contacts',:action => 'new' } do |r|
+      = r.text_area :message , :rows => 2
+      = r.hidden_field :person_id, :value => @person.id
+      %br
+      = r.submit t('send'), :class => 'button' 
+  #private_message
+    %h3="send message To #{@person.name}"
+
+:javascript
+  $(function(){
+  $(".add_friend").colorbox({ inline:true, href:"#add_friend_request"});		
+  $(".private_message").colorbox({ inline:true, href:"#private_message"});	
+  });
+

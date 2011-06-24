@@ -11,14 +11,13 @@
       %h4.border= link_to_unless_current t('filter.time.alltime'), events_alltime_path(@item_filter, @sort_filter)
       =text_field_tag 'date', t('filter.time.select_time'), :readonly => true, :class => "blue"
   .span-9.last.filter_bar
+    = link_to t('events.new_event'), new_event_path, :class => "new_event right"   
     %span.right
-      %h2
-        %br 
+      %h2=" " 
       %h4.border= link_to_unless_current t('filter.sort.by_starttime'), filter_path(@time_filter_path, @item_filter, "by_starttime")
       %h4.border= link_to_unless_current t('filter.sort.by_popularity'), filter_path(@time_filter_path, @item_filter, "by_popularity") 
-      = link_to t('events.new_event'), new_event_path, :class => "new_event right"   
-.span-24
   %hr
+.span-24
   .span-18
     - if @hottest_events
       .span-18.hot_events

@@ -4,7 +4,33 @@
   :overflow hidden
   :text-align left
   :height 39px
+  :position fixed
+  :z-index 50
+  :width 100%
 
+  .message_count
+    background: url("/images/ui/message_count.png") no-repeat scroll transparent
+    background-position: 0 -240px
+    color: #FFFFFF
+    display: inline-block 
+    height: 21px
+    padding-left: 8px
+    text-shadow: 0 -1px 0 #6FA13C
+    span
+      background: url("/images/ui/message_count.png") no-repeat scroll transparent
+      background-position: 100% -288px
+      display: block
+      text-align: center
+      span
+        background: url("/images/ui/message_count.png") no-repeat scroll transparent
+        background-position: 0 -336px
+        color: #FFFFFF
+        cursor: pointer
+        display: block
+        font-size: 11px
+        line-height: 11px
+        margin-right: 8px
+        padding: 4px 0 6px
   .logo
     :display inline-block
     :float left
@@ -63,6 +89,7 @@
       :position relative
 
 .accout
+  :margin-top 40px
   :position absolute
   :width 52px
   :border 1px solid black

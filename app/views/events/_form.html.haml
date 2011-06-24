@@ -7,10 +7,6 @@
         = f.label t('activerecord.attributes.event.title') +":"
         = f.text_field :title
         = error_on(@event, :title)
-      .field.subject
-        = f.label t('activerecord.attributes.event.subject') +":"
-        = collection_select(:event, :subject_id, Item.all, :id, :name, {:prompt => true})
-        = error_on(@event, :subject_id)
       .field
         = f.label t('activerecord.attributes.event.start_at')+":"
         .top
@@ -22,13 +18,17 @@
           = f.datetime_select :end_at
         = error_on(@event, :end_at)
       .field
-        = f.label t('activerecord.attributes.event.description')+":"
-        = f.text_area :description
-        = error_on(@event, :description)
-      .field
         = f.label t('activerecord.attributes.event.location')+":"
         = f.text_field :location
         = error_on(@event, :location)
+      .field
+        = f.label t('activerecord.attributes.event.description')+":"
+        = f.text_area :description
+        = error_on(@event, :description)
+      .field.subject
+        = f.label t('activerecord.attributes.event.subject') +":"
+        = collection_select(:event, :subject_id, Item.all, :id, :name, {:prompt => true})
+        = error_on(@event, :subject_id)
       .field#participants_limit
         = f.label t('activerecord.attributes.event.participants_limit')+":"
         = f.text_field :participants_limit
