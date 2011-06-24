@@ -76,6 +76,16 @@ class ItemsController < ApplicationController
     end
   end
 
+  def delete
+    @item = Item.find(params[:id])
+    if @item.events.size == 0
+      @item.destroy
+      redirect_to(items_url)
+    else
+      redirect_to(edit_item_path(@item), :notice => 'Can not delete item with events, Delete events first!')
+    end
+  end
+
   def add_fan
     @item = Item.find(params[:id])
     @item.fans << current_user.person
