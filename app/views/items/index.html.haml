@@ -1,14 +1,38 @@
+-content_for :head do
+  = include_stylesheets :sepcial_pages_items_show, :media => 'all'
 .span-24.prepend-top
-  .span-21
-    %h1= t 'items.items_list' 
-  .span-3.last
-    = link_to t('items.new_item'), new_item_path, :class => 'butten new_item'
-.span-24
-  %hr
-  - @items.each_with_index do |item, index|
-    .span-6.last.append-bottom
-      %h3= link_to item.name, item, :class => "nounderline"
-      = render "item_detail", :item => item      
+  .imageboard
+    .left
+      .span-15
+        %h1= t 'items.items_list' 
+      .span-3.last
+        - if is_admin
+          = link_to t('items.new_item'), new_item_path, :class => 'butten new_item'
+    .imageboard
+      .dash_top
+    .imageboard
+      - @items.each_with_index do |item, index|
+        .image
+          .image
+            = item_image_link(item, :size => :thumb_large)
+          %br
+          .iteminfo
+            %span.title= link_to item.name, item, :class => "nounderline"
+            %span.detail=item.fans.size.to_s + t('items.fans')
+  .span-4.myitemlist.last
+    .span-4.left_padding
+      %h4= link_to t('items.myitems'), myitems_path, :class => "nounderline"
+    .span-4
+      - @myitems.each_with_index do |item, index|
+        .span-4
+          .left.left_padding
+            = item_image_link(item, :size => :thumb_small)
+          %span.itemsg= link_to item.name, item, :class => "nounderline"
+          %br
+          %span.itemsg= item.fans.size.to_s + t('items.fans')
+          %br
+          .dash_top
+        %br
 
 :javascript
   $(function() {

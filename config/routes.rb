@@ -21,6 +21,7 @@ Isport::Application.routes.draw do
     match 'friends_request' => :friends_request
     match 'show_friends' => :show_friends
   end
+
   match '/people/friend_select' => 'people#friend_select'
   resources :people
 
@@ -30,6 +31,10 @@ Isport::Application.routes.draw do
 
   controller :contacts do
     match 'remove_friend' => :remove_friend
+  end
+
+  controller :items do
+    match 'myitems' => :myitems, :as => 'myitems'
   end
 
   controller :events do

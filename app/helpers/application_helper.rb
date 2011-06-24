@@ -31,9 +31,20 @@ module ApplicationHelper
     end
   end
 
-  def event_image_link(event, size=:thumb_small)
-    return "" if event.nil?
+
+  def event_image_link(event, size)
     link_to event_image_tag(event, size), event_path(event)
+  end
+
+  def item_image_link(item, opts={})
+    return "" if item.nil?
+    if opts[:to] == :photos
+      link_to item_image_tag(item, opts[:size]), item_photos_path(item)
+    else
+      "<a href='/items/#{item.id}'>
+  #{item_image_tag(item, opts[:size])}
+</a>".html_safe
+    end
   end
 
   def person_link(person, opts={})
@@ -47,7 +58,7 @@ module ApplicationHelper
   end
 
   def item_image_tag(item,size=nil)
-    "<img  class=\"avatar\"  src=\"#{item.image_url(size)}\" >".html_safe
+    "<img title=\"#{h(item.name)}\" class=\"avatar\"  src=\"#{item.image_url(size)}\" >".html_safe
   end
 
   def pagination_options(param_name, param)

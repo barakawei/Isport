@@ -127,6 +127,11 @@ zh:
       unlike: "不再喜欢"
       unlikeinfo: "不再喜欢，我们将不再向您推荐属于此项目的活动"
       events: "近期活动"
+      mavin: "达人"
+      mavinfo: "想成为项目达人吗？更多的组织活动，更多的参加活动，你也可以！"
+      all: "共有"
+      fans: "位粉丝"
+      myitems: "我的项目"
 
   pagination:
     previous: "上一页"

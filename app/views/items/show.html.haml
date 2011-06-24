@@ -4,7 +4,7 @@
   .span-17
     .span-5
       = item_image_tag(@item, :thumb_large)
-    .span-7.prepend-1.left_padding.right_border
+    .span-7.left_padding.right_border
       %h2= @item.name
       %p#notice= notice
       %p
@@ -20,28 +20,45 @@
           = link_to t('items.unlike'), url_for(:action=> "remove_fan", :id => @item.id), :class => "button" 
         %br
           = t('items.unlikeinfo')
-    %hr
+      %br
+        = t('items.all')
+        = @item.fans.size
+        = t('items.fans')
     .span-17
-      .span-12.left_padding
+      - if is_admin
         = link_to t('items.edit'), edit_item_path(@item), :class => "button"
-        = link_to t('items.back'),  items_path, :class => "button"
+
+      = link_to t('items.back'), items_path, :class => "button"
+      .dash_middle
+    .span-17
+      .span-2.left_close
+        %h4
+          =@item.name + t('items.mavin')
+      .span-12.left_close
+        %span.detail= t('items.mavinfo')
+      %br
+      .span-17
+        -@actors.each_with_index do |person, index|
+          .span-2.left_close
+            = person_image_link(person) 
+            %span.medium_avatar=link_to person.profile.name, person_path(person)
   .span-6.last
     .span-6.left_padding
       %h4= t('items.events')
     .span-6
-      - @item.events.each_with_index do |event, index|
-        .span-2.left_padding
-          = event_image_link(event) 
-        .span-3.right_padding
-          %span.event_detail= l(event.start_at, :format => :short)
-          %br
-          %span.event_detail= t('events.location')+":"
-          =event.location
-          %br
-          - if event.participants.size > 0
-            = t('events.short_involvement', :count => event.participants.size) + ", "
-          - if event.references.size > 0
-            = t('events.short_recommendation', :count => event.references.size)
+      - @events.each_with_index do |event, index|
+        .span-6
+          .span-2.left_padding
+            = event_image_link(event, :thumb_small) 
+          .span-3.last
+            %span.eveinfo= l(event.start_at, :format => :short)
+            %span.eveinfo= t('events.location')+":"+ event.location
+            %span.eveinfo
+              - if event.participants.size > 0
+                = t('events.short_involvement', :count => event.participants.size) + ", "
+              - if event.references.size > 0
+                = t('events.short_recommendation', :count => event.references.size)
+                .dash_top
         %br
 
 

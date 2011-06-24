@@ -1,10 +1,22 @@
 class ItemsController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show ]
 
-  LIMIT = 20
+  EVELIMIT = 8
+  ACTLIMIT = 8
+  ITELIMIT = 3
+
+  def myitems
+    @items = current_user.person.interests 
+
+    respond_to do |format|
+      format.html # myitems.html.haml
+      format.xml  { render :xml => @items }
+    end
+  end
 
   def index
     @items = Item.all
+    @myitems = current_user.person.interests.slice(0, ITELIMIT) 
 
     respond_to do |format|
       format.html # index.html.erb
@@ -14,7 +26,8 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
-    @events = @item.events.where("start_at > Time.now").order("start_at DESC").limit(LIMIT)
+    @events = @item.events.reject{|n| n.start_at.past?}.sort_by{|u| u.start_at}.slice(0, EVELIMIT)
+    @actors = @item.fans.slice(0,ACTLIMIT)
 
     respond_to do |format|
       format.html # show.html.erb
@@ -60,6 +73,16 @@ class ItemsController < ApplicationController
         format.html { render :action => "edit" }
         format.xml  { render :xml => @item.errors, :status => :unprocessable_entity }
       end
+    end
+  end
+
+  def delete
+    @item = Item.find(params[:id])
+    if @item.events.size == 0
+      @item.destroy
+      redirect_to(items_url)
+    else
+      redirect_to(edit_item_path(@item), :notice => 'Can not delete item with events, Delete events first!')
     end
   end
 
