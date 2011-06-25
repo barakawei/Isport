@@ -8,6 +8,8 @@
   width: 60%;
   vertical-align: top;
   padding-right: 0; }
+.event_form #event_participants_limit {
+  width: 50px; }
 .event_form textarea {
   width: 60%;
   padding: 0;

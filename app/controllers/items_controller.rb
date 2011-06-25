@@ -16,7 +16,9 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.all
-    @myitems = current_user.person.interests.slice(0, ITELIMIT) 
+    if current_user
+      @myitems = current_user.person.interests.slice(0, ITELIMIT) 
+    end
 
     respond_to do |format|
       format.html # index.html.erb

@@ -12,7 +12,7 @@
   .span-17
     .span-5.event_pic
       = event_image_tag(@event, :thumb_large)
-    .span-8.last
+    .span-8.last.event_info
       %p
         %b= t('events.start_at')+":"
         = l(@event.start_at, :format => :long)
@@ -28,14 +28,13 @@
       %p
         %b= t('events.event_owner')+":"
         = link_to @event.person.profile.name, person_path(@event.person)
+      %p
+        %b= t('activerecord.attributes.event.participants_limit')+":"
+        = @event.participants_limit
+        %b= ",  " + t('events.remained_participants')
+        = @event.participants_limit - @event.participants.size
     .span-3.last.left_border
-      - unless is_participant_of(@event)  
-        %p
-          = link_to t('events.apply'), url_for(:action=> "add_participant", :id => @event.id), :class => "button"
-      - else
-        %h4.top= t('events.involved')
-        %p
-          = link_to t('events.cancel_apply'), url_for(:action=> "remove_participant", :id => @event.id), :class => "button"
+      = event_application_link(@event) 
       - unless is_reference_of(@event)
         %p.bottom
           = link_to t('events.recommend'), 

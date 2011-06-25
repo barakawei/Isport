@@ -8,6 +8,7 @@
     .post_show.span-15
       = person_image_link(person)
       .content
+        %hr
         %span.comment_line.name
           = link_to person.name, person_path(person) 
           %span.grey

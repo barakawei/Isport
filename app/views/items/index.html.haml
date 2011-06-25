@@ -19,20 +19,21 @@
           .iteminfo
             %span.title= link_to item.name, item, :class => "nounderline"
             %span.detail=item.fans.size.to_s + t('items.fans')
-  .span-4.myitemlist.last
-    .span-4.left_padding
-      %h4= link_to t('items.myitems'), myitems_path, :class => "nounderline"
-    .span-4
-      - @myitems.each_with_index do |item, index|
-        .span-4
-          .left.left_padding
-            = item_image_link(item, :size => :thumb_small)
-          %span.itemsg= link_to item.name, item, :class => "nounderline"
+  - if current_user
+    .span-4.myitemlist.last
+      .span-4.left_padding
+        %h4= link_to t('items.myitems'), myitems_path, :class => "nounderline"
+      .span-4
+        - @myitems.each_with_index do |item, index|
+          .span-4
+            .left.left_padding
+              = item_image_link(item, :size => :thumb_small)
+            %span.itemsg= link_to item.name, item, :class => "nounderline"
+            %br
+            %span.itemsg= item.fans.size.to_s + t('items.fans')
+            %br
+            .dash_top
           %br
-          %span.itemsg= item.fans.size.to_s + t('items.fans')
-          %br
-          .dash_top
-        %br
 
 :javascript
   $(function() {

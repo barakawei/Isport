@@ -11,12 +11,15 @@ zh:
         person: '发起人'
         location: '地点'
         ispublic: '是否公开'
+        participants_limit: '人数上限'
     errors:
       event:
         start_at: 
           after: '必须晚于当前时间'
         end_at:
           after: '必须晚于开始时间' 
+        participants_limit:
+          less_than_current: '不能小于已报名人数'
     operations:
       event:
         cancel: '取消活动'
