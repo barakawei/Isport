@@ -3,13 +3,26 @@ class Contact < ActiveRecord::Base
   belongs_to :user
   belongs_to :person
   
-  def dispatch_request( message )
-    request = self.generate_request( message )
-    request
+  scope :sharing, lambda {
+    where(:sharing => true)
+  }
+
+  scope :receiving, lambda {
+    where(:receiving => true)
+  }
+  
+  
+  def mutual?
+    self.sharing && self.receiving
+  end
+  
+  def dispatch_request
+    request = self.generate_request
+    Dispatch.new(self.user, request).started_sharing
   end
 
-  def generate_request( message )
-    Request.new(:message => message,:sender => self.user.person,:recipient => self.person)
+  def generate_request
+    Request.new(:sender => self.user.person,:recipient => self.person)
   end 
   
 end

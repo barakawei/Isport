@@ -8,7 +8,8 @@ class HomeController < ApplicationController
       end
       @person = current_user.person
       @requests_count = Request.where( :recipient_id => @person.id ).count
-      @contacts = current_user.contacts
+      @friends = current_user.friends
+      @followed_people = current_user.followed_people
       @selected = "home"
       render
     end

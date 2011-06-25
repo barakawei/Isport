@@ -8,14 +8,23 @@
       -elsif current_user.person.id == @person.id  && @requests_count != 0 
         = link_to "#{@requests_count}个好友请求",{:controller => 'people', :action => 'friends_request'},:class => 'new friends_request'
 #friend_listings
-  - if @contacts.length > 0
+  - if @friends.length > 0
     .contacts
       %h3
-        =t( 'friends_count',:count => @contacts.length)
-      - for contact in @contacts
-        = person_image_link(contact.person)
+        = "你的好友"
+      - for friend in @friends
+        = person_image_link(friend)
       %h4
         =link_to t( 'more' ),{:controller => 'people',:action => 'show_friends'}
   - else
     =t('no_friends')
+#followed_people
+  - if @followed_people.length > 0
+    .contacts
+      %h3
+        ="关注你的人"
+      - for person in @followed_people
+        = person_image_link(person)
+      %h4
+        =link_to t( 'more' ),{:controller => 'people',:action => 'show_friends'}
 

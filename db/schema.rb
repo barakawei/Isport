@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110614043725) do
+ActiveRecord::Schema.define(:version => 20110623081155) do
 
   create_table "contacts", :force => true do |t|
     t.integer  "user_id"
@@ -18,6 +18,8 @@ ActiveRecord::Schema.define(:version => 20110614043725) do
     t.boolean  "pending",    :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "sharing"
+    t.boolean  "receiving"
   end
 
   add_index "contacts", ["person_id", "pending"], :name => "index_contacts_on_person_id_and_pending"
@@ -54,6 +56,26 @@ ActiveRecord::Schema.define(:version => 20110614043725) do
     t.integer  "person_id"
   end
 
+  create_table "group_members", :force => true do |t|
+    t.integer  "group_id"
+    t.integer  "person_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "groups", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "item_id"
+    t.integer  "person_id"
+    t.integer  "privacy"
+    t.string   "image_url"
+    t.string   "image_url_medium"
+    t.string   "image_url_small"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "involvements", :force => true do |t|
     t.integer  "person_id"
     t.integer  "event_id"
@@ -65,6 +87,23 @@ ActiveRecord::Schema.define(:version => 20110614043725) do
     t.integer  "conversation_id"
     t.integer  "person_id"
     t.text     "text"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "notification_actors", :force => true do |t|
+    t.integer  "notification_id"
+    t.integer  "person_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "notifications", :force => true do |t|
+    t.string   "target_type"
+    t.integer  "target_id"
+    t.integer  "recipient_id"
+    t.string   "type"
+    t.boolean  "unread",       :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -1,11 +1,11 @@
-.span-8
+.span-6
   .avatar
     =person_image_tag(@person,:thumb_large )
   .information{ :style =>"border-top: 1px solid #CCCCCC" }
-.span-10
+.span-12
   #content
     %h2=@person.name
-  .action
+  .action{ :style => "display: none" }
     -if @contact && !@contact.pending
       .button.remove_friend
         = link_to t( 'remove_friend' ),{:controller => 'contacts', :action => 'remove_friend',:person_id => @person.id}

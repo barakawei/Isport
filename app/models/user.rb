@@ -10,7 +10,9 @@ class User < ActiveRecord::Base
   delegate :name,:to => :person
   has_many :contacts
   has_one :profile, :through => :person
-  has_many :friends, :through => :contacts, :source => :person, :conditions => "pending='false'"
+  has_many :friends, :through => :contacts, :source => :person, :conditions => "receiving=true"
+  has_many :followed_people, :through => :contacts, :source => :person,:conditions => "sharing=true"
+
 
   def self.build( opts={} )
     u = User.new( opts )
@@ -24,7 +26,7 @@ class User < ActiveRecord::Base
     self.person = Person.new( opts[ :person ] )
     self
   end
-  
+
   def send_contact_request_to(desired_contact,message)
         contact = Contact.new(:person => desired_contact,
                               :user => self,
@@ -58,6 +60,15 @@ class User < ActiveRecord::Base
     else
       false
     end
+  end
+
+  def share_with( person )
+    contact = self.contacts.find_or_initialize_by_person_id(person.id)
+    unless contact.receiving?
+      contact.receiving = true
+    end
+    contact.save
+    contact
   end
   
 end

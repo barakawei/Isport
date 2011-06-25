@@ -6,6 +6,7 @@ Isport::Application.routes.draw do
   resources :posts
   resources :photos
   resources :requests
+  resources :groups
   resources :conversations do
     resources :messages, :only => [:create, :show]
     delete 'visibility' => 'conversation_visibilities#destroy'
