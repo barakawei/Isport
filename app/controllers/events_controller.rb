@@ -128,6 +128,12 @@ class EventsController < ApplicationController
   def edit
     @event = Event.find(params[:id])
     @items = Item.find(:all, :select => 'id, name')
+    if params[:target] == "members"
+      @participants = (@event.participants.order("created_at ASC") || [ ]) 
+      @friends = current_user.friends
+      @friend_participants = @participants & @friends
+      @other_participants = @participants - @friend_participants  
+    end
   end
 
   def create

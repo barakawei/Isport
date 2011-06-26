@@ -114,6 +114,9 @@ zh:
         over: '已结束'
         participants_full: '未开始(已报满)'
         not_started: '未开始'
+      edit:
+        event_info: '活动信息'
+        event_members: '活动成员'
   items:
       items_list: "所有项目"
       new_item: "添加项目"

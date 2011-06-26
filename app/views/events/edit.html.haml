@@ -4,13 +4,19 @@
 - content_for :head do
   = include_stylesheets :forms, :media => 'all'
 .span-24
-  .span-17
+  .span-17.title_bar
     %h2.title= t('events.edit_event') 
+    %h4.border= link_to_unless_current t("events.edit.event_info"), edit_event_path(@event);
+    %h4= link_to_unless_current  t("events.edit.event_members"), edit_members_path(@event, "members");
   .span-7.last
     = link_to t('back'), "#", :class => "button back right" 
     = link_to "取消活动",  "#cancel_event_request", :class => "button cancel_event right", :rel => 'facebox'
   %hr    
-= render 'form', :is_edit => true 
+- if @participants.nil?
+  = render 'form', :is_edit => true 
+- else
+  = render :partial => 'edit_event_members', :locals => { :friend_participants => @friend_participants,
+                                              :other_participants => @other_participants}
 
 .facebox_content.hide
   #cancel_event_request

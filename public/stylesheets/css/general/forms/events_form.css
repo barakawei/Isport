@@ -1,3 +1,6 @@
+.left_margin {
+  margin-left: 10px; }
+
 #file-upload {
   width: 100px;
   overflow: hidden; }
@@ -5,6 +8,8 @@
 .event_form .top {
   display: inline;
   margin: 0; }
+.event_form .edit_members_bar h4 {
+  display: inline; }
 .event_form input#event_title, .event_form input#event_location {
   width: 60%;
   padding-right: 0; }

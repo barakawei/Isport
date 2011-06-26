@@ -1,46 +1,47 @@
 .span-24.event_form 
   = form_for @event, :html => { :multipart => true }, do |f|
-    .span-6.border 
+    .span-6.last
       = render "photos/new_event_photo", :event => @event, :is_edit => is_edit, :model_name => "event"
-    .span-17.prepend-1.last
-      .field
-        = f.label t('activerecord.attributes.event.title') +":"
-        = f.text_field :title
-        = error_on(@event, :title)
-      .field
-        = f.label t('activerecord.attributes.event.start_at')+":"
-        .top
-          = f.datetime_select :start_at
-        = error_on(@event, :start_at)
-      .field
-        = f.label t('activerecord.attributes.event.end_at')+":"
-        .top
-          = f.datetime_select :end_at
-        = error_on(@event, :end_at)
-      .field
-        = f.label t('activerecord.attributes.event.location')+":"
-        = f.text_field :location
-        = error_on(@event, :location)
-      .field
-        = f.label t('activerecord.attributes.event.description')+":"
-        = f.text_area :description
-        = error_on(@event, :description)
-      .field.subject
-        = f.label t('activerecord.attributes.event.subject') +":"
-        = collection_select(:event, :subject_id, Item.all, :id, :name, {:prompt => true})
-        = error_on(@event, :subject_id)
-      .field#participants_limit
-        = f.label t('activerecord.attributes.event.participants_limit')+":"
-        = f.text_field :participants_limit
-        = error_on(@event, :participants_limit)
-      .field.hide
-        = f.text_field :image_url
-        = f.text_field :image_url_medium
-        = f.text_field :image_url_small
-      .field.inline
-        = f.label t('activerecord.attributes.event.ispublic')+":"
-        = f.check_box :ispublic
-        %br.clear
-      .field
-        = f.submit t('events.save'), :class => "button"
-      %p 
+    .span-18.left_border.last.form_area
+      .span-17.last.left_margin
+        .field
+          = f.label t('activerecord.attributes.event.title') +":"
+          = f.text_field :title
+          = error_on(@event, :title)
+        .field
+          = f.label t('activerecord.attributes.event.start_at')+":"
+          .top
+            = f.datetime_select :start_at
+          = error_on(@event, :start_at)
+        .field
+          = f.label t('activerecord.attributes.event.end_at')+":"
+          .top
+            = f.datetime_select :end_at
+          = error_on(@event, :end_at)
+        .field
+          = f.label t('activerecord.attributes.event.location')+":"
+          = f.text_field :location
+          = error_on(@event, :location)
+        .field
+          = f.label t('activerecord.attributes.event.description')+":"
+          = f.text_area :description
+          = error_on(@event, :description)
+        .field.subject
+          = f.label t('activerecord.attributes.event.subject') +":"
+          = collection_select(:event, :subject_id, Item.all, :id, :name, {:prompt => true})
+          = error_on(@event, :subject_id)
+        .field#participants_limit
+          = f.label t('activerecord.attributes.event.participants_limit')+":"
+          = f.text_field :participants_limit
+          = error_on(@event, :participants_limit)
+        .field.hide
+          = f.text_field :image_url
+          = f.text_field :image_url_medium
+          = f.text_field :image_url_small
+        .field.inline
+          = f.label t('activerecord.attributes.event.ispublic')+":"
+          = f.check_box :ispublic
+          %br.clear
+        .field
+          = f.submit t('events.save'), :class => "button"
+        %p 

@@ -68,7 +68,8 @@
           url_for(:action => "show_participants", :id => @event.id), :class => "nounderline"
         = t('events.involvement')
       = render :partial => 'event_participants', :locals => { :participants => @participants, 
-                                                              :perline => 3, :no_pagination => true } 
+                                                              :perline => 3, :no_pagination => true,  
+                                                              :edit => false }
     .span-6.last.prepend-top
       -if @event.references.size > 0 
         %h4
