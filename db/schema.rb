@@ -38,6 +38,21 @@ ActiveRecord::Schema.define(:version => 20110622131653) do
   add_index "contacts", ["person_id", "pending"], :name => "index_contacts_on_person_id_and_pending"
   add_index "contacts", ["user_id", "pending"], :name => "index_contacts_on_user_id_and_pending"
 
+  create_table "conversation_visibilities", :force => true do |t|
+    t.integer  "conversation_id"
+    t.integer  "person_id"
+    t.integer  "unread",          :default => 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "conversations", :force => true do |t|
+    t.string   "subject"
+    t.integer  "person_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "events", :force => true do |t|
     t.datetime "start_at"
     t.datetime "end_at"
@@ -78,6 +93,14 @@ ActiveRecord::Schema.define(:version => 20110622131653) do
     t.string   "image_url_large"
     t.string   "image_url_medium"
     t.string   "image_url_small"
+  end
+
+  create_table "messages", :force => true do |t|
+    t.integer  "conversation_id"
+    t.integer  "person_id"
+    t.text     "text"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "people", :force => true do |t|

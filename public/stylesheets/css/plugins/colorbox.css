@@ -27,7 +27,7 @@
     #cboxBottomLeft{width:21px; height:21px; background:url(/images/colorbox/v-border.png) no-repeat scroll -100px -29px transparent;}
     #cboxBottomCenter{height:21px; background:url(/images/colorbox/h-border.png) repeat-x scroll 0 -29px transparent;}
     #cboxBottomRight{width:21px; height:21px; background:url(/images/colorbox/v-border.png) no-repeat scroll -129px -29px transparent;}
-    #cboxMiddleLeft{width:21px; background:url(/images/colorbox/v-border.png) repeat-y scroll left top transparent;}
+    #cboxMiddleLeft{width:21px; background:url(/images/colorbox/v-border.png) repeat-y left top transparent;}
     #cboxMiddleRight{width:21px; background:url(/images/colorbox/v-border.png) repeat-y scroll right top transparent;}
     #cboxContent{background:#fff; overflow:hidden;}
         #cboxError{padding:50px; border:1px solid #ccc;}

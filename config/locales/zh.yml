@@ -36,6 +36,7 @@ zh:
     sort:
       by_starttime: "按开始时间排序"
       by_popularity: "按人气排序" 
+  inbox: "信箱"
   registrations: 
     new: 
       enter_email: "输入电子邮箱"
@@ -113,6 +114,9 @@ zh:
         over: '已结束'
         participants_full: '未开始(已报满)'
         not_started: '未开始'
+      edit:
+        event_info: '活动信息'
+        event_members: '活动成员'
   items:
       items_list: "所有项目"
       new_item: "添加项目"

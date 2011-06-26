@@ -3,13 +3,15 @@
   .span-16#friend_participants
     = render :partial => "event_participants", :locals => { :participants => @paged_friend_participants, 
                                                             :perline => 8, 
-                                                            :pagination_type => "friend_page"} 
+                                                            :pagination_type => "friend_page", 
+                                                            :edit => false }
   .span-16.prepend-top.append-bottom
     %h4= t("events.other_participants", :count => @other_participants.size) + ":"
   .span-16#other_participants
     = render :partial => "event_participants", :locals => { :participants => @paged_other_participants,
                                                             :perline => 8, 
-                                                            :pagination_type => "other_page" }
+                                                            :pagination_type => "other_page",
+                                                            :edit => false }
 .span-7.last
   = link_to t("back"), event_path(@event), :class => "button" 
 

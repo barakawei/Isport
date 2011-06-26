@@ -1,5 +1,8 @@
 -participants.each_with_index do |person, index|
-  .span-2.append-bottom{:class => ("last" if (index+1)%perline == 0)}
+  .span-2{:class => ("last" if (index+1)%perline == 0)}
+    - if edit 
+      %span.left.checkbox
+        = check_box_tag "member_ids", person.id, false, :class => "inline"
     = person_image_link(person) 
     %span.medium_avatar=link_to person.profile.name, person_path(person)
 .span-16.append-bottom

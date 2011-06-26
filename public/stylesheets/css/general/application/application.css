@@ -19,12 +19,12 @@ ol, ul, li {
   list-style: none; }
 
 .container.body {
-  padding-top: 50px; }
+  padding-top: 60px; }
 
 .floating {
-  -webkit-box-shadow: 0 1px 3px #333333;
-  -moz-box-shadow: 0 1px 3px #333333;
-  box-shadow: 0 1px 3px #333333;
+  -webkit-box-shadow: 0 1px 3px 0 #333333;
+  -moz-box-shadow: 0 1px 3px 0 #333333;
+  box-shadow: 0 1px 3px 0 #333333;
   behavior: url(/javascripts/PIE.htc);
   position: relative;
   z-index: 1;
@@ -55,9 +55,9 @@ textarea {
     -webkit-border-radius: 5px;
     border-radius: 5px;
     behavior: url(/javascripts/PIE.htc);
-    -webkit-box-shadow: 0 1px 2px #666666;
-    -moz-box-shadow: 0 1px 2px #666666;
-    box-shadow: 0 1px 2px #666666;
+    -webkit-box-shadow: 0 1px 2px 0 #666666;
+    -moz-box-shadow: 0 1px 2px 0 #666666;
+    box-shadow: 0 1px 2px 0 #666666;
     behavior: url(/javascripts/PIE.htc);
     position: absolute;
     left: 10px;
@@ -73,6 +73,8 @@ h1 .description, h2 .description, h3 .description, h4 .description {
 .stream_element {
   position: relative;
   font-size: 14px; }
+  .stream_element .author {
+    color: #444444; }
   .stream_element .avatar {
     padding: 20px 20px; }
   .stream_element .right {
@@ -116,7 +118,7 @@ label {
   left: 0.48em;
   text-shadow: 0 1px 1px #eeeeee; }
 
-.facebox_content {
+.colorbox_content {
   display: none; }
 
 .result {

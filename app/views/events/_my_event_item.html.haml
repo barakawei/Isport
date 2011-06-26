@@ -1,10 +1,8 @@
-- content_for :head do 
-  = include_stylesheets :sepcial_pages_events_my_event_item, :media => 'all'
 .span-24
   .span-15.event_item.last{:class => (index % 2 == 0) ? "odd": "even" }
     .span-3.pic
       = link_to image_tag(event.image_url(:thumb_medium)), event
-    .span-10.last.description
+    .span-10.description
       %h3.title
         = link_to trim_info(event.title,18), event, :class => "nounderline title"
       %span.participants
@@ -41,14 +39,13 @@
       - if @removable
         = link_to t('operations.delete'), "#remove_event_#{event.id}", :class => "delete right"
 
-    %br 
-
-.facebox_content
-  %div{:id => "remove_event_#{event.id}"}
-    .span-10.box_content
-      %h4= t('activerecord.operations.event.remove_event_from_list', :type => remove_type(@type) )
-      %p
-        = get_link_by_type(@type, event)
+.span-24
+  .facebox_content
+    %div{:id => "remove_event_#{event.id}"}
+      .span-10.box_content
+        %h4= t('activerecord.operations.event.remove_event_from_list', :type => remove_type(@type) )
+        %p
+          = get_link_by_type(@type, event)
  
 :javascript  
   $(function() {

@@ -13,10 +13,10 @@
   behavior: url(/javascripts/PIE.htc);
 }
 
-@mixin box-shadow($left, $top, $blur, $color:#000){
-  -webkit-box-shadow: $left $top $blur $color; 
-  -moz-box-shadow: $left $top $blur $color; 
-  box-shadow: $left $top $blur $color; 
+@mixin box-shadow($left, $top, $blur, $extra,$color:#000){
+  -webkit-box-shadow: $left $top $blur $extra $color; 
+  -moz-box-shadow: $left $top $blur $extra $color; 
+  box-shadow: $left $top $blur $extra $color; 
   behavior: url(/javascripts/PIE.htc);
 }
 

@@ -61,6 +61,13 @@ class PeopleController < ApplicationController
       @contacts = Contact.where( :user_id => @person.user.id ).all 
     end
   end
+
+  def friend_select
+    @friends = current_user.friends
+    respond_to do |format|
+      format.json{ render(:layout => false , :json => {"success" => true, "data" => @friends}.to_json )}
+    end
+  end
 end
 
 

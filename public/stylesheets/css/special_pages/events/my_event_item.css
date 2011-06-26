@@ -1,9 +1,10 @@
 .description p {
   margin-bottom: 0; }
 .description .title {
-  display: inline-block; }
+  display: inline; }
 .description .participants {
-  color: #f6b24d; }
+  color: #f6b24d;
+  display: inline; }
 
 .odd {
   background-color: #f8f8f8; }
@@ -15,6 +16,12 @@
   padding: 10px 0 10px 0; }
   .event_item .pic {
     margin-left: 10px; }
+
+.filter_bar h4, .filter_bar h2 {
+  display: inline;
+  margin-bottom: 0; }
+.filter_bar h2 {
+  margin-right: 20px; }
 
 .box_content {
   padding: 10px 5px 0 5px;

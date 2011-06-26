@@ -1,4 +1,13 @@
 module ApplicationHelper
+  def how_long_ago(obj)
+    timeago(obj.created_at)
+  end
+
+  def timeago(time, options={})
+    options[:class] ||= "timeago"
+    content_tag(:abbr, time.to_s, options.merge(:title => time.iso8601)) if time
+  end
+  
   def owner_image_tag(size=nil)
     person_image_tag(current_user.person, size)
   end

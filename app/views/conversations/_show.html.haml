@@ -1,0 +1,35 @@
+.span-16.last
+  .conversation_participants
+    .span-9
+      %h3
+        = conversation.subject
+
+      .conversation_controls
+        = link_to  '回复', '#new_message'
+        = link_to '删除并中止谈话', conversation_visibility_path(conversation), :method => 'delete',:confirm => "确定删除吗？"
+
+    .span-6.avatars.last
+      - for participant in conversation.participants
+        = person_image_link(participant)
+
+  %br
+  %br
+  %br
+  %br
+.span-16.last
+  .stream
+    = render :partial => 'messages/message', :collection => conversation.messages
+
+    .stream_element.new_message#new_message
+      = owner_image_tag(:thumb_small)
+
+      .content
+        = form_for  [conversation, Message.new] do |message|
+          = message.text_area :text, :rows => 5
+          .right
+            = message.submit '回复', :class => 'button'
+            = message.submit '取消', :name => "reset", :id => "reset_button", :type => "reset", :class => "button"
+
+:javascript
+  $( ".button" ).button( {  } );
+

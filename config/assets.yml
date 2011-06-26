@@ -12,7 +12,11 @@ javascripts:
     - public/javascripts/jquery-ui-1.8.13/js/jquery-ui-1.8.13.custom.min.js
     - public/javascripts/colorbox/jquery.colorbox.js
     - public/javascripts/jquery-ui-1.8.13/development-bundle/ui/i18n/jquery.ui.datepicker-zh-CN.js
-
+    - public/javascripts/autosuggest/jquery.autoSuggest.js
+    - public/javascripts/jquery.timeago.js
+  friend_select:
+    - public/javascripts/fcbk/fcbklistselection.js
+    - public/javascripts/fcbk/friend_select.js
 
 stylesheets:
   blueprint:
@@ -26,6 +30,9 @@ stylesheets:
     - public/stylesheets/css/special_pages/devise_sessions/new.css
     - public/javascripts/jquery-ui-1.8.13/css/custom-theme/jquery-ui-1.8.13.custom.css
     - public/stylesheets/css/plugins/colorbox.css
+    - public/stylesheets/css/plugins/fcbklistselection.css
+    - public/stylesheets/css/plugins/autoSuggest.css
+    - public/stylesheets/css/special_pages/conversations/index.css
 
   forms:
     - public/stylesheets/css/general/forms/events_form.css

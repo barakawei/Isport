@@ -1,0 +1,38 @@
+.span-18.colborder.members
+  %h4.append-bottom= t("events.friend_participants", :count => friend_participants.size) + ":"
+  .span-16
+    = render :partial => "event_participants", :locals => { :participants => friend_participants, 
+                                                            :perline => 8, 
+                                                            :no_pagination => true, 
+                                                            :edit => true}
+  .span-16
+    %h4= t("events.other_participants", :count => @other_participants.size) + ":"
+  .span-16
+    = render :partial => "event_participants", :locals => { :participants => other_participants, 
+                                                            :perline => 8, 
+                                                            :no_pagination => true, 
+                                                            :edit => true}
+.span-5.last
+  = link_to "删除", '#', :class => "button delete" 
+
+.facebox_content.hide
+  #delete_member_request
+    .span-10.box_content
+      %h4= t('activerecord.operations.event.delete_participants')
+      = form_tag involvement_path, :method => 'delete' do
+        = hidden_field_tag :member_ids
+        = hidden_field_tag :event_id, @event.id
+        %br
+        = submit_tag t('activerecord.operations.event.save'), :class => 'button'
+          
+:javascript
+  $('.delete').click(function(){
+    var checked = $('input[type="checkbox"]:checked');
+    var arr = new Array(checked.length); 
+    for(var i=0; i< checked.length; i++) {
+      arr[i] = $(checked[i]).val(); 
+    }
+    $('.facebox_content #member_ids').val(arr);
+    $.colorbox({ inline:true, href:"#delete_member_request", opacity:0.5 });
+    return false;
+  }); 

@@ -1,9 +1,18 @@
+.left_margin {
+  margin-left: 10px; }
+
 #file-upload {
+  width: 100px;
   overflow: hidden; }
 
 .event_form .top {
-  display: inline-block;
+  display: inline;
   margin: 0; }
+.event_form .edit_members_bar h4 {
+  display: inline; }
+.event_form input#event_title, .event_form input#event_location {
+  width: 60%;
+  padding-right: 0; }
 .event_form input:not([type='submit']):not([type='reset']):not([type='checkbox']) {
   width: 60%;
   vertical-align: top;
@@ -27,12 +36,14 @@
 .event_form .subject .field_with_errors {
   width: auto; }
 .event_form .field_with_errors {
-  display: inline-block;
+  display: inline;
   width: 60%; }
+  .event_form .field_with_errors input#event_title, .event_form .field_with_errors input#event_location {
+    width: 60%; }
   .event_form .field_with_errors input:not([type='submit']):not([type='reset']):not([type='checkbox']) {
-    width: 100%; }
+    width: 60%; }
   .event_form .field_with_errors textarea {
-    width: 100%; }
+    width: 60%; }
 .event_form .validation-error {
   margin-left: 15px;
   color: red; }
