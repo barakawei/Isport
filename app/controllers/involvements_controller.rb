@@ -8,4 +8,9 @@ class InvolvementsController < ApplicationController
     end
     redirect_to :back
    end
+
+   def create
+     Involvment.create(:event_id => params[:event_id],
+                       :person_id => current_user.person.id)
+   end
 end

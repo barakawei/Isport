@@ -9,171 +9,64 @@ class EventsController < ApplicationController
   PER_PAGE = 32 
 
   def index
-    get_filters   
-    user_favorites_item_events
-    @hottest_events = hottest_event
-    @events = Event.order("start_at asc")
-    @time_filter_path = TIME_FILTER_WEEK
-    get_my_events
-    process_event_time
-    filte_by_popularity
-  end
-
-  def events_today
-    @time_filter_path = TIME_FILTER_TODAY
-    get_filters   
-    user_favorites_item_events("today")
-    @events = (@item_filter == nil) ? Event.today.order("start_at asc")
-                                    : Item.find(@item_filter).events.today.order("start_at asc")
-    get_my_events
-    process_event_time
-    filte_by_popularity
-    render :action => "index"
-  end
-
-  def events_in_this_week
-    get_filters   
-    user_favorites_item_events("week")
-    @events = (@item_filter == nil) ? Event.this_week.order("start_at asc")
-                                    : Item.find(@item_filter).events.this_week.order("start_at asc")
-    @time_filter_path = TIME_FILTER_WEEK
-    get_my_events
-    process_event_time
-    filte_by_popularity
-    render :action => "index"
-  end
-
-  def events_at_date_selected
-    date = params[:date].to_date
-    user_favorites_item_events(date.to_s)
-    @events = (@item_filter == nil) ? Event.on_date(date).order("start_at asc")
-                                    : Item.find(@item_filter).events.on_date(date).order("start_at asc")
-    get_my_events
-    process_event_time
-    filte_by_popularity
-    @time_filter_path = date.to_s 
-    render :action => "index"
+    events_by_time_filter
+    @hottest_events = hottest_event if params[:time].nil?
   end
 
   def my_events
     @type = params[:type]
     @events = []
-    @removable = false
-    case @type
-    when "joined"
-      @events = current_user.person.involved_events
-      @removable = true
-    when "recommended"
-      @events = current_user.person.recommended_events
-      @removable = true
-    when "friend_joined"
-      current_user.friends.each do |friend|
-        @events += friend.involved_events
-      end
-    when "friend_recommended"
-      current_user.friends.each do |friend|
-        @events += friend.recommended_events
-      end
-    else
-    end
-  end
-
-  def events_at_weekends
-    get_filters   
-    user_favorites_item_events("weekends")
-    @events = (@item_filter == nil) ? Event.weekends.order("start_at asc")
-                                    : Item.find(@item_filter).events.weekends.order("start_at asc")
-    @time_filter_path = TIME_FILTER_WEEKENDS
-    get_my_events
-    process_event_time
-    filte_by_popularity
-    render :action => "index"
-  end
-
-  def events_all_time
-    get_filters   
-    user_favorites_item_events("alltime")
-    @events = (@item_filter == nil) ? Event.order("start_at asc")
-                                    : Item.find(@item_filter).events.order("start_at asc")
-    @time_filter_path = TIME_FILTER_ALL
-    get_my_events
-    process_event_time
-    filte_by_popularity
-    render :action => "index"
+    @removable = (@type == "joined" || @type == "recommended") 
+    @events = current_user.send(@type)
   end
 
   def show
     @event = Event.find(params[:id])
-    @participants = @event.participants.order("created_at DESC").limit(LIMIT)
-    @references = @event.references.order("created_at DESC").limit(LIMIT)
+    @participants = @event.participants_top(LIMIT)
+    @references = @event.references_top(LIMIT)
     @comments = @event.paginated_comments(params[:page])
 
     new_comment
-    
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @event }
-    end
   end
 
   def new
     @event = Event.new
     @items = Item.find(:all, :select => 'id, name')
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @event }
-    end
   end
 
   def edit
     @event = Event.find(params[:id])
     @items = Item.find(:all, :select => 'id, name')
-    if params[:target] == "members"
-      @participants = (@event.participants.order("created_at ASC") || [ ]) 
-      @friends = current_user.friends
-      @friend_participants = @participants & @friends
-      @other_participants = @participants - @friend_participants  
-    end
+  end
+
+  def edit_members
+    @event = Event.find(params[:id])
+    @participants = (@event.participants.order("created_at ASC") || [ ]) 
+    @friends = current_user.friends
+    @friend_participants = @participants & @friends
+    @other_participants = @participants - @friend_participants  
+    render :action => :edit
   end
 
   def create
     @event = Event.new(params[:event])
     @event.person = current_user.person
-    respond_to do |format|
-      if @event.save
-        format.html { redirect_to(@event, :notice => 'Event was successfully created.') }
-        format.xml  { render :xml => @event, :status => :created, :location => @event }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @event.errors, :status => :unprocessable_entity }
-      end
-    end
+    render :action => "new" unless @event.save
   end
 
   def update
     @event = Event.find(params[:id])
-
-    respond_to do |format|
-      if @event.update_attributes(params[:event])
-        format.html { redirect_to(@event, :notice => 'Event was successfully updated.') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @event.errors, :status => :unprocessable_entity }
-      end
+    if @event.update_attributes(params[:event])
+      redirect_to event_path(@event)
+    else
+      render :action => "edit" 
     end
   end
 
-  # DELETE /events/1
-  # DELETE /events/1.xml
   def destroy
     @event = Event.find(params[:id])
     @event.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(events_url) }
-      format.xml  { head :ok }
-    end
+    redirect_to(events_url)
   end
 
   def add_participant
@@ -198,8 +91,6 @@ class EventsController < ApplicationController
     get_references
   end
 
-  
-  
   def paginate_participants
     get_participants
       
@@ -208,7 +99,8 @@ class EventsController < ApplicationController
 
     render '_event_participants', :layout => false,
                                     :locals  =>  {:participants => participants_used, 
-                                                  :perline => 8, :pagination_type => pagination_type } 
+                                                  :perline => 8, :pagination_type => pagination_type,
+                                                   :edit => false} 
   end
 
   def paginate_comments
@@ -236,9 +128,28 @@ class EventsController < ApplicationController
   
   private
 
+  def events_by_time_filter
+    get_filters   
+    unless  @time_filter_path =~ /\d\d\d\d-\d\d-\d\d/
+      @events = (@item_filter == nil) ? Event.send(@time_filter_path).order("start_at asc")
+                                        : Item.find(@item_filter).events.send(@time_filter_path).order("start_at asc")
+      user_favorites_item_events(@time_filter_path)
+    else
+      date = @time_filter_path.to_date
+      user_favorites_item_events(date.to_s)
+      @time_filter_path = date.to_s 
+      @events = (@item_filter == nil) ? Event.on_date(date).order("start_at asc")
+                                      : Item.find(@item_filter).events.on_date(date).order("start_at asc")
+    end 
+    get_my_events
+    process_event_time
+    filte_by_popularity
+  end
+
   def get_filters
+    @time_filter_path = (params[:time].nil?) ? 
+                        TIME_FILTER_ALL : params[:time] 
     @item_filter = params[:id]
-    @date_filter = params[:date]  
     @sort_filter = params[:sort]
   end 
 
@@ -276,7 +187,6 @@ class EventsController < ApplicationController
     @paged_friend_references = @friend_references.paginate(:page => params[:friend_page],
                                                            :per_page => PER_PAGE) 
     @paged_other_references = @other_references.paginate(:page => params[:other_page],
-
                                                            :per_page => PER_PAGE) 
   end
 
@@ -301,15 +211,8 @@ class EventsController < ApplicationController
     if current_user
       @favorite_items = current_user.person.interests.limit(5)   
       @item_event_size = [] 
-      case time_filter_path
-      when "today"
+      unless time_filter_path =~ /\d\d\d\d-\d\d-\d\d/
         @favorite_items.each {|item| @item_event_size << item.events.today.size }
-      when "week" 
-        @favorite_items.each  {|item| @item_event_size << item.events.this_week.size }
-      when "weekends" 
-        @favorite_items.each  {|item| @item_event_size << item.events.weekends.size }
-      when "alltime" 
-        @favorite_items.each  {|item| @item_event_size << item.events.size }
       else
         date = time_filter_path.to_date
         @favorite_items.each  {|item| @item_event_size << item.events.on_date(date).size }
@@ -329,5 +232,4 @@ class EventsController < ApplicationController
       end
     end
   end
-
 end

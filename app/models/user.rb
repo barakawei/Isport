@@ -60,4 +60,27 @@ class User < ActiveRecord::Base
     end
   end
   
+  def joined
+    person.involved_events
+  end
+
+  def recommended
+    person.recommended_events
+  end
+
+  def friend_joined
+    events = []
+    friends.each do |friend|
+      events += friend.involved_events
+    end
+    events
+  end
+
+  def friend_recommended
+    events = []
+    friends.each do |friend|
+      events += friend.recommended_events
+    end
+    events
+  end
 end

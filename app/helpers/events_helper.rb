@@ -29,21 +29,6 @@ module EventsHelper
     info
   end
 
-  def filter_path(time_filter_path,item_id, sort_type)
-    case time_filter_path
-    when "today" 
-      events_today_path(item_id, sort_type) 
-    when "week" 
-      events_week_path(item_id, sort_type) 
-    when "weekends" 
-      events_weekends_path(item_id, sort_type) 
-    when "alltime" 
-      events_alltime_path(item_id, sort_type) 
-    else
-      events_date_selected_path(time_filter_path.to_s, item_id, sort_type)
-    end  
-  end
-
   def remove_type(type)
     I18n.t("events.remove_type.#{type}")  
   end

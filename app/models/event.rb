@@ -35,12 +35,13 @@ class Event < ActiveRecord::Base
 
   belongs_to :item, :foreign_key => "subject_id"
 
-  scope :this_week, lambda { where("start_at > ? and start_at < ?", Time.now.beginning_of_week,
+  scope :week, lambda { where("start_at > ? and start_at < ?", Time.now.beginning_of_week,
                              Time.now.end_of_week) }
 
   scope :today, lambda { where("start_at >= ? and start_at <= ?", Time.now.beginning_of_day, Time.now.end_of_day) }
   scope :weekends, lambda {where("DAYOFWEEK(start_at) = 7 or DAYOFWEEK(start_at) = 1") }
   scope :on_date, lambda {|date| where("start_at >= ? and start_at <= ?", date.beginning_of_day, date.end_of_day )}
+  scope :alltime, lambda { select("*") }
 
   def self.update_avatar_urls(params,url_params)
       event = find(params[:photo][:model_id])
@@ -100,6 +101,14 @@ class Event < ActiveRecord::Base
     self.start_at > Time.now
   end
 
+  def participants_top(limit)
+    participants.order("created_at DESC").limit(limit)
+  end
+
+  def references_top(limit)
+    references.order("created_at DESC").limit(limit)
+  end
+
   private
     
   def default_url(size)
@@ -115,4 +124,5 @@ class Event < ActiveRecord::Base
       errors.add(:participants_limit, I18n.t('activerecord.errors.event.participants_limit.less_than_current'));
     end
   end
+
 end

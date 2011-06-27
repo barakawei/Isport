@@ -26,6 +26,7 @@ zh:
   back: "返回"
   operations:
     delete: '删除'
+    all: '(全部)'
   filter:
     time:
       today: "今天"
@@ -141,7 +142,6 @@ zh:
       fans: "位粉丝"
       myitems: "我的项目"
       my_favorite_item: "我喜欢的项目"
-      item_count: "(共%{count}项):"
 
   pagination:
     previous: "上一页"
@@ -441,3 +441,4 @@ zh:
         resend_unlock: "重送解鎖步驟"
       send_instructions: "幾分鐘後你將收到一封說明如何將你的帳號解鎖的信件."
       unlocked: "帳號解鎖成功. 你已經登入了."
+    all: '(全部)'
