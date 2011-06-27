@@ -1,5 +1,5 @@
 -participants.each_with_index do |person, index|
-  .span-2.append-bottom{:class => ("last " if (index+1)%perline == 0)}
+  .span-2.person_image{:class => ("last " if (index+1)%perline == 0)}
     - if edit 
       %span.left.checkbox
         = check_box_tag "member_ids", person.id, false, :class => "inline"

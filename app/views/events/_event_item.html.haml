@@ -24,7 +24,7 @@
     = trim_info(event.location, 15) 
   %p
     %b= t('events.event_subject')+":"
-    = event.item.name
+    = link_to event.item.name, item_path(event.item)
   %p
     %br
     = event_status(event)

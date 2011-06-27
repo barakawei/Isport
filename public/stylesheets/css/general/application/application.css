@@ -151,3 +151,6 @@ span.medium_avatar {
 .left_border {
   border-left: 1px solid #dddddd;
   padding-left: 5px; }
+
+.person_image {
+  height: 100px; }

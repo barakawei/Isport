@@ -17,7 +17,7 @@
       = hottest_event.location 
     %p
       %b= t('events.event_subject')+":"
-      = hottest_event.item.name
+      = link_to hottest_event.item.name, item_path(hottest_event.item);
     %p.blue
       - if hottest_event.participants.size > 0
         = t('events.short_involvement', :count => hottest_event.participants.size)  
