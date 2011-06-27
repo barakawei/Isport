@@ -1,6 +1,12 @@
 body {
   background-color: #fcfcfc; }
 
+.blue {
+  color: #5179ac; }
+
+.bright_yellow {
+  color: #f6b24d; }
+
 a {
   color: #5179ac;
   font-weight: bold;
@@ -141,3 +147,7 @@ span.medium_avatar {
 #add_friend_request textarea {
   height: 100px;
   width: 300px; }
+
+.left_border {
+  border-left: 1px solid #dddddd;
+  padding-left: 5px; }

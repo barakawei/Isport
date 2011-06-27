@@ -8,7 +8,7 @@ class EventRecommendationsController < ApplicationController
 
   def remove_reference
     @event.references.delete(current_user.person)    
-    redirect_to(event_path(@event))
+    redirect_to :back
   end
 
   private

@@ -6,6 +6,7 @@ zh:
   home: "主页"
   upload_photo: "上传图片"
   events_link: "活动"
+  items_link: "项目"
   more: "更多"
   friends: "好友"
   no_friends: "没有好友"
@@ -23,6 +24,18 @@ zh:
   password: "密码"
   password_confirmation: "密码确认"
   back: "返回"
+  operations:
+    delete: '删除'
+  filter:
+    time:
+      today: "今天"
+      this_week: "本周"
+      weekends: "周末"
+      alltime: "全部时间"
+      select_time: "选择时间"
+    sort:
+      by_starttime: "按开始时间排序"
+      by_popularity: "按人气排序" 
   inbox: "信箱"
   registrations: 
     new: 
@@ -44,6 +57,7 @@ zh:
       period: '活动时间'
       event_title: '活动名称'
       event_description: '活动描述'
+      event_comments: '活动评论'
       event_subject: '所属项目'
       event_owner: '发起人'
       location: '地点'
@@ -68,15 +82,60 @@ zh:
       person: '人' 
       involvement: '参加此活动:'
       recommendation: '推荐此活动:'
-      short_involvement: '%{count}人参加'
-      short_recommendation: '%{count}人推荐'
+      short_involvement: '%{count}人参加 '
+      short_recommendation: '%{count}人推荐 '
       friend_participants: '共 %{count} 位好友参加了此活动'
       other_participants: '其它 %{count} 人也参加了此活动'
       friend_references: '共%{count}位好友推荐了此活动'
       other_references: '其他%{count}人也推荐了此活动'
+      comments_count: '%{count}条评论'
       no_participant: '暂时还没有人报名，赶快报名参加吧!'
       no_reference: '暂时还没有人推荐此活动，赶快推荐一下吧!'
-  
+      joined_events_link: '我参加的活动(%{count})'
+      recommended_events_link: '我推荐的活动(%{count})'
+      friend_joined_events_link: '好友参加的活动(%{count})'
+      friend_recommended_events_link: '好友推荐的活动(%{count})'  
+      joined_events: '我参加的活动'
+      recommended_events: '我推荐的活动'
+      friend_joined_events: '好友参加的活动'
+      friend_recommended_events: '好友推荐的活动'
+      my_events: '我的活动'
+      remained_participants: '剩余名额'
+      remove_type:
+        joined: '参加'
+        recommended: '推荐'
+      participants_full: '人数已满,报名停止'
+      ongoing:
+        application_stopped: '活动在进行中,报名停止'
+      over:
+        application_stopped: '活动已结束,报名停止'
+      status:
+        ongoing: '进行中'
+        over: '已结束'
+        participants_full: '未开始(已报满)'
+        not_started: '未开始'
+      edit:
+        event_info: '活动信息'
+        event_members: '活动成员'
+  items:
+      items_list: "所有项目"
+      new_item: "添加项目"
+      save: "确定"
+      name: "项目名称"
+      description: "项目描述"
+      edit: "编辑项目"
+      back: "返回列表"
+      like: "喜欢"
+      likeinfo: "选择喜欢，我们会更多的向您推荐属于此项目的活动"
+      unlike: "不再喜欢"
+      unlikeinfo: "不再喜欢，我们将不再向您推荐属于此项目的活动"
+      events: "近期活动"
+      mavin: "达人"
+      mavinfo: "想成为项目达人吗？更多的组织活动，更多的参加活动，你也可以！"
+      all: "共有"
+      fans: "位粉丝"
+      myitems: "我的项目"
+
   pagination:
     previous: "上一页"
     next: "下一页" 

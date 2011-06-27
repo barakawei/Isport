@@ -29,6 +29,8 @@
 
 :javascript
   $(function() {
+    $.datepicker.setDefaults($.datepicker.regional["zh-CN"]); 
+
     $('.button').button();  
     if (!$.isEmptyObject($('.setting')[0])) {  
       var left = $('.setting a').offset().left;

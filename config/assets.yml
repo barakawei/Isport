@@ -11,12 +11,12 @@ javascripts:
   jqueryui:
     - public/javascripts/jquery-ui-1.8.13/js/jquery-ui-1.8.13.custom.min.js
     - public/javascripts/colorbox/jquery.colorbox.js
+    - public/javascripts/jquery-ui-1.8.13/development-bundle/ui/i18n/jquery.ui.datepicker-zh-CN.js
     - public/javascripts/autosuggest/jquery.autoSuggest.js
     - public/javascripts/jquery.timeago.js
   friend_select:
     - public/javascripts/fcbk/fcbklistselection.js
     - public/javascripts/fcbk/friend_select.js
-
 
 stylesheets:
   blueprint:
@@ -42,4 +42,13 @@ stylesheets:
     - public/stylesheets/css/special_pages/events/index.css
   sepcial_pages_events_show:
     - public/stylesheets/css/special_pages/events/show.css
+  sepcial_pages_events_edit:
+    - public/stylesheets/css/special_pages/events/edit.css
+  sepcial_pages_events_common:
+    - public/stylesheets/css/special_pages/events/common.css
+  sepcial_pages_events_my_event_item:
+    - public/stylesheets/css/special_pages/events/my_event_item.css
+
+  sepcial_pages_items_show:
+    - public/stylesheets/css/special_pages/items/show.css
  

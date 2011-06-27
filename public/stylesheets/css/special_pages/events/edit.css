@@ -1,0 +1,20 @@
+#cancel_event_request textarea {
+  width: 90%;
+  margin: 10px 0 5px 0;
+  height: 100px; }
+#cancel_event_request h4 {
+  margin-bottom: 0; }
+
+.cancel_event {
+  margin-right: 10px; }
+
+.box_content {
+  padding: 10px 5px 5px 5px; }
+
+.title_bar h2, .title_bar h4 {
+  display: inline; }
+.title_bar h2 {
+  margin-right: 20px; }
+
+.members span.medium_avatar {
+  margin-left: 15px; }

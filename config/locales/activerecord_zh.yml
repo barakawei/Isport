@@ -7,20 +7,29 @@ zh:
         title: '活动名称'
         description: '活动描述'
         subject: '所属项目'
+        subject_id: '所属项目'
         person: '发起人'
         location: '地点'
         ispublic: '是否公开'
+        participants_limit: '人数上限'
     errors:
       event:
         start_at: 
           after: '必须晚于当前时间'
         end_at:
           after: '必须晚于开始时间' 
+        participants_limit:
+          less_than_current: '不能小于已报名人数'
     operations:
       event:
         cancel: '取消活动'
         cancel_reason: '取消原因'
         save: '确认'
         cancel_notice: '已有%{count}人报名此活动, 确定要取消吗?'
+        comment: '发表评论'
+        remove_event_from_list: '确定不再%{type}此活动?'
+        delete_participants: '确定删除选中的活动成员吗?'
+      comment:
+        response: '回复'
 
                 

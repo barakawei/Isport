@@ -19,16 +19,16 @@
     Change the following styles to modify the appearance of ColorBox.  They are
     ordered & tabbed in a way that represents the nesting of the generated HTML.
 */
-#cboxOverlay{background:#fff;}
+#cboxOverlay{background: none repeat scroll 0 0 #000000;}
 #colorbox{}
-    #cboxTopLeft{width:25px; height:25px; background:url(/images/colorbox/border1.png) no-repeat 0 0;}
-    #cboxTopCenter{height:25px; background:url(/images/colorbox/border1.png) repeat-x 0 -50px;}
-    #cboxTopRight{width:25px; height:25px; background:url(/images/colorbox/border1.png) no-repeat -25px 0;}
-    #cboxBottomLeft{width:25px; height:25px; background:url(/images/colorbox/border1.png) no-repeat 0 -25px;}
-    #cboxBottomCenter{height:25px; background:url(/images/colorbox/border1.png) repeat-x 0 -75px;}
-    #cboxBottomRight{width:25px; height:25px; background:url(/images/colorbox/border1.png) no-repeat -25px -25px;}
-    #cboxMiddleLeft{width:25px; background:url(/images/colorbox/border2.png) repeat-y 0 0;}
-    #cboxMiddleRight{width:25px; background:url(/images/colorbox/border2.png) repeat-y -25px 0;}
+    #cboxTopLeft{width:21px; height:21px; background:url(/images/colorbox/v-border.png) no-repeat scroll -100px 0 transparent;}
+    #cboxTopCenter{height:21px; background:url(/images/colorbox/h-border.png) repeat-x scroll 0 0 transparent;}
+    #cboxTopRight{width:21px; height:21px; background:url(/images/colorbox/v-border.png) no-repeat scroll -129px 0 transparent;}
+    #cboxBottomLeft{width:21px; height:21px; background:url(/images/colorbox/v-border.png) no-repeat scroll -100px -29px transparent;}
+    #cboxBottomCenter{height:21px; background:url(/images/colorbox/h-border.png) repeat-x scroll 0 -29px transparent;}
+    #cboxBottomRight{width:21px; height:21px; background:url(/images/colorbox/v-border.png) no-repeat scroll -129px -29px transparent;}
+    #cboxMiddleLeft{width:21px; background:url(/images/colorbox/v-border.png) repeat-y left top transparent;}
+    #cboxMiddleRight{width:21px; background:url(/images/colorbox/v-border.png) repeat-y scroll right top transparent;}
     #cboxContent{background:#fff; overflow:hidden;}
         #cboxError{padding:50px; border:1px solid #ccc;}
         #cboxTitle{position:absolute; bottom:0px; left:0; text-align:center; width:100%; color:#999;}
@@ -38,7 +38,7 @@
         #cboxNext{position:absolute; bottom:0px; left:63px; color:#444;}
         #cboxLoadingOverlay{background:#fff url(/images/colorbox/loading.gif) no-repeat 5px 5px;}
         #cboxClose{position:absolute; bottom:-29px; background:url(/images/colorbox/controls.png) no-repeat 0px 0px; width:23px; height:23px; text-indent:-9999px;}
-        #cboxClose{background-position:-100px -25px;position:absolute; top:0; right:0; display:block; color:#444;}
+        #cboxClose{background-position:-100px -25px;position:absolute; top:5px; right:0; display:block; color:#444;}
         #cboxClose.hover{background-position:-100px 0px;}
         
 

@@ -1,0 +1,25 @@
+- content_for :head do
+  = include_stylesheets :sepcial_pages_events_common, :media => 'all'
+  = include_stylesheets :sepcial_pages_events_my_event_item, :media => 'all'
+.span-24.prepend-top.filter_bar 
+  .span-15
+    %h2.title= t('events.my_events')
+    %h4.border= link_to_unless_current t('events.joined_events'), my_events_path("joined")
+    %h4.border= link_to_unless_current t('events.recommended_events'), my_events_path("recommended")
+    %h4.border= link_to_unless_current t('events.friend_joined_events'), my_events_path("friend_joined")
+    %h4.border= link_to_unless_current t('events.friend_recommended_events'), my_events_path("friend_recommended")
+  = link_to t('events.new_event'), new_event_path, :class => "new_event right"
+%hr
+.span-24
+  -@events.each_with_index do |event, index|
+    = render "my_event_item", :event => event, :index => index        
+
+      
+:javascript
+  $(function() {
+    $('.new_event').button({
+      icons: {
+        primary: 'ui-icon-circle-plus'
+      }
+    });  
+  });

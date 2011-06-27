@@ -31,6 +31,22 @@ module ApplicationHelper
     end
   end
 
+
+  def event_image_link(event, size)
+    link_to event_image_tag(event, size), event_path(event)
+  end
+
+  def item_image_link(item, opts={})
+    return "" if item.nil?
+    if opts[:to] == :photos
+      link_to item_image_tag(item, opts[:size]), item_photos_path(item)
+    else
+      "<a href='/items/#{item.id}'>
+  #{item_image_tag(item, opts[:size])}
+</a>".html_safe
+    end
+  end
+
   def person_link(person, opts={})
     "<a href='/people/#{person.id}' class='#{opts[:class]}'>
   #{h(person.name)}
@@ -38,18 +54,17 @@ module ApplicationHelper
   end
 
   def event_image_tag(event,size=nil)
-    puts "start******************"
-    puts event.image_url(size)
-    puts "end***************"
-    "<img  class=\"avatar\"  src=\"#{event.image_url(size)}\" >".html_safe
+    "<img title=\"#{h(event.title)}\" class=\"avatar\"  src=\"#{event.image_url(size)}\" >".html_safe
   end
 
-  
+  def item_image_tag(item,size=nil)
+    "<img title=\"#{h(item.name)}\" class=\"avatar\"  src=\"#{item.image_url(size)}\" >".html_safe
+  end
+
   def pagination_options(param_name, param)
-    puts param_name
     {:previous_label => t("pagination.previous"), 
      :next_label => t("pagination.next"),
-     :param_name => param_name,
+     :param_name => (param_name == nil) ? :page : param_name,
      :params => param} 
   end
 end

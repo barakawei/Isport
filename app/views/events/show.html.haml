@@ -1,12 +1,18 @@
 -content_for :head do
   = include_stylesheets :sepcial_pages_events_show, :media => 'all'
 .span-24
+  .span-24
+    .span-17
+      %h2.title= @event.title
+    .span-7.last
+      = link_to t('back'),  events_path, :class => "button right"
+      - if @event.is_owner(current_user)
+        = link_to t('events.edit_event'), edit_event_path(@event), :class => "button right edit_event"
+    %hr
   .span-17
-    .span-7
+    .span-5.event_pic
       = event_image_tag(@event, :thumb_large)
-    .span-6.last.prepend-1.right_border
-      %h2= @event.title
-      %p#notice= notice
+    .span-8.last.event_info
       %p
         %b= t('events.start_at')+":"
         = l(@event.start_at, :format => :long)
@@ -18,45 +24,42 @@
         = @event.location
       %p
         %b= t('events.event_subject')+":"
-        = @event.subject_id
+        = @event.item.name
       %p
         %b= t('events.event_owner')+":"
         = link_to @event.person.profile.name, person_path(@event.person)
-    .span-3.last.left_padding
-      - unless is_participant_of(@event)  
-        %p
-          = link_to t('events.apply'), url_for(:action=> "add_participant", :id => @event.id), :class => "button"
-      - else
-        %p
-          %h4= t('events.involved')
-          = link_to t('events.cancel_apply'), url_for(:action=> "remove_participant", :id => @event.id), :class => "button"
+      %p
+        %b= t('activerecord.attributes.event.participants_limit')+":"
+        = @event.participants_limit
+        %b= ",  " + t('events.remained_participants')
+        = @event.participants_limit - @event.participants.size
+    .span-3.last.left_border
+      = event_application_link(@event) 
       - unless is_reference_of(@event)
-        %p
+        %p.bottom
           = link_to t('events.recommend'), 
                     url_for(:controller => "event_recommendations",:action => "add_reference",
                             :id => @event.id), :class => "button" 
       -else
-        %p
-          %br
-          %br
-          %h4= t('events.recommended') 
+        %br
+        %h4.top= t('events.recommended') 
+        %p.bottom
         = link_to t('events.cancel_recommend'), 
                   url_for(:controller => "event_recommendations", :action => "remove_reference",
                           :id => @event.id), :class => "button"
-    .span-16.last
+    .span-16.last.append-bottom
       %br
       %h4= t('events.event_description')+":"
       %hr
-      %p= @event.description
-      %br
+      %p= simple_format(@event.description)
       %hr
-    .span-16.last
-      .span-13
-        - if @event.is_owner(current_user)
-          = link_to t('events.edit'), edit_event_path(@event), :class => "button"
-        = link_to t('back'),  events_path, :class => "button"
-      .span-3.last
-        = link_to "取消活动",  "#cancel_event_request", :class => "button cancel_event", :rel => 'facebox'
+    .span-16.last.comments_area.prepend-top
+      %h4= t('events.event_comments')+":"
+      %hr
+      = render :partial => "event_comments",  :locals => { :event => @event,
+                                                     :author => @person,
+                                                     :comments => @comments,
+                                                     :comment => @comment}
   .span-6.prepend-1.last
     - if @event.participants.size > 0
       %h4
@@ -65,7 +68,8 @@
           url_for(:action => "show_participants", :id => @event.id), :class => "nounderline"
         = t('events.involvement')
       = render :partial => 'event_participants', :locals => { :participants => @participants, 
-                                                              :perline => 3, :no_pagination => true } 
+                                                              :perline => 3, :no_pagination => true,  
+                                                              :edit => false }
     .span-6.last.prepend-top
       -if @event.references.size > 0 
         %h4
@@ -74,27 +78,14 @@
             url_for(:action => "show_references", :id => @event.id), :class => "nounderline"
           = t('events.recommendation')
         = render :partial => 'event_references', :locals => { :references => @references, 
-                                                                :perline => 3, :no_pagination => true } 
-.facebox_content
-  #cancel_event_request
-    .span-8
-      %h4
-        =  t('activerecord.operations.event.cancel_notice', :count => @event.participants.size)
-      %br
-      %h4= t('activerecord.operations.event.cancel_reason') + ":"
-      = form_tag event_path, :method => 'delete' do 
-        = hidden_field_tag :id, :value => @event.id
-        = text_area_tag :message
-        %br
-        = submit_tag t('activerecord.operations.event.save'), :class => 'button'
+                                                              :perline => 3, :no_pagination => true } 
 
 :javascript
   $(function() {
-    $('.cancel_event').button({
+    $('.edit_event').button({
       icons: {
-        primary: 'ui-icon-circle-close'
-      }
-    });  
-
-    $('.cancel_event').colorbox({ inline:true, href:"#cancel_event_request" });
+        primary: 'ui-icon-pencil'
+      } 
+    });
   });
+
