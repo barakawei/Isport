@@ -52,6 +52,7 @@ zh:
       name: "名字"
       your_photo: "您的照片"
   events:
+      index: '活动首页'
       start_at: '开始时间'
       end_at: '结束时间'
       period: '活动时间'
@@ -117,6 +118,10 @@ zh:
       edit:
         event_info: '活动信息'
         event_members: '活动成员'
+      participants:
+        select_all: '(全选)'
+        select_none: '(取消全选)'
+        select_notice: '请选择需要删除的活动成员'
   items:
       items_list: "所有项目"
       new_item: "添加项目"
@@ -135,6 +140,8 @@ zh:
       all: "共有"
       fans: "位粉丝"
       myitems: "我的项目"
+      my_favorite_item: "我喜欢的项目"
+      item_count: "(共%{count}项):"
 
   pagination:
     previous: "上一页"

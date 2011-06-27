@@ -1,7 +1,7 @@
 .span-18.colborder.members
   %h4.append-bottom
     = t("events.friend_participants", :count => friend_participants.size) + ":"
-    = link_to "(全选)", "#", :class => "select_all_friend"
+    = link_to t('events.participants.select_all'), "#", :class => "select_all_friend"
   .span-16.friend_member
     = render :partial => "event_participants", :locals => { :participants => friend_participants, 
                                                             :perline => 8, 
@@ -10,14 +10,14 @@
   .span-16
     %h4
       = t("events.other_participants", :count => @other_participants.size) + ":"
-      = link_to "(全选)", "#", :class => "select_all_others"
+      = link_to t('events.participants.select_all'), "#", :class => "select_all_others"
   .span-16.other_member
     = render :partial => "event_participants", :locals => { :participants => other_participants, 
                                                             :perline => 8, 
                                                             :no_pagination => true, 
                                                             :edit => true}
 .span-5.last
-  = link_to "删除", '#', :class => "button delete" 
+  = link_to t("operations.delete"), '#', :class => "button delete" 
 
 .facebox_content.hide
   #delete_member_request
@@ -32,7 +32,7 @@
 .facebox_content.hide
   #choose_member_notice
     .span-10.box_content
-      %h4="请选择需要删除的活动成员"
+      %h4=t('events.participants.select_notice')
       %br
       = link_to t('activerecord.operations.event.save'), '#', :class => 'button choose_notice'
           
@@ -55,10 +55,10 @@
   $('a.select_all_friend').click(function() {
     if ($(this).hasClass('selected')) {
       $('.friend_member input[type="checkbox"]').attr("checked", ""); 
-      $(this).html("(全选)");
+      $(this).html("#{t('events.participants.select_all')}");
     } else {  
       $('.friend_member input[type="checkbox"]').attr("checked", "true"); 
-      $(this).html("(取消全选)");
+      $(this).html("#{t('events.participants.select_none')}");
     }
       $(this).toggleClass("selected");
     return false;
@@ -67,10 +67,10 @@
   $('a.select_all_others').click(function() {
     if ($(this).hasClass('selected')) {
       $('.other_member input[type="checkbox"]').attr("checked", ""); 
-      $(this).html("(全选)");
+      $(this).html("#{t('events.participants.select_all')}");
     } else {  
       $('.other_member input[type="checkbox"]').attr("checked", "true"); 
-      $(this).html("(取消全选)");
+      $(this).html("#{t('events.participants.select_none')}");
     }
       $(this).toggleClass("selected");
     return false;
