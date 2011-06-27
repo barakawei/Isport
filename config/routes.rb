@@ -6,9 +6,9 @@ Isport::Application.routes.draw do
   resources :posts
   resources :photos
   resources :requests
-  resources :groups
+  resources :status_messages
   resources :conversations do
-    resources :messages, :only => [:create, :show]
+  resources :messages, :only => [:create, :show]
     delete 'visibility' => 'conversation_visibilities#destroy'
   end
   
@@ -26,9 +26,6 @@ Isport::Application.routes.draw do
     match 'getting_started' => :getting_started, :as => 'getting_started'
   end
 
-  controller :contacts do
-    match 'remove_friend' => :remove_friend
-  end
 
   
   # The priority is based upon order of creation:

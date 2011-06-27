@@ -1,0 +1,12 @@
+.stream
+  .stream_element
+    = person_image_link(post.author, :size => :thumb_small) 
+    .content
+      .from
+        = person_link(post.author, :class => 'author')
+      = post.content
+      .time.timeago{:datetime => post.created_at,:style=>"font-size: 11px"}
+        =how_long_ago( post )
+  
+:javascript
+  jQuery("abbr.timeago").timeago();

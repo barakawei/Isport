@@ -33,6 +33,7 @@ stylesheets:
     - public/stylesheets/css/plugins/fcbklistselection.css
     - public/stylesheets/css/plugins/autoSuggest.css
     - public/stylesheets/css/special_pages/conversations/index.css
+    - public/stylesheets/css/special_pages/status_messages/status_message.css
 
   forms:
     - public/stylesheets/css/general/forms/events_form.css

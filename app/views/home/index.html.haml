@@ -1,7 +1,8 @@
 =content_for :head do
   =include_javascripts :friend_select
 .span-15.append-2
-  =link_to "select","#",:class => "friend_select_input"
+  =render "status_messages/status_message"
+  =render "status_messages/status_message_container"
 .colorbox_content
   #friend_select
     

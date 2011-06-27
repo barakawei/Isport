@@ -1,14 +1,15 @@
 class Post < ActiveRecord::Base
   belongs_to :author, :class_name => 'Person'
+  has_many :post_visibilities
+  has_many :contacts, :through => :post_visibilities
 
-  def self.diaspora_initialize params
-    new_post = self.new params.to_hash
-    new_post.public = params[:public] if params[:public]
-    new_post.pending = params[:pending] if params[:pending]
-    new_post.diaspora_handle = new_post.author.diaspora_handle
-    new_post
+  def subscribers(user)
+    user.followed_people
   end
   
+  def dispatch_post
+    Dispatch.new(self.author.user, self).dispatch_status_message
+  end
   
   def as_json(opts={})
     {

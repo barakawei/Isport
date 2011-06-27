@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
   before_filter :authenticate_user!
+  respond_to :js
   def index
     if current_user
       if (current_user.getting_started == true)
@@ -10,8 +11,18 @@ class HomeController < ApplicationController
       @requests_count = Request.where( :recipient_id => @person.id ).count
       @friends = current_user.friends
       @followed_people = current_user.followed_people
+      @posts = Post.joins( :contacts ).where( :contacts => {:user_id => current_user.id} )
       @selected = "home"
       render
     end
+  end
+
+  def show_post
+    @posts = Post.joins( :contacts ).where( :contacts => {:user_id => current_user.id} )
+    respond_with @posts
+    
+  end
+
+  def show_event
   end
 end

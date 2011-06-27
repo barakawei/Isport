@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110623081155) do
+ActiveRecord::Schema.define(:version => 20110625065458) do
 
   create_table "contacts", :force => true do |t|
     t.integer  "user_id"
@@ -18,8 +18,8 @@ ActiveRecord::Schema.define(:version => 20110623081155) do
     t.boolean  "pending",    :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "sharing"
-    t.boolean  "receiving"
+    t.boolean  "sharing",    :default => false
+    t.boolean  "receiving",  :default => false
   end
 
   add_index "contacts", ["person_id", "pending"], :name => "index_contacts_on_person_id_and_pending"
@@ -115,6 +115,13 @@ ActiveRecord::Schema.define(:version => 20110623081155) do
   end
 
   add_index "people", ["user_id"], :name => "index_people_on_user_id", :unique => true
+
+  create_table "post_visibilities", :force => true do |t|
+    t.integer  "contact_id"
+    t.integer  "post_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "posts", :force => true do |t|
     t.integer  "author_id"
