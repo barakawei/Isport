@@ -135,6 +135,7 @@ zh:
       all: "共有"
       fans: "位粉丝"
       myitems: "我的项目"
+      eventsthisweek: "本周%{count}个活动"
 
   pagination:
     previous: "上一页"

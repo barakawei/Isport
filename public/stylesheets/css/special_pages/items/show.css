@@ -5,18 +5,17 @@
 
 .dash_top {
   border-bottom: 1px dashed #DDDDDD;
-  margin-bottom: 10px; 
-  margin-left: 20px; } 
+  margin-bottom: 10px; } 
 
 .dash_middle {
   border-bottom: 1px dashed #DDDDDD;
   margin-bottom: 10px; 
-  margin-top: 10px; 
+  margin-top: 10px;
 }
 
 .dash_bottom {
   border-bottom: 1px dashed #DDDDDD;
-  margin-bottom: 0px; }
+  margin-top: 10px; }
 
 .left_padding {
   padding-left: 14px; }
@@ -49,6 +48,14 @@
 .iteminfo {
   float: left;
   width: 200px;
+}
+
+.mycolor {
+  background-color: #F8F8F8;
+}
+
+.mycolor:hover {
+  background-color: #EBF3F7;  
 }
 
 span.title {

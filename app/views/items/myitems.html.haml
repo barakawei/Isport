@@ -3,18 +3,22 @@
 .span-24.prepend-top
   .span-24
     %h1= t 'items.myitems' 
+  .span-22
+    .dash_middle
   .span-24
-    .dash_top
-  .span-24
-    - @items.each_with_index do |item, index|
-      .span-3.left_close{:class => ("last" if (index+1)%8 == 0)}
-        .span-3
-          = item_image_link(item, :size => :thumb_medium)
-        %br
-        .span-3
-          %span.title= link_to item.name, item, :class => "nounderline"
-          %span.detail=item.fans.size.to_s + t('items.fans')
-
+    - @items_hash.each_with_index do |item, index|
+      .span-22.mycolor.last
+        .span-3.left
+          = item_image_link(item[:item], :size => :thumb_medium)
+        .span-18.right
+          %span.detail= link_to item[:item].name, item, :class => "nounderline"
+          %br
+          %span.detail= item[:fans_count].to_s + t('items.fans')
+          %br
+          %span.detail
+            = link_to t('items.eventsthisweek', :count => item[:events_count]), events_week_path(:id => item[:item].id )
+      .span-22
+        %hr
 :javascript
   $(function() {
     $('.new_item').button({

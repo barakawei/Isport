@@ -16,7 +16,7 @@ class Item < ActiveRecord::Base
      end
     (result != nil && result.length > 0) ? result : default_url(size)
   end
-  
+
   private
 
   def default_url(size)
