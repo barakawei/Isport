@@ -1,0 +1,11 @@
+.stream
+  .stream_element
+    = notification_image_link(note,:thumb_small) 
+    .content
+      .from
+        = notification_message_for(note)
+      .time.timeago{:datetime => note.target.created_at,:style=>"font-size: 11px"}
+        =how_long_ago( note.target )
+  
+:javascript
+  jQuery("abbr.timeago").timeago();

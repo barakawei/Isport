@@ -19,9 +19,9 @@ class Contact < ActiveRecord::Base
     self.sharing && self.receiving
   end
   
-  def dispatch_request
+  def dispatch_request( action=false )
     request = self.generate_request
-    Dispatch.new(self.user, request).started_sharing
+    Dispatch.new(self.user, request,action).started_sharing
   end
 
   def generate_request

@@ -3,12 +3,12 @@ class Post < ActiveRecord::Base
   has_many :post_visibilities
   has_many :contacts, :through => :post_visibilities
 
-  def subscribers(user)
+  def subscribers(user,action)
     user.followed_people
   end
   
-  def dispatch_post
-    Dispatch.new(self.author.user, self).dispatch_status_message
+  def dispatch_post( action=false )
+    Dispatch.new(self.author.user, self,action).dispatch_status_message
   end
   
   def as_json(opts={})

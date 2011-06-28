@@ -141,6 +141,7 @@ class EventsController < ApplicationController
     @event.person = current_user.person
     respond_to do |format|
       if @event.save
+        @event.dispatch_event( :create )
         format.html { redirect_to(@event, :notice => 'Event was successfully created.') }
         format.xml  { render :xml => @event, :status => :created, :location => @event }
       else
@@ -295,6 +296,7 @@ class EventsController < ApplicationController
                :group => 'involvements.event_id',
                :order => 'count desc',
                :limit => 3)
+
   end
 
   def user_favorites_item_events(time_filter_path="week")

@@ -51,6 +51,10 @@ zh:
       your_name: "您的名字"
       name: "名字"
       your_photo: "您的照片"
+
+  notifications:
+    create_event: "%{actor_link} 发起了活动 %{event_link}"
+    started_sharing: "%{actor_link} 加你为好友"
   events:
       start_at: '开始时间'
       end_at: '结束时间'

@@ -1,7 +1,7 @@
 class Notifications::StartedSharing < Notification
 
-  def popup_translation_key
-    'notifications.started_sharing'
+  def translation_key
+    "notifications.started_sharing"
   end
 
   private

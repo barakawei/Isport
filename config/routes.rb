@@ -9,6 +9,7 @@ Isport::Application.routes.draw do
   resources :comments
   resources :items
   resources :involvements
+  resources :notifications
   resources :conversations do
   resources :messages, :only => [:create, :show]
     delete 'visibility' => 'conversation_visibilities#destroy'

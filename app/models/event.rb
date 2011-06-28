@@ -100,6 +100,27 @@ class Event < ActiveRecord::Base
     self.start_at > Time.now
   end
 
+  def dispatch_event( action=false )
+    Dispatch.new(self.person.user, self,action).notify_user
+  end
+
+  def subscribers(user,action=false)
+    if action == :delete
+      self.participants
+    elsif action == :create
+      user.followed_people
+    end
+  end
+
+  def notification_type( action )
+    if action == :create
+      Notifications::CreateEvent
+    elsif action == :delete
+      Notifications::DeleteEvent
+    end
+  end
+
+
   private
     
   def default_url(size)
@@ -112,7 +133,7 @@ class Event < ActiveRecord::Base
   
   def participants_limit_cannot_be_less_than_current_participants
     if self.participants_limit < self.participants.size
-      errors.add(:participants_limit, I18n.t('activerecord.errors.event.participants_limit.less_than_current'));
+      errors.add(:participants_limit, I18n.t('activerecord.errors.event.participants_limit.     less_than_current'));
     end
   end
 end
