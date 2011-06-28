@@ -25,7 +25,7 @@
       %h4= t('activerecord.operations.event.delete_participants')
       = form_tag involvement_path, :method => 'delete' do
         = hidden_field_tag :member_ids
-        = hidden_field_tag :event_id, @event.id
+        = hidden_field_tag :id, @event.id
         %br
         = submit_tag t('activerecord.operations.event.save'), :class => 'button'
 
@@ -81,5 +81,3 @@
     return false;
   });
 
-  
-  

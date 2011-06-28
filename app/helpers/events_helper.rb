@@ -53,14 +53,14 @@ module EventsHelper
       elsif event.participants_full? 
         "<h4 class=\"top\">#{I18n.t('events.participants_full')}</h4>".html_safe  
       else
-        "<p>#{link_to t('events.apply'), url_for(:action=> "add_participant", :id => event.id), :class => "button"
+        "<p>#{link_to t('events.apply'), involvements_path(:id => event.id), 
+                                         :method => "post", :class => "button"
   }</p>".html_safe  
       end
     else
       ("<h4 class=\"top\">#{I18n.t('events.involved')}</h4>" +
       "<p>#{link_to t('events.cancel_apply'), 
-            url_for(:action=> "remove_participant", 
-            :id => event.id), :class => "button"}</p>").html_safe
+            involvement_path(:id => event.id), :method => "delete", :class => "button"}</p>").html_safe
     end
   end
   def event_status(event)

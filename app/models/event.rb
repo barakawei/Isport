@@ -109,6 +109,18 @@ class Event < ActiveRecord::Base
     references.order("created_at DESC").limit(limit)
   end
 
+  def joinable?
+    !(ongoing? || over? || participants_full?)
+  end
+
+  def quitable?
+    !(ongoing? || over?)
+  end
+
+  def owner
+    person
+  end
+
   private
     
   def default_url(size)
@@ -124,5 +136,4 @@ class Event < ActiveRecord::Base
       errors.add(:participants_limit, I18n.t('activerecord.errors.event.participants_limit.less_than_current'));
     end
   end
-
 end

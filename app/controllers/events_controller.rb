@@ -1,5 +1,9 @@
 class EventsController < ApplicationController
-  before_filter :authenticate_user!, :except => [:index, :show ]
+  before_filter :authenticate_user!, 
+                :except => [:index, :show, :show_participants, 
+                            :show_references, :paginate_participants,
+                            :paginate_comments, :paginate_references]
+
   TIME_FILTER_TODAY = "today"
   TIME_FILTER_WEEK = "week"
   TIME_FILTER_WEEKENDS = "weekends"
@@ -69,20 +73,6 @@ class EventsController < ApplicationController
     redirect_to(events_url)
   end
 
-  def add_participant
-    @event = Event.find(params[:id])
-    @event.participants << current_user.person
-
-    redirect_to :back
-  end
-
-  def remove_participant
-    @event = Event.find(params[:id])
-    @event.participants.delete(current_user.person)
-    
-    redirect_to :back
-  end
-  
   def show_participants
     get_participants
   end
@@ -169,7 +159,7 @@ class EventsController < ApplicationController
   def get_participants
     @event = Event.find(params[:id])
     @participants =  @event.participants.order("created_at ASC")
-    @friends = current_user.friends
+    @friends = current_user ? current_user.friends : []
     @friend_participants = @participants & @friends
     @other_participants = @participants - @friend_participants  
     @paged_friend_participants = @friend_participants.paginate(:page => params[:friend_page], 
@@ -181,7 +171,7 @@ class EventsController < ApplicationController
   def get_references
     @event = Event.find(params[:id]) 
     @references = @event.references.order("created_at ASC")
-    @friends = current_user.friends
+    @friends = current_user ? current_user.friends : []
     @friend_references = @references & @friends
     @other_references = @references - @friend_references
     @paged_friend_references = @friend_references.paginate(:page => params[:friend_page],
@@ -221,15 +211,9 @@ class EventsController < ApplicationController
   end
 
   def get_my_events
-    if current_user
-      @joined_events = current_user.person.involved_events
-      @recommended_events = current_user.person.recommended_events
-      @friend_joined_events = []
-      @friend_recommended_events = []
-      current_user.friends.each do |friend|
-        @friend_joined_events += friend.involved_events
-        @friend_recommended_events += friend.recommended_events
-      end
-    end
+      @joined_events = current_user.joined
+      @recommended_events = current_user.recommended
+      @friend_joined_events = current_user.friend_joined 
+      @friend_recommended_events = current_user.friend_recommended
   end
 end

@@ -7,7 +7,7 @@
   .span-17.title_bar
     %h2.title= t('events.edit_event') 
     %h4.border= link_to_unless_current t("events.edit.event_info"), edit_event_path(@event);
-    %h4= link_to_unless_current  t("events.edit.event_members"), members_path(@event, "members");
+    %h4= link_to_unless_current  t("events.edit.event_members"), members_path(@event);
   .span-7.last
     = link_to t('back'), "#", :class => "button back right" 
     = link_to "取消活动",  "#cancel_event_request", :class => "button cancel_event right", :rel => 'facebox'
