@@ -5,7 +5,7 @@
         = check_box_tag "member_ids", person.id, false, :class => "inline"
     = person_image_link(person) 
     %span.medium_avatar=link_to person.profile.name, person_path(person)
-.span-16.append-bottom
+.span-16
   -unless defined?(no_pagination)
     = will_paginate participants, 
                      pagination_options(pagination_type,  {:action => "paginate_participants",

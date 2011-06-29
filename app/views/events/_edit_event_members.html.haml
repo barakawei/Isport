@@ -1,24 +1,52 @@
+=content_for :head do
+  =include_javascripts :friend_select
+.span-10.prepend-3.error_message_box
+  %h4.alert.prepend-2#select_none_error.hide=t('events.errors.select_no_participant')
+  %h4.info.prepend-2#invitation_sent.hide=t('events.info.invitation_sent')
 .span-18.colborder.members
-  %h4.append-bottom
-    = t("events.friend_participants", :count => friend_participants.size) + ":"
-    = link_to t('events.participants.select_all'), "#", :class => "select_all_friend"
   .span-16.friend_member
-    = render :partial => "event_participants", :locals => { :participants => friend_participants, 
-                                                            :perline => 8, 
-                                                            :no_pagination => true, 
-                                                            :edit => true}
-  .span-16
-    %h4
-      = t("events.other_participants", :count => @other_participants.size) + ":"
-      = link_to t('events.participants.select_all'), "#", :class => "select_all_others"
+    - if friends.size > 0
+      - if friend_participants.size > 0
+        %h4.append-bottom
+          = t("events.friend_participants", :count => friend_participants.size) + ":"
+          = link_to t('events.participants.select_all'), "#", :class => "select_all_friend"
+        = render :partial => "event_participants", :locals => { :participants => friend_participants, 
+                                                                :perline => 8, 
+                                                                :no_pagination => true, 
+                                                                :edit => true}
+      - else
+        %hr.space 
+        %h4.inline
+          = t('events.no_friend_member') + "," unless invitees.size ==  friends.size
+        = invite_link(true, friends, invitees, friend_participants)
   .span-16.other_member
-    = render :partial => "event_participants", :locals => { :participants => other_participants, 
-                                                            :perline => 8, 
-                                                            :no_pagination => true, 
-                                                            :edit => true}
-.span-5.last
-  = link_to t("operations.delete"), '#', :class => "button delete" 
+    - if other_participants.size > 0
+      %h4
+        = t("events.other_participants", :count => @other_participants.size) + ":"
+        = link_to t('events.participants.select_all'), "#", :class => "select_all_others"
+      = render :partial => "event_participants", :locals => { :participants => other_participants, 
+                                                              :perline => 8, 
+                                                              :no_pagination => true, 
+                                                              :edit => true}
 
+  .span-16.prepend-top
+    - if invitees.size > 0
+      .span-12
+        - if participants.size > 0
+          %hr
+        %h4
+          = t("events.invitees", :count => invitees.size) + ":" 
+      .span-16
+        = render :partial => "event_participants", :locals => { :participants => invitees, 
+                                                              :perline => 8, 
+                                                              :no_pagination => true, 
+                                                              :edit => false}
+.span-5.last
+  = invite_link(false, friends, invitees, friend_participants)
+  = link_to t("operations.delete_selected"), '#', :class => "button delete", :id => "delete_members" 
+  %hr.space
+.colorbox_content
+  #friend_select
 .facebox_content.hide
   #delete_member_request
     .span-10.box_content
@@ -28,29 +56,11 @@
         = hidden_field_tag :id, @event.id
         %br
         = submit_tag t('activerecord.operations.event.save'), :class => 'button'
-
-.facebox_content.hide
-  #choose_member_notice
-    .span-10.box_content
-      %h4=t('events.participants.select_notice')
-      %br
-      = link_to t('activerecord.operations.event.save'), '#', :class => 'button choose_notice'
           
 :javascript
-  $('a.delete').click(function(){
-    var checked = $('input[type="checkbox"]:checked');
-    if (checked.length == 0) {
-      $.colorbox({inline:true, href:"#choose_member_notice", opacity:0.5});
-      return false;
-    }
-    var arr = new Array(checked.length); 
-    for(var i=0; i< checked.length; i++) {
-      arr[i] = $(checked[i]).val(); 
-    }
-    $('.facebox_content #member_ids').val(arr);
-    $.colorbox({ inline:true, href:"#delete_member_request", opacity:0.5 });
-    return false;
-  }); 
+
+
+  $('a.delete').bind('click', deleteMembers);
 
   $('a.select_all_friend').click(function() {
     if ($(this).hasClass('selected')) {
@@ -81,3 +91,41 @@
     return false;
   });
 
+  $('.friend_select_input').click(function() {
+    friend_select("#{invitees_select_path(@event)}"); 
+    $.colorbox({ inline:true, href:"#friend_select",
+                                     opacity:0.5, width:"502", height:"462" });
+    return false;
+  });
+
+  function friend_selected_callback(data) {
+    $.post("#{event_invite_path(@event.id)}", { selectedIds: ""+data });     
+    $.colorbox.close();
+    $('.friend_select_input').unbind('click');
+    $('#invitation_sent').fadeIn(1000, function() {
+      $(this).fadeOut(1000, function() {
+        location.reload();
+      }); 
+    });
+    return false;
+  }
+
+  function deleteMembers(e) {
+    var checked = $('input[type="checkbox"]:checked');
+    if (checked.length == 0) {
+      $('a.delete').unbind('click');
+      $('#select_none_error').fadeIn(1000, function() {
+        $('#select_none_error').fadeOut(1000, function() {
+          $('a.delete').bind('click', deleteMembers);
+        }); 
+      });
+      return false;
+    }
+    var arr = new Array(checked.length); 
+    for(var i=0; i< checked.length; i++) {
+      arr[i] = $(checked[i]).val(); 
+    }
+    $('.facebox_content #member_ids').val(arr);
+    $.colorbox({ inline:true, href:"#delete_member_request", opacity:0.5 });
+    return false;
+  }

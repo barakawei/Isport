@@ -23,7 +23,14 @@ class Event < ActiveRecord::Base
 
   belongs_to :person
   has_many :involvements, :dependent => :destroy
-  has_many :participants, :through => :involvements, :source => :person
+
+  has_many :participants, :through => :involvements, :source => :person,
+                          :conditions => ['involvements.is_pending = ?', false]
+
+  has_many :invitees, :through => :involvements, :source => :person,
+                          :conditions => ['involvements.is_pending = ?', true]
+
+  has_many :invitees_plus_participants, :through => :involvements, :source => :person
 
   has_many :recommendations, :class_name => "EventRecommendation", 
                              :dependent => :destroy, :foreign_key => "item_id"

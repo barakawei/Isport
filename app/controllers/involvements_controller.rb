@@ -20,6 +20,17 @@ class InvolvementsController < ApplicationController
     redirect_to :back
   end
 
+  def invite
+     if params[:selectedIds] && params[:selectedIds].length > 0
+        person_ids = params[:selectedIds].split(',');
+        person_ids.each do |person_id|
+          Involvement.create(:event_id => @event.id, :person_id => person_id,
+                            :is_pending => true)
+        end
+     end 
+     render :nothing => true
+  end
+
   private
   def init
     @event = Event.find(params[:id])

@@ -13,6 +13,8 @@ Isport::Application.routes.draw do
   controller :people do
     match 'friends_request' => :friends_request
     match 'show_friends' => :show_friends
+    match 'event_invitees_select/:id' => :event_invitees_select, :as => "invitees_select",
+          :constraints => { :id => /[1-9]\d*/}
   end
 
   match '/people/friend_select' => 'people#friend_select'
@@ -36,7 +38,12 @@ Isport::Application.routes.draw do
                             :time => /today|week|weekends|alltime|((((19|20)(([02468][048])|([13579][26]))-02-29))|((20[0-9][0-9])|(19[0-9][0-9]))-((((0[1-9])|(1[0-2]))-((0[1-9])|(1\d)|(2[0-8])))|((((0[13578])|(1[02]))-31)|(((0[1,3-9])|(1[0-2]))-(29|30)))))/}
     match '/events/mine(/:type)' => :my_events, :as => 'my_events',
           :constraints => { :type=> /joined|recommended|friend_joined|friend_recommended/ }
-    match '/events/:id/edit/members' => :edit_members, :as => 'members',
+    match '/events/:id/edit/members' => :edit_members, :as => 'event_members',
+          :constraints => { :id => /[1-9]\d*/}
+  end
+
+  controller :involvements do
+    match '/involvments/:id/invite' => :invite, :as => 'event_invite', 
           :constraints => { :id => /[1-9]\d*/}
   end
 

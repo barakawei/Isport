@@ -46,16 +46,21 @@ class EventsController < ApplicationController
   def edit_members
     @event = Event.find(params[:id])
     @participants = (@event.participants.order("created_at ASC") || [ ]) 
-    @friends = current_user.friends
+    @friends = (current_user.friends || [ ])
     @friend_participants = @participants & @friends
     @other_participants = @participants - @friend_participants  
+    @invitees = (@event.invitees.order("created_at ASC") || [ ])
     render :action => :edit
   end
 
   def create
     @event = Event.new(params[:event])
     @event.person = current_user.person
-    render :action => "new" unless @event.save
+    unless @event.save
+      render :action => "new" 
+    else
+      redirect_to event_members_path(@event)
+    end
   end
 
   def update

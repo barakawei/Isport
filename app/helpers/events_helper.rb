@@ -16,7 +16,7 @@ module EventsHelper
   end
 
   def error_on(event, field)
-    if @event.errors[field].any?
+    if event.errors[field].any?
       %(<span class='validation-error'>
         *#{I18n.t("activerecord.attributes.event."+field.to_s)}#{@event.errors[field].flatten[0]}</span>).html_safe
     end
@@ -71,6 +71,14 @@ module EventsHelper
              else 
               I18n.t('events.status.not_started'); 
              end
+  end
+
+  def invite_link(initial, friends, invitees, friend_participants)
+    return if friends.size < 0 || friends.size <= invitees.size + friend_participants.size
+    return if initial && friend_participants.size > 0
+    return if !initial && friend_participants.size == 0
+    name = (invitees.size == 0 && friend_participants.size == 0 ) ? I18n.t("events.invite_friends") : I18n.t("events.invite_more_friends")
+    link_to name, "#", :class => "friend_select_input button" 
   end
 
 end

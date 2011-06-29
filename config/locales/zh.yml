@@ -27,6 +27,7 @@ zh:
   operations:
     delete: '删除'
     all: '(全部)'
+    delete_selected: '删除选中'
   filter:
     time:
       today: "今天"
@@ -117,12 +118,20 @@ zh:
         participants_full: '未开始(已报满)'
         not_started: '未开始'
       edit:
+        name: '编辑'
         event_info: '活动信息'
         event_members: '活动成员'
       participants:
         select_all: '(全选)'
         select_none: '(取消全选)'
-        select_notice: '请选择需要删除的活动成员'
+      no_friend_member: '还没有好友参加你的活动'
+      invitees: '发出邀请的好友'
+      errors:
+        select_no_participant: '请选择需要删除的活动成员'
+      info:
+        invitation_sent: '邀请已发出.'
+      invite_friends: '发起邀请'
+      invite_more_friends: '邀请更多好友'
   items:
       items_list: "所有项目"
       new_item: "添加项目"
