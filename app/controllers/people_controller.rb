@@ -68,6 +68,14 @@ class PeopleController < ApplicationController
       format.json{ render(:layout => false , :json => {"success" => true, "data" => @friends}.to_json )}
     end
   end
+
+  def event_invitees_select
+    event = Event.find(params[:id]) 
+    @left_invitees = current_user.friends - event.invitees_plus_participants 
+    respond_to do |format|
+      format.json { render(:layout => false, :json => {"success" => true, "data" => @left_invitees}.to_json) }
+    end
+  end
 end
 
 

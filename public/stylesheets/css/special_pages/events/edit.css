@@ -18,3 +18,8 @@
 
 .members span.medium_avatar {
   margin-left: 15px; }
+
+.error_message_box {
+  position: absolute;
+  top: 50px;
+  left: 300px; }

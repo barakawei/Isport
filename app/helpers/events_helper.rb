@@ -16,7 +16,7 @@ module EventsHelper
   end
 
   def error_on(event, field)
-    if @event.errors[field].any?
+    if event.errors[field].any?
       %(<span class='validation-error'>
         *#{I18n.t("activerecord.attributes.event."+field.to_s)}#{@event.errors[field].flatten[0]}</span>).html_safe
     end
@@ -27,21 +27,6 @@ module EventsHelper
       info = info[0, size] + "..."
     end
     info
-  end
-
-  def filter_path(time_filter_path,item_id, sort_type)
-    case time_filter_path
-    when "today" 
-      events_today_path(item_id, sort_type) 
-    when "week" 
-      events_week_path(item_id, sort_type) 
-    when "weekends" 
-      events_weekends_path(item_id, sort_type) 
-    when "alltime" 
-      events_alltime_path(item_id, sort_type) 
-    else
-      events_date_selected_path(time_filter_path.to_s, item_id, sort_type)
-    end  
   end
 
   def remove_type(type)
@@ -68,14 +53,14 @@ module EventsHelper
       elsif event.participants_full? 
         "<h4 class=\"top\">#{I18n.t('events.participants_full')}</h4>".html_safe  
       else
-        "<p>#{link_to t('events.apply'), url_for(:action=> "add_participant", :id => event.id), :class => "button"
+        "<p>#{link_to t('events.apply'), involvements_path(:id => event.id), 
+                                         :method => "post", :class => "button"
   }</p>".html_safe  
       end
     else
       ("<h4 class=\"top\">#{I18n.t('events.involved')}</h4>" +
       "<p>#{link_to t('events.cancel_apply'), 
-            url_for(:action=> "remove_participant", 
-            :id => event.id), :class => "button"}</p>").html_safe
+            involvement_path(:id => event.id), :method => "delete", :class => "button"}</p>").html_safe
     end
   end
   def event_status(event)
@@ -86,6 +71,14 @@ module EventsHelper
              else 
               I18n.t('events.status.not_started'); 
              end
+  end
+
+  def invite_link(initial, friends, invitees, friend_participants)
+    return if friends.size < 0 || friends.size <= invitees.size + friend_participants.size
+    return if initial && friend_participants.size > 0
+    return if !initial && friend_participants.size == 0
+    name = (invitees.size == 0 && friend_participants.size == 0 ) ? I18n.t("events.invite_friends") : I18n.t("events.invite_more_friends")
+    link_to name, "#", :class => "friend_select_input button" 
   end
 
 end

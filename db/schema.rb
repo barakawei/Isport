@@ -106,6 +106,7 @@ ActiveRecord::Schema.define(:version => 20110630081542) do
     t.integer  "event_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "is_pending", :default => false
   end
 
   create_table "items", :force => true do |t|
