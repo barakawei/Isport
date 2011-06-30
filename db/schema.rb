@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110629030428) do
+ActiveRecord::Schema.define(:version => 20110630081542) do
 
   create_table "administrators", :force => true do |t|
     t.integer  "user_id"
@@ -138,7 +138,7 @@ ActiveRecord::Schema.define(:version => 20110629030428) do
     t.integer  "target_id"
     t.integer  "recipient_id"
     t.string   "type"
-    t.boolean  "unread",       :default => true
+    t.integer  "unread",       :default => 1
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -14,6 +14,12 @@
         %span.message_count
           %span
             %span=@unread_message_count
+    %a{:href => notifications_path}
+      = "通知"
+      -if current_user && @unread_notify_count != 0
+        %span.message_count
+          %span
+            %span=@unread_notify_count
 
     %li#search
       = form_tag(people_path, :method => 'get', :id => "global_search_form") do

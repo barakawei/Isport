@@ -3,6 +3,10 @@ class NotificationsController < ApplicationController
 
   def index
     @notifications = Notification.includes( :actor ).where( :recipient_id => current_user )
+  end
+
+  def show_events
+    @notifications = Notification.includes( :actor ).where( :recipient_id => current_user )
     respond_with @notifications
   end
 

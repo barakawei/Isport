@@ -25,5 +25,7 @@ class HomeController < ApplicationController
   end
 
   def show_event
+    @notifications = Notification.includes( :actor ).where( :recipient_id => current_user )
+    respond_with @notifications
   end
 end
