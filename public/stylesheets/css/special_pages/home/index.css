@@ -16,3 +16,37 @@
   background: url("/images/layout/content_icons.png") no-repeat scroll 0 0px transparent;
   background-position: 0 -1720px;
   padding-left: 14px; }
+
+.comments {
+  background-color: whiteSmoke;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-left: 3px solid #e2e2e2;
+  font-size: 12px;
+  margin-left: 80px; }
+  .comments .comment {
+    margin-bottom: 10px; }
+  .comments .comment_content {
+    margin-left: 36px; }
+  .comments .timeago {
+    color: #999999;
+    text-decoration: none;
+    border: none; }
+  .comments .avatar {
+    float: left;
+    padding: 0; }
+  .comments img {
+    height: 30px;
+    width: 30px; }
+
+.content_info .action {
+  padding-left: 5px;
+  font-size: 12px;
+  border-left: 1px solid #e5e5e5; }
+
+.comment_form {
+  margin-left: 80px;
+  margin-bottom: 10px; }
+  .comment_form textarea {
+    width: 500px;
+    height: 70px; }

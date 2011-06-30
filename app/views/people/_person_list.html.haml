@@ -22,8 +22,18 @@
   - if @followed_people.length > 0
     .contacts
       %h3
-        ="关注你的人"
+        ="你关注的人"
       - for person in @followed_people
+        = person_image_link(person)
+      %h4
+        =link_to t( 'more' ),{:controller => 'people',:action => 'show_friends'}
+
+#befollowed_people
+  - if @befollowed_people.length > 0
+    .contacts
+      %h3
+        ="关注你的人"
+      - for person in @befollowed_people
         = person_image_link(person)
       %h4
         =link_to t( 'more' ),{:controller => 'people',:action => 'show_friends'}

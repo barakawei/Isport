@@ -4,9 +4,18 @@
     .content
       .from
         = person_link(post.author, :class => 'author')
-      = post.content
-      .time.timeago{:datetime => post.created_at,:style=>"font-size: 11px"}
-        =how_long_ago( post )
+      %p
+        = post.content
+      .content_info
+        %span.time.timeago{:datetime => post.created_at,:style=>"font-size: 11px"}
+          =how_long_ago( post )
+        %span.action
+          =link_to "回复(#{post.comments.size})","#",:class => "replay"
+    .comment_form.hidden
+      = form_for([post,Comment.new], :remote => true) do |f|
+        = f.text_area :content, :rows => 2
+        = f.submit "回复", :class => 'button'
+    = render "comments/comments", :post => post, :comments => post.comments
   
-:javascript
-  jQuery("abbr.timeago").timeago();
+
+

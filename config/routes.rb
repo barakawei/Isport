@@ -9,6 +9,9 @@ Isport::Application.routes.draw do
   resources :comments
   resources :items
   resources :involvements
+  resources :status_messages do
+    resources :comments,:only => [ :create,:show ]
+  end
   resources :notifications
   resources :conversations do
   resources :messages, :only => [:create, :show]

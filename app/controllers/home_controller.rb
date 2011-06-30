@@ -11,6 +11,7 @@ class HomeController < ApplicationController
       @requests_count = Request.where( :recipient_id => @person.id ).count
       @friends = current_user.friends
       @followed_people = current_user.followed_people
+      @befollowed_people = current_user.befollowed_people
       @posts = Post.joins( :contacts ).where( :contacts => {:user_id => current_user.id} )
       @selected = "home"
       render

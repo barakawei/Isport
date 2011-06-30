@@ -5,7 +5,7 @@
   %ul
     %a{"data-remote" =>"true", :href => "/home/show_post"}
       %li.active
-        ='评论'
+        ='好友'
     %a{"data-remote" =>"true", :href => "/notifications"}
       %li
         ='活动'
@@ -20,3 +20,21 @@
     $(this).addClass( "active" );
     }
   );
+  $("abbr.timeago").timeago();
+  $( ".replay" ).live( "click",function( ){  
+    stream_element = $( this ).closest(".stream_element");
+    commentBlock = stream_element.find(".comment_form");
+    comments = stream_element.find(".comments");
+    if(commentBlock.hasClass("hidden")) {
+      comments.removeClass("hidden");
+      commentBlock.removeClass("hidden");
+      commentBlock.find("textarea").focus();
+    } else {
+        if( $( ".comment",comments ).length > 3 ){
+          comments.addClass( "hidden" );
+        }
+        commentBlock.addClass("hidden");
+      }  
+    return false;
+    });
+

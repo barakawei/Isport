@@ -1,0 +1,32 @@
+processComment(<%= @comment.post_id %>, <%= @comment.id %>,"<%= escape_javascript(render(:partial => 'comments/comment', :locals => { :comment => @comment}))%>");
+
+function processComment(postId,commentId,html){  
+
+    if( $(".comment[id='"+commentId+"']").length === 0 ) {
+
+      var post = $(".comments[id='"+postId+"']'");
+      prevComments = $('.comment.posted', post);
+
+      if(prevComments.length > 0) {
+        prevComments.last().after(
+          $(html).fadeIn("fast", function(){})
+        );
+      } else {
+        post.append(
+          $(html).fadeIn("fast", function(){})
+        );
+        post.removeClass( "hidden" );
+      }
+
+      $("abbr.timeago").timeago();
+      stream_element = post.closest( ".stream_element" );
+      replay = stream_element.find( ".replay" );
+      comment = stream_element.find( ".comment_form" );
+      comment.find( "textarea" ).val("");
+      $("html,body").animate({scrollTop: $(".comment[id='"+commentId+"']").offset().top}, 0); 
+      replay.html(
+        replay.html().replace(/\d+/,$('.comments', stream_element).find('li').length)
+      );
+      }
+}
+
