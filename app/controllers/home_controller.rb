@@ -13,19 +13,21 @@ class HomeController < ApplicationController
       @followed_people = current_user.followed_people
       @befollowed_people = current_user.befollowed_people
       @posts = Post.joins( :contacts ).where( :contacts => {:user_id => current_user.id} )
+      @current_status = Post.where(:author_id => @person.id ).order("created_at DESC" ).first
+
       @selected = "home"
       render
     end
   end
 
   def show_post
-    @posts = Post.joins( :contacts ).where( :contacts => {:user_id => current_user.id} )
+    @posts = Post.joins( :contacts ).where( :contacts => {:user_id => current_user.id} ).order("created_at DESC" )
     respond_with @posts
     
   end
 
   def show_event
-    @notifications = Notification.includes( :actor ).where( :recipient_id => current_user )
+    @notifications = Notification.includes( :actor ).where( "recipient_id = ? and type != ?",current_user.id,"Notifications::InviteEvent").order("created_at DESC" )
     respond_with @notifications
   end
 end

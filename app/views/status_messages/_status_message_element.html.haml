@@ -1,21 +1,20 @@
-.stream
-  .stream_element
-    = person_image_link(post.author,:thumb_small) 
-    .content
-      .from
-        = person_link(post.author, :class => 'author')
-      %p
-        = post.content
-      .content_info
-        %span.time.timeago{:datetime => post.created_at,:style=>"font-size: 11px"}
-          =how_long_ago( post )
-        %span.action
-          =link_to "回复(#{post.comments.size})","#",:class => "replay"
-    .comment_form.hidden
-      = form_for([post,Comment.new], :remote => true) do |f|
-        = f.text_area :content, :rows => 2
-        = f.submit "回复", :class => 'button'
-    = render "comments/comments", :post => post, :comments => post.comments
+.stream_element{ :id => post.id }
+  = person_image_link(post.author,:thumb_small) 
+  .content
+    .from
+      = person_link(post.author, :class => 'author')
+    %p
+      = post.content
+    .content_info
+      %span.time.timeago{:datetime => post.created_at,:style=>"font-size: 11px"}
+        =how_long_ago( post )
+      %span.action
+        =link_to "回复(#{post.comments.size})","#",:class => "replay"
+  .comment_form.hidden
+    = form_for([post,Comment.new], :remote => true) do |f|
+      = f.text_area :content, :rows => 2
+      = f.submit "回复", :class => 'button'
+  = render "comments/comments", :post => post, :comments => post.comments
   
 
 

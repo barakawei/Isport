@@ -2,24 +2,19 @@
   =include_javascripts :friend_select
 .span-15.append-2
   =render "status_messages/status_message"
+  .current_status
+    ="最近更新:"
+    %span.current_status_body
+      =@current_status.content
   =render "home/feed_container"
     
 .span-7.last
   = render 'people/person_list', :person => @person
 
 :javascript
-  $(document).ready(function() {
-    $('.friend_select_input' ).click(function(){
-      friend_select();
-    });
-    $(".friend_select_input").colorbox({ inline:true,width: "502",height:"462", href:"#friend_select"});	
-   
-    }); 
+  $( "#view" ).attr("value", "index" );
 
-    function friend_selected_callback(data){
-      $.post("/people/friend_select", { selectedIds: ""+data} );
+
         
-    }
-       //load firend data
     
 

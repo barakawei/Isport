@@ -7,34 +7,4 @@
         = "Welcome back!"
       -elsif current_user.person.id == @person.id  && @requests_count != 0 
         = link_to "#{@requests_count}个好友请求",{:controller => 'people', :action => 'friends_request'},:class => 'new friends_request'
-#friend_listings
-  - if @friends.length > 0
-    .contacts
-      %h3
-        = "你的好友"
-      - for friend in @friends
-        = person_image_link(friend)
-      %h4
-        =link_to t( 'more' ),{:controller => 'people',:action => 'show_friends'}
-  - else
-    =t('no_friends')
-#followed_people
-  - if @followed_people.length > 0
-    .contacts
-      %h3
-        ="你关注的人"
-      - for person in @followed_people
-        = person_image_link(person)
-      %h4
-        =link_to t( 'more' ),{:controller => 'people',:action => 'show_friends'}
-
-#befollowed_people
-  - if @befollowed_people.length > 0
-    .contacts
-      %h3
-        ="关注你的人"
-      - for person in @befollowed_people
-        = person_image_link(person)
-      %h4
-        =link_to t( 'more' ),{:controller => 'people',:action => 'show_friends'}
 

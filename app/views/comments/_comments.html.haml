@@ -1,4 +1,4 @@
 
-%ul.comments{:id => post.id,:class => ( "hidden" if comments.size > 3 )}
+%ul.comments{:id => post.id,:class => ( "hidden" if (comments.size > 3 || comments.size ==0 ) )}
   = render :partial => 'comments/comment', :collection => comments, :locals => {:post => post}
 

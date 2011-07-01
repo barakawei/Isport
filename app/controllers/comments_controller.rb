@@ -3,14 +3,14 @@ class CommentsController < ApplicationController
   def create
     if params[:comment][:type] == "EventComment"
       @comment = EventComment.create(params[:comment])
-      redirect_to "/events/#{@comment.item_id}#comments"  
+      if @comment.save
+        render :template => "comments/create_event_comment"
+      end
+    else
+      @comment = Comment.new(:post_id => params[ :status_message_id ],:content => params[ :comment ][ :content ],:person_id => current_user.person.id)
+      if @comment.save
+        respond_with @comment
+      end
     end
-
-    puts current_user
-    @comment = Comment.new(:post_id => params[ :status_message_id ],:content => params[ :comment ][ :content ],:person_id => current_user.person.id)
-    if @comment.save
-      respond_with @comment
-    end
-
   end
 end

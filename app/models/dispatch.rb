@@ -26,6 +26,7 @@ class Dispatch
     Resque.enqueue(Job::DispatchStatusMessageJob,@object.id,contact_ids)
   end
 
+
 end
   
 

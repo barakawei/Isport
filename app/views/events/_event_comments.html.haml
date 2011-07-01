@@ -3,25 +3,12 @@
   = will_paginate comments,
                   pagination_options(nil, {:action => "paginate_comments",
                                      :id => event.id }) 
-  -comments.each do |comment|
-    -person = comment.person 
-    .post_show.span-15
-      = person_image_link(person)
-      .content
-        %hr
-        %span.comment_line.name
-          = link_to person.name, person_path(person) 
-          %span.grey
-            = l(comment.created_at, :format => :long)
-          %span.person_id.hide
-            = person.id
-          -unless current_user.person == person
-            %span.right.respond
-              = link_to "回复", '#'
-        %span.comment_line
-          = comment.content
+  .stream
+    =render :partial => "comments/event_comment",
+      :collection => comments,
+      :as => :comment
   .post_area.span-15
-    = form_for comment, do |c|
+    = form_for(comment,:remote => true) do |c|
       = person_image_link(author)
       .hide
         = c.number_field :item_id
@@ -32,6 +19,7 @@
         = submit_tag t('activerecord.operations.event.comment'), :class => 'button'
 
 :javascript
+  $("abbr.timeago").timeago();
   $('#paginated_event_comments .pagination a').live('click', function(){
     $.get(this.href, function(data){
       $('#paginated_event_comments').html(data); 

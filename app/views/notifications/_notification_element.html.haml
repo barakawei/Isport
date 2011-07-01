@@ -4,8 +4,26 @@
     .content
       .from
         = notification_message_for(note)
-      .time.timeago{:datetime => note.target.created_at,:style=>"font-size: 11px"}
+      .time.timeago{:datetime => note.target.created_at}
         =how_long_ago( note.target )
   
 :javascript
-  jQuery("abbr.timeago").timeago();
+  $("abbr.timeago").timeago();
+    $( ".replay" ).live( "click",function( ){  
+    stream_element = $( this ).closest(".stream_element");
+    commentBlock = stream_element.find(".comment_form");
+    comments = stream_element.find(".comments");
+    if(commentBlock.hasClass("hidden")) {
+      if( $( ".comment",comments ).length != 0 ){
+        comments.removeClass("hidden");
+      }
+      commentBlock.removeClass("hidden");
+      commentBlock.find("textarea").focus();
+    } else {
+        if( $( ".comment",comments ).length > 3 || $( ".comment",comments ).length == 0 ){
+          comments.addClass( "hidden" );
+        }
+        commentBlock.addClass("hidden");
+      }  
+    return false;
+    });

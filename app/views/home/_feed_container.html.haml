@@ -26,15 +26,16 @@
     commentBlock = stream_element.find(".comment_form");
     comments = stream_element.find(".comments");
     if(commentBlock.hasClass("hidden")) {
-      comments.removeClass("hidden");
+      if( $( ".comment",comments ).length != 0 ){
+        comments.removeClass("hidden");
+      }
       commentBlock.removeClass("hidden");
       commentBlock.find("textarea").focus();
     } else {
-        if( $( ".comment",comments ).length > 3 ){
+        if( $( ".comment",comments ).length > 3 || $( ".comment",comments ).length == 0 ){
           comments.addClass( "hidden" );
         }
         commentBlock.addClass("hidden");
       }  
     return false;
-    });
-
+    }); 

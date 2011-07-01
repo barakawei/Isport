@@ -7,10 +7,9 @@ class Notification < ActiveRecord::Base
 
   def self.notify(recipient, target, actor,action=false)
     if target.respond_to? :notification_type
-      if note_type = target.notification_type( action )
-        n = note_type.make_notification(recipient, target, actor, note_type)
-        n
-      end
+      note_type = target.notification_type( action )
+      n = note_type.make_notification(recipient, target, actor, note_type)
+      n
     end
   end
 
@@ -18,7 +17,6 @@ private
   def self.make_notification(recipient, target, actor, notification_type)
     n = notification_type.new(:target => target,:recipient_id => recipient.id)
     n.actor = actor
-    n.unread = false if target.is_a? Request
     n.save!
     n
   end

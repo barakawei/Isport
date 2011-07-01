@@ -1,0 +1,15 @@
+processPost(<%= @comment.id %>,"<%= escape_javascript(render(:partial => 'comments/event_comment', :locals => { :comment => @comment}))%>");
+
+function processPost(commentId,html){  
+    if ($( ".stream_element[id='"+commentId+"']" ).length == 0){
+      comments = $( ".stream" );
+      prevComments =  comments.find( ".stream_element" );
+      comments.append(
+        $(html).fadeIn("fast", function(){})
+      );
+      $("abbr.timeago").timeago();
+    }      
+}
+
+
+

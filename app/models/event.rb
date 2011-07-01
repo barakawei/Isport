@@ -5,7 +5,7 @@ class Event < ActiveRecord::Base
   PARTICIPANTS_LIMIT_MIN = 0
   PARTICIPANTS_LIMIT_MAX = 100 
 
-  attr_accessor :same_day, :current_year
+  attr_accessor :same_day, :current_year,:invited_people
   validates_presence_of :title, :start_at, :description, :location, :subject_id,
                         :participants_limit,
                         :message => I18n.t('activerecord.errors.messages.blank')
@@ -49,6 +49,9 @@ class Event < ActiveRecord::Base
   scope :weekends, lambda {where("DAYOFWEEK(start_at) = 7 or DAYOFWEEK(start_at) = 1") }
   scope :on_date, lambda {|date| where("start_at >= ? and start_at <= ?", date.beginning_of_day, date.end_of_day )}
   scope :alltime, lambda { select("*") }
+
+
+  
 
   def self.update_avatar_urls(params,url_params)
       event = find(params[:photo][:model_id])
@@ -113,18 +116,29 @@ class Event < ActiveRecord::Base
   end
 
   def subscribers(user,action=false)
+    action = action.to_sym
     if action == :delete
       self.participants
     elsif action == :create
-      user.followed_people
+      user.befollowed_people
+    elsif action == :involvment
+      user.befollowed_people
+    elsif action == :invite
+      self.invited_people
     end
+
   end
 
-  def notification_type( action )
+  def notification_type( action=false )
+    action = action.to_sym
     if action == :create
-      Notifications::CreateEvent
+       Notifications::CreateEvent
     elsif action == :delete
       Notifications::DeleteEvent
+    elsif action == :involvment
+      Notifications::InvolvementEvent
+    elsif action == :invite
+      Notifications::InviteEvent
     end
   end
 
