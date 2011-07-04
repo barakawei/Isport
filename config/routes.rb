@@ -40,11 +40,17 @@ Isport::Application.routes.draw do
           :constraints => { :type=> /joined|recommended|friend_joined|friend_recommended/ }
     match '/events/:id/edit/members' => :edit_members, :as => 'event_members',
           :constraints => { :id => /[1-9]\d*/}
+    match '/events/:id/map' => :map, :as => 'event_map',
+          :constraints => { :id => /[1-9]\d*/}
   end
 
   controller :involvements do
     match '/involvments/:id/invite' => :invite, :as => 'event_invite', 
           :constraints => { :id => /[1-9]\d*/}
+  end
+
+  controller :location do
+    match '/locations/districts_of_city' => :districts_of_city, :as => 'districts_of_city'
   end
 
   resources :events

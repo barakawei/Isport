@@ -17,6 +17,8 @@ javascripts:
   friend_select:
     - public/javascripts/fcbk/fcbklistselection.js
     - public/javascripts/fcbk/friend_select.js
+  google_map:
+    - public/javascripts/mark_on_google_map.js
 
 stylesheets:
   blueprint:

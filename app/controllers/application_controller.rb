@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  before_filter :set_header_data, :except => [:create, :update]
+  before_filter :set_header_data
 
 
   def set_header_data

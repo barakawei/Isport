@@ -1,3 +1,5 @@
+#encoding: utf-8
+require 'geocoder'
 class EventsController < ApplicationController
   before_filter :authenticate_user!, 
                 :except => [:index, :show, :show_participants, 
@@ -33,14 +35,20 @@ class EventsController < ApplicationController
     new_comment
   end
 
+  def map
+    @event = Event.find(params[:id])
+  end
+
   def new
     @event = Event.new
+    @event.location = Location.new(:city_id => 1, :district_id => 1, :detail => " ")
     @items = Item.find(:all, :select => 'id, name')
   end
 
   def edit
     @event = Event.find(params[:id])
     @items = Item.find(:all, :select => 'id, name')
+    puts GoogleGeoCoder.getLocation("南京")
   end
 
   def edit_members
@@ -54,7 +62,11 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = Event.new(params[:event])
+    event_attrs = params[:event]
+    location = Location.new(event_attrs[:location_attributes])
+    l_info = GoogleGeoCoder.getLocation(location.to_s)
+    event_attrs[:location_attributes].merge!(l_info) unless l_info.nil?
+    @event = Event.new(event_attrs)
     @event.person = current_user.person
     unless @event.save
       render :action => "new" 
@@ -65,7 +77,11 @@ class EventsController < ApplicationController
 
   def update
     @event = Event.find(params[:id])
-    if @event.update_attributes(params[:event])
+    event_attrs = params[:event]
+    location = Location.new(event_attrs[:location_attributes])
+    l_info = GoogleGeoCoder.getLocation(location.to_s)
+    event_attrs[:location_attributes].merge!(l_info) unless l_info.nil?
+    if @event.update_attributes(event_attrs)
       redirect_to event_path(@event)
     else
       render :action => "edit" 

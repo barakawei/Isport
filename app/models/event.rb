@@ -6,7 +6,7 @@ class Event < ActiveRecord::Base
   PARTICIPANTS_LIMIT_MAX = 100 
 
   attr_accessor :same_day, :current_year
-  validates_presence_of :title, :start_at, :description, :location, :subject_id,
+  validates_presence_of :title, :start_at, :description, :subject_id,
                         :participants_limit,
                         :message => I18n.t('activerecord.errors.messages.blank')
   
@@ -22,6 +22,10 @@ class Event < ActiveRecord::Base
   validate :participants_limit_cannot_be_less_than_current_participants
 
   belongs_to :person
+
+  belongs_to :location
+  accepts_nested_attributes_for :location
+
   has_many :involvements, :dependent => :destroy
 
   has_many :participants, :through => :involvements, :source => :person,
@@ -41,6 +45,7 @@ class Event < ActiveRecord::Base
   has_many :commentors, :through => :comments, :source => :person
 
   belongs_to :item, :foreign_key => "subject_id"
+
 
   scope :week, lambda { where("start_at > ? and start_at < ?", Time.now.beginning_of_week,
                              Time.now.end_of_week) }

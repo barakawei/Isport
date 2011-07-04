@@ -14,7 +14,7 @@
       = l(hottest_event.end_at, :format => :long)
     %p
       %b= t('events.location')+":"
-      = hottest_event.location 
+      = hottest_event.location.to_s
     %p
       %b= t('events.event_subject')+":"
       = link_to hottest_event.item.name, item_path(hottest_event.item);

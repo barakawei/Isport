@@ -125,7 +125,7 @@ zh:
         select_all: '(全选)'
         select_none: '(取消全选)'
       no_friend_member: '还没有好友参加你的活动'
-      invitees: '发出邀请的好友'
+      invitees: '已发出邀请的好友'
       errors:
         select_no_participant: '请选择需要删除的活动成员'
       info:
