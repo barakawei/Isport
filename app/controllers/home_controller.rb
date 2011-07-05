@@ -12,22 +12,28 @@ class HomeController < ApplicationController
       @friends = current_user.friends
       @followed_people = current_user.followed_people
       @befollowed_people = current_user.befollowed_people
-      @posts = Post.joins( :contacts ).where( :contacts => {:user_id => current_user.id} )
+      @posts = Post.joins(:contacts ).where( :contacts => {:user_id => current_user.id},:type => "StatusMessage").paginate(
+      :page => params[:page], :per_page => 5, :order => 'posts.created_at DESC')
+
       @current_status = Post.where(:author_id => @person.id ).order("created_at DESC" ).first
 
       @selected = "home"
+      @hot_events = Event.joins("left join involvements inv on(events.id = inv.event_id) left join recommendations rec on(type = 'EvntRecommendation' and events.id = rec.item_id)").select( "events.*,count(inv.id) inv_counts,count(rec.id) rec_counts,count(inv.id)+count(rec.id) hots" ).group( "events.id" ).order( "hots DESC" ).limit(5)
       render
     end
   end
 
   def show_post
-    @posts = Post.joins( :contacts ).where( :contacts => {:user_id => current_user.id} ).order("created_at DESC" )
+    @posts = Post.joins(:contacts ).where( :contacts => {:user_id => current_user.id},:type => "StatusMessage").paginate(
+      :page => params[:page], :per_page => 5, :order => 'posts.created_at DESC')
+
     respond_with @posts
     
   end
 
   def show_event
-    @notifications = Notification.includes( :actor ).where( "recipient_id = ? and type != ?",current_user.id,"Notifications::InviteEvent").order("created_at DESC" )
+    @notifications = Notification.includes( :actor ).where( "recipient_id = ? and type != ?",current_user.id,"Notifications::InviteEvent").paginate(
+      :page => params[:page], :per_page => 5, :order => 'created_at DESC')
     respond_with @notifications
   end
 end

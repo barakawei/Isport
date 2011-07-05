@@ -63,6 +63,8 @@ class PeopleController < ApplicationController
       @followed_people = @person.user.followed_people
       @befollowed_people = @person.user.befollowed_people
       @posts = Post.where(:author_id => @person.id ).order("created_at DESC" )
+      @favorite_items = Item.joins( :favorites ).where( :favorites => {:person_id => @person.id })
+      @events_inv = Event.joins(:involvements).where(:involvements => { :person_id => @person.id }  )
     end
   end
 

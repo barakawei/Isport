@@ -1,10 +1,35 @@
 .span-6
-  .avatar
-    =person_image_tag(@person,:thumb_large )
-  .information{ :style =>"border-top: 1px solid #CCCCCC" }
+  .left_side
+    .avatar
+      = person_image_tag(@person,:thumb_large )
+    .information
+      .personal
+        %h4="个人信息"
+        %dl
+          %dt="性别"
+          %dd="男"
+      .items
+        %h4="喜欢的项目"
+        -for item in @favorite_items
+          = item_image_link(item,{ :size => :thumb_small })
+      .events
+        %h4="参加的活动"
+        -for event in @events_inv
+          = event_image_link(event,:thumb_small)
+      
 .span-12
   #person_panel
-    %h2=@person.name
+    .person_bar
+      %h2=@person.name
+      .action  
+        -if @person.user_id == current_user.id
+        -elsif @contact && @contact.receiving
+          .button.remove_friend
+            = link_to t( 'remove_friend' ),{:controller => 'contacts', :action => 'destroy',:person_id => @person.id},:method =>'delete'
+        -else
+          .button.add_friend{:style=>"width:100px"}
+            =link_to t('start_sharing'),{:controller => 'contacts', :action => 'create',:person_id => @person.id},:method =>'post'
+
     -if current_user.person.id == @person.id
       = render "status_messages/status_message"
     .stream
@@ -14,47 +39,48 @@
   .action{ :style => "display: none" }
 
 .span-6.last
-  #friend_listings
-    - if @friends.length > 0
-      .contacts
-        %h3
-          -if current_user.person.id == @person.id
-            = "你的好友"
-          - else
-            = "他的好友"
-        - for friend in @friends
-          = person_image_link(friend)
-        %h4
-          =link_to t( 'more' ),{:controller => 'people',:action => 'show_friends'}
-    - else
-      =t('no_friends')
-  #followed_people
-    - if @followed_people.length > 0
-      .contacts
-        %h3
-          -if current_user.person.id == @person.id
-            = "你关注的人"
-          - else
-            = "他关注的人"
+  .right_side
+    #friend_listings
+      - if @friends.length > 0
+        .contacts
+          %h3
+            -if current_user.person.id == @person.id
+              = "你的好友"
+            - else
+              = "他的好友"
+          - for friend in @friends
+            = person_image_link(friend)
+          %h4
+            =link_to t( 'more' ),{:controller => 'people',:action => 'show_friends'}
+      - else
+        =t('no_friends')
+    #followed_people
+      - if @followed_people.length > 0
+        .contacts
+          %h3
+            -if current_user.person.id == @person.id
+              = "你关注的人"
+            - else
+              = "他关注的人"
 
-        - for person in @followed_people
-          = person_image_link(person)
-        %h4
-          =link_to t( 'more' ),{:controller => 'people',:action => 'show_friends'}
+          - for person in @followed_people
+            = person_image_link(person)
+          %h4
+            =link_to t( 'more' ),{:controller => 'people',:action => 'show_friends'}
 
-  #befollowed_people
-    - if @befollowed_people.length > 0
-      .contacts
-        %h3
-          -if current_user.person.id == @person.id
-            = "关注你的人"
-          - else
-            = "关注他的人"
+    #befollowed_people
+      - if @befollowed_people.length > 0
+        .contacts
+          %h3
+            -if current_user.person.id == @person.id
+              = "关注你的人"
+            - else
+              = "关注他的人"
 
-        - for person in @befollowed_people
-          = person_image_link(person)
-        %h4
-          =link_to t( 'more' ),{:controller => 'people',:action => 'show_friends'}
+          - for person in @befollowed_people
+            = person_image_link(person)
+          %h4
+            =link_to t( 'more' ),{:controller => 'people',:action => 'show_friends'}
 
 
 :javascript

@@ -3,7 +3,6 @@ class Post < ActiveRecord::Base
   has_many :post_visibilities
   has_many :contacts, :through => :post_visibilities
   has_many :comments
-  default_scope where(:type => "StatusMessage")
 
   def subscribers(user,action)
     user.followed_people

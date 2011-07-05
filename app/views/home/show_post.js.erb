@@ -1,4 +1,4 @@
-$('.feed_container').html("<%= escape_javascript(render(:partial => 'status_messages/status_message_element', :collection => @posts,:as => :post)) %>");
+$('.feed_container').html("<%= escape_javascript(render('status_messages/status_messages_container')) %>");
 $("abbr.timeago").timeago();
 
 

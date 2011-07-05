@@ -11,9 +11,8 @@
         ='活动'
 
 .feed_container
-  = render :partial => 'status_messages/status_message_element',
-         :collection => @posts,
-         :as => :post
+  = render 'status_messages/status_messages_container'
+
 :javascript
   $( "li" ).click( function( ){
     $( ".active" ).removeClass( "active" ); 

@@ -3,6 +3,7 @@ class StatusMessage < Post
 
   attr_accessible :content
 
+
   def self.initialize( user,params = {} )
     status_message = StatusMessage.new
     status_message.author = user.person

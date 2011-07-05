@@ -1,4 +1,11 @@
 module ApplicationHelper
+  def next_page_path
+    if controller.instance_of?(PeopleController)
+      person_path(@person, :max_time => @posts.last.created_at.to_i)
+    end
+  end
+
+
   def how_long_ago(obj)
     timeago(obj.created_at)
   end

@@ -1,3 +1,11 @@
+.right_side {
+  background-color: #f5f5f5;
+  padding: 10px; }
+
+.left_side {
+  background-color: #f5f5f5;
+  padding: 10px; }
+
 #home_user {
   position: relative;
   border-bottom: 1px solid #cccccc; }
@@ -55,9 +63,44 @@
   width: 400px;
   height: 20px; }
 
+#hot_events_list {
+  padding-top: 10px; }
+  #hot_events_list h4 {
+    padding-top: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #cccccc; }
+  #hot_events_list .event {
+    padding-top: 5px;
+    padding-bottom: 2px; }
+    #hot_events_list .event .avatar {
+      float: left;
+      width: 30px;
+      height: 30px; }
+    #hot_events_list .event .content {
+      height: 30px; }
+
 #person_panel {
   padding-right: 10px; }
+  #person_panel h2 {
+    display: inline; }
+  #person_panel .action {
+    font-size: 11px;
+    display: inline; }
   #person_panel textarea {
     width: 450px; }
   #person_panel .comment_form textarea {
     width: 350px; }
+
+dt {
+  color: #8a8a8a;
+  display: inline-block;
+  width: 70px; }
+
+dd {
+  display: inline-block;
+  width: 70px; }
+
+.information h4 {
+  padding-top: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #cccccc; }

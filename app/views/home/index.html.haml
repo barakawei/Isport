@@ -9,7 +9,9 @@
   =render "home/feed_container"
     
 .span-7.last
-  = render 'people/person_list', :person => @person
+  .right_side
+    = render 'people/person_list', :person => @person
+    = render 'home/hot_events'   
 
 :javascript
   $( "#view" ).attr("value", "index" );

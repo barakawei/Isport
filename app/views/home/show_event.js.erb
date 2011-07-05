@@ -1,1 +1,1 @@
-$('.feed_container').html("<%= escape_javascript(render(:partial => 'notifications/notification_element', :collection => @notifications,:as => :note)) %>");
+$('.feed_container').html("<%= escape_javascript(render('notifications/notifications_container')) %>");
