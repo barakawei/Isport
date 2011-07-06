@@ -5,8 +5,8 @@ class Event < ActiveRecord::Base
   PARTICIPANTS_LIMIT_MIN = 0
   PARTICIPANTS_LIMIT_MAX = 100 
 
-  attr_accessor :same_day, :current_year
-  validates_presence_of :title, :start_at, :description, :subject_id,
+  attr_accessor :same_day, :current_year,:invited_people
+  validates_presence_of :title, :start_at, :description, :location, :subject_id,
                         :participants_limit,
                         :message => I18n.t('activerecord.errors.messages.blank')
   
@@ -55,6 +55,9 @@ class Event < ActiveRecord::Base
   scope :on_date, lambda {|date| where("start_at >= ? and start_at <= ?", date.beginning_of_day, date.end_of_day )}
   scope :alltime, lambda { select("*") }
   scope :at_city, lambda {|city| includes("location").where(:locations => {:city_id => city}) }
+
+
+  
 
   def self.update_avatar_urls(params,url_params)
       event = find(params[:photo][:model_id])
@@ -114,6 +117,37 @@ class Event < ActiveRecord::Base
     self.start_at > Time.now
   end
 
+  def dispatch_event( action=false )
+    Dispatch.new(self.person.user, self,action).notify_user
+  end
+
+  def subscribers(user,action=false)
+    action = action.to_sym
+    if action == :delete
+      self.participants
+    elsif action == :create
+      user.befollowed_people
+    elsif action == :involvment
+      user.befollowed_people
+    elsif action == :invite
+      self.invited_people
+    end
+
+  end
+
+  def notification_type( action=false )
+    action = action.to_sym
+    if action == :create
+       Notifications::CreateEvent
+    elsif action == :delete
+      Notifications::DeleteEvent
+    elsif action == :involvment
+      Notifications::InvolvementEvent
+    elsif action == :invite
+      Notifications::InviteEvent
+    end
+  end
+
   def participants_top(limit)
     participants.order("created_at DESC").limit(limit)
   end
@@ -146,7 +180,7 @@ class Event < ActiveRecord::Base
   
   def participants_limit_cannot_be_less_than_current_participants
     if self.participants_limit < self.participants.size
-      errors.add(:participants_limit, I18n.t('activerecord.errors.event.participants_limit.less_than_current'));
+      errors.add(:participants_limit, I18n.t('activerecord.errors.event.participants_limit.     less_than_current'));
     end
   end
 end

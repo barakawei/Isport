@@ -1,6 +1,25 @@
 module ApplicationHelper
+  def next_page_path
+    if controller.instance_of?(PeopleController)
+      person_path(@person, :max_time => @posts.last.created_at.to_i)
+    end
+  end
+
+
   def how_long_ago(obj)
     timeago(obj.created_at)
+  end
+
+  def object_path( object )
+    return "" if object.nil?
+    object = object.person if object.instance_of? User
+    eval("#{object.class.name.underscore}_path(object)")
+  end
+
+  def object_image_link(object,size=:thumb_small)
+    return "" if object.nil?
+    object = object.person if object.instance_of? User
+    eval ("#{object.class.name.underscore}_image_link(object,size)")
   end
 
   def timeago(time, options={})
@@ -20,15 +39,9 @@ module ApplicationHelper
     person_image_link(current_user.person)
   end
 
-  def person_image_link(person, opts = {})
+  def person_image_link(person, size=:thumb_small)
     return "" if person.nil? || person.profile.nil?
-    if opts[:to] == :photos
-      link_to person_image_tag(person, opts[:size]), person_photos_path(person)
-    else
-      "<a href='/people/#{person.id}'>
-  #{person_image_tag(person)}
-</a>".html_safe
-    end
+    link_to person_image_tag(person, size),person_path( person )
   end
 
 
@@ -53,11 +66,11 @@ module ApplicationHelper
 </a>".html_safe
   end
 
-  def event_image_tag(event,size=nil)
+  def event_image_tag(event,size)
     "<img title=\"#{h(event.title)}\" class=\"avatar\"  src=\"#{event.image_url(size)}\" >".html_safe
   end
 
-  def item_image_tag(item,size=nil)
+  def item_image_tag(item,size)
     "<img title=\"#{h(item.name)}\" class=\"avatar\"  src=\"#{item.image_url(size)}\" >".html_safe
   end
 

@@ -73,6 +73,7 @@ class EventsController < ApplicationController
     unless @event.save
       render :action => "new" 
     else
+      @event.dispatch_event( :create )
       redirect_to event_members_path(@event)
     end
   end
@@ -220,6 +221,7 @@ class EventsController < ApplicationController
                :group => 'involvements.event_id',
                :order => 'count desc',
                :limit => 3)
+
   end
 
   def user_favorites_item_events(time_filter_path="week")

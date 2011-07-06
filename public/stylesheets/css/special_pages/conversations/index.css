@@ -106,8 +106,3 @@
   .stream_element.new_message textarea {
     height: 100px;
     width: 100%; }
-
-.content .timeago {
-  border: medium none;
-  color: #999999;
-  text-decoration: none; }

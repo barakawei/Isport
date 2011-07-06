@@ -13,6 +13,16 @@
   behavior: url(/javascripts/PIE.htc);
 }
 
+@mixin border-radius-feed($radius){
+  -moz-border-radius-topleft: $radius;
+  -moz-border-radius-topright: $radius;
+  -webkit-border-top-left-radius: $radius;
+  -webkit-border-top-right-radius: $radius;
+  border-top-left-radius: $radius;
+  border-top-right-radius: $radius;
+  behavior: url(/javascripts/PIE.htc);
+}
+
 @mixin box-shadow($left, $top, $blur, $extra,$color:#000){
   -webkit-box-shadow: $left $top $blur $extra $color; 
   -moz-box-shadow: $left $top $blur $extra $color; 

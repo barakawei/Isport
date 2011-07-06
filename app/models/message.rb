@@ -11,8 +11,6 @@ class Message < ActiveRecord::Base
       vis.unread += 1
       vis.save
       self
-    else
-      raise NotVisibleException("Attempting to access a ConversationVisibility that does not exist!")
     end
   end
   

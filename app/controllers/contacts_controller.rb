@@ -1,23 +1,24 @@
 class ContactsController < ApplicationController
-  def new
-    if params[ :request ]
-      person_id = params[ :request ][:person_id]
-      message = params[ :request ][:message]
-    else
-      person_id = params[:person_id]
-      message = ''
-    end
-    @person = Person.find(person_id)
-    @contact = request_to_person(@person,message)
-    @contact && @contact.persisted?
+  def create
+    @person = Person.find(params[:person_id])
+    contact = current_user.share_with(@person)
+    contact.dispatch_request 
     redirect_to :back
   end
 
-  def remove_friend 
+  def destroy
     contact_user = Contact.where( :user_id => current_user.id, :person_id => params[ :person_id ] ).first
-    contact_user.destroy
+    if !contact_user.mutual?
+      contact_user.destroy
+    else
+      contact_user.update_attributes(:receiving => false)
+    end 
     contact_person = Contact.where( :user_id =>params[ :person_id ] , :person_id => current_user.id).first
-    contact_person.destroy
+    if !contact_person.mutual?
+      contact_person.destroy
+    else
+      contact_person.update_attributes(:sharing => false)
+    end 
     redirect_to :back
   end
 

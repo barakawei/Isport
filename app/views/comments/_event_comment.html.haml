@@ -1,0 +1,10 @@
+.stream_element{ :id => comment.id }
+  = person_image_link(comment.author,:thumb_small) 
+  .content
+    .from
+      = person_link(comment.author, :class => 'author')
+    %p
+      = comment.content
+    .content_info
+      %span.time.timeago{:datetime => comment.created_at,:style=>"font-size: 11px"}
+        =how_long_ago( comment )

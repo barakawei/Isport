@@ -1,0 +1,8 @@
+.status_message_panel
+  = form_for(StatusMessage.new, :remote => true) do |status|
+    = status.text_area :content, :rows => 2
+    = status.submit "分享", :class => 'button'
+    = hidden_field_tag :view,:value
+
+
+

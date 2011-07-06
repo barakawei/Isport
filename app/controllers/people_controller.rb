@@ -59,6 +59,12 @@ class PeopleController < ApplicationController
       @contact =  Contact.unscoped.where( :user_id => @person.user.id ,:person_id => current_user.id).first
       @request = Request.where( :sender_id => current_user.id,:recipient_id => @person.id ).first
       @contacts = Contact.where( :user_id => @person.user.id ).all 
+      @friends = @person.user.friends
+      @followed_people = @person.user.followed_people
+      @befollowed_people = @person.user.befollowed_people
+      @posts = Post.where(:author_id => @person.id ).order("created_at DESC" )
+      @favorite_items = Item.joins( :favorites ).where( :favorites => {:person_id => @person.id })
+      @events_inv = Event.joins(:involvements).where(:involvements => { :person_id => @person.id }  )
     end
   end
 

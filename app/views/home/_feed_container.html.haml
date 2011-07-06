@@ -1,0 +1,40 @@
+.feed_tabs
+  %br
+  %br
+  %h2="动态"
+  %ul
+    %a{"data-remote" =>"true", :href => "/home/show_post"}
+      %li.active
+        ='好友'
+    %a{"data-remote" =>"true", :href => "/home/show_event"}
+      %li
+        ='活动'
+
+.feed_container
+  = render 'status_messages/status_messages_container'
+
+:javascript
+  $( "li" ).click( function( ){
+    $( ".active" ).removeClass( "active" ); 
+    $(this).addClass( "active" );
+    }
+  );
+  $("abbr.timeago").timeago();
+  $( ".replay" ).live( "click",function( ){  
+    stream_element = $( this ).closest(".stream_element");
+    commentBlock = stream_element.find(".comment_form");
+    comments = stream_element.find(".comments");
+    if(commentBlock.hasClass("hidden")) {
+      if( $( ".comment",comments ).length != 0 ){
+        comments.removeClass("hidden");
+      }
+      commentBlock.removeClass("hidden");
+      commentBlock.find("textarea").focus();
+    } else {
+        if( $( ".comment",comments ).length > 3 || $( ".comment",comments ).length == 0 ){
+          comments.addClass( "hidden" );
+        }
+        commentBlock.addClass("hidden");
+      }  
+    return false;
+    }); 
