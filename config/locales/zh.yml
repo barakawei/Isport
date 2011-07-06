@@ -59,6 +59,8 @@ zh:
     started_sharing: "%{actor_link} 加你为好友"
     involvement_event: "%{actor_link} 参加了活动 %{event_link}"
     invite_event: "%{actor_link} 邀请你参加活动 %{event_link}"
+    recommendation_event: "%{actor_link} 推荐了活动 %{event_link}"
+
 
   events:
       index: '活动首页'

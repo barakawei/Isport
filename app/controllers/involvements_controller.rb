@@ -18,7 +18,7 @@ class InvolvementsController < ApplicationController
   def create
     involvment = Involvement.new(:event_id => @event.id, :person_id => @person.id) if @event.joinable?
     if involvment.save
-      involvment.dispatch_involvment( :involvment )
+     @event.dispatch_event(:involvement,current_user )
     end
     redirect_to :back
   end

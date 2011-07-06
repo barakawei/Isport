@@ -3,6 +3,7 @@ class EventRecommendationsController < ApplicationController
 
   def add_reference
     @event.references << current_user.person
+    @event.dispatch_event(:recommendation,current_user)
     redirect_to(event_path(@event))
   end
 

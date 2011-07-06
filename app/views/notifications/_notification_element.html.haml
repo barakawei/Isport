@@ -4,8 +4,8 @@
     .content
       .from
         = notification_message_for(note)
-      .time.timeago{:datetime => note.target.created_at}
-        =how_long_ago( note.target )
+      .time.timeago
+        = notification_time_ago( note )
   
 :javascript
   $("abbr.timeago").timeago();
