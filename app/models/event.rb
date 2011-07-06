@@ -23,7 +23,14 @@ class Event < ActiveRecord::Base
 
   belongs_to :person
   has_many :involvements, :dependent => :destroy
-  has_many :participants, :through => :involvements, :source => :person
+
+  has_many :participants, :through => :involvements, :source => :person,
+                          :conditions => ['involvements.is_pending = ?', false]
+
+  has_many :invitees, :through => :involvements, :source => :person,
+                          :conditions => ['involvements.is_pending = ?', true]
+
+  has_many :invitees_plus_participants, :through => :involvements, :source => :person
 
   has_many :recommendations, :class_name => "EventRecommendation", 
                              :dependent => :destroy, :foreign_key => "item_id"
@@ -35,12 +42,13 @@ class Event < ActiveRecord::Base
 
   belongs_to :item, :foreign_key => "subject_id"
 
-  scope :this_week, lambda { where("start_at > ? and start_at < ?", Time.now.beginning_of_week,
+  scope :week, lambda { where("start_at > ? and start_at < ?", Time.now.beginning_of_week,
                              Time.now.end_of_week) }
 
   scope :today, lambda { where("start_at >= ? and start_at <= ?", Time.now.beginning_of_day, Time.now.end_of_day) }
   scope :weekends, lambda {where("DAYOFWEEK(start_at) = 7 or DAYOFWEEK(start_at) = 1") }
   scope :on_date, lambda {|date| where("start_at >= ? and start_at <= ?", date.beginning_of_day, date.end_of_day )}
+  scope :alltime, lambda { select("*") }
 
   def self.update_avatar_urls(params,url_params)
       event = find(params[:photo][:model_id])
@@ -98,6 +106,26 @@ class Event < ActiveRecord::Base
 
   def not_started?
     self.start_at > Time.now
+  end
+
+  def participants_top(limit)
+    participants.order("created_at DESC").limit(limit)
+  end
+
+  def references_top(limit)
+    references.order("created_at DESC").limit(limit)
+  end
+
+  def joinable?
+    !(ongoing? || over? || participants_full?)
+  end
+
+  def quitable?
+    !(ongoing? || over?)
+  end
+
+  def owner
+    person
   end
 
   private

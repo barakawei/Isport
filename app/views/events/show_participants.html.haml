@@ -13,6 +13,9 @@
                                                             :pagination_type => "other_page",
                                                             :edit => false }
 .span-7.last
+  - if @event.is_owner(current_user)
+    = link_to t("events.edit.name"), event_members_path(@event), :class => "button"
+  %hr.space
   = link_to t("back"), event_path(@event), :class => "button" 
 
 :javascript

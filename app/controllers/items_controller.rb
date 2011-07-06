@@ -17,7 +17,7 @@ class ItemsController < ApplicationController
       fans_counts[count.item_id] = count.fansize
     end
 
-    Event.this_week.select("subject_id, count(subject_id) evesize")
+    Event.week.select("subject_id, count(subject_id) evesize")
       .where(:subject_id => items_ids).group(:subject_id).each do |count|
       events_counts[count.subject_id] = count.evesize
     end
@@ -68,7 +68,7 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
-    @events = @item.events.this_week.limit(EVELIMIT)
+    @events = @item.events.week.limit(EVELIMIT)
     @actors = @item.fans.includes(:profile).limit(ACTLIMIT)
 
     respond_to do |format|

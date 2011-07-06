@@ -40,7 +40,7 @@
         = link_to t('operations.delete'), "#remove_event_#{event.id}", :class => "delete right"
 
 .span-24
-  .facebox_content
+  .facebox_content.hide
     %div{:id => "remove_event_#{event.id}"}
       .span-10.box_content
         %h4= t('activerecord.operations.event.remove_event_from_list', :type => remove_type(@type) )

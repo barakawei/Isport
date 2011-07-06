@@ -45,7 +45,7 @@
             %span.medium_avatar=link_to person.profile.name, person_path(person)
   .span-6.last
     .span-6.left_padding
-      %h4= link_to t('items.events'), events_week_path(:id => @item.id )
+      %h4= link_to t('items.events'), events_time_path(:id => @item.id, :time => :week)
     .span-6
       - @events.each_with_index do |event, index|
         .span-6

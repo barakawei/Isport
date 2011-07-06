@@ -1,7 +1,8 @@
-function friend_select( ){   
+function friend_select(get_url){   
+     var url = arguments[0] ? arguments[0] : "/people/friend_select";
      $("#friend_select").empty();
      $("#friend_select").append(
-     '<div class="filter" style="position:relative"> <input id="filter" type="text" style="width:100px;height:16px"></div><ul id="fcbklist"></ul><br><div class="button " style="width: 40px;float:right" id="friend_select_button"><a href="#">ok</a></div>');
+     '<div class="filter" style="position:relative"> <input id="filter" type="text" style="width:100px;height:16px"></div><ul id="fcbklist"></ul><br><h4 id="error_message" style="float:left; display:none; color:red">您还没有选择好友!</h4><div class="button " style="width: 40px;float:right" id="friend_select_button"><a href="#">ok</a></div>');
      $('#friend_select_button').button({});      
      
      var $fcbklist = $('#fcbklist');
@@ -10,12 +11,18 @@ function friend_select( ){
         $fcbklist.find('li[addedid]').each(function(){
           selectedIds.push( this.id );
         }); 
+        if (selectedIds.length == 0) {
+          $('#error_message').fadeIn(1000, function() {
+            $('#error_message').fadeOut(1000);
+          }); 
+          return false;
+        }
         var selectedIdsStr = selectedIds.join( "," );
         friend_selected_callback( selectedIdsStr);
       });
     $.ajax({       
           type: "get",
-          url: "/people/friend_select",
+          url:  url,
           success: function(result){
             $.each(result.data, function(i){
               $fcbklist.append(

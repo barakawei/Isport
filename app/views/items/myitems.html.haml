@@ -16,7 +16,7 @@
           %span.detail= item[:fans_count].to_s + t('items.fans')
           %br
           %span.detail
-            = link_to t('items.eventsthisweek', :count => item[:events_count]), events_week_path(:id => item[:item].id )
+            = link_to t('items.eventsthisweek', :count => item[:events_count]), events_time_path(:id => item[:item].id, :time => :week)
       .span-22
         %hr
 :javascript

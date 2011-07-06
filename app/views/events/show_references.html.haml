@@ -14,13 +14,13 @@
   = link_to t("back"), event_path(@event), :class => "button" 
 
 :javascript
-  $('#other_references.pagination a').live('click', function(){
+  $('#other_references .pagination a').live('click', function(){
     $.get(this.href, function(data) {
       $('#other_references').html(data);
     });
     return false;
   });
-  $('#friend_references.pagination a').live('click', function(){
+  $('#friend_references .pagination a').live('click', function(){
     $.get(this.href, function(data) {
       $('#friend_references').html(data);
     });
