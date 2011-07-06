@@ -5,7 +5,7 @@
   .current_status
     ="最近更新:"
     %span.current_status_body
-      =@current_status.content
+      =@current_status.content if @current_satus
   =render "home/feed_container"
     
 .span-7.last

@@ -111,8 +111,8 @@ class Event < ActiveRecord::Base
     self.start_at > Time.now
   end
 
-  def dispatch_event( action=false )
-    Dispatch.new(self.person.user, self,action).notify_user
+  def dispatch_event(action,user=self.person.user)
+    Dispatch.new(user, self,action).notify_user
   end
 
   def subscribers(user,action=false)
@@ -121,10 +121,12 @@ class Event < ActiveRecord::Base
       self.participants
     elsif action == :create
       user.befollowed_people
-    elsif action == :involvment
-      user.befollowed_people
     elsif action == :invite
       self.invited_people
+    elsif action == :involvement
+      user.befollowed_people
+    elsif action == :recommendation
+      user.befollowed_people
     end
 
   end
@@ -132,13 +134,15 @@ class Event < ActiveRecord::Base
   def notification_type( action=false )
     action = action.to_sym
     if action == :create
-       Notifications::CreateEvent
+      Notifications::CreateEvent
     elsif action == :delete
       Notifications::DeleteEvent
-    elsif action == :involvment
-      Notifications::InvolvementEvent
     elsif action == :invite
       Notifications::InviteEvent
+    elsif action == :involvement
+      Notifications::InvolvementEvent
+    elsif action == :recommendation
+      Notifications::RecommendationEvent
     end
   end
 
