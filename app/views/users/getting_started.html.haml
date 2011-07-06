@@ -4,11 +4,11 @@
 .span-15.prepend-4.last{:style =>'position:relative;'}
   %br
   %br
-  .profile_block{ :style => "position:relative;width: 500px;height:250px" }
-    .floating{ :style => "width: 500px;height:250px" }
+  .profile_block{ :style => "position:relative;width: 500px;height:300px" }
+    .floating{ :style => "width: 500px;height:300px" }
       = form_tag @profile,:method => :put,:multipart =>true,:id=>'update_profile_form' do
         %div{ :style=>"padding: 10px" }
-          = render 'profiles/edit_public',:profile => @profile,:person =>@person
+          = render 'profiles/edit_public',:profile => @profile,:person =>@person, :location => @profile.location
         .submit_block
           =submit_tag t('submit'),:class => "button"
 

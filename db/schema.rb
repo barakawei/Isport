@@ -10,12 +10,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110629092405) do
+ActiveRecord::Schema.define(:version => 20110706075040) do
 
   create_table "administrators", :force => true do |t|
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "cities", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "pinyin"
   end
 
   create_table "comments", :force => true do |t|
@@ -53,12 +60,19 @@ ActiveRecord::Schema.define(:version => 20110629092405) do
     t.datetime "updated_at"
   end
 
+  create_table "districts", :force => true do |t|
+    t.string   "name"
+    t.integer  "city_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "events", :force => true do |t|
     t.datetime "start_at"
     t.datetime "end_at"
     t.string   "title"
     t.text     "description"
-    t.string   "location"
+    t.string   "address"
     t.integer  "subject_id"
     t.boolean  "ispublic"
     t.datetime "created_at"
@@ -69,6 +83,7 @@ ActiveRecord::Schema.define(:version => 20110629092405) do
     t.integer  "person_id"
     t.integer  "item_id"
     t.integer  "participants_limit", :default => 100
+    t.integer  "location_id"
   end
 
   create_table "favorites", :force => true do |t|
@@ -94,6 +109,17 @@ ActiveRecord::Schema.define(:version => 20110629092405) do
     t.string   "image_url_large"
     t.string   "image_url_medium"
     t.string   "image_url_small"
+  end
+
+  create_table "locations", :force => true do |t|
+    t.integer  "city_id"
+    t.integer  "district_id"
+    t.string   "detail"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name"
+    t.decimal  "lng",         :precision => 11, :scale => 8
+    t.decimal  "lat",         :precision => 11, :scale => 8
   end
 
   create_table "messages", :force => true do |t|
@@ -137,7 +163,7 @@ ActiveRecord::Schema.define(:version => 20110629092405) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "image_url_medium"
-    t.string   "location"
+    t.integer  "location_id"
   end
 
   add_index "profiles", ["name"], :name => "index_profiles_on_name"

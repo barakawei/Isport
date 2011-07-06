@@ -1,21 +1,26 @@
 - content_for :head do
   = include_stylesheets :sepcial_pages_events_index, :media => 'all'
   = include_stylesheets :sepcial_pages_events_common, :media => 'all'
+#city_select_box.hide    
+  - City.all.each do |city|
+    %h4.inline= link_to city.name, events_time_path(city.pinyin) 
 .span-24.prepend-top.filter_bar 
   .span-15
     %span.left
-      %h2.title= t 'events.events_list' 
-      %h4.border= link_to_unless_current t('filter.time.today'), events_time_path("today",@item_filter, @sort_filter)
-      %h4.border= link_to_unless_current t('filter.time.this_week'), events_time_path("week",@item_filter, @sort_filter)
-      %h4.border= link_to_unless_current t('filter.time.weekends'),  events_time_path("weekends", @item_filter, @sort_filter)
-      %h4.border= link_to_unless_current t('filter.time.alltime'), events_time_path("alltime", @sort_filter)
+      %h2.title
+        = t('events_link') + ':' 
+        = link_to @city.name, "#", :id => "switch_city"
+      %h4.border.first_filter= link_to_unless_current t('filter.time.today'), events_time_path(@city.pinyin,"today",@item_filter, @sort_filter)
+      %h4.border= link_to_unless_current t('filter.time.this_week'), events_time_path(@city.pinyin,"week",@item_filter, @sort_filter)
+      %h4.border= link_to_unless_current t('filter.time.weekends'),  events_time_path(@city.pinyin,"weekends", @item_filter, @sort_filter)
+      %h4.border= link_to_unless_current t('filter.time.alltime'), events_time_path(@city.pinyin,"alltime",@item_filter, @sort_filter)
       =text_field_tag 'date', t('filter.time.select_time'), :readonly => true, :class => "blue"
   .span-9.last.filter_bar
     = link_to t('events.new_event'), new_event_path, :class => "new_event right"   
     %span.right
       %h2=" " 
-      %h4.border= link_to_unless_current t('filter.sort.by_starttime'), events_time_path(@time_filter_path, @item_filter, "by_starttime")
-      %h4.border= link_to_unless_current t('filter.sort.by_popularity'), events_time_path(@time_filter_path, @item_filter, "by_popularity") 
+      %h4.border= link_to_unless_current t('filter.sort.by_starttime'), events_time_path(@city.pinyin,@time_filter_path, @item_filter, "by_starttime")
+      %h4.border= link_to_unless_current t('filter.sort.by_popularity'), events_time_path(@city.pinyin,@time_filter_path, @item_filter, "by_popularity") 
   %hr
 .span-24
   .span-18
@@ -38,7 +43,7 @@
           = ":"
         - @favorite_items.each_with_index do |item, index|
           %p
-            %h4=link_to_unless_current item.name + "(#{@item_event_size[index].to_s})", events_time_path(@time_filter_path, item.id, @sort_filter)
+            %h4=link_to_unless_current item.name + "(#{@item_event_size[index].to_s})", events_time_path(@city.pinyin,@time_filter_path, item.id, @sort_filter)
         %hr.space
         %hr
         %h4=link_to t('events.joined_events_link', :count => @joined_events.size), my_events_path("joined")
@@ -58,6 +63,11 @@
       $(this).toggleClass('underline');  
     });
     fill_dateinput();
+
+    var left = $('#switch_city').offset().left;
+    var t =$('#switch_city').offset().top + $('#switch_city').innerHeight();
+    $('#city_select_box').css("left", left+"px");
+    $('#city_select_box').css("top", t+"px");
   });
 
   $('.hot_event .nav_box .pre').bind('click', slideLeft);
@@ -101,3 +111,9 @@
       });
       return false;
   }
+
+  $("#switch_city").click(function(e) {
+    $('#city_select_box').toggleClass('hide'); 
+    e.stopPropagation();
+    return false;
+  });

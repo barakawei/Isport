@@ -6,7 +6,7 @@ class Event < ActiveRecord::Base
   PARTICIPANTS_LIMIT_MAX = 100 
 
   attr_accessor :same_day, :current_year
-  validates_presence_of :title, :start_at, :description, :location, :subject_id,
+  validates_presence_of :title, :start_at, :description, :subject_id,
                         :participants_limit,
                         :message => I18n.t('activerecord.errors.messages.blank')
   
@@ -22,6 +22,10 @@ class Event < ActiveRecord::Base
   validate :participants_limit_cannot_be_less_than_current_participants
 
   belongs_to :person
+
+  belongs_to :location
+  accepts_nested_attributes_for :location
+
   has_many :involvements, :dependent => :destroy
 
   has_many :participants, :through => :involvements, :source => :person,
@@ -42,6 +46,7 @@ class Event < ActiveRecord::Base
 
   belongs_to :item, :foreign_key => "subject_id"
 
+
   scope :week, lambda { where("start_at > ? and start_at < ?", Time.now.beginning_of_week,
                              Time.now.end_of_week) }
 
@@ -49,6 +54,7 @@ class Event < ActiveRecord::Base
   scope :weekends, lambda {where("DAYOFWEEK(start_at) = 7 or DAYOFWEEK(start_at) = 1") }
   scope :on_date, lambda {|date| where("start_at >= ? and start_at <= ?", date.beginning_of_day, date.end_of_day )}
   scope :alltime, lambda { select("*") }
+  scope :at_city, lambda {|city| includes("location").where(:locations => {:city_id => city}) }
 
   def self.update_avatar_urls(params,url_params)
       event = find(params[:photo][:model_id])
