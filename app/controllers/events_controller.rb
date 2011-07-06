@@ -15,8 +15,10 @@ class EventsController < ApplicationController
   PER_PAGE = 32 
 
   def index
+    city_pinyin = params[:city] ? params[:city] : (current_user ? current_user.city.pinyin : City.first.pinyin)
+    @city = City.find_by_pinyin(city_pinyin) 
     events_by_time_filter
-    @hottest_events = hottest_event if params[:time].nil?
+    @hottest_events = hottest_event(@city.id) if params[:time].nil?
   end
 
   def my_events
@@ -142,15 +144,15 @@ class EventsController < ApplicationController
   def events_by_time_filter
     get_filters   
     unless  @time_filter_path =~ /\d\d\d\d-\d\d-\d\d/
-      @events = (@item_filter == nil) ? Event.send(@time_filter_path).order("start_at asc")
-                                        : Item.find(@item_filter).events.send(@time_filter_path).order("start_at asc")
+      @events = (@item_filter == nil) ? Event.send(@time_filter_path).at_city(@city.id).order("start_at asc")
+                                        : Item.find(@item_filter).events.send(@time_filter_path).at_city(@city.id).order("start_at asc")
       user_favorites_item_events(@time_filter_path)
     else
       date = @time_filter_path.to_date
       user_favorites_item_events(date.to_s)
       @time_filter_path = date.to_s 
       @events = (@item_filter == nil) ? Event.on_date(date).order("start_at asc")
-                                      : Item.find(@item_filter).events.on_date(date).order("start_at asc")
+                                      : Item.find(@item_filter).events.on_date(date).at_city(@city.id).order("start_at asc")
     end 
     get_my_events
     process_event_time
@@ -210,8 +212,10 @@ class EventsController < ApplicationController
       end
   end
 
-  def hottest_event
-    hottest_event = Event.find(:all, :joins=>" INNER JOIN involvements on events.id = involvements.event_id",
+  def hottest_event(city_id)
+    hottest_event = Event.find(:all, 
+               :conditions => [" locations.city_id = ? ", city_id],
+               :joins=>" INNER JOIN involvements on events.id = involvements.event_id INNER JOIN locations on events.location_id = locations.id ",
                :select => "events.*, count(*) count",
                :group => 'involvements.event_id',
                :order => 'count desc',

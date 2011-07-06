@@ -17,16 +17,35 @@ function initialize(zoom,element) {
 }
 
 function codeAddress(element,address, zoom) {
- var z = arguments[2] ? arguments[2] : 13;
+  var z = arguments[2] ? arguments[2] : 13;
   initialize(z, element);
+  
+  var contentString = '<div id="content" style="width: 300px">'+
+    '<div id="siteNotice">'+
+    '</div>'+
+    '<h4 class="blue">'+ address + '</h4>'+
+    '</div>';
+  
+  var infowindow = new google.maps.InfoWindow({
+    content: contentString 
+  });
+ 
+  
   if (geocoder) {
-    geocoder.geocode( { 'address': address}, function(results, status) {
+    geocoder.geocode({'address': address}, function(results, status) {
       if (status == google.maps.GeocoderStatus.OK) {
         map.setCenter(results[0].geometry.location);
         var marker = new google.maps.Marker({
             map: map, 
             position: results[0].geometry.location
         });
+        
+        if (element == "map-big") {
+          google.maps.event.addListener(marker, 'click', function() {
+           infowindow.open(map,marker);
+           });
+        }
+        
       } else {
         alert("Geocode was not successful for the following reason: " + status);
       }

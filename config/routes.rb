@@ -33,9 +33,12 @@ Isport::Application.routes.draw do
   end
 
   controller :events do
-    match '/events/:time(/:id)(/:sort)'=> :index, :as => 'events_time', 
+    match '/events/:id' => :show, :via => :get,
+          :constraints => { :id => /[1-9]\d*/}
+    match '/events(/:city)(/:time)(/:id)(/:sort)'=> :index, :via => :get, :as => 'events_time', 
           :constraints => { :id => /[1-9]\d*/, :sort => /(by_starttime)|(by_popularity)/,
-                            :time => /today|week|weekends|alltime|((((19|20)(([02468][048])|([13579][26]))-02-29))|((20[0-9][0-9])|(19[0-9][0-9]))-((((0[1-9])|(1[0-2]))-((0[1-9])|(1\d)|(2[0-8])))|((((0[13578])|(1[02]))-31)|(((0[1,3-9])|(1[0-2]))-(29|30)))))/}
+                            :time => /today|week|weekends|alltime|((((19|20)(([02468][048])|([13579][26]))-02-29))|((20[0-9][0-9])|(19[0-9][0-9]))-((((0[1-9])|(1[0-2]))-((0[1-9])|(1\d)|(2[0-8])))|((((0[13578])|(1[02]))-31)|(((0[1,3-9])|(1[0-2]))-(29|30)))))/,
+                            :city => /nanjing|shanghai|beijing/}
     match '/events/mine(/:type)' => :my_events, :as => 'my_events',
           :constraints => { :type=> /joined|recommended|friend_joined|friend_recommended/ }
     match '/events/:id/edit/members' => :edit_members, :as => 'event_members',

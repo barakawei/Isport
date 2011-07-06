@@ -54,6 +54,7 @@ class Event < ActiveRecord::Base
   scope :weekends, lambda {where("DAYOFWEEK(start_at) = 7 or DAYOFWEEK(start_at) = 1") }
   scope :on_date, lambda {|date| where("start_at >= ? and start_at <= ?", date.beginning_of_day, date.end_of_day )}
   scope :alltime, lambda { select("*") }
+  scope :at_city, lambda {|city| includes("location").where(:locations => {:city_id => city}) }
 
   def self.update_avatar_urls(params,url_params)
       event = find(params[:photo][:model_id])

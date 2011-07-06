@@ -5,6 +5,10 @@
   = t('profiles.edit.your_name')
   = text_field_tag 'profile[name]', profile.name, :placeholder => t('profiles.edit.name'),:style=>"width: 100px",:required =>"required"
 %h4
+  = "城市"
+  = select_tag "profile[location_attributes][city_id]",
+               options_from_collection_for_select(City.all, "id", "name", location.city_id)
+%h4
   = t('profiles.edit.your_photo')
 %div
   = render 'photos/new_profile_photo', :person => person

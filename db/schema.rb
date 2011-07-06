@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110704165115) do
+ActiveRecord::Schema.define(:version => 20110706075040) do
 
   create_table "administrators", :force => true do |t|
     t.integer  "user_id"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(:version => 20110704165115) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "pinyin"
   end
 
   create_table "comments", :force => true do |t|
@@ -162,7 +163,7 @@ ActiveRecord::Schema.define(:version => 20110704165115) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "image_url_medium"
-    t.string   "location"
+    t.integer  "location_id"
   end
 
   add_index "profiles", ["name"], :name => "index_profiles_on_name"

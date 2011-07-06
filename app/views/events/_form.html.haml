@@ -26,10 +26,11 @@
           = error_on(@event, :end_at)
         .field
           = f.label t('activerecord.attributes.event.location')+":"
-          = f.fields_for :location do |location_form|
-            = location_form.collection_select :city_id, City.all, :id, :name, {:prompt => true}
-            = location_form.collection_select :district_id, @event.location.city.districts, :id, :name, {:prompt => true}
-            = location_form.text_field :detail
+          .address
+            = f.fields_for :location do |location_form|
+              = location_form.collection_select :city_id, City.all, :id, :name, {:prompt => true}
+              = location_form.collection_select :district_id, @event.location.city.districts, :id, :name, {:prompt => true}
+              = location_form.text_field :detail
           = error_on(@event, :location)
         .field
           = f.label t('activerecord.attributes.event.description')+":"
