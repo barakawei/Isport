@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   before_filter :authenticate_user!
-  respond_to :js
+  respond_to :js,:html
   def index
     if current_user
       if (current_user.getting_started == true)
@@ -12,9 +12,6 @@ class HomeController < ApplicationController
       @friends = current_user.friends
       @followed_people = current_user.followed_people
       @befollowed_people = current_user.befollowed_people
-      @posts = Post.joins(:contacts ).where( :contacts => {:user_id => current_user.id},:type => "StatusMessage").order( "posts.created_at DESC" ).paginate(
-      :page => params[:page], :per_page => 10)
-
       @current_status = Post.where(:author_id => @person.id ).order("created_at DESC" ).first
 
       @selected = "home"
@@ -27,13 +24,19 @@ class HomeController < ApplicationController
     @posts = Post.joins(:contacts ).where( :contacts => {:user_id => current_user.id},:type => "StatusMessage").order( "posts.created_at DESC" ).paginate(
       :page => params[:page], :per_page => 10)
 
+    if params[ :page ] == nil
+      @tab = "post"
+    end
     respond_with @posts
     
   end
 
   def show_event
     @notifications = Notification.includes( :actor ).where( "recipient_id = ? and type != ?",current_user.id,"Notifications::InviteEvent").order( "notifications.created_at DESC" ).paginate(
-      :page => params[:page], :per_page => 10)
+      :page => params[:page], :per_page => 5)
+    if params[ :page ] == nil
+      @tab = "event"
+    end
     respond_with @notifications
   end
 end

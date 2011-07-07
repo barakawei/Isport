@@ -23,12 +23,12 @@ Isport::Application.routes.draw do
   root :to => "home#index"
   resource :user, :only => [:edit, :update, :destroy] 
   controller :people do
-    match 'friends_request' => :friends_request
     match 'show_friends' => :show_friends
     match 'event_invitees_select/:id' => :event_invitees_select, :as => "invitees_select",
           :constraints => { :id => /[1-9]\d*/}
   end
 
+  match '/people/show_posts' => 'people#show_posts'
   match '/people/friend_select' => 'people#friend_select'
   resources :people
 

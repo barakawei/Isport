@@ -1,3 +1,5 @@
+-content_for :head do
+  =include_javascripts :scroll_page
 .span-6
   .left_side
     .avatar
@@ -33,9 +35,6 @@
     -if current_user.person.id == @person.id
       = render "status_messages/status_message"
     .stream
-      = render :partial => 'status_messages/status_message_element',
-             :collection => @posts,
-             :as => :post
   .action{ :style => "display: none" }
 
 .span-6.last
@@ -84,6 +83,7 @@
 
 
 :javascript
+  $.get("/people/show_posts",{person_id:#{@person.id}}  ); 
   $(function(){
   $(".private_message").colorbox({ inline:true, href:"#private_message"});	
   });

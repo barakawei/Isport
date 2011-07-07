@@ -3,23 +3,27 @@
   %br
   %h2="动态"
   %ul
-    %a{"data-remote" =>"true", :href => "/home/show_post"}
+    %a{"data-remote" =>"true", :href => "/home/show_post?tab=post"}
       %li.active
         ='好友'
-    %a{"data-remote" =>"true", :href => "/home/show_event"}
+    %a{"data-remote" =>"true", :href => "/home/show_event?tab=event"}
       %li
         ='活动'
 
 .feed_container
-  = render 'status_messages/status_messages_container'
+
 
 :javascript
+  $.get("/home/show_post" ); 
   $( "li" ).click( function( ){
     $( ".active" ).removeClass( "active" ); 
     $(this).addClass( "active" );
     }
   );
   $("abbr.timeago").timeago();
+
+   
+
   $( ".replay" ).live( "click",function( ){  
     stream_element = $( this ).closest(".stream_element");
     commentBlock = stream_element.find(".comment_form");

@@ -1,4 +1,9 @@
-$('.feed_container').html("<%= escape_javascript(render('status_messages/status_messages_container')) %>");
-$("abbr.timeago").timeago();
+content = "<%= escape_javascript(render('status_messages/status_messages_container')) %>"; 
+if( "<%= @tab %>" !="" ){
+ $('.feed_container').html(content);
+ 
+}else{
+  $('.feed_container').append(content);
+}
 
 
