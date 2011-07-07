@@ -52,7 +52,7 @@
             = event_image_link(event, :thumb_small) 
           .span-3.last
             %span.eveinfo= l(event.start_at, :format => :short)
-            %span.eveinfo= t('events.location')+":"+ event.location
+            %span.eveinfo= t('events.location')+":"+ event.location.to_s
             %span.eveinfo
               - if event.participants.size > 0
                 = t('events.short_involvement', :count => event.participants.size) + ", "

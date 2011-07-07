@@ -7,6 +7,9 @@ body {
 .bright_yellow {
   color: #f6b24d; }
 
+.block {
+  display: block; }
+
 a {
   color: #5179ac;
   font-weight: bold;

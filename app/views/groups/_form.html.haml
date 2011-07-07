@@ -1,0 +1,39 @@
+= form_for @group, :html => { :multipart => true }, do |f|
+  .span-6.last
+    = render "photos/new_group_photo", :group => @group, :is_edit => is_edit, :model_name => "group"
+  .span-17.form_area
+    .field
+      = f.label t('groups.name') + ":" 
+      = f.text_field :name
+    .field
+      = f.label t('groups.description') + ":" 
+      = f.text_area:description
+    .field
+      = f.label t('groups.item')+ ":"   
+      = f.collection_select :item_id, Item.all, :id, :name, {:prompt => true}
+    .field
+      = f.label t('groups.city') + ":" 
+      = f.collection_select :city_id, City.all, :id, :name, {:prompt => true}
+    .field
+      = f.label t('groups.is_private') + ":" 
+      = f.check_box :is_private
+    .field
+      = f.label t('groups.join_mode.name') + ":" 
+      .group_radio_button
+        = f.radio_button :join_mode, 1 
+        = f.label t('groups.join_mode.invite_by_admin') 
+        %br
+        = f.radio_button :join_mode, 2
+        = f.label 'xixi', t('groups.join_mode.invite_by_member') 
+        %br
+        = f.radio_button :join_mode, 3 
+        = f.label 'xixi', t('groups.join_mode.authenticate_before_join') 
+        %br
+        = f.radio_button :join_mode, 4 
+        = f.label 'xixi',  t('groups.join_mode.no_restrict') 
+    .field.hide
+      = f.text_field :image_url_large
+      = f.text_field :image_url_medium
+      = f.text_field :image_url_small
+    .actions
+      = f.submit 'Save'

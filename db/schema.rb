@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110706075040) do
+ActiveRecord::Schema.define(:version => 20110707171437) do
 
   create_table "administrators", :force => true do |t|
     t.integer  "user_id"
@@ -91,6 +91,21 @@ ActiveRecord::Schema.define(:version => 20110706075040) do
     t.integer  "item_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "groups", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "item_id"
+    t.integer  "city_id"
+    t.boolean  "is_private"
+    t.integer  "join_mode"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "image_url_small"
+    t.string   "image_url_medium"
+    t.string   "image_url_large"
+    t.integer  "person_id"
   end
 
   create_table "involvements", :force => true do |t|

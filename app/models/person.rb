@@ -2,6 +2,7 @@ class Person < ActiveRecord::Base
   belongs_to :user
   has_many :contacts
   has_many :events
+  has_many :groups
 
   has_many :involvements, :dependent => :destroy
   has_many :involved_events, :through => :involvements, :source => :event

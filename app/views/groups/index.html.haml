@@ -1,0 +1,29 @@
+%h1 Listing groups
+
+%table
+  %tr
+    %th Name
+    %th Description
+    %th Item
+    %th City
+    %th Is private
+    %th Join mode
+    %th
+    %th
+    %th
+
+  - @groups.each do |group|
+    %tr
+      %td= group.name
+      %td= group.description
+      %td= group.item_id
+      %td= group.city_id
+      %td= group.is_private
+      %td= group.join_mode
+      %td= link_to 'Show', group
+      %td= link_to 'Edit', edit_group_path(group)
+      %td= link_to 'Destroy', group, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Group', new_group_path
