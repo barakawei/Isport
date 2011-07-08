@@ -1,5 +1,4 @@
 Isport::Application.routes.draw do
-  resources :groups
 
   devise_for :users, :controllers => { :registrations => "registrations" }
 
@@ -54,6 +53,11 @@ Isport::Application.routes.draw do
           :constraints => { :id => /[1-9]\d*/}
   end
 
+  controller :groups do
+    match '/groups/:id/members' => :members, :as => 'group_members',
+          :constraints => { :id => /[1-9]\d*/}
+  end
+
   controller :location do
     match '/locations/districts_of_city' => :districts_of_city, :as => 'districts_of_city'
   end
@@ -67,6 +71,8 @@ Isport::Application.routes.draw do
   resources :comments
   resources :items
   resources :involvements
+  resources :memberships
+  resources :groups
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

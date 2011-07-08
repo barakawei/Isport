@@ -1,0 +1,11 @@
+.span-24
+  .span-20
+    %hr.space
+    %h3=group.name + ":"
+    %hr
+
+    - if members.size > 0
+      = render :partial => 'people/people_array', :locals => { :participants => members, 
+                                                              :perline => 10,
+                                                              :edit => false }
+

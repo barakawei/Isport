@@ -3,30 +3,46 @@
   float: left; }
 
 .group_des {
-  width: 550px;
+  width: 509px;
   float: left;
-  height: 200px; }
+  height: 200px;
+  border-right: 1px solid #dddddd; }
   .group_des p {
     margin-bottom: 0; }
   .group_des .description {
-    height: 174px;
     overflow: hidden;
-    padding: 20px 20px 5px 20px;
-    border: 1px solid #dddddd; }
-    .group_des .description p {
-      text-align: center; }
+    padding-left: 20px;
+    padding-right: 20px; }
 
 .group_info {
-  height: 189px;
-  padding: 10px 0 0 10px;
-  border-top: 1px solid #dddddd;
-  border-bottom: 1px solid #dddddd; }
+  height: 200px;
+  padding: 0 0 0 10px; }
   .group_info p {
     margin-bottom: 0; }
   .group_info .relative {
     height: 100%;
     position: relative; }
-    .group_info .relative .button {
+    .group_info .relative .join_mode {
       position: absolute;
       left: 20;
       bottom: 10px; }
+      .group_info .relative .join_mode h5 {
+        margin-bottom: 0; }
+
+.forum_area .title {
+  margin-bottom: 5px; }
+
+ul.nav {
+  position: relative;
+  top: 1px; }
+  ul.nav li {
+    float: left;
+    margin-left: 5px; }
+    ul.nav li a {
+      color: #5179ac;
+      display: block;
+      border: 1px solid #dddddd;
+      padding: 10px 10px 5px 10px; }
+    ul.nav li a.active {
+      color: #777777;
+      border-bottom: 1px solid white; }

@@ -1,4 +1,6 @@
 class GroupsController < ApplicationController
+  prepend_before_filter :authenticate_user!, :except => [:index, :show] 
+  before_filter :init, :except => [:index, :show] 
   # GET /groups
   # GET /groups.xml
   def index
@@ -14,6 +16,8 @@ class GroupsController < ApplicationController
   # GET /groups/1.xml
   def show
     @group = Group.find(params[:id])
+    @members = @group.members.limit(9)
+    @current_person = current_user.person
 
     respond_to do |format|
       format.html # show.html.erb
@@ -42,6 +46,7 @@ class GroupsController < ApplicationController
   def create
     @group = Group.new(params[:group])
     @group.person = current_user.person
+    @group.members << current_user.person
 
     respond_to do |format|
       if @group.save
@@ -80,5 +85,18 @@ class GroupsController < ApplicationController
       format.html { redirect_to(groups_url) }
       format.xml  { head :ok }
     end
+  end
+
+  def members
+    @group = Group.find(params[:id])
+    puts Person.paginate(:page => params[:page]).nil?
+    @members = Person.paginate :page => params[:page], :per_page => 10
+    render :action => :show
+  end
+
+  private
+
+  def init
+    @current_person = current_user.person    
   end
 end

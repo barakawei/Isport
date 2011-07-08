@@ -164,12 +164,27 @@ zh:
     is_private: '是否公开'
     created_at: '创建时间'
     owner: '创建人'
+    forum: '讨论区'
+    members: '小组成员'
     join_mode:
       name: '加入方式'
       invite_by_admin: '仅允许由管理员邀请加入'
       invite_by_member: '仅允许由小组成员邀请加入'
       authenticate_before_join: '允许用户自行加入但需通过管理员验证'
       no_restrict: '允许任何人加入'
+    join_mode_des:
+      invite_by_admin: '需要管理员邀请才能加入该小组'
+      invite_by_member: '需要小组成员邀请才能加入该小组'
+    person:
+      status:
+        invited: '该小组邀请你加入'
+        request_pending: '加入申请已发出，请耐心等待...'
+        joined: '已经加入该小组'
+      operations:
+        accept: '接受'
+        refuse: '拒绝'
+        exit: '退出'
+        join: '加入该小组'
   date:
     formats:
       default: "%Y-%m-%d"

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110707171437) do
+ActiveRecord::Schema.define(:version => 20110708071710) do
 
   create_table "administrators", :force => true do |t|
     t.integer  "user_id"
@@ -136,6 +136,19 @@ ActiveRecord::Schema.define(:version => 20110707171437) do
     t.decimal  "lng",         :precision => 11, :scale => 8
     t.decimal  "lat",         :precision => 11, :scale => 8
   end
+
+  create_table "memberships", :force => true do |t|
+    t.integer  "person_id"
+    t.integer  "group_id"
+    t.boolean  "is_admin"
+    t.boolean  "pending",    :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "memberships", ["group_id"], :name => "index_memberships_on_group_id"
+  add_index "memberships", ["person_id", "group_id"], :name => "index_memberships_on_person_id_and_group_id", :unique => true
+  add_index "memberships", ["person_id"], :name => "index_memberships_on_person_id"
 
   create_table "messages", :force => true do |t|
     t.integer  "conversation_id"

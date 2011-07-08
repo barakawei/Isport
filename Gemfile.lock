@@ -120,7 +120,7 @@ GEM
     tzinfo (0.3.27)
     warden (1.0.4)
       rack (>= 1.0)
-    will_paginate (2.3.15)
+    will_paginate (3.0.pre)
     yui-compressor (0.9.6)
       POpen4 (>= 0.1.4)
 
@@ -144,4 +144,4 @@ DEPENDENCIES
   rspec-rails
   ruby_parser
   sass
-  will_paginate
+  will_paginate (= 3.0.pre)
