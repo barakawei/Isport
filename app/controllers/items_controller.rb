@@ -17,8 +17,14 @@ class ItemsController < ApplicationController
       fans_counts[count.item_id] = count.fansize
     end
 
-    Event.week.select("subject_id, count(subject_id) evesize")
-      .where(:subject_id => items_ids).group(:subject_id).each do |count|
+    if current_user
+      city = City.find_by_pinyin(current_user.city.pinyin)
+    else
+      city = City.first
+    end
+
+    Event.week.joins(:location).select("subject_id, count(subject_id) evesize")
+      .where(:subject_id => items_ids, :locations => {:city_id => city.id}).group(:subject_id).each do |count|
       events_counts[count.subject_id] = count.evesize
     end
 
@@ -36,9 +42,6 @@ class ItemsController < ApplicationController
   end
 
   def index
-#    @items = Item.select("count(favorites.id) fans_count, items.* ")
-#          .joins("left join favorites on items.id = favorites.item_id").group("items.id")
-
     @items = Item.all
     items_ids = @items.map{|i| i.id}
 

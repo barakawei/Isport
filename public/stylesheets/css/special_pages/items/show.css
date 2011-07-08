@@ -1,20 +1,21 @@
 .right_border {
-  border-right: 1px solid #dddddd; 
+  border-right: 1px solid #002DB3; 
   margin-left: 5px;
   margin-right: 5px; }
 
 .dash_top {
-  border-bottom: 1px dashed #DDDDDD;
-  margin-bottom: 10px; } 
+  border-bottom: 1px dashed #002DB3;
+  margin-bottom: 10px; 
+  margin-left: 75px; } 
 
 .dash_middle {
-  border-bottom: 1px dashed #DDDDDD;
+  border-bottom: 1px dashed #002DB3;
   margin-bottom: 10px; 
   margin-top: 10px;
 }
 
 .dash_bottom {
-  border-bottom: 1px dashed #DDDDDD;
+  border-bottom: 1px dashed #002DB3;
   margin-top: 10px; }
 
 .left_padding {

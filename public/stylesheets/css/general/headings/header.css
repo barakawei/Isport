@@ -1,5 +1,5 @@
 .header {
-  background: url("/images/ui/header_background.png") repeat-x scroll left top #4f8dbc;
+  background: url("/images/ui/header_background_warm.png") repeat-x scroll left top #4f8dbc;
   overflow: hidden;
   text-align: left;
   height: 39px;
@@ -53,7 +53,7 @@
       padding: 11px 10px;
       text-decoration: none; }
       .header li a:hover, .header li a .active {
-        background-color: #4275a1;
+        background-color: #ffad6a;
         background-position: left bottom;
         color: white;
         text-decoration: none; }

@@ -21,6 +21,7 @@ Isport::Application.routes.draw do
   resources :conversation_visibilities
 
   root :to => "home#index"
+
   resource :user, :only => [:edit, :update, :destroy] 
   controller :people do
     match 'friends_request' => :friends_request
