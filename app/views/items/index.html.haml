@@ -1,10 +1,11 @@
 -content_for :head do
   = include_stylesheets :sepcial_pages_items_show, :media => 'all'
-.span-24.prepend-top
+  = include_stylesheets :sepcial_pages_items_commom, :media => 'all'
+.span-24
   .imageboard
     .left
       .span-15
-        %h1= t 'items.items_list' 
+        %span.maintitle= t 'items.items_list' 
       .span-3.last
         - if is_admin
           = link_to t('items.new_item'), new_item_path, :class => 'butten new_item'
@@ -18,7 +19,12 @@
           %br
           .iteminfo
             %span.title= link_to item[:item].name, item, :class => "nounderline"
-            %span.detail= item[:fans_count].to_s + t('items.fans')
+            - if current_user
+              %span.detail
+                = item_events_notify
+                = link_to t('items.eventsthisweek', :count => item[:count]), events_time_path(:id => item[:item].id, :time => :week) 
+            - else
+              %span.detail= item[:count].to_s + t('items.fans')
   - if current_user
     .span-4.myitemlist.last
       .span-4.left_padding
@@ -30,9 +36,9 @@
               = item_image_link(item[:item], :size => :thumb_small)
             %span.itemsg= link_to item[:item].name, item, :class => "nounderline"
             %br
-            %span.itemsg= item[:fans_count].to_s + t('items.fans')
+            %span.itemsg= link_to t('items.eventsthisweek', :count => item[:count]), events_time_path(:id => item[:item].id, :time => :week)
             %br
-            .dash_top
+            .dash_short
           %br
 
 :javascript

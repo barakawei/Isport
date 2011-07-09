@@ -45,22 +45,28 @@ class ItemsController < ApplicationController
     @items = Item.all
     items_ids = @items.map{|i| i.id}
 
-    fans_counts = {  }
-    Favorite.select("item_id, count(item_id) fansize")
-      .where(:item_id => items_ids).group(:item_id).each do |count|
-      fans_counts[count.item_id] = count.fansize
+    counts = {  }
+    if current_user
+      city = City.find_by_pinyin(current_user.city.pinyin)
+      Event.week.joins(:location).select("subject_id, count(subject_id) evesize")
+        .where(:subject_id => items_ids, :locations => {:city_id => city.id}).group(:subject_id).each do |count|
+        counts[count.subject_id] = count.evesize
+      end
+
+      @myitems = [  ]
+      current_user.person.interests.limit(ITELIMIT).each do |myitem| 
+          @myitems.push({:item => myitem, :count=>counts[myitem.id]?counts[myitem.id]:0})
+      end
+    else
+      Favorite.select("item_id, count(item_id) fansize")
+        .where(:item_id => items_ids).group(:item_id).each do |count|
+        counts[count.item_id] = count.fansize
+      end
     end
                     
     @items_hash=[ ]
     @items.each do |item|
-      @items_hash.push({:item =>item, :fans_count=>fans_counts[item.id]?fans_counts[item.id]:0})
-    end
-
-    if current_user
-      @myitems = [  ]
-      current_user.person.interests.limit(ITELIMIT).each do |myitem| 
-          @myitems.push({:item => myitem, :fans_count=>fans_counts[myitem.id]?fans_counts[myitem.id]:0})
-      end
+      @items_hash.push({:item =>item, :count=>counts[item.id]?counts[item.id]:0})
     end
 
     respond_to do |format|
@@ -71,7 +77,14 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
-    @events = @item.events.week.limit(EVELIMIT)
+
+    if current_user
+      city = City.find_by_pinyin(current_user.city.pinyin)
+    else
+      city = City.first
+    end
+
+    @events = @item.events.week.at_city(city.id).limit(EVELIMIT)
     @actors = @item.fans.includes(:profile).limit(ACTLIMIT)
 
     respond_to do |format|

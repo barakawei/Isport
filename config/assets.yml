@@ -52,5 +52,10 @@ stylesheets:
     - public/stylesheets/css/special_pages/events/my_event_item.css
 
   sepcial_pages_items_show:
-    - public/stylesheets/css/special_pages/items/show.css
- 
+    - public/stylesheets/css/special_pages/item/show.css
+
+  sepcial_pages_items_commom:
+    - public/stylesheets/css/special_pages/item/commom.css
+
+
+
