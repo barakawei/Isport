@@ -1,0 +1,30 @@
+#profile_edit
+  .span-6{ :style => "width: 200px" }
+    .avatar
+      = person_image_tag( current_user.person,:thumb_large )
+  .span-13.prepend-1
+    .person_info
+      %h4="个人信息"
+      = form_for @profile,:method => :put do |f|
+        .info_panel
+          .field
+            = f.label "名字"
+            = f.text_field :name 
+          .field
+            = f.label "性别"
+            = f.radio_button :gender,0
+            =  "男"
+            = f.radio_button :gender,1
+            =  "女"
+          .field
+            = f.label "生日"
+            = f.datetime_select :birthday
+          .field
+            = f.label "城市"
+            = f.text_field :location
+
+          .submit_block
+            =submit_tag t('submit'),:class => "button"
+
+    
+

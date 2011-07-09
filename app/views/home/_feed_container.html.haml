@@ -21,24 +21,27 @@
     }
   );
   $("abbr.timeago").timeago();
-
-   
-
   $( ".replay" ).live( "click",function( ){  
     stream_element = $( this ).closest(".stream_element");
     commentBlock = stream_element.find(".comment_form");
+
     comments = stream_element.find(".comments");
-    if(commentBlock.hasClass("hidden")) {
+    if(commentBlock.hasClass("hide")) {
       if( $( ".comment",comments ).length != 0 ){
-        comments.removeClass("hidden");
+        comments.addClass( "big" );
+        comments.removeClass("hide");
       }
-      commentBlock.removeClass("hidden");
+      commentBlock.removeClass("hide");
       commentBlock.find("textarea").focus();
     } else {
         if( $( ".comment",comments ).length > 3 || $( ".comment",comments ).length == 0 ){
-          comments.addClass( "hidden" );
+          comments.addClass( "hide" );
         }
-        commentBlock.addClass("hidden");
+        commentBlock.addClass("hide");
       }  
     return false;
     }); 
+
+   
+
+  

@@ -27,7 +27,13 @@
 -if current_user
   %ul.setting
     %li
-      = link_to current_user.name, '#' ,:class => "current_user_link"
+      .avatar
+        = person_image_tag( current_user.person,:thumb_small )
+      %a{:href => "3",:class => "current_user_link"}
+        .name  
+          = current_user.name
+        .icon
+          &nbsp; &nbsp; &nbsp;
 
     
 

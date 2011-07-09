@@ -14,9 +14,13 @@
   %body{:class => "#{yield(:body_class)}"}
     .header{:class => ( 'landing' unless current_user)}
       = render 'layouts/header' 
-    .accout.hide
-      = link_to t('settings'), edit_user_path
-      = link_to t('logout'), destroy_user_session_path
+    .accout.overlay.hide
+      .accout_body.overlay_body
+        %ul
+          %li
+            = link_to t('settings'), edit_user_path
+          %li
+            = link_to t('logout'), destroy_user_session_path
     .container.body
       .span-24.last
         =yield 
@@ -33,12 +37,14 @@
 
     $('.button').button();  
     if (!$.isEmptyObject($('.setting')[0])) {  
-      var left = $('.setting a').offset().left;
-      $('.accout').css("left", left+"px");
+      var left = $('.setting li').offset().left;
+      var width = $('.setting li').width();
+      $('.accout').css({"left":left+"px","width":width});
 
       $('.current_user_link').click(function(e) {
         $('.accout').toggleClass('hide');
         e.stopPropagation();
+        return false
       });
 
       $('html').click(function(e) {
@@ -46,3 +52,6 @@
       });
     }
   });
+
+
+
