@@ -1,0 +1,10 @@
+.comment {
+  margin-bottom: 10px; }
+  .comment .content {
+    display: inline-block;
+    margin-left: 5px; }
+    .comment .content hr {
+      margin-bottom: 5px; }
+
+.avatar {
+  float: left; }

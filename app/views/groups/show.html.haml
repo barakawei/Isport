@@ -2,11 +2,9 @@
   = include_stylesheets :sepcial_pages_groups_common, :media => 'all'
   = include_stylesheets :sepcial_pages_groups_show, :media => 'all'
 .span-24
-  = render "group_show_nav_bar", :group => @group
-  - if is_active?("show")
-    = render "group_show_home", :group => @group, 
-                                :current_person => @current_person, :members => @members
-  - elsif is_active?("members")
-    = render "group_show_members",:group => @group, 
-                                  :current_person => @current_person, :members => @members
+  = render "group_nav_bar", :group => @group, :current => 'show'
+  = render "group_home", :group => @group, 
+                         :current_person => @current_person, :members => @members
 
+
+ 

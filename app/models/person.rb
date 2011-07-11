@@ -6,6 +6,8 @@ class Person < ActiveRecord::Base
   has_many :contacts
   has_many :events
   has_many :groups
+  has_many :topics
+  has_many :topic_comments, :class_name => 'topic_comment'
 
   has_many :involvements, :dependent => :destroy
   has_many :involved_events, :through => :involvements, :source => :event

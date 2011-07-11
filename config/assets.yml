@@ -39,6 +39,9 @@ stylesheets:
   forms:
     - public/stylesheets/css/general/forms/events_form.css
 
+  forum_large:
+    - public/stylesheets/css/general/application/forum_large.css
+
   sepcial_pages_events_index:
     - public/stylesheets/css/special_pages/events/index.css
   sepcial_pages_events_show:
@@ -59,4 +62,15 @@ stylesheets:
     - public/stylesheets/css/special_pages/groups/common.css
   sepcial_pages_groups_show:
     - public/stylesheets/css/special_pages/groups/show.css
+
+
+  special_pages_topic_form:
+    - public/stylesheets/css/special_pages/topics/form.css
+  special_pages_topic_show:
+    - public/stylesheets/css/special_pages/topics/show.css
+  special_pages_topic_index:
+    - public/stylesheets/css/special_pages/topics/index.css
+  special_pages_topic_comments:
+    - public/stylesheets/css/special_pages/topics/comments.css
+    
  

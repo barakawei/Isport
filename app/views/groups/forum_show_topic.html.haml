@@ -1,0 +1,22 @@
+-content_for :head do
+  = include_stylesheets :sepcial_pages_groups_common, :media => 'all'
+.span-24
+  = render "groups/group_nav_bar", :group => @group, :current => 'forum'
+  %hr.space
+  .span-18
+    %h3=@topic.title
+  .span-18
+    = render 'topics/show'
+  .span-5.last.topic_info
+    .span-2
+      = person_image_link(@person, :size => :thumb_large)
+      %span.medium_avatar=link_to @person.name, person_path(@person)
+    .span-3.last
+      = link_to '关注此人', '#'
+      
+  .span-18
+    %hr.space
+    %h4="评论:"
+    -if @topic.comments.size > 0
+      = render 'topics/comments', :person => @topic.person, :comments => @topic.comments
+    

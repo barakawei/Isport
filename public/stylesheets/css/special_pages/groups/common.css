@@ -1,2 +1,17 @@
 .title {
   margin-bottom: 0; }
+
+ul.nav {
+  position: relative;
+  top: 1px; }
+  ul.nav li {
+    float: left;
+    margin-left: 5px; }
+    ul.nav li a {
+      color: #5179ac;
+      display: block;
+      border: 1px solid #dddddd;
+      padding: 10px 10px 5px 10px; }
+    ul.nav li a.active {
+      color: #777777;
+      border-bottom: 1px solid white; }

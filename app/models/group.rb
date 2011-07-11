@@ -6,6 +6,9 @@ class Group < ActiveRecord::Base
   has_many :memberships, :dependent => :destroy
   has_many :members, :through => :memberships,  :source => :person
 
+  has_one :forum,  :as => :discussable
+  has_many :topics, :through => :forum, :source => :topics
+
   
   JOIN_BY_INVITATION_FROM_ADMIM = 1 
   JOIN_BY_INVITATION_FROM_MEMBER= 2

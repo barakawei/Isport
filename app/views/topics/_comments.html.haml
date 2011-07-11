@@ -1,0 +1,18 @@
+-content_for :head do
+  = include_stylesheets :special_pages_topic_comments, :media => 'all'
+- comments.each do |comment| 
+  - person = comment.person
+  .span-18.comment
+    .avatar
+      = person_image_link(person) 
+    .content.span-15
+      %hr 
+      %span.comment_info
+        = link_to person.name, person_path(person)
+        = l(comment.created_at, :format => :long) 
+      = simple_format comment.content 
+
+.span-18
+  .avatar
+    = person_image_link(current_user.person) 
+   
