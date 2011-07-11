@@ -1,9 +1,0 @@
-.span-17
-  .span-14.last
-    %ul.nav
-      %li= link_to "小组主页", group_path(@group), :class => "#{is_active?("show")}"
-      %li= link_to "小组成员", group_members_path(@group), :class => "#{is_active?("members")}"
-.span-7.last
-  = link_to t('back'), groups_path, :class => "button right"
-%hr
-
