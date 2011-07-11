@@ -6346,3 +6346,9 @@
 [ pid=25058 thr=5984760 file=abstract_request_handler.rb:466 time=2011-07-12 01:00:20.921 ]: Accepting new request on main socket
 [ pid=25058 thr=5984760 file=abstract_request_handler.rb:466 time=2011-07-12 01:00:22.787 ]: Accepting new request on main socket
 [ pid=24868 thr=140325787133760 file=ext/common/LoggingAgent/LoggingServer.h:827 time=2011-07-12 01:00:32.665 ]: Flushing all sinks (periodic action)
+[ pid=24868 thr=140325787133760 file=ext/common/LoggingAgent/LoggingServer.h:827 time=2011-07-12 01:00:47.665 ]: Flushing all sinks (periodic action)
+[ pid=24868 thr=140325787133760 file=ext/common/LoggingAgent/LoggingServer.h:827 time=2011-07-12 01:01:02.665 ]: Flushing all sinks (periodic action)
+[ pid=24868 thr=140325787133760 file=ext/common/LoggingAgent/LoggingServer.h:827 time=2011-07-12 01:01:17.665 ]: Flushing all sinks (periodic action)
+[ pid=24868 thr=140325787133760 file=ext/common/LoggingAgent/LoggingServer.h:827 time=2011-07-12 01:01:32.665 ]: Flushing all sinks (periodic action)
+[ pid=24868 thr=140325787133760 file=ext/common/LoggingAgent/LoggingServer.h:827 time=2011-07-12 01:01:47.665 ]: Flushing all sinks (periodic action)
+[ pid=24868 thr=140325787133760 file=ext/common/LoggingAgent/LoggingServer.h:827 time=2011-07-12 01:02:02.665 ]: Flushing all sinks (periodic action)
