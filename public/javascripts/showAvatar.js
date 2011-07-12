@@ -24,8 +24,8 @@ $( function(){
                 +"</div></div>");
       avatar_container.append( avatar_panel ); 
 
-      delete_html = $( "<a href='/contacts/destroy?person_id="+person.id+"' data-method='delete' data-remote='true' >取消关注</a>" );
-      post_html = $( "<a href='/contacts?person_id="+person.id+"' data-method='post' data-remote='true'>关注</a>" );
+      delete_html = $( "<a href='/contacts/destroy?person_id="+person.id+"' data-method='delete' data-remote='true' >- 取消关注</a>" );
+      post_html = $( "<a href='/contacts?person_id="+person.id+"' data-method='post' data-remote='true'>+ 关注</a>" );
       if (contact && contact.receiving){
         $( ".relation_button",avatar_container ).append(delete_html);
         $( ".relation_button",avatar_container ).addClass( "unfollow" );
