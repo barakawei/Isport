@@ -3,6 +3,8 @@
   .content
     .from
       = person_link(post.author, :class => 'author')
+    .photos
+      = render 'photos/photos_container',:photos => post.photos
     %p
       = post.content
     .content_info

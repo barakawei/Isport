@@ -27,5 +27,16 @@ class Contact < ActiveRecord::Base
   def generate_request
     Request.new(:sender => self.user.person,:recipient => self.person)
   end 
+
+  def as_json(opts={})
+    {
+    :contact => {
+        :id => self.id,
+        :receiving => self.receiving,
+        :sharing => self.sharing
+      }
+    }
+  end 
+
   
 end

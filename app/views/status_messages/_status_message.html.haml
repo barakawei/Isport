@@ -1,8 +1,13 @@
 .status_message_panel
   = form_for(StatusMessage.new, :remote => true) do |status|
-    = status.text_area :content, :rows => 2
-    = status.submit "分享", :class => 'button'
+    .photo_form
+      = status.text_area :content, :rows => 2
+      %ul#photozone
     = hidden_field_tag :view,:value
+    = status.submit "分享", :class => 'button'
+  #file-upload.button
+    ="添加图片"
 
+  #fileInfo
 
-
+=render 'photos/new_photo'

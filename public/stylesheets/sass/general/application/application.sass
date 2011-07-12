@@ -36,7 +36,7 @@ ol, ul, li
   :background url("/images/ui/shadow.png") repeat scroll 0 0 transparent
   :position absolute
   :z-index 1001
-  :padding 2px
+  :padding 3px
 .overlay_body
   @include border-radius(3px)
   :background-color #FFFFFF
@@ -96,13 +96,21 @@ h1,h2,h3,h4
       :top 0.5em 
 
 .stream_element
+  :min-height 50px
+  :border
+    :bottom 1px solid #ddd
+    :top 1px solid #fff
+
+  :padding
+    :top 10px
+    :bottom 10px
   .author
     :color #444444
   :position relative
   :font
     :size 14px
   .avatar
-    :padding 20px 20px
+    :float left
   .right
     :padding 20px 20px
   .invite_button
@@ -110,9 +118,8 @@ h1,h2,h3,h4
     :left 350px
     :top 20px
   .content
-    :position absolute
-    :left 80px
-    :top 20px
+    :position relative
+    :margin-left 70px
     :color #666
     :font
       :weight normal
@@ -148,14 +155,6 @@ h1,h2,h3,h4
       .info
         :margin
           :top -1px
-  
-.stream
-  .stream_element
-    :min-height 50px
-    :border
-      :bottom 1px solid #ddd
-      :top 1px solid #fff
-
 
 label
   :font
@@ -215,5 +214,55 @@ span.medium_avatar
 .person_image
   :height 100px
 
+.block
+  :display block
 .inline
   :display inline
+
+#photozone
+  li 
+    :display inline-block
+    img
+      :width 50px
+      :padding-right 2px
+  :left 5px
+  :padding 0
+  :bottom 0px
+  :position absolute
+  :width 410px
+      
+.with_photos
+  :padding-bottom 70px
+
+.photo_form
+  :position relative
+  textarea
+    :resize none
+
+.photos_container
+  :position relative
+  img
+    :cursor pointer
+
+.avatar_show
+  .content
+    :padding-left 85px
+    :width 100px
+    :height 75px
+    .name
+      :font-size 18px
+      :color $blue
+  .action
+    :margin
+      :top  10px
+  .avatar_panel
+    :padding 5px    
+  :position absolute
+  .avatar
+    :float left
+    :width 75px
+    :height 75px
+
+.avatar_container
+  :display inline-block
+  

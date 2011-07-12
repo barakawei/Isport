@@ -30,7 +30,7 @@ ol, ul, li {
   background: url("/images/ui/shadow.png") repeat scroll 0 0 transparent;
   position: absolute;
   z-index: 1001;
-  padding: 2px; }
+  padding: 3px; }
 
 .overlay_body {
   -moz-border-radius: 3px;
@@ -92,12 +92,17 @@ h1 .description, h2 .description, h3 .description, h4 .description {
   margin-top: 0.5em; }
 
 .stream_element {
+  min-height: 50px;
+  border-bottom: 1px solid #dddddd;
+  border-top: 1px solid white;
+  padding-top: 10px;
+  padding-bottom: 10px;
   position: relative;
   font-size: 14px; }
   .stream_element .author {
     color: #444444; }
   .stream_element .avatar {
-    padding: 20px 20px; }
+    float: left; }
   .stream_element .right {
     padding: 20px 20px; }
   .stream_element .invite_button {
@@ -105,9 +110,8 @@ h1 .description, h2 .description, h3 .description, h4 .description {
     left: 350px;
     top: 20px; }
   .stream_element .content {
-    position: absolute;
-    left: 80px;
-    top: 20px;
+    position: relative;
+    margin-left: 70px;
     color: #666666;
     font-weight: normal; }
     .stream_element .content img {
@@ -130,11 +134,6 @@ h1 .description, h2 .description, h3 .description, h4 .description {
       font-size: 11px; }
     .stream_element .content .comments .info {
       margin-top: -1px; }
-
-.stream .stream_element {
-  min-height: 50px;
-  border-bottom: 1px solid #dddddd;
-  border-top: 1px solid white; }
 
 label {
   font-weight: normal;
@@ -188,5 +187,54 @@ span.medium_avatar {
 .person_image {
   height: 100px; }
 
+.block {
+  display: block; }
+
 .inline {
   display: inline; }
+
+#photozone {
+  left: 5px;
+  padding: 0;
+  bottom: 0px;
+  position: absolute;
+  width: 410px; }
+  #photozone li {
+    display: inline-block; }
+    #photozone li img {
+      width: 50px;
+      padding-right: 2px; }
+
+.with_photos {
+  padding-bottom: 70px; }
+
+.photo_form {
+  position: relative; }
+  .photo_form textarea {
+    resize: none; }
+
+.photos_container {
+  position: relative; }
+  .photos_container img {
+    cursor: pointer; }
+
+.avatar_show {
+  position: absolute; }
+  .avatar_show .content {
+    padding-left: 85px;
+    width: 100px;
+    height: 75px; }
+    .avatar_show .content .name {
+      font-size: 18px;
+      color: #5179ac; }
+  .avatar_show .action {
+    margin-top: 10px; }
+  .avatar_show .avatar_panel {
+    padding: 5px; }
+  .avatar_show .avatar {
+    float: left;
+    width: 75px;
+    height: 75px; }
+
+.avatar_container {
+  display: inline-block; }

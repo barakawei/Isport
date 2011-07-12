@@ -61,7 +61,7 @@ class PeopleController < ApplicationController
   end
 
   def show_posts
-    @posts = Post.where(:author_id => params[ :person_id ] ).order("created_at DESC" ).paginate( :page => params[:page], :per_page => 10 )
+    @posts = Post.where(:author_id => params[ :person_id ],:type => "StatusMessage" ).order("created_at DESC" ).paginate( :page => params[:page], :per_page => 10 )
     respond_with @posts
   end
 

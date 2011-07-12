@@ -1,5 +1,5 @@
 class StatusMessage < Post
-  has_many :photos, :dependent => :destroy
+  has_many :photos, :dependent => :destroy,:foreign_key => :post_id
 
   attr_accessible :content
 
