@@ -53,9 +53,9 @@
       padding: 11px 10px;
       text-decoration: none; }
       .header li a:hover, .header li a .active {
-        background-color: #ffad6a;
+        background-color: #fcfcfc;
         background-position: left bottom;
-        color: white;
+        color: black;
         text-decoration: none; }
       .header li a .active {
         font-size: 11px;
