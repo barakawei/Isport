@@ -14,9 +14,10 @@
     .span-3.last
       = link_to '关注此人', '#'
       
-  .span-18
+  .span-18.topic_comments
     %hr.space
     %h4="评论:"
-    -if @topic.comments.size > 0
-      = render 'topics/comments', :person => @topic.person, :comments => @topic.comments
+    = render 'topics/comments', :person => @topic.person, 
+                                :comments => @comments, :new_comment => @new_comment, 
+                                :topic => @topic, :current_person => @current_person
     

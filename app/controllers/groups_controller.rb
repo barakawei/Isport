@@ -62,6 +62,7 @@ class GroupsController < ApplicationController
   def forum
     @group = Group.find(params[:id])
     @forum = @group.forum
+    @topics = []
     if @forum.topics.count > 0  
       @topics= @forum.topics.paginate :page => params[:page], 
                                       :per_page => 20, :order => 'created_at desc' 

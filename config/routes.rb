@@ -92,8 +92,8 @@ Isport::Application.routes.draw do
     resources :topics, :controller => 'group_topics'
   end
 
-  resource :topics do
-    resource :topic_comments, :controller => 'topic_comments'
+  resources :topics do
+    resources :topic_comments, :controller => 'topic_comments'
   end
 
 
