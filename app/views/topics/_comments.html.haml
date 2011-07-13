@@ -1,32 +1,33 @@
 -content_for :head do
   = include_stylesheets :special_pages_topic_comments, :media => 'all'
-- comments.each do |comment| 
-  - person = comment.person
-  .span-18.comment_to_topic
-    .avatar
-      = person_image_link(person) 
-    .content.span-15{:comment_id => "#{comment.id}"}
-      %hr 
-      %span.comment_info
-        = link_to person.name, person_path(person)
-        = l(comment.created_at, :format => :long) 
-        = link_to '回复', '#', :class => "response"
-      = simple_format comment.content 
-    - comment.responses.each do |r|
-      - rperson = r.person
-      .span-16.comment_to_comment
-        .avatar
-          = person_image_link(rperson)     
-        .content.span-13{:comment_id => "#{comment.id}"}
-          %hr
-          %span.comment_info
-            = link_to rperson.name, person_path(rperson) 
-            = l(r.created_at, :format => :long)
-            = link_to '回复', '#', :class => "response"
-          = simple_format r.content
-.span-15
-  = will_paginate comments, {:previous_label => t("pagination.previous"), 
-                             :next_label => t("pagination.next")}
+- if comments.size > 0
+  - comments.each do |comment| 
+    - person = comment.person
+    .span-18.comment_to_topic
+      .avatar
+        = person_image_link(person) 
+      .content.span-15{:comment_id => "#{comment.id}"}
+        %hr 
+        %span.comment_info
+          = link_to person.name, person_path(person)
+          = l(comment.created_at, :format => :long) 
+          = link_to '回复', '#', :class => "response" if person != current_person
+        = simple_format comment.content 
+      - comment.responses.each do |r|
+        - rperson = r.person
+        .span-16.comment_to_comment
+          .avatar
+            = person_image_link(rperson)     
+          .content.span-13{:comment_id => "#{comment.id}"}
+            %hr
+            %span.comment_info
+              = link_to rperson.name, person_path(rperson) 
+              = l(r.created_at, :format => :long)
+              = link_to '回复', '#', :class => "response" if rperson != current_person
+            = simple_format r.content
+  .span-15.pagination_box
+    = will_paginate comments, {:previous_label => t("pagination.previous"), 
+                               :next_label => t("pagination.next")}
 .span-18.new_comment
   = form_for new_comment,  :url => topic_topic_comments_path(topic.id), do |c|
     .avatar
@@ -34,7 +35,7 @@
     .content.span-15
       = c.text_area :content
       = submit_tag t('activerecord.operations.event.comment'), :class => 'button submit'
-  .response_box.hide.span-15
+  .response_box.hide.span-16
     = form_tag topic_topic_comments_path(topic.id) do
       = text_area_tag "comment[content]" 
       = hidden_field_tag "comment[commentable_id]"
@@ -54,11 +55,19 @@
 
 
   function appendToComments(responseText, statusText, xhr, $form){
-    $('.new_comment').before(responseText);  
-    $('.new_comment').prev().find('a.response').click(function() {
-      replylinkCallback($(this)); 
-      return false;
-    });
+    if ($('.pagination_box').length > 0) {  
+      $('.pagination_box').before(responseText);  
+      $('.pagination_box').prev().find('a.response').click(function() {
+        replylinkCallback($(this)); 
+        return false;
+      });
+    } else {
+      $('.new_comment').before(responseText); 
+      $('.new_comment').prev().find('a.response').click(function() {
+        replylinkCallback($(this)); 
+        return false;
+      });
+    }
   }
 
   function appendToResponses(responseText, statusText, xhr, $form){ 
@@ -77,8 +86,10 @@
     link.hide();
     var comment = $(link.parents('.content')[0]);
     if(comment.next('.response_box').length > 0) {
-      comment.next('.response_box').slideDown()
-                                   .find('textarea').focus();
+      comment.next('.response_box').slideDown('fast', function() {
+        comment.next('.response_box').find('textarea').focus()
+                                      .val('回复'+link.prev('a').html()+ ": ");
+      });
     } else {
       cloneResponseBox(comment, link);
     }
@@ -94,10 +105,11 @@
     response_box.find('form').ajaxForm(options);
     response_box.find('a.cancel').click(function() {
       link.show();
-      response_box.slideUp();
+      response_box.slideUp('fast');
       return false;
     });
-    response_box.slideDown('slow')
-                .find('textarea').focus()
-                                 .val('回复'+link.prev('a').html()+ ": ");
+    response_box.slideDown('fast', function() {
+        response_box.find('textarea').focus()
+                                     .val('回复'+link.prev('a').html()+ ": ");
+    });
   }

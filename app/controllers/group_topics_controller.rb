@@ -29,9 +29,10 @@ class GroupTopicsController < ApplicationController
     @comments = []
     if @topic.comments.size > 0 
       @comments =  @topic.comments.paginate :page => params[:page], 
-                                          :per_page => 10, :order => 'created_at'
+                                          :per_page => 15, :order => 'created_at'
     end
     @person = @topic.person
+    @current_person = current_user.person
     @new_comment = @topic.comments.new(:content => "")
 
     render 'groups/forum_show_topic'

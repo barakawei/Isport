@@ -17,8 +17,7 @@
   .span-18.topic_comments
     %hr.space
     %h4="评论:"
-    -if @comments.size > 0
-      = render 'topics/comments', :person => @topic.person, 
-                                  :comments => @comments, :new_comment => @new_comment, 
-                                  :topic => @topic
+    = render 'topics/comments', :person => @topic.person, 
+                                :comments => @comments, :new_comment => @new_comment, 
+                                :topic => @topic, :current_person => @current_person
     
