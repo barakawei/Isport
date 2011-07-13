@@ -16,14 +16,14 @@
       - comment.responses.each do |r|
         - rperson = r.person
         .span-16.comment_to_comment
-          .avatar
+          .avatar_response
             = person_image_link(rperson)     
           .content.span-13{:comment_id => "#{comment.id}"}
             %hr
             %span.comment_info
               = link_to rperson.name, person_path(rperson) 
               = l(r.created_at, :format => :long)
-              = link_to '回复', '#', :class => "response" if rperson != current_person
+              = link_to '回复', '#', :class => "response to_comment" if rperson != current_person
             = simple_format r.content
   .span-15.pagination_box
     = will_paginate comments, {:previous_label => t("pagination.previous"), 
@@ -99,6 +99,10 @@
   function cloneResponseBox(comment, link) {
     var response_box = $($('.response_box')[0]).clone().hide();
     comment.after(response_box);
+
+    if(link.hasClass('to_comment')) {
+      response_box.addClass('to_comment');
+    }
 
     response_box.find('#comment_commentable_id')[0].value = comment.attr('comment_id'); 
     var options = { success: appendToResponses, resetForm: true};
