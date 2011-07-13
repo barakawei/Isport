@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110706075040) do
+ActiveRecord::Schema.define(:version => 20110711074152) do
 
   create_table "administrators", :force => true do |t|
     t.integer  "user_id"
@@ -96,6 +96,28 @@ ActiveRecord::Schema.define(:version => 20110706075040) do
     t.datetime "updated_at"
   end
 
+  create_table "forums", :force => true do |t|
+    t.integer  "discussable_id"
+    t.string   "discussable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "groups", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "item_id"
+    t.integer  "city_id"
+    t.boolean  "is_private"
+    t.integer  "join_mode"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "image_url_small"
+    t.string   "image_url_medium"
+    t.string   "image_url_large"
+    t.integer  "person_id"
+  end
+
   create_table "involvements", :force => true do |t|
     t.integer  "person_id"
     t.integer  "event_id"
@@ -124,6 +146,19 @@ ActiveRecord::Schema.define(:version => 20110706075040) do
     t.decimal  "lng",         :precision => 11, :scale => 8
     t.decimal  "lat",         :precision => 11, :scale => 8
   end
+
+  create_table "memberships", :force => true do |t|
+    t.integer  "person_id"
+    t.integer  "group_id"
+    t.boolean  "is_admin"
+    t.boolean  "pending",    :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "memberships", ["group_id"], :name => "index_memberships_on_group_id"
+  add_index "memberships", ["person_id", "group_id"], :name => "index_memberships_on_person_id_and_group_id", :unique => true
+  add_index "memberships", ["person_id"], :name => "index_memberships_on_person_id"
 
   create_table "messages", :force => true do |t|
     t.integer  "conversation_id"
@@ -211,6 +246,24 @@ ActiveRecord::Schema.define(:version => 20110706075040) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "message"
+  end
+
+  create_table "topic_comments", :force => true do |t|
+    t.text     "content"
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "person_id"
+  end
+
+  create_table "topics", :force => true do |t|
+    t.string   "title"
+    t.text     "content"
+    t.integer  "person_id"
+    t.integer  "forum_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", :force => true do |t|

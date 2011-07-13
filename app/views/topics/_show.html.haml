@@ -1,0 +1,4 @@
+-content_for :head do
+  = include_stylesheets :special_pages_topic_show, :media => 'all'
+.span-18
+  =simple_format @topic.content 

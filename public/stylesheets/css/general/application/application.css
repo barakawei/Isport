@@ -7,6 +7,13 @@ body {
 .bright_yellow {
   color: #f6b24d; }
 
+b {
+  color: black;
+  font-weight: bold; }
+
+.block {
+  display: block; }
+
 a {
   color: #5179ac;
   font-weight: bold;
@@ -174,3 +181,17 @@ span.medium_avatar {
 #map-big {
   width: 950px;
   height: 500px; }
+
+.pagination a, .pagination em {
+  border: 1px solid #dddddd;
+  padding: 2px 5px 1px 5px;
+  font-size: 13px; }
+.pagination em {
+  background-color: #f1f1f1;
+  color: #999999; }
+.pagination span.disabled {
+  display: none; }
+.pagination a:hover {
+  background-color: #ff6600;
+  text-decoration: none;
+  color: white; }

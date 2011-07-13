@@ -1,0 +1,31 @@
+table.topics {
+  margin-bottom: 30px; }
+  table.topics a:hover {
+    text-decoration: none;
+    background-color: #ff6600;
+    color: white; }
+  table.topics td {
+    border-top: 1px dashed #e5e5e5;
+    padding: 0; }
+  table.topics th {
+    color: black;
+    font-size: 13px; }
+  table.topics td.topic_summary {
+    padding: 0 20px 20px 0;
+    font-size: 12px;
+    color: black;
+    border-top: none; }
+    table.topics td.topic_summary p.post_time {
+      color: #777777; }
+      table.topics td.topic_summary p.post_time a {
+        margin-left: 10px; }
+
+.title {
+  width: 625px; }
+
+.author {
+  width: 100px; }
+
+.reply {
+  width: 100px;
+  text-align: right; }

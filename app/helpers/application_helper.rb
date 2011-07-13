@@ -70,7 +70,11 @@ module ApplicationHelper
     "<img title=\"#{h(event.title)}\" class=\"avatar\"  src=\"#{event.image_url(size)}\" >".html_safe
   end
 
-  def item_image_tag(item,size)
+  def group_image_tag(group, size=nil)
+    "<img title=\"#{h(group.name)}\" class=\"avatar\"  src=\"#{group.image_url(size)}\" >".html_safe
+  end
+
+  def item_image_tag(item,size=nil)
     "<img title=\"#{h(item.name)}\" class=\"avatar\"  src=\"#{item.image_url(size)}\" >".html_safe
   end
 

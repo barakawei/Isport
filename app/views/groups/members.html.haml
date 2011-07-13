@@ -1,0 +1,15 @@
+-content_for :head do
+  = include_stylesheets :sepcial_pages_groups_common, :media => 'all'
+.span-24
+  = render "group_nav_bar", :group => @group, :current => 'members'
+.span-24
+  .span-20
+    %hr.space
+    %h3=@group.name + ":"
+    %hr
+
+    - if @members.size > 0
+      = render :partial => 'people/people_array', :locals => { :participants => @members, 
+                                                              :perline => 10,
+                                                              :edit => false }
+

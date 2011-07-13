@@ -11,6 +11,7 @@ class ItemsController < ApplicationController
 
     fans_counts = {  }
     events_counts = {  }
+    groups_counts = {  }  
 
     Favorite.select("item_id, count(item_id) fansize")
       .where(:item_id => items_ids).group(:item_id).each do |count|
@@ -28,11 +29,17 @@ class ItemsController < ApplicationController
       events_counts[count.subject_id] = count.evesize
     end
 
+    Group.select("item_id, count(item_id) gpcount").where(:item_id => items_ids, :city_id => city.id)
+      .group(:item_id).each do |count|
+      groups_counts[count.item.id] = count.gpcount
+    end
+
     @items_hash = [ ]
     @items.each do |item|
       @items_hash.push({:item => item, 
                         :fans_count=>fans_counts[item.id]?fans_counts[item.id]:0,
-                        :events_count=>events_counts[item.id]?events_counts[item.id]:0})
+                        :events_count=>events_counts[item.id]?events_counts[item.id]:0,
+                        :groups_count=>groups_counts[item.id]?groups_counts[item.id]:0})
     end
 
     respond_to do |format|
@@ -84,8 +91,13 @@ class ItemsController < ApplicationController
       city = City.first
     end
 
-    @events = @item.events.week.at_city(city.id).limit(EVELIMIT)
+    @events = Event.week.joins(:location).where(:subject_id => @item.id, :locations => {:city_id => city.id})
+        .limit(EVELIMIT)
+
     @actors = @item.fans.includes(:profile).limit(ACTLIMIT)
+
+    @groups = Group.joins(:members).where(:item_id => @item.id, :city_id => city.id)
+          .group(:group_id).order("count(group_id) DESC").limit(ACTLIMIT)
 
     respond_to do |format|
       format.html # show.html.erb

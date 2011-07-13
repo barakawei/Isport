@@ -1,0 +1,2 @@
+module GroupTopicsHelper
+end

@@ -13,7 +13,14 @@ body
 
 .bright_yellow
   :color $bright_yellow
-  
+
+b
+  :color black
+  :font-weight bold
+
+
+.block
+  :display block  
 a
   :color $blue
   :font-weight bold
@@ -207,3 +214,23 @@ span.medium_avatar
 #map-big
   :width 950px
   :height 500px 
+
+.pagination
+  a,em
+    :border 1px solid #dddddd
+    :padding 2px 5px 1px 5px
+    :font-size 13px
+
+  em
+    :background-color #f1f1f1
+    :color #999999
+
+  span.disabled
+    :display none
+
+  a
+    &:hover
+      :background-color #ff6600
+      :text-decoration none
+      :color white
+      

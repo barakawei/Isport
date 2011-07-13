@@ -18,6 +18,8 @@
           %br
           %span.detail
             = link_to t('items.eventsthisweek', :count => item[:events_count]), events_time_path(:id => item[:item].id, :time => :week)
+          %br
+          %span.detail= t('items.groupsthiscity', :count => item[:groups_count])
       .span-22
         %hr
 :javascript

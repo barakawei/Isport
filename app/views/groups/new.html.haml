@@ -1,0 +1,11 @@
+- content_for :head do
+  = include_stylesheets :sepcial_pages_groups_common, :media => 'all'
+  = include_stylesheets :sepcial_pages_groups_form, :media => 'all'
+.span-24
+  .span-17
+    %h2.title= t('groups.new_group')
+  .span-7.last
+    = link_to t('back'), groups_path, :class => "button right"
+  %hr
+= render 'form', :is_edit => false
+

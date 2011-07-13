@@ -44,6 +44,19 @@
           .span-2.left_close
             = person_image_link(person) 
             %span.medium_avatar=link_to person.profile.name, person_path(person)
+    .span-17
+      .dash_middle
+      .span-2.left_close
+        %h4
+          = t('items.citygroups')
+      .span-12.left_close
+        %span.detail= t('items.findgroups')
+      %br
+      .span-17
+        -@groups.each_with_index do |group, index|
+          .span-2.left_close
+            = link_to group_image_tag(group, :thumb_small), group
+            %span.medium_avatar=link_to group.name, group
   .span-6.last
     .span-6.left_padding
       %h4= link_to t('items.events'), events_time_path(:id => @item.id, :time => :week)

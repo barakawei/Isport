@@ -1,0 +1,31 @@
+-content_for :head do
+  = include_stylesheets :special_pages_topic_index, :media => 'all'
+- if @topics.size > 0
+  %table.topics
+    %tr
+      %th.title.large='话题'
+      %th.author='作者'
+      %th.reply='回复数'
+    -@topics.each do |t|
+      %tr.large
+        %td.title= link_to t.title, t.url 
+        %td.author= link_to t.person.name, person_path(t.person.id)
+        %td.reply='100/500'
+.right
+  = will_paginate @topics, {:previous_label => t("pagination.previous"), 
+                                   :next_label => t("pagination.next")}
+:javascript
+  $(function() {
+      $('td.title').click(function() {
+        parent_tr = $($(this).parents('tr')[0]);
+        summary_tr = parent_tr.next();
+        if (summary_tr.hasClass('summary')) {
+          summary_tr.toggleClass('hide');
+        } else {  
+          $.get($(this).children('a')[0].href, function(data) {
+            parent_tr.after(data);
+          }); 
+        }
+        return false;
+      });     
+  });
