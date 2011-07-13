@@ -1,0 +1,11 @@
+.span-18.comment_to_topic
+  .avatar
+    = person_image_link(person) 
+  .content.span-15{:comment_id => "#{comment.id}"}
+    %hr 
+    %span.comment_info
+      = link_to person.name, person_path(person)
+      = l(comment.created_at, :format => :long) 
+      = link_to '回复', '#', :class => "response"
+    = simple_format comment.content 
+

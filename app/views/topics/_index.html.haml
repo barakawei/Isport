@@ -11,9 +11,9 @@
         %td.title= link_to t.title, t.url 
         %td.author= link_to t.person.name, person_path(t.person.id)
         %td.reply='100/500'
-.right
-  = will_paginate @topics, {:previous_label => t("pagination.previous"), 
-                                   :next_label => t("pagination.next")}
+  .right
+    = will_paginate @topics, {:previous_label => t("pagination.previous"), 
+                                     :next_label => t("pagination.next")}
 :javascript
   $(function() {
       $('td.title').click(function() {
