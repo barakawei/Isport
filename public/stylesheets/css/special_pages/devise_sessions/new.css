@@ -51,14 +51,14 @@
     float: left; }
 
 .log_submit {
-  background: url("/images/ui/loginbutton.png") no-repeat 0 0 transparent;
+  background: url("/images/ui/login_button.png") no-repeat 0 0 transparent;
   border: medium none;
   height: 40px;
-  width: 130px;
+  width: 80px;
   text-indent: -9999em; }
 
 .log_submit_hover {
-  background: url("/images/ui/loginbutton.png") no-repeat left bottom transparent; }
+  background: url("/images/ui/login_button.png") no-repeat left bottom transparent; }
 
 a.reg_button {
   position: absolute;
