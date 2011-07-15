@@ -84,7 +84,7 @@ class ItemsController < ApplicationController
                         :fans_count => fans_counts[item.id]?fans_counts[item.id]:0})
     end
 
-    @items_hash = @items_hash.sort_by{ |item| -item[:fans_count] }
+    @items_hash.sort!{ |x, y| y[:fans_count] <=> x[:fans_count] }
 
     respond_to do |format|
       format.html # index.html.erb
