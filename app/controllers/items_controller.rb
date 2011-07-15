@@ -52,29 +52,39 @@ class ItemsController < ApplicationController
     @items = Item.all
     items_ids = @items.map{|i| i.id}
 
-    counts = {  }
+    fans_counts = {  }
+    events_counts = {  }
     if current_user
       city = City.find_by_pinyin(current_user.city.pinyin)
-      Event.week.joins(:location).select("subject_id, count(subject_id) evesize")
-        .where(:subject_id => items_ids, :locations => {:city_id => city.id}).group(:subject_id).each do |count|
-        counts[count.subject_id] = count.evesize
-      end
+    else
+      city = City.first      
+    end
+    
+    Event.week.joins(:location).select("subject_id, count(subject_id) evesize")
+      .where(:subject_id => items_ids, :locations => {:city_id => city.id}).group(:subject_id).each do |count|
+      events_counts[count.subject_id] = count.evesize
+    end
 
+    if current_user
       @myitems = [  ]
       current_user.person.interests.limit(ITELIMIT).each do |myitem| 
-          @myitems.push({:item => myitem, :count=>counts[myitem.id]?counts[myitem.id]:0})
-      end
-    else
-      Favorite.select("item_id, count(item_id) fansize")
-        .where(:item_id => items_ids).group(:item_id).each do |count|
-        counts[count.item_id] = count.fansize
+          @myitems.push({:item => myitem, :count=>events_counts[myitem.id]?events_counts[myitem.id]:0})
       end
     end
-                    
+
+    Favorite.select("item_id, count(item_id) fansize")
+      .where(:item_id => items_ids).group(:item_id).each do |count|
+      fans_counts[count.item_id] = count.fansize
+    end
+
     @items_hash=[ ]
     @items.each do |item|
-      @items_hash.push({:item =>item, :count=>counts[item.id]?counts[item.id]:0})
+      @items_hash.push({:item => item, 
+                        :events_count => events_counts[item.id]?events_counts[item.id]:0, 
+                        :fans_count => fans_counts[item.id]?fans_counts[item.id]:0})
     end
+
+    @items_hash = @items_hash.sort_by{ |item| -item[:fans_count] }
 
     respond_to do |format|
       format.html # index.html.erb

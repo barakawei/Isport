@@ -79,7 +79,7 @@ module ApplicationHelper
   end
 
   def item_events_notify
-    "<img class=\"avatar\"  src=\"images/items/im_idle_dot.png\" >".html_safe
+    "<img class=\"avatar\"  src=\"/images/items/im_idle_dot.png\" >".html_safe
   end
 
   def pagination_options(param_name, param)
