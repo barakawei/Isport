@@ -36,6 +36,7 @@ module ApplicationHelper
     link_to event_image_tag(event, size), event_path(event)
   end
 
+
   def item_image_link(item, opts={})
     return "" if item.nil?
     if opts[:to] == :photos
@@ -59,6 +60,10 @@ module ApplicationHelper
 
   def group_image_tag(group, size=nil)
     "<img title=\"#{h(group.name)}\" class=\"avatar\"  src=\"#{group.image_url(size)}\" >".html_safe
+  end
+
+  def group_image_link(group, size=nil)
+     link_to group_image_tag(group, size), group_path(group)
   end
 
   def item_image_tag(item,size=nil)

@@ -3,13 +3,19 @@ class GroupsController < ApplicationController
   before_filter :init, :except => [:index, :show] 
   
   def index
+    city_pinyin = params[:city] ? params[:city] : (current_user ? current_user.city.pinyin : City.first.pinyin)
+    @city = City.find_by_pinyin(city_pinyin)
     @groups = Group.all
+    @hot_groups = Group.limit(3);
+    @hot_items = Item.all 
   end
 
   def show
     @group = Group.find(params[:id])
     @members = @group.members.limit(9)
     @current_person = current_user.person
+    @topics = @group.topics
+    @topics.each {|t| t.url = group_topic_path(@group, t)}
   end
 
   def new
@@ -66,8 +72,20 @@ class GroupsController < ApplicationController
     if @forum.topics.count > 0  
       @topics= @forum.topics.paginate :page => params[:page], 
                                       :per_page => 20, :order => 'created_at desc' 
-      @topics.each {|t| t.url = topic_summary_path(:group_id => @group.id, :id => t.id)}
+      @topics.each {|t| t.url = group_topic_path(@group, t)}
     end
+  end
+
+  def filtered
+    city_pinyin = params[:city] ? params[:city] : (current_user ? current_user.city.pinyin : City.first.pinyin)
+    @city = City.find_by_pinyin(city_pinyin)
+    @district_id = params[:district_id]
+    @item_id = params[:item_id]
+    search_hash = {:city_id => @city.id}
+    search_hash[:item_id] = @item_id unless @item_id.nil?
+    search_hash[:district_id] = @district_id unless @district_id.nil?
+    @groups = Group.filter_group(search_hash).paginate :page => params[:page], 
+                                                       :per_page => 16
   end
 
   private
