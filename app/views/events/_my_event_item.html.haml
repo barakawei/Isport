@@ -28,7 +28,7 @@
           = l(event.end_at, :format => :long)
       %p
         %b= t('events.location')+":"
-        = trim_info(event.location, 20) 
+        = trim_info(event.location.to_s, 20) 
       %p
         %b= t('events.event_subject')+":"
         = event.item.name

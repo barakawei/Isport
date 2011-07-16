@@ -1,0 +1,7 @@
+-content_for :head do
+  = include_stylesheets :sepcial_pages_groups_common, :media => 'all'
+.span-24
+  = render "groups/group_nav_bar", :group => @group, :current => 'forum'
+  .span-17.prepend-1
+    %h3='发表新话题:'
+    = render 'topics/form', :url => group_topics_path(@group), :person => current_user.person

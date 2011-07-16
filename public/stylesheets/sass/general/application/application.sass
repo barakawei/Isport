@@ -13,7 +13,14 @@ body
 
 .bright_yellow
   :color $bright_yellow
-  
+
+b
+  :color black
+  :font-weight bold
+
+
+.block
+  :display block  
 a
   :color $blue
   :font-weight bold
@@ -293,3 +300,33 @@ span.medium_avatar
 #person_panel
   :padding-bottom 40px
   :border-bottom 1px solid #ddd
+#map
+  :width 200px
+  :height 250px 
+  :margin-bottom 20px
+
+#map-big
+  :width 950px
+  :height 500px 
+
+.pagination
+  :margin-top 20px
+  a,em
+    :border 1px solid #dddddd
+    :padding 2px 5px 1px 5px
+    :font-size 13px
+    :margin-right 5px
+
+  em
+    :background-color #f1f1f1
+    :color #999999
+
+  span.disabled
+    :display none
+
+  a
+    &:hover
+      :background-color #ff6600
+      :text-decoration none
+      :color white
+      

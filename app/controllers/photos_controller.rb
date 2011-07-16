@@ -43,6 +43,12 @@ class PhotosController < ApplicationController
     if "profile" == params[:photo][:model_name]
       current_user.profile.update_attributes(url_params)
     end
+
+    if "group" == params[:photo][:model_name]
+      if params[:photo][:is_edit] == "true"
+        Group.update_avatar_urls(params, url_params)
+      end
+    end
   end
 
   private

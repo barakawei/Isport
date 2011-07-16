@@ -1,0 +1,16 @@
+-content_for :head do
+  = include_javascripts :google_map
+  =javascript_include_tag "http://ditu.google.cn/maps/api/js?sensor=false"
+.span-24
+  %h2.title.inline
+    = @event.title
+  = link_to t('back'),  event_path(@event), :class => "button right"
+  %hr
+  #map-big
+
+:javascript
+  $(function() {
+    var address = "#{@event.location}";
+    codeAddress("map-big", address, 16);
+  });
+

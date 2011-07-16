@@ -24,6 +24,9 @@ zh:
   password: "密码"
   password_confirmation: "密码确认"
   back: "返回"
+  pagination:
+    previous: "上一页"
+    next: "下一页" 
   operations:
     delete: '删除'
     all: '(全部)'
@@ -134,7 +137,7 @@ zh:
         select_all: '(全选)'
         select_none: '(取消全选)'
       no_friend_member: '还没有好友参加你的活动'
-      invitees: '发出邀请的好友'
+      invitees: '已发出邀请的好友'
       errors:
         select_no_participant: '请选择需要删除的活动成员'
       info:
@@ -161,10 +164,36 @@ zh:
       myitems: "我的项目"
       my_favorite_item: "我喜欢的项目"
 
-  pagination:
-    previous: "上一页"
-    next: "下一页" 
-
+  groups:
+    new_group: '新建小组'
+    name: '小组名称'
+    item: '所属项目'
+    description: '小组描述'
+    city: '所在城市'
+    is_private: '是否公开'
+    created_at: '创建时间'
+    owner: '创建人'
+    forum: '讨论区'
+    members: '小组成员'
+    join_mode:
+      name: '加入方式'
+      invite_by_admin: '仅允许由管理员邀请加入'
+      invite_by_member: '仅允许由小组成员邀请加入'
+      authenticate_before_join: '允许用户自行加入但需通过管理员验证'
+      no_restrict: '允许任何人加入'
+    join_mode_des:
+      invite_by_admin: '需要管理员邀请才能加入该小组'
+      invite_by_member: '需要小组成员邀请才能加入该小组'
+    person:
+      status:
+        invited: '该小组邀请你加入'
+        request_pending: '加入申请已发出，请耐心等待...'
+        joined: '已经加入该小组'
+      operations:
+        accept: '接受'
+        refuse: '拒绝'
+        exit: '退出'
+        join: '加入该小组'
   date:
     formats:
       default: "%Y-%m-%d"

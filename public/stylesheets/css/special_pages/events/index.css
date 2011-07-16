@@ -10,8 +10,8 @@
   margin-right: -800px; }
 
 .hot_event {
-  background-color: #ebf3f7;
-  padding: 10px 0px 20px 0px;
+  background-color: white;
+  padding: 10px 10px 20px 10px;
   margin-bottom: 5px; }
   .hot_event .nav_box {
     width: 20px;
@@ -41,6 +41,9 @@
   margin-bottom: 0; }
 .filter_bar h2 {
   margin-right: 20px; }
+.filter_bar h2.title {
+  display: inline-block;
+  width: 140px; }
 
 #date {
   border: none;
@@ -54,3 +57,15 @@
 .hot_events {
   overflow: hidden;
   height: 260px; }
+
+#city_select_box {
+  position: absolute;
+  width: 100px;
+  border: 1px solid black;
+  padding: 10px;
+  background-color: white; }
+
+#switch_city {
+  text-decoration: none; }
+  #switch_city:hover {
+    border: 1px solid #b9b9b9; }

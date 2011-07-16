@@ -8,6 +8,8 @@
     = include_javascripts :jquery
     = include_javascripts :main
     = include_javascripts :jqueryui
+    = include_javascripts :jquery_form
+
     = csrf_meta_tag
     = yield :head
      
@@ -44,8 +46,11 @@
 
       $('html').click(function(e) {
         $('.accout').addClass('hide');
+        $('#city_select_box').addClass('hide'); 
       });
     }
+    
+    $.getScript("http://v2.jiathis.com/code/jia.js");
   });
 
 

@@ -42,12 +42,17 @@ Isport::Application.routes.draw do
   end
 
   controller :events do
-    match '/events/:time(/:id)(/:sort)'=> :index, :as => 'events_time', 
+    match '/events/:id' => :show, :via => :get,
+          :constraints => { :id => /[1-9]\d*/}
+    match '/events(/:city)(/:time)(/:id)(/:sort)'=> :index, :via => :get, :as => 'events_time', 
           :constraints => { :id => /[1-9]\d*/, :sort => /(by_starttime)|(by_popularity)/,
-                            :time => /today|week|weekends|alltime|((((19|20)(([02468][048])|([13579][26]))-02-29))|((20[0-9][0-9])|(19[0-9][0-9]))-((((0[1-9])|(1[0-2]))-((0[1-9])|(1\d)|(2[0-8])))|((((0[13578])|(1[02]))-31)|(((0[1,3-9])|(1[0-2]))-(29|30)))))/}
+                            :time => /today|week|weekends|alltime|((((19|20)(([02468][048])|([13579][26]))-02-29))|((20[0-9][0-9])|(19[0-9][0-9]))-((((0[1-9])|(1[0-2]))-((0[1-9])|(1\d)|(2[0-8])))|((((0[13578])|(1[02]))-31)|(((0[1,3-9])|(1[0-2]))-(29|30)))))/,
+                            :city => /nanjing|shanghai|beijing/}
     match '/events/mine(/:type)' => :my_events, :as => 'my_events',
           :constraints => { :type=> /joined|recommended|friend_joined|friend_recommended/ }
     match '/events/:id/edit/members' => :edit_members, :as => 'event_members',
+          :constraints => { :id => /[1-9]\d*/}
+    match '/events/:id/map' => :map, :as => 'event_map',
           :constraints => { :id => /[1-9]\d*/}
   end
 
@@ -55,6 +60,22 @@ Isport::Application.routes.draw do
     match '/involvments/:id/invite' => :invite, :as => 'event_invite', 
           :constraints => { :id => /[1-9]\d*/}
   end
+
+  controller :group_topics do
+    match '/groups/:group_id/topics/:id/summary' => :summary, :as => 'topic_summary',
+    :constraints => { :id => /[1-9]\d*/, :group_id => /[1-9]\d*/}
+  end
+
+
+  controller :location do
+    match '/locations/districts_of_city' => :districts_of_city, :as => 'districts_of_city'
+  end
+  
+  controller :groups do
+    match '/groups/:city/(/district/:district_id)(/item/:item_id)' => :filtered, :as => 'group_filter',
+          :constraints => { :city => /nanjing|shanghai|beijing/, :district_id => /[1-9]\d*/,
+                            :item_id => /[1-9]\d*/}
+  end 
 
   resources :events
   resources :contacts
@@ -65,6 +86,22 @@ Isport::Application.routes.draw do
   resources :comments
   resources :items
   resources :involvements
+  resources :memberships
+
+  resources :groups do
+    member do
+      get 'members'
+      get 'forum'
+    end
+    resources :memberships
+    resources :topics, :controller => 'group_topics'
+  end
+
+  resources :topics do
+    resources :topic_comments, :controller => 'topic_comments'
+  end
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

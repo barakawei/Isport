@@ -1,0 +1,7 @@
+%tr.summary
+  %td.topic_summary{:colspan => 3}
+    %p.post_time
+      ='发表于:'
+      = l(@topic.created_at, :format => :long)
+      = link_to '查看原文', @topic.url 
+    %p.content= simple_format @topic.content

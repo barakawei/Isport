@@ -95,4 +95,9 @@ class User < ActiveRecord::Base
     end
     events
   end
+
+  def city 
+    profile.location.city
+  end
+
 end

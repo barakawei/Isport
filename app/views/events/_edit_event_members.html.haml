@@ -42,8 +42,9 @@
                                                               :no_pagination => true, 
                                                               :edit => false}
 .span-5.last
+  = link_to t("operations.delete_selected"), '#', :class => "button delete", :id => "delete_members" if participants.size > 0 
+  %hr.space
   = invite_link(false, friends, invitees, friend_participants)
-  = link_to t("operations.delete_selected"), '#', :class => "button delete", :id => "delete_members" 
   %hr.space
 .colorbox_content
   #friend_select
@@ -129,3 +130,4 @@
     $.colorbox({ inline:true, href:"#delete_member_request", opacity:0.5 });
     return false;
   }
+

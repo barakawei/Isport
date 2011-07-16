@@ -10,12 +10,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110710120906) do
+ActiveRecord::Schema.define(:version => 20110715060230) do
 
   create_table "administrators", :force => true do |t|
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "cities", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "pinyin"
   end
 
   create_table "comments", :force => true do |t|
@@ -56,12 +63,19 @@ ActiveRecord::Schema.define(:version => 20110710120906) do
     t.datetime "updated_at"
   end
 
+  create_table "districts", :force => true do |t|
+    t.string   "name"
+    t.integer  "city_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "events", :force => true do |t|
     t.datetime "start_at"
     t.datetime "end_at"
     t.string   "title"
     t.text     "description"
-    t.string   "location"
+    t.string   "address"
     t.integer  "subject_id"
     t.boolean  "ispublic"
     t.datetime "created_at"
@@ -72,6 +86,7 @@ ActiveRecord::Schema.define(:version => 20110710120906) do
     t.integer  "person_id"
     t.integer  "item_id"
     t.integer  "participants_limit", :default => 100
+    t.integer  "location_id"
   end
 
   create_table "favorites", :force => true do |t|
@@ -81,9 +96,15 @@ ActiveRecord::Schema.define(:version => 20110710120906) do
     t.datetime "updated_at"
   end
 
+<<<<<<< HEAD
   create_table "group_members", :force => true do |t|
     t.integer  "group_id"
     t.integer  "person_id"
+=======
+  create_table "forums", :force => true do |t|
+    t.integer  "discussable_id"
+    t.string   "discussable_type"
+>>>>>>> 52bf0e3b17061640fb0f72d609a89b45cf746ecd
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -92,6 +113,7 @@ ActiveRecord::Schema.define(:version => 20110710120906) do
     t.string   "name"
     t.text     "description"
     t.integer  "item_id"
+<<<<<<< HEAD
     t.integer  "person_id"
     t.integer  "privacy"
     t.string   "image_url"
@@ -99,6 +121,18 @@ ActiveRecord::Schema.define(:version => 20110710120906) do
     t.string   "image_url_small"
     t.datetime "created_at"
     t.datetime "updated_at"
+=======
+    t.integer  "city_id"
+    t.boolean  "is_private"
+    t.integer  "join_mode"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "image_url_small"
+    t.string   "image_url_medium"
+    t.string   "image_url_large"
+    t.integer  "person_id"
+    t.integer  "district_id"
+>>>>>>> 52bf0e3b17061640fb0f72d609a89b45cf746ecd
   end
 
   create_table "involvements", :force => true do |t|
@@ -118,6 +152,30 @@ ActiveRecord::Schema.define(:version => 20110710120906) do
     t.string   "image_url_medium"
     t.string   "image_url_small"
   end
+
+  create_table "locations", :force => true do |t|
+    t.integer  "city_id"
+    t.integer  "district_id"
+    t.string   "detail"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name"
+    t.decimal  "lng",         :precision => 11, :scale => 8
+    t.decimal  "lat",         :precision => 11, :scale => 8
+  end
+
+  create_table "memberships", :force => true do |t|
+    t.integer  "person_id"
+    t.integer  "group_id"
+    t.boolean  "is_admin"
+    t.boolean  "pending",    :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "memberships", ["group_id"], :name => "index_memberships_on_group_id"
+  add_index "memberships", ["person_id", "group_id"], :name => "index_memberships_on_person_id_and_group_id", :unique => true
+  add_index "memberships", ["person_id"], :name => "index_memberships_on_person_id"
 
   create_table "messages", :force => true do |t|
     t.integer  "conversation_id"
@@ -186,7 +244,7 @@ ActiveRecord::Schema.define(:version => 20110710120906) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "image_url_medium"
-    t.string   "location"
+    t.integer  "location_id"
   end
 
   add_index "profiles", ["name"], :name => "index_profiles_on_name"
@@ -206,6 +264,24 @@ ActiveRecord::Schema.define(:version => 20110710120906) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "message"
+  end
+
+  create_table "topic_comments", :force => true do |t|
+    t.text     "content"
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "person_id"
+  end
+
+  create_table "topics", :force => true do |t|
+    t.string   "title"
+    t.text     "content"
+    t.integer  "person_id"
+    t.integer  "forum_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", :force => true do |t|

@@ -1,0 +1,10 @@
+.span-16.comment_to_comment
+  .avatar_response
+    = person_image_link(person)     
+  .content.span-13{:comment_id => "#{commentable.id}"}
+    %hr
+    %span.comment_info
+      = link_to person.name, person_path(person) 
+      = l(comment.created_at, :format => :long)
+    = simple_format comment.content
+

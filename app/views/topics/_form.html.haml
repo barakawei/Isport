@@ -1,0 +1,15 @@
+-content_for :head do
+  = include_stylesheets :special_pages_topic_form, :media => 'all'
+.span-14
+  = form_for @topic, :url => url  do  |f|
+    .field
+      = f.label '标题'
+      = f.text_field :title
+    .field
+      = f.label '内容'
+      = f.text_area :content
+    .actions
+      = f.submit '确认'
+.span-3.last
+  %h4.inline='作者:'
+  %span.author= person_image_link(person)

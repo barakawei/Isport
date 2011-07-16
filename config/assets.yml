@@ -24,9 +24,14 @@ javascripts:
     - public/javascripts/jquery-ui-1.8.13/development-bundle/ui/i18n/jquery.ui.datepicker-zh-CN.js
     - public/javascripts/autosuggest/jquery.autoSuggest.js
     - public/javascripts/jquery.timeago.js
+  jquery_form:
+    - public/javascripts/jquery.form.js
+
   friend_select:
     - public/javascripts/fcbk/fcbklistselection.js
     - public/javascripts/fcbk/friend_select.js
+  google_map:
+    - public/javascripts/mark_on_google_map.js
 
 stylesheets:
   blueprint:
@@ -48,6 +53,9 @@ stylesheets:
   forms:
     - public/stylesheets/css/general/forms/events_form.css
 
+  forum_large:
+    - public/stylesheets/css/general/application/forum_large.css
+
   sepcial_pages_events_index:
     - public/stylesheets/css/special_pages/events/index.css
   sepcial_pages_events_show:
@@ -61,4 +69,29 @@ stylesheets:
 
   sepcial_pages_items_show:
     - public/stylesheets/css/special_pages/items/show.css
+
+  sepcial_pages_groups_form:
+    - public/stylesheets/css/special_pages/groups/form.css
+  sepcial_pages_groups_common:
+    - public/stylesheets/css/special_pages/groups/common.css
+  sepcial_pages_groups_show:
+    - public/stylesheets/css/special_pages/groups/show.css
+  sepcial_pages_groups_index:
+    - public/stylesheets/css/special_pages/groups/index.css
+  sepcial_pages_groups_hottest:
+    - public/stylesheets/css/special_pages/groups/hottest.css
+
+
+  special_pages_topic_form:
+    - public/stylesheets/css/special_pages/topics/form.css
+  special_pages_topic_show:
+    - public/stylesheets/css/special_pages/topics/show.css
+  special_pages_topic_index:
+    - public/stylesheets/css/special_pages/topics/index.css
+  special_pages_topic_comments:
+    - public/stylesheets/css/special_pages/topics/comments.css
+  special_pages_topic_recent:
+    - public/stylesheets/css/special_pages/topics/recent.css
+
+    
  

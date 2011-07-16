@@ -1,0 +1,63 @@
+#group_photo_upload
+  .img_contained  
+    = group_image_tag(group, :thumb_large)
+  .relative 
+    %div
+    #file-upload
+      =t('upload')
+    %br
+    %br
+      #fileInfo
+    #publisher_photo_upload
+    :javascript
+      function createUploader(){
+        var uploader = new qq.FileUploaderBasic({
+             element: document.getElementById('file-upload'),
+             params: {'photo' : {'is_edit': "#{is_edit}", 'model_id': "#{group.id}", 'model_name': "#{model_name}"  }},
+             allowedExtensions: ['jpg', 'jpeg', 'png'],
+             action: "#{photos_path}",
+             debug: true,
+             button: document.getElementById('file-upload'),
+             sizeLimit: 4194304,
+            
+             onProgress: function(id, fileName, loaded, total){
+              var progress = Math.round(loaded / total * 100 );
+               $('#fileInfo').text(fileName + ' ' + progress + '%');
+             },
+             
+             onSubmit: function(id, fileName){
+              $('#file-upload').addClass("loading");
+              $("#group_photo_upload").find(".avatar").fadeTo(200,0.5);
+             },
+             
+             onComplete: function(id, fileName, responseJSON){
+              $('#fileInfo').text(fileName + ' completed').fadeOut(2000);
+              $('#file-upload').removeClass("loading");
+              var id = responseJSON.data.photo.id
+              var url = responseJSON.data.photo.thumb_large
+              var oldPhoto = $('#photo_id');
+              if(oldPhoto.length == 0) {
+                $('#update_profile_form').prepend("<input type='hidden' value='" + id + "' id='photo_id' name='photo_id'/>");
+              }else{
+                oldPhoto.val(id);
+              }
+
+              $("#group_photo_upload").find(".avatar").fadeTo(200,1);
+              $("#group_photo_upload").find(".avatar").attr("src",url);
+              $("#group_image_url_large").val(responseJSON.data.photo.thumb_large);
+              $("#group_image_url_small").val(responseJSON.data.photo.thumb_small);
+              $("#group_image_url_medium").val(responseJSON.data.photo.thumb_medium);
+             }
+             
+         });
+       }
+       window.onload = createUploader;
+   
+:javascript
+  $(function() {
+    $('#file-upload').button({
+      icons: {
+        primary: 'ui-icon-circle-arrow-n'
+      }
+    });  
+  });

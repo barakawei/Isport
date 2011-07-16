@@ -1,10 +1,19 @@
 class Person < ActiveRecord::Base
+  cattr_reader :per_page
+  @@per_page = 10
+
   belongs_to :user
   has_many :contacts
   has_many :events
+  has_many :groups
+  has_many :topics
+  has_many :topic_comments, :class_name => 'topic_comment'
 
   has_many :involvements, :dependent => :destroy
   has_many :involved_events, :through => :involvements, :source => :event
+
+  has_many :memberships, :dependent => :destroy
+  has_many :joined_groups, :through => :memberships, :source => :group
 
   has_many :favorites, :dependent => :destroy
   has_many :interests, :through => :favorites, :source => :item
