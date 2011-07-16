@@ -1,0 +1,5 @@
+.event_by_search
+  .event_avatar
+    = event_image_link(event, :thumb_large)
+  %span.item_name= '(' + event.item.name + ')'
+  %span.group_name= event.title

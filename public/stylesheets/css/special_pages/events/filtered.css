@@ -1,0 +1,62 @@
+.hot_box h2 {
+  background: none repeat scroll 0 0 #4d4d4d;
+  width: 100%;
+  height: 4px;
+  overflow: hidden;
+  border-bottom: 1px solid #4d4d4d;
+  margin: 0; }
+
+.hot_groups {
+  width: 908px;
+  padding: 20px 20px 0 20px;
+  border: 1px solid #dddddd;
+  border-top: none;
+  float: left; }
+  .hot_groups .search_line {
+    width: 908px;
+    float: left;
+    margin-bottom: 20px; }
+    .hot_groups .search_line .filter_title {
+      float: left;
+      padding: 5px;
+      background: none repeat scroll 0 0 #d4d4d4;
+      width: 40px;
+      font-size: 13px;
+      text-align: center; }
+      .hot_groups .search_line .filter_title a {
+        color: white; }
+    .hot_groups .search_line .filter_items {
+      float: left;
+      padding: 5px;
+      margin-left: 10px;
+      width: 828px; }
+      .hot_groups .search_line .filter_items a {
+        font-size: 12px;
+        color: #333333;
+        margin-right: 5px;
+        display: inline-block; }
+      .hot_groups .search_line .filter_items a.current {
+        color: #a10000; }
+
+.search_result .event_item {
+  margin-top: 20px; }
+  .search_result .event_item img {
+    float: left;
+    width: 148px;
+    height: 148px;
+    border: 1px solid #e1e1e1; }
+  .search_result .event_item .information {
+    width: 300px;
+    height: 150px;
+    float: left;
+    margin: 0 10px;
+    overflow: hidden;
+    position: relative; }
+    .search_result .event_item .information p {
+      margin: 0; }
+    .search_result .event_item .information .title {
+      font-size: 14px;
+      margin-bottom: 5px; }
+    .search_result .event_item .information .at_bottom {
+      position: absolute;
+      bottom: 1px; }

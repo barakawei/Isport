@@ -14,6 +14,7 @@
     .field
       = f.label t('groups.city') + ":" 
       = f.collection_select :city_id, City.all, :id, :name, {:prompt => true}
+      = f.collection_select :district_id, @group.city.districts, :id, :name
     .field
       = f.label t('groups.is_private') + ":" 
       = f.check_box :is_private
@@ -37,3 +38,11 @@
       = f.text_field :image_url_small
     .actions
       = f.submit 'Save'
+
+:javascript
+  $('#group_city_id').change(function() {
+    $.get("#{districts_of_city_path}", {id: $("#group_city_id").val(),
+                                        select_name: 'group[district_id]'}, function(data){
+      $("#group_district_id").replaceWith(data);
+    });
+  }); 

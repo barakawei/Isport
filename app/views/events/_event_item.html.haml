@@ -1,8 +1,7 @@
-%h3= link_to trim_info(event.title,20), event, :class => "nounderline title"
-.span-3
-  = link_to image_tag(event.image_url(:thumb_medium)), event
-.span-6.last.infomation
-  %p#notice= notice
+.avatar
+  = link_to image_tag(event.image_url(:thumb_large)), event
+.information
+  %p.title= link_to event.title, event, :class => "nounderline"
   -if event.same_day
     %p
       %b
@@ -21,11 +20,11 @@
       = l(event.end_at, :format => :long)
   %p
     %b= t('events.location')+":"
-    = trim_info(event.location.to_s, 15) 
+    = event.location.to_s 
   %p
     %b= t('events.event_subject')+":"
     = link_to event.item.name, item_path(event.item)
-  %p
+  %p.at_bottom
     %br
     = event_status(event)
     = ": " + t('events.short_involvement', :count => event.participants.size) + ", "

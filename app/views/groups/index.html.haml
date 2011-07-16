@@ -2,6 +2,10 @@
   = include_stylesheets :sepcial_pages_groups_common, :media => 'all'
   = include_stylesheets :sepcial_pages_groups_index, :media => 'all'
 
+#city_select_box.hide    
+  - City.all.each do |city|
+    %h4.inline= link_to city.name, "/groups/?city=#{city.pinyin}"
+
 .span-24
   %h2.title
     = '小组:'
@@ -61,6 +65,14 @@
 
 
 :javascript
+  $(function() {
+
+    var left = $('#switch_city').offset().left;
+    var t =$('#switch_city').offset().top + $('#switch_city').innerHeight();
+    $('#city_select_box').css("left", left+"px");
+    $('#city_select_box').css("top", t+"px");
+  });
+
   $('#nextBtn').bind('click', slideRight);
   $('#preBtn').bind('click', slideLeft);
 
@@ -103,5 +115,10 @@
       });
     }
   }
-      
+
+  $("#switch_city").click(function(e) {
+    $('#city_select_box').toggleClass('hide'); 
+    e.stopPropagation();
+    return false;
+  });
       

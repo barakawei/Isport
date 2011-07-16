@@ -60,7 +60,8 @@
 
 :javascript
   $("#event_location_attributes_city_id").change(function() {
-    $.get("#{districts_of_city_path}", {id: $("#event_location_attributes_city_id").val()}, function(data){
+    $.get("#{districts_of_city_path}", {id: $("#event_location_attributes_city_id").val(),
+                                        select_name:'event[location_attributes][district_id]'}, function(data){
       $("#event_location_attributes_district_id").replaceWith(data);
     });
   });

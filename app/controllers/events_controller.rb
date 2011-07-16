@@ -138,6 +138,17 @@ class EventsController < ApplicationController
                                              :perline => 8, :pagination_type => pagination_type }
   end
 
+  def filtered
+    city_pinyin = params[:city] ? params[:city] : (current_user ? current_user.city.pinyin : City.first.pinyin)
+    @city = City.find_by_pinyin(city_pinyin)
+    @district_id = params[:district_id]
+    @item_id = params[:item_id]
+    @time = params[:time].nil? ?  'alltime' : params[:time] 
+    conditions = {:city_id => @city.id, :time => @time}
+    conditions[:district_id] = @district_id unless @district_id.nil?
+    conditions[:subject_id] = @item_id unless @item_id.nil?
+    @events = Event.filter_event(conditions).paginate :page => params[:page], :per_page => 10
+  end
   
   private
 
