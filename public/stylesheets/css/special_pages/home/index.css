@@ -55,9 +55,11 @@
 .comment_form {
   margin-left: 80px;
   margin-bottom: 10px; }
+  .comment_form .button {
+    margin-left: 310px; }
   .comment_form textarea {
-    width: 500px;
-    height: 70px; }
+    width: 350px;
+    height: 25px; }
 
 .status_message_panel textarea {
   width: 400px;
@@ -87,7 +89,7 @@
     font-size: 11px;
     display: inline; }
   #person_panel textarea {
-    width: 450px; }
+    width: 400px; }
   #person_panel .comment_form textarea {
     width: 350px; }
 

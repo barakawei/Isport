@@ -2,11 +2,6 @@
   =include_javascripts :friend_select
   =include_javascripts :scroll_page
 .span-15.append-2
-  =render "status_messages/status_message"
-  .current_status
-    ="最近更新:"
-    %span.current_status_body
-      =@current_status.content if @current_satus
   =render "home/feed_container"
     
 .span-7.last

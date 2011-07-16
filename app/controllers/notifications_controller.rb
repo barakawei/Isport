@@ -1,12 +1,21 @@
 class NotificationsController < ApplicationController
-  respond_to :js
-
+  include NotificationsHelper
   def index
-    @notifications = Notification.includes( :actor ).where( :recipient_id => current_user,:type => "notifications::InviteEvent" )
+    @notifications = Notification.includes( :actor ).where( :recipient_id => current_user)
+
+    @unread_notify_count = Notification.sum(:unread, :conditions => "recipient_id = #{current_user.person.id}")
+    
     @notifications.each do |n|
-      n.update_attributes( {:unread => 0} )
+      n[:actor] = n.actor
+      n[:translation] = object_link(n)
+      n[:translation_key] = n.translation_key
+      n[:target] = n.target
     end
-    @unread_notify_count = Notification.sum(:unread, :conditions => "recipient_id = #{current_user.person.id} and type ='Notifications::InviteEvent'")
+    
+    respond_to do |format|  
+      format.json { render :json => { :notifications => @notifications}}    
+    end 
+    
   end
 
 end

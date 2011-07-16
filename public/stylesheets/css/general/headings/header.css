@@ -1,6 +1,5 @@
 .header {
   background: url("/images/ui/header_background.png") repeat-x scroll left top #4f8dbc;
-  overflow: hidden;
   text-align: left;
   height: 39px;
   position: fixed;
@@ -43,23 +42,24 @@
   .header ul {
     list-style: none;
     padding-left: 0; }
-  .header li {
+  .header .sections li, .header .setting li {
     float: left;
     margin-right: 1px; }
-    .header li a {
+  .header .sections a, .header .setting a {
+    height: 15px;
+    color: white;
+    display: block;
+    float: left;
+    padding: 11px 10px;
+    text-decoration: none; }
+    .header .sections a:hover, .header .sections a .active, .header .setting a:hover, .header .setting a .active {
+      background-color: #4275a1;
+      background-position: left bottom;
       color: white;
-      display: block;
-      float: left;
-      padding: 11px 10px;
       text-decoration: none; }
-      .header li a:hover, .header li a .active {
-        background-color: #4275a1;
-        background-position: left bottom;
-        color: white;
-        text-decoration: none; }
-      .header li a .active {
-        font-size: 11px;
-        font-weight: bold; }
+    .header .sections a .active, .header .setting a .active {
+      font-size: 11px;
+      font-weight: bold; }
   .header li#search input {
     border: 0 none;
     margin-top: 10px;
@@ -70,9 +70,10 @@
     background: url("/images/layout/button.png") repeat-x scroll 100% -492px white; }
   .header .setting {
     display: inline; }
-    .header .setting li {
-      position: relative;
+    .header .setting .set {
       margin-left: 400px; }
+    .header .setting li {
+      position: relative; }
       .header .setting li .avatar {
         position: absolute;
         top: 5px;
@@ -90,7 +91,7 @@
           background: url("/images/ui/icons.png") repeat 10px -2588px; }
 
 .accout {
-  margin-top: 40px;
+  top: 40px;
   width: 60px; }
   .accout ul {
     text-align: center; }
@@ -105,3 +106,46 @@
       background-color: #5179ac;
       color: white;
       text-decoration: none; }
+
+#view_all_notifications {
+  float: right;
+  margin-right: 3px;
+  font-weight: bold; }
+
+#notification_dropdown {
+  background: white;
+  border: solid #888888 1px;
+  position: absolute;
+  top: 38px;
+  right: 0;
+  width: 400px;
+  display: none;
+  z-index: 999;
+  height: 500px;
+  overflow-y: scroll;
+  color: #444444; }
+  #notification_dropdown a {
+    color: #5179ac; }
+  #notification_dropdown .title {
+    padding: 10px; }
+    #notification_dropdown .title h4 {
+      padding-bottom: 0;
+      margin-bottom: 0; }
+  #notification_dropdown .notification_element,
+  #notification_dropdown .title {
+    border-bottom: 1px solid #dddddd; }
+  #notification_dropdown .ajax_loader {
+    text-align: center;
+    padding: 15px; }
+  #notification_dropdown .notification_element {
+    padding: 10px;
+    min-height: 30px; }
+    #notification_dropdown .notification_element > img {
+      height: 30px;
+      width: 30px;
+      float: left;
+      margin-right: 10px; }
+    #notification_dropdown .notification_element.unread {
+      background-color: whiteSmoke;
+      color: black;
+      font-weight: bold; }

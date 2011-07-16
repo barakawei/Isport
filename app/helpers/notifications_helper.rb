@@ -1,11 +1,15 @@
 module NotificationsHelper
+  include ERB::Util
+  include ActionView::Helpers::TranslationHelper
+  include ActionView
+  include ApplicationHelper
   def object_link(note)
     target_type = note.translation_key
     actor = note.actor
-    actor_link = link_to(actor.name, object_path(actor)).html_safe
+    actor_link = "<a href='#{object_path(actor)}'>#{actor.name}</a>"
     if !note.instance_of?(Notifications::StartedSharing)
       event = note.target
-      event_link =  link_to(event.title, object_path(event)).html_safe
+      event_link =  "<a href='#{object_path(event)}'>#{event.title}</a>"
       translation(target_type, :actor_link => actor_link,:event_link => event_link)
     else 
       translation(target_type, :actor_link => actor_link)

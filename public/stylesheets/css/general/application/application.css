@@ -205,8 +205,12 @@ span.medium_avatar {
       width: 50px;
       padding-right: 2px; }
 
-.with_photos {
+.with_photos textarea {
   padding-bottom: 70px; }
+.with_photos #photozone {
+  height: 60px; }
+.with_photos #status_message_submit {
+  display: inline-block; }
 
 .photo_form {
   position: relative; }
@@ -264,7 +268,11 @@ span.medium_avatar {
   padding: 3px 5px;
   text-shadow: 0 -1px rgba(41, 41, 41, 0.5);
   text-align: center; }
-  .relation_button a {
+  .relation_button span {
     color: white;
     text-decoration: none;
     margin: auto; }
+
+#person_panel {
+  padding-bottom: 40px;
+  border-bottom: 1px solid #dddddd; }

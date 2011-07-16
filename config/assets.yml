@@ -8,6 +8,9 @@ javascripts:
   main:
     - public/javascripts/jquery_ujs.js
     - public/javascripts/fileuploader-custom.js
+    - public/javascripts/isport.js
+    - public/javascripts/showNotifications.js
+    - public/javascripts/jquery.autoresize.min.js
 
   scroll_page:
     - public/javascripts/scrollPage.js

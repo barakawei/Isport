@@ -46,3 +46,8 @@
   -khtml-opacity: $val;
   opacity: $val;
 }
+
+@mixin dropdown-shadow{
+  @include box-shadow(0,0px,13px,rgba(20,20,20,0.5))
+} 
+

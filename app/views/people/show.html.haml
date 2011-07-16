@@ -36,26 +36,11 @@
 
     -if current_user.person.id == @person.id
       = render "status_messages/status_message"
-    .stream
+  .stream
   .action{ :style => "display: none" }
 
 .span-6.last
   .right_side.avatar_panel
-    #friend_listings
-      - if @friends.length > 0
-        .contacts
-          %h3
-            -if current_user.person.id == @person.id
-              = "你的好友"
-            - else
-              = "他的好友"
-          - for friend in @friends
-            .avatar_container
-              = person_image_link(friend)
-          %h4
-            =link_to t( 'more' ),{:controller => 'people',:action => 'show_friends'}
-      - else
-        =t('no_friends')
     #followed_people
       - if @followed_people.length > 0
         .contacts
@@ -93,23 +78,26 @@
   $(".private_message").colorbox({ inline:true, href:"#private_message"});	
   });
   $("abbr.timeago").timeago();
-  $( ".replay" ).live( "click",function( ){  
+  $( function(){
+      $( ".replay" ).live( "click",function( ){  
     stream_element = $( this ).closest(".stream_element");
     commentBlock = stream_element.find(".comment_form");
     comments = stream_element.find(".comments");
-    if(commentBlock.hasClass("hidden")) {
+    if(commentBlock.hasClass("hide")) {
       if( $( ".comment",comments ).length != 0 ){
-        comments.removeClass("hidden");
+        comments.removeClass("hide");
       }
-      commentBlock.removeClass("hidden");
+      commentBlock.removeClass("hide");
       commentBlock.find("textarea").focus();
     } else {
         if( $( ".comment",comments ).length > 3 || $( ".comment",comments ).length == 0 ){
-          comments.addClass( "hidden" );
+          comments.addClass( "hide" );
         }
-        commentBlock.addClass("hidden");
+        commentBlock.addClass("hide");
       }  
     return false;
     });
 
+     });
+  
 

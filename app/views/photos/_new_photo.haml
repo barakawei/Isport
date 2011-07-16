@@ -16,7 +16,8 @@
        onSubmit: function(id, fileName){
         $('#file-upload').addClass("loading");
         $('.photo_form').closest( "form" ).find("input[type='submit']").attr('disabled','disabled');
-        $(".photo_form textarea").addClass("with_photos");
+        $(".photo_form").closest( "form" ).addClass("with_photos");
+        $('#photozone').css( "height","60px" );
         $('#photozone').append(
           "<li class='photo loading' style='position:relative;'>" +
             "<img src='/images/ui/loading.gif' />" +
@@ -29,7 +30,7 @@
             url = responseJSON.data.photo.thumb_small,
             currentPlaceholder = $('li.loading').first();
 
-        $(".photo_form textarea").addClass("with_photos");
+        $(".photo_form").closest( "form" ).addClass("with_photos");
         $('.photo_form').append("<input type='hidden' value='" + id + "' name='photos[]' />");
 
         var img = currentPlaceholder.find('img');
