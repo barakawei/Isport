@@ -1,6 +1,7 @@
 @import '../../general/ui/mixins'
 
 .status_message_panel
+  :margin 10px 20px
   :position relative
   #file-upload
     &:hover
@@ -12,7 +13,7 @@
       :top  10px
       :bottom 8px
     bottom: 3px
-    left: 376px
+    left: 475px
     z-index: 10
     margin: 0
     display: inline-block
@@ -32,13 +33,12 @@
       cursor: pointer
   textarea
     :overflow-y hidden
-    :height 25px
-    :width 375px
+    :height 23px
+    :width 475px
     :padding-right 30px
   .button
     :display none
-    :position absolute
-    :margin-left 359px
+    :z-index 1
 
 .feed_tabs
   h2

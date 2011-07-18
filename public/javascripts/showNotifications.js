@@ -59,7 +59,7 @@
           var notificationElement = $("<div/>")
             .addClass("notification_element")
             .html(notification.translation)
-            .prepend($("<img/>", { src: notification.actor.person.image_url }))
+            .prepend($("<img/>", { src: notification.actor.person.image_url,"class":"avatar" }))
             .append("<br />")
             .append($("<abbr/>", {
               "class": "timeago",

@@ -3,10 +3,10 @@
     .photo_form
       = status.text_area :content
       %ul#photozone
-    = hidden_field_tag :view,:value
+      #file-upload
+        = image_tag '/images/ui/camera.svg', :height => 14
     = status.submit "分享", :class => 'button'
-  #file-upload
-    = image_tag '/images/ui/camera.svg', :height => 14
+  
 
   #fileInfo
 

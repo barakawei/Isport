@@ -98,16 +98,23 @@ h1 .description, h2 .description, h3 .description, h4 .description {
   color: #aaaaaa;
   margin-top: 0.5em; }
 
+.element_body {
+  margin-left: 60px;
+  margin-right: 40px; }
+
 .stream_element {
+  font-size: 13px;
   min-height: 50px;
-  border-bottom: 1px solid #dddddd;
-  border-top: 1px solid white;
+  border-top: 1px solid #ebebeb;
+  padding-left: 20px;
+  padding-right: 20px;
   padding-top: 10px;
   padding-bottom: 10px;
-  position: relative;
-  font-size: 14px; }
-  .stream_element .author {
-    color: #444444; }
+  position: relative; }
+  .stream_element .show_comments {
+    padding: 8px;
+    border-top: 1px solid #ebebeb;
+    border-bottom: 1px dotted #cccccc; }
   .stream_element .avatar {
     float: left; }
   .stream_element .right {
@@ -118,7 +125,6 @@ h1 .description, h2 .description, h3 .description, h4 .description {
     top: 20px; }
   .stream_element .content {
     position: relative;
-    margin-left: 70px;
     color: #666666;
     font-weight: normal; }
     .stream_element .content img {
@@ -283,6 +289,7 @@ span.medium_avatar {
 #person_panel {
   padding-bottom: 40px;
   border-bottom: 1px solid #dddddd; }
+
 #map {
   width: 200px;
   height: 250px;
@@ -308,3 +315,28 @@ span.medium_avatar {
     background-color: #ff6600;
     text-decoration: none;
     color: white; }
+
+.scroll {
+  text-align: center;
+  margin-top: 10px; }
+
+.comment_form {
+  padding: 8px; }
+  .comment_form .avatar {
+    float: left; }
+    .comment_form .avatar img {
+      width: 32px;
+      height: 32px; }
+  .comment_form .comment_button {
+    margin-left: 40px; }
+  .comment_form textarea {
+    resize: none;
+    margin-left: 4px;
+    width: 345px;
+    height: 23px; }
+
+.content_panel {
+  margin-top: -20px;
+  border-left: 1px solid #ebebeb;
+  border-right: 1px solid #ebebeb;
+  border-bottom: 1px solid #ebebeb; }

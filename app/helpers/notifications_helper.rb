@@ -8,9 +8,15 @@ module NotificationsHelper
     actor = note.actor
     actor_link = "<a href='#{object_path(actor)}'>#{actor.name}</a>"
     if !note.instance_of?(Notifications::StartedSharing)
-      event = note.target
-      event_link =  "<a href='#{object_path(event)}'>#{event.title}</a>"
-      translation(target_type, :actor_link => actor_link,:event_link => event_link)
+      if note.instance_of?( Notifications::StatusComment )
+        post = note.target.post
+        post_link = "<a href='#{object_path(post)}'>#{t( 'message' )}</a>"
+        translation(target_type, :actor_link => actor_link,:post_link => post_link)
+      else
+        event = note.target
+        event_link =  "<a href='#{object_path(event)}'>#{event.title}</a>"
+        translation(target_type, :actor_link => actor_link,:event_link => event_link)
+      end
     else 
       translation(target_type, :actor_link => actor_link)
     end

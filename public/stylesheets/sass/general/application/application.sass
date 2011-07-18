@@ -102,20 +102,23 @@ h1,h2,h3,h4
     :margin
       :top 0.5em 
 
+.element_body
+  :margin-left 60px
+  :margin-right 40px
 .stream_element
+  :font-size 13px
+  .show_comments
+    :padding 8px
+    :border-top 1px solid #EBEBEB
+    :border-bottom 1px dotted #CCCCCC
   :min-height 50px
-  :border
-    :bottom 1px solid #ddd
-    :top 1px solid #fff
-
+  :border-top 1px solid #EBEBEB
   :padding
+    :left 20px
+    :right 20px
     :top 10px
     :bottom 10px
-  .author
-    :color #444444
   :position relative
-  :font
-    :size 14px
   .avatar
     :float left
   .right
@@ -126,7 +129,6 @@ h1,h2,h3,h4
     :top 20px
   .content
     :position relative
-    :margin-left 70px
     :color #666
     :font
       :weight normal
@@ -329,4 +331,29 @@ span.medium_avatar
       :background-color #ff6600
       :text-decoration none
       :color white
+
+.scroll
+  :text-align center
+  :margin-top 10px
+
+.comment_form
+  :padding 8px
+  .avatar
+    :float left
+    img
+      :width 32px
+      :height 32px
+  .comment_button
+    :margin-left 40px
+  textarea
+    :resize none
+    :margin-left 4px
+    :width 345px
+    :height 23px
+.content_panel
+  :margin-top -20px
+  :border
+    :left 1px solid #EBEBEB
+    :right 1px solid #EBEBEB
+    :bottom 1px solid #EBEBEB
       

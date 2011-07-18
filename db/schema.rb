@@ -96,15 +96,9 @@ ActiveRecord::Schema.define(:version => 20110715060230) do
     t.datetime "updated_at"
   end
 
-<<<<<<< HEAD
-  create_table "group_members", :force => true do |t|
-    t.integer  "group_id"
-    t.integer  "person_id"
-=======
   create_table "forums", :force => true do |t|
     t.integer  "discussable_id"
     t.string   "discussable_type"
->>>>>>> 52bf0e3b17061640fb0f72d609a89b45cf746ecd
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -113,15 +107,6 @@ ActiveRecord::Schema.define(:version => 20110715060230) do
     t.string   "name"
     t.text     "description"
     t.integer  "item_id"
-<<<<<<< HEAD
-    t.integer  "person_id"
-    t.integer  "privacy"
-    t.string   "image_url"
-    t.string   "image_url_medium"
-    t.string   "image_url_small"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-=======
     t.integer  "city_id"
     t.boolean  "is_private"
     t.integer  "join_mode"
@@ -132,7 +117,6 @@ ActiveRecord::Schema.define(:version => 20110715060230) do
     t.string   "image_url_large"
     t.integer  "person_id"
     t.integer  "district_id"
->>>>>>> 52bf0e3b17061640fb0f72d609a89b45cf746ecd
   end
 
   create_table "involvements", :force => true do |t|

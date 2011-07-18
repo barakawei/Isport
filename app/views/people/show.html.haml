@@ -34,8 +34,6 @@
           .button.add_friend{:style=>"width:100px"}
             =link_to t('start_sharing'),{:controller => 'contacts', :action => 'create',:person_id => @person.id},:method =>'post'
 
-    -if current_user.person.id == @person.id
-      = render "status_messages/status_message"
   .stream
   .action{ :style => "display: none" }
 

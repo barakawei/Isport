@@ -1,22 +1,42 @@
 .stream_element{ :id => post.id }
   = person_image_link(post.author,:thumb_small) 
-  .content
-    .from
-      = person_link(post.author, :class => 'author')
-    .photos
-      = render 'photos/photos_container',:photos => post.photos
-    %p
-      = post.content
-    .content_info
-      %span.time.timeago{:datetime => post.created_at,:style=>"font-size: 11px"}
-        =how_long_ago( post )
-      %span.action
-        =link_to "回复(#{post.comments.size})","#",:class => "replay"
-  .comment_form.hide
-    = form_for([post,Comment.new], :remote => true) do |f|
-      = f.text_area :content, :rows => 2
-      = f.submit "回复", :class => 'button'
-  = render "comments/comments", :post => post, :comments => post.comments
+  .element_body
+    .content
+      .from
+        = person_link(post.author, :class => 'author')
+      .photos
+        = render 'photos/photos_container',:photos => post.photos
+      %p
+        = post.content
+      .content_info
+        %span.time.timeago{:datetime => post.created_at,:style=>"font-size: 11px"}
+          =how_long_ago( post )
+        %span.action
+          =link_to "评论","#",:class => "replay"
   
+    = render "comments/comments", :post => post, :comments => post.comments
+    .comment_form{:class => ('hide' if post.comments.size == 0)}
+      .avatar
+        = person_image_link(current_user,:thumb_small)
+      = form_for([post,Comment.new], :remote => true) do |f|
+        = f.text_area :content, :rows => 2
+        .comment_button.hide
+          = f.submit "回复", :class => 'button'
+          .cancle.button
+            = "取消"
+:javascript
+  $( ".button" ).button(  );
+  $( ".comment_form textarea" ).focus( function(){ 
+    comment_button = $( this ).closest( ".comment_form" ).find( ".comment_button" ); 
+    comment_button.removeClass( "hide" );
+  });
+
+  $( ".cancle" ).live( "click",function(  ){
+    comment_form = $( this ).closest( ".comment_form" );
+    comment_form.find( "textarea" ).val( '' );
+    comment_button = comment_form.find( ".comment_button" ); 
+    comment_button.addClass( "hide" );
+
+     });  
 
 

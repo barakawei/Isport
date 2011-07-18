@@ -24,6 +24,7 @@ zh:
   password: "密码"
   password_confirmation: "密码确认"
   back: "返回"
+  message: "信息"
   pagination:
     previous: "上一页"
     next: "下一页" 
@@ -63,7 +64,11 @@ zh:
     involvement_event: "%{actor_link} 参加了活动 %{event_link}"
     invite_event: "%{actor_link} 邀请你参加活动 %{event_link}"
     recommendation_event: "%{actor_link} 推荐了活动 %{event_link}"
+    status_comment: "%{actor_link} 评论了你的%{post_link}"
 
+  status_message:
+    show_more_comments: "%{number}条旧的评论"
+    hide_comments:  "隐藏评论"
 
   events:
       index: '活动首页'

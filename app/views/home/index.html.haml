@@ -1,18 +1,11 @@
 =content_for :head do
   =include_javascripts :friend_select
   =include_javascripts :scroll_page
-.span-15.append-2
+.span-5.left_bar
+  = render 'people/person_list', :person => @person
+  = render 'home/hot_events'   
+.span-14.content_panel
+  =render "status_messages/status_message"
   =render "home/feed_container"
     
-.span-7.last
-  .right_side
-    = render 'people/person_list', :person => @person
-    = render 'home/hot_events'   
-
-:javascript
-  $( "#view" ).attr("value", "index" );
-
-
-        
-    
-
+.span-5.right_bar.last

@@ -26,14 +26,16 @@
   padding-left: 14px; }
 
 .comments {
-  background-color: whiteSmoke;
-  margin-bottom: 10px;
-  padding: 10px;
-  border-left: 3px solid #e2e2e2;
-  font-size: 12px;
-  margin-left: 80px; }
+  font-size: 13px;
+  margin-bottom: 10px; }
+  .comments .comment_body {
+    word-wrap: break-word;
+    line-height: 1.4; }
+  .comments .details {
+    color: #aaaaaa; }
   .comments .comment {
-    margin-bottom: 10px; }
+    padding: 8px;
+    border-bottom: 1px dotted #cccccc; }
   .comments .comment_content {
     margin-left: 36px; }
   .comments .timeago {
@@ -44,26 +46,11 @@
     float: left;
     padding: 0; }
   .comments img {
-    height: 30px;
-    width: 30px; }
+    height: 32px;
+    width: 32px; }
 
 .content_info .action {
-  padding-left: 5px;
-  font-size: 12px;
-  border-left: 1px solid #e5e5e5; }
-
-.comment_form {
-  margin-left: 80px;
-  margin-bottom: 10px; }
-  .comment_form .button {
-    margin-left: 310px; }
-  .comment_form textarea {
-    width: 350px;
-    height: 25px; }
-
-.status_message_panel textarea {
-  width: 400px;
-  height: 20px; }
+  padding-left: 5px; }
 
 #hot_events_list {
   padding-top: 10px; }

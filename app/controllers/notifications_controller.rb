@@ -1,7 +1,7 @@
 class NotificationsController < ApplicationController
   include NotificationsHelper
   def index
-    @notifications = Notification.includes( :actor ).where( :recipient_id => current_user)
+    @notifications = Notification.includes( :actor ).where( :recipient_id => current_user).order( "created_at DESC" )
 
     @unread_notify_count = Notification.sum(:unread, :conditions => "recipient_id = #{current_user.person.id}")
     
