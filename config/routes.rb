@@ -71,6 +71,12 @@ Isport::Application.routes.draw do
   controller :location do
     match '/locations/districts_of_city' => :districts_of_city, :as => 'districts_of_city'
   end
+  
+  controller :groups do
+    match '/groups/:city/(/district/:district_id)(/item/:item_id)' => :filtered, :as => 'group_filter',
+          :constraints => { :city => /nanjing|shanghai|beijing/, :district_id => /[1-9]\d*/,
+                            :item_id => /[1-9]\d*/}
+  end 
 
   resources :events
   resources :contacts

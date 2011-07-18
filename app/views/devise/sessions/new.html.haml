@@ -59,7 +59,11 @@
   $(".log_submit").hover(function() {
     $(this).toggleClass("log_submit_hover");
   });
- 
+
+  $(".reg_button").hover(function() {
+    $(this).toggleClass("reg_button_hover");
+  });
+
   $(document).ready(function() {
     if ($.trim($('#email').val()) != '') {
       $('#email').siblings(".in_field").hide();

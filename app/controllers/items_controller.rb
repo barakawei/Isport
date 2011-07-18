@@ -19,17 +19,17 @@ class ItemsController < ApplicationController
     end
 
     if current_user
-      city = City.find_by_pinyin(current_user.city.pinyin)
+      @city = City.find_by_pinyin(current_user.city.pinyin)
     else
-      city = City.first
+      @city = City.first
     end
 
     Event.week.joins(:location).select("subject_id, count(subject_id) evesize")
-      .where(:subject_id => items_ids, :locations => {:city_id => city.id}).group(:subject_id).each do |count|
+      .where(:subject_id => items_ids, :locations => {:city_id => @city.id}).group(:subject_id).each do |count|
       events_counts[count.subject_id] = count.evesize
     end
 
-    Group.select("item_id, count(item_id) gpcount").where(:item_id => items_ids, :city_id => city.id)
+    Group.select("item_id, count(item_id) gpcount").where(:item_id => items_ids, :city_id => @city.id)
       .group(:item_id).each do |count|
       groups_counts[count.item.id] = count.gpcount
     end
@@ -96,17 +96,17 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
 
     if current_user
-      city = City.find_by_pinyin(current_user.city.pinyin)
+      @city = City.find_by_pinyin(current_user.city.pinyin)
     else
-      city = City.first
+      @city = City.first
     end
 
-    @events = Event.week.joins(:location).where(:subject_id => @item.id, :locations => {:city_id => city.id})
+    @events = Event.week.joins(:location).where(:subject_id => @item.id, :locations => {:city_id => @city.id})
         .limit(EVELIMIT)
 
     @actors = @item.fans.includes(:profile).limit(ACTLIMIT)
 
-    @groups = Group.joins(:members).where(:item_id => @item.id, :city_id => city.id)
+    @groups = Group.joins(:members).where(:item_id => @item.id, :city_id => @city.id)
           .group(:group_id).order("count(group_id) DESC").limit(ACTLIMIT)
 
     respond_to do |format|

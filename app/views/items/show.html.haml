@@ -27,8 +27,7 @@
         = @item.fans.size
         = t('items.fans')
     .span-17
-      - if is_admin
-        = link_to t('items.edit'), edit_item_path(@item), :class => "button"
+      = link_to t('items.edit'), edit_item_path(@item), :class => "button"
 
       = link_to t('items.back'), items_path, :class => "button"
       .dash_middle
@@ -48,7 +47,7 @@
       .dash_middle
       .span-2.left_close
         %h4
-          = t('items.citygroups')
+          = link_to t('items.citygroups'), group_filter_path(:city => @city.pinyin, :item_id => @item.id)
       .span-12.left_close
         %span.detail= t('items.findgroups')
       %br

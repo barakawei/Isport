@@ -1,0 +1,40 @@
+-content_for :head do
+  = include_stylesheets :sepcial_pages_groups_common, :media => 'all'
+  = include_stylesheets :sepcial_pages_groups_index, :media => 'all'
+
+.span-24
+  %h2.title
+    = '小组:'
+    = link_to @city.name , '#', :id => 'switch_city'
+  %hr
+
+%h4='寻找你喜欢的小组:'
+    
+.span-24.hot_box
+  %h2
+  .hot_groups
+    .search_line
+      .filter_title
+        %strong=link_to '项目', 'javascript:void(0);' 
+      .filter_items
+        = link_to '全部', group_filter_path(@city.pinyin, @district_id), :class => "#{'current' if nil == @item_id}"
+        - Item.all.each do |i|
+          = link_to i.name, group_filter_path(@city.pinyin,@district_id, i.id), :class => "#{ 'current' if i.id.to_s == @item_id}"
+    .search_line
+      .filter_title
+        %strong=link_to '区域', 'javascript:void(0);' 
+      .filter_items
+        = link_to '全部', group_filter_path(:city => @city.pinyin, :item_id => @item_id), :class => "#{'current' if nil == @district_id}"
+        - @city.districts.each do |d| 
+          = link_to d.name, group_filter_path(@city.pinyin, d.id, @item_id), :class => "#{ 'current' if d.id.to_s == @district_id}"
+
+%hr.space
+.span-24.search_result
+  - if @groups.size > 0
+    - @groups.each do |g|
+      = render 'group_by_search', :group => g
+
+  .span-24
+    = will_paginate @groups, {:previous_label => t("pagination.previous"), 
+                              :next_label => t("pagination.next")}
+    

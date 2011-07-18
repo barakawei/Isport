@@ -1,2 +1,10 @@
 [ pid=22348 thr=140666539468544 file=ext/nginx/HelperAgent.cpp:574 time=2011-07-15 14:48:23.413 ]: Couldn't forward the HTTP response back to the HTTP client: It seems the user clicked on the 'Stop' button in his browser.
 [ pid=22348 thr=140666503661312 file=ext/nginx/HelperAgent.cpp:574 time=2011-07-15 15:37:57.699 ]: Couldn't forward the HTTP response back to the HTTP client: It seems the user clicked on the 'Stop' button in his browser.
+[ pid=22348 thr=140666506872576 file=ext/nginx/HelperAgent.cpp:574 time=2011-07-16 22:18:33.817 ]: Couldn't forward the HTTP response back to the HTTP client: It seems the user clicked on the 'Stop' button in his browser.
+[ pid=22348 thr=140666506671872 file=ext/nginx/HelperAgent.cpp:574 time=2011-07-16 22:18:35.961 ]: Couldn't forward the HTTP response back to the HTTP client: It seems the user clicked on the 'Stop' button in his browser.
+[ pid=20642 thr=140232363374336 file=ext/nginx/HelperAgent.cpp:574 time=2011-07-16 22:39:27.509 ]: Couldn't forward the HTTP response back to the HTTP client: It seems the user clicked on the 'Stop' button in his browser.
+{"subject"=>"test", "text"=>"测试消息", "participant_ids"=>[13, 10], "person"=>#<Person id: 10, user_id: 10, created_at: "2011-06-20 23:45:10", updated_at: "2011-07-13 07:39:49">}
+{"subject"=>"test", "participant_ids"=>[13, 10], "person"=>#<Person id: 10, user_id: 10, created_at: "2011-06-20 23:45:10", updated_at: "2011-07-13 07:39:49">}
+[ pid=20642 thr=140232363374336 file=ext/nginx/HelperAgent.cpp:574 time=2011-07-16 23:02:20.755 ]: Couldn't forward the HTTP response back to the HTTP client: It seems the user clicked on the 'Stop' button in his browser.
+[ pid=18222 thr=140215176451840 file=ext/nginx/HelperAgent.cpp:574 time=2011-07-17 14:46:08.191 ]: Couldn't forward the HTTP response back to the HTTP client: It seems the user clicked on the 'Stop' button in his browser.
+[ pid=4707 thr=139850029090560 file=ext/nginx/HelperAgent.cpp:574 time=2011-07-18 13:06:06.104 ]: Couldn't forward the HTTP response back to the HTTP client: It seems the user clicked on the 'Stop' button in his browser.

@@ -16,6 +16,7 @@ javascripts:
     - public/javascripts/jquery.timeago.js
   jquery_form:
     - public/javascripts/jquery.form.js
+
   friend_select:
     - public/javascripts/fcbk/fcbklistselection.js
     - public/javascripts/fcbk/friend_select.js
@@ -68,6 +69,10 @@ stylesheets:
     - public/stylesheets/css/special_pages/groups/common.css
   sepcial_pages_groups_show:
     - public/stylesheets/css/special_pages/groups/show.css
+  sepcial_pages_groups_index:
+    - public/stylesheets/css/special_pages/groups/index.css
+  sepcial_pages_groups_hottest:
+    - public/stylesheets/css/special_pages/groups/hottest.css
 
 
   special_pages_topic_form:
@@ -78,5 +83,8 @@ stylesheets:
     - public/stylesheets/css/special_pages/topics/index.css
   special_pages_topic_comments:
     - public/stylesheets/css/special_pages/topics/comments.css
+  special_pages_topic_recent:
+    - public/stylesheets/css/special_pages/topics/recent.css
+
     
  

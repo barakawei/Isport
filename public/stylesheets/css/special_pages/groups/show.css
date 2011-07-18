@@ -29,5 +29,7 @@
       .group_info .relative .join_mode h5 {
         margin-bottom: 0; }
 
-.forum_area .title {
+.forum_area .area_title {
   margin-bottom: 5px; }
+  .forum_area .area_title a {
+    float: right; }

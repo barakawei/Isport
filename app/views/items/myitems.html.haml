@@ -4,24 +4,26 @@
 .span-24.prepend-top
   .span-24
     %span.maintitle= t 'items.myitems' 
-  .span-22
+  .span-10
     .dash_middle
-  .span-24
+%br
+  .span-10
     - @items_hash.each_with_index do |item, index|
-      .span-22.mycolor.last
+      .span-10.mycolor
         .span-3.left
           = item_image_link(item[:item], :size => :thumb_medium)
-        .span-18.right
+        .span-6.right
           %span.detail= link_to item[:item].name, item, :class => "nounderline"
           %br
           %span.detail= item[:fans_count].to_s + t('items.fans')
           %br
           %span.detail
-            = link_to t('items.eventsthisweek', :count => item[:events_count]), events_time_path(:id => item[:item].id, :time => :week)
+            = link_to t('items.eventsthisweek', :count => item[:events_count]), 
+                          events_time_path(:id => item[:item].id, :time => :week)
           %br
-          %span.detail= t('items.groupsthiscity', :count => item[:groups_count])
-      .span-22
-        %hr
+          %span.detail= link_to t('items.groupsthiscity', :count => item[:groups_count]), 
+                          group_filter_path(:city => @city.pinyin, :item_id => item[:item].id)
+      %hr
 :javascript
   $(function() {
     $('.new_item').button({

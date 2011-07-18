@@ -14,18 +14,3 @@
   .right
     = will_paginate @topics, {:previous_label => t("pagination.previous"), 
                                      :next_label => t("pagination.next")}
-:javascript
-  $(function() {
-      $('td.title').click(function() {
-        parent_tr = $($(this).parents('tr')[0]);
-        summary_tr = parent_tr.next();
-        if (summary_tr.hasClass('summary')) {
-          summary_tr.toggleClass('hide');
-        } else {  
-          $.get($(this).children('a')[0].href, function(data) {
-            parent_tr.after(data);
-          }); 
-        }
-        return false;
-      });     
-  });

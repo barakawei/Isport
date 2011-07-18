@@ -2,6 +2,7 @@ class Group < ActiveRecord::Base
   belongs_to :item
   belongs_to :city
   belongs_to :person
+  belongs_to :location
 
   has_many :memberships, :dependent => :destroy
   has_many :members, :through => :memberships,  :source => :person
@@ -9,6 +10,8 @@ class Group < ActiveRecord::Base
   has_one :forum,  :as => :discussable
   has_many :topics, :through => :forum, :source => :topics
 
+  scope :at_city, lambda {|city| where(:city_id => city.id) }
+  scope :filter_group, lambda  {|search_hash| where(search_hash)}
   
   JOIN_BY_INVITATION_FROM_ADMIM = 1 
   JOIN_BY_INVITATION_FROM_MEMBER= 2

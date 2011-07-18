@@ -27,8 +27,16 @@
         =render 'join_operation', :group => group
 .span-24.prepend-top
   .span-17.forum_area
-    %h4.title= t('groups.forum')+ ":"
+    %h4.area_title
+      = t('groups.forum')+ ":"
+      =link_to '更多话题', forum_group_path(group), :class => 'right' if @topics.size > 0 
     %hr
+    - if @topics.size > 0
+      = render 'topics/recent_topics.html.haml', :topics => @topics
+    - else
+      %h4
+        = '还没有话题，'
+        = link_to '发起新话题', new_group_topic_path(@group) 
   .span-6.prepend-1.last
     %h4= t('groups.members')+ ":"
     - if members.size > 0
