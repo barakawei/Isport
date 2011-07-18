@@ -16,9 +16,10 @@ class EventsController < ApplicationController
 
   def index
     city_pinyin = params[:city] ? params[:city] : (current_user ? current_user.city.pinyin : City.first.pinyin)
-    @city = City.find_by_pinyin(city_pinyin) 
-    events_by_time_filter
-    @hottest_events = hottest_event(@city.id) if params[:time].nil?
+    @city = City.find_by_pinyin(city_pinyin)
+    @events = Event.all
+    @hot_events = Event.limit(3)
+    @hot_items = Item.all
   end
 
   def my_events
@@ -139,47 +140,20 @@ class EventsController < ApplicationController
                                              :perline => 8, :pagination_type => pagination_type }
   end
 
+  def filtered
+    city_pinyin = params[:city] ? params[:city] : (current_user ? current_user.city.pinyin : City.first.pinyin)
+    @city = City.find_by_pinyin(city_pinyin)
+    @district_id = params[:district_id]
+    @item_id = params[:item_id]
+    @time = params[:time].nil? ?  'alltime' : params[:time] 
+    conditions = {:city_id => @city.id, :time => @time}
+    conditions[:district_id] = @district_id unless @district_id.nil?
+    conditions[:subject_id] = @item_id unless @item_id.nil?
+    @events = Event.filter_event(conditions).paginate :page => params[:page], :per_page => 10
+  end
   
   private
 
-  def events_by_time_filter
-    get_filters   
-    unless  @time_filter_path =~ /\d\d\d\d-\d\d-\d\d/
-      @events = (@item_filter == nil) ? Event.send(@time_filter_path).at_city(@city.id).order("start_at asc")
-                                        : Item.find(@item_filter).events.send(@time_filter_path).at_city(@city.id).order("start_at asc")
-      user_favorites_item_events(@time_filter_path)
-    else
-      date = @time_filter_path.to_date
-      user_favorites_item_events(date.to_s)
-      @time_filter_path = date.to_s 
-      @events = (@item_filter == nil) ? Event.on_date(date).order("start_at asc")
-                                      : Item.find(@item_filter).events.on_date(date).at_city(@city.id).order("start_at asc")
-    end 
-    get_my_events
-    process_event_time
-    filte_by_popularity
-  end
-
-  def get_filters
-    @time_filter_path = (params[:time].nil?) ? 
-                        TIME_FILTER_ALL : params[:time] 
-    @item_filter = params[:id]
-    @sort_filter = params[:sort]
-  end 
-
-  def filte_by_popularity
-    if @sort_filter == "by_popularity"
-      @events.sort! { |x,y| y.participants.size <=> x.participants.size }  
-    end
-  end
-
-  def process_event_time
-    @events.each do |event|
-      event.same_day = (event.start_at.beginning_of_day == event.end_at.beginning_of_day)
-      event.current_year = (event.start_at.year == Time.now.year) 
-    end
-  end
-  
   def get_participants
     @event = Event.find(params[:id])
     @participants =  @event.participants.order("created_at ASC")
