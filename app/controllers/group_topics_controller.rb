@@ -24,6 +24,8 @@ class GroupTopicsController < ApplicationController
   end
 
   def show
+    page = params[:page].to_i
+    @only_comment = (page > 1)
     @group = Group.find(params[:group_id])
     @topic = Topic.find(params[:id])
     @comments = []
