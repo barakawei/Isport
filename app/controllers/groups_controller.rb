@@ -20,6 +20,7 @@ class GroupsController < ApplicationController
 
   def new
     @group = Group.new
+    @group.city = City.first
   end
 
   def edit

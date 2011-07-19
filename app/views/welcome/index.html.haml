@@ -1,0 +1,8 @@
+-content_for :head do
+  = include_stylesheets :special_pages_welcome, :media => 'all'
+.span-24
+  .welcome_box
+    .poster_box
+    .reg_box
+      =link_to t('devise.shared.links.sign_up'), sign_up_path(), :class => "reg_main_button"
+

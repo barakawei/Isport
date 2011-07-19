@@ -1,0 +1,16 @@
+.event_avatar {
+  float: left;
+  width: 208px; }
+
+.event_des {
+  float: left;
+  width: 490px;
+  padding-right: 10px;
+  border-right: 1px solid #dddddd; }
+
+.event_info {
+  float: left;
+  width: 190px;
+  margin-left: 9px; }
+  .event_info p {
+    margin: 0; }

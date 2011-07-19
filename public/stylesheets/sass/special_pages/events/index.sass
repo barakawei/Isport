@@ -1,77 +1,130 @@
-$blue: #5179AC
+.hot_events
+  :width 908px 
+  :padding 20px 20px 0 20px
+  :border 1px solid #7E9BC1  
+  :border-top none
+  :float left
 
-.event_item
-  :overflow hidden
-  :height 140px
-  p
+.hot_box
+  h2
+    :background none repeat scroll 0 0 #7E9BC1
+    :width 100%
+    :height 4px
+    :overflow hidden
+    :border-bottom 1px solid #7E9BC1
     :margin 0
 
-  .title 
-    :white-space nowrap 
+.hot_item_events
+  :width 908px
+  :margin-bottom 20px
 
-.item_next
-  :margin-right -800px
-
-.hot_event
-  :background-color #ffffff
-  :padding 10px 10px 10px 10px
-  :margin-bottom 5px 
-  .nav_box
-    :width 20px
-    :padding-top 80px 
-
-  p
-    :margin-bottom 10px 
-    
-  .pic
-    :margin-right 20px
-
-  .operation
-    :height 100px
-  
-  .owner
-    a
-      :display inline-block
-      :vertical-align top 
-
-    .nav
-      a
-        :display block 
-
-
-  .hot_title
-    :display block
-    :margin 0 0 10px 20px
-
-  
-.filter_area
-  :background-color #F8F8F8
-  :height 500px
-  :padding 20px
-
-.filter_bar
-  h4,h2
+  .item_avatar
+    :margin-right 30px
     :display inline
-    :margin-bottom 0
 
-  h2
-    :margin-right 20px
-  
-  h2.title
-    :display inline-block
+  .item_event
+    :border 1px solid #e1e1e1
     :width 140px
-#date
-  :border none
-  :color $blue
-  :width 75px
-  :padding 0
+    :height 140px
+    :display inline-block
+    :vertical-align top
+    :margin-right 15px
 
-.underline
-  :text-decoration underline 
 
-.hot_events
+    img
+      :width 140px
+      :height 140px
+
+.search_line
+  :width 908px
+  :float left
+  :margin-bottom 20px
+
+  .filter_title
+    :float left
+    :padding 5px
+    :background none repeat scroll 0 0 #D4D4D4
+    :width 40px 
+    :font-size 13px
+    :text-align center
+
+    a
+      :color #ffffff
+
+  .filter_items
+    :float left
+    :padding 5px
+    :margin-left 10px
+    :width 828px
+
+    a
+      :font-size 12px
+      :color #333333
+      :margin-right 5px
+      :display inline-block
+
+    a.current
+      :color #a10000
+    
+
+#slider
+  :width 908px
+  :height 210px
   :overflow hidden
-  :height 260px
+
+  ul
+    :margin 0
+    :padding 0
+    :float left
+    :width 2724px
+
+    li
+      :width 908px
+      :float left
+      :margin-bottom 10px
+      :height 210px
+      :overflow hidden
+
+.search_result
+  :padding 0px 20px 0 20px
+
+  .event_by_search
+    :float left
+    :width 182px 
+    :height 210px
+    :margin 0 50px 20px 0 
+    
+    span.item_name
+      :color #ff6600
+
+
+    img
+      :width 180px
+      :height 180px
+      :border 1px solid #dddddd
+
+      &:hover
+        :border 1px solid #ff6600 
+
+.hot_items_events
+  :width 908px
+  :margin-bottom 20px
+  
+  .item_avatar
+    :margin-right 30px
+    :display inline
+
+  .item_event
+    :border 1px solid #e1e1e1
+    :width 140px
+    :height 140px
+    :display inline-block
+    :vertical-align top
+    :margin-right 15px
+      
+    img
+      :width 140px
+      :height 140px
 
 #city_select_box
   :position absolute

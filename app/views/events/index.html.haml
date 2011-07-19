@@ -1,115 +1,128 @@
 - content_for :head do
   = include_stylesheets :sepcial_pages_events_index, :media => 'all'
   = include_stylesheets :sepcial_pages_events_common, :media => 'all'
+
 #city_select_box.hide    
   - City.all.each do |city|
-    %h4.inline= link_to city.name, events_time_path(city.pinyin) 
-.span-24.prepend-top.filter_bar 
-  .span-15
-    %span.left
-      %h2.title
-        = t('events_link') + ':' 
-        = link_to @city.name, "#", :id => "switch_city"
-      %h4.border.first_filter= link_to_unless_current t('filter.time.today'), events_time_path(@city.pinyin,"today",@item_filter, @sort_filter)
-      %h4.border= link_to_unless_current t('filter.time.this_week'), events_time_path(@city.pinyin,"week",@item_filter, @sort_filter)
-      %h4.border= link_to_unless_current t('filter.time.weekends'),  events_time_path(@city.pinyin,"weekends", @item_filter, @sort_filter)
-      %h4.border= link_to_unless_current t('filter.time.alltime'), events_time_path(@city.pinyin,"alltime",@item_filter, @sort_filter)
-      =text_field_tag 'date', t('filter.time.select_time'), :readonly => true, :class => "blue"
-  .span-9.last.filter_bar
-    = link_to t('events.new_event'), new_event_path, :class => "new_event right"   
-    %span.right
-      %h2=" " 
-      %h4.border= link_to_unless_current t('filter.sort.by_starttime'), events_time_path(@city.pinyin,@time_filter_path, @item_filter, "by_starttime")
-      %h4.border= link_to_unless_current t('filter.sort.by_popularity'), events_time_path(@city.pinyin,@time_filter_path, @item_filter, "by_popularity") 
-  %hr
+    %h4.inline= link_to city.name, "/events/?city=#{city.pinyin}"
+
 .span-24
-  .span-18
-    - if @hottest_events && @hottest_events.size > 0
-      .span-18.hot_events
-        - @hottest_events.each_with_index do |hot_event, index| 
-          = render "hot_events", :hottest_event => hot_event, :index => index
-    .span-18.prepend-top
-      - @events.each_with_index do |event|
-        .span-9.last.append-bottom.event_item
-          = render "event_item", :event => event
-  .span-6.last
-    - if current_user
-      .span-5.filter_area
-        %h4=link_to t('events.index'), events_path
-        %hr
-        %h4
-          =t('items.my_favorite_item') 
-          = link_to t('operations.all'), myitems_path
-          = ":"
-        - @favorite_items.each_with_index do |item, index|
-          %p
-            %h4=link_to_unless_current item.name + "(#{@item_event_size[index].to_s})", events_time_path(@city.pinyin,@time_filter_path, item.id, @sort_filter)
-        %hr.space
-        %hr
-        %h4=link_to t('events.joined_events_link', :count => @joined_events.size), my_events_path("joined")
-        %h4=link_to t('events.recommended_events_link', :count => @recommended_events.size), my_events_path("recommended")
-        %h4=link_to t('events.friend_joined_events_link', :count => @friend_joined_events.size), my_events_path("friend_joined")
-        %h4=link_to t('events.friend_recommended_events_link', :count => @friend_recommended_events.size), my_events_path("friend_recommended")
+  %h2.title
+    = '活动:'
+    = link_to @city.name , 'javascript:void(0);', :id => 'switch_city'
+  %hr
+
+%h4='本周热门:'
+.span-24.hot_box
+  %h2
+  .hot_events
+    #slider
+      %ul
+        -@hot_events.each do |e|
+          %li
+            = render 'hot_events', :event => e    
+    %span#preBtn= link_to left_arrow, 'javascript:void(0);'
+    %span#nextBtn= link_to right_arrow, 'javascript:void(0);'
+
+%hr.space
+%hr.space
+%h4='寻找感兴趣的活动:'
+.span-24.hot_box
+  %h2
+  .hot_events
+    .search_line
+      .filter_title
+        %strong=link_to '活动', 'javascript:void(0);'
+      .filter_items
+        = link_to '全部', event_filter_path(:city => @city.pinyin)
+                         
+        - Item.all.each do |i|
+          = link_to i.name, event_filter_path(@city.pinyin,@district_id, i.id, @time)
+    .search_line
+      .filter_title
+        %strong=link_to '区域', 'javascript:void(0);' 
+      .filter_items
+        = link_to '全部', event_filter_path(:city => @city.pinyin, :item_id => @item_id, :time => @time)
+        - @city.districts.each do |d| 
+          = link_to d.name, event_filter_path(@city.pinyin, d.id, @item_id, @time)
+    .search_line
+      .filter_title
+        %strong=link_to '时间', 'javascript:void(0);' 
+      .filter_items
+        = link_to '全部', event_filter_path(@city.pinyin, @district_id, @item_id, 'alltime')
+        = link_to '今天', event_filter_path(@city.pinyin, @district_id, @item_id, 'today')
+        = link_to '本周', event_filter_path(@city.pinyin, @district_id, @item_id, 'week')
+        = link_to '周末', event_filter_path(@city.pinyin, @district_id, @item_id, 'weekends')
+        = link_to '一个月内', event_filter_path(@city.pinyin, @district_id, @item_id, 'week')
+        = link_to '时间选择', 'javascript:void(0)'
+
+%hr.space
+%hr.space
+%h4='推荐活动:'
+.span-24.hot_box
+  %h2
+  .hot_events
+    -@hot_items.each do |i|
+      .hot_items_events
+        .item_avatar
+          = item_image_link(i, :size => :thumb_large)
+        - i.events.at_city(@city.id).limit(4).each do |e|
+          .item_event
+            = event_image_link(e, :thumb_large)
+            = e.title
+        = link_to '更多', event_filter_path(:city => @city.pinyin, :item_id => i.id), :class => 'right'
+      %hr
+
 
 :javascript
   $(function() {
-    $('.new_event').button({
-      icons: {
-        primary: 'ui-icon-circle-plus'
-      }
-    });  
-    $("#date").datepicker(); 
-    $("#date").hover(function() {
-      $(this).toggleClass('underline');  
-    });
-    fill_dateinput();
-
     var left = $('#switch_city').offset().left;
     var t =$('#switch_city').offset().top + $('#switch_city').innerHeight();
     $('#city_select_box').css("left", left+"px");
     $('#city_select_box').css("top", t+"px");
   });
+  
+  $('#nextBtn').bind('click', slideRight);
+  $('#preBtn').bind('click', slideLeft);
 
-  $('.hot_event .nav_box .pre').bind('click', slideLeft);
-  $('.hot_event .nav_box .next').bind('click', slideRight);
-
-
-    $('input#date').change(function() {
-    var path = "/events/"+ $('input#date').val() + "/#{@sort_filter}"
-    $(location).attr('href', path);
-    return false;
-  });
-
-  function fill_dateinput() {
-    var datestr = "#{@time_filter_path}";
-    var s = datestr.split("-")
-    if (s.length == 3) {
-      $('#date').val(datestr);
+  function slideLeft() {
+    $('#preBtn').unbind('click');
+    var left = $('#slider ul').css('marginLeft');
+    if(left == '0px') {
+        $('#slider ul li:last').after($('#slider ul li:first'));
+        $('#slider ul').css('marginLeft', '-1816px');
+        $('#slider ul').animate({marginLeft: '-908px'}, 300, function(){ 
+          $('#preBtn').bind('click', slideLeft);
+        });
+    } else if(left == '-908px') {
+      $('#slider ul').animate({marginLeft: '0px'}, 300, function(){
+        $('#preBtn').bind('click', slideLeft);
+       });
+    } else {
+      $('#slider ul').animate({marginLeft: '-908px'}, 300, function(){
+        $('#preBtn').bind('click', slideLeft);
+      });
     }
   }
 
-  function slideLeft() {
-    $('.hot_event:first').css({'float': 'right'});
-    $('.hot_event:last').css({'margin-left': '-800px' });
-    $('.hot_event:first').before($('.hot_event:last'));
-    $('.hot_event:first').next().animate({marginRight: '-800px'}, 300, function(){
-      $('.hot_event:first').next().css({'float': 'left', 'marginRight': '10px',
-                                        'marginLeft': '0px'});
-    });
-    $('.hot_event:first').animate({marginLeft: '0px'}, 300, function() {
-    });
-    return false;
-  }
-
   function slideRight() {
-    $('.hot_event').next().css({'margin-right': '-800px', 'margin-left': '0px'});
-      $('.hot_event:first').animate({marginLeft: '-800px'}, 300, function() {
-        $('.hot_event:last').after($('.hot_event:first'));
-        $('.hot_event:last').css({'margin-right': '10px', 'margin-left': '0px'});
+    $('#nextBtn').unbind('click');
+    var left = $('#slider ul').css('marginLeft');
+    if(left == '0px') {
+      $('#slider ul').animate({marginLeft: '-908px'}, 300, function(){
+        $('#nextBtn').bind('click', slideRight);
+       });
+    } else if(left == '-908px') {
+      $('#slider ul').animate({marginLeft: '-1816px'}, 300, function(){
+        $('#nextBtn').bind('click', slideRight);
       });
-      $('.hot_event').next().animate({marginRight: '10px'}, 300, function() {
+    } else {
+      $('#slider ul li:first').before($('#slider ul li:last'));
+      $('#slider ul').css('marginLeft', '0px');
+      $('#slider ul').animate({marginLeft: '-908px'}, 300, function(){
+        $('#nextBtn').bind('click', slideRight);
       });
-      return false;
+    }
   }
 
   $("#switch_city").click(function(e) {

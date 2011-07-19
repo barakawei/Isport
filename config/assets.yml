@@ -54,13 +54,17 @@ stylesheets:
     - public/stylesheets/css/special_pages/events/edit.css
   sepcial_pages_events_common:
     - public/stylesheets/css/special_pages/events/common.css
+  sepcial_pages_events_filtered:
+    - public/stylesheets/css/special_pages/events/filtered.css
   sepcial_pages_events_my_event_item:
     - public/stylesheets/css/special_pages/events/my_event_item.css
+  sepcial_pages_events_hottest:
+    - public/stylesheets/css/special_pages/events/hot_event.css
 
-  sepcial_pages_items_show:
+  special_pages_items_show:
     - public/stylesheets/css/special_pages/item/show.css
 
-  sepcial_pages_items_commom:
+  special_pages_items_commom:
     - public/stylesheets/css/special_pages/item/commom.css
 
   sepcial_pages_groups_form:
@@ -86,5 +90,7 @@ stylesheets:
   special_pages_topic_recent:
     - public/stylesheets/css/special_pages/topics/recent.css
 
-    
+  special_pages_welcome:
+    - public/stylesheets/css/special_pages/welcome/index.css
+
  
