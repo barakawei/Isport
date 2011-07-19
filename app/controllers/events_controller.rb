@@ -30,11 +30,16 @@ class EventsController < ApplicationController
   end
 
   def show
+    @page = params[:page] ? params[:page].to_i : 1
     @event = Event.find(params[:id])
     @participants = @event.participants_top(LIMIT)
     @references = @event.references_top(LIMIT)
-    @comments = @event.paginated_comments(params[:page])
+    @comments = []
+    if @event.comments.size > 0
+      @comments = @event.comments.paginate :page => params[:page],
+                                           :per_page => 15, :order => 'created_at'
 
+    end
     new_comment
   end
 
@@ -180,9 +185,8 @@ class EventsController < ApplicationController
   def new_comment
       if current_user
         @person = current_user.person
-        @comment = Comment.new(:person_id => @person.id,
-                               :item_id => @event.id)
-        @comment.type = "EventComment"
+        @comment = EventComment.new(:person_id => @person.id)
+        @comment.commentable= @event 
       end
   end
 

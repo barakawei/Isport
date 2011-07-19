@@ -66,11 +66,15 @@
       .hot_items_events
         .item_avatar
           = item_image_link(i, :size => :thumb_large)
+        = link_to '更多', event_filter_path(:city => @city.pinyin, :item_id => i.id), :class => 'right more'
         - i.events.at_city(@city.id).limit(4).each do |e|
           .item_event
-            = event_image_link(e, :thumb_large)
-            = e.title
-        = link_to '更多', event_filter_path(:city => @city.pinyin, :item_id => i.id), :class => 'right'
+            = event_image_link(e, :thumb_medium)
+            .event_info
+              %h4= link_to trim_info(e.title, 15), event_path(e)
+              %p= l(e.start_at, :format => :long)
+              .at_bottom
+                %p= t('events.short_involvement', :count => e.participants.size)
       %hr
 
 

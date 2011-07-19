@@ -74,13 +74,14 @@ Isport::Application.routes.draw do
                             :item_id => /[1-9]\d*/}
   end 
 
-  resources :events
+  resources :events do
+    resources :event_comments, :controller => 'event_comments' 
+  end
   resources :contacts
   resources :profiles
   resources :posts
   resources :photos
   resources :requests
-  resources :comments
   resources :items
   resources :involvements
   resources :memberships

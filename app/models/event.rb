@@ -40,8 +40,8 @@ class Event < ActiveRecord::Base
                              :dependent => :destroy, :foreign_key => "item_id"
   has_many :references, :through => :recommendations, :source => :person
 
-  has_many :comments, :class_name => "EventComment",
-           :dependent => :destroy, :foreign_key => "item_id"
+  has_many :comments, :class_name => "EventComment", :as => :commentable,
+           :dependent => :destroy
   has_many :commentors, :through => :comments, :source => :person
 
   belongs_to :item, :foreign_key => "subject_id"
@@ -80,20 +80,6 @@ class Event < ActiveRecord::Base
       false
     end
   end
-  
-  def paginated_comments(page)
-    @comments = self.comments.order("created_at ASC")
-    total_pages = @comments.size / COMMENT_PER_PAGE 
-    if page == nil
-      if @comments.size % COMMENT_PER_PAGE != 0 || total_pages == 0
-        total_pages += 1
-      end
-      page = total_pages 
-    end
-    
-    paged_comments = @comments.paginate(:page => page,
-                                         :per_page => COMMENT_PER_PAGE) 
-  end 
 
   def participants_full? 
     self.participants_limit <=  self.participants.size 

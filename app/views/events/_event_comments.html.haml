@@ -1,51 +1,123 @@
-.span-16#paginated_event_comments
-  = link_to "", '#', :name => "comments" 
-  = will_paginate comments,
-                  pagination_options(nil, {:action => "paginate_comments",
-                                     :id => event.id }) 
-  -comments.each do |comment|
-    -person = comment.person 
-    .post_show.span-15
-      = person_image_link(person)
-      .content
-        %hr
-        %span.comment_line.name
-          = link_to person.name, person_path(person) 
-          %span.grey
+-content_for :head do
+  = include_stylesheets :special_pages_events_comments, :media => 'all'
+
+- if comments.size > 0
+  .span-16
+    -comments.each do |comment|
+      -person = comment.person 
+      .comment_to_event.span-16
+        = person_image_link(person)
+        .content{:comment_id => "#{comment.id}"}
+          %hr
+          %span
+            = link_to person.name, person_path(person) 
             = l(comment.created_at, :format => :long)
-          %span.person_id.hide
-            = person.id
-          -unless current_user.person == person
-            %span.right.respond
-              = link_to "回复", '#'
-        %span.comment_line
-          = comment.content
-  .post_area.span-15
-    = form_for comment, do |c|
-      = person_image_link(author)
-      .hide
-        = c.number_field :item_id
-        = c.text_field :type
-        = c.number_field :person_id
-      .content
-        = c.text_area :content
-        = submit_tag t('activerecord.operations.event.comment'), :class => 'button'
+            = link_to "回复", '#', :class => 'response' unless current_user.person == person
+            = simple_format comment.content
+        - comment.responses.each do |r|
+          - rperson = r.person
+          .comment_to_comment
+            = person_image_link(rperson)
+            .content{:comment_id => "#{comment.id}"}
+              %hr
+              %span
+                = link_to rperson.name, person_path(rperson)
+                = l(r.created_at, :format => :long)
+                = link_to '回复', '#', :class => "response to_comment" unless current_user.person == rperson
+                = simple_format r.content
+    .span-15.pagination_box
+      = will_paginate comments, {:previous_label => t("pagination.previous"), 
+                                 :next_label => t("pagination.next")}
+
+.new_comment.span-16
+  = form_for comment, :url => event_event_comments_path(event.id), do |c|
+    = person_image_link(author)
+    .content
+      = c.text_area :content
+      = submit_tag t('activerecord.operations.event.comment'), :class => 'button'
+
+.response_box.hide.span-16
+  = form_tag event_event_comments_path(event.id) do
+    = text_area_tag "comment[content]" 
+    = hidden_field_tag "comment[commentable_id]"
+    = submit_tag '回复', :class => 'button submit'
+    = link_to '取消', '#', :class => "button cancel"
 
 :javascript
-  $('#paginated_event_comments .pagination a').live('click', function(){
-    $.get(this.href, function(data){
-      $('#paginated_event_comments').html(data); 
-    }); 
-    return false;  
+  $(function() {
+    var options = {success: appendToComments, resetForm:true}  
+    $('#new_event_comment').ajaxForm(options);
   });
 
-  $('.respond a').click(function() {
-     $('.post_area textarea').focus();
-     var value = $(this).html();
-     value += $(this).parent().siblings('.name a').html() + ':';
-     $('.post_area textarea').val(value);
-     return false;
+
+  $('a.response').click(function() {
+    $(this).hide();
+    responseClick($(this));
+    return false;
   });
+
+  function responseClick(link) {
+    var comment = $(link.parents('.content')[0]);
+    if(comment.next('.response_box').length > 0) {
+      comment.next('.response_box').slideDown('fast', function() {
+        comment.next('.response_box').find('textarea').focus()
+                                      .val('回复'+link.prev('a').html()+ ": ");
+      });
+    } else {
+      cloneResponseBox(comment, link);
+    }
+    return false;
+  }
+
+  function cloneResponseBox(comment, link) {
+    var response_box = $($('.response_box')[0]).clone().hide();
+    comment.after(response_box);
+
+    if(link.hasClass('to_comment')) {
+      response_box.addClass('to_comment');
+    }
+
+    response_box.find('#comment_commentable_id')[0].value = comment.attr('comment_id'); 
+    var options = { success: appendToResponses, resetForm: true};
+    response_box.find('form').ajaxForm(options);
+
+    response_box.find('a.cancel').click(function() {
+      link.show();
+      response_box.slideUp('fast');
+      return false;
+    });
+    response_box.slideDown('fast', function() {
+      response_box.find('textarea').focus()
+                                   .val('回复'+link.prev('a').html()+ ": ");
+    });
+  }
+
+  function appendToComments(responseText, statusText, xhr, $form){
+    if ($('.pagination_box').length > 0) {  
+      $('.pagination_box').before(responseText);  
+      $('.pagination_box').prev().find('a.response').click(function() {
+        replylinkCallback($(this)); 
+        return false;
+      });
+    } else {
+      $('.new_comment').before(responseText); 
+      $('.new_comment').prev().find('a.response').click(function() {
+        responseClick($(this)); 
+        return false;
+      });
+    }
+  }
+
+  function appendToResponses(responseText, statusText, xhr, $form){ 
+    parent = $($form.parents('.comment_to_event')[0]);
+    response_box = $($form.parents('.response_box')[0]);
+    response_box.hide(); 
+    $(response_box.prev('.content').find('a.response')[0]).show();
+    $(responseText).appendTo(parent);
+    parent.children(':last').find('a.response').click(function() {
+      responseClick($(this)); 
+      return false;
+    });
+  }
    
   $('.button').button();
-
