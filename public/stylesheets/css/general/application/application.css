@@ -198,3 +198,38 @@ span.medium_avatar {
     background-color: #ff6600;
     text-decoration: none;
     color: white; }
+
+.welcome_box {
+  background: none repeat scroll 0 0 #dcddde;
+  width: 903px;
+  height: 300px;
+  margin-left: 24px;
+  border: 2px solid #002db3;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  behavior: url(/javascripts/PIE.htc); }
+  .welcome_box .poster_box {
+    background: white;
+    width: 550px;
+    height: 290px;
+    margin-left: 5px;
+    margin-top: 5px;
+    float: left;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    behavior: url(/javascripts/PIE.htc); }
+
+.welcomenav_box {
+  background: none repeat scroll 0 0 #dcddde;
+  width: 282px;
+  height: 331px;
+  margin-left: 24px;
+  margin-top: 12px;
+  border: 2px solid #002db3;
+  float: left;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  behavior: url(/javascripts/PIE.htc); }

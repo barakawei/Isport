@@ -14,14 +14,14 @@
       - if current_user 
         - unless is_fan_of(@item)
           %p
-            = link_to t('items.like'), url_for(:action=> "add_fan", :id => @item.id), :class => "button"
+            = link_to t('items.like'), url_for(:action=> "add_fan", :id => @item.id), :class => "item_mark"
           %br
             = t('items.likeinfo')
         - else
           %p
-            = link_to t('items.unlike'), url_for(:action=> "remove_fan", :id => @item.id), :class => "button" 
+            = link_to t('items.unlike' ), url_for(:action=> "remove_fan", :id => @item.id), :class => "item_unmark" 
           %br
-            = t('items.unlikeinfo')
+            = t('items.unlikeinfo', :name => @item.name)
       %br
         = t('items.all')
         = @item.fans.size

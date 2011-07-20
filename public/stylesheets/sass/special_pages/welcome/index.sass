@@ -1,39 +1,36 @@
 $darkblue: #002DB3
 
-.welcome_box
-  :background none repeat scroll 0 0 #DCDDDE
-  :width 902px
-  :height 300px
-  :margin-left 24px
-  :border 2px solid $darkblue  
+.reg_box
+  :background #DCDDDE
+  :width 315px
+  :height 290px
+  :margin-top 5px
+  :margin-left 25px
+  :float left
 
-  .poster_box
-    :background #FFFFFF
-    :width 550px
-    :height 290px
+  .reg_info
+    :width 280px
+    :height  80px
+    :color $darkblue
+    :white-space normal
+    :position relative
+    :margin-top 10px
     :margin-left 5px
-    :margin-top 5px
+    :font-size medium
+    :display block
+    :overflow hidden
+
+  a.reg_main_button
+    :background url("/images/ui/main_reg_button.png") no-repeat scroll 0 0 transparent 
+    :width 280px
+    :height 70px
+    :margin-left 5px
+    :margin-top 2px
     :float left
+    :text-indent -9999em
+    :display block
 
-  .reg_box
-    :background #DCDDDE
-    :width 315px
-    :height 290px
-    :margin-top 5px
-    :margin-left 25px
-    :float left
-
-    a.reg_main_button
-      :background url("/images/ui/main_reg_button.png") no-repeat scroll 0 0 transparent 
-      :width 280px
-      :height 70px
-      :margin-left 5px
-      :margin-top 90px
-      :float left
-      :text-indent -9999em
-      :display block
-
-      &:hover
-        :background url("/images/ui/main_reg_button.png") no-repeat scroll left bottom transparent 
+    &:hover
+      :background url("/images/ui/main_reg_button.png") no-repeat scroll left bottom transparent 
          
 

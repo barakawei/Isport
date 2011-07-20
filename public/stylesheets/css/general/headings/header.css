@@ -35,7 +35,7 @@
     margin-left: 100px;
     padding-top: 3px; }
     .header .logo h2 {
-      color: white; }
+      color: #ff7d56; }
   .header .sections {
     float: left;
     font-size: 12px;
@@ -47,7 +47,7 @@
     float: left;
     margin-right: 1px; }
     .header li a {
-      color: white;
+      color: #fcfcfc;
       display: block;
       float: left;
       padding: 11px 10px;

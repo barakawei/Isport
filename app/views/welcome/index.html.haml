@@ -4,5 +4,11 @@
   .welcome_box
     .poster_box
     .reg_box
-      =link_to t('devise.shared.links.sign_up'), sign_up_path(), :class => "reg_main_button"
+      .reg_info
+        = t('welcome.globalinfo', :citycount=>@citycount, :usercount=>@usercount, :groupcount=>@groupcount, :eventcount=>@eventcount)
+      = link_to t('devise.shared.links.sign_up'), sign_up_path(), :class => "reg_main_button"
+
+  .welcomenav_box
+  .welcomenav_box
+  .welcomenav_box
 
