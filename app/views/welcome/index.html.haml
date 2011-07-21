@@ -9,6 +9,17 @@
       = link_to t('devise.shared.links.sign_up'), sign_up_path(), :class => "reg_main_button"
 
   .welcomenav_box
-  .welcomenav_box
-  .welcomenav_box
+    = link_to t('welcome.eventflack'), events_path, :class => "flack"
+    .flackplus
+      = t('welcome.eventflackplus')
 
+  .welcomenav_box
+    = link_to t('welcome.itemflack'), items_path, :class => "flack"
+    .flackplus
+      = t('welcome.itemflackplus')
+    = link_to t('item_link'), items_path, :class => "item_area"
+
+  .welcomenav_box
+    = link_to t('welcome.groupflack'), groups_path, :class => "flack"
+    .flackplus
+      = t('welcome.groupflackplus')

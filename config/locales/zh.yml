@@ -173,6 +173,13 @@ zh:
     globalinfo: "已有来自%{citycount}个城市的%{usercount}位朋友创建了%{groupcount}个小组并发起了%{eventcount}个活动！
                   如果您还没加入，那么"
 
+    eventflack: "发起或参加活动"
+    eventflackplus: "再宅就发霉了"
+    itemflack: "找到属于你的运动"
+    itemflackplus: "不要旁观，更多参与"
+    groupflack: "创建或加入小组"
+    groupflackplus:  "找到一样爱折腾的人"
+
   groups:
     new_group: '新建小组'
     name: '小组名称'
