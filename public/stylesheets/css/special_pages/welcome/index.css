@@ -42,7 +42,7 @@
 
 .flack, .flackplus {
   width: 260px;
-  margin-left: 10px;
+  margin-left: 12px;
   font-size: 26px;
   font-family: STLiti, STXingkai, KaiTi;
   display: block;
@@ -51,6 +51,7 @@
   position: relative; }
 
 .flack {
+  margin-top: 5px;
   color: #232221; }
   .flack:hover {
     color: green; }

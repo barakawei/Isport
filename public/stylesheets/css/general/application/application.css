@@ -204,7 +204,6 @@ span.medium_avatar {
   width: 903px;
   height: 300px;
   margin-left: 24px;
-  border: 2px solid #5179ac;
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
   border-radius: 10px;
@@ -223,11 +222,10 @@ span.medium_avatar {
 
 .welcomenav_box {
   background: none repeat scroll 0 0 #dcddde;
-  width: 282px;
+  width: 285px;
   height: 300px;
   margin-left: 24px;
   margin-top: 12px;
-  border: 2px solid #5179ac;
   float: left;
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;

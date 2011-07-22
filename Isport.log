@@ -176,3 +176,6 @@ Error during failsafe response: incompatible character encodings: ASCII-8BIT and
   /usr/local/lib/ruby/gems/1.9.1/gems/passenger-3.0.7/lib/phusion_passenger/abstract_server.rb:357:in `server_main_loop'
   /usr/local/lib/ruby/gems/1.9.1/gems/passenger-3.0.7/lib/phusion_passenger/abstract_server.rb:206:in `start_synchronously'
   /usr/local/lib/ruby/gems/1.9.1/gems/passenger-3.0.7/helper-scripts/passenger-spawn-server:99:in `<main>'
+[ pid=13882 thr=139921039259392 file=ext/nginx/HelperAgent.cpp:574 time=2011-07-22 13:39:01.553 ]: Couldn't forward the HTTP response back to the HTTP client: It seems the user clicked on the 'Stop' button in his browser.
+[ pid=13882 thr=139921038857984 file=ext/nginx/HelperAgent.cpp:574 time=2011-07-22 13:39:01.561 ]: Couldn't forward the HTTP response back to the HTTP client: It seems the user clicked on the 'Stop' button in his browser.
+[ pid=13882 thr=139921002850048 file=ext/nginx/HelperAgent.cpp:574 time=2011-07-22 13:41:24.381 ]: Couldn't forward the HTTP response back to the HTTP client: It seems the user clicked on the 'Stop' button in his browser.
