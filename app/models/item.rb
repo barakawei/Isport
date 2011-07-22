@@ -27,5 +27,4 @@ class Item < ActiveRecord::Base
         when :thumb_small   then "/images/event/event_small.jpg"
      end
   end
-
 end

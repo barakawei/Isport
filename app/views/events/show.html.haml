@@ -5,33 +5,34 @@
 .span-24
   .span-24
     .span-17
-      %h2.title= @event.title
-    .span-7.last
-      = link_to t('back'),  events_path, :class => "button right"
+      %h3.title.inline= @event.title
       - if @event.is_owner(current_user)
-        = link_to t('events.edit_event'), edit_event_path(@event), :class => "button right edit_event"
-    %hr
+        %h4.inline= link_to t('编辑'), edit_event_path(@event), :class => "inline"
+      %hr
+    .span-7.last
   .span-17
     - if @page <= 1
       .span-5.event_pic
         = event_image_tag(@event, :thumb_large)
       .span-8.last.event_info
-        %p
-          %b= t('events.start_at')+":"
-          = l(@event.start_at, :format => :long)
-        %p
-          %b= t('events.end_at')+":"
-          = l(@event.end_at, :format => :long)
-        %p
+        .time
+          %p
+            %b= t('events.start_at')+":"
+            = l(@event.start_at, :format => :long)
+          %p
+            %b= t('events.end_at')+":"
+            = l(@event.end_at, :format => :long)
+        %p.location
           %b= t('events.location')+":"
           = @event.location
-        %p
-          %b= t('events.event_subject')+":"
-          = link_to @event.item.name, item_path(@event.item)
-        %p
-          %b= t('events.event_owner')+":"
-          = link_to @event.person.profile.name, person_path(@event.person)
-        %p
+        .subject_and_owner
+          %p
+            %b= t('events.event_subject')+":"
+            = link_to @event.item.name, item_path(@event.item)
+          %p
+            %b= t('events.event_owner')+":"
+            = link_to @event.person.profile.name, person_path(@event.person)
+        %p.at_bottom
           %b= t('activerecord.attributes.event.participants_limit')+":"
           = @event.participants_limit
           %b= ",  " + t('events.remained_participants')
@@ -52,12 +53,12 @@
                             :id => @event.id), :class => "button"
       .span-16.last.append-bottom
         %br
-        %h4= t('events.event_description')+":"
+        %h4.app_module_title= t('events.event_description')
         %hr
         %p= simple_format(@event.description)
         %hr
-    .span-16.last.comments_area.prepend-top
-      %h4= t('events.event_comments')+":"
+    .span-16.last.comments_area.prepend-top#comments_href
+      %h4.app_module_title= t('events.event_comments')
       = render :partial => "event_comments",  :locals => { :event => @event,
                                                      :author => @person,
                                                      :comments => @comments,
@@ -65,13 +66,15 @@
   - if @page <= 1
     .span-6.prepend-1.last
       .span-6
-        %h4.blue
-          ='活动地图:'
+        %h4= link_to '>更多'+@event.item.name + '活动', event_filter_path(@event.location.city.pinyin, nil, 
+                                                                        @event.subject_id, 'next_month') 
+      .span-6
+        %h4.app_module_title
+          = '活动地图'
           = link_to "(详细)", event_map_path(@event)
         #map
       - if @event.participants.size > 0
-        %h4
-          = t('events.total') 
+        %h4.app_module_title
           = link_to "#{@event.participants.size}"+ t('events.person'),
             url_for(:action => "show_participants", :id => @event.id), :class => "nounderline"
           = t('events.involvement')
@@ -80,8 +83,7 @@
                                                                 :edit => false }
       .span-6.last.prepend-top
         -if @event.references.size > 0 
-          %h4
-            = t('events.total')
+          %h4.app_module_title
             = link_to "#{@event.references.size}" + t('events.person'),
               url_for(:action => "show_references", :id => @event.id), :class => "nounderline"
             = t('events.recommendation')

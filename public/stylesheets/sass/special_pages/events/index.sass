@@ -6,6 +6,7 @@
   :float left
 
 .hot_box
+  :margin-top 20px
   h2
     :background none repeat scroll 0 0 #4d4d4d
     :width 100%
@@ -51,6 +52,8 @@
 
     a
       :color #ffffff
+      &:hover
+        :text-decoration none
 
   .filter_items
     :float left
@@ -77,7 +80,6 @@
     :margin 0
     :padding 0
     :float left
-    :width 2724px
 
     li
       :width 908px
@@ -136,13 +138,16 @@
       :width 125px
       :height 90px
       :position relative
-      
+
       h4
         :margin-bottom 5px
 
       .at_bottom
         :position absolute
         :bottom 0px
+
+        p
+          :margin 0
         
 #city_select_box
   :position absolute
@@ -155,3 +160,6 @@
   :text-decoration none
   &:hover
     :border 1px solid #b9b9b9
+
+.box_title
+  :margin-bottom 5px

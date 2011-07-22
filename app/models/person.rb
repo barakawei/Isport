@@ -26,6 +26,7 @@ class Person < ActiveRecord::Base
    
   has_one :profile
   scope :searchable, joins(:profile) 
+  scope :friends_of, lambda {|user| where("user_id = ?", user.id)} 
 
   delegate :name, :to => :profile
   delegate :email, :to => :user

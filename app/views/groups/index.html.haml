@@ -56,7 +56,7 @@
         = link_to '更多', group_filter_path(:city => @city.pinyin, :item_id => i.id), :class => 'right'
         .item_avatar
           = item_image_link(i, :size => :thumb_large) 
-        - i.groups.at_city(@city).limit(10).each do |g|
+        - i.groups.at_city(@city).limit(5).each do |g|
           .item_group
             = group_image_link(g, :thumb_large) 
             = trim_info(g.name, 9)

@@ -1,11 +1,24 @@
 .edit_event {
   margin-right: 10px; }
 
-.event_info p {
-  margin-bottom: 10px; }
+.event_info {
+  height: 200px;
+  position: relative; }
+  .event_info p {
+    margin-bottom: 10px; }
+  .event_info p.location {
+    margin: 10px 0; }
+  .event_info .time p, .event_info .subject_and_owner p {
+    margin-bottom: 0; }
+  .event_info p.at_bottom {
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 0; }
 
 h2.title {
   margin-bottom: 0; }
 
 .event_pic {
   margin-right: 20px; }
+  .event_pic img {
+    border: 1px solid #e1e1e1; }

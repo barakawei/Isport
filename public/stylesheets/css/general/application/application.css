@@ -190,3 +190,6 @@ span.medium_avatar {
     background-color: #ff6600;
     text-decoration: none;
     color: white; }
+
+.app_module_title {
+  margin-bottom: 5px; }

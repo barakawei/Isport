@@ -4,16 +4,18 @@
 - content_for :head do
   = include_stylesheets :forms, :media => 'all'
 .span-24
-  .span-17.title_bar
-    %h2.title= t('events.edit_event') 
-    %h4.border= link_to_unless_current t("events.edit.event_info"), edit_event_path(@event);
-    %h4= link_to_unless_current  t("events.edit.event_members"), event_members_path(@event);
-  .span-7.last
-    = link_to t('back'), "#", :class => "button back right" 
+  .span-24.title_bar
+    %h2= t('events.edit_event') 
+    %h4.tab{:class => ('current' if params[:action] == 'edit')}= link_to t("events.edit.event_info"), edit_event_path(@event);
+    %h4.tab.last_tab{:class => ('current' if params[:action] == 'edit_members' )}= link_to t("events.edit.event_members"), event_members_path(@event);
     = link_to "取消活动",  "#cancel_event_request", :class => "button cancel_event right", :rel => 'facebox'
-  %hr    
+  %hr
 - if @participants.nil?
-  = render 'form', :is_edit => true 
+  .span-18
+    = render 'form', :is_edit => true
+  .span-4.right
+    %hr.space
+    %h4= link_to '>编辑活动成员', event_members_path(@event)
 - else
   = render :partial => 'edit_event_members', :locals => { :friend_participants => @friend_participants,
                                                           :other_participants => @other_participants,
@@ -46,5 +48,5 @@
     }
   });  
 
-  $('.cancel_event').colorbox({ inline:true, href:"#cancel_event_request", opacity:0.5 });
+  $('.cancel_event').colorbox({ inline:true, href:"#cancel_event_request", opacity:0.1 });
                                                           

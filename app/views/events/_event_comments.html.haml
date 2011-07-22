@@ -12,7 +12,7 @@
           %span
             = link_to person.name, person_path(person) 
             = l(comment.created_at, :format => :long)
-            = link_to "回复", '#', :class => 'response' unless current_user.person == person
+            = link_to "回复", '#', :class => 'response' if current_user && current_user.person != person
             = simple_format comment.content
         - comment.responses.each do |r|
           - rperson = r.person
@@ -23,18 +23,19 @@
               %span
                 = link_to rperson.name, person_path(rperson)
                 = l(r.created_at, :format => :long)
-                = link_to '回复', '#', :class => "response to_comment" unless current_user.person == rperson
+                = link_to '回复', '#', :class => "response to_comment" if current_user && current_user.person != rperson
                 = simple_format r.content
     .span-15.pagination_box
       = will_paginate comments, {:previous_label => t("pagination.previous"), 
                                  :next_label => t("pagination.next")}
-
-.new_comment.span-16
-  = form_for comment, :url => event_event_comments_path(event.id), do |c|
-    = person_image_link(author)
-    .content
-      = c.text_area :content
-      = submit_tag t('activerecord.operations.event.comment'), :class => 'button'
+-unless comment.nil?
+  .new_comment.span-16
+    = form_for comment, :url => event_event_comments_path(event.id), do |c|
+      = person_image_link(author)
+      .content
+        = c.text_area :content
+        = submit_tag t('activerecord.operations.event.comment'), :class => 'button'
+  
 
 .response_box.hide.span-16
   = form_tag event_event_comments_path(event.id) do

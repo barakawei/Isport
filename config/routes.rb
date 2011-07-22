@@ -38,18 +38,16 @@ Isport::Application.routes.draw do
     match '/events/:city/(/district/:district_id)(/item/:item_id)(/:time)' => :filtered, :as => 'event_filter',
            :constraints => { :city => /nanjing|shanghai|beijing/, :district_id => /[1-9]\d*/,
                              :item_id => /[1-9]\d*/,
-                             :time => /today|week|weekends|month|alltime|((((19|20)(([02468][048])|([13579][26]))-02-29))|((20[0-9][0-9])|(19[0-9][0-9]))-((((0[1-9])|(1[0-2]))-((0[1-9])|(1\d)|(2[0-8])))|((((0[13578])|(1[02]))-31)|(((0[1,3-9])|(1[0-2]))-(29|30)))))/
+                             :time => /today|week|weekends|next_month|month|alltime|((((19|20)(([02468][048])|([13579][26]))-02-29))|((20[0-9][0-9])|(19[0-9][0-9]))-((((0[1-9])|(1[0-2]))-((0[1-9])|(1\d)|(2[0-8])))|((((0[13578])|(1[02]))-31)|(((0[1,3-9])|(1[0-2]))-(29|30)))))/
                            }
           
-    match '/events(/:city)(/:time)(/:id)(/:sort)'=> :index, :via => :get, :as => 'events_time', 
-          :constraints => { :id => /[1-9]\d*/, :sort => /(by_starttime)|(by_popularity)/,
-                            :time => /today|week|weekends|alltime|((((19|20)(([02468][048])|([13579][26]))-02-29))|((20[0-9][0-9])|(19[0-9][0-9]))-((((0[1-9])|(1[0-2]))-((0[1-9])|(1\d)|(2[0-8])))|((((0[13578])|(1[02]))-31)|(((0[1,3-9])|(1[0-2]))-(29|30)))))/,
-                            :city => /nanjing|shanghai|beijing/}
     match '/events/mine(/:type)' => :my_events, :as => 'my_events',
           :constraints => { :type=> /joined|recommended|friend_joined|friend_recommended/ }
     match '/events/:id/edit/members' => :edit_members, :as => 'event_members',
           :constraints => { :id => /[1-9]\d*/}
     match '/events/:id/map' => :map, :as => 'event_map',
+          :constraints => { :id => /[1-9]\d*/}
+    match '/events/:id/invite_friends' => :invite_friends, :as => 'new_event_invite',
           :constraints => { :id => /[1-9]\d*/}
   end
 

@@ -7,14 +7,14 @@
     %h4.inline= link_to city.name, event_filter_path(:city => city.pinyin)
 
 .span-24
-  %h2.title
-    = '活动:'
-    = link_to @city.name, '#', :id => 'switch_city'
-  %hr
+  %h2.title.inline
+    = '乐玩活动'
+  %h3.inline= link_to @city.name, '#', :id => 'switch_city'
+  = link_to '发起活动', new_event_path, :class => 'button right'
 
-%h4='寻找感兴趣的活动:'
 
 .span-24.hot_box
+  %h4.box_title='寻找感兴趣的活动'
   %h2
   .hot_groups
     .search_line
@@ -40,7 +40,7 @@
         = link_to '今天', event_filter_path(@city.pinyin, @district_id, @item_id, 'today'),  :class => "#{ 'current' if 'today' == @time}"  
         = link_to '本周', event_filter_path(@city.pinyin, @district_id, @item_id, 'week'),  :class => "#{ 'current' if 'week' == @time}" 
         = link_to '周末', event_filter_path(@city.pinyin, @district_id, @item_id, 'weekends'),  :class => "#{ 'current' if 'weekends' == @time}" 
-        = link_to '一个月内', event_filter_path(@city.pinyin, @district_id, @item_id, 'week'),  :class => "#{ 'current' if '1' == @time}" 
+        = link_to '一个月内', event_filter_path(@city.pinyin, @district_id, @item_id, 'next_month'),  :class => "#{ 'current' if 'next_month' == @time}" 
         = link_to '时间选择', 'javascript:void(0)'
 
 %hr.space

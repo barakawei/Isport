@@ -20,6 +20,8 @@ zh:
           after: '必须晚于开始时间' 
         participants_limit:
           less_than_current: '不能小于已报名人数'
+        location:
+          detail_need: '信息不充分'
     operations:
       event:
         cancel: '取消活动'
