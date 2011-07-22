@@ -6,21 +6,10 @@ class EventsController < ApplicationController
                             :show_references, :paginate_participants,
                             :paginate_references, :filtered]
 
-  TIME_FILTER_TODAY = "today"
-  TIME_FILTER_WEEK = "week"
-  TIME_FILTER_WEEKENDS = "weekends"
-  TIME_FILTER_ALL = "alltime"
-
   LIMIT = 12
-  PER_PAGE = 32 
 
   def index
     city_pinyin = params[:city] ? params[:city] : (current_user ? current_user.city.pinyin : City.first.pinyin)
-    puts '******************'
-    puts current_user.name
-    puts current_user.person.profile.location.city.name
- 
-    puts city_pinyin
     @city = City.find_by_pinyin(city_pinyin)
     @events = Event.all
     @hot_events = Event.hot_event(@city.id)
@@ -126,29 +115,6 @@ class EventsController < ApplicationController
     get_references
   end
 
-  def paginate_participants
-    get_participants
-      
-    participants_used = params[:friend_page] != nil ? @paged_friend_participants : @paged_other_participants    
-    pagination_type = params[:friend_page] != nil ? "friend_page" : "other_page"
-
-    render '_event_participants', :layout => false,
-                                    :locals  =>  {:participants => participants_used, 
-                                                  :perline => 8, :pagination_type => pagination_type,
-                                                   :edit => false} 
-  end
-
-  def paginate_references
-    get_references 
-    
-    references_used = params[:friend_page] != nil ? @paged_friend_references : @paged_other_references
-    pagination_type = params[:friend_page] != nil ? "friend_page" : "other_page"
-
-    render '_event_references', :layout => false,
-                                :locals => { :references => references_used,
-                                             :perline => 8, :pagination_type => pagination_type }
-  end
-
   def filtered
     city_pinyin = params[:city] ? params[:city] : (current_user ? current_user.city.pinyin : City.first.pinyin)
     @city = City.find_by_pinyin(city_pinyin)
@@ -158,7 +124,7 @@ class EventsController < ApplicationController
     conditions = {:city_id => @city.id, :time => @time}
     conditions[:district_id] = @district_id unless @district_id.nil?
     conditions[:subject_id] = @item_id unless @item_id.nil?
-    @events = Event.filter_event(conditions).paginate :page => params[:page], :per_page => 10
+    @events = Event.filter_event(conditions).paginate :page => params[:page], :per_page => 15
   end
   
   private
@@ -169,10 +135,6 @@ class EventsController < ApplicationController
     @friends = current_user ? current_user.friends : []
     @friend_participants = @participants & @friends
     @other_participants = @participants - @friend_participants  
-    @paged_friend_participants = @friend_participants.paginate(:page => params[:friend_page], 
-                                                               :per_page => PER_PAGE)
-    @paged_other_participants = @other_participants.paginate(:page => params[:other_page], 
-                                                               :per_page => PER_PAGE)
   end
 
   def get_references
@@ -181,10 +143,6 @@ class EventsController < ApplicationController
     @friends = current_user ? current_user.friends : []
     @friend_references = @references & @friends
     @other_references = @references - @friend_references
-    @paged_friend_references = @friend_references.paginate(:page => params[:friend_page],
-                                                           :per_page => PER_PAGE) 
-    @paged_other_references = @other_references.paginate(:page => params[:other_page],
-                                                           :per_page => PER_PAGE) 
   end
 
   def new_comment

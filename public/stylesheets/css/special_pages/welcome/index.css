@@ -1,0 +1,60 @@
+.reg_box {
+  background: #dcddde;
+  width: 315px;
+  height: 290px;
+  margin-top: 5px;
+  margin-left: 25px;
+  float: left; }
+  .reg_box .reg_info {
+    width: 280px;
+    height: 80px;
+    color: #002db3;
+    white-space: normal;
+    position: relative;
+    margin-top: 10px;
+    margin-left: 5px;
+    font-size: medium;
+    display: block;
+    overflow: hidden; }
+  .reg_box a.reg_main_button {
+    background: url("/images/ui/main_reg_button.png") no-repeat scroll 0 0 transparent;
+    width: 280px;
+    height: 70px;
+    margin-left: 5px;
+    margin-top: 2px;
+    float: left;
+    text-indent: -9999em;
+    display: block; }
+    .reg_box a.reg_main_button:hover {
+      background: url("/images/ui/main_reg_button.png") no-repeat scroll left bottom transparent; }
+
+.item_area, .event_area, .group_area {
+  width: 260px;
+  height: 200px;
+  margin-left: 10px;
+  margin-top: 10px;
+  float: left;
+  text-indent: -9999em;
+  display: block; }
+
+.item_area {
+  background: url("/images/ui/item_nav.png") no-repeat scroll 0 0 transparent; }
+
+.flack, .flackplus {
+  width: 260px;
+  margin-left: 12px;
+  font-size: 26px;
+  font-family: STLiti, STXingkai, KaiTi;
+  display: block;
+  overflow: hidden;
+  white-space: normal;
+  position: relative; }
+
+.flack {
+  margin-top: 5px;
+  color: #232221; }
+  .flack:hover {
+    color: green; }
+
+.flackplus {
+  color: #ff5724; }

@@ -7,6 +7,7 @@ zh:
   upload_photo: "上传图片"
   events_link: "活动"
   items_link: "项目"
+  groups_link: "小组"
   more: "更多"
   friends: "好友"
   no_friends: "没有好友"
@@ -153,16 +154,31 @@ zh:
       edit: "编辑项目"
       back: "返回列表"
       like: "喜欢"
-      likeinfo: "选择喜欢，我们会更多的向您推荐属于此项目的活动"
+      likeinfo: "选择喜欢，我们将更多的向您推荐属于此项目的活动"
       unlike: "不再喜欢"
-      unlikeinfo: "不再喜欢，我们将不再向您推荐属于此项目的活动"
+      unlikeinfo: "找到有关%{name}的一切吧!"
       events: "近期活动"
       mavin: "达人"
       mavinfo: "想成为项目达人吗？更多的组织活动，更多的参加活动，你也可以！"
       all: "共有"
       fans: "位粉丝"
       myitems: "我的项目"
+      eventsthisweek: "本周%{count}个活动"
       my_favorite_item: "我喜欢的项目"
+      citygroups: "同城小组"
+      findgroups: "寻找你喜欢的小组吧，认识志同道合的人"
+      groupsthiscity: "%{count}个同城小组"
+
+  welcome:
+    globalinfo: "已有来自%{citycount}个城市的%{usercount}位朋友创建了%{groupcount}个小组并发起了%{eventcount}个活动！
+                  如果您还没加入，那么"
+
+    eventflack: "发起或参加活动"
+    eventflackplus: "再宅就发霉了"
+    itemflack: "找到属于你的运动"
+    itemflackplus: "不要旁观，更多参与"
+    groupflack: "创建或加入小组"
+    groupflackplus:  "找到一样爱折腾的人"
 
   groups:
     new_group: '新建小组'

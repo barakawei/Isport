@@ -1,9 +1,12 @@
-.span-24
-  .span-15
-    %h1= t('items.edit')
-    %p#notice= notice
-  .span-7
-    = link_to "返回", @item, :class => "button"
-    = link_to "删除项目", url_for(:action => "delete", :id => @item.id ), :class => "button"
-= render 'form', :is_edit => true
-
+- if is_admin
+  .span-24
+    .span-15
+      %h1= t('items.edit')
+      %p#notice= notice
+    .span-7
+      = link_to "返回", @item, :class => "button"
+      = link_to "删除项目", url_for(:action => "delete", :id => @item.id ), :class => "button"
+  = render 'form', :is_edit => true
+- else
+  .span-24
+    %h1= "You Can Not Edit This Item Unless You Login As Administrator"

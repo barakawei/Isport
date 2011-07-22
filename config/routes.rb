@@ -21,6 +21,7 @@ Isport::Application.routes.draw do
   resources :conversation_visibilities
 
   root :to => "home#index"
+
   resource :user, :only => [:edit, :update, :destroy] 
   controller :people do
     match 'show_friends' => :show_friends
@@ -36,9 +37,19 @@ Isport::Application.routes.draw do
     match 'getting_started' => :getting_started, :as => 'getting_started'
   end
 
+  match '/users/sign_in' => 'users#sign_in', :as => 'sign_in' 
+  match '/users/sign_up' => 'users#sign_up', :as => 'sign_up'
 
   controller :items do
     match 'myitems' => :myitems, :as => 'myitems'
+  end
+
+  controller :home do
+    match 'home' => :index, :as => 'home'
+  end
+
+  controller :welcome do
+    match 'welcome' => :index, :as => 'welcome'
   end
 
   controller :events do

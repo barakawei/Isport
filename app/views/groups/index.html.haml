@@ -21,8 +21,8 @@
         - @hot_groups.each do |g|
           %li
             = render 'hottest_group', :group => g
-    %span#preBtn= link_to '<', 'javascript:void(0);'
-    %span#nextBtn= link_to '>', 'javascript:void(0);'
+    %span#preBtn= link_to left_arrow, 'javascript:void(0);'
+    %span#nextBtn= link_to right_arrow, 'javascript:void(0);'
 %hr.space
 %hr.space
 %h4='寻找你喜欢的小组:'

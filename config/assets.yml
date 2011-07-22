@@ -70,8 +70,11 @@ stylesheets:
   sepcial_pages_events_hottest:
     - public/stylesheets/css/special_pages/events/hot_event.css
 
-  sepcial_pages_items_show:
-    - public/stylesheets/css/special_pages/items/show.css
+  special_pages_items_show:
+    - public/stylesheets/css/special_pages/item/show.css
+
+  special_pages_items_commom:
+    - public/stylesheets/css/special_pages/item/commom.css
 
   sepcial_pages_groups_form:
     - public/stylesheets/css/special_pages/groups/form.css
@@ -96,5 +99,7 @@ stylesheets:
   special_pages_topic_recent:
     - public/stylesheets/css/special_pages/topics/recent.css
 
-    
+  special_pages_welcome:
+    - public/stylesheets/css/special_pages/welcome/index.css
+
  

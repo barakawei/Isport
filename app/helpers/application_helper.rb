@@ -83,6 +83,18 @@ module ApplicationHelper
     "<img title=\"#{h(item.name)}\" class=\"avatar\"  src=\"#{item.image_url(size)}\" >".html_safe
   end
 
+  def item_events_notify
+    "<img class=\"avatar\"  src=\"/images/items/im_idle_dot.png\" >".html_safe
+  end
+
+  def left_arrow
+    "<img class=\"avatar\"  src=\"/images/ui/arrow_left.png\" >".html_safe
+  end
+
+  def right_arrow
+    "<img class=\"avatar\"  src=\"/images/ui/arrow_right.png\" >".html_safe
+  end
+
   def pagination_options(param_name, param)
     {:previous_label => t("pagination.previous"), 
      :next_label => t("pagination.next"),

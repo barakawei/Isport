@@ -9,6 +9,6 @@ class EventPhotosControllerController < CommonPhotosControllerController
   private 
 
   def update_event(params)
-    if         
   end
+
 end

@@ -2,28 +2,33 @@
   %h2= t('Isport')
 %ul.sections#sections
   %li
-    =link_to t('home'), root_path
+    =link_to t('home'), home_path
   %li
-    =link_to t('events_link'),events_path
+    =link_to t('events_link'), events_path
   %li
-    =link_to t('items_link'),items_path
+    =link_to t('items_link'), items_path
   %li
-    %a{:href => conversations_path}
-      =t( 'inbox' )
-      -if current_user && @unread_message_count != 0
-        %span.message_count
-          %span
-            %span=@unread_message_count
-    %a{:href => notifications_path}
-      = "通知"
-      -if current_user && @unread_notify_count != 0
-        %span.message_count
-          %span
-            %span=@unread_notify_count
+    =link_to t('groups_link'), groups_path
 
-    %li#search
-      = form_tag(people_path, :method => 'get', :id => "global_search_form") do
-        = text_field_tag 'q', nil, :placeholder => t('search'), :type => 'search', :results => 5
+  %li#search
+    = form_tag(people_path, :method => 'get', :id => "global_search_form") do
+      = text_field_tag 'q', nil, :placeholder => t('search'), :type => 'search', :results => 5
+
+  -if current_user
+    %li
+      %a{:href => conversations_path}
+        =t( 'inbox' )
+        -if current_user && @unread_message_count != 0
+          %span.message_count
+            %span
+              %span=@unread_message_count
+      %a{:href => notifications_path}
+        = "通知"
+        -if current_user && @unread_notify_count != 0
+          %span.message_count
+            %span
+              %span=@unread_notify_count
+
 -if current_user
   %ul.setting
     %li
@@ -35,6 +40,10 @@
         .icon
           &nbsp; &nbsp; &nbsp;
 
+-else
+  %ul.setting
+    %li
+      = link_to "登录", sign_in_path 
     
 
 
