@@ -1,0 +1,32 @@
+.event_element{ :data_id => event.id }
+  .calendar_panel
+    .calendar
+      .month
+        =event.start_at.strftime('%m').to_s+"月"
+      .day
+        =event.start_at.strftime('%d').to_s
+  .event_content
+    %span.event_info
+      .author
+        = person_link(event.person)
+      .timeago
+        = how_long_ago( event ) 
+    .event
+      .event_avatar
+        = event_image_tag( event,:thuumb_medium )
+      .event_details
+        .title
+          = event.title
+        .time
+          = event.start_at.strftime('%H:%M').to_s 
+          = "-"
+          = event.end_at.strftime('%H:%M').to_s 
+        .address
+          = '@'+event.address
+        .description
+          = event.description
+    .attendee
+      - for attendee in event.participants
+        = person_image_tag( attendee,:thumb_small )
+  .event_tool
+

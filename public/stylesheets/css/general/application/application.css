@@ -1,3 +1,9 @@
+.dim {
+  filter: alpha(opacity=30);
+  -moz-opacity: 0.3;
+  -khtml-opacity: 0.3;
+  opacity: 0.3; }
+
 body {
   background-color: #fcfcfc; }
 
@@ -112,9 +118,8 @@ h1 .description, h2 .description, h3 .description, h4 .description {
   padding-bottom: 10px;
   position: relative; }
   .stream_element .show_comments {
-    padding: 8px;
     border-top: 1px solid #ebebeb;
-    border-bottom: 1px dotted #cccccc; }
+    padding: 8px; }
   .stream_element .avatar {
     float: left; }
   .stream_element .right {
@@ -211,12 +216,42 @@ span.medium_avatar {
   padding: 0;
   bottom: 0px;
   position: absolute;
-  width: 410px; }
+  width: 410pxne; }
   #photozone li {
     display: inline-block; }
     #photozone li img {
       width: 50px;
       padding-right: 2px; }
+    #photozone li .circle {
+      -moz-border-radius: 20px;
+      -webkit-border-radius: 20px;
+      border-radius: 20px;
+      behavior: url(/javascripts/PIE.htc);
+      display: none;
+      z-index: 1;
+      position: absolute;
+      right: -7px;
+      top: -5px;
+      background-color: #333333;
+      width: 20px;
+      max-width: 20px;
+      height: 20px;
+      max-height: 20px;
+      border: 1px solid white; }
+    #photozone li .x {
+      display: none;
+      z-index: 2;
+      position: absolute;
+      top: -3px;
+      right: -1px;
+      font-size: small;
+      font-weight: bold; }
+    #photozone li:hover {
+      cursor: default; }
+      #photozone li:hover .circle {
+        display: block; }
+      #photozone li:hover .x {
+        display: block; }
 
 .with_photos textarea {
   padding-bottom: 70px; }
@@ -336,6 +371,9 @@ span.medium_avatar {
     height: 23px; }
 
 .content_panel {
+  background: none repeat scroll 0 0 white;
+  position: relative;
+  z-index: 4;
   margin-top: -20px;
   border-left: 1px solid #ebebeb;
   border-right: 1px solid #ebebeb;

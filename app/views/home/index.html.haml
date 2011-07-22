@@ -1,11 +1,55 @@
 =content_for :head do
-  =include_javascripts :friend_select
   =include_javascripts :scroll_page
-.span-5.left_bar
-  = render 'people/person_list', :person => @person
-  = render 'home/hot_events'   
+  =include_javascripts :show_photo
+  =include_javascripts :status_message
+  = include_javascripts :google_map
+  =javascript_include_tag "http://maps.google.com/maps/api/js?sensor=false"
 .span-14.content_panel
   =render "status_messages/status_message"
-  =render "home/feed_container"
+  .feed_container
+    = render "status_messages/status_message_element",:post => @post
+  .event_container
     
-.span-5.right_bar.last
+.span-9.right_bar.last
+  = render 'people/person_list', :person => @person
+  .event_side_panel
+    .event_side_close
+      =link_to '<——','#'
+    .event_side_container
+:javascript
+  $.get("/home/show_event");
+  $("abbr.timeago").timeago();
+
+  $( '.event_side_close a' ).live( 'click',function(  ){ 
+    
+    panel = $('.right_bar .event_side_panel');
+    panel.animate({left: 310},300);
+    panel.removeClass( "opened" );
+    panel.find( ".show" ).addClass( "hide" ).removeClass( "show" );
+    return false;
+  } );
+
+  $( ".event_element" ).live( "click",function(){ 
+    eventId = $( this ).attr( "data_id" );
+    event_content = $( ".event_side_content[data_id="+eventId+"]" );
+    if( event_content.length == 0 ){
+      $.get( "/home/show_event_details",{ id:eventId });
+    }else{
+      panel = $('.right_bar .event_side_panel');
+      if( event_content.hasClass( "show" ) ){
+        panel.animate({left: 310},300);
+        panel.removeClass( "opened" );
+        event_content.removeClass( "show" ).addClass( "hide" );
+      }else{
+        if( panel.hasClass( "opened" ) ){
+          $( ".show",panel ).removeClass( "show" ).addClass( "hide" );
+          event_content.removeClass( "hide" ).addClass( "show" );
+        }else{
+          panel.animate({ left: 710},300);
+          panel.addClass( "opened" );
+          event_content.removeClass( "hide" ).addClass( "show" );
+        }
+      }
+    }
+  } );
+

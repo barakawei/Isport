@@ -26,17 +26,6 @@
             = "取消"
 :javascript
   $( ".button" ).button(  );
-  $( ".comment_form textarea" ).focus( function(){ 
-    comment_button = $( this ).closest( ".comment_form" ).find( ".comment_button" ); 
-    comment_button.removeClass( "hide" );
-  });
 
-  $( ".cancle" ).live( "click",function(  ){
-    comment_form = $( this ).closest( ".comment_form" );
-    comment_form.find( "textarea" ).val( '' );
-    comment_button = comment_form.find( ".comment_button" ); 
-    comment_button.addClass( "hide" );
-
-     });  
 
 

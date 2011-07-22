@@ -37,10 +37,26 @@
         img.attr('src', url);
         img.attr('data-id', id);
         currentPlaceholder.removeClass('loading');
-
+        currentPlaceholder.append("<div class='x'>X</div>" +"<div class='circle'></div>");
+        
         var form = $('.photo_form').closest( "form" );
 
         form.find("input[type='submit']").removeAttr('disabled');
+
+        $('.x',currentPlaceholder).bind('click', function(){
+
+          var photo = $(this).closest('.photo');
+          photo.addClass("dim");
+          $.ajax({url: "photos/" + photo.children('img').attr('data-id'),
+                  type: 'DELETE',
+                  success: function() {
+                      photo.fadeOut(400, function(){
+                            photo.remove();
+                            });
+                          }
+                  });
+        });
+        
 
        },
 

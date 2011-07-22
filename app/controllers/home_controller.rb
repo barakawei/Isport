@@ -13,9 +13,10 @@ class HomeController < ApplicationController
       @followed_people = current_user.followed_people
       @befollowed_people = current_user.befollowed_people
       @current_status = Post.where(:author_id => @person.id ).order("created_at DESC" ).first
+      @post = Post.where( :author_id => current_user.person.id,:type => 'StatusMessage' ).order( "posts.created_at DESC" ).first
+    
 
       @selected = "home"
-      @hot_events = Event.joins("left join involvements inv on(events.id = inv.event_id) left join recommendations rec on(type = 'EvntRecommendation' and events.id = rec.item_id)").select( "events.*,count(inv.id) inv_counts,count(rec.id) rec_counts,count(inv.id)+count(rec.id) hots" ).group( "events.id" ).order( "hots DESC" ).limit(5)
       render
     end
   end
@@ -27,11 +28,11 @@ class HomeController < ApplicationController
   end
 
   def show_event
-    @notifications = Notification.includes( :actor ).where( "recipient_id = ? and type != ?",current_user.id,"Notifications::InviteEvent").order( "notifications.created_at DESC" ).paginate(
-      :page => params[:page], :per_page => 5)
-    if params[ :page ] == nil
-      @tab = "event"
-    end
-    respond_with @notifications
+    @events = Event.all.paginate(:page => params[:page], :per_page => 5)
+    respond_with @events
+  end
+
+  def show_event_details
+    @event = Event.find( params[ :id ] )
   end
 end

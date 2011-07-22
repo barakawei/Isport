@@ -5,6 +5,9 @@ $red: #FF0000
 $background: rgb(252,252,252)
 $bright_yellow: #F6B24D
 
+.dim
+  @include opacity(0.3) 
+
 body
   :background-color $background
 
@@ -108,9 +111,8 @@ h1,h2,h3,h4
 .stream_element
   :font-size 13px
   .show_comments
-    :padding 8px
     :border-top 1px solid #EBEBEB
-    :border-bottom 1px dotted #CCCCCC
+    :padding 8px
   :min-height 50px
   :border-top 1px solid #EBEBEB
   :padding
@@ -229,16 +231,45 @@ span.medium_avatar
   :display inline
 
 #photozone
+  :left 5px
+  :padding 0
+  :bottom 0px
+  :position absolute
+  :width 410pxne
   li 
     :display inline-block
     img
       :width 50px
       :padding-right 2px
-  :left 5px
-  :padding 0
-  :bottom 0px
-  :position absolute
-  :width 410px
+    .circle
+      @include border-radius(20px)
+      :display none
+      :z-index 1
+      :position absolute
+      :right -7px
+      :top -5px
+      :background
+        :color #333
+      :width 20px
+      :max-width 20px
+      :height 20px
+      :max-height 20px
+      :border 1px solid #fff
+    .x
+      :display none
+      :z-index 2
+      :position absolute
+      :top -3px
+      :right -1px
+      :font
+        :size small
+        :weight bold
+    &:hover
+      :cursor default
+      .circle
+        :display block
+      .x
+        :display block
       
 .with_photos
   textarea
@@ -351,6 +382,9 @@ span.medium_avatar
     :width 345px
     :height 23px
 .content_panel
+  :background none repeat scroll 0 0 #FFF
+  :position relative
+  :z-index 4
   :margin-top -20px
   :border
     :left 1px solid #EBEBEB

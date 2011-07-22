@@ -1,3 +1,6 @@
+.right_bar {
+  border-right: 1px solid #ebebeb; }
+
 .right_side {
   background-color: #f5f5f5;
   padding: 10px; }
@@ -26,6 +29,7 @@
   padding-left: 14px; }
 
 .comments {
+  border-top: 1px solid #ebebeb;
   font-size: 13px;
   margin-bottom: 10px; }
   .comments .comment_body {
@@ -112,3 +116,94 @@ dd {
     padding: 10px; }
 #profile_edit h4 {
   border-bottom: 1px solid #cccccc; }
+
+.calendar_panel {
+  padding-top: 20px;
+  height: 50px;
+  width: 50px;
+  float: left; }
+
+.calendar {
+  background: url("/images/ui/calendar_small.png") no-repeat;
+  width: 50px;
+  height: 50px;
+  text-align: center; }
+  .calendar .day {
+    font-weight: normal;
+    font-size: 18px; }
+
+.event_element {
+  height: 250px;
+  position: relative;
+  border-top: 1px solid #ebebeb; }
+  .event_element:hover {
+    background: none repeat scroll 0 0 #eeeeee;
+    cursor: pointer; }
+  .event_element .event_content {
+    width: 380px;
+    padding: 20px 20px;
+    float: left; }
+    .event_element .event_content .event {
+      margin-top: 20px;
+      height: 110px; }
+      .event_element .event_content .event .time {
+        display: inline; }
+      .event_element .event_content .event .address {
+        display: inline; }
+    .event_element .event_content .event_info {
+      display: block;
+      font-size: 13px; }
+      .event_element .event_content .event_info .author {
+        font-weight: normal;
+        display: inline; }
+      .event_element .event_content .event_info .timeago {
+        display: inline;
+        border-bottom: none;
+        color: #999999;
+        text-decoration: none; }
+    .event_element .event_content .event_avatar {
+      float: left; }
+      .event_element .event_content .event_avatar img {
+        width: 100px;
+        height: 100px; }
+    .event_element .event_content .attendee {
+      display: block; }
+      .event_element .event_content .attendee img {
+        width: 30px;
+        height: 30px; }
+    .event_element .event_content .event_details {
+      float: left;
+      height: 110px;
+      margin-left: 20px; }
+
+.right_bar {
+  height: 700px;
+  overflow: hidden;
+  position: relative; }
+  .right_bar .event_side_panel {
+    z-index: 2;
+    background: none repeat scroll 0 0 #eeeeee;
+    width: 400px;
+    height: 500px;
+    overflow-y: scroll;
+    position: fixed;
+    top: 100px;
+    left: 310px; }
+
+.event_side_content {
+  padding: 10px; }
+  .event_side_content .button {
+    display: block; }
+  .event_side_content .event {
+    margin-top: 20px;
+    height: 220px; }
+    .event_side_content .event .time {
+      display: inline; }
+    .event_side_content .event .address {
+      display: inline; }
+  .event_side_content .event_avatar {
+    float: left; }
+  .event_side_content .event_details {
+    float: left;
+    height: 220px;
+    margin-left: 20px; }

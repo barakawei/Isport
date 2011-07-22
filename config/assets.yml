@@ -12,6 +12,8 @@ javascripts:
     - public/javascripts/showNotifications.js
     - public/javascripts/jquery.autoresize.min.js
 
+  status_message:
+    - public/javascripts/statusMessage.js
   scroll_page:
     - public/javascripts/scrollPage.js
   show_photo:
