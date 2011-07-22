@@ -1,6 +1,7 @@
 #event_location_attributes_detail
   :width 250px
   :vertical-align bottom
+  :padding 2px 0.3em
 .left_margin
   :margin-left 10px
 
@@ -16,35 +17,44 @@
   .edit_members_bar
     h4
       :display inline
+
   //fix ie bug(attribute selector useless)
   input#event_title, input#event_location
-    :width 60%
+    :width 400px 
     :padding-right 0
 
   input:not([type='submit']):not([type='reset']):not([type='checkbox'])
-    :width 60%
+    :width 400px 
     :vertical-align top 
     :padding-right 0
+    :font-size 12px
+
+  select
+    :font-size 13px
 
   #event_participants_limit
     :width 50px
 
   textarea
-    :width 60%  
+    :width 400px 
     :padding 0
     :vertical-align top 
     :margin 0
     :font-size 12px
+    :height 200px
+
+  .field.module
+    :margin-top 40px
 
   .field
     :margin-bottom 10px
     
     .address
       :display inline-block
-      :width 60%
     label
       :display inline-block
       :width 60px
+      :font-size 12px
 
   input[type='checkbox']
     :vertical-align text-bottom 
@@ -56,21 +66,23 @@
 
   .field_with_errors
     :display inline 
-    :width 60%
 
-    //fix ie bug(attribute selector useless)
     input#event_title, input#event_location
-      :width 60%
+      :width 400px 
 
 
     input:not([type='submit']):not([type='reset']):not([type='checkbox'])
-      :width 60%
+      :width 400px 
 
 
     textarea
-      :width 60%  
+      :width 400px 
 
   .validation-error
-    :margin-left 15px
+    :display block
+    :margin-left 62px
     :color red
 
+.form_area
+  :width 470px
+  :float left

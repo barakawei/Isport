@@ -179,3 +179,4 @@ Error during failsafe response: incompatible character encodings: ASCII-8BIT and
 [ pid=13882 thr=139921039259392 file=ext/nginx/HelperAgent.cpp:574 time=2011-07-22 13:39:01.553 ]: Couldn't forward the HTTP response back to the HTTP client: It seems the user clicked on the 'Stop' button in his browser.
 [ pid=13882 thr=139921038857984 file=ext/nginx/HelperAgent.cpp:574 time=2011-07-22 13:39:01.561 ]: Couldn't forward the HTTP response back to the HTTP client: It seems the user clicked on the 'Stop' button in his browser.
 [ pid=13882 thr=139921002850048 file=ext/nginx/HelperAgent.cpp:574 time=2011-07-22 13:41:24.381 ]: Couldn't forward the HTTP response back to the HTTP client: It seems the user clicked on the 'Stop' button in his browser.
+[ pid=13882 thr=139921002047232 file=ext/nginx/HelperAgent.cpp:574 time=2011-07-22 17:46:15.839 ]: Couldn't forward the HTTP response back to the HTTP client: It seems the user clicked on the 'Stop' button in his browser.

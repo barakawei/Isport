@@ -29,4 +29,8 @@ class Item < ActiveRecord::Base
      end
   end
 
+  def hot_items
+
+  end
+
 end

@@ -4,7 +4,7 @@
   .content.span-13{:comment_id => "#{commentable.id}"}
     %hr
     %span.comment_info
-      = link_to person.name, person_path(person) 
+      = link_to person.name, person_path(person) unless current_user.person == person
       = l(comment.created_at, :format => :long)
     = simple_format comment.content
 

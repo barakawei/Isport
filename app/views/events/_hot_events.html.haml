@@ -25,4 +25,21 @@
     %b= t('groups.owner') + ":"
     = link_to event.person.name, person_path(event.person)
 
+  .static_box
+    .fans_count
+      %p
+        %h3= link_to event.references.size, url_for(:action => "show_references", :id => event.id)
+        %h4= '推荐'
+    .members_count
+      %p
+        %h3= link_to event.participants.size, url_for(:action => "show_participants", :id => event.id) 
+        %h4= '参加'
+    .fans_count.last
+      %p
+        %h3= link_to event.comments.size, event_path(event)
+        %h4='评论'
+    
+
+  
+
     

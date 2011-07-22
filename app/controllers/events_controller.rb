@@ -4,7 +4,7 @@ class EventsController < ApplicationController
   before_filter :authenticate_user!, 
                 :except => [:index, :show, :show_participants, 
                             :show_references, :paginate_participants,
-                            :paginate_comments, :paginate_references]
+                            :paginate_references, :filtered]
 
   TIME_FILTER_TODAY = "today"
   TIME_FILTER_WEEK = "week"
@@ -18,7 +18,7 @@ class EventsController < ApplicationController
     city_pinyin = params[:city] ? params[:city] : (current_user ? current_user.city.pinyin : City.first.pinyin)
     @city = City.find_by_pinyin(city_pinyin)
     @events = Event.all
-    @hot_events = Event.limit(3)
+    @hot_events = Event.hot_event(@city.id)
     @hot_items = Item.all
   end
 
@@ -29,12 +29,27 @@ class EventsController < ApplicationController
     @events = current_user.send(@type)
   end
 
+  def invite_friends
+    @event = Event.find(params[:id])
+    @invitees =  @event.invitees
+    @invitees_size = size = @invitees.size
+    @to_be_invited_friends = current_user.friends - @invitees
+    @invitees.slice!(9, @invitees.length)
+    @step = 2
+    render :action => "new" 
+  end
+
   def show
+    @page = params[:page] ? params[:page].to_i : 1
     @event = Event.find(params[:id])
     @participants = @event.participants_top(LIMIT)
     @references = @event.references_top(LIMIT)
-    @comments = @event.paginated_comments(params[:page])
+    @comments = []
+    if @event.comments.size > 0
+      @comments = @event.comments.paginate :page => params[:page],
+                                           :per_page => 15, :order => 'created_at'
 
+    end
     new_comment
   end
 
@@ -43,6 +58,7 @@ class EventsController < ApplicationController
   end
 
   def new
+    @step = 1 
     @event = Event.new
     @event.location = Location.new(:city_id => 1, :district_id => 1, :detail => " ")
     @items = Item.find(:all, :select => 'id, name')
@@ -71,11 +87,10 @@ class EventsController < ApplicationController
     event_attrs[:location_attributes].merge!(l_info) unless l_info.nil?
     @event = Event.new(event_attrs)
     @event.person = current_user.person
-    unless @event.save
-      render :action => "new" 
+    if @event.save
+      redirect_to new_event_invite_path(@event)
     else
-      @event.dispatch_event( :create )
-      redirect_to event_members_path(@event)
+      render :action => :new
     end
   end
 
@@ -116,17 +131,6 @@ class EventsController < ApplicationController
                                     :locals  =>  {:participants => participants_used, 
                                                   :perline => 8, :pagination_type => pagination_type,
                                                    :edit => false} 
-  end
-
-  def paginate_comments
-    @event = Event.find(params[:id])
-    @comments = @event.paginated_comments(params[:page])
-
-    new_comment
-    render  "_event_comments",  :layout => false, :locals => { :event => @event,
-                                                   :author=> @person,
-                                               :comments => @comments,
-                                               :comment => @comment}
   end
 
   def paginate_references
@@ -181,40 +185,9 @@ class EventsController < ApplicationController
   def new_comment
       if current_user
         @person = current_user.person
-        @comment = Comment.new(:person_id => @person.id,
-                               :item_id => @event.id)
-        @comment.type = "EventComment"
+        @comment = EventComment.new(:person_id => @person.id)
+        @comment.commentable= @event 
       end
   end
 
-  def hottest_event(city_id)
-    hottest_event = Event.find(:all, 
-               :conditions => [" locations.city_id = ? ", city_id],
-               :joins=>" INNER JOIN involvements on events.id = involvements.event_id INNER JOIN locations on events.location_id = locations.id ",
-               :select => "events.*, count(*) count",
-               :group => 'involvements.event_id',
-               :order => 'count desc',
-               :limit => 3)
-
-  end
-
-  def user_favorites_item_events(time_filter_path="week")
-    if current_user
-      @favorite_items = current_user.person.interests.limit(5)   
-      @item_event_size = [] 
-      unless time_filter_path =~ /\d\d\d\d-\d\d-\d\d/
-        @favorite_items.each {|item| @item_event_size << item.events.today.size }
-      else
-        date = time_filter_path.to_date
-        @favorite_items.each  {|item| @item_event_size << item.events.on_date(date).size }
-      end  
-    end
-  end
-
-  def get_my_events
-      @joined_events = current_user.joined
-      @recommended_events = current_user.recommended
-      @friend_joined_events = current_user.friend_joined 
-      @friend_recommended_events = current_user.friend_recommended
-  end
 end

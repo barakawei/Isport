@@ -11,10 +11,23 @@
 .box_content {
   padding: 10px 5px 5px 5px; }
 
-.title_bar h2, .title_bar h4 {
-  display: inline; }
-.title_bar h2 {
-  margin-right: 20px; }
+.title_bar {
+  height: 35px;
+  position: relative; }
+  .title_bar h2 {
+    margin-right: 20px;
+    float: left; }
+  .title_bar .tab {
+    padding: 5px;
+    border: 1px solid #e1e1e1;
+    float: left;
+    height: 20px;
+    position: relative;
+    top: 4px; }
+  .title_bar .tab.last_tab {
+    border-left: none; }
+  .title_bar .tab.current {
+    border-bottom: 1px solid white; }
 
 .members span.medium_avatar {
   margin-left: 15px; }
@@ -23,3 +36,8 @@
   position: absolute;
   top: 50px;
   left: 300px; }
+
+.operations {
+  margin-left: 50px;
+  border-left: 1px solid #888888;
+  padding-left: 10px; }

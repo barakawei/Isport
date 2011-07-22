@@ -231,3 +231,6 @@ span.medium_avatar {
   -webkit-border-radius: 10px;
   border-radius: 10px;
   behavior: url(/javascripts/PIE.htc); }
+
+.app_module_title {
+  margin-bottom: 5px; }
