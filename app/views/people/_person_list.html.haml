@@ -7,15 +7,4 @@
         = "Welcome back!"
       -elsif current_user.person.id == @person.id  && @requests_count != 0 
         = link_to "#{@requests_count}个好友请求",{:controller => 'people', :action => 'friends_request'},:class => 'new friends_request'
-#friend_listings
-  - if @contacts.length > 0
-    .contacts
-      %h3
-        =t( 'friends_count',:count => @contacts.length)
-      - for contact in @contacts
-        = person_image_link(contact.person)
-      %h4
-        =link_to t( 'more' ),{:controller => 'people',:action => 'show_friends'}
-  - else
-    =t('no_friends')
 

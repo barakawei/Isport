@@ -1,0 +1,24 @@
+processPost(<%= @status_message.id %>,"<%= escape_javascript(render(:partial => 'status_messages/status_message_element', :locals => { :post => @status_message}))%>");
+
+function processPost(postId,html){  
+    if ($( ".stream_element[id='"+postId+"']" ).length == 0){
+      posts = $( ".stream" );
+      prevPosts =  posts.find( ".stream_element" );
+      if(prevPosts.length > 0 ){
+        prevPosts.first().before(
+          $(html).fadeIn("fast", function(){})
+        );
+       }else{
+        posts.append(
+          $(html).fadeIn("fast", function(){})
+        );
+       }
+      $("abbr.timeago").timeago();
+      textarea = $( ".photo_form textarea");
+      textarea.removeClass( "with_photos" );
+      textarea.val("");
+      $( "#photozone" ).html( "" );
+    }      
+}
+
+

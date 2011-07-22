@@ -7,4 +7,9 @@ class ProfilesController < ApplicationController
       redirect_to root_path
     end
   end   
+
+  def index
+    @profile = current_user.profile
+    render
+  end
 end

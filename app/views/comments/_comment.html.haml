@@ -1,0 +1,11 @@
+%li.comment.posted{ :id => comment.id }
+  = person_image_link(comment.author,:thumb_small)
+  .comment_content
+    .from
+      = person_link(comment.author)
+      = how_long_ago( comment )
+
+    %p
+      = comment.content
+    
+

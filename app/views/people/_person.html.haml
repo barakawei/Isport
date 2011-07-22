@@ -2,17 +2,12 @@
   .right
     -if person.user_id == current_user.id
       =t('thats_you')
-    -elsif contact && !contact.pending
+    -elsif contact && contact.receiving
       .button.remove_friend
-        = link_to t( 'remove_friend' ),{:controller => 'contacts', :action => 'remove_friend',:person_id => person.id}
-    -elsif (contact && contact.pending)
-      =t('pending_request')
-    -elsif request && request.sender == person
-      .button.incoming_request
-        =link_to t('incoming_request'),{:controller => 'contacts',:action => 'new',:person_id => person.id}
+        = link_to t( 'remove_friend' ),{:controller => 'contacts', :action => 'destroy',:person_id => person.id},:method =>'delete'
     -else
-      .button.add_friend{:id => person.id,:style=>"width:100px"}
-        =t('start_sharing')
+      .button.add_friend{:style=>"width:100px"}
+        =link_to t('start_sharing'),{:controller => 'contacts', :action => 'create',:person_id => person.id},:method =>'post'
 
   = person_image_link(person)
 

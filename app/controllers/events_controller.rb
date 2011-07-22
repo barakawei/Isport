@@ -16,6 +16,11 @@ class EventsController < ApplicationController
 
   def index
     city_pinyin = params[:city] ? params[:city] : (current_user ? current_user.city.pinyin : City.first.pinyin)
+    puts '******************'
+    puts current_user.name
+    puts current_user.person.profile.location.city.name
+ 
+    puts city_pinyin
     @city = City.find_by_pinyin(city_pinyin)
     @events = Event.all
     @hot_events = Event.hot_event(@city.id)

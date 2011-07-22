@@ -1,27 +1,23 @@
 =content_for :head do
   =include_javascripts :friend_select
+  =include_javascripts :scroll_page
 .span-15.append-2
-  =link_to "select","#",:class => "friend_select_input"
-.colorbox_content.span-8
-  #friend_select
+  =render "status_messages/status_message"
+  .current_status
+    ="最近更新:"
+    %span.current_status_body
+      =@current_status.content if @current_satus
+  =render "home/feed_container"
     
-
 .span-7.last
-  = render 'people/person_list', :person => @person
+  .right_side
+    = render 'people/person_list', :person => @person
+    = render 'home/hot_events'   
 
 :javascript
-  $(document).ready(function() {
-    $('.friend_select_input' ).click(function(){
-      friend_select();
-    });
-    $(".friend_select_input").colorbox({ inline:true,width: "502",height:"462", href:"#friend_select"});	
-   
-    }); 
+  $( "#view" ).attr("value", "index" );
 
-    function friend_selected_callback(data){
-      $.post("/people/friend_select", { selectedIds: ""+data} );
+
         
-    }
-       //load firend data
     
 

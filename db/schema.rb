@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110718094047) do
+ActiveRecord::Schema.define(:version => 20110718084833) do
 
   create_table "administrators", :force => true do |t|
     t.integer  "user_id"
@@ -25,12 +25,24 @@ ActiveRecord::Schema.define(:version => 20110718094047) do
     t.string   "pinyin"
   end
 
+  create_table "comments", :force => true do |t|
+    t.integer  "person_id"
+    t.text     "content"
+    t.integer  "item_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "type"
+    t.integer  "post_id"
+  end
+
   create_table "contacts", :force => true do |t|
     t.integer  "user_id"
     t.integer  "person_id"
     t.boolean  "pending",    :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "sharing",    :default => false
+    t.boolean  "receiving",  :default => false
   end
 
   add_index "contacts", ["person_id", "pending"], :name => "index_contacts_on_person_id_and_pending"
@@ -59,12 +71,10 @@ ActiveRecord::Schema.define(:version => 20110718094047) do
   end
 
   create_table "event_comments", :force => true do |t|
-    t.text     "content"
-    t.integer  "commentable_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "person_id"
-    t.string   "commentable_type"
+    t.integer "person_id"
+    t.text    "content"
+    t.integer "commentable_id"
+    t.string  "commentable_type"
   end
 
   create_table "events", :force => true do |t|
@@ -166,6 +176,23 @@ ActiveRecord::Schema.define(:version => 20110718094047) do
     t.datetime "updated_at"
   end
 
+  create_table "notification_actors", :force => true do |t|
+    t.integer  "notification_id"
+    t.integer  "person_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "notifications", :force => true do |t|
+    t.string   "target_type"
+    t.integer  "target_id"
+    t.integer  "recipient_id"
+    t.string   "type"
+    t.integer  "unread",       :default => 1
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "people", :force => true do |t|
     t.integer  "user_id"
     t.datetime "created_at"
@@ -173,6 +200,13 @@ ActiveRecord::Schema.define(:version => 20110718094047) do
   end
 
   add_index "people", ["user_id"], :name => "index_people_on_user_id", :unique => true
+
+  create_table "post_visibilities", :force => true do |t|
+    t.integer  "contact_id"
+    t.integer  "post_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "posts", :force => true do |t|
     t.integer  "author_id"
@@ -186,6 +220,8 @@ ActiveRecord::Schema.define(:version => 20110718094047) do
     t.datetime "updated_at"
     t.boolean  "pending",           :default => false
     t.string   "random_string"
+    t.integer  "item_id"
+    t.integer  "post_id"
   end
 
   create_table "profiles", :force => true do |t|

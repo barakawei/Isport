@@ -3,6 +3,8 @@ class Photo < Post
   mount_uploader :processed_image,ProcessedImageUploader
   mount_uploader :unprocessed_image,UnprocessedImageUploader
 
+  belongs_to :status_message, :foreign_key => :post_id
+
   def not_processed?
     processed_image.path.nil?
   end
@@ -11,13 +13,13 @@ class Photo < Post
     !processed_image.path.nil?
   end
 
-  def self.initialize(params = {}, ip, port)
+  def self.initialize(params = {}, ip, port,user)
     photo = Photo.new
-    puts params
     image_file = params[ :user_file] 
     photo.random_string = ActiveSupport::SecureRandom.hex(10) 
     photo.unprocessed_image.store!( image_file )
     photo.update_remote_path(ip,port)
+    photo.author = user
     photo
   end
 

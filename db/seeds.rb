@@ -13,6 +13,12 @@ end
 nanjing = City.find_by_name('南京')
 shanghai = City.find_by_name('上海')
 beijing = City.find_by_name('北京')
+nanjing.pinyin = 'nanjing'
+shanghai.pinyin = 'shanghai'
+beijing.pinyin = 'beijing'
+nanjing.save
+shanghai.save
+beijing.save
 
 ['宣武区', '鼓楼区', '建邺区', '白下区', '秦淮区', 
  '下关区', '雨花台区', '栖霞区', '浦口区', '江宁区', '六合区', '溧水县', '高淳县'].each do |name|

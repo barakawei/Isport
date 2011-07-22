@@ -4,8 +4,6 @@
   %li
     =link_to t('home'), root_path
   %li
-    =link_to t('friends'),{:controller => 'people',:action => 'show_friends'}
-  %li
     =link_to t('events_link'),events_path
   %li
     =link_to t('items_link'),items_path
@@ -16,6 +14,12 @@
         %span.message_count
           %span
             %span=@unread_message_count
+    %a{:href => notifications_path}
+      = "通知"
+      -if current_user && @unread_notify_count != 0
+        %span.message_count
+          %span
+            %span=@unread_notify_count
 
     %li#search
       = form_tag(people_path, :method => 'get', :id => "global_search_form") do
@@ -23,7 +27,13 @@
 -if current_user
   %ul.setting
     %li
-      = link_to current_user.name, '#' ,:class => "current_user_link"
+      .avatar
+        = person_image_tag( current_user.person,:thumb_small )
+      %a{:href => "3",:class => "current_user_link"}
+        .name  
+          = current_user.name
+        .icon
+          &nbsp; &nbsp; &nbsp;
 
     
 

@@ -16,7 +16,13 @@ class InvolvementsController < ApplicationController
   end
 
   def create
-    Involvement.create(:event_id => @event.id, :person_id => @person.id) if @event.joinable?
+    inv = Involvement.where(:event_id => @event.id, :person_id => @person.id).first
+    if inv
+      inv.update_attributes( { :is_pending => false } )
+    else
+      involvment = Involvement.new(:event_id => @event.id, :person_id => @person.id) if @event.joinable?
+    end
+     @event.dispatch_event(:involvement,current_user )
     redirect_to :back
   end
 
@@ -27,6 +33,9 @@ class InvolvementsController < ApplicationController
           Involvement.create(:event_id => @event.id, :person_id => person_id,
                             :is_pending => true)
         end
+        invited_people = Person.where( :id => person_ids )
+        @event.invited_people = invited_people
+        @event.dispatch_event( :invite )
      end 
      render :nothing => true
   end

@@ -1,24 +1,33 @@
 class ContactsController < ApplicationController
-  def new
-    if params[ :request ]
-      person_id = params[ :request ][:person_id]
-      message = params[ :request ][:message]
-    else
-      person_id = params[:person_id]
-      message = ''
-    end
-    @person = Person.find(person_id)
-    @contact = request_to_person(@person,message)
-    @contact && @contact.persisted?
-    redirect_to :back
+  def create
+    @person = Person.find(params[:person_id])
+    contact = current_user.share_with(@person)
+    contact.dispatch_request 
+    render :nothing=>true,:status => 200
   end
 
-  def remove_friend 
+  def show_avatar_panel
+    @contact = Contact.where( :user_id=>current_user.id,:person_id=>params[ :person_id ] )
+    @person = Person.where( :id=>params[ :person_id ] )
+    respond_to do |format|
+      format.json{ render(:layout => false , :json => {"success" => true, "person" => @person,"contact" => @contact}.to_json )}
+    end
+  end
+
+  def destroy
     contact_user = Contact.where( :user_id => current_user.id, :person_id => params[ :person_id ] ).first
-    contact_user.destroy
+    if !contact_user.mutual?
+      contact_user.destroy
+    else
+      contact_user.update_attributes(:receiving => false)
+    end 
     contact_person = Contact.where( :user_id =>params[ :person_id ] , :person_id => current_user.id).first
-    contact_person.destroy
-    redirect_to :back
+    if !contact_person.mutual?
+      contact_person.destroy
+    else
+      contact_person.update_attributes(:sharing => false)
+    end 
+    render :nothing=>true,:status => 200
   end
 
   def request_to_person(person,message)

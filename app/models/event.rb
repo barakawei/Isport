@@ -63,6 +63,9 @@ class Event < ActiveRecord::Base
   scope :at_city, lambda {|city| includes("location").where(:locations => {:city_id => city}) }
   scope :filter_by_location_and_item, lambda  {|filter| includes("location").where(filter)}
 
+
+  
+
   def self.update_avatar_urls(params,url_params)
       event = find(params[:photo][:model_id])
       event.update_attributes(url_params)
@@ -144,6 +147,41 @@ class Event < ActiveRecord::Base
     self.start_at > Time.now
   end
 
+  def dispatch_event(action,user=self.person.user)
+    Dispatch.new(user, self,action).notify_user
+  end
+
+  def subscribers(user,action=false)
+    action = action.to_sym
+    if action == :delete
+      self.participants
+    elsif action == :create
+      user.befollowed_people
+    elsif action == :invite
+      self.invited_people
+    elsif action == :involvement
+      user.befollowed_people
+    elsif action == :recommendation
+      user.befollowed_people
+    end
+
+  end
+
+  def notification_type( action=false )
+    action = action.to_sym
+    if action == :create
+      Notifications::CreateEvent
+    elsif action == :delete
+      Notifications::DeleteEvent
+    elsif action == :invite
+      Notifications::InviteEvent
+    elsif action == :involvement
+      Notifications::InvolvementEvent
+    elsif action == :recommendation
+      Notifications::RecommendationEvent
+    end
+  end
+
   def participants_top(limit)
     participants.order("created_at DESC").limit(limit)
   end
@@ -197,7 +235,7 @@ class Event < ActiveRecord::Base
   
   def participants_limit_cannot_be_less_than_current_participants
     if self.participants_limit < self.participants.size
-      errors.add(:participants_limit, I18n.t('activerecord.errors.event.participants_limit.less_than_current'));
+      errors.add(:participants_limit, I18n.t('activerecord.errors.event.participants_limit.     less_than_current'));
     end
   end
 

@@ -11,7 +11,7 @@ module ItemsHelper
     unless current_user
       false
     else
-      Administrator.find_by_user_id(current_user.person.user_id) ? true : false
+      true
     end
   end
 end

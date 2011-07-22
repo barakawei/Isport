@@ -1,6 +1,6 @@
 class PeopleController < ApplicationController
   before_filter :authenticate_user!
-  respond_to :html
+  respond_to :js,:html
 
   def index
     params[:q] ||= params[:term]
@@ -37,10 +37,6 @@ class PeopleController < ApplicationController
 
   def hashes_for_people people
     ids = people.map{|p| p.id}
-    requests ={}
-    Request.where(:sender_id => ids,:recipient_id => current_user.person.id).each do|r|
-      requests[r.sender_id] = r
-    end
     contacts = {}
     Contact.unscoped.where(:user_id => current_user.id, :person_id => ids).each do |contact|
       contacts[contact.person_id] = contact
@@ -49,17 +45,24 @@ class PeopleController < ApplicationController
     people.map{|p|
       {:person => p,
         :contact => contacts[p.id],
-        :request => requests[p.id]
     }}
   end
 
   def show
     @person = Person.where(:id => params[:id]).first
     if @person
-      @contact =  Contact.unscoped.where( :user_id => @person.user.id ,:person_id => current_user.id).first
-      @request = Request.where( :sender_id => current_user.id,:recipient_id => @person.id ).first
-      @contacts = Contact.where( :user_id => @person.user.id ).all 
+      @contact =  Contact.unscoped.where( :user_id => current_user.id ,:person_id => @person.id).first
+      @friends = @person.user.friends
+      @followed_people = @person.user.followed_people
+      @befollowed_people = @person.user.befollowed_people
+      @favorite_items = Item.joins( :favorites ).where( :favorites => {:person_id => @person.id })
+      @events_inv = Event.joins(:involvements).where(:involvements => { :person_id => @person.id }  )
     end
+  end
+
+  def show_posts
+    @posts = Post.where(:author_id => params[ :person_id ],:type => "StatusMessage" ).order("created_at DESC" ).paginate( :page => params[:page], :per_page => 10 )
+    respond_with @posts
   end
 
   def friend_select
