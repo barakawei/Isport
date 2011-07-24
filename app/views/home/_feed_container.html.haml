@@ -1,19 +1,22 @@
+- content_for :head do
+  =include_javascripts :show_photo
 .feed_tabs
   %br
   %br
   %h2="动态"
   %ul
-    %a{"data-remote" =>"true", :href => "/home/show_post"}
+    %a{"data-remote" =>"true", :href => "/home/show_post?tab=post"}
       %li.active
         ='好友'
-    %a{"data-remote" =>"true", :href => "/home/show_event"}
+    %a{"data-remote" =>"true", :href => "/home/show_event?tab=event"}
       %li
         ='活动'
 
 .feed_container
-  = render 'status_messages/status_messages_container'
+
 
 :javascript
+  $.get("/home/show_post" ); 
   $( "li" ).click( function( ){
     $( ".active" ).removeClass( "active" ); 
     $(this).addClass( "active" );
@@ -23,18 +26,24 @@
   $( ".replay" ).live( "click",function( ){  
     stream_element = $( this ).closest(".stream_element");
     commentBlock = stream_element.find(".comment_form");
+
     comments = stream_element.find(".comments");
-    if(commentBlock.hasClass("hidden")) {
+    if(commentBlock.hasClass("hide")) {
       if( $( ".comment",comments ).length != 0 ){
-        comments.removeClass("hidden");
+        comments.addClass( "big" );
+        comments.removeClass("hide");
       }
-      commentBlock.removeClass("hidden");
+      commentBlock.removeClass("hide");
       commentBlock.find("textarea").focus();
     } else {
         if( $( ".comment",comments ).length > 3 || $( ".comment",comments ).length == 0 ){
-          comments.addClass( "hidden" );
+          comments.addClass( "hide" );
         }
-        commentBlock.addClass("hidden");
+        commentBlock.addClass("hide");
       }  
     return false;
     }); 
+
+   
+
+  

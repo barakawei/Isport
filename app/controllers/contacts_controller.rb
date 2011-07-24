@@ -3,7 +3,15 @@ class ContactsController < ApplicationController
     @person = Person.find(params[:person_id])
     contact = current_user.share_with(@person)
     contact.dispatch_request 
-    redirect_to :back
+    render :nothing=>true,:status => 200
+  end
+
+  def show_avatar_panel
+    @contact = Contact.where( :user_id=>current_user.id,:person_id=>params[ :person_id ] )
+    @person = Person.where( :id=>params[ :person_id ] )
+    respond_to do |format|
+      format.json{ render(:layout => false , :json => {"success" => true, "person" => @person,"contact" => @contact}.to_json )}
+    end
   end
 
   def destroy
@@ -19,7 +27,7 @@ class ContactsController < ApplicationController
     else
       contact_person.update_attributes(:sharing => false)
     end 
-    redirect_to :back
+    render :nothing=>true,:status => 200
   end
 
   def request_to_person(person,message)

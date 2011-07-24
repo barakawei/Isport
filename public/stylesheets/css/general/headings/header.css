@@ -69,18 +69,39 @@
     width: 120px;
     background: url("/images/layout/button.png") repeat-x scroll 100% -492px white; }
   .header .setting {
-    float: right;
-    margin-right: 100px;
     display: inline; }
     .header .setting li {
-      position: relative; }
+      position: relative;
+      margin-left: 400px; }
+      .header .setting li .avatar {
+        position: absolute;
+        top: 5px;
+        left: 3px;
+        width: 20px;
+        height: 20px; }
+      .header .setting li a {
+        padding-right: 2px;
+        display: inline; }
+        .header .setting li a .name {
+          display: inline;
+          margin-left: 22px; }
+        .header .setting li a .icon {
+          display: inline;
+          background: url("/images/ui/icons.png") repeat 10px -2588px; }
 
 .accout {
   margin-top: 40px;
-  position: absolute;
-  width: 52px;
-  border: 1px solid black;
-  text-align: center; }
+  width: 60px; }
+  .accout ul {
+    text-align: center; }
+  .accout li {
+    margin: 5px; }
   .accout a {
-    display: block;
-    margin: 5px 0 5px 0px; }
+    padding-left: 3px;
+    padding-top: 3px;
+    padding-right: 21px;
+    padding-bottom: 3px; }
+    .accout a:hover {
+      background-color: #5179ac;
+      color: white;
+      text-decoration: none; }

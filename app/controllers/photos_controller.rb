@@ -9,11 +9,13 @@ class PhotosController < ApplicationController
       else
         params[:photo][:user_file] = file_handler(params)
       end
-      @photo = Photo.initialize(params[ :photo ], self.request.host, self.request.port)
+      @photo = Photo.initialize(params[ :photo ], self.request.host, self.request.port,current_user.person)
 
       if @photo.save
         @photo.process
-        updateUrls(params, @photo)
+        if params[:photo][:is_avatar]
+          updateUrls(params, @photo)
+        end
 
         respond_to do |format|
           if params[:authenticity_token] #upload with iframe

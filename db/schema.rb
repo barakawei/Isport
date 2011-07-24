@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110718094047) do
+ActiveRecord::Schema.define(:version => 20110710120906) do
 
   create_table "administrators", :force => true do |t|
     t.integer  "user_id"
@@ -214,6 +214,7 @@ ActiveRecord::Schema.define(:version => 20110718094047) do
     t.boolean  "pending",           :default => false
     t.string   "random_string"
     t.integer  "item_id"
+    t.integer  "post_id"
   end
 
   create_table "profiles", :force => true do |t|

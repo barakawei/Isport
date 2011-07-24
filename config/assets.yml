@@ -8,6 +8,13 @@ javascripts:
   main:
     - public/javascripts/jquery_ujs.js
     - public/javascripts/fileuploader-custom.js
+
+  scroll_page:
+    - public/javascripts/scrollPage.js
+  show_photo:
+    - public/javascripts/showPhoto.js
+  show_avatar:
+    - public/javascripts/showAvatar.js
   jqueryui:
     - public/javascripts/jquery-ui-1.8.13/js/jquery-ui-1.8.13.custom.min.js
     - public/javascripts/colorbox/jquery.colorbox.js

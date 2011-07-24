@@ -28,10 +28,31 @@ ol, ul, li {
 .container.body {
   padding-top: 60px; }
 
+.overlay {
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  behavior: url(/javascripts/PIE.htc);
+  border: 1px solid #c6c6c6;
+  background: url("/images/ui/shadow.png") repeat scroll 0 0 transparent;
+  position: absolute;
+  z-index: 1001;
+  padding: 3px; }
+
+.overlay_body {
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  behavior: url(/javascripts/PIE.htc);
+  background-color: white;
+  border: 1px solid #c6c6c6;
+  position: relative;
+  text-align: left; }
+
 .floating {
-  -webkit-box-shadow: 0 1px 3px 0 #333333;
-  -moz-box-shadow: 0 1px 3px 0 #333333;
-  box-shadow: 0 1px 3px 0 #333333;
+  -webkit-box-shadow: 0 1px 5px 0 #333333;
+  -moz-box-shadow: 0 1px 5px 0 #333333;
+  box-shadow: 0 1px 5px 0 #333333;
   behavior: url(/javascripts/PIE.htc);
   position: relative;
   z-index: 1;
@@ -78,18 +99,26 @@ h1 .description, h2 .description, h3 .description, h4 .description {
   margin-top: 0.5em; }
 
 .stream_element {
+  min-height: 50px;
+  border-bottom: 1px solid #dddddd;
+  border-top: 1px solid white;
+  padding-top: 10px;
+  padding-bottom: 10px;
   position: relative;
   font-size: 14px; }
   .stream_element .author {
     color: #444444; }
   .stream_element .avatar {
-    padding: 20px 20px; }
+    float: left; }
   .stream_element .right {
     padding: 20px 20px; }
-  .stream_element .content {
+  .stream_element .invite_button {
     position: absolute;
-    left: 80px;
-    top: 20px;
+    left: 350px;
+    top: 20px; }
+  .stream_element .content {
+    position: relative;
+    margin-left: 70px;
     color: #666666;
     font-weight: normal; }
     .stream_element .content img {
@@ -112,11 +141,6 @@ h1 .description, h2 .description, h3 .description, h4 .description {
       font-size: 11px; }
     .stream_element .content .comments .info {
       margin-top: -1px; }
-
-.stream .stream_element {
-  min-height: 50px;
-  border-bottom: 1px solid #dddddd;
-  border-top: 1px solid white; }
 
 label {
   font-weight: normal;
@@ -164,11 +188,14 @@ span.medium_avatar {
   color: #999999;
   text-decoration: none; }
 
-.hidden {
+.hide {
   display: none; }
 
 .person_image {
   height: 100px; }
+
+.block {
+  display: block; }
 
 .inline {
   display: inline; }
@@ -234,3 +261,79 @@ span.medium_avatar {
 
 .app_module_title {
   margin-bottom: 5px; }
+
+#photozone {
+  left: 5px;
+  padding: 0;
+  bottom: 0px;
+  position: absolute;
+  width: 410px; }
+  #photozone li {
+    display: inline-block; }
+    #photozone li img {
+      width: 50px;
+      padding-right: 2px; }
+
+.with_photos {
+  padding-bottom: 70px; }
+
+.photo_form {
+  position: relative; }
+  .photo_form textarea {
+    resize: none; }
+
+.photos_container {
+  position: relative; }
+  .photos_container img {
+    cursor: pointer; }
+
+.avatar_show {
+  position: absolute; }
+  .avatar_show .content {
+    padding-left: 85px;
+    width: 100px;
+    height: 75px; }
+    .avatar_show .content .name {
+      font-size: 18px;
+      color: #5179ac; }
+  .avatar_show .action {
+    margin-top: 10px; }
+  .avatar_show .avatar_panel {
+    padding: 5px; }
+  .avatar_show .avatar {
+    float: left;
+    width: 75px;
+    height: 75px; }
+
+.avatar_container {
+  display: inline-block; }
+
+.relation_button {
+  width: 65px;
+  height: 20px;
+  background: #7faf00;
+  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=$from, endColorstr=$to);
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient (GradientType=0, startColorstr=#739e00, endColorstr=#8cc000)";
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#739e00), to(#8cc000));
+  background: -moz-linear-gradient(top, #739e00 0%, #8cc000 100%);
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  behavior: url(/javascripts/PIE.htc);
+  -webkit-box-shadow: 0 1px 1px 0 rgba(255, 255, 255, 0.25);
+  -moz-box-shadow: 0 1px 1px 0 rgba(255, 255, 255, 0.25);
+  box-shadow: 0 1px 1px 0 rgba(255, 255, 255, 0.25);
+  behavior: url(/javascripts/PIE.htc);
+  border: 1px solid #769800;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 13px;
+  font-weight: bold;
+  line-height: 20px;
+  padding: 3px 5px;
+  text-shadow: 0 -1px rgba(41, 41, 41, 0.5);
+  text-align: center; }
+  .relation_button a {
+    color: white;
+    text-decoration: none;
+    margin: auto; }

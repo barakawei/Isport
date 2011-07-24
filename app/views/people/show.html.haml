@@ -1,3 +1,7 @@
+-content_for :head do
+  =include_javascripts :scroll_page
+  =include_javascripts :show_photo
+  =include_javascripts :show_avatar
 .span-6
   .left_side
     .avatar
@@ -33,13 +37,10 @@
     -if current_user.person.id == @person.id
       = render "status_messages/status_message"
     .stream
-      = render :partial => 'status_messages/status_message_element',
-             :collection => @posts,
-             :as => :post
   .action{ :style => "display: none" }
 
 .span-6.last
-  .right_side
+  .right_side.avatar_panel
     #friend_listings
       - if @friends.length > 0
         .contacts
@@ -49,7 +50,8 @@
             - else
               = "他的好友"
           - for friend in @friends
-            = person_image_link(friend)
+            .avatar_container
+              = person_image_link(friend)
           %h4
             =link_to t( 'more' ),{:controller => 'people',:action => 'show_friends'}
       - else
@@ -64,7 +66,8 @@
               = "他关注的人"
 
           - for person in @followed_people
-            = person_image_link(person)
+            .avatar_container
+              = person_image_link(person)
           %h4
             =link_to t( 'more' ),{:controller => 'people',:action => 'show_friends'}
 
@@ -78,12 +81,14 @@
               = "关注他的人"
 
           - for person in @befollowed_people
-            = person_image_link(person)
+            .avatar_container
+              = person_image_link(person)
           %h4
             =link_to t( 'more' ),{:controller => 'people',:action => 'show_friends'}
 
 
 :javascript
+  $.get("/people/show_posts",{person_id:#{@person.id}}  ); 
   $(function(){
   $(".private_message").colorbox({ inline:true, href:"#private_message"});	
   });
@@ -106,4 +111,5 @@
       }  
     return false;
     });
+
 

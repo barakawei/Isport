@@ -1,6 +1,6 @@
 class PeopleController < ApplicationController
   before_filter :authenticate_user!
-  respond_to :html
+  respond_to :js,:html
 
   def index
     params[:q] ||= params[:term]
@@ -55,10 +55,14 @@ class PeopleController < ApplicationController
       @friends = @person.user.friends
       @followed_people = @person.user.followed_people
       @befollowed_people = @person.user.befollowed_people
-      @posts = Post.where(:author_id => @person.id ).order("created_at DESC" )
       @favorite_items = Item.joins( :favorites ).where( :favorites => {:person_id => @person.id })
       @events_inv = Event.joins(:involvements).where(:involvements => { :person_id => @person.id }  )
     end
+  end
+
+  def show_posts
+    @posts = Post.where(:author_id => params[ :person_id ],:type => "StatusMessage" ).order("created_at DESC" ).paginate( :page => params[:page], :per_page => 10 )
+    respond_with @posts
   end
 
   def friend_select

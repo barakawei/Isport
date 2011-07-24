@@ -104,3 +104,22 @@ dd {
   padding-top: 10px;
   margin-bottom: 10px;
   border-bottom: 1px solid #cccccc; }
+
+.pagination {
+  padding-top: 10px;
+  text-align: center; }
+
+#profile_edit .person_photo {
+  width: 200px; }
+#profile_edit .person_info {
+  width: 500px; }
+  #profile_edit .person_info .info_panel .button {
+    margin-left: 150px;
+    margin-top: 10px; }
+  #profile_edit .person_info .info_panel label {
+    display: inline-block;
+    width: 100px;
+    text-align: right;
+    padding: 10px; }
+#profile_edit h4 {
+  border-bottom: 1px solid #cccccc; }

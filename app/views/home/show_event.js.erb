@@ -1,2 +1,8 @@
-$('.feed_container').html("<%= escape_javascript(render('notifications/notifications_container')) %>");
+content = "<%= escape_javascript(render('notifications/notifications_container')) %>";
+
+if( "<%= @tab %>" !="" ){
+  $('.feed_container').html(content);
+}else{
+  $('.feed_container').append(content);
+}
 

@@ -14,7 +14,10 @@ function processPost(postId,html){
         );
        }
       $("abbr.timeago").timeago();
-      $( "#status_message_content").val("");
+      textarea = $( ".photo_form textarea");
+      textarea.removeClass( "with_photos" );
+      textarea.val("");
+      $( "#photozone" ).html( "" );
     }      
 }
 

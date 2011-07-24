@@ -58,7 +58,7 @@
             %span.medium_avatar=link_to group.name, group
   .span-6.last
     .span-6.left_padding
-      %h4= link_to t('items.events'), events_time_path(:id => @item.id, :time => :week)
+      %h4= link_to t('items.events'), event_filter_path(@city.pinyin, nil, @item.id, 'week') 
     .span-6
       - @events.each_with_index do |event, index|
         .span-6

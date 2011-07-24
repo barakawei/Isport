@@ -29,8 +29,16 @@ class Item < ActiveRecord::Base
      end
   end
 
-  def hot_items
-
+  def self.hot_items(size, user) 
+    if user == nil
+      self.joins(:events).where(:events => {:start_at => (Time.now.beginning_of_week)..(Time.now.end_of_week)})
+          .group(:id).order("count(subject_id) DESC").limit(size)
+    else
+      city = City.find_by_pinyin(current_user.city.pinyin)
+      self.joins(:events).joins(:location)
+          .where(:events => {:start_at => (Time.now.beginning_of_week)..(Time.now.end_of_week), :locations => {:city_id => city.id}})
+          .group(:id).order("group(subject_id) DESC").limit(size)
+    end
   end
 
 end

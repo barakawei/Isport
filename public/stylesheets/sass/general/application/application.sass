@@ -38,8 +38,23 @@ ol, ul, li
   :padding
     :top 60px
 
+.overlay
+  @include border-radius(4px)
+  :border 1px solid #C6C6C6
+  :background url("/images/ui/shadow.png") repeat scroll 0 0 transparent
+  :position absolute
+  :z-index 1001
+  :padding 3px
+.overlay_body
+  @include border-radius(3px)
+  :background-color #FFFFFF
+  :border 1px solid #C6C6C6
+  :position relative
+  :text-align left
+    
+
 .floating
-  @include box-shadow(0,1px,3px,0,#333)
+  @include box-shadow(0,1px,5px,0,#333)
   :position relative
   :z-index 1
   :background
@@ -89,19 +104,30 @@ h1,h2,h3,h4
       :top 0.5em 
 
 .stream_element
+  :min-height 50px
+  :border
+    :bottom 1px solid #ddd
+    :top 1px solid #fff
+
+  :padding
+    :top 10px
+    :bottom 10px
   .author
     :color #444444
   :position relative
   :font
     :size 14px
   .avatar
-    :padding 20px 20px
+    :float left
   .right
     :padding 20px 20px
-  .content
+  .invite_button
     :position absolute
-    :left 80px
+    :left 350px
     :top 20px
+  .content
+    :position relative
+    :margin-left 70px
     :color #666
     :font
       :weight normal
@@ -137,14 +163,6 @@ h1,h2,h3,h4
       .info
         :margin
           :top -1px
-  
-.stream
-  .stream_element
-    :min-height 50px
-    :border
-      :bottom 1px solid #ddd
-      :top 1px solid #fff
-
 
 label
   :font
@@ -198,12 +216,14 @@ span.medium_avatar
     color: #999999
     text-decoration: none
 
-.hidden
+.hide
   :display none
 
 .person_image
   :height 100px
 
+.block
+  :display block
 .inline
   :display inline
 
@@ -264,4 +284,72 @@ span.medium_avatar
 
 .app_module_title 
   :margin-bottom 5px
+
+#photozone
+  li 
+    :display inline-block
+    img
+      :width 50px
+      :padding-right 2px
+  :left 5px
+  :padding 0
+  :bottom 0px
+  :position absolute
+  :width 410px
+      
+.with_photos
+  :padding-bottom 70px
+
+.photo_form
+  :position relative
+  textarea
+    :resize none
+
+.photos_container
+  :position relative
+  img
+    :cursor pointer
+
+.avatar_show
+  .content
+    :padding-left 85px
+    :width 100px
+    :height 75px
+    .name
+      :font-size 18px
+      :color $blue
+  .action
+    :margin
+      :top  10px
+  .avatar_panel
+    :padding 5px    
+  :position absolute
+  .avatar
+    :float left
+    :width 75px
+    :height 75px
+
+.avatar_container
+  :display inline-block
+
+.relation_button
+  :width 65px
+  :height 20px
+  @include linear-gradient(#739E00, #8CC000)
+  @include border-radius( 5px )
+  @include box-shadow(0,1px,1px,0,rgba(255, 255, 255, 0.25))
+  border: 1px solid #769800
+  cursor: pointer
+  display: inline-block
+  font-size: 13px
+  font-weight: bold
+  line-height: 20px
+  padding: 3px 5px
+  text-shadow: 0 -1px rgba(41, 41, 41, 0.5)
+  text-align: center
+
+  a
+    :color #FFFFFF
+    :text-decoration none
+    :margin auto
 

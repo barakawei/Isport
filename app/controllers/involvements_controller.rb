@@ -16,10 +16,13 @@ class InvolvementsController < ApplicationController
   end
 
   def create
-    involvment = Involvement.new(:event_id => @event.id, :person_id => @person.id) if @event.joinable?
-    if involvment.save
-     @event.dispatch_event(:involvement,current_user )
+    inv = Involvement.where(:event_id => @event.id, :person_id => @person.id).first
+    if inv
+      inv.update_attributes( { :is_pending => false } )
+    else
+      involvment = Involvement.new(:event_id => @event.id, :person_id => @person.id) if @event.joinable?
     end
+     @event.dispatch_event(:involvement,current_user )
     redirect_to :back
   end
 

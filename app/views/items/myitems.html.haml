@@ -19,7 +19,7 @@
           %br
           %span.detail
             = link_to t('items.eventsthisweek', :count => item[:events_count]), 
-                          events_time_path(:id => item[:item].id, :time => :week)
+                          event_filter_path(@city.pinyin, nil, item[:item].id, 'week')
           %br
           %span.detail= link_to t('items.groupsthiscity', :count => item[:groups_count]), 
                           group_filter_path(:city => @city.pinyin, :item_id => item[:item].id)

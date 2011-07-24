@@ -3,6 +3,8 @@
   .content
     .from
       = person_link(post.author, :class => 'author')
+    .photos
+      = render 'photos/photos_container',:photos => post.photos
     %p
       = post.content
     .content_info
@@ -10,7 +12,7 @@
         =how_long_ago( post )
       %span.action
         =link_to "回复(#{post.comments.size})","#",:class => "replay"
-  .comment_form.hidden
+  .comment_form.hide
     = form_for([post,Comment.new], :remote => true) do |f|
       = f.text_area :content, :rows => 2
       = f.submit "回复", :class => 'button'
