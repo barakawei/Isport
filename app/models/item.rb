@@ -29,16 +29,31 @@ class Item < ActiveRecord::Base
      end
   end
 
-  def self.hot_items(size, user) 
+  def self.hot_items(size, user)
+    items = [  ]
+
     if user == nil
-      self.joins(:events).where(:events => {:start_at => (Time.now.beginning_of_week)..(Time.now.end_of_week)})
-          .group(:id).order("count(subject_id) DESC").limit(size)
+      items = self.joins(:events).where(:events => {:start_at => (Time.now.beginning_of_week)..(Time.now.end_of_week)})
+          .group(:subject_id).order("count(subject_id) DESC").limit(size)
+
+      if items.length < size
+        items = self.joins(:events).where(:events => {:start_at => (Time.now.beginning_of_month)..(Time.now.end_of_month)})
+         .group(:subject_id).order("count(subject_id) DESC").limit(size)
+      end
     else
-      city = City.find_by_pinyin(current_user.city.pinyin)
-      self.joins(:events).joins(:location)
+      city = City.find_by_pinyin(user.city.pinyin)
+      items = self.joins(:events).joins(:location)
           .where(:events => {:start_at => (Time.now.beginning_of_week)..(Time.now.end_of_week), :locations => {:city_id => city.id}})
           .group(:id).order("group(subject_id) DESC").limit(size)
+
+      if items.length < size
+       items = self.joins(:events).joins(:location)
+         .where(:events => {:start_at => (Time.now.beginning_of_month)..(Time.now.end_of_month), :locations => {:city_id => city.id}})
+         .group(:subject_id).order("group(subject_id) DESC").limit(size)
+      end
     end
+    
+    return items
   end
 
 end
