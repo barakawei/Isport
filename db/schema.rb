@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110723174042) do
+ActiveRecord::Schema.define(:version => 20110725134421) do
 
   create_table "administrators", :force => true do |t|
     t.integer  "user_id"
@@ -96,6 +96,7 @@ ActiveRecord::Schema.define(:version => 20110723174042) do
     t.integer  "item_id"
     t.integer  "participants_limit", :default => 100
     t.integer  "location_id"
+    t.integer  "group_id",           :default => 0
   end
 
   create_table "favorites", :force => true do |t|

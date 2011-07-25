@@ -30,6 +30,7 @@ class EventsController < ApplicationController
     @to_be_invited_friends = current_user.friends - @invitees || []
     @invitees.slice!(9, @invitees.length)
     @step = 2
+    @steps = [I18n.t('events.new_event_wizards.step_1'), I18n.t('events.new_event_wizards.step_2')]
     render :action => "new" 
   end
 

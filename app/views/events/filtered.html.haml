@@ -42,6 +42,7 @@
         = link_to '周末', event_filter_path(@city.pinyin, @district_id, @item_id, 'weekends'),  :class => "#{ 'current' if 'weekends' == @time}" 
         = link_to '一个月内', event_filter_path(@city.pinyin, @district_id, @item_id, 'next_month'),  :class => "#{ 'current' if 'next_month' == @time}" 
         = link_to '时间选择', 'javascript:void(0)'
+  %h2
 
 %hr.space
 .span-24.search_result

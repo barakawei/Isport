@@ -12,6 +12,7 @@ class GroupsController < ApplicationController
 
   def show
     @group = Group.find(params[:id])
+    @recent_events = @group.events.order('created_at desc').limit(4)
     @members = @group.members.limit(9)
     @current_person = current_user.person if current_user
     @topics = @group.topics.limit(10)

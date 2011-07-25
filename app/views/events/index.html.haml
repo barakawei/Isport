@@ -61,7 +61,7 @@
   %h2
   .hot_events
     -@hot_items.each do |i|
-      .hot_items_events
+      .hot_items_events#shit
         .item_avatar
           = item_image_link(i, :size => :thumb_large)
         = link_to '更多', event_filter_path(:city => @city.pinyin, :item_id => i.id), :class => 'right more'
@@ -73,7 +73,6 @@
               %p= l(e.start_at, :format => :long)
               .at_bottom
                 %p= t('events.short_involvement', :count => e.participants.size)
-      %hr
 
 
 :javascript
