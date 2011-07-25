@@ -22,7 +22,7 @@ zh:
   upload: "上传海报"
   submit: "保存并继续"
   email: "电子邮箱"
-  password: "密码"
+  password: "登录密码"
   password_confirmation: "密码确认"
   back: "返回"
   pagination:
