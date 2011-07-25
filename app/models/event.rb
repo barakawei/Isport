@@ -73,15 +73,9 @@ class Event < ActiveRecord::Base
 
   def self.hot_event(city)
     events = Event.includes(:involvements, :recommendations)
-                  .week.not_started.at_city(city)
-    events = Event.includes(:involvements, :recommendations)
-                  .month.not_started.at_city(city) unless events.size > 0
-    events = Event.includes(:involvements, :recommendations)
-                  .week.at_city(city) unless events.size > 0
+                  .month.not_started.at_city(city) 
     events = Event.includes(:involvements, :recommendations)
                   .month.at_city(city) unless events.size > 0
-    events = Event.includes(:involvements, :recommendations)
-                  .next_month.at_city(city) unless events.size > 0
 
     events.sort! {|x,y| y.involvements.size + y.recommendations.size <=> 
                         x.involvements.size + x.recommendations.size } 

@@ -7,7 +7,7 @@
     border: 1px solid #dddddd; }
 
 .group_des {
-  width: 509px;
+  width: 539px;
   float: left;
   height: 200px;
   border-right: 1px solid #dddddd; }
@@ -15,12 +15,12 @@
     margin-bottom: 0; }
   .group_des .description {
     overflow: hidden;
-    padding-left: 20px;
-    padding-right: 20px; }
+    padding-left: 10px;
+    padding-right: 10px; }
 
 .group_info {
-  height: 200px;
-  padding: 0 0 0 10px; }
+  width: 200px;
+  height: 200px; }
   .group_info p {
     margin-bottom: 0; }
   .group_info .relative {

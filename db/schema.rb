@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110718094047) do
+ActiveRecord::Schema.define(:version => 20110723174042) do
 
   create_table "administrators", :force => true do |t|
     t.integer  "user_id"
@@ -23,7 +23,6 @@ ActiveRecord::Schema.define(:version => 20110718094047) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "pinyin"
-<<<<<<< HEAD
   end
 
   create_table "comments", :force => true do |t|
@@ -34,8 +33,6 @@ ActiveRecord::Schema.define(:version => 20110718094047) do
     t.datetime "updated_at"
     t.string   "type"
     t.integer  "post_id"
-=======
->>>>>>> 5f27b31abf6d31af502dca59f4bc6c32af37ecb0
   end
 
   create_table "contacts", :force => true do |t|
@@ -74,20 +71,12 @@ ActiveRecord::Schema.define(:version => 20110718094047) do
   end
 
   create_table "event_comments", :force => true do |t|
-<<<<<<< HEAD
-    t.integer "person_id"
-    t.text    "content"
-    t.integer "commentable_id"
-    t.string  "commentable_type"
-=======
     t.integer  "person_id"
     t.text     "content"
     t.integer  "commentable_id"
+    t.string   "commentable_type"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "post_id"
-    t.string   "commentable_type"
->>>>>>> 5f27b31abf6d31af502dca59f4bc6c32af37ecb0
   end
 
   create_table "events", :force => true do |t|
@@ -97,7 +86,7 @@ ActiveRecord::Schema.define(:version => 20110718094047) do
     t.text     "description"
     t.string   "address"
     t.integer  "subject_id"
-    t.boolean  "ispublic"
+    t.boolean  "is_private"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "image_url"

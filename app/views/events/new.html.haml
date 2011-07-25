@@ -4,13 +4,7 @@
 .span-24
   .span-17
     %h2.title= t('events.new_event')
-  .span-24.wizard
-    .span-2
-      %br
-    .span-5.last.wizard-step.first_step{:class => (@step == 1 ? 'current' : 'not_current')}
-      %h4= '1. 填写活动信息'
-    .span-5.wizard-step.last_step{:class => (@step == 2 ? 'current' : 'not_current')}
-      %h4= '2. 邀请好友'
+  =render :partial => 'common/wizard_steps', :locals => { :steps => @steps, :current_step => @step}
 - if @step == 1
   = render 'form', :is_edit => false
 - else

@@ -1,19 +1,21 @@
-- if group.has_member?(current_user.person)
-  %h5.blue.inline= t('groups.person.status.joined')+ ","
-  = link_to t("groups.person.operations.exit"), group_membership_path(group), :class => "button block", :method => :delete
-- elsif group.has_pending_member?(current_user.person)  
-  - if group.need_invitation
-    %h5.blue= t('groups.person.status.invited') + ":"
-    = link_to t("groups.person.operations.accept"), group_memberships_path(group), :class => "button block", :method => :post
-    = link_to t("groups.person.operations.refuse"), group_membership_path(group), :class => "button block", :method => :delete
-  -elsif group.need_authenticate
-    %h5.blue.inline= t('groups.person.status.request_pending')
-- else
-  - if group.need_invitation_from_admin
-    %h5.blue= t('groups.join_mode_des.invite_by_admin')
-  - elsif group.need_invitation_from_member
-    %h5.blue= t('groups.join_mode_des.invite_by_member') 
+- unless group.is_admin(@current_person)
+  - if group.has_member?(@current_person)
+    %h5.blue.inline= t('groups.person.status.joined')+ ","
+    = link_to t("groups.person.operations.exit"), group_membership_path(group), :class => "button block", :method => :delete
+  - elsif group.has_pending_member?(current_user.person)  
+    - if group.need_invitation
+      %h5.blue= t('groups.person.status.invited') + ":"
+      = link_to t("groups.person.operations.accept"), group_memberships_path(group), :class => "button block", :method => :post
+      = link_to t("groups.person.operations.refuse"), group_membership_path(group), :class => "button block", :method => :delete
+    -elsif group.need_authenticate
+      %h5.blue.inline= t('groups.person.status.request_pending')
   - else
-    = link_to t('groups.person.operations.join'), group_memberships_path(group), 
-                            :class => "button block", :method => :post 
-
+    - if group.need_invitation_from_admin
+      %h5.blue= t('groups.join_mode_des.invite_by_admin')
+    - elsif group.need_invitation_from_member
+      %h5.blue= t('groups.join_mode_des.invite_by_member') 
+    - else
+      = link_to t('groups.person.operations.join'), group_memberships_path(group), 
+                              :class => "button block", :method => :post 
+- else
+  = link_to '编辑小组', edit_group_path(group), :class => 'button block'

@@ -6,7 +6,7 @@
 
 .event_des
   .description
-    %h3= event.title
+    %h3= link_to event.title, event_path(event)
     %hr
     %h4= "活动内容:"
     %p= simple_format trim_info(event.description, 150)

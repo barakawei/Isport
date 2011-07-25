@@ -26,8 +26,8 @@ class EventsController < ApplicationController
   def invite_friends
     @event = Event.find(params[:id])
     @invitees =  @event.invitees
-    @invitees_size = size = @invitees.size
-    @to_be_invited_friends = current_user.friends - @invitees
+    @invitees_size = @invitees.size
+    @to_be_invited_friends = current_user.friends - @invitees || []
     @invitees.slice!(9, @invitees.length)
     @step = 2
     render :action => "new" 
@@ -52,6 +52,7 @@ class EventsController < ApplicationController
   end
 
   def new
+    @steps = [I18n.t('events.new_event_wizards.step_1'), I18n.t('events.new_event_wizards.step_2')]
     @step = 1 
     @event = Event.new
     @event.location = Location.new(:city_id => 1, :district_id => 1, :detail => " ")
@@ -84,6 +85,8 @@ class EventsController < ApplicationController
     if @event.save
       redirect_to new_event_invite_path(@event)
     else
+      @step = 1
+      @steps = [I18n.t('events.new_event_wizards.step_1'), I18n.t('events.new_event_wizards.step_2')]
       render :action => :new
     end
   end

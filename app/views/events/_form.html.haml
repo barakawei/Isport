@@ -1,26 +1,26 @@
 -content_for :head do
-  = include_javascripts :google_map
-.span-18.event_form 
+  = include_javascripts :jquery_validation
+.span-19.event_form 
   = form_for @event, :html => { :multipart => true }, do |f|
     .span-6
       = render "photos/new_event_photo", :event => @event, :is_edit => is_edit, :model_name => "event"
-    .form_area
+    .span-13.last
       .field
-        = f.label t('activerecord.attributes.event.title')
+        = f.label t('activerecord.attributes.event.title'), :class => "info"
         = f.text_field :title
         = error_on(@event, :title)
       .field.module
-        = f.label t('activerecord.attributes.event.start_at')
+        = f.label t('activerecord.attributes.event.start_at'), :class => "info"
         .top
           = f.datetime_select :start_at
         = error_on(@event, :start_at)
       .field
-        = f.label t('activerecord.attributes.event.end_at')
+        = f.label t('activerecord.attributes.event.end_at'), :class => "info"
         .top
           = f.datetime_select :end_at
         = error_on(@event, :end_at)
       .field
-        = f.label t('activerecord.attributes.event.location')
+        = f.label t('activerecord.attributes.event.location'), :class => "info"
         .address
           = f.fields_for :location do |location_form|
             = location_form.collection_select :city_id, City.all, :id, :name, {:prompt => true}
@@ -28,19 +28,19 @@
             = location_form.text_field :detail
         = error_on(@event, :location)
       .field.module
-        = f.label t('activerecord.attributes.event.description')
+        = f.label t('activerecord.attributes.event.description'), :class => "info"
         = f.text_area :description
         = error_on(@event, :description)
       .field.subject.module
-        = f.label t('activerecord.attributes.event.subject')
+        = f.label t('activerecord.attributes.event.subject'), :class => "info"
         = collection_select(:event, :subject_id, Item.all, :id, :name, {:prompt => true})
         = error_on(@event, :subject_id)
       .field
-        = f.label t('activerecord.attributes.event.ispublic')
-        = f.check_box :ispublic
+        = f.label t('activerecord.attributes.event.is_private'), :class => "info"
+        = f.check_box :is_private
         %br.clear
       .field#participants_limit
-        = f.label t('activerecord.attributes.event.participants_limit')
+        = f.label t('activerecord.attributes.event.participants_limit'), :class => "info"
         = f.text_field :participants_limit
         = error_on(@event, :participants_limit)
       .field.hide
@@ -53,6 +53,42 @@
       %p 
       
 :javascript
+  $(function() {
+    var validator = $('#new_event').add('form.edit_event').validate({
+      rules: {
+        "event[title]": {
+          required: true,
+          maxlength: 40
+        }, 
+        "event[description]": {
+          required: true,
+          maxlength: 2000 
+        },
+        "event[location_attributes][detail]": {
+          required: true,
+          maxlength: 40
+        },
+        "event[subject_id]": "required"
+      },
+      messages: {
+        "event[title]": {
+          required: "请输入活动名称",
+          maxlength: "活动名称不能超过{0}个字符"
+        },
+        "event[description]": {
+          required: "请输入活动描述",
+          maxlength: "活动描述不能超过{0}个字符"
+        },
+        "event[location_attributes][detail]": {
+          required: '请输入活动详细地址',
+          maxlength: '活动详细地址不能超过{0}个字符' 
+        },
+        "event[subject_id]": {
+          required: '请选择活动所属项目'
+        }
+      }
+    }); 
+  });
   $("#event_location_attributes_city_id").change(function() {
     $.get("#{districts_of_city_path}", {id: $("#event_location_attributes_city_id").val(),
                                         select_name:'event[location_attributes][district_id]'}, function(data){

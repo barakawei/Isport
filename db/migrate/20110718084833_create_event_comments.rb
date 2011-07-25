@@ -5,6 +5,8 @@ class CreateEventComments < ActiveRecord::Migration
       t.text :content
       t.integer :commentable_id
       t.string :commentable_type
+
+      t.timestamps
     end
   end
 

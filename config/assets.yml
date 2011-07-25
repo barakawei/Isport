@@ -23,6 +23,8 @@ javascripts:
     - public/javascripts/jquery.timeago.js
   jquery_form:
     - public/javascripts/jquery.form.js
+  jquery_validation:
+    - public/javascripts/jquery.validate.js
 
   friend_select:
     - public/javascripts/fcbk/fcbklistselection.js
@@ -33,6 +35,8 @@ javascripts:
 stylesheets:
   blueprint:
     - public/stylesheets/css/plugins/blueprint/screen.css
+  wizard_steps:
+    - public/stylesheets/css/general/common/wizard_steps.css
     
   default:
     - public/stylesheets/css/general/application/application.css
@@ -86,6 +90,8 @@ stylesheets:
     - public/stylesheets/css/special_pages/groups/index.css
   sepcial_pages_groups_hottest:
     - public/stylesheets/css/special_pages/groups/hottest.css
+  sepcial_pages_groups_edit:
+    - public/stylesheets/css/special_pages/groups/edit.css
 
 
   special_pages_topic_form:

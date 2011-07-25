@@ -1,48 +1,84 @@
+-content_for :head do
+  = include_javascripts :jquery_validation
 = form_for @group, :html => { :multipart => true }, do |f|
   .span-6.last
     = render "photos/new_group_photo", :group => @group, :is_edit => is_edit, :model_name => "group"
-  .span-17.form_area
+  .span-13.form_area
     .field
-      = f.label t('groups.name') + ":" 
+      = f.label t('groups.name'), :class => 'field_info'
       = f.text_field :name
-    .field
-      = f.label t('groups.description') + ":" 
+      = error_on(@group, :name)
+    .field.module
+      = f.label t('groups.description') + ":" , :class => 'field_info'
       = f.text_area:description
+      = error_on(@group, :description)
     .field
-      = f.label t('groups.item')+ ":"   
+      = f.label t('groups.item')+ ":", :class => 'field_info'   
       = f.collection_select :item_id, Item.all, :id, :name, {:prompt => true}
-    .field
-      = f.label t('groups.city') + ":" 
+      = error_on(@group, :item_id)
+    .field.module
+      = f.label t('groups.city') + ":", :class => 'field_info' 
       = f.collection_select :city_id, City.all, :id, :name, {:prompt => true}
       = f.collection_select :district_id, @group.city.districts, :id, :name
     .field
-      = f.label t('groups.is_private') + ":" 
+      = f.label t('groups.is_private') + ":", :class => 'field_info' 
       = f.check_box :is_private
     .field
-      = f.label t('groups.join_mode.name') + ":" 
+      = f.label t('groups.join_mode.name') + ":", :class => 'field_info' 
       .group_radio_button
-        = f.radio_button :join_mode, 1 
-        = f.label t('groups.join_mode.invite_by_admin') 
-        %br
-        = f.radio_button :join_mode, 2
-        = f.label 'xixi', t('groups.join_mode.invite_by_member') 
+        = f.radio_button :join_mode, 4 
+        = f.label 'xixi',  t('groups.join_mode.no_restrict') 
         %br
         = f.radio_button :join_mode, 3 
         = f.label 'xixi', t('groups.join_mode.authenticate_before_join') 
         %br
-        = f.radio_button :join_mode, 4 
-        = f.label 'xixi',  t('groups.join_mode.no_restrict') 
+        = f.radio_button :join_mode, 2
+        = f.label 'xixi', t('groups.join_mode.invite_by_member') 
+        %br
+        = f.radio_button :join_mode, 1 
+        = f.label t('groups.join_mode.invite_by_admin') 
+      = error_on(@group, :join_mode)
     .field.hide
       = f.text_field :image_url_large
       = f.text_field :image_url_medium
       = f.text_field :image_url_small
     .actions
-      = f.submit 'Save'
+      = f.submit '完成'
 
 :javascript
+  $(function() {
+    var validator = $("#new_group").add("form.edit_group").validate({  
+      rules:{
+        "group[name]": {
+          required: true,
+          maxlength: 40 
+         },
+        "group[description]": {
+            required: true,
+            maxlength: 1000 
+         },
+        "group[item_id]": "required"
+      },
+      messages: {
+        "group[name]": {
+          required: "请输入小组名称",
+          maxlength: "小组名称不能超过{0}个字符"
+        },
+        "group[description]": {
+          required: "请输入小组描述",
+          maxlength: "小组描述不能超过{0}个字符"
+        },
+        "group[item_id]": {
+          required: "请选择小组所属项目"
+        }
+      }
+    });  
+  });
+
   $('#group_city_id').change(function() {
     $.get("#{districts_of_city_path}", {id: $("#group_city_id").val(),
                                         select_name: 'group[district_id]'}, function(data){
       $("#group_district_id").replaceWith(data);
     });
   }); 
+  

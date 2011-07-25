@@ -4,14 +4,14 @@
    
     - if to_be_invited
       .span-14.friends
-        = render :partial => "event_participants", :locals => { :participants => to_be_invited, 
+        = render :partial => "events/event_participants", :locals => { :participants => to_be_invited, 
                                                                 :perline => 7, 
                                                                 :no_pagination => true, 
                                                                 :edit => true}
     .span-14
       %span.right
         = link_to '发送邀请', '#', :class => 'button invite'
-        = link_to '跳过', event_path(event), :class => 'button'
+        = link_to '完成', group_path(group), :class => 'button'
 
   .span-6.prepend-1.invited_friends
     .span-6
@@ -19,7 +19,7 @@
         = '已向'
         = link_to "#{invitees_size}", '#'
         = '位好友发出邀请'
-    = render :partial => "event_participants", :locals => { :participants => invitees_summary, 
+    = render :partial => "events/event_participants", :locals => { :participants => invitees_summary, 
                                                             :perline => 3, 
                                                             :no_pagination => true, 
                                                             :edit => false}
@@ -48,8 +48,7 @@
       $('.friends input:checked').each(function(index) {
         data = data + $(this).val() + ',';
       });
-      
-      $.post("#{event_invite_path(event.id)}", {selectedIds: data}); 
+      $.post("#{group_invite_path(group.id)}", {selectedIds: data}); 
       location.reload();
     }
     return false;

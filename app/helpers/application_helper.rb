@@ -101,4 +101,11 @@ module ApplicationHelper
      :param_name => (param_name == nil) ? :page : param_name,
      :params => param} 
   end
+
+  def error_on(model, field)
+    if model.errors[field].any?
+      %(<span class='validation-error'>
+        *#{I18n.t("activerecord.attributes."+ model.class.to_s.downcase + "."+field.to_s)}#{model.errors[field].flatten[0]}</span>).html_safe
+    end
+  end
 end
