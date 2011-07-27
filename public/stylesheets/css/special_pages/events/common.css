@@ -1,24 +1,2 @@
 .title {
   margin-bottom: 0; }
-
-.wizard {
-  margin-top: 10px;
-  margin-bottom: 20px; }
-  .wizard .wizard-step {
-    text-align: center;
-    height: 20px;
-    padding: 5px;
-    border: 2px solid #aaaaaa; }
-    .wizard .wizard-step h4 {
-      color: #888888; }
-  .wizard .wizard-step.last_step.not_current {
-    border-left: none; }
-  .wizard .wizard-step.first_step.not_current {
-    border-right: none; }
-  .wizard .wizard-step.current {
-    border: 2px solid #111111; }
-    .wizard .wizard-step.current h4 {
-      color: #111111; }
-
-.invite_friends {
-  padding: 15px; }

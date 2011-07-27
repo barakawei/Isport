@@ -1,12 +1,13 @@
 .span-24
   .span-16
     %h4= link_to '全选', "#", :class => 'select_all_friend'
-    
-    .span-14.friends
-      = render :partial => "event_participants", :locals => { :participants => to_be_invited, 
-                                                              :perline => 7, 
-                                                              :no_pagination => true, 
-                                                              :edit => true}
+   
+    - if to_be_invited
+      .span-14.friends
+        = render :partial => "event_participants", :locals => { :participants => to_be_invited, 
+                                                                :perline => 7, 
+                                                                :no_pagination => true, 
+                                                                :edit => true}
     .span-14
       %span.right
         = link_to '发送邀请', '#', :class => 'button invite'

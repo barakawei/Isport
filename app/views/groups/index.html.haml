@@ -7,27 +7,26 @@
     %h4.inline= link_to city.name, "/groups/?city=#{city.pinyin}"
 
 .span-24
-  %h2.title
-    = '小组:'
-    = link_to @city.name , '#', :id => 'switch_city'
-  %hr
+  %h2.inline= '乐玩小组'
+  %h3.inline= link_to @city.name , '#', :id => 'switch_city'
+  =link_to '创建小组', new_group_path, :class => 'button right'
 
-%h4='本周热门:'
-.span-24.hot_box
-  %h2
-  .hot_groups
-    #slider
-      %ul
-        - @hot_groups.each do |g|
-          %li
-            = render 'hottest_group', :group => g
-    %span#preBtn= link_to left_arrow, 'javascript:void(0);'
-    %span#nextBtn= link_to right_arrow, 'javascript:void(0);'
-%hr.space
-%hr.space
-%h4='寻找你喜欢的小组:'
+- if @hot_groups.size > 0
+  .span-24.hot_box
+    %h4.app_module_title='本周热门'
+    %h2
+    .hot_groups
+      #slider
+        %ul
+          - @hot_groups.each do |g|
+            %li
+              = render 'hottest_group', :group => g
+      - if @hot_groups.size > 1
+        %span#preBtn= link_to left_arrow, 'javascript:void(0);'
+        %span#nextBtn= link_to right_arrow, 'javascript:void(0);'
     
 .span-24.hot_box
+  %h4.app_module_title='寻找你喜欢的小组'
   %h2
   .hot_groups
     .search_line
@@ -45,10 +44,8 @@
         - @city.districts.each do |d| 
           = link_to d.name, group_filter_path(:city => @city.pinyin, @district_id => d.id)
 
-%hr.space
-%hr.space
-%h4='推荐小组:'
 .span-24.hot_box
+  %h4.app_module_title='推荐小组'
   %h2
   .hot_groups
     - @hot_items.each do |i|
@@ -62,8 +59,6 @@
             = trim_info(g.name, 9)
       %hr
 
-
-
 :javascript
   $(function() {
     var left = $('#switch_city').offset().left;
@@ -75,21 +70,39 @@
   $('#nextBtn').bind('click', slideRight);
   $('#preBtn').bind('click', slideLeft);
 
+  var first_li = "0px"; 
+  var last_li = "-" + parseInt("#{@hot_groups.size-1}") * 908 + 'px';
+
+  function getPre(current) {
+    var pre = parseInt(current.match(/\d+/)) - 908;
+    if(pre == 0) {
+      return pre+'px';
+    }else {
+      return '-' + pre + 'px'; 
+    }
+  }
+
+  function getNext(current) {
+    var next = parseInt(current.match(/\d+/)) + 908;
+    if(next == 0) {
+      return next+'px';
+    }else {
+      return '-' + next + 'px'; 
+    }
+  }
+
+
   function slideLeft() {
     $('#preBtn').unbind('click');
     var left = $('#slider ul').css('marginLeft');
-    if(left == '0px') {
+    if(left == first_li) {
         $('#slider ul li:last').after($('#slider ul li:first'));
-        $('#slider ul').css('marginLeft', '-1816px');
-        $('#slider ul').animate({marginLeft: '-908px'}, 300, function(){ 
+        $('#slider ul').css('marginLeft', last_li);
+        $('#slider ul').animate({marginLeft: getPre(last_li)}, 300, function(){ 
           $('#preBtn').bind('click', slideLeft);
         });
-    } else if(left == '-908px') {
-      $('#slider ul').animate({marginLeft: '0px'}, 300, function(){
-        $('#preBtn').bind('click', slideLeft);
-       });
     } else {
-      $('#slider ul').animate({marginLeft: '-908px'}, 300, function(){
+      $('#slider ul').animate({marginLeft: getPre(left)}, 300, function(){
         $('#preBtn').bind('click', slideLeft);
       });
     }
@@ -98,18 +111,14 @@
   function slideRight() {
     $('#nextBtn').unbind('click');
     var left = $('#slider ul').css('marginLeft');
-    if(left == '0px') {
-      $('#slider ul').animate({marginLeft: '-908px'}, 300, function(){
-        $('#nextBtn').bind('click', slideRight);
-       });
-    } else if(left == '-908px') {
-      $('#slider ul').animate({marginLeft: '-1816px'}, 300, function(){
+    if (left == last_li) {
+      $('#slider ul li:first').before($('#slider ul li:last'));
+      $('#slider ul').css('marginLeft', first_li);
+      $('#slider ul').animate({marginLeft: getNext(first_li)}, 300, function(){
         $('#nextBtn').bind('click', slideRight);
       });
     } else {
-      $('#slider ul li:first').before($('#slider ul li:last'));
-      $('#slider ul').css('marginLeft', '0px');
-      $('#slider ul').animate({marginLeft: '-908px'}, 300, function(){
+      $('#slider ul').animate({marginLeft: getNext(left)}, 300, function(){
         $('#nextBtn').bind('click', slideRight);
       });
     }

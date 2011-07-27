@@ -2,11 +2,11 @@
   = include_stylesheets :sepcial_pages_groups_hottest, :media => 'all'
 
 .group_avatar
-  = group_image_tag(group, :thumb_large)
+  = group_image_link(group, :thumb_large)
 
 .group_des
   .description
-    %h3= group.name
+    %h3= link_to group.name, group_path(group)
     %hr
     %h4= "小组描述"
     %p= simple_format group.description
@@ -25,4 +25,13 @@
     %b= t('groups.owner') + ":"
     = link_to group.person.name, person_path(group.person)
 
+  .static_box
+    .members_count
+      %p
+        %h3= link_to group.members.size, members_group_path(group)
+        %h4= '成员'
+    .topics_count
+      %p
+        %h3= link_to group.topics.size, forum_group_path(group)
+        %h4= '话题'
     

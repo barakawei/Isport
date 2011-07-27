@@ -4,7 +4,7 @@
   %h4.alert.prepend-2#select_none_error.hide=t('events.errors.select_no_participant')
   %h4.info.prepend-2#invitation_sent.hide=t('events.info.invitation_sent')
 .span-16.members
-  .span-16
+  .span-16.friend_member
     - if friends.size > 0 && friend_participants.size > 0
       %h4.append-bottom
         = t("events.friend_participants", :count => friend_participants.size) 
@@ -40,7 +40,7 @@
 .span-4.right
   %h4= invite_link(friends, invitees, friend_participants)
   %h4= link_to '<编辑活动信息', edit_event_path(@event)
-  %h4= link_to '<"'+trim_info(@event.title, 10) +'"', event_path(@event)
+  %h4= link_to '<返回"'+trim_info(@event.title, 10) +'"', event_path(@event)
 
 .colorbox_content
   #friend_select
@@ -86,7 +86,7 @@
   });
 
   $('.friend_select_input').click(function() {
-    friend_select("#{invitees_select_path(@event)}"); 
+    friend_select("#{event_invitees_select_path(@event)}"); 
     $.colorbox({ inline:true, href:"#friend_select",
                                      opacity:0.5, width:"502", height:"462" });
     return false;
@@ -96,11 +96,7 @@
     $.post("#{event_invite_path(@event.id)}", { selectedIds: ""+data });     
     $.colorbox.close();
     $('.friend_select_input').unbind('click');
-    $('#invitation_sent').fadeIn(1000, function() {
-      $(this).fadeOut(1000, function() {
-        location.reload();
-      }); 
-    });
+    location.reload();
     return false;
   }
 
@@ -108,11 +104,6 @@
     var checked = $('input[type="checkbox"]:checked');
     if (checked.length == 0) {
       $('a.delete').unbind('click');
-      $('#select_none_error').fadeIn(1000, function() {
-        $('#select_none_error').fadeOut(1000, function() {
-          $('a.delete').bind('click', deleteMembers);
-        }); 
-      });
       return false;
     }
     var arr = new Array(checked.length); 

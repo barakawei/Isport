@@ -1,0 +1,55 @@
+.span-24
+  .span-16
+    %h4= link_to '全选', "#", :class => 'select_all_friend'
+   
+    - if to_be_invited
+      .span-14.friends
+        = render :partial => "events/event_participants", :locals => { :participants => to_be_invited, 
+                                                                :perline => 7, 
+                                                                :no_pagination => true, 
+                                                                :edit => true}
+    .span-14
+      %span.right
+        = link_to '发送邀请', '#', :class => 'button invite'
+        = link_to '完成', group_path(group), :class => 'button'
+
+  .span-6.prepend-1.invited_friends
+    .span-6
+      %h4
+        = '已向'
+        = link_to "#{invitees_size}", '#'
+        = '位好友发出邀请'
+    = render :partial => "events/event_participants", :locals => { :participants => invitees_summary, 
+                                                            :perline => 3, 
+                                                            :no_pagination => true, 
+                                                            :edit => false}
+    
+
+:javascript
+  $(function() {
+    $('.friends input[type="checkbox"]').attr("checked", ""); 
+  });
+
+  $('a.select_all_friend').click(function() {
+    if ($(this).hasClass('selected')) {
+      $('.friends input[type="checkbox"]').attr("checked", ""); 
+      $(this).html("#{t('events.participants.select_all')}");
+    } else {  
+      $('.friends input[type="checkbox"]').attr("checked", "true"); 
+      $(this).html("#{t('events.participants.select_none')}");
+    }
+      $(this).toggleClass("selected");
+    return false;
+  });
+
+  $('a.invite').click(function() {
+    var data = "";
+    if ($('.friends input:checked').length > 0) {
+      $('.friends input:checked').each(function(index) {
+        data = data + $(this).val() + ',';
+      });
+      $.post("#{group_invite_path(group.id)}", {selectedIds: data}); 
+      location.reload();
+    }
+    return false;
+  });

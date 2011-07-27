@@ -1,0 +1,113 @@
+=content_for :head do
+  =include_javascripts :friend_select
+.span-16.members
+  .span-16.friend_member
+    - if friends.size > 0 && friend_members.size > 0
+      %h4.append-bottom
+        = t("events.friend_participants", :count => friend_members.size) 
+        = link_to t('events.participants.select_all'), "#", :class => "select_all_friend"
+      = render :partial => "events/event_participants", :locals => { :participants => friend_members, 
+                                                              :perline => 8, 
+                                                              :no_pagination => true, 
+                                                              :edit => true}
+  .span-16.other_members
+    - if other_members.size > 0
+      %h4
+        = t("events.other_participants", :count => other_members.size) 
+        = link_to t('events.participants.select_all'), "#", :class => "select_all_others"
+      = render :partial => "events/event_participants", :locals => { :participants => other_members, 
+                                                              :perline => 8, 
+                                                              :no_pagination => true, 
+                                                              :edit => true}
+
+  = link_to t("operations.delete_selected"), 'javascript:void(0)', :class => "button delete", 
+                                                  :id => "delete_members" if members.size > 0 
+  .span-16
+    - if invitees.size > 0
+      .span-12
+        - if members.size > 0
+          %hr.space
+        %h4
+          = t("events.invitees", :count => invitees.size)
+      .span-16
+        = render :partial => "events/event_participants", :locals => { :participants => invitees, 
+                                                              :perline => 8, 
+                                                              :no_pagination => true, 
+                                                              :edit => false}
+.span-4.right
+  %h4= invite_link(friends, invitees, friend_members)
+  %h4= link_to '<编辑小组信息', edit_group_path(@group)
+  %h4= link_to '<返回"'+trim_info(@group.name, 10) +'"', group_path(@group)
+
+.colorbox_content
+  #friend_select
+.facebox_content.hide
+  #delete_member_request
+    .span-10.box_content
+      %h4= t('activerecord.operations.event.delete_participants')
+      = form_tag group_membership_path(:group_id => @group.id), :method => 'delete' do
+        = hidden_field_tag :member_ids
+        %br
+        = submit_tag t('activerecord.operations.event.save'), :class => 'button'
+          
+:javascript
+  $('a.delete').bind('click', deleteMembers);
+  $('a.select_all_friend').click(function() {
+    if ($(this).hasClass('selected')) {
+      $('.friend_member input[type="checkbox"]').attr("checked", ""); 
+      $(this).html("#{t('events.participants.select_all')}");
+    } else {  
+      $('.friend_member input[type="checkbox"]').attr("checked", "true"); 
+      $(this).html("#{t('events.participants.select_none')}");
+    }
+      $(this).toggleClass("selected");
+    return false;
+  });
+
+  $('a.select_all_others').click(function() {
+    if ($(this).hasClass('selected')) {
+      $('.other_members input[type="checkbox"]').attr("checked", ""); 
+      $(this).html("#{t('events.participants.select_all')}");
+    } else {  
+      $('.other_members input[type="checkbox"]').attr("checked", "true"); 
+      $(this).html("#{t('events.participants.select_none')}");
+    }
+      $(this).toggleClass("selected");
+    return false;
+  });
+
+  $('#choose_member_notice .choose_notice').click(function() {
+    $.colorbox.close(); 
+    return false;
+  });
+
+  $('.friend_select_input').click(function() {
+    friend_select("#{group_invitees_select_path(@group)}"); 
+    $.colorbox({ inline:true, href:"#friend_select",
+                                     opacity:0.1, width:"502", height:"462" });
+    return false;
+  });
+
+  function friend_selected_callback(data) {
+    $.post("#{group_invite_path(@group.id)}", { selectedIds: ""+data });     
+    $.colorbox.close();
+    $('.friend_select_input').unbind('click');
+    location.reload();
+    return false;
+  }
+
+  function deleteMembers(e) {
+    var checked = $('input[type="checkbox"]:checked');
+    if (checked.length == 0) {
+      $('a.delete').unbind('click');
+      return false;
+    }
+    var arr = new Array(checked.length); 
+    for(var i=0; i< checked.length; i++) {
+      arr[i] = $(checked[i]).val(); 
+    }
+    $('.facebox_content #member_ids').val(arr);
+    $.colorbox({ inline:true, href:"#delete_member_request", opacity:0.5 });
+    return false;
+  }
+

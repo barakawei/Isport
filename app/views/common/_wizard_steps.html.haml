@@ -1,0 +1,7 @@
+.span-24.wizard
+  -content_for :head do
+    = include_stylesheets :wizard_steps, :media => 'all'
+  - steps.each_with_index do |step, index|
+    .span-5.last.wizard-step{:class => ((current_step == index+1) ? 'current ' : 'not_current ') + ((index+1 == steps.size ) ? 'last_step ' : ' ') + ((index == 0) ? 'first_step ' : ' ') }
+      %h4=step
+    

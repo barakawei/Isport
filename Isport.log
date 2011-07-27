@@ -205,3 +205,13 @@ Error during failsafe response: incompatible character encodings: ASCII-8BIT and
 	from /usr/local/lib/ruby/gems/1.9.1/gems/passenger-3.0.7/lib/phusion_passenger/abstract_server.rb:206:in `start_synchronously'
 	from /usr/local/lib/ruby/gems/1.9.1/gems/passenger-3.0.7/helper-scripts/passenger-spawn-server:99:in `<main>'
 [ pid=30330 thr=139939034797824 file=ext/nginx/HelperAgent.cpp:574 time=2011-07-25 21:37:35.769 ]: Couldn't forward the HTTP response back to the HTTP client: It seems the user clicked on the 'Stop' button in his browser.
+[ pid=30330 thr=139939000596224 file=ext/nginx/HelperAgent.cpp:574 time=2011-07-25 22:46:25.595 ]: Couldn't forward the HTTP response back to the HTTP client: It seems the user clicked on the 'Stop' button in his browser.
+[ pid=7445 thr=139833825613568 file=ext/nginx/HelperAgent.cpp:574 time=2011-07-26 14:24:30.305 ]: Couldn't forward the HTTP response back to the HTTP client: It seems the user clicked on the 'Stop' button in his browser.
+[ pid=14582 thr=140409020020480 file=ext/nginx/HelperAgent.cpp:574 time=2011-07-26 15:05:38.411 ]: Couldn't forward the HTTP response back to the HTTP client: It seems the user clicked on the 'Stop' button in his browser.
+[ pid=4385 thr=139824524420864 file=ext/nginx/HelperAgent.cpp:574 time=2011-07-26 17:19:26.699 ]: Couldn't forward the HTTP response back to the HTTP client: It seems the user clicked on the 'Stop' button in his browser.
+[ pid=4385 thr=139824490219264 file=ext/nginx/HelperAgent.cpp:574 time=2011-07-26 17:24:20.632 ]: Couldn't forward the HTTP response back to the HTTP client: It seems the user clicked on the 'Stop' button in his browser.
+[ pid=9138 thr=140240873805568 file=ext/nginx/HelperAgent.cpp:574 time=2011-07-26 17:47:18.768 ]: Couldn't forward the HTTP response back to the HTTP client: It seems the user clicked on the 'Stop' button in his browser.
+[ pid=9138 thr=140240836994816 file=ext/nginx/HelperAgent.cpp:574 time=2011-07-26 17:55:32.610 ]: Couldn't forward the HTTP response back to the HTTP client: It seems the user clicked on the 'Stop' button in his browser.
+[ pid=9138 thr=140240873002752 file=ext/nginx/HelperAgent.cpp:574 time=2011-07-26 18:02:55.255 ]: Couldn't forward the HTTP response back to the HTTP client: It seems the user clicked on the 'Stop' button in his browser.
+[ pid=12702 thr=139979829311232 file=ext/nginx/HelperAgent.cpp:574 time=2011-07-26 18:08:12.355 ]: Couldn't forward the HTTP response back to the HTTP client: It seems the user clicked on the 'Stop' button in his browser.
+[ pid=2280 thr=139890219681536 file=ext/nginx/HelperAgent.cpp:574 time=2011-07-27 13:20:43.380 ]: Couldn't forward the HTTP response back to the HTTP client: It seems the user clicked on the 'Stop' button in his browser.

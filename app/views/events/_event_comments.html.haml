@@ -3,9 +3,9 @@
 
 - if comments.size > 0
   .span-16
-    -comments.each do |comment|
+    -comments.each_with_index do |comment, index|
       -person = comment.person 
-      .comment_to_event.span-16
+      .comment_to_event.span-16{:class => ("first" if index==0)}
         = person_image_link(person)
         .content{:comment_id => "#{comment.id}"}
           %hr
@@ -25,9 +25,10 @@
                 = l(r.created_at, :format => :long)
                 = link_to '回复', '#', :class => "response to_comment" if current_user && current_user.person != rperson
                 = simple_format r.content
-    .span-15.pagination_box
-      = will_paginate comments, {:previous_label => t("pagination.previous"), 
-                                 :next_label => t("pagination.next")}
+.span-15.pagination_box
+  - if comments.size > 0
+    = will_paginate comments, {:previous_label => t("pagination.previous"), 
+                               :next_label => t("pagination.next")}
 -unless comment.nil?
   .new_comment.span-16
     = form_for comment, :url => event_event_comments_path(event.id), do |c|
@@ -71,7 +72,7 @@
   }
 
   function cloneResponseBox(comment, link) {
-    var response_box = $($('.response_box')[0]).clone().hide();
+    var response_box = $('.response_box:last').clone().hide();
     comment.after(response_box);
 
     if(link.hasClass('to_comment')) {
@@ -94,19 +95,12 @@
   }
 
   function appendToComments(responseText, statusText, xhr, $form){
-    if ($('.pagination_box').length > 0) {  
       $('.pagination_box').before(responseText);  
+      $('.comment_to_event:first').addClass('first');
       $('.pagination_box').prev().find('a.response').click(function() {
-        replylinkCallback($(this)); 
-        return false;
-      });
-    } else {
-      $('.new_comment').before(responseText); 
-      $('.new_comment').prev().find('a.response').click(function() {
         responseClick($(this)); 
-        return false;
       });
-    }
+      return false;
   }
 
   function appendToResponses(responseText, statusText, xhr, $form){ 

@@ -27,8 +27,8 @@
         = @item.fans.size
         = t('items.fans')
     .span-17
-      = link_to t('items.edit'), edit_item_path(@item), :class => "button"
-
+      - if is_admin
+        = link_to t('items.edit'), edit_item_path(@item), :class => "button"
       = link_to t('items.back'), items_path, :class => "button"
       .dash_middle
     .span-17

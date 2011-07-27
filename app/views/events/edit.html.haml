@@ -10,8 +10,8 @@
     %h4.tab.last_tab{:class => ('current' if params[:action] == 'edit_members' )}= link_to t("events.edit.event_members"), event_members_path(@event);
     = link_to "取消活动",  "#cancel_event_request", :class => "button cancel_event right", :rel => 'facebox'
   %hr
-- if @participants.nil?
-  .span-18
+- if params[:action] == 'edit' 
+  .span-19
     = render 'form', :is_edit => true
   .span-4.right
     %hr.space

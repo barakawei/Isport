@@ -1,0 +1,17 @@
+.title_bar {
+  height: 35px;
+  position: relative; }
+  .title_bar h2 {
+    margin-right: 20px;
+    float: left; }
+  .title_bar .tab {
+    padding: 5px;
+    border: 1px solid #e1e1e1;
+    float: left;
+    height: 20px;
+    position: relative;
+    top: 4px; }
+  .title_bar .tab.last_tab {
+    border-left: none; }
+  .title_bar .tab.current {
+    border-bottom: 1px solid white; }

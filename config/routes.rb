@@ -7,8 +7,6 @@ Isport::Application.routes.draw do
   resources :requests
   resources :status_messages
   resources :comments
-  resources :items
-  resources :involvements
   resources :status_messages do
     resources :comments,:only => [ :create,:show ]
   end
@@ -25,7 +23,9 @@ Isport::Application.routes.draw do
   resource :user, :only => [:edit, :update, :destroy] 
   controller :people do
     match 'show_friends' => :show_friends
-    match 'event_invitees_select/:id' => :event_invitees_select, :as => "invitees_select",
+    match 'event_invitees_select/:id' => :event_invitees_select, :as => "event_invitees_select",
+          :constraints => { :id => /[1-9]\d*/}
+    match 'grouop_invitees_select/:id' => :group_invitees_select, :as => "group_invitees_select",
           :constraints => { :id => /[1-9]\d*/}
   end
 
@@ -41,7 +41,9 @@ Isport::Application.routes.draw do
   match '/users/sign_up' => 'users#sign_up', :as => 'sign_up'
 
   controller :items do
-    match 'myitems' => :myitems, :as => 'myitems'
+    match '/items/:id' => :show, :via => :get,
+          :constraints => {:id => /[1-9]\d*/}
+    match '/items/myitems' => :myitems, :as => 'myitems'
   end
 
   controller :home do
@@ -51,7 +53,7 @@ Isport::Application.routes.draw do
   controller :welcome do
     match 'welcome' => :index, :as => 'welcome'
   end
-
+  
   controller :events do
     match '/events/:id' => :show, :via => :get,
           :constraints => { :id => /[1-9]\d*/}
@@ -76,6 +78,11 @@ Isport::Application.routes.draw do
           :constraints => { :id => /[1-9]\d*/}
   end
 
+  controller :memberships do
+    match '/memberships/:id/invite' => :invite, :as => 'group_invite',
+          :constraints => { :id => /[1-9]\d*/}
+  end
+
   controller :group_topics do
     match '/groups/:group_id/topics/:id/summary' => :summary, :as => 'topic_summary',
     :constraints => { :id => /[1-9]\d*/, :group_id => /[1-9]\d*/}
@@ -90,6 +97,10 @@ Isport::Application.routes.draw do
     match '/groups/:city/(/district/:district_id)(/item/:item_id)' => :filtered, :as => 'group_filter',
           :constraints => { :city => /nanjing|shanghai|beijing/, :district_id => /[1-9]\d*/,
                             :item_id => /[1-9]\d*/}
+    match '/groups/:id/invite_friends' => :invite_friends, :as => 'new_group_invite',
+          :constraints => { :id => /[1-9]\d*/}
+    match '/groups/:id/edit/members' => :edit_members, :as => 'edit_group_members',
+          :constraints => { :id => /[1-9]\d*/}
   end 
 
   resources :events do
@@ -102,7 +113,6 @@ Isport::Application.routes.draw do
   resources :requests
   resources :items
   resources :involvements
-  resources :memberships
 
   resources :groups do
     member do

@@ -1,18 +1,73 @@
-.span-12.prepend-6.last
-  .floating
-    %h3
-      = t('.sign_up_for_Isport')
+-content_for :head do
+  = include_javascripts :jquery_validation
+  = include_stylesheets :special_pages_registration_new, :media => 'all'
+.span-24
+  .reg_area
     = form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
-      %p  
+      .logo_area
+        = "isport logo"
+
+      %h3
+        = t('.sign_up_for_isport')
+
+      .blank  
         = f.label :email , t('email')
         = f.text_field :email, :title => t('.enter_email')
       
-      %p
+      .blank
         = f.label :password , t('password')
-        = f.password_field :password, :title => t('.enter_password') 
-      %p
+        = f.password_field :password, :title => t('.enter_password')
+
+      .blank
         = f.label :password_confirmation , t('password_confirmation')
         = f.password_field :password_confirmation, :title => t('.enter_password_again') 
 
-      = f.submit t('.sign_up'), :class => 'button'
+      .blank
+        = f.submit t('.sign_up'), :class => 'button'
+
+  .flack_area
+    = "欢迎来到乐玩"
+    %br
+    .reg_reason
+      =link_to "找到你的活动", events_path, :class => "plus_area"
+      =link_to "找到你的运动", items_path, :class => "plus_area"
+      =link_to "找到你的小组", groups_path, :class => "plus_area"
+
+      .direct_login
+        ="> 如果你已经有乐玩帐号："  
+        =link_to "直接登录", sign_in_path
+
+:javascript
+  $(function() {
+    $('#user_new').validate({  
+      rules: {
+        'user[email]': {
+          required: true,
+          email: true
+        },
+        'user[password]': {
+          required: true,
+          minlength: 5 
+        },
+        'user[password_confirmation]': {
+          required: true,
+          equalTo: "user[password]"
+        }
+      },
+      messages: {
+        'user[email]': {
+          required: '请输入电子邮箱',
+          email: '邮箱格式错误'
+        },
+        'user[password]': {
+          required: '请输入密码',
+          minlength: '密码长度不能少于{0}位'
+        },
+        'user[password_confirmation]': {
+          required: '请再一次输入您的密码',
+          equalTo: '两次输入的密码不一致'
+        }
+      }
+    });
+  });
 
