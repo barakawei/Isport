@@ -70,6 +70,15 @@ ActiveRecord::Schema.define(:version => 20110727031848) do
     t.datetime "updated_at"
   end
 
+  create_table "event_comments", :force => true do |t|
+    t.integer  "person_id"
+    t.text     "content"
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "events", :force => true do |t|
     t.datetime "start_at"
     t.datetime "end_at"
@@ -77,7 +86,7 @@ ActiveRecord::Schema.define(:version => 20110727031848) do
     t.text     "description"
     t.string   "address"
     t.integer  "subject_id"
-    t.boolean  "ispublic"
+    t.boolean  "is_private"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "image_url"
@@ -87,6 +96,7 @@ ActiveRecord::Schema.define(:version => 20110727031848) do
     t.integer  "item_id"
     t.integer  "participants_limit", :default => 100
     t.integer  "location_id"
+    t.integer  "group_id",           :default => 0
   end
 
   create_table "favorites", :force => true do |t|

@@ -1,16 +1,30 @@
 .form_area {
-  border-left: 1px solid #dddddd;
   padding-left: 20px; }
+  .form_area .field_with_errors {
+    display: inline-block; }
+  .form_area .field.module {
+    margin-bottom: 20px; }
   .form_area .field {
-    margin-bottom: 10px; }
+    margin-bottom: 5px; }
+    .form_area .field .validation-error {
+      color: red;
+      margin-left: 10px; }
     .form_area .field .group_radio_button {
       display: inline-block;
       vertical-align: top; }
       .form_area .field .group_radio_button label {
         width: auto; }
-    .form_area .field label {
+    .form_area .field label.field_info {
       display: inline-block;
       width: 60px; }
+    .form_area .field label.error {
+      display: block;
+      color: #ff6600;
+      margin-left: 62px; }
     .form_area .field textarea, .form_area .field input#group_name {
       vertical-align: top;
       width: 400px; }
+    .form_area .field textarea {
+      height: 200px; }
+    .form_area .field select {
+      font-size: 13px; }

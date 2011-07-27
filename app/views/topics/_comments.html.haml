@@ -1,9 +1,9 @@
 -content_for :head do
   = include_stylesheets :special_pages_topic_comments, :media => 'all'
 - if comments.size > 0
-  - comments.each do |comment| 
+  - comments.each_with_index do |comment, index| 
     - person = comment.person
-    .span-18.comment_to_topic
+    .span-18.comment_to_topic{:class => ("first" if index == 0)}
       .avatar
         = person_image_link(person) 
       .content.span-15{:comment_id => "#{comment.id}"}
@@ -97,7 +97,7 @@
   }
 
   function cloneResponseBox(comment, link) {
-    var response_box = $($('.response_box')[0]).clone().hide();
+    var response_box = $('.response_box:last').clone().hide();
     comment.after(response_box);
 
     if(link.hasClass('to_comment')) {

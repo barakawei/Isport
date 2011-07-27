@@ -1,13 +1,12 @@
-.span-18.last
+.span-19.last
   .group_avatar
     = group_image_tag(group, :thumb_large)
   .group_des
     .description
       %h3= group.name
-      %hr
       %h4= "小组描述" + ":"
       %p= simple_format group.description
-.span-6.last.group_info
+.span-5.last.group_info
   .relative
     %p
       %b= t('groups.created_at')+ ":"
@@ -23,21 +22,37 @@
       = link_to group.person.name, person_path(group.person)
     = render 'common/share_bar'
     .join_mode
-      - if group.person != current_person
+      - if current_person 
         =render 'join_operation', :group => group
 .span-24.prepend-top
-  .span-17.forum_area
-    %h4.area_title
-      = t('groups.forum')+ ":"
-      =link_to '更多话题', forum_group_path(group), :class => 'right' if @topics.size > 0 
-    %hr
-    - if @topics.size > 0
-      = render 'topics/recent_topics.html.haml', :topics => @topics
-    - else
-      %h4
-        = '还没有话题，'
-        = link_to '发起新话题', new_group_topic_path(@group) 
+  .span-17
+    .span-17
+      %h4.inline.app_module_title='近期活动'
+      %hr
+        -if @recent_events.size > 0
+          = link_to '更多', '#', :class => 'right'
+          - @recent_events.each do |e|
+            .group_event.span-4
+              %h4.title= link_to trim_info(e.title, 13), event_path(e)
+              = event_image_link(e, :thumb_medium) 
+              .event_info
+                %p= l(e.start_at, :format => :long)
+                %p= t('events.short_involvement', :count => e.participants.size)
+
+    .span-17.forum_area
+      %h4.area_title
+        = t('groups.forum')+ ":"
+        =link_to '更多话题', forum_group_path(group), :class => 'right' if @topics.size > 0 
+      %hr
+      - if @topics.size > 0
+        = render 'topics/recent_topics.html.haml', :topics => @topics
+      - else
+        %h4
+          = '还没有话题，'
+          = link_to '发起新话题', new_group_topic_path(@group) 
   .span-6.prepend-1.last
+    %h4.space
+    %h4= link_to '>更多' + @group.item.name + '小组' , group_filter_path(group.city.pinyin, nil, @group.item_id)
     %h4= t('groups.members')+ ":"
     - if members.size > 0
       = render :partial => 'people/people_array', :locals => { :participants => members, 

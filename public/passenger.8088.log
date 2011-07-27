@@ -1,0 +1,1 @@
+2011/06/29 16:40:28 [error] 32599#0: *4 "/root/workspace/Isport/public/public/index.html" is forbidden (13: Permission denied), client: 127.0.0.1, server: _, request: "HEAD / HTTP/1.1", host: "0.0.0.0"

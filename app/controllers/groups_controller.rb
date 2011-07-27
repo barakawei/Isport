@@ -6,40 +6,67 @@ class GroupsController < ApplicationController
     city_pinyin = params[:city] ? params[:city] : (current_user ? current_user.city.pinyin : City.first.pinyin)
     @city = City.find_by_pinyin(city_pinyin)
     @groups = Group.all
-    @hot_groups = Group.limit(3);
-    @hot_items = Item.all 
+    @hot_groups = Group.hot_groups(@city).all
+    @hot_items = Item.limit(5)
   end
 
   def show
     @group = Group.find(params[:id])
+    @recent_events = @group.events.order('created_at desc').limit(4)
     @members = @group.members.limit(9)
-    @current_person = current_user.person
-    @topics = @group.topics
+    @current_person = current_user.person if current_user
+    @topics = @group.topics.limit(10)
     @topics.each {|t| t.url = group_topic_path(@group, t)}
   end
 
   def new
-    @group = Group.new
+    @group = Group.new(:join_mode => 4)
     @group.city = City.first
+    
+    @step = 1
+    @steps = [I18n.t('groups.new_group_wizard.step_1'),I18n.t('groups.new_group_wizard.step_2')]
   end
 
   def edit
     @group = Group.find(params[:id])
   end
 
+  def edit_members
+    @group = Group.find(params[:id])
+    @members = @group.members.order('created_at ASC') || []
+    @friends = current_user.friends || [ ] 
+    @friend_members = @members & @friends
+    @other_members = @members - @friend_members
+    @invitees = @group.invitees.order("created_at ASC") || []
+    render :action => :edit 
+  end
+
+
   def create
     @group = Group.new(params[:group])
-    @group.person = current_user.person
-    @group.members << current_user.person
+    current_person = current_user.person
+    @group.person = current_person
     @group.forum = Forum.create
 
-    respond_to do |format|
-      if @group.save
-        format.html { redirect_to(@group, :notice => 'Group was successfully created.') }
-      else
-        format.html { render :action => "new" }
-      end
+    if @group.save
+      Membership.create(:group_id => @group.id, :person_id => current_person.id, :is_admin => true)
+      redirect_to new_group_invite_path(@group)
+    else
+      @step = 1
+      @steps = [I18n.t('groups.new_group_wizard.step_1'),I18n.t('groups.new_group_wizard.step_2')]
+      render :action => :new
     end
+  end
+
+  def invite_friends
+    @group = Group.find(params[:id])
+    @invitees = @group.invitees
+    @invitees_size = @invitees.size
+    @to_be_invited_friends = current_user.friends - @invitees || []
+    @invitees.slice!(9, @invitees.length)
+    @step = 2
+    @steps = [I18n.t('groups.new_group_wizard.step_1'),I18n.t('groups.new_group_wizard.step_2')]
+    render :action => "new" 
   end
 
   def update

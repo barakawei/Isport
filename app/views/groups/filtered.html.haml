@@ -8,9 +8,8 @@
     = link_to @city.name , '#', :id => 'switch_city'
   %hr
 
-%h4='寻找你喜欢的小组:'
-    
 .span-24.hot_box
+  %h4.app_module_title='寻找你喜欢的小组'
   %h2
   .hot_groups
     .search_line
@@ -27,6 +26,7 @@
         = link_to '全部', group_filter_path(:city => @city.pinyin, :item_id => @item_id), :class => "#{'current' if nil == @district_id}"
         - @city.districts.each do |d| 
           = link_to d.name, group_filter_path(@city.pinyin, d.id, @item_id), :class => "#{ 'current' if d.id.to_s == @district_id}"
+  %h2
 
 %hr.space
 .span-24.search_result

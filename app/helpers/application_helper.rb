@@ -88,10 +88,29 @@ module ApplicationHelper
     "<img title=\"#{h(item.name)}\" class=\"avatar\"  src=\"#{item.image_url(size)}\" >".html_safe
   end
 
+  def item_events_notify
+    "<img class=\"avatar\"  src=\"/images/items/im_idle_dot.png\" >".html_safe
+  end
+
+  def left_arrow
+    "<img class=\"avatar\"  src=\"/images/ui/arrow_left.png\" >".html_safe
+  end
+
+  def right_arrow
+    "<img class=\"avatar\"  src=\"/images/ui/arrow_right.png\" >".html_safe
+  end
+
   def pagination_options(param_name, param)
     {:previous_label => t("pagination.previous"), 
      :next_label => t("pagination.next"),
      :param_name => (param_name == nil) ? :page : param_name,
      :params => param} 
+  end
+
+  def error_on(model, field)
+    if model.errors[field].any?
+      %(<span class='validation-error'>
+        *#{I18n.t("activerecord.attributes."+ model.class.to_s.downcase + "."+field.to_s)}#{model.errors[field].flatten[0]}</span>).html_safe
+    end
   end
 end

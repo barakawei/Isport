@@ -5,9 +5,11 @@
   = render "groups/group_nav_bar", :group => @group, :current => 'forum'
 .span-24
   .span-22
-    .span-22.forum_nav
-      %h3= @group.name + '的话题' + ":"
+    %h3.inline= @group.name + '的讨论区'
+    %h4.inline= link_to '<返回小组首页', group_path(@group), :class => "right"
+    %hr.space
+    %hr.space
+    %span.block
       = link_to "发起话题", new_group_topic_path(@group), :class => "button right"
-      %hr
     = render "topics/index"
 

@@ -15,12 +15,6 @@ module EventsHelper
     end
   end
 
-  def error_on(event, field)
-    if event.errors[field].any?
-      %(<span class='validation-error'>
-        *#{I18n.t("activerecord.attributes.event."+field.to_s)}#{@event.errors[field].flatten[0]}</span>).html_safe
-    end
-  end
   
   def trim_info(info, size)
     if info.size > size 
@@ -73,12 +67,17 @@ module EventsHelper
              end
   end
 
-  def invite_link(initial, friends, invitees, friend_participants)
-    return if friends.size < 0 || friends.size <= invitees.size + friend_participants.size
-    return if initial && friend_participants.size > 0
-    return if !initial && friend_participants.size == 0
+  def invite_link(friends, invitees, friend_participants)
+    return if friends.size <= 0 || friends.size <= invitees.size + friend_participants.size
     name = (invitees.size == 0 && friend_participants.size == 0 ) ? I18n.t("events.invite_friends") : I18n.t("events.invite_more_friends")
-    link_to name, "#", :class => "friend_select_input button" 
+    link_to name, "#", :class => "friend_select_input" 
+  end
+
+  def group_options(person)
+    groups = person.joined_groups
+    options = groups.collect {|g| [g.name, g.id]}
+    options.insert(0, [I18n.t("events.not_group_event_option"), 0])
+    options
   end
 
 end

@@ -1,5 +1,5 @@
 .header {
-  background: url("/images/ui/header_background.png") repeat-x scroll left top #4f8dbc;
+  background: url("/images/ui/header_background_warm.jpg") repeat-x scroll left top;
   text-align: left;
   height: 39px;
   position: fixed;
@@ -35,7 +35,7 @@
     padding-top: 3px;
     float: left; }
     .header .logo h2 {
-      color: white; }
+      color: #ff7d56; }
   .header .sections {
     float: left;
     font-size: 12px;
@@ -47,16 +47,15 @@
     float: left;
     margin-right: 1px; }
   .header .sections a, .header .setting a {
-    height: 15px;
-    color: white;
+    color: #fcfcfc;
     display: block;
     float: left;
     padding: 11px 10px;
     text-decoration: none; }
     .header .sections a:hover, .header .sections a .active, .header .setting a:hover, .header .setting a .active {
-      background-color: #4275a1;
+      background-color: #fcfcfc;
       background-position: left bottom;
-      color: white;
+      color: black;
       text-decoration: none; }
     .header .sections a .active, .header .setting a .active {
       font-size: 11px;

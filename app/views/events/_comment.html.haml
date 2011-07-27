@@ -1,0 +1,17 @@
+.span-16.comment_to_event
+  = person_image_link(person) 
+  .content{:comment_id => "#{comment.id}"}
+    %hr 
+    %span
+      = link_to person.name, person_path(person)
+      = l(comment.created_at, :format => :long)      
+      = link_to "回复", '#', :class => 'response' unless current_user.person == person
+      = simple_format comment.content 
+
+:javascript
+
+  $('a.response').click(function() {
+    responseClick($(this));
+    return false;
+  });
+      = link_to "回复", '#', :class => 'response'

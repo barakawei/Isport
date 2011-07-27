@@ -1,0 +1,9 @@
+.comment_to_comment
+  = person_image_link(person)
+  .content{:comment_id => "#{commentable.id}"}
+    %hr
+    %span
+      = link_to person.name, person_path(person)
+      = l(comment.created_at, :format => :long)
+      = link_to '回复', '#', :class => 'response to_comment' unless current_user.person == person
+    = simple_format comment.content

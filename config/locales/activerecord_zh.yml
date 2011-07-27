@@ -10,8 +10,13 @@ zh:
         subject_id: '所属项目'
         person: '发起人'
         location: '地点'
-        ispublic: '是否公开'
+        is_private: '私密活动'
         participants_limit: '人数上限'
+      group:
+        name: '小组名称'
+        description: '小组描述'
+        item_id: '小组所属项目'
+        join_mode: '小组加入方式'
     errors:
       event:
         start_at: 
@@ -20,6 +25,8 @@ zh:
           after: '必须晚于开始时间' 
         participants_limit:
           less_than_current: '不能小于已报名人数'
+        location:
+          detail_need: '信息不充分'
     operations:
       event:
         cancel: '取消活动'

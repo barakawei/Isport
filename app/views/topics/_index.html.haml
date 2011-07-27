@@ -2,15 +2,18 @@
   = include_stylesheets :special_pages_topic_index, :media => 'all'
 - if @topics.size > 0
   %table.topics
-    %tr
-      %th.title.large='话题'
+    %tr.large
+      %th.title='话题'
       %th.author='作者'
       %th.reply='回复数'
+      %th.latest='最后回复'
     -@topics.each do |t|
       %tr.large
-        %td.title= link_to t.title, t.url 
+        %td.title= link_to t.title, t.url
         %td.author= link_to t.person.name, person_path(t.person.id)
-        %td.reply='100/500'
+        %td.reply= t.comments.count
+        %td.latest= l(t.latest_comment_time, :format => :long)
   .right
-    = will_paginate @topics, {:previous_label => t("pagination.previous"), 
+    = will_paginate @topics, {:previous_label => t("pagination.previous"),
                                      :next_label => t("pagination.next")}
+

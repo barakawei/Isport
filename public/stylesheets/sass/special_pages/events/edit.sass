@@ -13,14 +13,27 @@
   :padding 10px 5px 5px 5px 
 
 .title_bar
-  h2, h4
-    :display inline
+  :height 35px
+  :position relative
+
   h2
     :margin-right 20px
-  
-  h4.border-right
-    
+    :float left
 
+  .tab
+    :padding 5px
+    :border 1px solid #e1e1e1
+    :float left
+    :height 20px
+    :position relative 
+    :top 4px
+  
+  .tab.last_tab
+    :border-left none
+
+  .tab.current
+    :border-bottom 1px solid #ffffff
+    
 .members
   span.medium_avatar
     :margin-left 15px
@@ -29,3 +42,8 @@
   :position absolute
   :top 50px
   :left 300px
+
+.operations
+  :margin-left 50px
+  :border-left 1px solid #888888
+  :padding-left 10px

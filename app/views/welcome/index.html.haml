@@ -1,0 +1,25 @@
+-content_for :head do
+  = include_stylesheets :special_pages_welcome, :media => 'all'
+.span-24
+  .welcome_box
+    .poster_box
+    .reg_box
+      .reg_info
+        = t('welcome.globalinfo', :citycount=>@citycount, :usercount=>@usercount, :groupcount=>@groupcount, :eventcount=>@eventcount)
+      = link_to t('devise.shared.links.sign_up'), sign_up_path(), :class => "reg_main_button"
+
+  .welcomenav_box
+    = link_to t('welcome.eventflack'), events_path, :class => "flack"
+    .flackplus
+      = t('welcome.eventflackplus')
+
+  .welcomenav_box
+    = link_to t('welcome.itemflack'), items_path, :class => "flack"
+    .flackplus
+      = t('welcome.itemflackplus')
+    = link_to t('item_link'), items_path, :class => "item_area"
+
+  .welcomenav_box
+    = link_to t('welcome.groupflack'), groups_path, :class => "flack"
+    .flackplus
+      = t('welcome.groupflackplus')

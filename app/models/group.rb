@@ -4,8 +4,23 @@ class Group < ActiveRecord::Base
   belongs_to :person
   belongs_to :location
 
+  validates_presence_of :name, :description, :item_id, :city_id, :district_id,
+                        :join_mode,
+                        :message => I18n.t('activerecord.errors.messages.blank')
+
+  validates_length_of :name, :maximum => 30
+  validates_length_of :description, :maximum => 1500 
+
+
   has_many :memberships, :dependent => :destroy
-  has_many :members, :through => :memberships,  :source => :person
+  has_many :events
+  has_many :invitees_plus_members, :through => :memberships, :source => :person
+  has_many :members, :through => :memberships,  :source => :person,
+                        :conditions => ['memberships.pending = ? ', false] 
+  has_many :invitees, :through => :memberships, :source => :person,
+                        :conditions => ['memberships.pending = ? ', true] 
+  has_many :admins, :through => :memberships, :source => :person, 
+                        :conditions => ['memberships.is_admin = ?', true]
 
   has_one :forum,  :as => :discussable
   has_many :topics, :through => :forum, :source => :topics
@@ -33,6 +48,11 @@ class Group < ActiveRecord::Base
   def self.update_avatar_urls(params,url_params)
       group = find(params[:photo][:model_id])
       group.update_attributes(url_params)
+  end
+
+  def self.hot_groups(city)
+     groups = Group.joins(:memberships).where(:city_id => city.id)
+            .group(:group_id).order('count(group_id) desc').limit(3);
   end
 
   def need_invitation_from_admin
@@ -83,6 +103,11 @@ class Group < ActiveRecord::Base
 
   def delete_member(person)
     Membership.delete_all(:group_id => id, :person_id => person.id)
+  end
+
+  def is_admin(person)
+    Membership.where(:person_id => person.id, 
+                     :group_id => self.id, :is_admin => true).count > 0
   end
 
   private

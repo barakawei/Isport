@@ -3,49 +3,45 @@
 .span-10.prepend-3.error_message_box
   %h4.alert.prepend-2#select_none_error.hide=t('events.errors.select_no_participant')
   %h4.info.prepend-2#invitation_sent.hide=t('events.info.invitation_sent')
-.span-18.colborder.members
+.span-16.members
   .span-16.friend_member
-    - if friends.size > 0
-      - if friend_participants.size > 0
-        %h4.append-bottom
-          = t("events.friend_participants", :count => friend_participants.size) + ":"
-          = link_to t('events.participants.select_all'), "#", :class => "select_all_friend"
-        = render :partial => "event_participants", :locals => { :participants => friend_participants, 
-                                                                :perline => 8, 
-                                                                :no_pagination => true, 
-                                                                :edit => true}
-      - else
-        %hr.space 
-        %h4.inline
-          = t('events.no_friend_member') + "," unless invitees.size ==  friends.size
-        = invite_link(true, friends, invitees, friend_participants)
-  .span-16.other_member
+    - if friends.size > 0 && friend_participants.size > 0
+      %h4.append-bottom
+        = t("events.friend_participants", :count => friend_participants.size) 
+        = link_to t('events.participants.select_all'), "#", :class => "select_all_friend"
+      = render :partial => "event_participants", :locals => { :participants => friend_participants, 
+                                                              :perline => 8, 
+                                                              :no_pagination => true, 
+                                                              :edit => true}
+  .span-16.other_members
     - if other_participants.size > 0
       %h4
-        = t("events.other_participants", :count => @other_participants.size) + ":"
+        = t("events.other_participants", :count => @other_participants.size) 
         = link_to t('events.participants.select_all'), "#", :class => "select_all_others"
       = render :partial => "event_participants", :locals => { :participants => other_participants, 
                                                               :perline => 8, 
                                                               :no_pagination => true, 
                                                               :edit => true}
 
-  .span-16.prepend-top
+  = link_to t("operations.delete_selected"), '#', :class => "button delete", 
+                                                  :id => "delete_members" if participants.size > 0 
+  .span-16
     - if invitees.size > 0
       .span-12
         - if participants.size > 0
-          %hr
+          %hr.space
         %h4
-          = t("events.invitees", :count => invitees.size) + ":" 
+          = t("events.invitees", :count => invitees.size)
       .span-16
         = render :partial => "event_participants", :locals => { :participants => invitees, 
                                                               :perline => 8, 
                                                               :no_pagination => true, 
                                                               :edit => false}
-.span-5.last
-  = link_to t("operations.delete_selected"), '#', :class => "button delete", :id => "delete_members" if participants.size > 0 
-  %hr.space
-  = invite_link(false, friends, invitees, friend_participants)
-  %hr.space
+.span-4.right
+  %h4= invite_link(friends, invitees, friend_participants)
+  %h4= link_to '<编辑活动信息', edit_event_path(@event)
+  %h4= link_to '<返回"'+trim_info(@event.title, 10) +'"', event_path(@event)
+
 .colorbox_content
   #friend_select
 .facebox_content.hide
@@ -59,10 +55,7 @@
         = submit_tag t('activerecord.operations.event.save'), :class => 'button'
           
 :javascript
-
-
   $('a.delete').bind('click', deleteMembers);
-
   $('a.select_all_friend').click(function() {
     if ($(this).hasClass('selected')) {
       $('.friend_member input[type="checkbox"]').attr("checked", ""); 
@@ -77,10 +70,10 @@
 
   $('a.select_all_others').click(function() {
     if ($(this).hasClass('selected')) {
-      $('.other_member input[type="checkbox"]').attr("checked", ""); 
+      $('.other_members input[type="checkbox"]').attr("checked", ""); 
       $(this).html("#{t('events.participants.select_all')}");
     } else {  
-      $('.other_member input[type="checkbox"]').attr("checked", "true"); 
+      $('.other_members input[type="checkbox"]').attr("checked", "true"); 
       $(this).html("#{t('events.participants.select_none')}");
     }
       $(this).toggleClass("selected");
@@ -93,7 +86,7 @@
   });
 
   $('.friend_select_input').click(function() {
-    friend_select("#{invitees_select_path(@event)}"); 
+    friend_select("#{event_invitees_select_path(@event)}"); 
     $.colorbox({ inline:true, href:"#friend_select",
                                      opacity:0.5, width:"502", height:"462" });
     return false;
@@ -103,11 +96,7 @@
     $.post("#{event_invite_path(@event.id)}", { selectedIds: ""+data });     
     $.colorbox.close();
     $('.friend_select_input').unbind('click');
-    $('#invitation_sent').fadeIn(1000, function() {
-      $(this).fadeOut(1000, function() {
-        location.reload();
-      }); 
-    });
+    location.reload();
     return false;
   }
 
@@ -115,11 +104,6 @@
     var checked = $('input[type="checkbox"]:checked');
     if (checked.length == 0) {
       $('a.delete').unbind('click');
-      $('#select_none_error').fadeIn(1000, function() {
-        $('#select_none_error').fadeOut(1000, function() {
-          $('a.delete').bind('click', deleteMembers);
-        }); 
-      });
       return false;
     }
     var arr = new Array(checked.length); 
