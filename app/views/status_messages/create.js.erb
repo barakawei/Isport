@@ -4,15 +4,15 @@ function processPost(postId,html){
     if ($( ".stream_element[id='"+postId+"']" ).length == 0){
       posts = $( ".feed_container" );
       prevPosts =  posts.find( ".stream_element" );
-      if(prevPosts.length > 0 ){
-        prevPosts.first().before(
+      //if(prevPosts.length > 0 ){
+        //prevPosts.first().before(
+          //$(html).fadeIn("fast", function(){})
+        //);
+       //}else{
+        posts.html(
           $(html).fadeIn("fast", function(){})
         );
-       }else{
-        posts.append(
-          $(html).fadeIn("fast", function(){})
-        );
-       }
+       //}
       $("abbr.timeago").timeago();
       textarea = $( ".photo_form textarea");
       textarea.removeClass( "with_photos" );

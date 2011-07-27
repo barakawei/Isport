@@ -6,11 +6,6 @@
       .day
         =event.start_at.strftime('%d').to_s
   .event_content
-    %span.event_info
-      .author
-        = person_link(event.person)
-      .timeago
-        = how_long_ago( event ) 
     .event
       .event_avatar
         = event_image_tag( event,:thuumb_medium )
@@ -25,8 +20,15 @@
           = '@'+event.address
         .description
           = event.description
-    .attendee
-      - for attendee in event.participants
-        = person_image_tag( attendee,:thumb_small )
+      .event_info
+        .author
+          = person_image_link(event.person)
+        .attend_count
+          = "参加人数:"
+          = event.participants.size
+        .like_count
+          = "感兴趣人数:"
+          = event.references.size
+
   .event_tool
 

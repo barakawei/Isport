@@ -53,7 +53,6 @@
 
     this.renderNotifications = function() {
       self.dropdownNotifications.empty();
-
       $.each(self.notifications.notifications, function(index, notifications) {
         $.each(notifications, function(index, notification) {
           var notificationElement = $("<div/>")
@@ -70,10 +69,29 @@
 
           if(notification.unread) {
             notificationElement.addClass("unread");
+            $.ajax({
+              url: "/notifications/" + notification.id,
+              type: "PUT",
+              success: function() {
+                message_count = $("#notification_badge .message_count");
+                count = parseInt(message_count.html()) || 0;  
+                count = count - 1;
+                if( count > 0 ){
+                  message_count.text( count );
+                }else{
+                  message_count.remove();
+                }
+                
 
+
+
+              }
+            });
+            
           }
         });
       });
+      $("abbr.timeago").timeago();
       self.ajaxLoader.hide();
     };
   };

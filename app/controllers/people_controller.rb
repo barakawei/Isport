@@ -61,9 +61,27 @@ class PeopleController < ApplicationController
   end
 
   def show_posts
-    @posts = Post.where( :author_id => current_user.person.id,:type => 'StatusMessage' ).order( "posts.created_at DESC" ).paginate(:page => params[:page], :per_page => 10)
+    @posts = Post.where( :author_id => params[ :person_id ],:type => 'StatusMessage' ).order( "posts.created_at DESC" ).paginate(:page => params[:page], :per_page => 10)
     
     respond_with @posts
+  end
+  
+  def edit_profile
+    @person = Person.find( params[ :person_id ] )
+    @profile = @person.profile
+    respond_with @profile
+  end
+
+  def show_person_events
+    person = Person.find( params[ :person_id ] )
+    @events = person.involved_events.paginate(:page => params[:page], :per_page => 5)
+    respond_with @events
+  end
+
+  def show_person_profile
+    person = Person.find( params[ :person_id ] )
+    @profile = person.profile
+    respond_with @profile
   end
 
   def friend_select

@@ -12,8 +12,7 @@ class HomeController < ApplicationController
       @friends = current_user.friends
       @followed_people = current_user.followed_people
       @befollowed_people = current_user.befollowed_people
-      @current_status = Post.where(:author_id => @person.id ).order("created_at DESC" ).first
-      @post = Post.where( :author_id => current_user.person.id,:type => 'StatusMessage' ).order( "posts.created_at DESC" ).first
+      @post = Post.where( :author_id => current_user.person.id,:type => 'StatusMessage' ).order( "posts.created_at DESC" ).limit( 1 )
     
 
       @selected = "home"

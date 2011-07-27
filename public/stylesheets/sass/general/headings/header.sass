@@ -6,12 +6,14 @@
   :position fixed
   :z-index 50
   :width 100%
+  :top 0
+  :left 0
 
   .message_count
     background: url("/images/ui/message_count.png") no-repeat scroll transparent
     background-position: 0 -240px
+    :display inline-block
     color: #FFFFFF
-    display: inline-block 
     height: 21px
     padding-left: 8px
     text-shadow: 0 -1px 0 #6FA13C
@@ -31,10 +33,9 @@
         margin-right: 8px
         padding: 4px 0 6px
   .logo
-    :display inline-block
-    :float left
-    :margin-left 100px
+    :position relative
     :padding-top 3px
+    :float left
     
     h2
       :color #ffffff
@@ -82,9 +83,8 @@
 
     
   .setting
-    .set
-      :margin-left 400px
-    :display inline
+    :position absolute
+    :right 0
     li 
       :position relative
       .avatar
@@ -107,8 +107,9 @@
 .accout
   :top 40px
   :width 60px
+  :position absolute
   ul
-    :text-align center
+    :text-align left
   li
     :margin 5px
   a
@@ -126,24 +127,25 @@
   float: right
   margin-right: 3px
   font-weight: bold
+
+#notification_badge
+  a
+    :padding-right 10px
   
 #notification_dropdown
   :background white
   :border solid #888 1px
   :position absolute
   :top 38px
-  :right 0
+  :right -155px
   :width 350px
   :display none
   :z-index 999
   :height 500px
   :overflow-y scroll
-
   :color #444
-
   a
     :color #5179AC
-
   .title
     :padding 10px
     h4
@@ -164,6 +166,13 @@
   .notification_element
     :padding 10px 
     :min-height 30px
+    .timeago
+      :display block
+      :color #999
+      :text-decoration none
+      :border none
+      
+
 
     > img
       :height 30px

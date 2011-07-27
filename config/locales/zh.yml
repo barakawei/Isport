@@ -2,7 +2,7 @@ zh:
   Isport: '乐玩网'
   search: "搜索"
   settings: "设置"
-  remove_friend: "删除好友"
+  remove_friend: "取消关注"
   home: "主页"
   upload_photo: "上传图片"
   events_link: "活动"
@@ -12,7 +12,7 @@ zh:
   no_friends: "没有好友"
   send: "发送"
   friends_count: "%{count}个好友"
-  start_sharing: "加为好友"
+  start_sharing: "关注"
   incoming_request: "接受请求"
   pending_request: "请求中"
   already_connected: "你的好友"

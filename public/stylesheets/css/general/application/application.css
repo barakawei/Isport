@@ -321,10 +321,6 @@ span.medium_avatar {
     text-decoration: none;
     margin: auto; }
 
-#person_panel {
-  padding-bottom: 40px;
-  border-bottom: 1px solid #dddddd; }
-
 #map {
   width: 200px;
   height: 250px;

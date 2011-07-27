@@ -16,6 +16,11 @@ module ApplicationHelper
     eval("#{object.class.name.underscore}_path(object)")
   end
 
+  def object_name_link( object )
+    return "" if object.nil?
+    link_to object.name,object_path( object )
+  end
+
   def object_image_link(object,size=:thumb_small)
     return "" if object.nil?
     object = object.person if object.instance_of? User
