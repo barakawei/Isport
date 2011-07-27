@@ -10,14 +10,14 @@
   .gender.info_text{ :class =>( "hide" if @profile.gender.nil? )}
     %span="性别"
     .content#gender
-      -if @profile.gender == 0
+      -if @profile.gender == "0"
         = "男"
       -else
         = "女"
   .location.info_text{ :class =>( "hide" if @profile.location.nil? )}
     %span="城市"
     .content#location
-      = @profile.location
+      = @profile.location.city.name
 
   
 

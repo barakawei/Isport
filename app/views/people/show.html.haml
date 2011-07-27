@@ -81,8 +81,8 @@
 
   .menu_bar
     %ul
-      %li.my_posts="信息"
       %li.my_events="活动"
+      %li.my_posts="信息"
       %li.my_profile="个人资料"
   .stream
   .action{ :style => "display: none" }
@@ -91,8 +91,8 @@
 
 
 :javascript
-  $.get("/people/show_posts",{person_id:#{@person.id}}  ); 
-  $(".my_posts").addClass( "select_on" );
+  $.get("/people/show_person_events",{person_id:#{@person.id}}  ); 
+  $(".my_events").addClass( "select_on" );
 
   $( ".edit_profile" ).click( function(  ){
     $.get("/people/edit_profile",{person_id:#{@person.id}}  ); 
