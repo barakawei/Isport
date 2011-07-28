@@ -104,7 +104,10 @@ class ItemsController < ApplicationController
     @events = Event.week.joins(:location).where(:subject_id => @item.id, :locations => {:city_id => @city.id})
         .limit(EVELIMIT)
 
-    @actors = @item.fans.includes(:profile).limit(ACTLIMIT)
+    @actors = Person.joins(:involved_events).joins(:interests)
+              .where(:events => {:subject_id => @item.id}, :items => {:id => @item.id}, 
+                     :involvements => {:is_pending => false})
+              .group("involvements.person_id").order("count(event_id) DESC").limit(ACTLIMIT).includes(:profile)
 
     @groups = Group.joins(:members).where(:item_id => @item.id, :city_id => @city.id)
           .group(:group_id).order("count(group_id) DESC").limit(ACTLIMIT)
