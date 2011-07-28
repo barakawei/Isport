@@ -1,16 +1,17 @@
 .hot_groups {
   width: 908px;
-  padding: 20px 20px 0 20px;
+  padding: 10px 20px 0 20px;
   border-top: none;
   float: left;
   margin-top: 10px; }
 
 .hot_box {
-  margin-top: 15px; }
+  margin-top: 15px;
+  margin-bottom: 20px; }
   .hot_box h2 {
-    background: none repeat scroll 0 0 #7e9bc1;
+    background: none repeat scroll 0 0 #4d4d4d;
     width: 100%;
-    height: 4px;
+    height: 1px;
     overflow: hidden;
     margin: 0; }
 
@@ -23,17 +24,17 @@
   .hot_item_groups .item_avatar {
     margin-right: 10px;
     float: left; }
-    .hot_item_groups .item_avatar img {
-      border: 1px solid #e1e1e1; }
   .hot_item_groups .item_group {
-    border: 1px solid #e1e1e1;
     width: 120px;
     float: left;
     margin-right: 10px;
     margin-bottom: 10px; }
     .hot_item_groups .item_group img {
       width: 120px;
-      height: 120px; }
+      height: 120px;
+      border: 1px solid #fcfcfc; }
+      .hot_item_groups .item_group img:hover {
+        border: 1px solid #ff6600; }
 
 .search_line {
   width: 908px;
@@ -89,7 +90,7 @@
     .search_result .group_by_search img {
       width: 180px;
       height: 180px;
-      border: 1px solid #dddddd; }
+      border: 1px solid white; }
       .search_result .group_by_search img:hover {
         border: 1px solid #ff6600; }
 

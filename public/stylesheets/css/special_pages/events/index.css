@@ -8,9 +8,9 @@
 .hot_box {
   margin-top: 20px; }
   .hot_box h2 {
-    background: none repeat scroll 0 0 #7e9bc1;
+    background: none repeat scroll 0 0 #616161;
     width: 100%;
-    height: 4px;
+    height: 1px;
     overflow: hidden;
     margin: 0; }
 
@@ -68,8 +68,7 @@
       color: #ff6600; }
     .search_result .event_by_search img {
       width: 180px;
-      height: 180px;
-      border: 1px solid #dddddd; }
+      height: 180px; }
       .search_result .event_by_search img:hover {
         border: 1px solid #ff6600; }
 
@@ -91,9 +90,8 @@
     margin-bottom: 15px; }
     .hot_items_events .item_event img {
       float: left;
-      border: 1px solid #e1e1e1;
-      width: 88px;
-      height: 88px; }
+      width: 90px;
+      height: 90px; }
     .hot_items_events .item_event .event_info {
       margin-left: 5px;
       float: left;

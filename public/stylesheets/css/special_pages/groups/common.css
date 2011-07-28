@@ -10,8 +10,12 @@ ul.nav {
     ul.nav li a {
       color: #5179ac;
       display: block;
-      border: 1px solid #dddddd;
+      border: 1px solid #4d4d4d;
       padding: 10px 10px 5px 10px; }
     ul.nav li a.active {
       color: #777777;
       border-bottom: 1px solid white; }
+
+hr.nav {
+  background-color: #4d4d4d;
+  color: #4d4d4d; }

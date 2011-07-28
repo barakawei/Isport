@@ -1,0 +1,17 @@
+- content_for :head do
+  = include_stylesheets :sepcial_pages_groups_events, :media => 'all'
+.span-24
+  = render "group_nav_bar", :group => @group, :current => 'events'
+.span-24
+  .span-22
+    %h3.inline=@group.name + ":"
+    %h4.inline= link_to '<返回小组首页', group_path(@group), :class => 'right'
+.span-24.prepend-top
+  - if @events.size > 0
+    - @events.each_with_index do |e, index|
+      = render 'group_event_item', :event => e, :index => index
+.span-24
+  = will_paginate @events, {:previous_label => t("pagination.previous"), 
+                            :next_label => t("pagination.next")}
+    
+    

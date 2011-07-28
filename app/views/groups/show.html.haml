@@ -1,6 +1,3 @@
--content_for :head do
-  = include_stylesheets :sepcial_pages_groups_common, :media => 'all'
-  = include_stylesheets :sepcial_pages_groups_show, :media => 'all'
 .span-24
   = render "group_nav_bar", :group => @group, :current => 'show'
   = render "group_home", :group => @group, 

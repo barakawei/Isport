@@ -62,7 +62,8 @@ class GroupsController < ApplicationController
     @group = Group.find(params[:id])
     @invitees = @group.invitees
     @invitees_size = @invitees.size
-    @to_be_invited_friends = current_user.friends - @invitees || []
+    @friends = current_user.friends
+    @to_be_invited_friends = @friends - @group.related_person || []
     @invitees.slice!(9, @invitees.length)
     @step = 2
     @steps = [I18n.t('groups.new_group_wizard.step_1'),I18n.t('groups.new_group_wizard.step_2')]
@@ -91,6 +92,12 @@ class GroupsController < ApplicationController
   def members
     @group = Group.find(params[:id])
     @members = @group.members.paginate :page => params[:page], :per_page => 10
+  end
+
+  def events
+    @group = Group.find(params[:id])
+    @events = @group.events.order('start_at desc').paginate :page => params[:page],
+                                                            :per_page => 10
   end
 
   def forum

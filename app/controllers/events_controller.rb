@@ -19,7 +19,7 @@ class EventsController < ApplicationController
   def my_events
     @type = params[:type]
     @events = []
-    @removable = (@type == "joined" || @type == "recommended") 
+    @removable = false 
     @events = current_user.send(@type)
   end
 
@@ -57,6 +57,12 @@ class EventsController < ApplicationController
     @step = 1 
     @event = Event.new
     @event.location = Location.new(:city_id => 1, :district_id => 1, :detail => " ")
+    unless params[:group_id].nil?
+      @group = Group.find(params[:group_id])
+      @event.group = @group
+      @event.item = @group.item
+      @event.location = Location.create(:city_id => @group.city_id, :district_id => @group.district_id)
+    end
     @items = Item.find(:all, :select => 'id, name')
   end
 

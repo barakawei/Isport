@@ -28,6 +28,7 @@ class Person < ActiveRecord::Base
 
   delegate :name, :to => :profile
   delegate :email, :to => :user
+  delegate :location, :to => :profile
   
   def self.search(query,user)
     return [] if query.to_s.blank? || query.to_s.length < 1

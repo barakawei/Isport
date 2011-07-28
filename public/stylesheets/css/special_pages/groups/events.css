@@ -1,0 +1,17 @@
+.event_item {
+  padding: 10px 0 10px 0; }
+  .event_item .pic {
+    margin-left: 10px; }
+  .event_item .description .title {
+    display: inline; }
+  .event_item .description p {
+    margin-bottom: 0; }
+  .event_item .description .participants {
+    color: #f6b24d;
+    display: inline; }
+
+.odd {
+  background-color: #f8f8f8; }
+
+.even {
+  background-color: #e8f3f7; }
