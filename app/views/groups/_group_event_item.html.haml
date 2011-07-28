@@ -35,30 +35,3 @@
       %p
         %b= t('events.event_owner')+":"
         = link_to event.person.profile.name, person_path(event.person)
-    .span-1.operation.right
-      - if removable
-        = link_to t('operations.delete'), "#remove_event_#{event.id}", :class => "delete right"
-
-.span-24
-  .facebox_content.hide
-    %div{:id => "remove_event_#{event.id}"}
-      .span-10.box_content
-        %h4= t('activerecord.operations.event.remove_event_from_list', :type => remove_type(@type) )
-        %p
-          = get_link_by_type(@type, event)
- 
-:javascript  
-  $(function() {
-    $('.operation .delete').button({
-      icons: {
-        primary: "ui-icon-closethick"
-      },
-      text:false 
-    });
-  });
-  $('.operation .delete').colorbox({ inline:true, opacity:0.2,        
-                                     rel:'nofollow', speed: 300,
-                                     href: function() {
-                                       return $(this).attr('href');
-                                     }});
-

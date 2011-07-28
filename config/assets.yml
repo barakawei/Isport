@@ -92,6 +92,8 @@ stylesheets:
     - public/stylesheets/css/special_pages/groups/hottest.css
   sepcial_pages_groups_edit:
     - public/stylesheets/css/special_pages/groups/edit.css
+  sepcial_pages_groups_events:
+    - public/stylesheets/css/special_pages/groups/events.css
 
 
   special_pages_topic_form:

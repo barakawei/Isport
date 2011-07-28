@@ -19,6 +19,7 @@ class Group < ActiveRecord::Base
                         :conditions => ['memberships.pending = ? ', false] 
   has_many :invitees, :through => :memberships, :source => :person,
                         :conditions => ['memberships.pending = ? ', true] 
+  has_many :related_person, :through => :memberships, :source => :person
   has_many :admins, :through => :memberships, :source => :person, 
                         :conditions => ['memberships.is_admin = ?', true]
 

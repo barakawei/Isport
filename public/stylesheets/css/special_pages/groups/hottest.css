@@ -1,8 +1,6 @@
 .group_avatar {
   float: left;
   width: 208px; }
-  .group_avatar img {
-    border: 1px solid #dddddd; }
 
 .group_des {
   float: left;

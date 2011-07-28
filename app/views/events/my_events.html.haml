@@ -12,7 +12,7 @@
 %hr
 .span-24
   -@events.each_with_index do |event, index|
-    = render "my_event_item", :event => event, :index => index        
+    = render "my_event_item", :event => event, :index => index, :remove_able => @removeable        
 
       
 :javascript

@@ -10,7 +10,7 @@
   %h2.inline
     = '乐玩活动'
   %h3.inline= link_to @city.name , 'javascript:void(0);', :id => 'switch_city'
-  = link_to  '发起活动', new_event_path, :class => 'button right'
+  = link_to  '发起活动', new_event_path, :group_id => 1, :class => 'button right'
 
 -if @hot_events.size > 0
   .span-24.hot_box

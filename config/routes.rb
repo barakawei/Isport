@@ -70,6 +70,8 @@ Isport::Application.routes.draw do
           :constraints => { :id => /[1-9]\d*/}
     match '/events/:id/invite_friends' => :invite_friends, :as => 'new_event_invite',
           :constraints => { :id => /[1-9]\d*/}
+    match '/events/new/of_group/:group_id' => :new, :as => 'new_group_event',
+          :constraints => { :id => /[1-9]\d*/}
   end
 
   controller :involvements do
@@ -99,6 +101,8 @@ Isport::Application.routes.draw do
     match '/groups/:id/invite_friends' => :invite_friends, :as => 'new_group_invite',
           :constraints => { :id => /[1-9]\d*/}
     match '/groups/:id/edit/members' => :edit_members, :as => 'edit_group_members',
+          :constraints => { :id => /[1-9]\d*/}
+    match '/groups/:id/events' => :events, :as => 'group_events',
           :constraints => { :id => /[1-9]\d*/}
   end 
 
