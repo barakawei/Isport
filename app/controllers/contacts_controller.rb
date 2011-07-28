@@ -7,10 +7,15 @@ class ContactsController < ApplicationController
   end
 
   def show_avatar_panel
-    @contact = Contact.where( :user_id=>current_user.id,:person_id=>params[ :person_id ] )
     @person = Person.where( :id=>params[ :person_id ] )
+    if @person.first.id == current_user.person.id
+      json_data = {"myself" => true, "person" => @person,"contact" => []}.to_json
+    else
+      @contact = Contact.where( :user_id=>current_user.id,:person_id=>params[ :person_id ] )
+      json_data = {"myself" => false, "person" => @person,"contact" => @contact}.to_json
+    end
     respond_to do |format|
-      format.json{ render(:layout => false , :json => {"success" => true, "person" => @person,"contact" => @contact}.to_json )}
+      format.json{ render(:layout => false , :json => json_data)}
     end
   end
 

@@ -5,25 +5,23 @@
     .description
       -if current_user.person.id == @person.id && ( @requests_count == 0 || !@requests_count)
         = "Welcome back!"
-      -elsif current_user.person.id == @person.id  && @requests_count != 0 
-        = link_to "#{@requests_count}个好友请求",{:controller => 'people', :action => 'friends_request'},:class => 'new friends_request'
 
-  .avatar_panel
+  .avatar_panel_container
     #followed_people
       - if @followed_people.length > 0
         %h4
           = "你关注的人"
         .contacts
           - for person in @followed_people
-            .avatar_container
+            .person_avatar
               = person_image_link(person)
           %h4
-            =link_to t( 'more' ),{:controller => 'people',:action => 'show_friends'}
+            =link_to t( 'more' ),{:controller => 'people',:action => 'show_friends',:type=>'followed'}
   .groups
     %h4
       加入的小组
     %ul
-      -for group in person.groups
+      -for group in current_user.person.joined_groups
         %li
           .group
             .avatar
@@ -34,7 +32,7 @@
     %h4
       喜欢的项目
     %ul
-      -for item in person.interests
+      -for item in current_user.person.interests
         %li
           .group
             .avatar

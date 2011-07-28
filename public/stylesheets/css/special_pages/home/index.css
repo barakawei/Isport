@@ -12,7 +12,7 @@
     left: 0; }
   #home_user .contacts {
     padding: 5px; }
-    #home_user .contacts img {
+    #home_user .contacts .person_avatar_detail {
       height: 30px;
       width: 30px; }
   #home_user .group {
@@ -61,7 +61,7 @@
   .comments .avatar {
     float: left;
     padding: 0; }
-  .comments img {
+  .comments .person_avatar_detail {
     height: 32px;
     width: 32px; }
 

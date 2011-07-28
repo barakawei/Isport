@@ -1,11 +1,10 @@
 -content_for :head do
   =include_javascripts :scroll_page
   =include_javascripts :show_photo
-  =include_javascripts :show_avatar
   =include_javascripts :status_message
 .span-5.person_left_bar
   .avatar_panel
-    #profile_photo.avatar
+    #profile_photo
       = person_image_tag(@person,:thumb_large )
       .change_profile_photo.hide
         = render 'photos/change_profile_photo', :person => @person
@@ -20,10 +19,10 @@
                 = "他关注的人"
 
             - for person in @followed_people
-              .avatar_container
+              .person_avatar
                 = person_image_link(person)
             %h4
-              =link_to t( 'more' ),{:controller => 'people',:action => 'show_friends'}
+              =link_to t( 'more' ),{:controller => 'people',:action => 'show_friends',:type=>'followed'}
 
       #befollowed_people
         - if @befollowed_people.length > 0
@@ -35,16 +34,16 @@
                 = "关注他的人"
 
             - for person in @befollowed_people
-              .avatar_container
+              .person_avatar
                 = person_image_link(person)
             %h4
-              =link_to t( 'more' ),{:controller => 'people',:action => 'show_friends'}
+              =link_to t( 'more' ),{:controller => 'people',:action => 'show_friends',:type=>'befollowed'}
       
       .groups
         %h4
           加入的小组
         %ul
-          -for group in person.groups
+          -for group in @person.joined_groups
             %li
               .group
                 .avatar
@@ -55,7 +54,7 @@
         %h4
           喜欢的项目
         %ul
-          -for item in person.interests
+          -for item in @person.interests
             %li
               .group
                 .avatar

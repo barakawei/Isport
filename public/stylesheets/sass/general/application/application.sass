@@ -185,7 +185,6 @@ label
   :float left
   :margin-top 20px
   :min-height 59px
-  :overflow hidden
   :padding 
     :top 5px
   :width 190px
@@ -349,7 +348,8 @@ span.medium_avatar
     :cursor pointer
 
 .avatar_show
-  .content
+  :position absolute
+  .person_content
     :padding-left 85px
     :width 100px
     :height 75px
@@ -361,13 +361,14 @@ span.medium_avatar
       :top  10px
   .avatar_panel
     :padding 5px    
-  :position absolute
-  .avatar
+  .person_avatar
     :float left
     :width 75px
     :height 75px
 
 .avatar_container
+  :position relative
+.person_avatar
   :display inline-block
 
 .relation_button
@@ -396,11 +397,11 @@ span.medium_avatar
 
 .comment_form
   :padding 8px
+  .person_avatar_detail
+    :height 32px
+    :width 32px
   .avatar
     :float left
-    img
-      :width 32px
-      :height 32px
   .comment_button
     :margin-left 40px
   textarea
@@ -417,5 +418,10 @@ span.medium_avatar
     :left 1px solid #EBEBEB
     :right 1px solid #EBEBEB
     :bottom 1px solid #EBEBEB
+
+
+#file-upload
+  input
+    :cursor pointer
       
 

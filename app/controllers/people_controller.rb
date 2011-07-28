@@ -15,8 +15,13 @@ class PeopleController < ApplicationController
   end
 
   def show_friends
-    @friends = current_user.friends
-    @selected = "friends"
+    @type = params[ :type ]
+    if @type == 'followed'
+      @people = current_user.followed_people
+    else
+      @people = current_user.befollowed_people
+    end
+
     render "people/friends_show"
 
   end
@@ -62,7 +67,7 @@ class PeopleController < ApplicationController
 
   def show_posts
     @posts = Post.where( :author_id => params[ :person_id ],:type => 'StatusMessage' ).order( "posts.created_at DESC" ).paginate(:page => params[:page], :per_page => 10)
-    
+    @page = params[ :page ]
     respond_with @posts
   end
   

@@ -94,7 +94,6 @@
   -moz-box-shadow: 0 3px 3px -3px #333333;
   box-shadow: 0 3px 3px -3px #333333;
   behavior: url(/javascripts/PIE.htc);
-  line-height: 0;
   margin-top: -50px;
   margin-bottom: 50px;
   padding: 50px 20px 10px;

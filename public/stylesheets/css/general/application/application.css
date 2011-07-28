@@ -168,7 +168,6 @@ label {
   float: left;
   margin-top: 20px;
   min-height: 59px;
-  overflow: hidden;
   padding-top: 5px;
   width: 190px; }
 
@@ -334,23 +333,26 @@ span.medium_avatar {
 
 .avatar_show {
   position: absolute; }
-  .avatar_show .content {
+  .avatar_show .person_content {
     padding-left: 85px;
     width: 100px;
     height: 75px; }
-    .avatar_show .content .name {
+    .avatar_show .person_content .name {
       font-size: 18px;
       color: #5179ac; }
   .avatar_show .action {
     margin-top: 10px; }
   .avatar_show .avatar_panel {
     padding: 5px; }
-  .avatar_show .avatar {
+  .avatar_show .person_avatar {
     float: left;
     width: 75px;
     height: 75px; }
 
 .avatar_container {
+  position: relative; }
+
+.person_avatar {
   display: inline-block; }
 
 .relation_button {
@@ -389,11 +391,11 @@ span.medium_avatar {
 
 .comment_form {
   padding: 8px; }
+  .comment_form .person_avatar_detail {
+    height: 32px;
+    width: 32px; }
   .comment_form .avatar {
     float: left; }
-    .comment_form .avatar img {
-      width: 32px;
-      height: 32px; }
   .comment_form .comment_button {
     margin-left: 40px; }
   .comment_form textarea {
@@ -410,3 +412,6 @@ span.medium_avatar {
   border-left: 1px solid #ebebeb;
   border-right: 1px solid #ebebeb;
   border-bottom: 1px solid #ebebeb; }
+
+#file-upload input {
+  cursor: pointer; }
