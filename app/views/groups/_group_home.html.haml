@@ -41,13 +41,11 @@
       .span-17
         - if current_user
           - if group.has_member?(@current_person)
-            %h4
+            %h4{:class => ('right' if @recent_events.size > 0) }
               = "还没有活动," unless @recent_events.size > 0 
-              = link_to '发起活动', new_group_event_path(group.id) 
+              = link_to '发起活动', new_group_event_path(group.id), :class => 'button'
           - else
-            %h4
-              ="您还不是本小组的成员,不能发起活动."
-              = link_to '立即加入小组,发起活动', group_memberships_path(group), :method => :post 
+            %span.error_color="您还不是本小组的成员,不能发起活动."
 
     .span-17.prepend-top.forum_area
       %h4.area_title
@@ -58,13 +56,11 @@
         = render 'topics/recent_topics.html.haml', :topics => @topics
       - if current_user
         - if group.has_member?(@current_person)
-          %h4
+          %h4{:class => ('right' if @topics.size > 0)}
             = '还没有话题,' unless @topics.size > 0
-            = link_to '发起话题', new_group_topic_path(@group)
+            = link_to '发起话题', new_group_topic_path(@group), :class => 'button' 
         - else
-          %h4
-            ="您还不是本小组的成员,不能发起话题."
-            = link_to '立即加入小组,发起话题', group_memberships_path(group), :method => :post 
+          %span.error_color.normal="您还不是本小组的成员,不能发起话题."
           
   .span-6.prepend-1.last
     %h4.space

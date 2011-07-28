@@ -4,18 +4,16 @@
 
 #city_select_box.hide    
   - City.all.each do |city|
-    %h4.inline= link_to city.name, "/events/?city=#{city.pinyin}"
+    %h4.inline= link_to city.name, "/events/?city=#{city.pinyin}", :class => 'event_color'
 
-.span-24
-  %h2.inline
-    = '乐玩活动'
-  %h3.inline= link_to @city.name , 'javascript:void(0);', :id => 'switch_city'
-  = link_to  '发起活动', new_event_path, :group_id => 1, :class => 'button right'
+.span-24.append-bottom
+  %h1.inline.app_subfunction_title.events= '乐玩活动'
+  %h3.inline= link_to @city.name , 'javascript:void(0);', :id => 'switch_city', :class => 'dark_gray'
+  = link_to  '发起活动', new_event_path, :group_id => 1, :class => 'button right function_button'
 
 -if @hot_events.size > 0
-  .span-24.hot_box
-    %h4.box_title='本月热门'
-    %h2
+  .span-24.hot_box.hottest
+    %h4.box_title.app_color_orange='本月热门'
     .hot_events.hottest
       #slider
         %ul
@@ -27,7 +25,7 @@
         %span#nextBtn= link_to '>', 'javascript:void(0);'
 
 .span-24.hot_box
-  %h4.box_title='寻找感兴趣的活动'
+  %h4.app_module_title='寻找感兴趣的活动'
   %h2
   .hot_events
     .search_line
@@ -57,7 +55,7 @@
         = link_to '时间选择', 'javascript:void(0)'
 
 .span-24.hot_box
-  %h4.box_title='推荐活动'
+  %h4.app_module_title='推荐活动'
   %h2
   .hot_events
     -@hot_items.each do |i|

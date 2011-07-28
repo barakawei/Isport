@@ -28,15 +28,15 @@
   .static_box
     .fans_count
       %p
-        %h3= link_to event.references.size, url_for(:action => "show_references", :id => event.id)
+        %h3= link_to event.references.size, url_for(:action => "references", :id => event.id), :class => 'event_color'
         %h4= '推荐'
     .members_count
       %p
-        %h3= link_to event.participants.size, url_for(:action => "show_participants", :id => event.id) 
+        %h3.app_color_orange= link_to event.participants.size, url_for(:action => "participants", :id => event.id), :class => 'event_color'
         %h4= '参加'
     .fans_count.last
       %p
-        %h3= link_to event.comments.size, event_path(event)
+        %h3= link_to event.comments.size, event_path(event), :class => 'event_color'
         %h4='评论'
     
 

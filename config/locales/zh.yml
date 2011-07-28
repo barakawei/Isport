@@ -76,7 +76,7 @@ zh:
       event_comments: '活动评论'
       event_subject: '所属项目'
       event_owner: '发起人'
-      location: '地点'
+      location: '活动地点'
       show: '去看看'
       edit: '编辑'
       destroy: '取消'

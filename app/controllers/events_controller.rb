@@ -2,8 +2,8 @@
 require 'geocoder'
 class EventsController < ApplicationController
   before_filter :authenticate_user!, 
-                :except => [:index, :show, :show_participants, 
-                            :show_references, :paginate_participants,
+                :except => [:index, :show, :participants, 
+                            :references, :paginate_participants,
                             :paginate_references, :filtered]
 
   LIMIT = 12
@@ -117,11 +117,11 @@ class EventsController < ApplicationController
     redirect_to(events_url)
   end
 
-  def show_participants
+  def participants
     get_participants
   end
 
-  def show_references
+  def references
     get_references
   end
 

@@ -2,7 +2,16 @@ body {
   background-color: #fcfcfc; }
 
 .blue {
-  color: #5179ac; }
+  color: #336699; }
+
+.error_color {
+  color: #a10000; }
+
+.group_color {
+  color: #11a3e1; }
+
+.event_color {
+  color: #4bc5be; }
 
 .bright_yellow {
   color: #f6b24d; }
@@ -15,11 +24,11 @@ b {
   display: block; }
 
 a {
-  color: #5179ac;
+  color: #336699;
   font-weight: bold;
   text-decoration: none; }
   a:hover {
-    color: #5179ac;
+    color: #336699;
     text-decoration: underline; }
 
 ol, ul, li {
@@ -260,7 +269,8 @@ span.medium_avatar {
   behavior: url(/javascripts/PIE.htc); }
 
 .app_module_title {
-  margin-bottom: 5px; }
+  margin-bottom: 5px;
+  color: #f48043; }
 
 #photozone {
   left: 5px;
@@ -295,7 +305,7 @@ span.medium_avatar {
     height: 75px; }
     .avatar_show .content .name {
       font-size: 18px;
-      color: #5179ac; }
+      color: #336699; }
   .avatar_show .action {
     margin-top: 10px; }
   .avatar_show .avatar_panel {
@@ -337,3 +347,29 @@ span.medium_avatar {
     color: white;
     text-decoration: none;
     margin: auto; }
+
+a.button {
+  font-size: 12px; }
+  a.button:hover {
+    color: #f48043; }
+  a.button .ui-button-text-only, a.button .ui-button-text {
+    padding: 4px 5px; }
+
+.app_subfunction_title {
+  margin-right: 5px; }
+
+.app_subfunction_title.groups {
+  color: #11a3e1; }
+
+.app_subfunction_title.events {
+  color: #4cc5be; }
+
+.app_color_orange {
+  color: #f48043; }
+
+.app_info_label {
+  color: #666666;
+  margin-right: 5px; }
+
+.dark_gray {
+  color: #666666; }

@@ -8,13 +8,17 @@ ul.nav {
     float: left;
     margin-left: 5px; }
     ul.nav li a {
-      color: #5179ac;
+      color: black;
       display: block;
       border: 1px solid #4d4d4d;
-      padding: 10px 10px 5px 10px; }
+      padding: 10px 10px 5px 10px;
+      background-color: #f1f1f1; }
+      ul.nav li a:hover {
+        text-decoration: none; }
     ul.nav li a.active {
       color: #777777;
-      border-bottom: 1px solid white; }
+      border-bottom: 1px solid white;
+      background-color: white; }
 
 hr.nav {
   background-color: #4d4d4d;
