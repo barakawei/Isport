@@ -3,6 +3,8 @@ class RegistrationsController < Devise::RegistrationsController
     @user = User.build( params[:user] )
     if @user.save
       sign_in_and_redirect(:user,@user)
+    else
+      new_user_registration_url
     end
   end
 

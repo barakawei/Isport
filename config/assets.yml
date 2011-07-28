@@ -110,4 +110,7 @@ stylesheets:
   special_pages_welcome:
     - public/stylesheets/css/special_pages/welcome/index.css
 
+  special_pages_registration_new:
+    - public/stylesheets/css/special_pages/registration/new.css
+
  

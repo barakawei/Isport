@@ -55,13 +55,13 @@ class ItemsController < ApplicationController
     fans_counts = {  }
     events_counts = {  }
     if current_user
-      city = City.find_by_pinyin(current_user.city.pinyin)
+      @city = City.find_by_pinyin(current_user.city.pinyin)
     else
-      city = City.first      
+      @city = City.first      
     end
     
     Event.week.joins(:location).select("subject_id, count(subject_id) evesize")
-      .where(:subject_id => items_ids, :locations => {:city_id => city.id}).group(:subject_id).each do |count|
+      .where(:subject_id => items_ids, :locations => {:city_id => @city.id}).group(:subject_id).each do |count|
       events_counts[count.subject_id] = count.evesize
     end
 

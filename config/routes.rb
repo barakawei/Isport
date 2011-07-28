@@ -7,7 +7,6 @@ Isport::Application.routes.draw do
   resources :requests
   resources :status_messages
   resources :comments
-  resources :items
   resources :status_messages do
     resources :comments,:only => [ :create,:show ]
   end
@@ -42,7 +41,9 @@ Isport::Application.routes.draw do
   match '/users/sign_up' => 'users#sign_up', :as => 'sign_up'
 
   controller :items do
-    match 'myitems' => :myitems, :as => 'myitems'
+    match '/items/:id' => :show, :via => :get,
+          :constraints => {:id => /[1-9]\d*/}
+    match '/items/myitems' => :myitems, :as => 'myitems'
   end
 
   controller :home do
@@ -52,7 +53,7 @@ Isport::Application.routes.draw do
   controller :welcome do
     match 'welcome' => :index, :as => 'welcome'
   end
-
+  
   controller :events do
     match '/events/:id' => :show, :via => :get,
           :constraints => { :id => /[1-9]\d*/}
