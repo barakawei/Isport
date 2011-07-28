@@ -73,4 +73,11 @@ module EventsHelper
     link_to name, "#", :class => "friend_select_input" 
   end
 
+  def group_options(person)
+    groups = person.joined_groups
+    options = groups.collect {|g| [g.name, g.id]}
+    options.insert(0, [I18n.t("events.not_group_event_option"), 0])
+    options
+  end
+
 end

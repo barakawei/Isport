@@ -1,36 +1,18 @@
 .hot_events {
   width: 908px;
   padding: 20px 20px 0 20px;
-  border: 1px solid #7e9bc1;
   border-top: none;
-  float: left; }
+  float: left;
+  margin-top: 10px; }
 
 .hot_box {
   margin-top: 20px; }
   .hot_box h2 {
-    background: none repeat scroll 0 0 #4d4d4d;
+    background: none repeat scroll 0 0 #7e9bc1;
     width: 100%;
     height: 4px;
     overflow: hidden;
-    border-bottom: 1px solid #4d4d4d;
     margin: 0; }
-
-.hot_item_events {
-  width: 908px;
-  margin-bottom: 20px; }
-  .hot_item_events .item_avatar {
-    margin-right: 30px;
-    display: inline; }
-  .hot_item_events .item_event {
-    border: 1px solid #e1e1e1;
-    width: 140px;
-    height: 140px;
-    display: inline-block;
-    vertical-align: top;
-    margin-right: 15px; }
-    .hot_item_events .item_event img {
-      width: 140px;
-      height: 140px; }
 
 .search_line {
   width: 908px;
@@ -93,7 +75,10 @@
 
 .hot_items_events {
   width: 908px;
-  margin-bottom: 20px; }
+  margin-bottom: 10px;
+  float: left;
+  border-bottom: 1px dashed #e1e1e1;
+  padding-bottom: 10px; }
   .hot_items_events a.more {
     display: block; }
   .hot_items_events .item_avatar {

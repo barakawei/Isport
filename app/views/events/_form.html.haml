@@ -31,7 +31,10 @@
         = f.label t('activerecord.attributes.event.description'), :class => "info"
         = f.text_area :description
         = error_on(@event, :description)
-      .field.subject.module
+      .field.module
+        = f.label '所属小组', :class => "info"
+        = f.select :group_id, group_options(current_user.person) 
+      .field.subject
         = f.label t('activerecord.attributes.event.subject'), :class => "info"
         = collection_select(:event, :subject_id, Item.all, :id, :name, {:prompt => true})
         = error_on(@event, :subject_id)

@@ -148,6 +148,7 @@ zh:
       new_event_wizards:
         step_1: '1.填写活动信息'
         step_2: '2.邀请好友'
+      not_group_event_option: '非小组活动'
   items:
       items_list: "所有项目"
       new_item: "添加项目"

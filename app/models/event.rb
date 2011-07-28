@@ -22,6 +22,7 @@ class Event < ActiveRecord::Base
   validate :participants_limit_cannot_be_less_than_current_participants, :validate_location_detail
 
   belongs_to :person
+  belongs_to :group
 
   belongs_to :location
   accepts_nested_attributes_for :location
