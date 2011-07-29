@@ -1,7 +1,7 @@
 .header {
-  background: url("/images/ui/header_background_warm.jpg") repeat-x scroll left top;
+  background-color: #17282e;
   text-align: left;
-  height: 39px;
+  height: 91px;
   position: fixed;
   z-index: 50;
   width: 100%;
@@ -33,29 +33,40 @@
   .header .logo {
     position: relative;
     padding-top: 3px;
-    float: left; }
+    display: block;
+    width: 200px; }
     .header .logo h2 {
-      color: #ff7d56; }
+      color: #fcfcfc; }
   .header .sections {
-    float: left;
-    font-size: 12px;
-    padding-left: 40px; }
+    font-size: 14px;
+    font-weight: normal; }
   .header ul {
-    list-style: none;
-    padding-left: 0; }
+    display: block;
+    list-style: none; }
   .header .sections li, .header .setting li {
     float: left;
-    margin-right: 1px; }
+    margin-right: 2px; }
   .header .sections a, .header .setting a {
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-topright: 5px;
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    behavior: url(/javascripts/PIE.htc);
+    border: 1px solid #fc476b;
+    background-color: #fc476b;
     color: #fcfcfc;
+    width: 70px;
+    height: 10px;
+    line-height: 10px;
     display: block;
-    float: left;
     padding: 11px 10px;
     text-decoration: none; }
     .header .sections a:hover, .header .sections a .active, .header .setting a:hover, .header .setting a .active {
-      background-color: #fcfcfc;
-      background-position: left bottom;
-      color: black;
+      border: 1px solid #0bb6e5;
+      background-color: #0bb6e5;
+      color: #fcfcfc;
       text-decoration: none; }
     .header .sections a .active, .header .setting a .active {
       font-size: 11px;
@@ -70,12 +81,13 @@
     background: url("/images/layout/button.png") repeat-x scroll 100% -492px white; }
   .header .setting {
     position: absolute;
-    right: 0; }
+    right: 0;
+    bottom: 10px; }
     .header .setting li {
-      position: relative; }
+      position: relative;
+      line-height: 20px; }
       .header .setting li .avatar {
         position: absolute;
-        top: 5px;
         left: 3px;
         width: 20px;
         height: 20px; }

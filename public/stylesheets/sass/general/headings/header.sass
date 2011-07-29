@@ -1,8 +1,8 @@
 @import '../ui/mixins'
 .header
-  :background url("/images/ui/header_background_warm.jpg") repeat-x scroll left top 
+  :background-color #17282E
   :text-align left
-  :height 39px
+  :height 91px
   :position fixed
   :z-index 50
   :width 100%
@@ -35,34 +35,38 @@
   .logo
     :position relative
     :padding-top 3px
-    :float left
-    
+    :display block
+    :width 200px
     h2
-      :color #FF7D56
+      :color #FCFCFC
+
 
   .sections
-    :float left
-    :font-size 12px
-    :padding-left 40px
+    :font-size 14px
+    :font-weight normal
   ul
+    :display block
     :list-style none
-    :padding
-      :left 0
   .sections,.setting 
     li
       float: left
-      margin-right: 1px
+      margin-right: 2px
     a
-      color: #FCFCFC
+      @include border-radius-feed(5px)
+      :border 1px solid #fc476b
+      :background-color #fc476b
+      :color  #FCFCFC
+      :width 70px
+      :height 10px
+      :line-height 10px
       display: block
-      float: left
       padding: 11px 10px
       text-decoration: none
 
       &:hover, .active 
-        :background-color #FCFCFC 
-        :background-position left bottom
-        :color #000000
+        :border  1px solid #0BB6E5
+        :background-color #0BB6E5 
+        :color #FCFCFC
         :text-decoration none 
 
       .active
@@ -84,11 +88,12 @@
   .setting
     :position absolute
     :right 0
+    :bottom 10px
     li 
       :position relative
+      :line-height 20px
       .avatar
         :position absolute
-        :top 5px
         :left 3px
         :width 20px
         :height 20px

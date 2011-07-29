@@ -4,24 +4,7 @@
   %li
     =link_to t('home'), home_path
   %li
-    =link_to t('events_link'), events_path
-  %li
-    =link_to t('items_link'), items_path
-  %li
     =link_to t('groups_link'), groups_path
-
-  -if current_user
-    %li
-      %a{:href => conversations_path}
-        =t( 'inbox' )
-        -if current_user && @unread_message_count != 0
-          %span.message_count
-            %span
-              %span=@unread_message_count
-
-  %li#search
-    = form_tag(people_path, :method => 'get', :id => "global_search_form") do
-      = text_field_tag 'q', nil, :placeholder => t('search'), :type => 'search', :results => 5
 
 -if current_user
   %ul.setting

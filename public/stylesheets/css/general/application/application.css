@@ -5,7 +5,7 @@
   opacity: 0.3; }
 
 body {
-  background-color: #fcfcfc; }
+  background-color: #e9eef1; }
 
 .blue {
   color: #5179ac; }
@@ -32,7 +32,7 @@ ol, ul, li {
   list-style: none; }
 
 .container.body {
-  padding-top: 60px; }
+  padding-top: 120px; }
 
 .overlay {
   -moz-border-radius: 4px;
@@ -405,7 +405,7 @@ span.medium_avatar {
     height: 23px; }
 
 .content_panel {
-  background: none repeat scroll 0 0 white;
+  background-color: #e9eef1;
   position: relative;
   z-index: 4;
   margin-top: -20px;
