@@ -30,7 +30,6 @@ $( function(){
       post_html = $( "<span url='/contacts?person_id="+person.id+"' data-method='post'>+ 关注</span>" );
       if ( myself ){
         $( ".relation_button",avatar_container ).remove();
-        
       }else{
         if (contact && contact.receiving){
         $( ".relation_button",avatar_container ).append(delete_html);
@@ -60,7 +59,11 @@ $( function(){
       var img = $( this );
       avatar_container = img.closest( ".avatar_container" );
       remove_handle = setTimeout(function(){  $(".avatar_show",avatar_container).fadeOut(200); },500);
-      }
+      },
+    click:function(){
+      $(".avatar_show",avatar_container).addClass( "hide" );
+      clearTimeout(show_handle);
+    }
   });
 
    var lock = 0;
