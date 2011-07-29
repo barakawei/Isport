@@ -4,8 +4,6 @@
   = render "groups/group_nav_bar", :group => @group, :current => 'forum'
   - unless @only_comment
     .span-18
-      %h3=@topic.title
-    .span-18
       = render 'topics/show'
     .span-5.last.topic_info
       %h4= link_to '<返回讨论区首页', forum_group_path(@group)

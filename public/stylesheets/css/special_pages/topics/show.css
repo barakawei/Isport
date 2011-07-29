@@ -1,2 +1,7 @@
 .topic_info {
   padding-left: 20px; }
+
+p, h3 {
+  white-space: normal;
+  overflow: hidden;
+  word-wrap: break-word; }

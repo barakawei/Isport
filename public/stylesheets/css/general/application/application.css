@@ -272,6 +272,10 @@ span.medium_avatar {
   margin-bottom: 5px;
   color: #f48043; }
 
+.app_module_title_black {
+  margin-bottom: 5px;
+  color: black; }
+
 #photozone {
   left: 5px;
   padding: 0;
@@ -373,3 +377,12 @@ a.button {
 
 .dark_gray {
   color: #666666; }
+
+.app_tab_border_radius {
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  behavior: url(/javascripts/PIE.htc); }

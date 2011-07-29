@@ -62,7 +62,9 @@
       = render :partial => "event_comments",  :locals => { :event => @event,
                                                      :author => @person,
                                                      :comments => @comments,
-                                                     :comment => @comment}
+                                                     :comment => @comment,
+                                                     :current_person => @current_person}
+
   - if @page <= 1
     .span-6.prepend-1.last
       .span-6

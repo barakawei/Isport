@@ -1,15 +1,42 @@
 -content_for :head do
+  = include_javascripts :jquery_validation
   = include_stylesheets :special_pages_topic_form, :media => 'all'
 .span-14
   = form_for @topic, :url => url  do  |f|
     .field
-      = f.label '标题'
+      = f.label '标题', :class => 'info'
       = f.text_field :title
     .field
-      = f.label '内容'
+      = f.label '内容', :class => 'info'
       = f.text_area :content
     .actions
       = f.submit '确认'
 .span-3.last
   %h4.inline='作者:'
   %span.author= person_image_link(person)
+  
+:javascript
+  $(function() {
+    $('#new_topic').validate({
+      rules: {
+        "topic[title]": {
+          required: true,
+          maxlength: 40
+        },    
+        "topic[content]": {
+          required: true,
+          maxlength: 5000 
+        }    
+      },
+      messages: {
+        "topic[title]": {
+          required: '请输入标题',
+          maxlength: '标题不能超过{0}个字符'
+        },
+        "topic[content]": {
+          required: '请输入话题内容',
+          maxlength: '话题内容不能超过{0}字符'
+        }
+      }
+    });  
+  });

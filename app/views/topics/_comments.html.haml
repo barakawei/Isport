@@ -12,6 +12,7 @@
           = link_to person.name, person_path(person)
           = l(comment.created_at, :format => :long) 
           = link_to '回复', '#', :class => "response" if person != current_person
+          = link_to '删除', topic_topic_comment_path(topic.id, comment.id), :method => :delete, :class => 'delete_comment' if person == current_person
         = simple_format comment.content 
       - comment.responses.each do |r|
         - rperson = r.person
@@ -24,8 +25,10 @@
               = link_to rperson.name, person_path(rperson) 
               = l(r.created_at, :format => :long)
               = link_to '回复', '#', :class => "response to_comment" if rperson != current_person
+              = link_to '删除', topic_topic_comment_path(topic.id, comment.id, :response_id => r.id), :method => :delete, :class => 'delete_response' if rperson == current_person
             = simple_format r.content
-  .span-15.pagination_box
+.span-15.pagination_box
+  - if comments.size > 0
     = will_paginate comments, {:previous_label => t("pagination.previous"), 
                                :next_label => t("pagination.next")}
 .span-18.new_comment
@@ -41,7 +44,11 @@
       = hidden_field_tag "comment[commentable_id]"
       = submit_tag '回复', :class => 'button submit'
       = link_to '取消', '#', :class => "button cancel"
-      
+
+.facebox_content.hide
+  #delete_event_request
+    .span-10
+
 :javascript
   $(function() {
     var options = { success: appendToComments, resetForm:true };
@@ -57,12 +64,14 @@
   function appendToComments(responseText, statusText, xhr, $form){
     if ($('.pagination_box').length > 0) {  
       $('.pagination_box').before(responseText);  
+      $('.comment_to_topic:hidden').fadeIn();
       $('.pagination_box').prev().find('a.response').click(function() {
         replylinkCallback($(this)); 
         return false;
       });
     } else {
       $('.new_comment').before(responseText); 
+      $('.comment_to_topic:hidden').fadeIn();
       $('.new_comment').prev().find('a.response').click(function() {
         replylinkCallback($(this)); 
         return false;
@@ -76,6 +85,7 @@
     response_box.hide(); 
     $(response_box.prev('.content').find('a.response')[0]).show();
     $(responseText).appendTo(parent);
+    $('.comment_to_comment:hidden').fadeIn();
     parent.children(':last').find('a.response').click(function() {
       replylinkCallback($(this)); 
       return false;
@@ -116,4 +126,26 @@
         response_box.find('textarea').focus()
                                      .val('回复'+link.prev('a').html()+ ": ");
     });
+  }
+
+  $('.delete_comment').click(delete_comment);
+  $('.delete_response').click(delete_comment);
+
+  function delete_comment() {
+     var response = confirm('确定要删除这条评论吗?');
+     if (!response) {  
+       return false;
+     }
+     $.post(this.href, {_method: 'delete'});
+
+     if($(this).hasClass('delete_comment')) {
+       $(this).parents('.comment_to_topic').fadeOut(function() {
+         $(this).remove(); 
+       });
+     } else {
+       $(this).parents('.comment_to_comment').fadeOut(function(){
+         $(this).remove(); 
+       });
+     } 
+     return false;
   }

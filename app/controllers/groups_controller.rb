@@ -1,6 +1,6 @@
 class GroupsController < ApplicationController
-  prepend_before_filter :authenticate_user!, :except => [:index, :show] 
-  before_filter :init, :except => [:index, :show] 
+  prepend_before_filter :authenticate_user!, :except => [:index, :show, :forum, :members, :events] 
+  before_filter :init, :except => [:index, :show, :forum, :members, :events] 
   
   def index
     city_pinyin = params[:city] ? params[:city] : (current_user ? current_user.city.pinyin : City.first.pinyin)
@@ -33,7 +33,7 @@ class GroupsController < ApplicationController
 
   def edit_members
     @group = Group.find(params[:id])
-    @members = @group.members.order('created_at ASC') || []
+    @members = @group.deletable_members.order('created_at ASC') || []
     @friends = current_user.friends || [ ] 
     @friend_members = @members & @friends
     @other_members = @members - @friend_members
