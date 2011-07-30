@@ -62,13 +62,13 @@
                 .name
                   = object_name_link(item)
 
-.span-15.content_panel
+.span-18
   #person_panel
     .person_bar
       %h2=@person.name
       .action  
         -if @person.user_id == current_user.id
-          .button.edit_profile
+          .edit_profile
             ="编辑个人资料"
         -elsif @contact && @contact.receiving
           .button.remove_friend
@@ -77,10 +77,70 @@
           .button.add_friend{:style=>"width:100px"}
             =link_to t('start_sharing'),{:controller => 'contacts', :action => 'create',:person_id => @person.id},:method =>'post'
       %div=@person.profile.signature
+      .history_bar
+        .create_event.panel
+          .border_left_side
+          .counts_center.red
+            .title
+              = "组织"
+            .counts
+              =68
+            .info
+              = "活动"
+          .border_right_side
+
+
+        .attend_event.panel
+          .border_left_side
+          .counts_center.green
+            .title
+              = "参加"
+            .counts
+              =120
+            .info
+              = "活动"
+
+          .border_right_side
+
+
+        .points.panel
+          .border_left_side
+          .counts_center.yellow
+            .title
+              = "获得"
+            .counts
+              = 250
+            .info
+              = "红心"
+          .border_right_side
+      .events_panel
+        .current_events
+          .title_panel
+            .border_left_side
+            .content_center
+              = "准备参加的活动"
+            .border_right_side
+          .pointer
+
+          .events_box_panel.current
+            = render :partial => 'events/event_element',:collection => @events,:as => :event
+
+          .clear
+
+        .past_events
+          .title_panel
+            .border_left_side
+            .content_center
+              ="成功参加的活动"
+            .border_right_side
+          .pointer
+          .events_box_panel.past
+            = render :partial => 'events/past_event_element',:collection => @events,:as => :event
+
+          .clear
 
   .stream
 
-    
 
 
 :javascript
@@ -112,3 +172,4 @@
 
   
 
+            .counts

@@ -16,6 +16,7 @@
       height: 30px;
       width: 30px; }
   #home_user .group {
+    background-color: #dbe0e3;
     padding: 5px; }
     #home_user .group .avatar {
       float: left; }

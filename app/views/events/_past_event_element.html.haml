@@ -14,10 +14,7 @@
           .address
             = "@"+event.location.to_s
         .info_right
-          .calendar_panel
-            .calendar
-              .month
-                =event.start_at.strftime('%m').to_s+"月"
-              .day
-                =event.start_at.strftime('%d').to_s
+          .event_closed
+            = image_tag( '/images/ui/event_closed_red.gif' )
         .clear
+

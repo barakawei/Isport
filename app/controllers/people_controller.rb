@@ -58,6 +58,7 @@ class PeopleController < ApplicationController
     if @person
       @contact =  Contact.unscoped.where( :user_id => current_user.id ,:person_id => @person.id).first
       @friends = @person.user.friends
+      @events = @person.involved_events
       @followed_people = @person.user.followed_people
       @befollowed_people = @person.user.befollowed_people
       @favorite_items = Item.joins( :favorites ).where( :favorites => {:person_id => @person.id })
