@@ -113,6 +113,7 @@
             .info
               = "红心"
           .border_right_side
+    .stream
       .events_panel
         .current_events
           .title_panel
@@ -136,11 +137,8 @@
           .pointer
           .events_box_panel.past
             = render :partial => 'events/past_event_element',:collection => @events,:as => :event
-
           .clear
-
-  .stream
-
+        .clear
 
 
 :javascript
@@ -169,7 +167,5 @@
 
   $("abbr.timeago").timeago();
 
-
   
 
-            .counts

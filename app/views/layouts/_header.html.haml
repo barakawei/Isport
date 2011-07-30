@@ -2,29 +2,47 @@
   %h2= t('Isport')
 %ul.sections#sections
   %li
-    =link_to t('home'), home_path
+    =link_to t('home'), home_path,:class => 'red_tab'
   %li
-    =link_to t('groups_link'), groups_path
+    =link_to t('events_link'), events_path,:class => 'red_tab'
+  %li
+    =link_to t('items_link'), items_path,:class => 'red_tab'
+  %li
+    =link_to t('groups_link'), groups_path,:class => 'red_tab'
+
+  -if current_user
+    %li
+      %a{:href => conversations_path,:class =>'red_tab'}
+        =t( 'inbox' )
+        -if current_user && @unread_message_count != 0
+          %span.message_count
+            %span
+              %span=@unread_message_count
+
+  %li#search
+    = form_tag(people_path, :method => 'get', :id => "global_search_form") do
+      = text_field_tag 'q', nil, :placeholder => t('search'), :type => 'text', :results => 5
 
 -if current_user
   %ul.setting
+    %li.notifaction
+      #notification_badge
+        %a{ :href => "#" ,:class => 'red_tab'}
+          = "通知"
+          -if current_user && @unread_notify_count != 0
+            %span.message_count
+              %span
+                %span=@unread_notify_count
     %li.set
       .avatar
         = person_image_tag( current_user.person,:thumb_small )
-      %a{:href => "#",:class => "current_user_link"}
+      %a{:href => "#",:class => "current_user_link red_tab"}
         .name  
           = current_user.name
         .icon
           &nbsp; &nbsp; &nbsp;
 
-    %li
-      #notification_badge
-        %a{ :href => "#" }
-          = "通知"
-          -if current_user && @unread_notify_count != 0
-            %span.message_count
-              %span
-                %span=@unread_notify_count 
+ 
   .accout.overlay.hide
     .accout_body.overlay_body
       %ul
@@ -43,5 +61,5 @@
 -else
   %ul.setting
     %li
-      = link_to "登录", sign_in_path 
+      = link_to "登录", sign_in_path
 

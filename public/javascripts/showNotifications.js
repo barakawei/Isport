@@ -67,8 +67,8 @@
             .appendTo(self.dropdownNotifications);
 
 
+          notificationElement.addClass("unread");
           if(notification.unread) {
-            notificationElement.addClass("unread");
             $.ajax({
               url: "/notifications/" + notification.id,
               type: "PUT",

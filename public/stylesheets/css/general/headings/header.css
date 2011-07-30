@@ -1,8 +1,18 @@
+.red_tab {
+  border: 1px solid #f74367;
+  background-color: #f74367; }
+
+.gray_tab {
+  border: 1px solid #e9eef1;
+  background-color: #e9eef1; }
+
+.notifaction {
+  padding-right: 60px; }
+
 .header {
   background-color: #17282e;
   text-align: left;
   height: 91px;
-  position: fixed;
   z-index: 50;
   width: 100%;
   top: 0;
@@ -36,7 +46,7 @@
     display: block;
     width: 200px; }
     .header .logo h2 {
-      color: #fcfcfc; }
+      color: #fe905d; }
   .header .sections {
     font-size: 14px;
     font-weight: normal; }
@@ -44,6 +54,13 @@
     display: block;
     list-style: none; }
   .header .sections li, .header .setting li {
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-topright: 5px;
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    behavior: url(/javascripts/PIE.htc);
     float: left;
     margin-right: 2px; }
   .header .sections a, .header .setting a {
@@ -54,8 +71,6 @@
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     behavior: url(/javascripts/PIE.htc);
-    border: 1px solid #17282e;
-    background-color: #17282e;
     color: #fcfcfc;
     width: 70px;
     height: 10px;
@@ -63,22 +78,32 @@
     display: block;
     padding: 11px 10px;
     text-decoration: none; }
-    .header .sections a:hover, .header .sections a .active, .header .setting a:hover, .header .setting a .active {
-      border: 1px solid #fe905d;
-      background-color: #fe905d;
+    .header .sections a:hover, .header .setting a:hover {
+      border: 1px solid #00bed4;
+      background-color: #00bed4;
       color: #fcfcfc;
-      text-decoration: none; }
+      text-decoration: none;
+      margin-bottom: -20px; }
     .header .sections a .active, .header .setting a .active {
       font-size: 11px;
       font-weight: bold; }
-  .header li#search input {
-    border: 0 none;
-    margin-top: 10px;
-    height: 15px;
-    color: #8a8a8a;
-    font-size: 11px;
-    width: 120px;
-    background: url("/images/layout/button.png") repeat-x scroll 100% -492px white; }
+  .header li#search {
+    background-color: #414141;
+    padding-top: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 4px; }
+    .header li#search input {
+      font-size: 10px;
+      width: 200px;
+      border: 1px solid #bebebe;
+      color: #555555;
+      border-top-color: #d4d4d4;
+      border-left-color: #d4d4d4;
+      -moz-border-radius: 4px;
+      -webkit-border-radius: 4px;
+      border-radius: 4px;
+      behavior: url(/javascripts/PIE.htc); }
   .header .setting {
     position: absolute;
     right: 0;
@@ -102,7 +127,7 @@
           background: url("/images/ui/icons.png") repeat 10px -2588px; }
 
 .accout {
-  top: 40px;
+  top: 90px;
   width: 60px;
   position: absolute; }
   .accout ul {
@@ -128,10 +153,12 @@
   padding-right: 10px; }
 
 #notification_dropdown {
-  background: white;
-  border: solid #888888 1px;
+  border-left: 2px solid #dbe1e1;
+  border-right: 2px solid #dbe1e1;
+  border-bottom: 2px solid #dbe1e1;
+  background-color: #e9eef1;
   position: absolute;
-  top: 38px;
+  top: 90px;
   right: -155px;
   width: 350px;
   display: none;
