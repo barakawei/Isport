@@ -25,6 +25,16 @@ ActiveRecord::Schema.define(:version => 20110725134421) do
     t.string   "pinyin"
   end
 
+  create_table "comments", :force => true do |t|
+    t.integer  "person_id"
+    t.text     "content"
+    t.integer  "item_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "type"
+    t.integer  "post_id"
+  end
+
   create_table "contacts", :force => true do |t|
     t.integer  "user_id"
     t.integer  "person_id"
@@ -64,10 +74,9 @@ ActiveRecord::Schema.define(:version => 20110725134421) do
     t.integer  "person_id"
     t.text     "content"
     t.integer  "commentable_id"
+    t.string   "commentable_type"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "post_id"
-    t.string   "commentable_type"
   end
 
   create_table "events", :force => true do |t|

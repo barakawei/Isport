@@ -13,7 +13,7 @@
         .span-3.left
           = item_image_link(item[:item], :size => :thumb_medium)
         .span-6.right
-          %span.detail= link_to item[:item].name, item, :class => "nounderline"
+          %span.detail= link_to item[:item].name, item[:item], :class => "nounderline"
           %br
           %span.detail= item[:fans_count].to_s + t('items.fans')
           %br

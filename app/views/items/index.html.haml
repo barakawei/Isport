@@ -31,7 +31,7 @@
           .span-4
             .left.left_padding
               = item_image_link(item[:item], :size => :thumb_small)
-            %span.itemsg= link_to item[:item].name, item, :class => "nounderline"
+            %span.itemsg= link_to item[:item].name, item[:item], :class => "nounderline"
             %br
             %span.itemsg= link_to t('items.eventsthisweek', :count => item[:count]), event_filter_path(@city.pinyin, nil, item[:item].id, 'week')
             %br
