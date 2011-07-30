@@ -61,18 +61,6 @@ span.maintitle {
   font-size: large;
   color: #ff7d56; }
 
-span.title {
-  overflow: show;
-  text-align: left;
-  float: left;
-  display: inline;
-  height: 20px; }
-
-span.detail {
-  overflow: hidden;
-  float: right;
-  text-align: right; }
-
 span.eveinfo {
   overflow: hidden;
   float: right;

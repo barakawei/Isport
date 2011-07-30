@@ -59,8 +59,7 @@
     background: url(/images/ui/border_side.png) no-repeat 0 0; }
 
 .events_panel {
-  margin-top: 30px;
-  height: 51px; }
+  margin-top: 30px; }
   .events_panel .events_box_panel a {
     outline: none;
     text-decoration: none;
@@ -276,11 +275,23 @@ dt {
 dd {
   display: inline-block; }
 
+.person_settings {
+  display: block;
+  height: 45px;
+  width: 91px;
+  background: url(/images/ui/person_settings.gif) no-repeat;
+  font-weight: bold;
+  font-size: 19px;
+  color: white;
+  padding: 8px 0 0px 14px; }
+
 .person_profile {
-  padding-bottom: 20px; }
+  background-color: white;
+  padding-bottom: 20px;
+  padding-top: 20px; }
   .person_profile .info_text {
     margin-left: 30px;
-    margin-top: 20px; }
+    margin-bottom: 30px; }
   .person_profile span {
     vertical-align: top;
     text-align: right;
