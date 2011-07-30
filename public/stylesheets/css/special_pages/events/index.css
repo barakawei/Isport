@@ -1,14 +1,22 @@
 .hot_events {
   width: 908px;
-  padding: 20px 20px 0 20px;
+  padding: 10px 20px 0 20px;
   border-top: none;
   float: left;
   margin-top: 10px; }
 
+.hot_events.hottest {
+  margin-top: 0; }
+
+.hot_box.hottest {
+  border: 2px solid #b9bcbd; }
+  .hot_box.hottest .box_title {
+    margin: 10px 0 0 10px; }
+
 .hot_box {
   margin-top: 20px; }
   .hot_box h2 {
-    background: none repeat scroll 0 0 #616161;
+    background: none repeat scroll 0 0 #b9bcbd;
     width: 100%;
     height: 1px;
     overflow: hidden;
@@ -102,21 +110,25 @@
         margin-bottom: 5px; }
       .hot_items_events .item_event .event_info .at_bottom {
         position: absolute;
-        bottom: 0px; }
+        bottom: 0px;
+        color: #666666; }
         .hot_items_events .item_event .event_info .at_bottom p {
           margin: 0; }
 
 #city_select_box {
   position: absolute;
   width: 100px;
-  border: 1px solid black;
+  border: 1px solid #b9b9b9;
   padding: 10px;
   background-color: white; }
 
 #switch_city {
-  text-decoration: none; }
+  text-decoration: none;
+  border: 1px solid white;
+  padding: 3px; }
   #switch_city:hover {
-    border: 1px solid #b9b9b9; }
+    border: 1px solid #b9b9b9;
+    color: #666666; }
 
 .box_title {
   margin-bottom: 5px; }

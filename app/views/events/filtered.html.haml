@@ -4,17 +4,16 @@
 
 #city_select_box.hide    
   - City.all.each do |city|
-    %h4.inline= link_to city.name, event_filter_path(:city => city.pinyin)
+    %h4.inline= link_to city.name, event_filter_path(:city => city.pinyin), :class => 'event_color'
 
-.span-24
-  %h2.title.inline
-    = '乐玩活动'
-  %h3.inline= link_to @city.name, '#', :id => 'switch_city'
+.span-24.append-bottom
+  %h1.title.inline.app_subfunction_title.events= '乐玩活动'
+  %h3.inline= link_to @city.name, '#', :id => 'switch_city', :class => 'dark_gray'
   = link_to '发起活动', new_event_path, :class => 'button right'
 
 
 .span-24.hot_box
-  %h4.box_title='寻找感兴趣的活动'
+  %h4.app_module_title='寻找感兴趣的活动'
   %h2
   .hot_groups
     .search_line

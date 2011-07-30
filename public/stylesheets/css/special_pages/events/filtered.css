@@ -40,10 +40,12 @@
         margin-right: 5px;
         display: inline-block; }
       .hot_groups .search_line .filter_items a.current {
-        color: #a10000; }
+        color: #4bc5be; }
 
 .search_result .event_item {
-  margin-top: 20px; }
+  margin-top: 20px;
+  border-bottom: 1px dashed #aaaaaa;
+  padding-bottom: 10px; }
   .search_result .event_item img {
     float: left;
     width: 150px;
@@ -62,16 +64,20 @@
       margin-bottom: 5px; }
     .search_result .event_item .information .at_bottom {
       position: absolute;
-      bottom: 1px; }
+      bottom: 1px;
+      color: #666666; }
 
 #city_select_box {
   position: absolute;
   width: 100px;
-  border: 1px solid black;
+  border: 1px solid #b9b9b9;
   padding: 10px;
   background-color: white; }
 
 #switch_city {
-  text-decoration: none; }
+  text-decoration: none;
+  border: 1px solid white;
+  padding: 3px; }
   #switch_city:hover {
-    border: 1px solid #b9b9b9; }
+    border: 1px solid #b9b9b9;
+    color: #666666; }

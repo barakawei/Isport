@@ -9,7 +9,7 @@
       %th.latest='最后回复'
     -@topics.each do |t|
       %tr.large
-        %td.title= link_to t.title, t.url
+        %td.title= link_to trim_info(t.title,30), t.url
         %td.author= link_to t.person.name, person_path(t.person.id)
         %td.reply= t.comments.count
         %td.latest= l(t.latest_comment_time, :format => :long)

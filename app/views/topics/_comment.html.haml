@@ -1,4 +1,4 @@
-.span-18.comment_to_topic
+.span-18.comment_to_topic.hide
   .avatar
     = person_image_link(person) 
   .content.span-15{:comment_id => "#{comment.id}"}
@@ -6,5 +6,8 @@
     %span.comment_info
       = link_to person.name, person_path(person)
       = l(comment.created_at, :format => :long) 
+      = link_to '删除', topic_topic_comment_path(topic.id, comment.id), :method => :delete, :class => "delete_comment new_#{comment.id}"
     = simple_format comment.content 
 
+:javascript
+  $(".new_#{comment.id}").click(delete_comment);

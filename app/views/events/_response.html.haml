@@ -5,5 +5,8 @@
     %span
       = link_to person.name, person_path(person)
       = l(comment.created_at, :format => :long)
-      = link_to '回复', '#', :class => 'response to_comment' unless current_user.person == person
+      = link_to '删除', event_event_comment_path(event.id, commentable.id, :response_id => comment.id), :class => "delete_response new_#{comment.id}"
     = simple_format comment.content
+
+:javascript
+  $("a.new_#{comment.id}").click(delete_comment);

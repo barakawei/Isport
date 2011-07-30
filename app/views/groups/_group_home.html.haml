@@ -4,21 +4,21 @@
   .group_des
     .description
       %h3= group.name
-      %h4.app_module_title= "小组描述" + ":"
+      %h4.app_module_title_black= "小组描述" + ":"
       %p= simple_format group.description
 .span-5.last.group_info
   .relative
     %p
-      %b= t('groups.created_at')+ ":"
+      %span.app_info_label= t('groups.created_at')+ ":"
       = l(group.created_at, :format => :long)
     %p
-      %b= t('groups.item')+ ":"
+      %span.app_info_label= t('groups.item')+ ":"
       = link_to group.item.name, item_path(group.item_id)
     %p
-      %b= t('groups.city') + ":"
+      %span.app_info_label= t('groups.city') + ":"
       = group.city.name
     %p
-      %b= t('groups.owner') + ":"
+      %span.app_info_label= t('groups.owner') + ":"
       = link_to group.person.name, person_path(group.person)
     = render 'common/share_bar'
     .join_mode
@@ -27,13 +27,13 @@
 .span-24.prepend-top
   .span-17
     .span-17.append-bottom
-      %h4.inline.app_module_title='近期活动'
+      %h4.inline.app_module_title_black='近期活动'
       %hr
         -if @recent_events.size > 0
           = link_to '更多', group_events_path(group), :class => 'right'
           - @recent_events.each do |e|
             .group_event.span-4
-              %h4.title= link_to trim_info(e.title, 13), event_path(e)
+              %h4.title.inline= link_to trim_info(e.title, 13), event_path(e)
               = event_image_link(e, :thumb_medium) 
               .event_info
                 %p= l(e.start_at, :format => :long)
@@ -41,35 +41,31 @@
       .span-17
         - if current_user
           - if group.has_member?(@current_person)
-            %h4
+            %h4{:class => ('right' if @recent_events.size > 0) }
               = "还没有活动," unless @recent_events.size > 0 
-              = link_to '发起活动', new_group_event_path(group.id) 
+              = link_to '发起活动', new_group_event_path(group.id), :class => 'button'
           - else
-            %h4
-              ="您还不是本小组的成员,不能发起活动."
-              = link_to '立即加入小组,发起活动', group_memberships_path(group), :method => :post 
+            %span.error_color="您还不是本小组的成员,不能发起活动."
 
     .span-17.prepend-top.forum_area
-      %h4.area_title
-        = t('groups.forum')+ ":"
+      %h4.app_module_title_black
+        = t('groups.forum')
         =link_to '更多话题', forum_group_path(group), :class => 'right' if @topics.size > 0 
       %hr
       - if @topics.size > 0
         = render 'topics/recent_topics.html.haml', :topics => @topics
       - if current_user
         - if group.has_member?(@current_person)
-          %h4
+          %h4{:class => ('right' if @topics.size > 0)}
             = '还没有话题,' unless @topics.size > 0
-            = link_to '发起话题', new_group_topic_path(@group)
+            = link_to '发起话题', new_group_topic_path(@group), :class => 'button' 
         - else
-          %h4
-            ="您还不是本小组的成员,不能发起话题."
-            = link_to '立即加入小组,发起话题', group_memberships_path(group), :method => :post 
+          %span.error_color.normal="您还不是本小组的成员,不能发起话题."
           
   .span-6.prepend-1.last
     %h4.space
     %h4= link_to '>更多' + @group.item.name + '小组' , group_filter_path(group.city.pinyin, nil, @group.item_id)
-    %h4= t('groups.members')+ ":"
+    %h4.app_module_title_black= t('groups.members')
     - if members.size > 0
       = render :partial => 'people/people_array', :locals => { :participants => members, 
                                                               :perline => 3, :no_pagination => true,  

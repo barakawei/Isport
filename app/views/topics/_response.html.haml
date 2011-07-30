@@ -1,10 +1,13 @@
-.span-16.comment_to_comment
+.span-16.comment_to_comment.hide
   .avatar_response
     = person_image_link(person)     
   .content.span-13{:comment_id => "#{commentable.id}"}
     %hr
     %span.comment_info
-      = link_to person.name, person_path(person) unless current_user.person == person
+      = link_to person.name, person_path(person)
       = l(comment.created_at, :format => :long)
+      = link_to '删除', topic_topic_comment_path(topic.id, commentable.id, :response_id => comment.id), :method => :delete, :class => "delete_response new_#{comment.id}"
     = simple_format comment.content
 
+:javascript
+  $(".new_#{comment.id}").click(delete_comment);

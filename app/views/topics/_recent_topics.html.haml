@@ -9,7 +9,7 @@
       %th.reply='回复数'
     -topics.each do |t|
       %tr
-        %td.title= link_to t.title, t.url 
+        %td.title= link_to trim_info(t.title, 30), t.url 
         %td.author= link_to t.person.name, person_path(t.person.id)
-        %td.reply='100/500'
+        %td.reply=t.comments.size
  

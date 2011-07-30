@@ -1,16 +1,22 @@
 .hot_groups
   :width 908px 
   :padding 10px 20px 0 20px
-  :border-top none
   :float left
   :margin-top 10px
+
+.hot_box.hottest
+  .app_module_title
+    :color #f48043
+  
+  .hot_groups
+    :border 2px solid #b9bcbd
 
 
 .hot_box
   :margin-top 15px
   :margin-bottom 20px
   h2
-    :background none repeat scroll 0 0 #4d4d4d
+    :background none repeat scroll 0 0 #b9bcbd
     :width 100%
     :height 1px
     :overflow hidden
@@ -73,7 +79,7 @@
       :display inline-block
 
     a.current
-      :color #a10000
+      :color #11a3e1
     
 
 #slider
@@ -118,11 +124,23 @@
 #city_select_box
   :position absolute
   :width 100px
-  :border 1px solid black
+  :border 1px solid #b9b9b9
   :padding 10px
   :background-color #ffffff
 
+
 #switch_city
+  :padding 3px
   :text-decoration none
+  :border 1px solid #ffffff
+
   &:hover
     :border 1px solid #b9b9b9
+    :color #666666
+
+.nav_bar
+  h1,h3
+    :margin-bottom 0px
+    
+  .new_group
+    :margin-top 10px

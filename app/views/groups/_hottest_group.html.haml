@@ -28,10 +28,10 @@
   .static_box
     .members_count
       %p
-        %h3= link_to group.members.size, members_group_path(group)
+        %h3= link_to group.members.size, members_group_path(group), :class => 'group_color'
         %h4= '成员'
     .topics_count
       %p
-        %h3= link_to group.topics.size, forum_group_path(group)
+        %h3= link_to group.topics.size, forum_group_path(group), :class => 'group_color'
         %h4= '话题'
     

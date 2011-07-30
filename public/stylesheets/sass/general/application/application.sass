@@ -1,16 +1,29 @@
 @import '../ui/mixins'
 
-$blue: #5179AC
+$blue: #336699
 $red: #FF0000
 $background: rgb(252,252,252)
 $bright_yellow: #F6B24D
-$darkblue: #002DB3
+$orange: #f48043
+$dark_gray: #666666
+$group_color: #11a3e1
+$event_color: #4BC5BE
+$error_color: #a10000
 
 body
   :background-color $background
 
 .blue
   :color $blue
+
+.error_color
+  :color $error_color
+
+.group_color
+  :color $group_color
+
+.event_color
+  :color $event_color
 
 .bright_yellow
   :color $bright_yellow
@@ -284,6 +297,11 @@ span.medium_avatar
 
 .app_module_title 
   :margin-bottom 5px
+  :color $orange
+
+.app_module_title_black
+  :margin-bottom 5px
+  :color black
 
 #photozone
   li 
@@ -353,3 +371,32 @@ span.medium_avatar
     :text-decoration none
     :margin auto
 
+a.button
+  &:hover
+    color: #f48043
+  :font-size 12px
+  .ui-button-text-only, .ui-button-text
+    :padding 4px  5px
+
+
+.app_subfunction_title
+  :margin-right 5px
+
+.app_subfunction_title.groups
+  :color #11A3E1
+
+.app_subfunction_title.events
+  :color #4CC5BE
+
+.app_color_orange
+  :color $orange 
+
+.app_info_label
+  :color $dark_gray
+  :margin-right 5px
+
+.dark_gray
+  :color $dark_gray
+
+.app_tab_border_radius
+  @include border-radius-feed(5px)

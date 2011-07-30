@@ -2,10 +2,14 @@
   = include_stylesheets :sepcial_pages_groups_common, :media => 'all'
   = include_stylesheets :sepcial_pages_groups_index, :media => 'all'
 
-.span-24
-  %h2.inline.title= '乐玩小组'
-  %h4.inline= link_to @city.name , '#', :id => 'switch_city'
-  %hr.space
+#city_select_box.hide    
+  - City.all.each do |city|
+    %h4.inline= link_to city.name, "/groups/#{city.pinyin}"
+
+.span-24.nav_bar
+  %h1.inline.app_subfunction_title.groups= '乐玩小组'
+  %h3.inline= link_to @city.name , '#', :id => 'switch_city', :class => 'dark_gray'
+  =link_to '创建小组', new_group_path, :class => 'button right new_group'
 
 .span-24.hot_box
   %h4.app_module_title='寻找你喜欢的小组'
@@ -36,3 +40,16 @@
     .span-24
       = will_paginate @groups, {:previous_label => t("pagination.previous"), 
                                 :next_label => t("pagination.next")}
+:javascript
+  $(function() {
+    var left = $('#switch_city').offset().left;
+    var t =$('#switch_city').offset().top + $('#switch_city').innerHeight();
+    $('#city_select_box').css("left", left+"px");
+    $('#city_select_box').css("top", t+"px");
+  });
+
+  $("#switch_city").click(function(e) {
+    $('#city_select_box').toggleClass('hide'); 
+    e.stopPropagation();
+    return false;
+  });

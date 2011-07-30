@@ -1,0 +1,23 @@
+.span-24
+  %h2=@event.title
+.span-16
+  - if @friend_participants.size > 0
+    %h4= t("events.friend_participants", :count => @friend_participants.size)
+    .span-16#friend_participants
+      = render :partial => "event_participants", :locals => { :participants => @friend_participants, 
+                                                              :perline => 8, 
+                                                              :no_pagination => true,
+                                                              :edit => false }
+  .span-16
+    %h4.app_module_title= t("events.other_participants", :count => @other_participants.size)
+  .span-16#other_participants
+    = render :partial => "event_participants", :locals => { :participants => @other_participants,
+                                                            :perline => 8, 
+                                                            :no_pagination => true,
+                                                            :edit => false }
+.span-6.prepend-1.last
+  - if @event.is_owner(current_user)
+    %h4= link_to '>编辑活动成员', event_members_path(@event)
+  %hr.space
+    %h4= link_to '<返回"'+@event.title+'"', event_path(@event)
+

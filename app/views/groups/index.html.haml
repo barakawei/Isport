@@ -4,18 +4,17 @@
 
 #city_select_box.hide    
   - City.all.each do |city|
-    %h4.inline= link_to city.name, "/groups/?city=#{city.pinyin}"
+    %h4.inline= link_to city.name, "/groups/?city=#{city.pinyin}", :class => 'group_color'
 
-.span-24
-  %h2.inline= '乐玩小组'
-  %h3.inline= link_to @city.name , '#', :id => 'switch_city'
-  =link_to '创建小组', new_group_path, :class => 'button right'
+.span-24.nav_bar
+  %h1.inline.app_subfunction_title.groups= '乐玩小组'
+  %h3.inline= link_to @city.name , '#', :id => 'switch_city', :class => 'dark_gray'
+  =link_to '创建小组', new_group_path, :class => 'button right new_group'
 
 - if @hot_groups.size > 0
-  .span-24.hot_box
-    %h4.app_module_title='本周热门'
-    %h2
+  .span-24.hot_box.hottest
     .hot_groups
+      %h4.app_module_title='本周热门'
       #slider
         %ul
           - @hot_groups.each do |g|
