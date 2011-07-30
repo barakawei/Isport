@@ -9,20 +9,15 @@
     = include_javascripts :main
     = include_javascripts :jqueryui
     = include_javascripts :jquery_form
+    = include_javascripts :show_avatar
 
     = csrf_meta_tag
     = yield :head
      
   %body{:class => "#{yield(:body_class)}"}
     .header{:class => ( 'landing' unless current_user)}
-      = render 'layouts/header' 
-    .accout.overlay.hide
-      .accout_body.overlay_body
-        %ul
-          %li
-            = link_to t('settings'), edit_user_path
-          %li
-            = link_to t('logout'), destroy_user_session_path
+      .container{ :style=>"position: relative" }
+        = render 'layouts/header' 
     .container.body
       .span-24.last
         =yield 
@@ -36,12 +31,13 @@
 :javascript
   $(function() {
     $.datepicker.setDefaults($.datepicker.regional["zh-CN"]); 
-
+    $("textarea").autoResize();
+      
     $('.button').button();  
     if (!$.isEmptyObject($('.setting')[0])) {  
-      var left = $('.setting li').offset().left;
-      var width = $('.setting li').width();
-      $('.accout').css({"left":left+"px","width":width});
+      var left = $('.setting .set').offset().left-154;
+      var width = $('.setting .set').width();
+      $('.accout').css({"left":left+"px","width":"85px"});
 
       $('.current_user_link').click(function(e) {
         $('.accout').toggleClass('hide');

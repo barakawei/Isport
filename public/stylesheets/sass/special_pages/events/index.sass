@@ -1,26 +1,10 @@
+@import '../../general/ui/mixins'
 .hot_events
-  :width 908px 
-  :padding 10px 20px 0 20px
-  :border-top none
+  :width 904px 
+  :padding 20px 20px 0 20px 
   :float left
-  :margin-top 10px
-
-.hot_events.hottest
-  :margin-top 0
-
-.hot_box.hottest
-  :border 2px solid #b9bcbd
-  .box_title
-    :margin 10px 0 0 10px
-
-.hot_box
-  :margin-top 20px
-  h2
-    :background none repeat scroll 0 0 #b9bcbd
-    :width 100%
-    :height 1px
-    :overflow hidden
-    :margin 0
+  :border 3px solid #d5ddde
+  :background-color #ffffff
 
 .search_line
   :width 908px
@@ -47,57 +31,21 @@
     :width 828px
 
     a
-      :font-size 12px
-      :color #333333
+      :font-size 13px
+      :color #56656c
       :margin-right 5px
       :display inline-block
 
     a.current
       :color #a10000
     
-
-#slider
-  :width 908px
-  :height 210px
-  :overflow hidden
-
-  ul
-    :margin 0
-    :padding 0
-    :float left
-
-    li
-      :width 908px
-      :float left
-      :margin-bottom 10px
-      :height 210px
-      :overflow hidden
-
-.search_result
-  :padding 0px 20px 0 20px
-
-  .event_by_search
-    :float left
-    :width 182px 
-    :height 210px
-    :margin 0 50px 20px 0 
-    
-    span.item_name
-      :color #ff6600
-
-
-    img
-      :width 180px
-      :height 180px
-
-      &:hover
-        :border 1px solid #ff6600 
-
+.hot_items_events.last_item
+  :border none
 .hot_items_events
   :width 908px
   :margin-bottom 10px
   :float left
-  :border-bottom 1px dashed #e1e1e1
+  :border-bottom 1px dashed #d5ddde
   :padding-bottom 10px
 
   a.more
@@ -107,6 +55,10 @@
     :margin-right 5px
     :float left
 
+    img
+      @include border-radius(14px)
+      :border 1px solid #f2f2f2
+
   .item_event
     :width 220px
     :float left
@@ -115,8 +67,10 @@
       
     img
       :float left
-      :width 90px
-      :height 90px
+      @include border-radius(10px)
+      :border 1px solid #f2f2f2
+      :width 88px
+      :height 88px
 
     .event_info
       :margin-left 5px 
@@ -131,9 +85,10 @@
       .at_bottom
         :position absolute
         :bottom 0px
-        :color #666666
+        :color #546266
 
         p
+          :color #546266
           :margin 0
         
 #city_select_box

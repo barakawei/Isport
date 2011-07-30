@@ -16,6 +16,11 @@ module ApplicationHelper
     eval("#{object.class.name.underscore}_path(object)")
   end
 
+  def object_name_link( object )
+    return "" if object.nil?
+    link_to object.name,object_path( object )
+  end
+
   def object_image_link(object,size=:thumb_small)
     return "" if object.nil?
     object = object.person if object.instance_of? User
@@ -32,7 +37,8 @@ module ApplicationHelper
   end
 
   def person_image_tag(person, size=:thumb_small)
-    "<img  class=\"avatar\" data_person_id=\"#{person.id}\" src=\"#{person.profile.image_url(size)}\">".html_safe
+    avatar_html = "<img  class=\"avatar person_avatar_detail\" data_person_id=\"#{person.id}\" src=\"#{person.profile.image_url(size)}\">"
+    avatar_html.html_safe
   end
 
   def owner_image_link
@@ -40,8 +46,9 @@ module ApplicationHelper
   end
 
   def person_image_link(person, size=:thumb_small)
-    return "" if person.nil? || person.profile.nil?
-    link_to person_image_tag(person, size),person_path( person )
+    return "" if person.nil?
+    link = link_to person_image_tag(person, size),person_path( person )
+    "<div class='avatar_container'>#{link}</div>".html_safe
   end
 
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110725134421) do
+ActiveRecord::Schema.define(:version => 20110727031848) do
 
   create_table "administrators", :force => true do |t|
     t.integer  "user_id"
@@ -239,6 +239,8 @@ ActiveRecord::Schema.define(:version => 20110725134421) do
     t.datetime "updated_at"
     t.string   "image_url_medium"
     t.integer  "location_id"
+    t.text     "hobby"
+    t.text     "signature"
   end
 
   add_index "profiles", ["name"], :name => "index_profiles_on_name"

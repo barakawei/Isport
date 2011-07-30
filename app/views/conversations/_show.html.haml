@@ -10,7 +10,8 @@
 
     .span-6.avatars.last
       - for participant in conversation.participants
-        = person_image_link(participant)
+        .person_avatar
+          = person_image_link(participant)
 
   %br
   %br

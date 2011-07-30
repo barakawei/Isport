@@ -1,16 +1,17 @@
 .header {
-  background: url("/images/ui/header_background_warm.jpg") repeat-x scroll left top;
-  overflow: hidden;
+  background-color: #17282e;
   text-align: left;
-  height: 39px;
+  height: 91px;
   position: fixed;
   z-index: 50;
-  width: 100%; }
+  width: 100%;
+  top: 0;
+  left: 0; }
   .header .message_count {
     background: url("/images/ui/message_count.png") no-repeat scroll transparent;
     background-position: 0 -240px;
-    color: white;
     display: inline-block;
+    color: white;
     height: 21px;
     padding-left: 8px;
     text-shadow: 0 -1px 0 #6fa13c; }
@@ -30,36 +31,46 @@
         margin-right: 8px;
         padding: 4px 0 6px; }
   .header .logo {
-    display: inline-block;
-    float: left;
-    margin-left: 100px;
-    padding-top: 3px; }
+    position: relative;
+    padding-top: 3px;
+    display: block;
+    width: 200px; }
     .header .logo h2 {
-      color: #ff7d56; }
+      color: #fcfcfc; }
   .header .sections {
-    float: left;
-    font-size: 12px;
-    padding-left: 40px; }
+    font-size: 14px;
+    font-weight: normal; }
   .header ul {
-    list-style: none;
-    padding-left: 0; }
-  .header li {
+    display: block;
+    list-style: none; }
+  .header .sections li, .header .setting li {
     float: left;
-    margin-right: 1px; }
-    .header li a {
+    margin-right: 2px; }
+  .header .sections a, .header .setting a {
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-topright: 5px;
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    behavior: url(/javascripts/PIE.htc);
+    border: 1px solid #17282e;
+    background-color: #17282e;
+    color: #fcfcfc;
+    width: 70px;
+    height: 10px;
+    line-height: 10px;
+    display: block;
+    padding: 11px 10px;
+    text-decoration: none; }
+    .header .sections a:hover, .header .sections a .active, .header .setting a:hover, .header .setting a .active {
+      border: 1px solid #fe905d;
+      background-color: #fe905d;
       color: #fcfcfc;
-      display: block;
-      float: left;
-      padding: 11px 10px;
       text-decoration: none; }
-      .header li a:hover, .header li a .active {
-        background-color: #fcfcfc;
-        background-position: left bottom;
-        color: black;
-        text-decoration: none; }
-      .header li a .active {
-        font-size: 11px;
-        font-weight: bold; }
+    .header .sections a .active, .header .setting a .active {
+      font-size: 11px;
+      font-weight: bold; }
   .header li#search input {
     border: 0 none;
     margin-top: 10px;
@@ -69,13 +80,14 @@
     width: 120px;
     background: url("/images/layout/button.png") repeat-x scroll 100% -492px white; }
   .header .setting {
-    display: inline; }
+    position: absolute;
+    right: 0;
+    bottom: 10px; }
     .header .setting li {
       position: relative;
-      margin-left: 400px; }
+      line-height: 20px; }
       .header .setting li .avatar {
         position: absolute;
-        top: 5px;
         left: 3px;
         width: 20px;
         height: 20px; }
@@ -90,10 +102,11 @@
           background: url("/images/ui/icons.png") repeat 10px -2588px; }
 
 .accout {
-  margin-top: 40px;
-  width: 60px; }
+  top: 40px;
+  width: 60px;
+  position: absolute; }
   .accout ul {
-    text-align: center; }
+    text-align: left; }
   .accout li {
     margin: 5px; }
   .accout a {
@@ -105,3 +118,54 @@
       background-color: #5179ac;
       color: white;
       text-decoration: none; }
+
+#view_all_notifications {
+  float: right;
+  margin-right: 3px;
+  font-weight: bold; }
+
+#notification_badge a {
+  padding-right: 10px; }
+
+#notification_dropdown {
+  background: white;
+  border: solid #888888 1px;
+  position: absolute;
+  top: 38px;
+  right: -155px;
+  width: 350px;
+  display: none;
+  z-index: 999;
+  height: 500px;
+  overflow-y: scroll;
+  color: #444444; }
+  #notification_dropdown a {
+    color: #5179ac; }
+  #notification_dropdown .title {
+    padding: 10px; }
+    #notification_dropdown .title h4 {
+      padding-bottom: 0;
+      margin-bottom: 0; }
+  #notification_dropdown .notification_element,
+  #notification_dropdown .title {
+    border-bottom: 1px solid #dddddd; }
+  #notification_dropdown .ajax_loader {
+    text-align: center;
+    padding: 15px; }
+  #notification_dropdown .notification_element {
+    padding: 10px;
+    min-height: 30px; }
+    #notification_dropdown .notification_element .timeago {
+      display: block;
+      color: #999999;
+      text-decoration: none;
+      border: none; }
+    #notification_dropdown .notification_element > img {
+      height: 30px;
+      width: 30px;
+      float: left;
+      margin-right: 10px; }
+    #notification_dropdown .notification_element.unread {
+      background-color: whiteSmoke;
+      color: black;
+      font-weight: bold; }

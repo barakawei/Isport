@@ -10,7 +10,7 @@ function processComment(postId,commentId,html){
         post.append(
           $(html).fadeIn("fast", function(){})
         );
-        post.removeClass( "hidden" );
+        post.removeClass( "hide" );
 
       $("abbr.timeago").timeago();
       stream_element = post.closest( ".stream_element" );

@@ -2,7 +2,9 @@ Isport::Application.routes.draw do
   devise_for :users, :controllers => { :registrations => "registrations" }
   resources :contacts
   resources :profiles
-  resources :posts
+  resources :posts do
+    resources :comments, :only => [:create, :destroy, :index]
+  end
   resources :photos
   resources :requests
   resources :status_messages
@@ -30,6 +32,10 @@ Isport::Application.routes.draw do
   end
 
   match '/people/show_posts' => 'people#show_posts'
+  match '/profile/update_profile' => 'profiles#update_profile'
+  match '/people/show_person_events' => 'people#show_person_events'
+  match '/people/show_person_profile' => 'people#show_person_profile'
+  match '/people/edit_profile' => 'people#edit_profile'
   match '/people/friend_select' => 'people#friend_select'
   resources :people
 
@@ -94,6 +100,14 @@ Isport::Application.routes.draw do
   controller :location do
     match '/locations/districts_of_city' => :districts_of_city, :as => 'districts_of_city'
   end
+  resources :groups do
+    member do
+      get 'members'
+      get 'forum'
+    end
+    resources :memberships
+    resources :topics, :controller => 'group_topics'
+  end
   
   controller :groups do
     match '/groups/:city/(/district/:district_id)(/item/:item_id)' => :filtered, :as => 'group_filter',
@@ -118,14 +132,7 @@ Isport::Application.routes.draw do
   resources :items
   resources :involvements
 
-  resources :groups do
-    member do
-      get 'members'
-      get 'forum'
-    end
-    resources :memberships
-    resources :topics, :controller => 'group_topics'
-  end
+
 
   resources :topics do
     resources :topic_comments, :controller => 'topic_comments'

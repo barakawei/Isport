@@ -1,18 +1,19 @@
 @import '../ui/mixins'
 .header
-  :background url("/images/ui/header_background_warm.jpg") repeat-x scroll left top 
-  :overflow hidden
+  :background-color #17282E
   :text-align left
-  :height 39px
+  :height 91px
   :position fixed
   :z-index 50
   :width 100%
+  :top 0
+  :left 0
 
   .message_count
     background: url("/images/ui/message_count.png") no-repeat scroll transparent
     background-position: 0 -240px
+    :display inline-block
     color: #FFFFFF
-    display: inline-block 
     height: 21px
     padding-left: 8px
     text-shadow: 0 -1px 0 #6FA13C
@@ -32,36 +33,40 @@
         margin-right: 8px
         padding: 4px 0 6px
   .logo
-    :display inline-block
-    :float left
-    :margin-left 100px
+    :position relative
     :padding-top 3px
-    
+    :display block
+    :width 200px
     h2
-      :color #FF7D56
+      :color #FCFCFC
+
 
   .sections
-    :float left
-    :font-size 12px
-    :padding-left 40px
+    :font-size 14px
+    :font-weight normal
   ul
+    :display block
     :list-style none
-    :padding
-      :left 0
-  li
-    float: left
-    margin-right: 1px
-    a
-      color: #FCFCFC
-      display: block
+  .sections,.setting 
+    li
       float: left
+      margin-right: 2px
+    a
+      @include border-radius-feed(5px)
+      :border 1px solid #17282E
+      :background-color #17282E
+      :color  #FCFCFC
+      :width 70px
+      :height 10px
+      :line-height 10px
+      display: block
       padding: 11px 10px
       text-decoration: none
 
       &:hover, .active 
-        :background-color #FCFCFC 
-        :background-position left bottom
-        :color #000000
+        :border  1px solid #fe905d
+        :background-color #fe905d
+        :color #FCFCFC
         :text-decoration none 
 
       .active
@@ -81,13 +86,14 @@
 
     
   .setting
-    :display inline
+    :position absolute
+    :right 0
+    :bottom 10px
     li 
       :position relative
-      :margin-left 400px
+      :line-height 20px
       .avatar
         :position absolute
-        :top 5px
         :left 3px
         :width 20px
         :height 20px
@@ -103,10 +109,11 @@
           :background url("/images/ui/icons.png") repeat 10px -2588px 
 
 .accout
-  :margin-top 40px
+  :top 40px
   :width 60px
+  :position absolute
   ul
-    :text-align center
+    :text-align left
   li
     :margin 5px
   a
@@ -120,4 +127,71 @@
       :background-color #5179AC
       :color #FFFFFF
       :text-decoration none
+#view_all_notifications
+  float: right
+  margin-right: 3px
+  font-weight: bold
+
+#notification_badge
+  a
+    :padding-right 10px
+  
+#notification_dropdown
+  :background white
+  :border solid #888 1px
+  :position absolute
+  :top 38px
+  :right -155px
+  :width 350px
+  :display none
+  :z-index 999
+  :height 500px
+  :overflow-y scroll
+  :color #444
+  a
+    :color #5179AC
+  .title
+    :padding 10px
+    h4
+      :padding
+        :bottom 0
+      :margin
+        :bottom 0
+
+  .notification_element,
+  .title
+    :border
+      :bottom 1px solid #ddd
+
+  .ajax_loader
+    :text-align center
+    :padding 15px
+
+  .notification_element
+    :padding 10px 
+    :min-height 30px
+    .timeago
+      :display block
+      :color #999
+      :text-decoration none
+      :border none
+      
+
+
+    > img
+      :height 30px
+      :width 30px
+      :float left
+      :margin
+        :right 10px
+
+    &.unread
+      :background
+        :color whiteSmoke
+      :color #000
+      :font
+        :weight bold 
+
+
+  
 

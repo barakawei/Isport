@@ -1,7 +1,40 @@
-.status_message_panel textarea {
-  height: 70px; }
-.status_message_panel .button {
-  margin-left: 20px; }
+.status_message_panel {
+  margin: 10px 20px;
+  position: relative; }
+  .status_message_panel #file-upload {
+    overflow: hidden;
+    position: absolute !important;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 10px;
+    padding-bottom: 8px;
+    bottom: 3px;
+    left: 475px;
+    z-index: 10;
+    margin: 0;
+    display: inline-block;
+    cursor: pointer; }
+    .status_message_panel #file-upload img {
+      filter: alpha(opacity=40);
+      -moz-opacity: 0.4;
+      -khtml-opacity: 0.4;
+      opacity: 0.4;
+      display: inline-block;
+      margin-top: 0px;
+      padding: 0; }
+    .status_message_panel #file-upload input {
+      left: -10px;
+      height: 100%;
+      width: 100%;
+      cursor: pointer; }
+  .status_message_panel textarea {
+    overflow-y: hidden;
+    height: 23px;
+    width: 475px;
+    padding-right: 30px; }
+  .status_message_panel .button {
+    display: none;
+    z-index: 1; }
 
 .feed_tabs {
   position: relative; }

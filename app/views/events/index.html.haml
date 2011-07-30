@@ -1,6 +1,7 @@
 - content_for :head do
   = include_stylesheets :sepcial_pages_events_index, :media => 'all'
   = include_stylesheets :sepcial_pages_events_common, :media => 'all'
+  = include_stylesheets :common_index, :media => 'all'
 
 #city_select_box.hide    
   - City.all.each do |city|
@@ -12,21 +13,20 @@
   = link_to  '发起活动', new_event_path, :group_id => 1, :class => 'button right function_button'
 
 -if @hot_events.size > 0
-  .span-24.hot_box.hottest
-    %h4.box_title.app_color_orange='本月热门'
-    .hot_events.hottest
-      #slider
+  %hr.space
+  = render 'common/header_box',  :title => '热门活动', :dark => true 
+  .hot_gallery
+    .gallery_content
+      =link_to 'pre', '#', :class => 'gallery_link_pre'
+      .gallery_inner
         %ul
-          -@hot_events.each do |e|
+          - @hot_events.each do |event|
             %li
-              = render 'hot_events', :event => e    
-      - if @hot_events.size > 1
-        %span#preBtn= link_to '<', 'javascript:void(0);'
-        %span#nextBtn= link_to '>', 'javascript:void(0);'
+              = render 'hot_events', :event => event 
+      =link_to 'next', '#', :class => 'gallery_link_next'
 
-.span-24.hot_box
-  %h4.app_module_title='寻找感兴趣的活动'
-  %h2
+.span-24.prepend-top
+  = render 'common/header_box',  :title => '寻找感兴趣的活动', :dark => false
   .hot_events
     .search_line
       .filter_title
@@ -54,12 +54,11 @@
         = link_to '一个月内', event_filter_path(@city.pinyin, @district_id, @item_id, 'next_month')
         = link_to '时间选择', 'javascript:void(0)'
 
-.span-24.hot_box
-  %h4.app_module_title='推荐活动'
-  %h2
+.span-24.prepend-top
+  = render 'common/header_box',  :title => '推荐活动', :dark => false
   .hot_events
-    -@hot_items.each do |i|
-      .hot_items_events#shit
+    -@hot_items.each_with_index do |i, index|
+      .hot_items_events{:class => ('last_item' if index == @hot_items.length - 1)}
         .item_avatar
           = item_image_link(i, :size => :thumb_large)
         = link_to '更多', event_filter_path(:city => @city.pinyin, :item_id => i.id), :class => 'right more'

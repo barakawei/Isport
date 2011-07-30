@@ -1,0 +1,49 @@
+#profile_photo_upload
+  #file-upload.button{ :style => "overflow: hidden;width: 90px" }
+    = "修改照片"
+  %br
+  %br
+  #publisher_photo_upload
+    :javascript
+      function createUploader(){
+        var uploader = new qq.FileUploaderBasic({
+             element: document.getElementById('file-upload'),
+             params: { 'photo' : {'is_avatar':true,'model_name': "profile" }},
+             allowedExtensions: ['jpg', 'jpeg', 'png'],
+             action: "#{photos_path}",
+             debug: true,
+             button: document.getElementById('file-upload'),
+             sizeLimit: 4194304,
+
+            
+             onProgress: function(id, fileName, loaded, total){
+              var progress = Math.round(loaded / total * 100 );
+               $('#fileInfo').text(fileName + ' ' + progress + '%');
+             },
+             
+             onSubmit: function(id, fileName){
+              $('#file-upload').addClass("loading");
+              $("#profile_photo").find(".avatar").fadeTo(200,0.5);
+             },
+             
+             onComplete: function(id, fileName, responseJSON){
+              $('#file-upload').removeClass("loading");
+              var id = responseJSON.data.photo.id
+              var url = responseJSON.data.photo.thumb_large
+              var oldPhoto = $('#photo_id');
+
+              if(oldPhoto.length == 0) {
+                $('#update_profile_form').prepend("<input type='hidden' value='" + id + "' id='photo_id' name='photo_id'/>");
+              }else{
+                oldPhoto.val(id);
+              }
+
+              $("#profile_photo").find(".avatar").fadeTo(200,1);
+              $("#profile_photo").find(".avatar").attr("src",url);
+             }
+             
+         });
+       }
+       window.onload = createUploader;
+    
+

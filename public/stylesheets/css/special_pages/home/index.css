@@ -1,18 +1,34 @@
-.right_side {
-  background-color: #f5f5f5;
-  padding: 10px; }
-
-.left_side {
-  background-color: #f5f5f5;
-  padding: 10px; }
-
 #home_user {
-  position: relative;
-  border-bottom: 1px solid #cccccc; }
+  margin-left: 10px;
+  position: relative; }
   #home_user h3 {
     position: absolute;
     top: 4px;
     left: 0px; }
+  #home_user h4 {
+    margin-bottom: 0px; }
+  #home_user .groups {
+    margin-top: 20px;
+    left: 0; }
+  #home_user .contacts {
+    padding: 5px; }
+    #home_user .contacts .person_avatar_detail {
+      height: 30px;
+      width: 30px; }
+  #home_user .group {
+    background-color: #dbe0e3;
+    padding: 5px; }
+    #home_user .group .avatar {
+      float: left; }
+      #home_user .group .avatar img {
+        height: 30px;
+        width: 30px; }
+    #home_user .group .name {
+      line-height: 30px;
+      margin-left: 40px;
+      font-size: 15px;
+      font-weight: normal;
+      height: 30px; }
 
 #friend_listings {
   position: relative;
@@ -26,14 +42,17 @@
   padding-left: 14px; }
 
 .comments {
-  background-color: whiteSmoke;
-  margin-bottom: 10px;
-  padding: 10px;
-  border-left: 3px solid #e2e2e2;
-  font-size: 12px;
-  margin-left: 80px; }
+  border-top: 1px solid #ebebeb;
+  font-size: 13px;
+  margin-bottom: 10px; }
+  .comments .comment_body {
+    word-wrap: break-word;
+    line-height: 1.4; }
+  .comments .details {
+    color: #aaaaaa; }
   .comments .comment {
-    margin-bottom: 10px; }
+    padding: 8px;
+    border-bottom: 1px dotted #cccccc; }
   .comments .comment_content {
     margin-left: 36px; }
   .comments .timeago {
@@ -43,67 +62,16 @@
   .comments .avatar {
     float: left;
     padding: 0; }
-  .comments img {
-    height: 30px;
-    width: 30px; }
+  .comments .person_avatar_detail {
+    height: 32px;
+    width: 32px; }
 
 .content_info .action {
-  padding-left: 5px;
-  font-size: 12px;
-  border-left: 1px solid #e5e5e5; }
-
-.comment_form {
-  margin-left: 80px;
-  margin-bottom: 10px; }
-  .comment_form textarea {
-    width: 500px;
-    height: 70px; }
-
-.status_message_panel textarea {
-  width: 400px;
-  height: 20px; }
-
-#hot_events_list {
-  padding-top: 10px; }
-  #hot_events_list h4 {
-    padding-top: 10px;
-    margin-bottom: 10px;
-    border-bottom: 1px solid #cccccc; }
-  #hot_events_list .event {
-    padding-top: 5px;
-    padding-bottom: 2px; }
-    #hot_events_list .event .avatar {
-      float: left;
-      width: 30px;
-      height: 30px; }
-    #hot_events_list .event .content {
-      height: 30px; }
-
-#person_panel {
-  padding-right: 10px; }
-  #person_panel h2 {
-    display: inline; }
-  #person_panel .action {
-    font-size: 11px;
-    display: inline; }
-  #person_panel textarea {
-    width: 450px; }
-  #person_panel .comment_form textarea {
-    width: 350px; }
-
-dt {
-  color: #8a8a8a;
-  display: inline-block;
-  width: 70px; }
-
-dd {
-  display: inline-block;
-  width: 70px; }
+  padding-left: 5px; }
 
 .information h4 {
   padding-top: 10px;
-  margin-bottom: 10px;
-  border-bottom: 1px solid #cccccc; }
+  margin-bottom: 10px; }
 
 .pagination {
   padding-top: 10px;
@@ -123,3 +91,105 @@ dd {
     padding: 10px; }
 #profile_edit h4 {
   border-bottom: 1px solid #cccccc; }
+
+.calendar_panel {
+  height: 50px;
+  width: 50px;
+  float: left; }
+
+.calendar {
+  background: url("/images/ui/calendar_small.png") no-repeat;
+  width: 50px;
+  height: 50px;
+  text-align: center; }
+  .calendar .day {
+    font-weight: normal;
+    font-size: 18px; }
+
+.event_container .event_element {
+  height: 180px;
+  position: relative;
+  border-top: 1px solid #ebebeb; }
+  .event_container .event_element:hover {
+    background: none repeat scroll 0 0 #ebeffa;
+    cursor: pointer; }
+  .event_container .event_element .event_info {
+    padding-left: 10px;
+    border-left: 1px solid #ebebeb;
+    margin-left: 10px;
+    height: 100px;
+    float: left;
+    font-size: 13px; }
+    .event_container .event_element .event_info .author {
+      font-weight: normal;
+      display: inline; }
+  .event_container .event_element .event_content {
+    width: 450px;
+    padding: 20px 20px;
+    float: left; }
+    .event_container .event_element .event_content .event {
+      margin-top: 20px;
+      height: 110px; }
+      .event_container .event_element .event_content .event .time {
+        display: inline; }
+      .event_container .event_element .event_content .event .address {
+        display: inline; }
+    .event_container .event_element .event_content .event_avatar {
+      float: left; }
+      .event_container .event_element .event_content .event_avatar img {
+        width: 100px;
+        height: 100px; }
+    .event_container .event_element .event_content .attendee {
+      display: block; }
+      .event_container .event_element .event_content .attendee img {
+        width: 30px;
+        height: 30px; }
+    .event_container .event_element .event_content .event_details {
+      width: 220px;
+      float: left;
+      height: 110px;
+      margin-left: 20px; }
+
+.right_bar {
+  border-right: 1px solid #ebebeb;
+  height: 700px;
+  overflow: hidden;
+  position: relative;
+  z-index: 1; }
+
+.details_panel {
+  position: fixed;
+  left: 0;
+  right: 0;
+  width: 100%; }
+  .details_panel .details_shell {
+    margin: 0 auto;
+    position: relative;
+    width: 960px; }
+  .details_panel .event_side_panel {
+    z-index: 3;
+    position: relative;
+    background: none repeat scroll 0 0 #ebeffa;
+    width: 380px;
+    height: 580px;
+    overflow-y: scroll;
+    top: 50px;
+    left: 170px; }
+
+.event_side_content {
+  padding: 10px; }
+  .event_side_content .button {
+    display: block; }
+  .event_side_content .event {
+    margin-top: 20px;
+    height: 220px; }
+    .event_side_content .event .time {
+      display: inline; }
+    .event_side_content .event .address {
+      display: inline; }
+  .event_side_content .event_avatar {
+    float: left; }
+  .event_side_content .event_details {
+    float: left;
+    height: 220px;
+    margin-left: 20px; }

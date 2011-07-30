@@ -1,0 +1,4 @@
+= render :partial => 'events/event_element',
+         :collection => @events,
+         :as => :event
+= will_paginate @events,:page_links => false,:next_label=> '',:previous_label=>''

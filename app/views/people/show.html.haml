@@ -1,115 +1,175 @@
 -content_for :head do
   =include_javascripts :scroll_page
   =include_javascripts :show_photo
-  =include_javascripts :show_avatar
-.span-6
-  .left_side
-    .avatar
+  =include_javascripts :status_message
+.span-5.person_left_bar
+  .avatar_panel
+    #profile_photo
       = person_image_tag(@person,:thumb_large )
+      .change_profile_photo.hide
+        = render 'photos/change_profile_photo', :person => @person
     .information
-      .personal
-        %h4="个人信息"
-        %dl
-          %dt="性别"
-          %dd="男"
-      .items
-        %h4="喜欢的项目"
-        -for item in @favorite_items
-          = item_image_link(item,{ :size => :thumb_small })
-      .events
-        %h4="参加的活动"
-        -for event in @events_inv
-          = event_image_link(event,:thumb_small)
+      #followed_people
+        - if @followed_people.length > 0
+          .contacts
+            %h4
+              -if current_user.person.id == @person.id
+                = "你关注的人"
+              - else
+                = "他关注的人"
+
+            - for person in @followed_people
+              .person_avatar
+                = person_image_link(person)
+            %h4
+              =link_to t( 'more' ),{:controller => 'people',:action => 'show_friends',:type=>'followed'}
+
+      #befollowed_people
+        - if @befollowed_people.length > 0
+          .contacts
+            %h4
+              -if current_user.person.id == @person.id
+                = "关注你的人"
+              - else
+                = "关注他的人"
+
+            - for person in @befollowed_people
+              .person_avatar
+                = person_image_link(person)
+            %h4
+              =link_to t( 'more' ),{:controller => 'people',:action => 'show_friends',:type=>'befollowed'}
       
-.span-12
+      .groups
+        %h4
+          加入的小组
+        %ul
+          -for group in @person.joined_groups
+            %li
+              .group
+                .avatar
+                  = group_image_link(group,:thumb_small)
+                .name
+                  = object_name_link(group)
+      .groups
+        %h4
+          喜欢的项目
+        %ul
+          -for item in @person.interests
+            %li
+              .group
+                .avatar
+                  = item_image_link(item)
+                .name
+                  = object_name_link(item)
+
+.span-18
   #person_panel
     .person_bar
       %h2=@person.name
       .action  
         -if @person.user_id == current_user.id
+          .edit_profile
+            ="编辑个人资料"
         -elsif @contact && @contact.receiving
           .button.remove_friend
             = link_to t( 'remove_friend' ),{:controller => 'contacts', :action => 'destroy',:person_id => @person.id},:method =>'delete'
         -else
           .button.add_friend{:style=>"width:100px"}
             =link_to t('start_sharing'),{:controller => 'contacts', :action => 'create',:person_id => @person.id},:method =>'post'
+      %div=@person.profile.signature
+      .history_bar
+        .create_event.panel
+          .border_left_side
+          .counts_center.red
+            .title
+              = "组织"
+            .counts
+              =68
+            .info
+              = "活动"
+          .border_right_side
 
-    -if current_user.person.id == @person.id
-      = render "status_messages/status_message"
-    .stream
-  .action{ :style => "display: none" }
 
-.span-6.last
-  .right_side.avatar_panel
-    #friend_listings
-      - if @friends.length > 0
-        .contacts
-          %h3
-            -if current_user.person.id == @person.id
-              = "你的好友"
-            - else
-              = "他的好友"
-          - for friend in @friends
-            .avatar_container
-              = person_image_link(friend)
-          %h4
-            =link_to t( 'more' ),{:controller => 'people',:action => 'show_friends'}
-      - else
-        =t('no_friends')
-    #followed_people
-      - if @followed_people.length > 0
-        .contacts
-          %h3
-            -if current_user.person.id == @person.id
-              = "你关注的人"
-            - else
-              = "他关注的人"
+        .attend_event.panel
+          .border_left_side
+          .counts_center.green
+            .title
+              = "参加"
+            .counts
+              =120
+            .info
+              = "活动"
 
-          - for person in @followed_people
-            .avatar_container
-              = person_image_link(person)
-          %h4
-            =link_to t( 'more' ),{:controller => 'people',:action => 'show_friends'}
+          .border_right_side
 
-    #befollowed_people
-      - if @befollowed_people.length > 0
-        .contacts
-          %h3
-            -if current_user.person.id == @person.id
-              = "关注你的人"
-            - else
-              = "关注他的人"
 
-          - for person in @befollowed_people
-            .avatar_container
-              = person_image_link(person)
-          %h4
-            =link_to t( 'more' ),{:controller => 'people',:action => 'show_friends'}
+        .points.panel
+          .border_left_side
+          .counts_center.yellow
+            .title
+              = "获得"
+            .counts
+              = 250
+            .info
+              = "红心"
+          .border_right_side
+      .events_panel
+        .current_events
+          .title_panel
+            .border_left_side
+            .content_center
+              = "准备参加的活动"
+            .border_right_side
+          .pointer
+
+          .events_box_panel.current
+            = render :partial => 'events/event_element',:collection => @events,:as => :event
+
+          .clear
+
+        .past_events
+          .title_panel
+            .border_left_side
+            .content_center
+              ="成功参加的活动"
+            .border_right_side
+          .pointer
+          .events_box_panel.past
+            = render :partial => 'events/past_event_element',:collection => @events,:as => :event
+
+          .clear
+
+  .stream
+
 
 
 :javascript
-  $.get("/people/show_posts",{person_id:#{@person.id}}  ); 
-  $(function(){
-  $(".private_message").colorbox({ inline:true, href:"#private_message"});	
-  });
+
+  $( ".edit_profile" ).click( function(  ){
+    $.get("/people/edit_profile",{person_id:#{@person.id}}  ); 
+  } );
+
+  $( ".my_events" ).live( "click",function(  ){  
+    $( ".select_on" ).removeClass( "select_on" );
+    $(this).addClass( "select_on" );
+    $.get("/people/show_person_events",{person_id:#{@person.id}}  ); 
+  } );
+
+  $( ".my_posts" ).live( "click",function(  ){
+    $( ".select_on" ).removeClass( "select_on" );
+    $(this).addClass( "select_on" );
+    $.get("/people/show_posts",{person_id:#{@person.id}}  ); 
+  } );
+
+  $( ".my_profile" ).live( "click",function(  ){
+    $( ".select_on" ).removeClass( "select_on" );
+    $(this).addClass( "select_on" );
+    $.get("/people/show_person_profile",{person_id:#{@person.id}}  ); 
+  } );
+
   $("abbr.timeago").timeago();
-  $( ".replay" ).live( "click",function( ){  
-    stream_element = $( this ).closest(".stream_element");
-    commentBlock = stream_element.find(".comment_form");
-    comments = stream_element.find(".comments");
-    if(commentBlock.hasClass("hidden")) {
-      if( $( ".comment",comments ).length != 0 ){
-        comments.removeClass("hidden");
-      }
-      commentBlock.removeClass("hidden");
-      commentBlock.find("textarea").focus();
-    } else {
-        if( $( ".comment",comments ).length > 3 || $( ".comment",comments ).length == 0 ){
-          comments.addClass( "hidden" );
-        }
-        commentBlock.addClass("hidden");
-      }  
-    return false;
-    });
 
 
+  
+
+            .counts

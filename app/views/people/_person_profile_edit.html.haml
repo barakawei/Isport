@@ -1,0 +1,52 @@
+= form_for @profile do |f|
+  = hidden_field_tag "profile_edit","1"
+  #person_panel
+  .menu_bar.edit
+    %ul
+      %li.select_on="个人资料"
+    .submit_block
+      =submit_tag '编辑完成',:class => "button"
+  .stream
+    .person_profile.edit 
+      .name.info_text
+        %span="姓名"
+        .content#name
+          = f.text_field :name
+      %div.signature.info_text
+        %span="个性签名"
+        .content#signature
+          = f.text_field :signature
+      .bio.info_text
+        %span="介绍"
+        .content#bio
+          = f.text_area  :bio
+
+      .hobby.info_text
+        %span="爱好"
+        .content#hobby
+          = f.text_field :hobby
+      .gender.info_text
+        %span="性别"
+        .content#gender
+          = f.radio_button :gender,0
+          =  "男"
+          = f.radio_button :gender,1
+          =  "女"
+      .location.info_text
+        %span="城市"
+        .content#location
+          = select_tag "profile[location_attributes][city_id]",
+               options_from_collection_for_select(City.all, "id", "name", @profile.location.city_id)
+
+    
+
+
+:javascript
+  $( ".button" ).button(  );
+
+
+
+
+  
+
+

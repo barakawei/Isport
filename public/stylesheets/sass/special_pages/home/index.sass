@@ -1,18 +1,35 @@
-.right_side
-  background-color: #F5F5F5
-  :padding 10px
-.left_side
-  background-color: #F5F5F5
-  :padding 10px
-
 #home_user
+  :margin-left 10px
   :position relative
   h3
     :position absolute
     :top 4px
     :left 0px
-  :border
-    :bottom 1px solid #ccc
+  h4
+    :margin-bottom 0px
+  .groups
+    :margin-top 20px
+    :left 0
+  .contacts
+    :padding 5px
+    .person_avatar_detail
+      :height 30px
+      :width 30px
+
+  .group
+    :background-color #DBE0E3
+    :padding 5px
+    .avatar
+      :float left
+      img
+        :height 30px
+        :width 30px
+    .name
+      :line-height 30px
+      :margin-left 40px
+      :font-size 15px
+      :font-weight normal
+      :height 30px
 
 
 #friend_listings
@@ -34,14 +51,17 @@
       .avatar
 
 .comments
+  :border-top 1px solid #EBEBEB
+  :font-size 13px
+  .comment_body
+    :word-wrap break-word
+    :line-height 1.4
+  .details
+    :color #AAA
   .comment
-    :margin-bottom 10px
-  :background-color whiteSmoke
+    :padding 8px
+    :border-bottom 1px dotted #CCCCCC 
   :margin-bottom 10px
-  :padding 10px
-  :border-left 3px solid #E2E2E2
-  :font-size 12px
-  :margin-left 80px
   .comment_content
     :margin-left 36px
   .timeago
@@ -51,72 +71,21 @@
   .avatar
     :float left
     :padding 0
-  img
-    :height 30px
-    :width 30px
+  .person_avatar_detail
+    :height 32px
+    :width 32px
 .content_info
   .action
     :padding-left 5px
-    :font-size 12px
-    :border-left 1px solid #E5E5E5
-.comment_form
-  :margin-left 80px
-  :margin-bottom 10px
-  textarea
-    :width 500px
-    :height 70px
-.status_message_panel
-  textarea
-    :width 400px
-    :height 20px
 
-#hot_events_list
-  h4
-    :padding-top 10px
-    :margin-bottom 10px
-    :border-bottom 1px solid #ccc
-  :padding-top 10px
-  .event
-    :padding
-      :top 5px
-      :bottom 2px
-    .avatar
-      :float left
-      :width 30px
-      :height 30px
-    .content
-      :height 30px
-
-#person_panel
-  h2
-    :display inline
-  .action
-    :font-size 11px
-    :display inline
-  textarea
-    :width 450px
-  :padding-right 10px
-  .comment_form
-    textarea
-      :width 350px
-
-dt
-  color: #8A8A8A
-  display: inline-block
-  width: 70px
-dd
-  display: inline-block
-  width: 70px
 .information
   h4
     :padding-top 10px
     :margin-bottom 10px
-    :border-bottom 1px solid #ccc
 
 .pagination
   :padding-top  10px
   :text-align center
-
 
 #profile_edit
   .person_photo
@@ -136,3 +105,105 @@ dd
   h4
     :border-bottom 1px solid #ccc
 
+.calendar_panel
+  :height 50px
+  :width 50px
+  :float left
+.calendar
+  :background url("/images/ui/calendar_small.png") no-repeat 
+  :width 50px
+  :height 50px
+  :text-align center
+  .day
+    :font-weight normal
+    :font-size 18px
+
+.event_container
+  .event_element
+    &:hover
+      :background none repeat scroll 0 0 #EBEFFA
+      :cursor pointer
+    :height 180px
+    :position relative
+    :border-top 1px solid #EBEBEB
+    .event_info
+      :padding-left 10px
+      :border-left 1px solid #EBEBEB
+      :margin-left 10px
+      :height 100px
+      :float left
+      :font-size 13px
+      .author
+        :font-weight normal
+        :display inline
+    .event_content
+      :width 450px
+      :padding 20px 20px
+      :float left
+      .event
+        .time
+          :display inline
+        .address
+          :display inline
+        :margin-top 20px
+        :height 110px
+      .event_avatar
+        :float left
+        img
+          :width 100px
+          :height 100px
+      .attendee
+        :display block
+        img
+          :width 30px
+          :height 30px
+      .event_details
+        :width 220px
+        :float left
+        :height 110px
+        :margin-left 20px
+
+.right_bar
+  :border
+    :right 1px solid #EBEBEB
+  :height 700px
+  :overflow hidden
+  :position relative
+  :z-index 1
+.details_panel
+  :position fixed
+  :left 0
+  :right 0
+  :width 100%
+  .details_shell
+    :margin 0 auto
+    :position relative
+    :width 960px
+  .event_side_panel
+    :z-index 3
+    :position relative
+    :background none repeat scroll 0 0 #EBEFFA
+    :width 380px
+    :height 580px
+    :overflow-y scroll
+    :top 50px
+    :left 170px
+
+.event_side_content
+  .button
+    :display block
+  :padding 10px
+  .description
+  .event
+    .time
+      :display inline
+    .address
+      :display inline
+    :margin-top 20px
+    :height 220px
+  .event_avatar
+    :float left
+  .event_details
+    :float left
+    :height 220px
+    :margin-left 20px

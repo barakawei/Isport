@@ -6,6 +6,10 @@
       }
       if(reachBottom()){
         next_obj = $( ".next_page" ).last();
+        $( ".previous_page" ).removeClass( "previous_page" );
+        $( ".pagination" ).addClass( "scroll" );
+        $( ".pagination" ).removeClass( "pagination" );
+        next_obj.removeClass( "next_page" );
         next_page =next_obj.attr( "href" );
         if( next_page != null ){
           loading = true;

@@ -1,5 +1,11 @@
 content = "<%= escape_javascript(render('status_messages/status_messages_container')) %>"; 
-$('.stream').append(content);
+page = '<%=@page%>';
+if (page == ''){ 
+  $('.stream').html(content);
+}else{
+  $('.stream').append(content);
+}
+
 
 
 

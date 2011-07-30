@@ -1,0 +1,11 @@
+content = "<%= escape_javascript(render('home/event_details')) %>";
+
+panel = $('.details_panel .event_side_panel')
+if( panel.hasClass( "opened" ) ){
+  $( ".show",panel ).removeClass( "show" ).addClass( "hide" );
+}else{
+  panel.animate({left: 557},300);
+  panel.addClass( "opened" );
+}
+panel.append(content);
+
