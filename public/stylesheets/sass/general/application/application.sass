@@ -10,8 +10,11 @@ $group_color: #11a3e1
 $event_color: #4BC5BE
 $error_color: #a10000
 
+.dim
+  @include opacity(0.3) 
+
 body
-  :background-color $background
+  :background-color #E9EEF1
 
 .blue
   :color $blue
@@ -49,7 +52,7 @@ ol, ul, li
   
 .container.body
   :padding
-    :top 60px
+    :top 120px
 
 .overlay
   @include border-radius(4px)
@@ -116,20 +119,22 @@ h1,h2,h3,h4
     :margin
       :top 0.5em 
 
+.element_body
+  :margin-left 60px
+  :margin-right 40px
 .stream_element
+  :font-size 13px
+  .show_comments
+    :border-top 1px solid #EBEBEB
+    :padding 8px
   :min-height 50px
-  :border
-    :bottom 1px solid #ddd
-    :top 1px solid #fff
-
+  :border-top 1px solid #EBEBEB
   :padding
+    :left 20px
+    :right 20px
     :top 10px
     :bottom 10px
-  .author
-    :color #444444
   :position relative
-  :font
-    :size 14px
   .avatar
     :float left
   .right
@@ -140,7 +145,6 @@ h1,h2,h3,h4
     :top 20px
   .content
     :position relative
-    :margin-left 70px
     :color #666
     :font
       :weight normal
@@ -194,7 +198,6 @@ label
   :float left
   :margin-top 20px
   :min-height 59px
-  :overflow hidden
   :padding 
     :top 5px
   :width 190px
@@ -270,31 +273,6 @@ span.medium_avatar
       :text-decoration none
       :color white
   
-.welcome_box
-  :background none repeat scroll 0 0 #DCDDDE
-  :width 903px
-  :height 300px
-  :margin-left 24px
-  @include border-radius(10px)
-
-  .poster_box
-    :background #FFFFFF
-    :width 550px
-    :height 290px
-    :margin-left 5px
-    :margin-top 5px
-    :float left
-    @include border-radius(10px)
-
-.welcomenav_box
-  :background none repeat scroll 0 0 #DCDDDE
-  :width 285px
-  :height 300px
-  :margin-left 24px
-  :margin-top 12px
-  :float left
-  @include border-radius(10px)
-
 .app_module_title 
   :margin-bottom 5px
   :color $orange
@@ -304,19 +282,53 @@ span.medium_avatar
   :color black
 
 #photozone
+  :left 5px
+  :padding 0
+  :bottom 0px
+  :position absolute
+  :width 410pxne
   li 
     :display inline-block
     img
       :width 50px
       :padding-right 2px
-  :left 5px
-  :padding 0
-  :bottom 0px
-  :position absolute
-  :width 410px
+    .circle
+      @include border-radius(20px)
+      :display none
+      :z-index 1
+      :position absolute
+      :right -7px
+      :top -5px
+      :background
+        :color #333
+      :width 20px
+      :max-width 20px
+      :height 20px
+      :max-height 20px
+      :border 1px solid #fff
+    .x
+      :display none
+      :z-index 2
+      :position absolute
+      :top -3px
+      :right -1px
+      :font
+        :size small
+        :weight bold
+    &:hover
+      :cursor default
+      .circle
+        :display block
+      .x
+        :display block
       
 .with_photos
-  :padding-bottom 70px
+  textarea
+    :padding-bottom 70px
+  #photozone
+    :height 60px
+  #status_message_submit
+    :display inline-block
 
 .photo_form
   :position relative
@@ -329,7 +341,8 @@ span.medium_avatar
     :cursor pointer
 
 .avatar_show
-  .content
+  :position absolute
+  .person_content
     :padding-left 85px
     :width 100px
     :height 75px
@@ -341,13 +354,14 @@ span.medium_avatar
       :top  10px
   .avatar_panel
     :padding 5px    
-  :position absolute
-  .avatar
+  .person_avatar
     :float left
     :width 75px
     :height 75px
 
 .avatar_container
+  :position relative
+.person_avatar
   :display inline-block
 
 .relation_button
@@ -365,8 +379,7 @@ span.medium_avatar
   padding: 3px 5px
   text-shadow: 0 -1px rgba(41, 41, 41, 0.5)
   text-align: center
-
-  a
+  span
     :color #FFFFFF
     :text-decoration none
     :margin auto
@@ -400,3 +413,38 @@ a.button
 
 .app_tab_border_radius
   @include border-radius-feed(5px)
+
+.scroll
+  :text-align center
+  :margin-top 10px
+
+.comment_form
+  :padding 8px
+  .person_avatar_detail
+    :height 32px
+    :width 32px
+  .avatar
+    :float left
+  .comment_button
+    :margin-left 40px
+  textarea
+    :resize none
+    :margin-left 4px
+    :width 345px
+    :height 23px
+.content_panel
+  :background-color #E9EEF1
+  :position relative
+  :z-index 4
+  :margin-top -20px
+  :border
+    :left 1px solid #EBEBEB
+    :right 1px solid #EBEBEB
+    :bottom 1px solid #EBEBEB
+
+
+#file-upload
+  input
+    :cursor pointer
+      
+

@@ -12,10 +12,10 @@ class StatusMessagesController < ApplicationController
     if @status_message.save
       @status_message.dispatch_post 
     end
-    if params[ :view ] == "index"
-      render :template => "status_messages/create_index"
-    else
-      respond_with  @status_message
-    end 
+    respond_with  @status_message
+  end
+
+  def show
+    @post = Post.find( params[ :id ] )
   end
 end

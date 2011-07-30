@@ -20,6 +20,5 @@ private
     n.save!
     n
   end
-  
-  
+
 end

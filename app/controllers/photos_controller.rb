@@ -2,6 +2,18 @@ class PhotosController < ApplicationController
   before_filter :authenticate_user!
   respond_to :html, :json
 
+  def destroy
+    photo = Post.where(:id => params[:id]).first
+
+    if photo
+      photo.destroy
+      respond_to do |format|
+        format.json{ render :nothing => true, :status => 204 }
+      end
+    end
+  end
+  
+
   def create
     begin
       if params[:authenticity_token] #upload with iframe

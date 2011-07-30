@@ -15,8 +15,13 @@ class PeopleController < ApplicationController
   end
 
   def show_friends
-    @friends = current_user.friends
-    @selected = "friends"
+    @type = params[ :type ]
+    if @type == 'followed'
+      @people = current_user.followed_people
+    else
+      @people = current_user.befollowed_people
+    end
+
     render "people/friends_show"
 
   end
@@ -53,6 +58,7 @@ class PeopleController < ApplicationController
     if @person
       @contact =  Contact.unscoped.where( :user_id => current_user.id ,:person_id => @person.id).first
       @friends = @person.user.friends
+      @events = @person.involved_events
       @followed_people = @person.user.followed_people
       @befollowed_people = @person.user.befollowed_people
       @favorite_items = Item.joins( :favorites ).where( :favorites => {:person_id => @person.id })
@@ -61,8 +67,27 @@ class PeopleController < ApplicationController
   end
 
   def show_posts
-    @posts = Post.where(:author_id => params[ :person_id ],:type => "StatusMessage" ).order("created_at DESC" ).paginate( :page => params[:page], :per_page => 10 )
+    @posts = Post.where( :author_id => params[ :person_id ],:type => 'StatusMessage' ).order( "posts.created_at DESC" ).paginate(:page => params[:page], :per_page => 10)
+    @page = params[ :page ]
     respond_with @posts
+  end
+  
+  def edit_profile
+    @person = Person.find( params[ :person_id ] )
+    @profile = @person.profile
+    respond_with @profile
+  end
+
+  def show_person_events
+    person = Person.find( params[ :person_id ] )
+    @events = person.involved_events.paginate(:page => params[:page], :per_page => 5)
+    respond_with @events
+  end
+
+  def show_person_profile
+    person = Person.find( params[ :person_id ] )
+    @profile = person.profile
+    respond_with @profile
   end
 
   def friend_select

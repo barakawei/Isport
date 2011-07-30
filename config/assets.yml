@@ -8,7 +8,12 @@ javascripts:
   main:
     - public/javascripts/jquery_ujs.js
     - public/javascripts/fileuploader-custom.js
+    - public/javascripts/isport.js
+    - public/javascripts/showNotifications.js
+    - public/javascripts/jquery.autoresize.min.js
 
+  status_message:
+    - public/javascripts/statusMessage.js
   scroll_page:
     - public/javascripts/scrollPage.js
   show_photo:
@@ -50,6 +55,7 @@ stylesheets:
     - public/stylesheets/css/plugins/autoSuggest.css
     - public/stylesheets/css/special_pages/conversations/index.css
     - public/stylesheets/css/special_pages/status_messages/status_message.css
+    - public/stylesheets/css/special_pages/people/show.css
 
   forms:
     - public/stylesheets/css/general/forms/events_form.css
@@ -76,9 +82,13 @@ stylesheets:
 
   special_pages_items_show:
     - public/stylesheets/css/special_pages/item/show.css
+  
+  special_pages_items_index:
+    - public/stylesheets/css/special_pages/item/index.css
 
   special_pages_items_commom:
     - public/stylesheets/css/special_pages/item/commom.css
+
 
   sepcial_pages_groups_form:
     - public/stylesheets/css/special_pages/groups/form.css

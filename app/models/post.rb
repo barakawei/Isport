@@ -11,6 +11,11 @@ class Post < ActiveRecord::Base
   def dispatch_post( action=false )
     Dispatch.new(self.author.user, self,action).dispatch_status_message
   end
+
+  def last_three_comments
+    self.comments.order('created_at DESC').limit(3).includes(:author => :profile).reverse
+  end 
+  
   
   def as_json(opts={})
     {

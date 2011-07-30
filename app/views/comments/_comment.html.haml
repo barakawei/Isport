@@ -3,9 +3,11 @@
   .comment_content
     .from
       = person_link(comment.author)
-      = how_long_ago( comment )
+      %span.details
+        – 
+      %span.comment_body
+        = comment.content
 
-    %p
-      = comment.content
+    = how_long_ago( comment )
     
 

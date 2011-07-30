@@ -1,0 +1,79 @@
+.myitemlist {
+  width: 142px;
+  margin-top: 11px;
+  margin-left: 8px;
+  overflow: hidden;
+  display: block;
+  position: relative;
+  float: left; }
+  .myitemlist .itemlisttitle {
+    font-size: 16px;
+    height: 16px;
+    margin-bottom: 15px;
+    display: block; }
+  .myitemlist .itemlistcontent {
+    width: 142px;
+    overflow: hidden;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    behavior: url(/javascripts/PIE.htc); }
+    .myitemlist .itemlistcontent .itemlistrow {
+      width: 142px;
+      height: 50px;
+      overflow: hidden;
+      margin-bottom: 7px;
+      -moz-border-radius: 5px;
+      -webkit-border-radius: 5px;
+      border-radius: 5px;
+      behavior: url(/javascripts/PIE.htc); }
+      .myitemlist .itemlistcontent .itemlistrow .itemimage {
+        width: 50px;
+        height: 50px;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        border-radius: 5px;
+        behavior: url(/javascripts/PIE.htc);
+        overflow: hidden;
+        float: left; }
+      .myitemlist .itemlistcontent .itemlistrow .itemmsg {
+        margin-left: 6px;
+        width: 85px;
+        height: 50px;
+        background: none repeat scroll 0 0 #a8aaad;
+        overflow: hidden;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        border-radius: 5px;
+        behavior: url(/javascripts/PIE.htc);
+        float: left;
+        font-size: 12px;
+        display: block;
+        text-align: right; }
+
+.imageboard {
+  width: 800px;
+  float: left; }
+  .imageboard .imageheard {
+    float: left;
+    width: 800px;
+    height: 30px;
+    font-size: 18px;
+    color: #ff7d56;
+    margin-bottom: 12px; }
+    .imageboard .imageheard .hidebutton {
+      float: right;
+      font-size: 12px; }
+  .imageboard .imagearea {
+    width: 800px;
+    overflow: hidden;
+    -moz-border-radius: 14px;
+    -webkit-border-radius: 14px;
+    border-radius: 14px;
+    behavior: url(/javascripts/PIE.htc); }
+    .imageboard .imagearea .image {
+      float: left;
+      width: 200px; }
+
+.iteminfo {
+  width: 200px; }

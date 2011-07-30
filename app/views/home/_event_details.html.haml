@@ -1,0 +1,36 @@
+
+.event_side_content{ :data_id => @event.id,:class => 'show' }
+  .attendee
+    - for attendee in @event.participants
+      = person_image_tag( attendee,:thumb_small )
+  .event
+    .event_avatar
+      = event_image_link( @event,:large )
+    .event_details
+      .title
+        = @event.title
+      .time
+        = @event.start_at.strftime('%H:%M').to_s 
+        = "-"
+        = @event.end_at.strftime('%H:%M').to_s 
+      .address
+        = '@'+@event.address
+      %br
+      .button
+        = "参加"
+      %br
+      .like.button
+        = "喜欢"
+  .description
+    = @event.description
+  .event_comments
+    = render :partial => "comments/event_comment",
+      :collection => @event.comments,
+      :as => :comment
+
+
+
+:javascript
+  $( ".button" ).button(  );
+  
+

@@ -17,8 +17,8 @@ gem 'devise_invitable'
 gem "jquery-rails","1.0.2"
 gem "hpricot"
 gem "ruby_parser"
-gem 'mini_magick'
-gem 'carrierwave'
+gem 'mini_magick',"3.3"
+gem 'carrierwave',"0.5.6"
 gem 'date_validator'
 
 group :development, :test do

@@ -1,0 +1,77 @@
+@import '../../general/ui/mixins'
+
+.myitemlist
+  :width 142px
+  :margin-top 11px
+  :margin-left 8px
+  :overflow hidden
+  :display block
+  :position relative
+  :float left
+
+  .itemlisttitle
+    :font-size 16px
+    :height 16px
+    :margin-bottom 15px
+    :display block
+
+  .itemlistcontent
+    :width 142px
+    :overflow hidden
+    @include border-radius(5px)
+    
+    .itemlistrow
+      :width 142px
+      :height 50px
+      :overflow hidden
+      :margin-bottom 7px
+      @include border-radius(5px)
+
+      .itemimage
+        :width 50px
+        :height 50px
+        @include border-radius(5px)
+        :overflow hidden
+        :float left
+
+      .itemmsg
+        :margin-left 6px
+        :width 85px
+        :height 50px
+        :background none repeat scroll 0 0 #A8AAAD
+        :overflow hidden
+        @include border-radius(5px)
+        :float left
+        :font-size 12px
+        :display block
+        :text-align right
+
+.imageboard 
+  width: 800px
+  float: left
+
+  .imageheard
+    :float left
+    :width 800px
+    :height 30px
+    :font-size 18px
+    :color #FF7D56
+    :margin-bottom 12px
+
+    .hidebutton
+      :float right
+      :font-size 12px
+
+  .imagearea
+    :width 800px
+    :overflow hidden
+    @include border-radius(14px)
+
+    .image 
+      float: left
+      width: 200px
+
+.iteminfo 
+  width: 200px
+
+

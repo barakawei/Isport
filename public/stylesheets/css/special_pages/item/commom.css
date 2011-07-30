@@ -31,3 +31,50 @@
   display: block; }
   .item_unmark:hover {
     background: url("/images/items/item_unmark.png") no-repeat scroll left bottom transparent; }
+
+.right_border {
+  border-right: 1px solid #002db3;
+  margin-left: 5px;
+  margin-right: 5px; }
+
+.left_padding {
+  padding-left: 14px; }
+
+.right_float {
+  float: right; }
+
+.left_close {
+  padding-left: 0px; }
+
+.mycolor {
+  background-color: #f8f8f8; }
+  .mycolor:hover {
+    background-color: #ffad6a; }
+
+span.maintitle {
+  overflow: show;
+  text-align: left;
+  padding-top: 11px;
+  float: left;
+  height: 20px;
+  font-family: STKaiti, KaiTi, sans-serif;
+  font-size: large;
+  color: #ff7d56; }
+
+span.title {
+  overflow: show;
+  text-align: left;
+  float: left;
+  display: inline;
+  height: 20px; }
+
+span.detail {
+  overflow: hidden;
+  float: right;
+  text-align: right; }
+
+span.eveinfo {
+  overflow: hidden;
+  float: right;
+  width: 120px;
+  text-align: right; }
