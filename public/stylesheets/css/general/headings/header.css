@@ -54,8 +54,8 @@
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     behavior: url(/javascripts/PIE.htc);
-    border: 1px solid #fc476b;
-    background-color: #fc476b;
+    border: 1px solid #17282e;
+    background-color: #17282e;
     color: #fcfcfc;
     width: 70px;
     height: 10px;
@@ -64,8 +64,8 @@
     padding: 11px 10px;
     text-decoration: none; }
     .header .sections a:hover, .header .sections a .active, .header .setting a:hover, .header .setting a .active {
-      border: 1px solid #0bb6e5;
-      background-color: #0bb6e5;
+      border: 1px solid #fe905d;
+      background-color: #fe905d;
       color: #fcfcfc;
       text-decoration: none; }
     .header .sections a .active, .header .setting a .active {
