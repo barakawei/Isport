@@ -1,6 +1,10 @@
 .hot_gallery {
   width: 904px;
   background: url("/images/ui/bg-gallery.jpg") no-repeat scroll 0 0 transparent;
+  -moz-border-radius: 20px;
+  -webkit-border-radius: 20px;
+  border-radius: 20px;
+  behavior: url(/javascripts/PIE.htc);
   height: 285px;
   float: left;
   padding: 20px 18px; }
