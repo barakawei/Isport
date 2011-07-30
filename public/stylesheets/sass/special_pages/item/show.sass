@@ -1,3 +1,66 @@
 @import '../../general/ui/mixins'
 
+$darkgray: #74777B
+
+.itemleft
+  :width 220px
+  :float left
+  :overflow hidden
+
+  .item_image
+    :width 200px
+    :height 200px
+    :overflow hidden
+    @include border-radius(14px)
+    :margin-bottom 10px
+
+  .item_desc
+    :width 200px
+    :display block
+    :float left
+    :text-align left
+    :font-size 18px
+    :color $darkgray 
+    :margin-bottom 10px
+
+  .check_area
+    :width 200px
+    :float left
+    :overflow hidden
+    :display block
+    :font-size 13px
+    :margin-bottom 10px
+  
+  .item_star
+    :width 220px
+    :display block
+    :float left
+
+    .star_one
+      :width 50px
+      :height 50px
+      @include border-radius(5px)
+      :overflow hidden
+      :margin-right 5px
+      :margin-bottom 5px
+
+.item_mark, .item_unmark
+  :width 100px
+  :height 40px
+  :text-indent -9999em
+  :display block
+  :margin-bottom 7px
+
+.item_mark
+  :background url("/images/items/item_mark.png") no-repeat scroll 0 0 transparent
+
+  &:hover
+    :background url("/images/items/item_mark.png") no-repeat scroll left bottom transparent 
+
+.item_unmark
+  :background url("/images/items/item_unmark.png") no-repeat scroll 0 0 transparent 
+  
+  &:hover
+    :background url("/images/items/item_unmark.png") no-repeat scroll left bottom transparent
+
 

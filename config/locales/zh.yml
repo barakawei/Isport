@@ -165,7 +165,7 @@ zh:
       like: "喜欢"
       likeinfo: "选择喜欢，我们将更多的向您推荐属于此项目的活动"
       unlike: "不再喜欢"
-      unlikeinfo: "找到有关%{name}的一切吧!"
+      unlikeinfo: "你已经是%{name}粉丝!"
       events: "近期活动"
       mavin: "达人"
       mavinfo: "想成为项目达人吗？更多的组织活动，更多的参加活动，你也可以！"

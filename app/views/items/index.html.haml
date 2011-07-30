@@ -1,5 +1,5 @@
 -content_for :head do
-  = include_stylesheets :special_pages_items_show, :media => 'all'
+  = include_stylesheets :special_pages_items_commom, :media => 'all'
   = include_stylesheets :special_pages_items_index, :media => 'all'
 .span-24.last
   .imageboard
@@ -19,6 +19,7 @@
               = item_events_notify
               = link_to t('items.eventsthisweek', :count => item[:events_count]), event_filter_path(@city.pinyin, nil, item[:item].id, 'week') 
             %span.detail= item[:fans_count].to_s + t('items.fans')
+
   - if current_user
     .myitemlist
       .itemlisttitle

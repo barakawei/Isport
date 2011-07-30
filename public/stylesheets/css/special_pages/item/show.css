@@ -1,0 +1,49 @@
+.itemleft {
+  width: 220px;
+  float: left;
+  overflow: hidden; }
+  .itemleft .item_image {
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    -moz-border-radius: 14px;
+    -webkit-border-radius: 14px;
+    border-radius: 14px;
+    behavior: url(/javascripts/PIE.htc);
+    margin-bottom: 10px; }
+  .itemleft .item_desc {
+    width: 200px;
+    display: block;
+    float: left;
+    text-align: left;
+    font-size: 18px;
+    color: #74777b;
+    margin-bottom: 10px; }
+  .itemleft .check_area {
+    width: 200px;
+    float: left;
+    overflow: hidden;
+    display: block;
+    font-size: 13px;
+    margin-bottom: 10px; }
+  .itemleft .item_star {
+    width: 220px;
+    display: block;
+    float: left; }
+
+.item_mark, .item_unmark {
+  width: 100px;
+  height: 40px;
+  text-indent: -9999em;
+  display: block;
+  margin-bottom: 7px; }
+
+.item_mark {
+  background: url("/images/items/item_mark.png") no-repeat scroll 0 0 transparent; }
+  .item_mark:hover {
+    background: url("/images/items/item_mark.png") no-repeat scroll left bottom transparent; }
+
+.item_unmark {
+  background: url("/images/items/item_unmark.png") no-repeat scroll 0 0 transparent; }
+  .item_unmark:hover {
+    background: url("/images/items/item_unmark.png") no-repeat scroll left bottom transparent; }
