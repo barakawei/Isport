@@ -24,5 +24,16 @@
         .star_one{:class => ("last" if (index+1)%4==0)}
           = person_image_link(person) 
 
+  .itemright
+    .item_info
+
+    .hot_event_title
+      .title
+        = render 'common/header_box', :title =>t('items.events') , :dark => true 
+      .link
+        = link_to "更多", event_filter_path(@city.pinyin, nil, @item.id, 'week') 
+
+    .hot_event_area
+      = render :partial => 'events/event_element',:collection => @events,:as => :event 
 
 

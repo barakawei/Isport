@@ -54,16 +54,16 @@
       font-size: 14px
       
       
-  .border_right_side
-    :height 100%
-    :float left
-    width: 15px
-    background: url(/images/ui/border_side.png) no-repeat -15px 0
-  .border_left_side
-    :height 100% 
-    float: left
-    width: 15px
-    :background url(/images/ui/border_side.png) no-repeat 0 0
+.border_right_side
+  :height 100%
+  :float left
+  width: 15px
+  background: url(/images/ui/border_side.png) no-repeat -15px 0
+.border_left_side
+  :height 100% 
+  float: left
+  width: 15px
+  :background url(/images/ui/border_side.png) no-repeat 0 0
 .events_panel
   .events_box_panel
     a
@@ -75,13 +75,13 @@
       :width 300px
       :margin 0 10px 14px 15px
       :float left
-      h3
-        background: url(/images/ui/event_border.gif) no-repeat scroll 0 0
+      .event_border
+        background: url(/images/ui/event_border.png) no-repeat scroll 0 0
         color: #FC4469
-        font-family: Rockwell
-        font-size: 11px
+        font-size: 15px
         font-weight: normal
         margin: 0
+        padding-left: 30px
         height: 26px
         
       .content
@@ -227,11 +227,14 @@
     :margin-right 10px
     :cursor pointer
 .person_left_bar
+  .contacts
+    :margin-top 20px
+    .person_avatar
+      :margin-top 5px
   .groups
     :margin-top 20px
     :left 0
   .group
-    :background-color #DBE0E3
     :padding 5px
     .avatar
       :float left
@@ -323,3 +326,4 @@ dd
     :margin-left 20px
     :display inline-block
     :font-size 15px
+

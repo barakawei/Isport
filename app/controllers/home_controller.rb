@@ -24,7 +24,7 @@ class HomeController < ApplicationController
   end
 
   def show_event
-    @events = Event.all.paginate(:page => params[:page], :per_page => 5)
+    @events = Event.order( "created_at DESC" ).paginate(:page => params[:page], :per_page => 5)
     respond_with @events
   end
 

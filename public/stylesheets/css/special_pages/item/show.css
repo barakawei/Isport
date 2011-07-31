@@ -45,6 +45,39 @@
   width: 700px;
   margin-left: 25px;
   float: left; }
+  .itemright .item_info {
+    width: 700px;
+    height: 150px;
+    overflow: hidden;
+    margin-bottom: 20px; }
+  .itemright .hot_event_title {
+    margin-bottom: 20px;
+    width: 700px;
+    display: block;
+    float: left;
+    position: relative; }
+    .itemright .hot_event_title .title {
+      margin-left: 20px;
+      float: left; }
+    .itemright .hot_event_title .link {
+      margin-right: 10px;
+      float: right;
+      text-align: right;
+      position: absolute;
+      bottom: 12px;
+      right: 5px; }
+      .itemright .hot_event_title .link a {
+        font-size: 13px;
+        color: blue; }
+  .itemright .hot_event_area {
+    width: 700px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    behavior: url(/javascripts/PIE.htc);
+    background: none repeat scroll 0 0 #a8aaad; }
 
 .item_mark, .item_unmark {
   width: 100px;

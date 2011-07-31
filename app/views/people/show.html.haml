@@ -12,36 +12,32 @@
       #followed_people
         - if @followed_people.length > 0
           .contacts
-            %h4
+            .link_tab
               -if current_user.person.id == @person.id
-                = "你关注的人"
+                =link_to t( '你关注的人' ),{:controller => 'people',:action => 'show_friends',:type=>'followed'}
               - else
-                = "他关注的人"
+                =link_to t( '他关注的人' ),{:controller => 'people',:action => 'show_friends',:type=>'followed'}
 
             - for person in @followed_people
               .person_avatar
                 = person_image_link(person)
-            %h4
-              =link_to t( 'more' ),{:controller => 'people',:action => 'show_friends',:type=>'followed'}
 
       #befollowed_people
         - if @befollowed_people.length > 0
           .contacts
-            %h4
+            .link_tab 
               -if current_user.person.id == @person.id
-                = "关注你的人"
+                =link_to t( '关注你的人' ),{:controller => 'people',:action => 'show_friends',:type=>'befollowed'}
               - else
-                = "关注他的人"
+                =link_to t( '关注你的人' ),{:controller => 'people',:action => 'show_friends',:type=>'befollowed'}
 
             - for person in @befollowed_people
               .person_avatar
                 = person_image_link(person)
-            %h4
-              =link_to t( 'more' ),{:controller => 'people',:action => 'show_friends',:type=>'befollowed'}
       
       .groups
-        %h4
-          加入的小组
+        .link_tab
+          = link_to '加入的小组','#'
         %ul
           -for group in @person.joined_groups
             %li
@@ -51,8 +47,8 @@
                 .name
                   = object_name_link(group)
       .groups
-        %h4
-          喜欢的项目
+        .link_tab
+          = link_to '喜欢的项目','#'
         %ul
           -for item in @person.interests
             %li
@@ -123,7 +119,7 @@
             .border_right_side
           .pointer
 
-          .events_box_panel.current
+          .events_box_panel
             = render :partial => 'events/event_element',:collection => @events,:as => :event
 
           .clear
@@ -135,7 +131,7 @@
               ="成功参加的活动"
             .border_right_side
           .pointer
-          .events_box_panel.past
+          .events_box_panel
             = render :partial => 'events/past_event_element',:collection => @events,:as => :event
           .clear
         .clear

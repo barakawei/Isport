@@ -50,7 +50,40 @@ $darkgray: #74777B
   :margin-left 25px
   :float left
 
+  .item_info
+    :width 700px
+    :height 150px
+    :overflow hidden
+    :margin-bottom 20px
 
+  .hot_event_title
+    :margin-bottom 20px
+    :width 700px
+    :display block
+    :float left
+    :position relative
+
+    .title
+      :margin-left 20px
+      :float left
+    .link
+      :margin-right 10px
+      :float right
+      :text-align right
+      :position absolute
+      :bottom 12px
+      :right 5px
+      a
+        :font-size 13px
+        :color blue
+
+  .hot_event_area
+    :width 700px
+    :margin-bottom 20px
+    :overflow hidden
+    @include border-radius(10px)
+    :background none repeat scroll 0 0 #A8AAAD
+    
 .item_mark, .item_unmark
   :width 100px
   :height 40px
