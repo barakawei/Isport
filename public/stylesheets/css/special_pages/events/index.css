@@ -3,6 +3,10 @@
   padding: 20px 20px 0 20px;
   float: left;
   border: 3px solid #d5ddde;
+  -moz-border-radius: 14px;
+  -webkit-border-radius: 14px;
+  border-radius: 14px;
+  behavior: url(/javascripts/PIE.htc);
   background-color: white; }
 
 .search_line {

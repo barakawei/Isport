@@ -2,6 +2,7 @@
 .hot_gallery
   :width 904px
   :background url("/images/ui/bg-gallery.jpg") no-repeat scroll 0 0 transparent
+  @include border-radius(20px)
   :height 285px
   :float left
   :padding 20px 18px
@@ -57,6 +58,17 @@
             :padding 6px 20px 0 23px
             :text-decoration none
             :width 342px
+
+            &:hover
+              :background-position  0 -250px 
+              :text-decoration none
+              
+              .info
+                :background-position 0 -84px
+
+              .title, .info
+                strong, em
+                  :color #e76875
             
             .type
               :font-size 14px

@@ -15,6 +15,7 @@
 -if @hot_events.size > 0
   %hr.space
   = render 'common/header_box',  :title => '热门活动', :dark => true 
+  = render 'common/big_header_box',  :number => '8', :text => '推荐'
   .hot_gallery
     .gallery_content
       =link_to 'pre', '#', :class => 'gallery_link_pre'
@@ -26,7 +27,7 @@
       =link_to 'next', '#', :class => 'gallery_link_next'
 
 .span-24.prepend-top
-  = render 'common/header_box',  :title => '寻找感兴趣的活动', :dark => false
+  = render 'common/header_box',  :title => '寻找感兴趣的活动'
   .hot_events
     .search_line
       .filter_title
@@ -55,7 +56,7 @@
         = link_to '时间选择', 'javascript:void(0)'
 
 .span-24.prepend-top
-  = render 'common/header_box',  :title => '推荐活动', :dark => false
+  = render 'common/header_box',  :title => '推荐活动'
   .hot_events
     -@hot_items.each_with_index do |i, index|
       .hot_items_events{:class => ('last_item' if index == @hot_items.length - 1)}

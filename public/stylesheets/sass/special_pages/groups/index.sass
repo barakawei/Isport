@@ -1,26 +1,12 @@
+@import '../../general/ui/mixins'
 .hot_groups
-  :width 908px 
-  :padding 10px 20px 0 20px
+  :width 904px 
+  :padding 20px 20px 0 20px
+  :border 3px solid #d5ddde
+  @include border-radius(14px)
+  :background-color #ffffff
   :float left
-  :margin-top 10px
-
-.hot_box.hottest
-  .app_module_title
-    :color #f48043
   
-  .hot_groups
-    :border 2px solid #b9bcbd
-
-
-.hot_box
-  :margin-top 15px
-  :margin-bottom 20px
-  h2
-    :background none repeat scroll 0 0 #b9bcbd
-    :width 100%
-    :height 1px
-    :overflow hidden
-    :margin 0
 
 .hot_item_groups
   :width 908px
@@ -32,6 +18,13 @@
   .item_avatar
     :margin-right 10px
     :float left
+
+    img
+      :border 1px solid #f2f2f2
+      :width 198px
+      :height 198px
+      @include border-radius(14px)
+
     
     
 
@@ -45,10 +38,11 @@
     img
       :width 120px
       :height 120px
-      :border 1px solid #fcfcfc
+      :border 1px solid #f2f2f2
+      @include border-radius(10px)
       
       &:hover
-        :border 1px solid #ff6600
+        :border 1px solid #10a3e1
 
 .search_line
   :width 908px
@@ -73,41 +67,28 @@
     :width 828px
 
     a
-      :font-size 12px
-      :color #333333
+      :font-size 13px
+      :color #56656c
       :margin-right 5px
       :display inline-block
 
     a.current
       :color #11a3e1
     
-
-#slider
-  :width 908px
-  :height 210px
-  :overflow hidden
-
-  ul
-    :margin 0
-    :padding 0
-    :float left
-    :width 2724px
-
-    li
-      :width 908px
-      :float left
-      :margin-bottom 10px
-      :height 210px
-      :overflow hidden
-
 .search_result
-  :padding 0px 20px 0 20px
+  :width 904px
+  :float left
+  :padding 20px 
+  :border 3px solid #d5ddde
+  :border-top none
+  @include border-radius(14px)
+  :background-color #ffffff
 
   .group_by_search
     :float left
     :width 182px 
     :height 210px
-    :margin 0 50px 20px 0 
+    :margin 0 40px 20px 0 
     
     span.item_name
       :color #ff6600
@@ -116,10 +97,11 @@
     img
       :width 180px
       :height 180px
-      :border 1px solid #ffffff
+      :border 1px solid #f2f2f2
+      @include border-radius(14px)
 
       &:hover
-        :border 1px solid #ff6600 
+        :border 1px solid #10a3e1
 
 #city_select_box
   :position absolute

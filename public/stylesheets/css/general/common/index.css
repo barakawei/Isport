@@ -1,6 +1,10 @@
 .hot_gallery {
   width: 904px;
   background: url("/images/ui/bg-gallery.jpg") no-repeat scroll 0 0 transparent;
+  -moz-border-radius: 20px;
+  -webkit-border-radius: 20px;
+  border-radius: 20px;
+  behavior: url(/javascripts/PIE.htc);
   height: 285px;
   float: left;
   padding: 20px 18px; }
@@ -48,6 +52,13 @@
             padding: 6px 20px 0 23px;
             text-decoration: none;
             width: 342px; }
+            .hot_gallery .gallery_content .gallery_inner ul li a:hover {
+              background-position: 0 -250px;
+              text-decoration: none; }
+              .hot_gallery .gallery_content .gallery_inner ul li a:hover .info {
+                background-position: 0 -84px; }
+              .hot_gallery .gallery_content .gallery_inner ul li a:hover .title strong, .hot_gallery .gallery_content .gallery_inner ul li a:hover .title em, .hot_gallery .gallery_content .gallery_inner ul li a:hover .info strong, .hot_gallery .gallery_content .gallery_inner ul li a:hover .info em {
+                color: #e76875; }
             .hot_gallery .gallery_content .gallery_inner ul li a .type {
               font-size: 14px;
               display: block;

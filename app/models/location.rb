@@ -4,7 +4,6 @@ class Location < ActiveRecord::Base
 
   has_one :events
   has_one :profiles
-  has_one :group
 
   def to_s 
     city.name + district.name + detail

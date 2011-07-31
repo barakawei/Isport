@@ -100,14 +100,6 @@ Isport::Application.routes.draw do
   controller :location do
     match '/locations/districts_of_city' => :districts_of_city, :as => 'districts_of_city'
   end
-  resources :groups do
-    member do
-      get 'members'
-      get 'forum'
-    end
-    resources :memberships
-    resources :topics, :controller => 'group_topics'
-  end
   
   controller :groups do
     match '/groups/:city/(/district/:district_id)(/item/:item_id)' => :filtered, :as => 'group_filter',
@@ -120,6 +112,15 @@ Isport::Application.routes.draw do
     match '/groups/:id/events' => :events, :as => 'group_events',
           :constraints => { :id => /[1-9]\d*/}
   end 
+
+  resources :groups do
+    member do
+      get 'members'
+      get 'forum'
+    end
+    resources :memberships
+    resources :topics, :controller => 'group_topics'
+  end
 
   resources :events do
     resources :event_comments, :controller => 'event_comments' 

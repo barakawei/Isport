@@ -3,6 +3,10 @@
   padding: 20px 20px 0 20px;
   float: left;
   border: 3px solid #d5ddde;
+  -moz-border-radius: 14px;
+  -webkit-border-radius: 14px;
+  border-radius: 14px;
+  behavior: url(/javascripts/PIE.htc);
   border-bottom: none;
   background-color: white; }
   .hot_events .search_line {
@@ -36,6 +40,10 @@
 .search_result {
   padding: 30px 20px;
   border: 3px solid #d5ddde;
+  -moz-border-radius: 14px;
+  -webkit-border-radius: 14px;
+  border-radius: 14px;
+  behavior: url(/javascripts/PIE.htc);
   background-color: white; }
   .search_result .event_item {
     padding-bottom: 20px; }

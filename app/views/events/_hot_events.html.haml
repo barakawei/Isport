@@ -1,4 +1,4 @@
-%a
+%a{:href => event_path(event)}
   %strong.type='活动'
   %span.title
     %strong=event.title
@@ -7,7 +7,7 @@
       %p.location="活动地点:" + event.location.to_s 
   %span.info
     .owner
-      =person_image_tag(event.person)
+      =event_image_tag(event, :thumb_small)
     %span.first
       %strong=event.participants.size
       %em='参加'
