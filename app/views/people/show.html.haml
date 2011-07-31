@@ -118,9 +118,7 @@
               = "准备参加的活动"
             .border_right_side
           .pointer
-
-          .events_box_panel
-            = render :partial => 'events/event_element',:collection => @events,:as => :event
+          = render :partial => 'events/event_element',:collection => @events,:as => :event
 
           .clear
 
@@ -131,8 +129,7 @@
               ="成功参加的活动"
             .border_right_side
           .pointer
-          .events_box_panel
-            = render :partial => 'events/past_event_element',:collection => @events,:as => :event
+          = render :partial => 'events/past_event_element',:collection => @events,:as => :event
           .clear
         .clear
 
