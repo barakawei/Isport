@@ -29,7 +29,8 @@
       float: left;
       height: 285px;
       overflow: hidden;
-      position: relative; }
+      position: relative;
+      margin-left: 30px; }
       .hot_gallery .gallery_content .gallery_inner ul {
         left: 0;
         list-style: none outside non;

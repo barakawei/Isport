@@ -279,8 +279,8 @@ span.medium_avatar {
   behavior: url(/javascripts/PIE.htc); }
 
 .app_module_title {
-  margin-bottom: 5px;
-  color: #f48043; }
+  margin: 15px 0 5px 0;
+  color: #fc4469; }
 
 .app_module_title_black {
   margin-bottom: 5px;

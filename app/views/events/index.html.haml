@@ -15,16 +15,15 @@
 -if @hot_events.size > 0
   %hr.space
   = render 'common/header_box',  :title => '热门活动', :dark => true 
-  = render 'common/big_header_box',  :number => '8', :text => '推荐'
   .hot_gallery
     .gallery_content
-      =link_to 'pre', '#', :class => 'gallery_link_pre'
+      =link_to 'pre', 'javascript:void(0)', :class => 'gallery_link_pre hide', :id => 'preBtn'
       .gallery_inner
         %ul
           - @hot_events.each do |event|
             %li
               = render 'hot_events', :event => event 
-      =link_to 'next', '#', :class => 'gallery_link_next'
+      =link_to 'next', 'javascript:void(0)', :class => "gallery_link_next #{"hide" unless @hot_events.size > 2 }" , :id => 'nextBtn'
 
 .span-24.prepend-top
   = render 'common/header_box',  :title => '寻找感兴趣的活动'
@@ -79,17 +78,16 @@
     var t =$('#switch_city').offset().top + $('#switch_city').innerHeight();
     $('#city_select_box').css("left", left+"px");
     $('#city_select_box').css("top", t+"px");
-    $('#slider ul').css("width", "#{@hot_events.size * 908}px");
   });
   
   $('#nextBtn').bind('click', slideRight);
   $('#preBtn').bind('click', slideLeft);
 
   var first_li = "0px"; 
-  var last_li = "-" + parseInt("#{@hot_events.size-1}") * 908 + 'px';
+  var last_li = "-" + parseInt("#{@hot_events.size / 2 + @hot_events.size % 2 - 1}") * 844 + 'px';
 
   function getPre(current) {
-    var pre = parseInt(current.match(/\d+/)) - 908;
+    var pre = parseInt(current.match(/\d+/)) - 844;
     if(pre == 0) {
       return pre+'px';
     }else {
@@ -98,7 +96,7 @@
   }
 
   function getNext(current) {
-    var next = parseInt(current.match(/\d+/)) + 908;
+    var next = parseInt(current.match(/\d+/)) + 844;
     if(next == 0) {
       return next+'px';
     }else {
@@ -108,34 +106,36 @@
 
   function slideLeft() {
     $('#preBtn').unbind('click');
-    var left = $('#slider ul').css('marginLeft');
-    if(left == first_li) {
-        $('#slider ul li:last').after($('#slider ul li:first'));
-        $('#slider ul').css('marginLeft', last_li);
-        $('#slider ul').animate({marginLeft: getPre(last_li)}, 300, function(){ 
-          $('#preBtn').bind('click', slideLeft);
-        });
-    } else  {
-        $('#slider ul').animate({marginLeft: getPre(left)}, 300, function(){ 
-          $('#preBtn').bind('click', slideLeft);
-        });
-    }
+    var left = $('.hot_gallery ul').css('marginLeft');
+    $('.hot_gallery ul').animate({marginLeft: getPre(left)}, 300, function(){ 
+      $('#preBtn').bind('click', slideLeft);
+      var left = $('.hot_gallery ul').css('marginLeft');
+      if (left != last_li) {
+        $('#nextBtn').show();
+      }
+      if (left == first_li) {
+        $('#preBtn').hide(); 
+        $('.gallery_inner').css("marginLeft", '30px');
+      }
+    });
+    return false;
   }
 
   function slideRight() {
     $('#nextBtn').unbind('click');
-    var left = $('#slider ul').css('marginLeft');
-    if (left == last_li) {
-      $('#slider ul li:first').before($('#slider ul li:last'));
-      $('#slider ul').css('marginLeft', first_li);
-      $('#slider ul').animate({marginLeft: getNext(first_li)}, 300, function(){
-        $('#nextBtn').bind('click', slideRight);
-      });
-    } else {
-      $('#slider ul').animate({marginLeft: getNext(left)}, 300, function(){
-        $('#nextBtn').bind('click', slideRight);
-      });
-    }
+    var left = $('.hot_gallery ul').css('marginLeft');
+    $('.hot_gallery ul').animate({marginLeft: getNext(left)}, 300, function(){
+      $('#nextBtn').bind('click', slideRight);
+      var left = $('.hot_gallery ul').css('marginLeft');
+      if (left != first_li) {
+        $('#preBtn').show(); 
+        $('.gallery_inner').css("marginLeft", '0px');
+      }
+      if (left == last_li) {
+        $('#nextBtn').hide();
+      }
+    });
+    return false;
   }
 
   $("#switch_city").click(function(e) {
