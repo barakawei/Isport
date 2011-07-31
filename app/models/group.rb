@@ -1,8 +1,8 @@
 class Group < ActiveRecord::Base
   belongs_to :item
   belongs_to :city
+  belongs_to :district
   belongs_to :person
-  belongs_to :location
 
   validates_presence_of :name, :description, :item_id, :city_id, :district_id,
                         :join_mode,

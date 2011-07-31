@@ -1,37 +1,16 @@
--content_for :head do
-  = include_stylesheets :sepcial_pages_groups_hottest, :media => 'all'
-
-.group_avatar
-  = group_image_link(group, :thumb_large)
-
-.group_des
-  .description
-    %h3= link_to group.name, group_path(group)
-    %hr
-    %h4= "小组描述"
-    %p= simple_format group.description
-
-.group_info
-  %p
-    %b= t('groups.created_at')+ ":"
-    = l(group.created_at, :format => :long)
-  %p
-    %b= t('groups.item')+ ":"
-    = link_to group.item.name, item_path(group.item_id)
-  %p
-    %b= t('groups.city') + ":"
-    = group.city.name
-  %p
-    %b= t('groups.owner') + ":"
-    = link_to group.person.name, person_path(group.person)
-
-  .static_box
-    .members_count
-      %p
-        %h3= link_to group.members.size, members_group_path(group), :class => 'group_color'
-        %h4= '成员'
-    .topics_count
-      %p
-        %h3= link_to group.topics.size, forum_group_path(group), :class => 'group_color'
-        %h4= '话题'
-    
+%a{:href => group_path(group)}
+  %strong.type='小组'
+  %span.title
+    %strong=group.name
+    %span.time_and_location
+      %p.time="创建时间:" +  l(group.created_at, :format => :long)
+      %p.location="活动地点:" + group.city.name + group.district.name 
+  %span.info
+    .owner
+      =group_image_tag(group, :thumb_small)
+    %span.first
+      %strong=group.members.size
+      %em='参加'
+    %span
+      %strong=group.topics.size
+      %em='话题'

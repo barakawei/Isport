@@ -489,7 +489,8 @@ a.button {
       height: 41px;
       width: 15px; }
 .app_title_bar .bottom_pic {
-  background: url("/images/ui/border_bubble_point.gif") no-repeat scroll 0 0 #00bed4;
+  background: url("/images/ui/border_bubble_point.gif") no-repeat scroll 0 0 transparent;
+  background-color: #00bed4;
   height: 10px;
   margin: 0 0 10px 20px;
   width: 10px; }
@@ -498,3 +499,39 @@ a.button {
   background-color: #56656c; }
 .app_title_bar.dark .bottom_pic {
   background: url("/images/ui/border_bubble_point.gif") no-repeat scroll 0 0 #56656c; }
+
+.app_big_title_bar {
+  float: left;
+  display: inline-block; }
+  .app_big_title_bar .box_all {
+    background-color: #41464c;
+    color: white;
+    float: left; }
+    .app_big_title_bar .box_all .box_left {
+      background: url("/images/ui/border_userstats.png") no-repeat scroll 0 0 transparent;
+      float: left;
+      height: 90px;
+      width: 15px; }
+    .app_big_title_bar .box_all .box_middle {
+      float: left;
+      width: 160px; }
+      .app_big_title_bar .box_all .box_middle .header_content {
+        margin: 15px auto 0;
+        width: 120px; }
+        .app_big_title_bar .box_all .box_middle .header_content .number {
+          color: #f74367;
+          font-family: arial;
+          font-weight: bold;
+          font-size: 40px;
+          float: left; }
+        .app_big_title_bar .box_all .box_middle .header_content .info {
+          float: left;
+          margin-top: 15px;
+          color: #f74367;
+          font-size: 20px;
+          margin-left: 10px; }
+    .app_big_title_bar .box_all .box_right {
+      background: url("/images/ui/border_userstats.png") no-repeat scroll -15px 0 transparent;
+      float: left;
+      height: 90px;
+      width: 15px; }
