@@ -30,7 +30,7 @@
             .itemimage
               = item_image_link(item[:item], :size => :thumb_small)
             .itemmsg
-              = link_to item[:item].name, item[:item], :class => "nounderline"
+              = link_to item[:item].name, item[:item]
               %br
               = link_to t('items.eventsthisweek', :count => item[:count]), event_filter_path(@city.pinyin, nil, item[:item].id, 'week')
 

@@ -42,6 +42,9 @@ stylesheets:
     - public/stylesheets/css/plugins/blueprint/screen.css
   wizard_steps:
     - public/stylesheets/css/general/common/wizard_steps.css
+  common_index:
+    - public/stylesheets/css/general/common/index.css
+    
     
   default:
     - public/stylesheets/css/general/application/application.css

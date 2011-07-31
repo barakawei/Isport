@@ -1,45 +1,17 @@
--content_for :head do
-  = include_stylesheets :sepcial_pages_events_hottest, :media => 'all'
-
-.event_avatar
-  = event_image_link(event, :thumb_large)
-
-.event_des
-  .description
-    %h3= link_to event.title, event_path(event)
-    %hr
-    %h4= "活动内容:"
-    %p= simple_format trim_info(event.description, 150)
-
-.event_info
-  %p
-    %b= t('groups.created_at')+ ":"
-    = l(event.start_at, :format => :long)
-  %p
-    %b= t('groups.item')+ ":"
-    = link_to event.item.name, item_path(event.subject_id)
-  %p
-    %b= t('groups.city') + ":"
-    = event.location.city.name
-  %p
-    %b= t('groups.owner') + ":"
-    = link_to event.person.name, person_path(event.person)
-
-  .static_box
-    .fans_count
-      %p
-        %h3= link_to event.references.size, url_for(:action => "references", :id => event.id), :class => 'event_color'
-        %h4= '推荐'
-    .members_count
-      %p
-        %h3.app_color_orange= link_to event.participants.size, url_for(:action => "participants", :id => event.id), :class => 'event_color'
-        %h4= '参加'
-    .fans_count.last
-      %p
-        %h3= link_to event.comments.size, event_path(event), :class => 'event_color'
-        %h4='评论'
-    
-
-  
-
+%a
+  %strong.type='活动'
+  %span.title
+    %strong=event.title
+    %span.time_and_location
+      %p.time="活动时间:" +  l(event.start_at, :format => :long)
+      %p.location="活动地点:" + event.location.to_s 
+  %span.info
+    .owner
+      =person_image_tag(event.person)
+    %span.first
+      %strong=event.participants.size
+      %em='参加'
+    %span
+      %strong=event.references.size
+      %em='喜欢'
     

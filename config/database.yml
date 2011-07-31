@@ -12,8 +12,8 @@ development:
   database: Isport_development
   pool: 5
   username: root
-  password: 
-  socket: /tmp/mysql.sock
+  password: root
+  socket: /var/run/mysqld/mysqld.sock
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -25,16 +25,16 @@ test:
   database: Isport_test
   pool: 5
   username: root
-  password: 
-  socket: /tmp/mysql.sock
+  password: root
+  socket: /var/run/mysqld/mysqld.sock
 
 production:
   adapter: mysql2
   encoding: utf8
   reconnect: false
   database: Isport_production
-  pool: 5
+  pool: 10
   username: root
-  password: 
-  socket: /tmp/mysql.sock
+  password: root
+  socket: /var/run/mysqld/mysqld.sock
 

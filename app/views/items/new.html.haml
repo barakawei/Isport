@@ -1,4 +1,7 @@
-%h1= t('items.new_item')
-= render 'form', :is_edit => false
-
+- if is_admin
+  %h1= t('items.new_item')
+  = render 'form', :is_edit => false
+- else
+  .span-24
+    %h1= "You Can Not Edit This Item Unless You Login As Administrator"
 

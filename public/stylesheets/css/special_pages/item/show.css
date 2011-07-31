@@ -1,7 +1,6 @@
 .itemleft {
   width: 220px;
-  float: left;
-  overflow: hidden; }
+  float: left; }
   .itemleft .item_image {
     width: 200px;
     height: 200px;
@@ -30,6 +29,22 @@
     width: 220px;
     display: block;
     float: left; }
+    .itemleft .item_star .star_one {
+      float: left;
+      width: 50px;
+      height: 50px;
+      margin-right: 5px;
+      margin-bottom: 5px; }
+      .itemleft .item_star .star_one img {
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        border-radius: 5px;
+        behavior: url(/javascripts/PIE.htc); }
+
+.itemright {
+  width: 700px;
+  margin-left: 25px;
+  float: left; }
 
 .item_mark, .item_unmark {
   width: 100px;

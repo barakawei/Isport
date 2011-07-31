@@ -4,3 +4,8 @@ log/*.log
 tmp/
 .DS_Store
 public/uploads/
+config/database.yml
+log/*
+Isport.log
+quepid
+

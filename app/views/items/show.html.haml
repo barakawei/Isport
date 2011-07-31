@@ -18,9 +18,11 @@
           = t('items.unlikeinfo', :name => @item.name)
 
     .item_star
-      %h4
-        =@item.name + t('items.mavin')
+      = render 'common/header_box', :title =>@item.name + t('items.mavin') , :dark => false 
 
+      -@actors.each_with_index do |person, index|
+        .star_one{:class => ("last" if (index+1)%4==0)}
+          = person_image_link(person) 
 
 
 

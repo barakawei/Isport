@@ -46,7 +46,7 @@ module ApplicationHelper
   end
 
   def person_image_link(person, size=:thumb_small)
-    return "" if person.nil? || person.profile.nil?
+    return "" if person.nil?
     link = link_to person_image_tag(person, size),person_path( person )
     "<div class='avatar_container'>#{link}</div>".html_safe
   end

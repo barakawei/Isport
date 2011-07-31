@@ -50,6 +50,10 @@
         font-size: 12px;
         display: block;
         text-align: right; }
+        .myitemlist .itemlistcontent .itemlistrow .itemmsg a {
+          color: black; }
+          .myitemlist .itemlistcontent .itemlistrow .itemmsg a:hover {
+            color: yellow; }
 
 .imageboard {
   width: 800px;

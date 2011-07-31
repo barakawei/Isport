@@ -1,8 +1,8 @@
 class ItemsController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show ]
 
-  EVELIMIT = 5
-  ACTLIMIT = 8
+  EVELIMIT = 6
+  ACTLIMIT = 12
   ITELIMIT = 5
 
   def myitems
