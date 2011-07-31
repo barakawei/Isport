@@ -89,6 +89,9 @@ stylesheets:
   special_pages_items_index:
     - public/stylesheets/css/special_pages/item/index.css
 
+  special_pages_items_myitems:
+    - public/stylesheets/css/special_pages/item/myitems.css
+
   special_pages_items_commom:
     - public/stylesheets/css/special_pages/item/commom.css
 

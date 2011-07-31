@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
 
   EVELIMIT = 6
   ACTLIMIT = 12
-  ITELIMIT = 5
+      ITELIMIT = 5
 
   def myitems
     @items = current_user.person.interests 
@@ -101,8 +101,17 @@ class ItemsController < ApplicationController
       @city = City.first
     end
 
-    @events = Event.week.joins(:location).where(:subject_id => @item.id, :locations => {:city_id => @city.id})
+    @events = Event.week.not_started.joins(:location).where(:subject_id => @item.id, :locations => {:city_id => @city.id})
         .limit(EVELIMIT)
+  
+    if @events.length < EVELIMIT
+      pevents = Event.next_week.not_started.joins(:location).where(:subject_id => @item.id, :locations => {:city_id => @city.id})
+        .limit(EVELIMIT-@events.length)
+
+      if pevents
+        @events += pevents
+      end
+    end
 
     @actors = Person.joins(:involved_events).joins(:interests)
               .where(:events => {:subject_id => @item.id}, :items => {:id => @item.id}, 
@@ -110,7 +119,7 @@ class ItemsController < ApplicationController
               .group("involvements.person_id").order("count(event_id) DESC").limit(ACTLIMIT).includes(:profile)
 
     @groups = Group.joins(:members).where(:item_id => @item.id, :city_id => @city.id)
-          .group(:group_id).order("count(group_id) DESC").limit(ACTLIMIT)
+          .group(:group_id).order("count(group_id) DESC").limit(EVELIMIT)
 
     respond_to do |format|
       format.html # show.html.erb

@@ -49,35 +49,36 @@
     width: 700px;
     height: 150px;
     overflow: hidden;
+    margin-left: 0px;
     margin-bottom: 20px; }
-  .itemright .hot_event_title {
+    .itemright .item_info .info_ele {
+      margin-top: 20px;
+      margin-left: 20px;
+      float: left; }
+  .itemright .hot_title {
     margin-bottom: 20px;
     width: 700px;
     display: block;
     float: left;
     position: relative; }
-    .itemright .hot_event_title .title {
+    .itemright .hot_title .title {
       margin-left: 20px;
       float: left; }
-    .itemright .hot_event_title .link {
+    .itemright .hot_title .link {
       margin-right: 10px;
       float: right;
       text-align: right;
       position: absolute;
       bottom: 12px;
       right: 5px; }
-      .itemright .hot_event_title .link a {
+      .itemright .hot_title .link a {
         font-size: 13px;
         color: blue; }
-  .itemright .hot_event_area {
+  .itemright .hot_area {
     width: 700px;
+    margin-left: 20px;
     margin-bottom: 20px;
-    overflow: hidden;
-    -moz-border-radius: 10px;
-    -webkit-border-radius: 10px;
-    border-radius: 10px;
-    behavior: url(/javascripts/PIE.htc);
-    background: none repeat scroll 0 0 #a8aaad; }
+    overflow: hidden; }
 
 .item_mark, .item_unmark {
   width: 100px;

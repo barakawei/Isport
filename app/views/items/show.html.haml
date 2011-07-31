@@ -26,14 +26,31 @@
 
   .itemright
     .item_info
+      .info_ele
+        = render 'common/big_header_box', :number => @item.fans.count, :text => "粉丝"
+      .info_ele
+        = render 'common/big_header_box', :number => @item.events.count, :text => "活动", :font_color => "yellow"
+      .info_ele
+        = render 'common/big_header_box', :number => @item.groups.count, :text => "小组", :font_color => "white"
 
-    .hot_event_title
+    .hot_title
       .title
         = render 'common/header_box', :title =>t('items.events') , :dark => true 
       .link
-        = link_to "更多", event_filter_path(@city.pinyin, nil, @item.id, 'week') 
+        = link_to "更多>>", event_filter_path(@city.pinyin, nil, @item.id, 'week') 
 
-    .hot_event_area
+    .hot_area.events_panel
       = render :partial => 'events/event_element',:collection => @events,:as => :event 
 
 
+    .hot_title
+      .title
+        = render 'common/header_box', :title =>t('items.citygroups') , :dark => true 
+      .link
+        = link_to "更多>>", group_filter_path(:city => @city.pinyin, :item_id => @item.id) 
+       
+
+
+
+
+      
