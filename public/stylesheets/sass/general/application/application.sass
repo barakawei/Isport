@@ -38,8 +38,7 @@ ol, ul, li
   :list-style none
   
 .container.body
-  :padding
-    :top 120px
+  :padding-top 30px 
 
 .overlay
   @include border-radius(4px)
@@ -371,13 +370,23 @@ span.medium_avatar
 .person_avatar
   :display inline-block
 
+.follow
+  span
+    background-image: url(/images/ui/icon-check.png)
+    
+.unfollow
+  span
+    background-image: url(/images/ui/icon-x.png)
+    
+    
 .relation_button
-  :width 65px
-  :height 20px
-  @include linear-gradient(#739E00, #8CC000)
-  @include border-radius( 5px )
-  @include box-shadow(0,1px,1px,0,rgba(255, 255, 255, 0.25))
   border: 1px solid #769800
+  background: #8aba56 url(/images/ui/glass-light.png) repeat-x 0 50%
+  background-color: #8aba56
+  @include border-radius(6px)
+  color: white
+  :width 80px
+  :height 20px
   cursor: pointer
   display: inline-block
   font-size: 13px
@@ -387,7 +396,10 @@ span.medium_avatar
   text-shadow: 0 -1px rgba(41, 41, 41, 0.5)
   text-align: center
   span
-    :color #FFFFFF
+    padding-left: 18px
+    background-repeat: no-repeat
+    background-position: 0 50%
+    :color white
     :text-decoration none
     :margin auto
 

@@ -2,55 +2,21 @@
   =include_javascripts :scroll_page
   =include_javascripts :show_photo
   =include_javascripts :status_message
-.span-14.last.content_panel
-  =render "status_messages/status_message"
-  .feed_container
-    -if @post.size >0
-      = render "status_messages/status_message_element",:post => @post.first
-  .event_container
+.span-17.last.content_panel
+  .events_panel
+    .current_events
+      .title_panel
+        .border_left_side
+        .content_center
+          = "推荐活动"
+        .border_right_side
+      .pointer
+
+    .events_box_panel
     
-.span-10.last.right_bar
+.span-6.last.right_bar
   = render 'people/person_list', :person => @person
-.details_panel
-  .details_shell
-    .event_side_panel
-      .event_side_close
-        =link_to '<——','#'
-      .event_side_container
 :javascript
   $.get("/home/show_event");
   $("abbr.timeago").timeago();
-
-  $( '.event_side_close a' ).live( 'click',function(  ){ 
-    
-    panel = $('.details_panel .event_side_panel');
-    panel.animate({left: 170},300);
-    panel.removeClass( "opened" );
-    panel.find( ".show" ).addClass( "hide" ).removeClass( "show" );
-    return false;
-  } );
-
-  $( ".event_element" ).live( "click",function(){ 
-    eventId = $( this ).attr( "data_id" );
-    event_content = $( ".event_side_content[data_id="+eventId+"]" );
-    if( event_content.length == 0 ){
-      $.get( "/home/show_event_details",{ id:eventId });
-    }else{
-      panel = $('.details_panel .event_side_panel');
-      if( event_content.hasClass( "show" ) ){
-        panel.animate({left: 170},300);
-        panel.removeClass( "opened" );
-        event_content.removeClass( "show" ).addClass( "hide" );
-      }else{
-        if( panel.hasClass( "opened" ) ){
-          $( ".show",panel ).removeClass( "show" ).addClass( "hide" );
-          event_content.removeClass( "hide" ).addClass( "show" );
-        }else{
-          panel.animate({ left: 557},300);
-          panel.addClass( "opened" );
-          event_content.removeClass( "hide" ).addClass( "show" );
-        }
-      }
-    }
-  } );
 

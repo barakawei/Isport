@@ -1,3 +1,21 @@
+.link_tab
+  margin: 0 0 5px 0
+  padding: 0 0 22px 0
+  font-size: 14px
+  line-height: 1
+  text-transform: uppercase
+  border-bottom: 2px solid #d5ddde
+  a
+    float: left
+    padding: 0 12px 8px 0
+    font-weight: bold
+    background: url(/images/ui/icon-bluearrow.png) no-repeat 100% 2px
+    text-decoration: none
+    color: #4083A9
+    outline: none
+    &:hover
+      background-position: 100% -20px
+      color: #205f82
 #home_user
   :margin-left 10px
   :position relative
@@ -6,18 +24,19 @@
     :top 4px
     :left 0px
   h4
-    :margin-bottom 0px
+    :margin 0
   .groups
     :margin-top 20px
     :left 0
-  .contacts
-    :padding 5px
-    .person_avatar_detail
-      :height 30px
-      :width 30px
+  .avatar_panel_container
+    :padding-top 20px
+    .contacts
+      :padding 5px
+      .person_avatar_detail
+        :height 30px
+        :width 30px
 
   .group
-    :background-color #DBE0E3
     :padding 5px
     .avatar
       :float left
