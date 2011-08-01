@@ -3,10 +3,10 @@
   = include_javascripts :google_map
   =javascript_include_tag "http://maps.google.com/maps/api/js?sensor=false"
 .span-24
-  .span-6.left_column
+  .span-7.left_column
     .avatar=event_image_tag(@event, :thumb_large)
     %h4.app_module_title='活动信息'
-    .span-6.other_info
+    .span-7.other_info
       %span.info_block
         %strong
           ='开始时间:'
@@ -15,18 +15,23 @@
           ='地点:'
           =@event.location.to_s
 
-  .span-18.last.right_column
-    .span-18.static
+  .span-17.last.right_column
+    .span-17.static
       =render 'common/big_header_box', :number => @participants.size, :text => '参加', :width => '100px' 
       =render 'common/big_header_box', :number => @references.size, 
                                        :text => '推荐', :width => '100px', :font_color => '#a1d453'
       =render 'common/big_header_box', :number => @comments_size,
                                        :text => '评论', :width => '100px', :font_color => '#F5D34D'
-    .span-18.prepend-top
+
+    %hr.space
+    = render 'common/header_box', :title => '活动内容'
+    .span-16
       .event_info
         %span.event_title=@event.title
         .event_desc=simple_format(@event.description)
 
     = render 'common/header_box', :title => '评论'
+    = render 'event_comments', :comments => @comments, :event => @event, 
+                               :current_person => @current_person, :comment => @comment 
       
 

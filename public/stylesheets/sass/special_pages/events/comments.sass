@@ -1,80 +1,130 @@
-.response_box
-  :float left
-  :margin-left 55px
-  :margin-bottom 15px
-  :margin-top 5px
-
-  textarea
-    :width 300px
-    :height 80px
-    :display block
-    :font-size 12px
-
-.response_box.to_comment
-  :margin-left 40px
-
-
-.comment_to_event, .new_comment
-  a
-    img
-      :float left
-
-  .content
-    :display inline-block
-    :vertical-align top 
-    :width 575px
-    :margin-left 5px
-    :float left
-
-  hr
-    :margin-bottom 5px 
-
-.new_comment
-  textarea
-    :width 80%
-    :display block
-    :height 100px
-    :font-size 11px 
-  .button
-    :margin-top 5px
-    
-.comment_to_comment 
-  :float left
-  :width 575px
-  :margin-left 55px
-  :margin-bottom 5px
-
-  a
-    img
-      :float left
-      :width 35px
-      :height 35px
-
-  .content
-    :margin-left 5px
-    :width 535px
-    :float left
-
-    hr
-      :margin-bottom 5px 
+.comment_block.first
+  margin-top: 0
   
-.comment_to_event
-  :margin-top 20px
-.comment_to_event.first
-  :margin-top 0
+.comment_block
+  background: none repeat scroll 0 0 #FFFFFF
+  border: 3px solid #D5DDDE
+  margin-bottom: 10px
+  margin-top: 30px
+  padding: 16px 11px 5px 17px
+  width: 606px
+  float: left
 
-.pagination_box
-  :margin-bottom 10px    
+  .comment_top
+    margin-bottom: 9px
+    overflow: hidden
+    width: 100%
+      
+    .author_box
+      float: left
+      width: 65px
 
-  .pagination
-    :float left
+    .author_text
+      float: left
+      display: block
+      font-weight: bold
+      vertical-align: middle
+      width: 200px
+      margin-top: 10px
+      
+      a
+        color: #00A2B8
+        font-size: 18px
+        line-height: 22px
+  .comment_text
+    span.content
+      :font-size 14px
+      :color #546266
+      :display block
 
-a.delete_comment, a.delete_response
-  :background url('/images/ui/delete.png') no-repeat 0 0 transparent 
-  :width 10px
-  :height 10px
-  :display inline-block
-  :text-indent -3000px
-  :vertical-align text-bottom
-  :margin-left 2px
+    .editIconWrapper
+      background: url("/images/ui/edit.png") no-repeat scroll 3px 3px transparent
+      border-radius: 2px 2px 2px 2px
+      cursor: pointer
+      color: #B4C0C1
+      font-size: 11px
+      font-weight: bold
+      letter-spacing: 0
+      margin: 10px 0 0 3px
+      padding: 6px 6px 3px 22px
+      display: block
+      width: 30px 
+
+      &:hover
+        background-color: #d1e1ad
+        color: #546266
+        text-decoration: none
+  .comment_bottom
+    background: url("/images/ui/border-comment-bar.gif") repeat-x scroll 0 8px transparent
+    margin: 0 -11px 0 -17px
+    overflow: hidden
+    padding: 13px 11px 0 17px
+    width: 606px
+
+    a
+      background: url("/images/ui/ico-6.gif") no-repeat scroll 0 50% transparent
+      padding-left: 16px
+    
+    .comment_time
+      color: #B4C0C1
+
+.response_box
+  margin-left: 20px
+  padding: 0 0 0px 21px
+  width: 601px
+  float: left  
+  .avatar_container
+    background: none repeat scroll 0 0 #FFFFFF
+    border: 2px solid #D5DDDE
+    float: left
+    height: 30px
+    padding: 4px
+    width: 30px
+  
+    img
+      :width 30px
+      :height 30px
+  .res_text
+    background: url("/images/ui/bg-comment-block-c.gif") repeat-y scroll 0 0 transparent
+    float: right
+    margin-bottom: 10px
+    width: 548px
+    
+    .res_text_inner
+      background: url("/images/ui/bg-comment-block-t.gif") no-repeat scroll 0 0 transparent
+      width: 547px
+      
+      .res_text_frame
+        background: url("/images/ui/bg-comment-block-b.gif") no-repeat scroll 0 100% transparent
+        overflow: hidden
+        padding: 12px 21px 6px 22px
+        width: 510px
+        
+        .res_time
+          :float right
+          :color #B4C0C1
+          :margin-right 20px
+
+        .res_operation
+          a
+            background: url("/images/ui/ico-6.gif") no-repeat scroll 0 50% transparent
+            padding-left: 13px
+        .res_author
+          color: #00A2B8
+          font-size: 15px
+          line-height: 18px
+        .res_content
+          :margin-top 5px
+          :font-size 14px
+          :color #546266
+        
+      
+    
+         
+    
+      
+        
+      
+        
+    
   

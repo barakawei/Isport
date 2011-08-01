@@ -44,7 +44,7 @@ class EventsController < ApplicationController
     @comments_size = @event.comments.size
     if @comments_size > 0
       @comments = @event.comments.paginate :page => params[:page],
-                                           :per_page => 15, :order => 'created_at'
+                                           :per_page => 8, :order => 'created_at'
 
     end
     new_comment
