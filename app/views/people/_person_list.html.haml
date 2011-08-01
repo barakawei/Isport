@@ -9,17 +9,15 @@
   .avatar_panel_container
     #followed_people
       - if @followed_people.length > 0
-        %h4
-          = "你关注的人"
+        .link_tab
+          = link_to '你关注的人',{:controller => 'people',:action => 'show_friends',:type=>'followed'}
         .contacts
           - for person in @followed_people
             .person_avatar
               = person_image_link(person)
-          %h4
-            =link_to t( 'more' ),{:controller => 'people',:action => 'show_friends',:type=>'followed'}
   .groups
-    %h4
-      加入的小组
+    .link_tab
+      = link_to '加入的小组','#'
     %ul
       -for group in current_user.person.joined_groups
         %li
@@ -29,8 +27,8 @@
             .name
               = object_name_link(group)
   .groups
-    %h4
-      喜欢的项目
+    .link_tab
+      = link_to '喜欢的项目','#'
     %ul
       -for item in current_user.person.interests
         %li

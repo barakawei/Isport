@@ -1,12 +1,14 @@
-.span-16.comment_to_event
-  = person_image_link(person) 
-  .content{:comment_id => "#{comment.id}"}
-    %hr 
-    %span
+.comment_block.hide{:comment_id => comment.id}
+  .comment_top
+    .author_box
+      = person_image_link(person)
+    .author_text
       = link_to person.name, person_path(person)
-      = l(comment.created_at, :format => :long)      
-      = link_to '删除', event_event_comment_path(event.id, comment.id), :class => "delete_comment new_#{comment.id}"
-      = simple_format comment.content 
-
-:javascript
-  $("a.new_#{comment.id}").click(delete_comment);
+  .comment_text
+    %span.content=simple_format comment.content
+    %a{:class => 'editIconWrapper right'}
+      %span.editIcon='编辑'
+  .comment_bottom
+    = link_to '回复', '#'
+    %span.right.comment_time
+      %em=l(comment.created_at, :format => :long)

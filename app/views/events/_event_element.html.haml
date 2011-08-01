@@ -1,23 +1,26 @@
-%a{ :href => event_path( event ) }
-  .event_box
-    .content
-      .title
-        = event.title
-      .info
-        .info_left
-          = event_image_tag( event,:thumb_small )
-          .time
-            = event.start_at.strftime('%A %H:%M').to_s 
-            = "-"
-            = event.end_at.strftime('%H:%M').to_s
+.event_box_panel
+  %a{ :href => event_path( event ) }
+    .event_box
+      .event_border
+        = "活动"
+      .content
+        .title
+          = event.title
+        .info
+          .info_left
+            = event_image_tag( event,:thumb_small )
+            .time
+              = event.start_at.strftime('%A %H:%M').to_s 
+              = "-"
+              = event.end_at.strftime('%H:%M').to_s
             
-          .address
-            = "@"+event.location.to_s
-        .info_right
-          .calendar_panel
-            .calendar
-              .month
-                =event.start_at.strftime('%m').to_s+"月"
-              .day
-                =event.start_at.strftime('%d').to_s
-        .clear
+            .address
+              = "@"+event.location.to_s
+          .info_right
+            .calendar_panel
+              .calendar
+                .month
+                  =event.start_at.strftime('%m').to_s+"月"
+                .day
+                  =event.start_at.strftime('%d').to_s
+          .clear

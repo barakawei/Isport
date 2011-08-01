@@ -1,9 +1,18 @@
 @import '../ui/mixins'
+.red_tab
+  :border 1px solid #F74367
+  :background-color #F74367
+.gray_tab
+  :border 1px solid #E9EEF1
+  :background-color #E9EEF1
+.notifaction
+  :padding-right 60px
+
+
 .header
   :background-color #17282E
   :text-align left
   :height 91px
-  :position fixed
   :z-index 50
   :width 100%
   :top 0
@@ -38,7 +47,7 @@
     :display block
     :width 200px
     h2
-      :color #FCFCFC
+      :color #fe905d  
 
 
   .sections
@@ -49,12 +58,11 @@
     :list-style none
   .sections,.setting 
     li
+      @include border-radius-feed(5px)
       float: left
       margin-right: 2px
     a
       @include border-radius-feed(5px)
-      :border 1px solid #17282E
-      :background-color #17282E
       :color  #FCFCFC
       :width 70px
       :height 10px
@@ -63,11 +71,12 @@
       padding: 11px 10px
       text-decoration: none
 
-      &:hover, .active 
-        :border  1px solid #fe905d
-        :background-color #fe905d
+      &:hover
+        :border  1px solid #00BED4
+        :background-color #00BED4
         :color #FCFCFC
         :text-decoration none 
+        :margin-bottom -20px
 
       .active
         :font-size 11px
@@ -75,14 +84,21 @@
   
   li#search
     
+    :background-color #414141
+    :padding 
+      :top 5px
+      :left 5px
+      :right 5px
+      :bottom 4px
+    
     input
-      :border 0 none
-      :margin-top 10px
-      :height 15px
-      :color #8a8a8a
-      :font-size 11px
-      :width 120px
-      :background url("/images/layout/button.png") repeat-x scroll 100% -492px #ffffff
+      font-size: 10px
+      width: 200px
+      border: 1px solid #BEBEBE
+      color: #555
+      border-top-color: #D4D4D4
+      border-left-color: #D4D4D4
+      @include border-radius( 4px )
 
     
   .setting
@@ -109,7 +125,7 @@
           :background url("/images/ui/icons.png") repeat 10px -2588px 
 
 .accout
-  :top 40px
+  :top 90px
   :width 60px
   :position absolute
   ul
@@ -137,10 +153,13 @@
     :padding-right 10px
   
 #notification_dropdown
-  :background white
-  :border solid #888 1px
+  
+  border-left: 2px solid #DBE1E1
+  border-right: 2px solid #DBE1E1
+  border-bottom: 2px solid #DBE1E1
+  :background-color #E9EEf1
   :position absolute
-  :top 38px
+  :top 90px
   :right -155px
   :width 350px
   :display none

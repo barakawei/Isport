@@ -47,46 +47,47 @@
       float: left;
       margin-left: 7px;
       font-size: 14px; }
-  .history_bar .border_right_side {
-    height: 100%;
-    float: left;
-    width: 15px;
-    background: url(/images/ui/border_side.png) no-repeat -15px 0; }
-  .history_bar .border_left_side {
-    height: 100%;
-    float: left;
-    width: 15px;
-    background: url(/images/ui/border_side.png) no-repeat 0 0; }
+
+.border_right_side {
+  height: 100%;
+  float: left;
+  width: 15px;
+  background: url(/images/ui/border_side.png) no-repeat -15px 0; }
+
+.border_left_side {
+  height: 100%;
+  float: left;
+  width: 15px;
+  background: url(/images/ui/border_side.png) no-repeat 0 0; }
 
 .events_panel {
-  margin-top: 30px;
-  height: 51px; }
-  .events_panel .events_box_panel a {
+  margin-top: 30px; }
+  .events_panel .event_box_panel a {
     outline: none;
     text-decoration: none;
     cursor: pointer; }
-  .events_panel .events_box_panel .event_box {
+  .events_panel .event_box_panel .event_box {
     width: 300px;
     margin: 0 10px 14px 15px;
     float: left; }
-    .events_panel .events_box_panel .event_box h3 {
-      background: url(/images/ui/event_border.gif) no-repeat scroll 0 0;
+    .events_panel .event_box_panel .event_box .event_border {
+      background: url(/images/ui/event_border.png) no-repeat scroll 0 0;
       color: #fc4469;
-      font-family: Rockwell;
-      font-size: 11px;
+      font-size: 15px;
       font-weight: normal;
       margin: 0;
+      padding-left: 30px;
       height: 26px; }
-    .events_panel .events_box_panel .event_box .content {
+    .events_panel .event_box_panel .event_box .content {
       background: url(/images/ui/event-box.png) no-repeat scroll 0 100%;
       min-height: 100px;
       padding: 10px;
       color: #11bacd; }
-      .events_panel .events_box_panel .event_box .content .title {
+      .events_panel .event_box_panel .event_box .content .title {
         font-size: 14px;
         font-weight: bold;
         height: 40px; }
-      .events_panel .events_box_panel .event_box .content .info .info_left {
+      .events_panel .event_box_panel .event_box .content .info .info_left {
         float: left;
         display: inline;
         font-weight: bold;
@@ -95,13 +96,13 @@
         width: 188px;
         background: url(/images/ui/box_arrow.png) top left no-repeat #ecf4f6;
         color: #568ea6; }
-        .events_panel .events_box_panel .event_box .content .info .info_left img {
+        .events_panel .event_box_panel .event_box .content .info .info_left img {
           float: left;
           margin-right: 5px;
           vertical-align: middle;
           height: 32px;
           width: 32px; }
-      .events_panel .events_box_panel .event_box .content .info .info_right {
+      .events_panel .event_box_panel .event_box .content .info .info_right {
         float: right;
         background-color: #ecf4f6;
         display: inline;
@@ -111,7 +112,7 @@
         padding: 10px;
         position: relative;
         width: 50px; }
-      .events_panel .events_box_panel .event_box .content .info .event_closed {
+      .events_panel .event_box_panel .event_box .content .info .event_closed {
         padding-left: 10px; }
   .events_panel .current_events .title_panel {
     width: 160px;
@@ -209,11 +210,14 @@
     .menu_bar li:hover {
       color: #dd4b39; }
 
+.person_left_bar .contacts {
+  margin-top: 20px; }
+  .person_left_bar .contacts .person_avatar {
+    margin-top: 5px; }
 .person_left_bar .groups {
   margin-top: 20px;
   left: 0; }
 .person_left_bar .group {
-  background-color: #dbe0e3;
   padding: 5px; }
   .person_left_bar .group .avatar {
     float: left; }
@@ -276,11 +280,23 @@ dt {
 dd {
   display: inline-block; }
 
+.person_settings {
+  display: block;
+  height: 45px;
+  width: 91px;
+  background: url(/images/ui/person_settings.gif) no-repeat;
+  font-weight: bold;
+  font-size: 19px;
+  color: white;
+  padding: 8px 0 0px 14px; }
+
 .person_profile {
-  padding-bottom: 20px; }
+  background-color: white;
+  padding-bottom: 20px;
+  padding-top: 20px; }
   .person_profile .info_text {
     margin-left: 30px;
-    margin-top: 20px; }
+    margin-bottom: 30px; }
   .person_profile span {
     vertical-align: top;
     text-align: right;

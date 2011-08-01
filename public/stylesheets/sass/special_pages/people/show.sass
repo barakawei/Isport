@@ -54,18 +54,18 @@
       font-size: 14px
       
       
-  .border_right_side
-    :height 100%
-    :float left
-    width: 15px
-    background: url(/images/ui/border_side.png) no-repeat -15px 0
-  .border_left_side
-    :height 100% 
-    float: left
-    width: 15px
-    :background url(/images/ui/border_side.png) no-repeat 0 0
+.border_right_side
+  :height 100%
+  :float left
+  width: 15px
+  background: url(/images/ui/border_side.png) no-repeat -15px 0
+.border_left_side
+  :height 100% 
+  float: left
+  width: 15px
+  :background url(/images/ui/border_side.png) no-repeat 0 0
 .events_panel
-  .events_box_panel
+  .event_box_panel
     a
       outline: none
       text-decoration: none
@@ -75,13 +75,13 @@
       :width 300px
       :margin 0 10px 14px 15px
       :float left
-      h3
-        background: url(/images/ui/event_border.gif) no-repeat scroll 0 0
+      .event_border
+        background: url(/images/ui/event_border.png) no-repeat scroll 0 0
         color: #FC4469
-        font-family: Rockwell
-        font-size: 11px
+        font-size: 15px
         font-weight: normal
         margin: 0
+        padding-left: 30px
         height: 26px
         
       .content
@@ -146,7 +146,6 @@
       margin: 0 0 10px 20px
       background: url(/images/ui/border_bubble_point.gif) no-repeat 0 0 #546266
   :margin-top 30px
-  :height 51px
 
   .content_center
     :line-height 41px
@@ -228,11 +227,14 @@
     :margin-right 10px
     :cursor pointer
 .person_left_bar
+  .contacts
+    :margin-top 20px
+    .person_avatar
+      :margin-top 5px
   .groups
     :margin-top 20px
     :left 0
   .group
-    :background-color #DBE0E3
     :padding 5px
     .avatar
       :float left
@@ -294,12 +296,24 @@ dt
 dd
   display: inline-block
 
+.person_settings
+  display: block
+  height: 45px
+  width: 91px
+  background: url(/images/ui/person_settings.gif) no-repeat
+  font-weight: bold 
+  font-size: 19px
+  color: white
+  padding: 8px 0 0px 14px
+  
 .person_profile
+  :background-color white
   :padding-bottom 20px
+  :padding-top 20px
   .info_text
     :margin
       :left 30px
-      :top 20px
+      :bottom 30px
   span
     :vertical-align top
     :text-align right
@@ -312,3 +326,4 @@ dd
     :margin-left 20px
     :display inline-block
     :font-size 15px
+
