@@ -5,12 +5,11 @@
     -else
       ="关注你的人(#{@people.size}个)"
 
-.span-15.append-2
+.span-17
   .friends_set
-    %ul{ :class => 'friends'}
-      -for person in @people
-        %li{ :class => 'result' }
-          = person_image_link(person)
-          %span.friend
-            =person_link(person)
+    %ul
+      - for person in @people
+        %li
+          = render 'people/person_element',:person => person
+
 

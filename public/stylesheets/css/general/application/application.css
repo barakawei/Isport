@@ -30,12 +30,12 @@ b {
   display: block; }
 
 a {
-  color: #0bb6e5;
+  color: #4083a9;
   font-weight: bold;
   text-decoration: none; }
   a:hover {
-    color: #0bb6e5;
-    text-decoration: underline; }
+    color: #205f82;
+    text-decoration: none; }
 
 ol, ul, li {
   list-style: none; }
@@ -231,13 +231,14 @@ span.medium_avatar {
 .pagination {
   margin-top: 20px; }
   .pagination a, .pagination em {
-    border: 1px solid #dddddd;
+    border: 2px solid #d5ddde;
+    background-color: white;
     padding: 2px 5px 1px 5px;
     font-size: 13px;
     margin-right: 5px; }
   .pagination em {
     background-color: #f1f1f1;
-    color: #999999; }
+    color: #53627d; }
   .pagination span.disabled {
     display: none; }
   .pagination a:hover {
@@ -246,8 +247,8 @@ span.medium_avatar {
     color: white; }
 
 .app_module_title {
-  margin-bottom: 5px;
-  color: #f48043; }
+  margin: 15px 0 5px 0;
+  color: #fc4469; }
 
 .app_module_title_black {
   margin-bottom: 5px;
@@ -404,6 +405,20 @@ a.button {
   border-top-right-radius: 5px;
   behavior: url(/javascripts/PIE.htc); }
 
+.glass_button {
+  background: url(/images/ui/glass-light.png) repeat-x 0 50%;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
+  behavior: url(/javascripts/PIE.htc);
+  color: white;
+  font-size: 13px;
+  font-weight: bold;
+  padding: 3px 5px;
+  text-shadow: 0 -1px rgba(41, 41, 41, 0.5);
+  text-align: center;
+  cursor: pointer; }
+
 .scroll {
   text-align: center;
   margin-top: 10px; }
@@ -505,3 +520,53 @@ a.button {
       float: left;
       height: 90px;
       width: 15px; }
+
+.friends_set ul li {
+  float: left;
+  width: 150px;
+  padding-bottom: 10px;
+  overflow: hidden; }
+
+.person_element {
+  border: 1px solid #d5ddde;
+  padding: 4px 8px;
+  width: 100px;
+  height: 135px;
+  background-color: white; }
+  .person_element .person_avatar img {
+    width: 100px;
+    height: 80px; }
+  .person_element h4 {
+    text-align: center;
+    margin: 0; }
+  .person_element .content .person_status {
+    font-weight: bold;
+    height: 30px;
+    color: #777777; }
+    .person_element .content .person_status .follow_button {
+      background-color: lightGrey;
+      font-size: 1em;
+      font-weight: bold;
+      text-decoration: none;
+      color: #666666;
+      float: right;
+      width: 20px;
+      height: 20px;
+      margin-right: 0; }
+    .person_element .content .person_status .element {
+      border-left: 1px solid #e5e5e5;
+      height: 30px;
+      float: left;
+      padding-left: 5px;
+      margin-left: 5px; }
+      .person_element .content .person_status .element:first-child {
+        border: none;
+        margin-left: 0px;
+        padding-left: 0px; }
+    .person_element .content .person_status span {
+      margin-top: 3px;
+      display: block;
+      font-size: 11px;
+      font-weight: normal;
+      color: #bbbbbb;
+      line-height: 1px; }

@@ -1,12 +1,22 @@
-.span-16.comment_to_event
-  = person_image_link(person) 
-  .content{:comment_id => "#{comment.id}"}
-    %hr 
-    %span
+.comment_block.hide{:comment_id => comment.id, :class => "comment_#{comment.id}"}
+  .comment_top
+    .author_box
+      = person_image_link(person)
+    .author_text
       = link_to person.name, person_path(person)
-      = l(comment.created_at, :format => :long)      
-      = link_to '删除', event_event_comment_path(event.id, comment.id), :class => "delete_comment new_#{comment.id}"
-      = simple_format comment.content 
+    %a{:class => 'editIconWrapper right delete_comment', :href => event_event_comment_path(event.id, comment.id)}
+      %span.editIcon='删除'
+  .comment_text
+    %span.content=simple_format comment.content
+  .comment_bottom
+    %span.right.comment_time
+      %em=l(comment.created_at, :format => :long)
 
 :javascript
-  $("a.new_#{comment.id}").click(delete_comment);
+  $(".comment_#{comment.id} .response_link").click(function() {
+    $(this).hide();
+    responseClick($(this));
+    return false;
+  });
+
+  $('.comment_#{comment.id} a.delete_comment').click(delete_comment);

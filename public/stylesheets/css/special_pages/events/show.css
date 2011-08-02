@@ -1,24 +1,80 @@
-.edit_event {
-  margin-right: 10px; }
+.left_column .avatar img {
+  -moz-border-radius: 14px;
+  -webkit-border-radius: 14px;
+  border-radius: 14px;
+  behavior: url(/javascripts/PIE.htc);
+  width: 198px;
+  height: 198px;
+  border: 1px solid #f2f2f2; }
+.left_column .other_info {
+  margin: 0px 0 5px 0; }
+  .left_column .other_info .info_block {
+    display: block;
+    float: left;
+    background-color: #dbe0e3;
+    color: #546266;
+    padding: 10px 10px;
+    margin-right: 10px;
+    width: 180px; }
+    .left_column .other_info .info_block strong {
+      display: block; }
+.left_column .person_array {
+  width: 220px;
+  margin-bottom: 10px;
+  float: left; }
+  .left_column .person_array .avatar_container {
+    float: left;
+    margin-right: 5px; }
+    .left_column .person_array .avatar_container img {
+      width: 45px;
+      height: 45px;
+      -moz-border-radius: 5px;
+      -webkit-border-radius: 5px;
+      border-radius: 5px;
+      behavior: url(/javascripts/PIE.htc); }
 
-.event_info {
-  height: 200px;
-  position: relative; }
-  .event_info p {
-    margin-bottom: 10px; }
-  .event_info p.location {
-    margin: 10px 0; }
-  .event_info .time p, .event_info .subject_and_owner p {
-    margin-bottom: 0; }
-  .event_info p.at_bottom {
-    position: absolute;
-    bottom: 0;
-    margin-bottom: 0; }
-
-h2.title {
-  margin-bottom: 0; }
-
-.event_pic {
+.right_column .event_title .status {
+  color: #f78ca1; }
+.right_column .static .app_big_title_bar {
   margin-right: 20px; }
-  .event_pic img {
-    border: 1px solid #e1e1e1; }
+.right_column .operations {
+  height: 40px; }
+  .right_column .operations .join_button {
+    float: left;
+    width: 80px;
+    height: 30px;
+    background-color: #00bed4;
+    line-height: 30px;
+    font-size: 18px; }
+    .right_column .operations .join_button:hover {
+      margin-top: 2px;
+      background-color: #e76875; }
+  .right_column .operations .join_button.quit {
+    background-color: #e76875; }
+    .right_column .operations .join_button.quit:hover {
+      margin-top: 2px;
+      background-color: #00bed4; }
+.right_column .event_info {
+  width: 600px;
+  float: left;
+  background-color: white;
+  border: 3px solid #d5ddde;
+  -moz-border-radius: 14px;
+  -webkit-border-radius: 14px;
+  border-radius: 14px;
+  behavior: url(/javascripts/PIE.htc);
+  padding: 20px;
+  margin-bottom: 50px; }
+  .right_column .event_info .event_title {
+    color: #495659;
+    width: 600px;
+    float: left;
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    display: block; }
+  .right_column .event_info .event_desc {
+    width: 600px;
+    float: left;
+    font-size: 1.2em;
+    line-height: 1.7em; }

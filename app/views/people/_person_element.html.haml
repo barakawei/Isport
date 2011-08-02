@@ -1,0 +1,19 @@
+.person_element
+  .content
+    %h4
+      = person_link(person)
+    .person_avatar
+      = person_image_link( person,:thumb_medium )
+    .follow_button
+    .person_status
+      .element
+        = 11 
+        %span
+          = "活动"
+      .element
+        = 20
+        %span
+          = "关注"
+      .follow_button.glass_button
+        = "+"
+          
