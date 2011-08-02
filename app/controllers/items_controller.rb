@@ -119,7 +119,13 @@ class ItemsController < ApplicationController
               .group("involvements.person_id").order("count(event_id) DESC").limit(ACTLIMIT).includes(:profile)
 
     @groups = Group.joins(:members).where(:item_id => @item.id, :city_id => @city.id)
-          .group(:group_id).order("count(group_id) DESC").limit(EVELIMIT)
+          .group(:group_id).order("count(group_id) DESC").limit(EVELIMIT).includes(:memberships).includes(:topics).includes(:events)
+
+#    group_ids = @groups.map{|i| i.id}
+
+#    group_members_counts = { }
+#    group_topics_counts = { }
+#    group_events_counts = { }
 
     respond_to do |format|
       format.html # show.html.erb
