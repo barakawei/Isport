@@ -35,14 +35,8 @@
                options_from_collection_for_select(City.all, "id", "name", @profile.location.city_id)
 
 
-  .submit_block{ :style => 'margin-top:20px' }
-    =submit_tag '编辑完成',:class => "button"
-    
-
-
-:javascript
-  $( ".button" ).button(  );
-
+  .person_profile_button
+    =submit_tag '编辑完成',:class => "glass_button"
 
 
 

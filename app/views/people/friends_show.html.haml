@@ -8,9 +8,8 @@
 .span-17
   .friends_set
     %ul
-      -for person in @people
-        %li{ :class => 'result' }
-          = person_image_link(person)
-          %span.friend
-            =person_link(person)
+      - for person in @people
+        %li
+          = render 'people/person_element',:person => person
+
 

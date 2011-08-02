@@ -64,14 +64,16 @@
       %h2=@person.name
       .action  
         -if @person.user_id == current_user.id
-          .edit_profile
+          .edit_profile.glass_button
             ="编辑个人资料"
         -elsif @contact && @contact.receiving
-          .button.remove_friend
-            = link_to t( 'remove_friend' ),{:controller => 'contacts', :action => 'destroy',:person_id => @person.id},:method =>'delete'
+          = link_to({:controller => 'contacts', :action => 'destroy',:person_id => @person.id },:method =>'delete') do
+            .remove_friend.glass_button
+              = "取消关注"
         -else
-          .button.add_friend{:style=>"width:100px"}
-            =link_to t('start_sharing'),{:controller => 'contacts', :action => 'create',:person_id => @person.id},:method =>'post'
+          =link_to({:controller => 'contacts', :action => 'create',:person_id => @person.id},:method =>'post') do
+            .add_friend.glass_button
+              = "关注"
       %div=@person.profile.signature
       .history_bar
         .create_event.panel
