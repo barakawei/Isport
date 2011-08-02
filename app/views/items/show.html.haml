@@ -42,14 +42,15 @@
     .hot_area.events_panel
       = render :partial => 'events/event_element',:collection => @events,:as => :event 
 
-
     .hot_title
       .title
         = render 'common/header_box', :title =>t('items.citygroups') , :dark => true 
       .link
         = link_to "更多>>", group_filter_path(:city => @city.pinyin, :item_id => @item.id) 
        
-
+    .hot_area
+      = render :partial => 'groups/group_element',:collection => @groups,:as => :group
+      
 
 
 

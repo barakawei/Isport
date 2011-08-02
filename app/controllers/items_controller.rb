@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
 
   EVELIMIT = 6
   ACTLIMIT = 12
-      ITELIMIT = 5
+  ITELIMIT = 5
 
   def myitems
     @items = current_user.person.interests 

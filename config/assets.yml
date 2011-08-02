@@ -110,7 +110,8 @@ stylesheets:
     - public/stylesheets/css/special_pages/groups/edit.css
   sepcial_pages_groups_events:
     - public/stylesheets/css/special_pages/groups/events.css
-
+  special_pages_group_panel:
+    - public/stylesheets/css/special_pages/groups/group_panel.css
 
   special_pages_topic_form:
     - public/stylesheets/css/special_pages/topics/form.css
