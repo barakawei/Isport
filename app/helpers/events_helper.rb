@@ -38,23 +38,13 @@ module EventsHelper
     end 
   end
 
-  def event_application_link(event)
-    unless is_participant_of(event) 
-      if event.ongoing?
-        "<h4 class=\"top\">#{I18n.t('events.ongoing.application_stopped')}</h4>".html_safe 
-      elsif event.over?
-        "<h4 class=\"top\">#{I18n.t('events.over.application_stopped')}</h4>".html_safe 
-      elsif event.participants_full? 
-        "<h4 class=\"top\">#{I18n.t('events.participants_full')}</h4>".html_safe  
-      else
-        "<p>#{link_to t('events.apply'), involvements_path(:id => event.id), 
-                                         :method => "post", :class => "button"
-  }</p>".html_safe  
-      end
-    else
-      ("<h4 class=\"top\">#{I18n.t('events.involved')}</h4>" +
-      "<p>#{link_to t('events.cancel_apply'), 
-            involvement_path(:id => event.id), :method => "delete", :class => "button"}</p>").html_safe
+  def event_status_info(event)
+    if event.ongoing?
+      "#{I18n.t('events.ongoing.application_stopped')}"
+    elsif event.over?
+      "#{I18n.t('events.over.application_stopped')}"
+    elsif event.participants_full? 
+      "#{I18n.t('events.participants_full')}"
     end
   end
   def event_status(event)

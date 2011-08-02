@@ -18,9 +18,42 @@
     width: 180px; }
     .left_column .other_info .info_block strong {
       display: block; }
+.left_column .person_array {
+  width: 220px;
+  margin-bottom: 10px;
+  float: left; }
+  .left_column .person_array .avatar_container {
+    float: left;
+    margin-right: 5px; }
+    .left_column .person_array .avatar_container img {
+      width: 45px;
+      height: 45px;
+      -moz-border-radius: 5px;
+      -webkit-border-radius: 5px;
+      border-radius: 5px;
+      behavior: url(/javascripts/PIE.htc); }
 
+.right_column .event_title .status {
+  color: #f78ca1; }
 .right_column .static .app_big_title_bar {
   margin-right: 20px; }
+.right_column .operations {
+  height: 40px; }
+  .right_column .operations .join_button {
+    float: left;
+    width: 80px;
+    height: 30px;
+    background-color: #00bed4;
+    line-height: 30px;
+    font-size: 18px; }
+    .right_column .operations .join_button:hover {
+      margin-top: 2px;
+      background-color: #e76875; }
+  .right_column .operations .join_button.quit {
+    background-color: #e76875; }
+    .right_column .operations .join_button.quit:hover {
+      margin-top: 2px;
+      background-color: #00bed4; }
 .right_column .event_info {
   width: 600px;
   float: left;

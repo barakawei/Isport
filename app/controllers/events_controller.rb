@@ -6,7 +6,7 @@ class EventsController < ApplicationController
                             :references, :paginate_participants,
                             :paginate_references, :filtered]
 
-  LIMIT = 12
+  LIMIT = 9 
 
   def index
     city_pinyin = params[:city] ? params[:city] : (current_user ? current_user.city.pinyin : City.first.pinyin)
@@ -35,7 +35,6 @@ class EventsController < ApplicationController
   end
 
   def show
-    @page = params[:page] ? params[:page].to_i : 1
     @event = Event.find(params[:id])
     @participants = @event.participants_top(LIMIT)
     @references = @event.references_top(LIMIT)

@@ -3,18 +3,20 @@
 
 - if comments.size > 0
   -comments.each_with_index do |comment, index|
+    -author = comment.person
     .comment_block{:class => ('first' if index==0), :comment_id => comment.id}
       .comment_top
         .author_box
-          = person_image_link(current_person)
+          = person_image_link(author)
         .author_text
-          = link_to current_person.name, person_path(current_person), :class => 'author_name'
+          = link_to author.name, person_path(author), :class => 'author_name'
+        - if current_person == author
+          %a{:class => 'editIconWrapper right delete_comment', :href => event_event_comment_path(event.id, comment.id)}
+            %span.editIcon='删除'
       .comment_text
         %span.content=simple_format comment.content
-        %a{:class => 'editIconWrapper right'}
-          %span.editIcon='删除'
       .comment_bottom
-        = link_to '回复', '#', :class => 'response_link'
+        = link_to '回复', '#', :class => 'response_link' if current_person && current_person !=author
         %span.right.comment_time
           %em=l(comment.created_at, :format => :long)
     -comment.responses.each do |res|
@@ -24,9 +26,10 @@
         .res_text
           .res_text_inner
             .res_text_frame
-              %span.res_operation.right=link_to '回复', '#', :class => 'response_link'
+              %span.res_operation.right=link_to '回复', '#', :class => 'response_link' if current_person && current_person != rperson 
+              %span.right=link_to '删除', event_event_comment_path(event.id, comment.id, :response_id => res.id), :class => 'delete_response' if current_person == rperson 
               %span.res_time=l(res.created_at, :format => :long)
-              %storng.res_author=rperson.name
+              %storng.res_author=link_to rperson.name, person_path(rperson), :class => 'author_name'
               .res_content
                 %span=res.content
 
@@ -35,29 +38,31 @@
     = will_paginate comments, {:previous_label => t("pagination.previous"),
                                :next_label => t("pagination.next")}
 
+- if current_person
+  .span-16.prepend-top
+    = render 'common/header_box', :title => '发表评论'
+    .new_comment
+      = form_for comment, :url => event_event_comments_path(event.id), do |c|
+        = person_image_link(current_person)
+        .content
+          = c.text_area :content
+          = submit_tag '确定', :class => 'post_button'
 
-.span-16.prepend-top
-  = render 'common/header_box', :title => '发表评论'
-  .new_comment
-    = form_for comment, :url => event_event_comments_path(event.id), do |c|
-      = person_image_link(current_person)
-      .content
-        = c.text_area :content
-        = submit_tag '确定', :class => 'post_button'
 
-
-.response_form.hide
-  .response_box
-    = person_image_link(current_person) 
-    .res_text
-      .res_text_inner
-        .res_text_frame
-          %p.res_author=current_person.name
-          =form_tag event_event_comments_path(event.id) do
-            = text_area_tag "comment[content]"
-            = hidden_field_tag "comment[commentable_id]"
-            = link_to '取消', '#', :class => "button cancel"
-            = submit_tag '回复', :class => 'button submit'
+  .response_form.hide
+    .response_box
+      = person_image_link(current_person) 
+      .res_text
+        .res_text_inner
+          .res_text_frame
+            %p.res_author=current_person.name
+            =form_tag event_event_comments_path(event.id) do
+              = text_area_tag "comment[content]"
+              = hidden_field_tag "comment[commentable_id]"
+              = link_to('#', :class => 'cancel') do
+                .form_button.glass_button='取消'
+              .submit_button
+                = submit_tag '回复', :class => 'glass_button right'
           
 
         
@@ -73,9 +78,36 @@
     return false;
   });
 
+  $('a.delete_comment').click(delete_comment);
+  $('a.delete_response').click(delete_comment);
+
+  function delete_comment() {
+     var response = confirm('确定要删除这条评论吗?');
+     if (!response) {
+       return false;
+     }
+     $.post(this.href, {_method: 'delete'});
+
+     if($(this).hasClass('delete_comment')) {
+       $comment = $(this).parents('.comment_block')
+       var c_id = $comment.attr("comment_id");
+       $('[comment_id="'+ c_id +'"]').fadeOut(function() {  
+        $(this).remove();
+        if ( $('.comment_block').size() == 0 ) {
+          $('.comments_title').hide();
+        }
+       });
+     } else {
+       $(this).parents('.response_box').fadeOut(function() {
+        $(this).remove();
+       });
+     }
+     return false;
+  }
+  
   function responseClick(link) {
     var block=null;
-    if (link.parents('.response_box').size > 0) {
+    if (link.parents('.response_box').size() > 0) {
       block = link.parents('.response_box')
     } else {
       block = link.parents('.comment_block')
@@ -108,6 +140,9 @@
   
   function appendToResponses(responseText, statusText, xhr, $form){
     var $parent = $form.parents('.response_form').prev('.comment_block');
+    if ($parent.size() == 0) {
+      $parent = $form.parents('.response_form').prev('.response_box');
+    }
     $form.parents('.response_form').hide();
     var c_id = $parent.attr('comment_id');
     $res = $(responseText);
@@ -119,6 +154,7 @@
   }
       
   function appendToComments(responseText, statusText, xhr, $form){
+    $('.comments_title').show();
     $comment = $(responseText);
     $('.pagination_box').before($comment);
     $('.comment_block:first').addClass('first');

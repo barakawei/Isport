@@ -21,14 +21,47 @@
         
       strong
         :display block
+  
+  .person_array
+    :width 220px
+    :margin-bottom 10px
+    :float left
+    .avatar_container
+      :float left
+      :margin-right 5px
+
+      img
+        :width 45px
+        :height 45px
+        @include border-radius(5px)
 
 .right_column 
+  .event_title
+    .status
+      :color #F78CA1  
   .static
     .app_big_title_bar
       :margin-right 20px  
+  .operations
+    :height 40px
+    .join_button
+      :float left
+      :width 80px
+      :height 30px
+      :background-color #00bed4
+      :line-height 30px
+      :font-size 18px
+  
+      &:hover
+        :margin-top 2px
+        :background-color #e76875
+    .join_button.quit
+      :background-color #e76875
 
-
-
+      &:hover
+        :margin-top 2px
+        :background-color #00bed4
+        
   .event_info
     :width 600px
     :float left
@@ -52,7 +85,3 @@
       float: left
       font-size: 1.2em
       line-height: 1.7em
-      
-      
-
-

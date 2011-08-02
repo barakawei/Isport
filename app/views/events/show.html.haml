@@ -3,7 +3,7 @@
   = include_javascripts :google_map
   =javascript_include_tag "http://maps.google.com/maps/api/js?sensor=false"
 .span-24
-  .span-7.left_column
+  .span-6.left_column
     .avatar=event_image_tag(@event, :thumb_large)
     %h4.app_module_title='活动信息'
     .span-7.other_info
@@ -14,9 +14,46 @@
         %strong
           ='地点:'
           =@event.location.to_s
+        %strong
+          ='项目:'
+          =@event.item.name
+    %hr.space
+    .span-6
+      %h4.app_module_title
+        ='活动地图'
+        = link_to '(详细)', event_map_path(@event)
+      #map
+    - if @participants.size > 0
+      %h4.app_module_title='活动成员'
+      .person_array
+        - @participants.each do |member|
+          = person_image_link(member)
+    
+    - if @references.size > 0
+      .span-6
+        %h4.app_module_title='喜欢该活动的人'
+        .person_array
+          - @references.each do |member|
+            = person_image_link(member)
+      
 
   .span-17.last.right_column
-    .span-17.static
+    .span-17.append-bottom
+      .span-13.event_title
+        %h2= event_title=@event.title
+        %h4.status=event_status_info(@event)
+      .span-4.operations.last
+        %h4.status.inline
+        - if @event.joinable? && !is_participant_of(@event)
+          =link_to(involvements_path(:id => @event.id), :method => 'post') do
+            .join_button.glass_button
+              ='参加'
+        - if @event.quitable? && is_participant_of(@event)
+          =link_to(involvement_path(:id => @event.id), :method => 'delete') do
+            .join_button.glass_button.quit
+              ='取消参加'
+
+    .span-17.static.prepend-top
       =render 'common/big_header_box', :number => @participants.size, :text => '参加', :width => '100px' 
       =render 'common/big_header_box', :number => @references.size, 
                                        :text => '推荐', :width => '100px', :font_color => '#a1d453'
@@ -24,14 +61,30 @@
                                        :text => '评论', :width => '100px', :font_color => '#F5D34D'
 
     %hr.space
-    = render 'common/header_box', :title => '活动内容'
+    %hr.space
+    .span-16
+      .span-10
+        = render 'common/header_box', :title => '活动内容'
+      .operations.right
+        - if !is_reference_of(@event)
+          =link_to(url_for(:controller => "event_recommendations",:action => "add_reference",:id => @event.id)) do
+            .join_button.glass_button
+              ='喜欢'
+        - if is_reference_of(@event)
+          =link_to(url_for(:controller => "event_recommendations",:action => "remove_reference",:id => @event.id)) do
+            .join_button.glass_button.quit
+              ='取消喜欢'
     .span-16
       .event_info
-        %span.event_title=@event.title
         .event_desc=simple_format(@event.description)
-
-    = render 'common/header_box', :title => '评论'
+    
+    .comments_title{:class => ('hide' unless @comments.size > 0)}
+      = render 'common/header_box', :title => '评论'
     = render 'event_comments', :comments => @comments, :event => @event, 
                                :current_person => @current_person, :comment => @comment 
       
-
+:javascript
+  $(function() {
+    var address = "#{@event.location}";
+    codeAddress("map", address);
+  });

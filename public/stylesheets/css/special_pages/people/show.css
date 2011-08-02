@@ -1,17 +1,12 @@
-.action .edit_profile {
-  background: url(/images/ui/person_edit.png) no-repeat;
-  line-height: 46px;
-  font-style: normal;
-  width: 198px;
-  height: 46px;
-  overflow: hidden;
-  border: none;
-  cursor: pointer;
-  margin: 13px 4px 0 0;
-  font-size: 18px;
-  font-weight: bold;
-  color: white;
-  text-align: center; }
+.action .edit_profile, .action .remove_friend, .action .add_friend {
+  line-height: 40px;
+  width: 120px;
+  height: 40px;
+  background-color: #00a2b7;
+  font-size: 18px; }
+  .action .edit_profile:hover, .action .remove_friend:hover, .action .add_friend:hover {
+    margin-top: 2px;
+    background-color: #e76875; }
 
 .history_bar {
   display: block;
@@ -309,3 +304,16 @@ dd {
     margin-left: 20px;
     display: inline-block;
     font-size: 15px; }
+
+.person_profile_button {
+  margin-top: 20px;
+  margin-left: 20px; }
+  .person_profile_button input {
+    font-size: 18px;
+    background-color: #00a2b7;
+    width: 100px;
+    height: 40px;
+    border: none; }
+    .person_profile_button input:hover {
+      margin-top: 2px;
+      background-color: #e76875; }
