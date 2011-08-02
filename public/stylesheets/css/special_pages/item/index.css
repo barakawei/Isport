@@ -13,28 +13,19 @@
     display: block; }
   .myitemlist .itemlistcontent {
     width: 142px;
-    overflow: hidden;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
-    behavior: url(/javascripts/PIE.htc); }
-    .myitemlist .itemlistcontent .itemlistrow {
-      width: 142px;
-      height: 50px;
-      overflow: hidden;
-      margin-bottom: 7px;
+    overflow: hidden; }
+    .myitemlist .itemlistcontent img {
       -moz-border-radius: 5px;
       -webkit-border-radius: 5px;
       border-radius: 5px;
       behavior: url(/javascripts/PIE.htc); }
+    .myitemlist .itemlistcontent .itemlistrow {
+      width: 142px;
+      height: 50px;
+      margin-bottom: 7px; }
       .myitemlist .itemlistcontent .itemlistrow .itemimage {
         width: 50px;
         height: 50px;
-        -moz-border-radius: 5px;
-        -webkit-border-radius: 5px;
-        border-radius: 5px;
-        behavior: url(/javascripts/PIE.htc);
-        overflow: hidden;
         float: left; }
       .myitemlist .itemlistcontent .itemlistrow .itemmsg {
         margin-left: 6px;
@@ -70,14 +61,15 @@
       font-size: 12px; }
   .imageboard .imagearea {
     width: 800px;
-    overflow: hidden;
-    -moz-border-radius: 14px;
-    -webkit-border-radius: 14px;
-    border-radius: 14px;
-    behavior: url(/javascripts/PIE.htc); }
+    overflow: hidden; }
     .imageboard .imagearea .image {
       float: left;
       width: 200px; }
+      .imageboard .imagearea .image img {
+        -moz-border-radius: 14px;
+        -webkit-border-radius: 14px;
+        border-radius: 14px;
+        behavior: url(/javascripts/PIE.htc); }
       .imageboard .imagearea .image .iteminfo {
         width: 200px; }
 

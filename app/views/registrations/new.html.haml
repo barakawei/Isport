@@ -29,9 +29,10 @@
     = "欢迎来到乐玩"
     %br
     .reg_reason
-      =link_to "找到你的活动", events_path, :class => "plus_area"
-      =link_to "找到你的运动", items_path, :class => "plus_area"
-      =link_to "找到你的小组", groups_path, :class => "plus_area"
+      .plus_area
+        = render 'common/header_box', :title => "找到你的活动" , :dark => false
+        = render 'common/header_box', :title => "找到你的项目" , :dark => false
+        = render 'common/header_box', :title => "找到你的小组" , :dark => false
 
       .direct_login
         ="> 如果你已经有乐玩帐号："  

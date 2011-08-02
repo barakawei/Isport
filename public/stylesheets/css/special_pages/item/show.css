@@ -5,11 +5,12 @@
     width: 200px;
     height: 200px;
     overflow: hidden;
-    -moz-border-radius: 14px;
-    -webkit-border-radius: 14px;
-    border-radius: 14px;
-    behavior: url(/javascripts/PIE.htc);
     margin-bottom: 10px; }
+    .itemleft .item_image img {
+      -moz-border-radius: 14px;
+      -webkit-border-radius: 14px;
+      border-radius: 14px;
+      behavior: url(/javascripts/PIE.htc); }
   .itemleft .item_desc {
     width: 200px;
     display: block;
