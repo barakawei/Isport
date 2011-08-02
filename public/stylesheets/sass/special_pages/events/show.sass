@@ -1,5 +1,8 @@
 @import '../../general/ui/mixins'
 .left_column
+  #map
+    :width 198px
+    :border 1px solid  #d5ddde
   .avatar
     img
       @include border-radius(14px)
@@ -36,12 +39,22 @@
         @include border-radius(5px)
 
 .right_column 
+  .event_title_bar
+    :width 624px
+    :float left
+    :background-color #ffffff
+    :border 3px solid  #d5ddde
+    @include border-radius(15px)
+    :padding 20px
+
+    .app_big_title_bar.last_one
+      :margin-right 0
+    .app_big_title_bar
+      :margin-right 20px  
+
   .event_title
     .status
       :color #F78CA1  
-  .static
-    .app_big_title_bar
-      :margin-right 20px  
   .operations
     :height 40px
     .join_button
@@ -63,7 +76,7 @@
         :background-color #00bed4
         
   .event_info
-    :width 600px
+    :width 630px
     :float left
     :background-color #ffffff
     :border 3px solid #d5ddde

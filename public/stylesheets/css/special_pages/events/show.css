@@ -1,3 +1,6 @@
+.left_column #map {
+  width: 198px;
+  border: 1px solid #d5ddde; }
 .left_column .avatar img {
   -moz-border-radius: 14px;
   -webkit-border-radius: 14px;
@@ -33,10 +36,22 @@
       border-radius: 5px;
       behavior: url(/javascripts/PIE.htc); }
 
+.right_column .event_title_bar {
+  width: 624px;
+  float: left;
+  background-color: white;
+  border: 3px solid #d5ddde;
+  -moz-border-radius: 15px;
+  -webkit-border-radius: 15px;
+  border-radius: 15px;
+  behavior: url(/javascripts/PIE.htc);
+  padding: 20px; }
+  .right_column .event_title_bar .app_big_title_bar.last_one {
+    margin-right: 0; }
+  .right_column .event_title_bar .app_big_title_bar {
+    margin-right: 20px; }
 .right_column .event_title .status {
   color: #f78ca1; }
-.right_column .static .app_big_title_bar {
-  margin-right: 20px; }
 .right_column .operations {
   height: 40px; }
   .right_column .operations .join_button {
@@ -55,7 +70,7 @@
       margin-top: 2px;
       background-color: #00bed4; }
 .right_column .event_info {
-  width: 600px;
+  width: 630px;
   float: left;
   background-color: white;
   border: 3px solid #d5ddde;
