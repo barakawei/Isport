@@ -22,6 +22,9 @@ body {
 .bright_yellow {
   color: #f6b24d; }
 
+.link_red {
+  color: #fc4469; }
+
 b {
   color: black;
   font-weight: bold; }

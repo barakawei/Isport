@@ -39,18 +39,25 @@
         @include border-radius(5px)
 
 .right_column 
+  .app_big_title_bar.last_one
+    :margin-right 0
+  .app_big_title_bar
+    :margin-right 20px  
+
   .event_title_bar
-    :width 624px
+    :width 630px
     :float left
     :background-color #ffffff
     :border 3px solid  #d5ddde
     @include border-radius(15px)
-    :padding 20px
+    :padding 17px
 
-    .app_big_title_bar.last_one
-      :margin-right 0
-    .app_big_title_bar
-      :margin-right 20px  
+    .event_desc
+      font-size: 1.2em
+      line-height: 1.7em
+      border-top: 1px dashed #d5ddde
+      padding-top: 10px
+
 
   .event_title
     .status
@@ -59,11 +66,11 @@
     :height 40px
     .join_button
       :float left
-      :width 80px
-      :height 30px
+      :width 60px
+      :height 20px
       :background-color #00bed4
-      :line-height 30px
-      :font-size 18px
+      :line-height 20px
+      :font-size 13px
   
       &:hover
         :margin-top 2px
@@ -74,6 +81,9 @@
       &:hover
         :margin-top 2px
         :background-color #00bed4
+
+    .join_button.like
+      :margin-right 17px
         
   .event_info
     :width 630px
@@ -84,17 +94,4 @@
     :padding 20px
     :margin-bottom 50px
 
-    .event_title
-      color: #495659
-      width: 600px
-      float: left
-      font-size: 30px
-      font-weight: bold
-      margin-bottom: 20px
-      display: block
 
-    .event_desc
-      width: 600px
-      float: left
-      font-size: 1.2em
-      line-height: 1.7em
