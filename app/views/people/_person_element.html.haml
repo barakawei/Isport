@@ -2,18 +2,22 @@
   .content
     %h4
       = person_link(person)
+      %em
+        = person.profile.location.city.name
     .person_avatar
-      = person_image_link( person,:thumb_medium )
-    .follow_button
+      = person_image_link2( person,:thumb_medium )
     .person_status
       .element
-        = 11 
+        =  person.involved_events.size
         %span
           = "活动"
       .element
-        = 20
+        = person.joined_groups.size
         %span
-          = "关注"
-      .follow_button.glass_button
-        = "+"
-          
+          = "小组"
+      .follow_button_mini
+        = follow_button_tag( person )
+
+
+:javascript
+

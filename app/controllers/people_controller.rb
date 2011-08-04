@@ -16,13 +16,14 @@ class PeopleController < ApplicationController
 
   def show_friends
     @type = params[ :type ]
+    @person = Person.find( params[ :person_id ] )
     if @type == 'followed'
-      @people = current_user.followed_people
+      @people = @person.user.followed_people
     else
-      @people = current_user.befollowed_people
+      @people = @person.user.befollowed_people
     end
 
-    render "people/friends_show"
+    render "people/show_person_details"
 
   end
 

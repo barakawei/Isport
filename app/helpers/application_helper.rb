@@ -1,4 +1,22 @@
 module ApplicationHelper
+  def follow_button_tag( person )
+    link_html = "<div class='follow_button'></div>"
+    contact = current_user.contact_for( person )
+    if person.id == current_user.person.id
+    elsif contact.nil? || !contact.receiving
+      button_html = "<div class='follow glass_button' data_id='#{person.id}'><span>"+t('follow')+"</span></div>"
+      link_html = link_to({:controller => 'contacts', :action => 'create',:person_id => person.id},:method =>'post',:remote => true) do
+        button_html.html_safe
+      end
+    elsif contact.receiving
+      button_html = "<div class='following glass_button' data_id='#{person.id}'><span>"+t('following')+"</span></div>"
+      link_html = link_to({:controller => 'contacts', :action => 'destroy',:person_id => person.id},:method =>'delete',:remote => true) do
+        button_html.html_safe
+      end
+    end
+    link_html.html_safe
+  end
+
   def next_page_path
     if controller.instance_of?(PeopleController)
       person_path(@person, :max_time => @posts.last.created_at.to_i)
@@ -40,6 +58,7 @@ module ApplicationHelper
     avatar_html = "<img  class=\"avatar person_avatar_detail\" data_person_id=\"#{person.id}\" src=\"#{person.profile.image_url(size)}\">"
     avatar_html.html_safe
   end
+  
 
   def owner_image_link
     person_image_link(current_user.person)
@@ -49,6 +68,11 @@ module ApplicationHelper
     return "" if person.nil?
     link = link_to person_image_tag(person, size),person_path( person )
     "<div class='avatar_container'>#{link}</div>".html_safe
+  end
+
+  def person_image_link2(person, size=:thumb_small)
+    return "" if person.nil? || person.profile.nil?
+    link_to person_image_tag(person, size),person_path( person )
   end
 
 

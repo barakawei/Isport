@@ -368,9 +368,8 @@ span.medium_avatar
 .person_avatar
   :display inline-block
 
-.follow
-  span
-    background-image: url(/images/ui/icon-check.png)
+
+    
     
 .unfollow
   span
@@ -378,28 +377,7 @@ span.medium_avatar
     
     
 .relation_button
-  border: 1px solid #769800
-  background: #8aba56 url(/images/ui/glass-light.png) repeat-x 0 50%
-  background-color: #8aba56
-  @include border-radius(6px)
-  color: white
-  :width 80px
-  :height 20px
-  cursor: pointer
   display: inline-block
-  font-size: 13px
-  font-weight: bold
-  line-height: 20px
-  padding: 3px 5px
-  text-shadow: 0 -1px rgba(41, 41, 41, 0.5)
-  text-align: center
-  span
-    padding-left: 18px
-    background-repeat: no-repeat
-    background-position: 0 50%
-    :color white
-    :text-decoration none
-    :margin auto
 
 a.button
   &:hover
@@ -472,6 +450,14 @@ a.button
 
 
 #file-upload
+  :position relative
+  :overflow hidden
+  :width 80px
+  :height 25px
+  :background-color #00a2b7
+  :line-height 25px
+  &:hover
+    :background-color #e76875
   input
     :cursor pointer
     
@@ -563,60 +549,36 @@ a.button
     
         
 
-.friends_set
-  ul
-    li
-      :float left
-      :width 150px
-      :padding-bottom 10px
-      :overflow hidden
-
-
-.person_element
-  :border 1px solid #d5ddde
-  :padding 4px 8px
-  .person_avatar
-    img
-      :width 100px
-      :height 80px
-  h4
-    :text-align center
-    :margin 0
-  :width 100px
-  :height 135px
-  :background-color white
-  .content
-    .person_status
-      :font-weight bold
-      :height 30px
-      :color #777
-      .follow_button
-        :background-color lightGrey
-        font-size: 1em
-        font-weight: bold
-        text-decoration: none
-        color: #666
-        float: right
-        width: 20px
-        height: 20px
-        margin-right: 0
-        
-      .element
-        :border-left 1px solid #E5E5E5
-        :height 30px
-        :float left
-        :padding-left 5px
-        :margin-left 5px
-        &:first-child
-          :border none
-          :margin-left 0px
-          :padding-left 0px
+.follow_button
+  .glass_button
+    :width 70px
+    :height 25px
+    :line-height 25px
+  .following
+    :background-color #8aba56
+    span
+      background: url(/images/ui/icon-check.png) no-repeat 0 50%
+      :padding-left 18px
+    &:hover
+      :background-color #ea4c88
       span
-        :margin-top 3px
-        :display block
-        :font-size 11px
-        :font-weight normal
-        :color #BBB
-        :line-height 1px
+        :color #FF99CC
+        background: url(/images/ui/icon-x.png) no-repeat 0 50%
+           
+  .follow
+    :background-color lightGrey
+    span
+      :padding-left 18px
+      background: url(/images/ui/follow-gray.gif) no-repeat 0 50%
+      :color #777
+    &:hover
+      :background-color #8aba56
+      span
+        background: url(/images/ui/follow-white.gif) no-repeat 0 50%
+        :color white
+
+
+
+
       
 
