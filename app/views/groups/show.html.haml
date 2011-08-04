@@ -1,7 +1,84 @@
+-content_for :head do
+  = include_stylesheets :sepcial_pages_groups_show, :media => 'all'
+
 .span-24
-  = render "group_nav_bar", :group => @group, :current => 'show'
-  = render "group_home", :group => @group, 
-                         :current_person => @current_person, :members => @members
+  .span-6.left_column
+    .avatar=group_image_tag(@group, :thumb_large)
+    
+    .span-6.nav.append-bottom.prepend-top
+      %ul
+        %li=link_to '小组活动', group_events_path(@group)
+        %li=link_to '小组讨论区', forum_group_path(@group) 
+        %li.last_li=link_to '小组成员', members_group_path(@group) 
+    
+    %h4.app_module_title='小组信息'
+    .span-7.other_info
+      %span.info_block
+        %strong
+          ='创建时间:'
+          =l(@group.created_at, :format => :long)
+        %strong
+          ='小组类型:'
+          =@group.item.name
+    %hr.space
+    - if @members.size > 0
+      %h4.app_module_title='小组成员'
+      .person_array
+        - @members.each do |member|
+          = person_image_link(member)
+  
+  .span-17.last.right_column
+    =render 'common/big_header_box', :number => @member_size, :text => '成员', :width => '100px' 
+    =render 'common/big_header_box', :number => @event_size, 
+                                     :text => '活动', :width => '100px', :font_color => '#a1d453'
+    =render 'common/big_header_box', :number => @topic_size,
+                                       :text => '话题', :width => '100px', :font_color => '#F5D34D', :class_name => 'last_one'
+    .span-17.prepend-top
+      %hr.space
+      .span-10
+        =render 'common/header_box', :title => '小组描述'
+
+    .group_title_bar.append-bottom
+      .span-16
+        .span-13.group_title
+          %h2=@group.name
+          %h4.status=group_status_info(@group, current_user.person)
+        .span-3.operations.last.right
+          - if current_user
+            - unless @group.has_admin?(current_user.person)
+              - if @group.joinable? && !@group.has_member_include_pending?(current_user.person)
+                =link_to(group_memberships_path(@group), :method => 'post', :class => 'right') do
+                  .join_button.glass_button
+                    ='加入小组'
+              - if @group.has_member?(current_user.person)
+                =link_to(group_membership_path(@group), :method => 'delete', :class => 'right') do
+                  .join_button.glass_button.quit
+                    ='退出小组'
+            - else 
+              =link_to(edit_group_path(@group), :class => 'right') do
+                .join_button.glass_button.quit
+                  ='编辑'
+
+          
+      .span-16.group_desc
+        = simple_format(@group.description)
+    .span-17.prepend-top
+      .span-10
+        =render 'common/header_box', :title => '近期活动'
+      .span-17.events_panel
+        =render :partial => 'events/event_element',:collection => @recent_events,:as => :event
+    .span-17.prepend-top
+      .span-10
+        =render 'common/header_box', :title => '近期话题'
+      - if @topics.size > 0
+        .topics_panel
+          = render 'topics/recent_topics.html.haml', :topics => @topics
+        
+      
+
+        
+
+      
 
 
- 
+   

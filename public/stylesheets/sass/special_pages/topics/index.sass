@@ -1,25 +1,21 @@
+@import '../../general/ui/mixins'
 table.topics
   :margin-top 5px
   :margin-bottom 30px
-  a
-    &:hover
-      :text-decoration none
-      :background-color #ff6600
-      :color white
 
   td
-    :border-top 1px dashed #E5E5E5
-    :padding 0
-    :font-size 12px
+    :border-bottom 1px dotted #E5E5E5
+    :padding 10px 0 
 
-  td.latest
-    :color #888888
 
   th
-    :border-top 1px solid #e5e5e5 
-    :color black
-    :font-size 13px
-    :padding 0
+    :color #ffffff
+    :background-color #4EBAFF
+    :padding 5px  
+    
+  
+  tr.even
+    :background-color #f7f8f3
 
   td.topic_summary
     :padding 0 20px 20px 0 
@@ -34,16 +30,34 @@ table.topics
         :margin-left 10px
 
 .title
-  :width 470px
+  :width 590px
+  .avatar
+    :width 30px
+    float: left
+    :margin-right 10px
+    img
+      :width 30px
+      :height 30px
+      @include border-radius(4px)
+  .title_url
+    :height 17px
+    :width 550px 
+    :float left
+    :display block
+    a
+      font: bold 14px arial,sans-serif
+  .author_name
+    :float left
+    a
+      :color #977466 
 
-.latest
-  :width 150px
-  :text-align right
-
-.author
-  :width 145px
 
 .reply
-  :width 60px
+  :text-align center 
+  :width 100px
+
+.latest
+  :width 184px
+  :text-align center
 
 

@@ -38,45 +38,48 @@
       
 
   .span-17.last.right_column
-    .span-17.append-bottom
-      .span-13.event_title
-        %h2= event_title=@event.title
-        %h4.status=event_status_info(@event)
-      .span-4.operations.last
-        %h4.status.inline
-        - if @event.joinable? && !is_participant_of(@event)
-          =link_to(involvements_path(:id => @event.id), :method => 'post') do
-            .join_button.glass_button
-              ='参加'
-        - if @event.quitable? && is_participant_of(@event)
-          =link_to(involvement_path(:id => @event.id), :method => 'delete') do
-            .join_button.glass_button.quit
-              ='取消参加'
-
-    .span-17.static.prepend-top
-      =render 'common/big_header_box', :number => @participants.size, :text => '参加', :width => '100px' 
-      =render 'common/big_header_box', :number => @references.size, 
-                                       :text => '推荐', :width => '100px', :font_color => '#a1d453'
-      =render 'common/big_header_box', :number => @comments_size,
-                                       :text => '评论', :width => '100px', :font_color => '#F5D34D'
-
-    %hr.space
-    %hr.space
-    .span-16
+    =render 'common/big_header_box', :number => @participants.size, :text => '参加', :width => '100px' 
+    =render 'common/big_header_box', :number => @references.size, 
+                                     :text => '推荐', :width => '100px', :font_color => '#a1d453'
+    =render 'common/big_header_box', :number => @comments_size,
+                                       :text => '评论', :width => '100px', :font_color => '#F5D34D', :class_name => 'last_one'
+    .span-17.prepend-top
       .span-10
         = render 'common/header_box', :title => '活动内容'
       .operations.right
-        - if !is_reference_of(@event)
-          =link_to(url_for(:controller => "event_recommendations",:action => "add_reference",:id => @event.id)) do
-            .join_button.glass_button
-              ='喜欢'
-        - if is_reference_of(@event)
-          =link_to(url_for(:controller => "event_recommendations",:action => "remove_reference",:id => @event.id)) do
-            .join_button.glass_button.quit
-              ='取消喜欢'
-    .span-16
-      .event_info
-        .event_desc=simple_format(@event.description)
+        - if current_user
+          - if !is_reference_of(@event)
+            =link_to(url_for(:controller => "event_recommendations",:action => "add_reference",:id => @event.id)) do
+              .join_button.glass_button.like
+                ='喜欢'
+          - if is_reference_of(@event)
+            =link_to(url_for(:controller => "event_recommendations",:action => "remove_reference",:id => @event.id)) do
+              .join_button.glass_button.quit.like
+                ='取消喜欢'
+    .event_title_bar.append-bottom
+      .span-16  
+        .span-13.event_title
+          %h2=@event.title
+          %h4.status=event_status_info(@event)
+        .span-3.operations.last.right
+          - if current_user
+            - unless @event.is_owner(current_user)
+              - if @event.joinable? && !is_participant_of(@event)
+                =link_to(involvements_path(:id => @event.id), :method => 'post', :class => 'right') do
+                  .join_button.glass_button
+                    ='参加'
+              - if @event.quitable? && is_participant_of(@event)
+                =link_to(involvement_path(:id => @event.id), :method => 'delete', :class => 'right') do
+                  .join_button.glass_button.quit
+                    ='取消参加'
+            - else
+              =link_to(edit_event_path(@event), :class => 'right') do
+                .join_button.glass_button.quit
+                  ='编辑'
+      .span-16.event_desc
+        =simple_format(@event.description)
+
+
     
     .comments_title{:class => ('hide' unless @comments.size > 0)}
       = render 'common/header_box', :title => '评论'

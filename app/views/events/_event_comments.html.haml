@@ -4,7 +4,7 @@
 - if comments.size > 0
   -comments.each_with_index do |comment, index|
     -author = comment.person
-    .comment_block{:class => ('first' if index==0), :comment_id => comment.id}
+    .comment_block{:comment_id => comment.id}
       .comment_top
         .author_box
           = person_image_link(author)

@@ -62,7 +62,7 @@ class EventsController < ApplicationController
       @group = Group.find(params[:group_id])
       @event.group = @group
       @event.item = @group.item
-      @event.location = Location.create(:city_id => @group.city_id, :district_id => @group.district_id)
+      @event.location = Location.new(:city_id => @group.city_id, :district_id => @group.district_id)
     end
     @items = Item.find(:all, :select => 'id, name')
   end
@@ -85,8 +85,10 @@ class EventsController < ApplicationController
 
   def create
     event_attrs = params[:event]
-    location = Location.new(event_attrs[:location_attributes])
+    location = Location.create(event_attrs[:location_attributes])
     l_info = GoogleGeoCoder.getLocation(location.to_s)
+    puts '********************************'
+    puts l_info
     event_attrs[:location_attributes].merge!(l_info) unless l_info.nil?
     @event = Event.new(event_attrs)
     @event.person = current_user.person

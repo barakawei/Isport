@@ -3,13 +3,20 @@
 
 - if topics.size > 0
   %table.topics
-    %tr
+    %tr.title_tr
       %th.title='话题'
       %th.author='作者'
       %th.reply='回复数'
     -topics.each do |t|
-      %tr
-        %td.title= link_to trim_info(t.title, 30), t.url 
+      %tr{:class => "#{cycle('odd', 'even')}"}
+        %td.title
+          .avatar
+            = person_image_link(t.person)
+          .title_url
+            = link_to trim_info(t.title, 25), t.url 
+          .author_name
+            =link_to t.person.name, person_path(t.person.id)
+            
         %td.author= link_to t.person.name, person_path(t.person.id)
         %td.reply=t.comments.size
  

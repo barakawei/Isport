@@ -15,3 +15,6 @@
 
 .even {
   background-color: #e8f3f7; }
+
+.events_panel .event_box_panel .event_box {
+  margin-left: 5px; }

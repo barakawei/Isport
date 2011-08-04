@@ -22,6 +22,9 @@ body {
 .bright_yellow {
   color: #f6b24d; }
 
+.link_red {
+  color: #fc4469; }
+
 b {
   color: black;
   font-weight: bold; }
@@ -231,20 +234,25 @@ span.medium_avatar {
 .pagination {
   margin-top: 20px; }
   .pagination a, .pagination em {
-    border: 2px solid #d5ddde;
-    background-color: white;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    behavior: url(/javascripts/PIE.htc);
+    border: 1px solid white;
+    background-color: #f1f1f1;
     padding: 2px 5px 1px 5px;
     font-size: 13px;
-    margin-right: 5px; }
+    margin-right: 5px;
+    color: #4c4c4c; }
   .pagination em {
-    background-color: #f1f1f1;
-    color: #53627d; }
+    background-color: #fc4469;
+    border: 1px solid #82190b;
+    color: white; }
   .pagination span.disabled {
     display: none; }
   .pagination a:hover {
-    background-color: #ff6600;
-    text-decoration: none;
-    color: white; }
+    background-color: white;
+    text-decoration: none; }
 
 .app_module_title {
   margin: 15px 0 5px 0;

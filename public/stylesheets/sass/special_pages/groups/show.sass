@@ -1,59 +1,112 @@
-.group_avatar
-  :width 200px
-  :float left
+@import '../../general/ui/mixins'
+.left_column
+  color: #666666
+  .avatar
+    img
+      @include border-radius(14px)
+      :width 198px
+      :height 198px
+      :border 1px solid #f2f2f2
+  .nav
+    ul
+      :width 130px
+      :padding 0 20px 0 0px
+      @include border-radius(8px)
+      
+      li
+        :width 100px
+        :padding 5px
+        :text-align left 
+        :border-bottom 1px solid #e1e1e1
+        
+        a
+          :font-size 14px
+          :padding 2px
 
-.group_des
-  :width 539px
-  :float left
-  :height 200px
-  :border-right 1px solid #e1e1e1
-  
-  p
-    :margin-bottom 0
+          &:hover
+            :color #ffffff
+            :background #FC4469
+      li.last_li
+        :border-bottom none
 
-  .description
-    :overflow hidden
-    :padding-left 10px 
-    :padding-right 10px
-
-
-.group_info
-  :width 200px
-  :height 200px
-  p
-    :margin-bottom 0
-  
-  .relative
-    :height 100%
-    :position relative
-
-    .join_mode
-      :position absolute
-      :left 20 
-      :bottom 10px
-
-      h5
-        :margin-bottom 0
-
-.forum_area
-  .area_title
-    :margin-bottom 5px
+  .other_info
+    :margin 0px 0 5px 0
     
-    a
-      :float right
+    .info_block
+      :display block
+      :float left
+      :padding 5px 0px 
+      :margin-right 10px
+      :width 180px 
+        
+      strong
+        :display block
 
-.group_event
-  :margin-bottom 20px
-  .title
-    :margin-bottom 0px
-
-  img
-    :width 60px
-    :height 60px
+  .person_array
+    :width 220px
+    :margin-bottom 10px
     :float left
+    .avatar_container
+      :float left
+      :margin-right 5px
+
+      img
+        :width 45px
+        :height 45px
+        @include border-radius(5px)
+
+.right_column 
+  .app_big_title_bar.last_one
+    :margin-right 0
+  .app_big_title_bar
+    :margin-right 20px  
+
+  .group_title_bar
+    :width 630px
+    :float left
+    :background-color #ffffff
+    :border 3px solid  #d5ddde
+    @include border-radius(15px)
+    :padding 17px
+    
+    .status
+      :color #F78CA1  
+
+    .operations
+      :height 40px
+
+      .join_button
+        :float left
+        :width 60px
+        :height 20px
+        :background-color #00bed4
+        :line-height 20px
+        :font-size 13px
+    
+        &:hover
+          :margin-top 2px
+          :background-color #e76875
+      .join_button.quit
+        :background-color #e76875
+
+        &:hover
+          :margin-top 2px
+          :background-color #00bed4
+
+
+    .group_desc
+      font-size: 1.2em
+      line-height: 1.7em
+      border-top: 1px dashed #d5ddde
+      padding-top: 10px
   
-  .event_info
+  .events_panel
+    :margin-top 0
+  
+  .topics_panel
+    :background-color #ffffff
+    :width 624px
+    :padding 20px
     :float left
-    :margin-left 5px
-    :width 85px
-   
+    :border 3px solid  #d5ddde
+    @include border-radius(15px)

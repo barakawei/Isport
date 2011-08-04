@@ -17,6 +17,10 @@ class GroupsController < ApplicationController
     @current_person = current_user.person if current_user
     @topics = @group.topics.limit(10)
     @topics.each {|t| t.url = group_topic_path(@group, t)}
+
+    @event_size  = @group.events.count
+    @topic_size = @group.topics.count
+    @member_size = @group.members.count
   end
 
   def new

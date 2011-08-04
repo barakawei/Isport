@@ -76,8 +76,26 @@ class Group < ActiveRecord::Base
     join_mode == JOIN_AFTER_AUTHENTICATAION
   end
 
-  def is_admin(person) 
-     
+  def joinable?
+    return join_mode == JOIN_AFTER_AUTHENTICATAION || 
+           join_mode == JOIN_FREE 
+  end
+
+  def has_admin?(person) 
+    Membership.where(:group_id => id, :person_id => person.id, :is_admin => true, :pending => false).count > 0 
+  end
+
+  def has_member?(person)
+    Membership.where(:group_id => id, :person_id => person.id, :pending => false).count > 0 
+  end
+
+  def has_pending_member?(person)
+    Membership.where(:person_id => person.id, :group_id => id,
+                     :pending => true).size > 0
+  end
+
+  def has_member_include_pending?(person)
+    Membership.where(:person_id => person.id, :group_id => id).size > 0
   end
 
   def add_member(person)
@@ -95,15 +113,8 @@ class Group < ActiveRecord::Base
     end
   end
 
-  def has_member?(person)
-    Membership.where(:person_id => person.id, :group_id => id,
-                     :pending => false).size > 0
-  end
 
-  def has_pending_member?(person)
-    Membership.where(:person_id => person.id, :group_id => id,
-                     :pending => true).size > 0 
-  end
+
 
   def delete_member(person)
     Membership.delete_all(:group_id => id, :person_id => person.id)

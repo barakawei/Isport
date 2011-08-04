@@ -1,3 +1,6 @@
+.left_column #map {
+  width: 198px;
+  border: 1px solid #d5ddde; }
 .left_column .avatar img {
   -moz-border-radius: 14px;
   -webkit-border-radius: 14px;
@@ -33,19 +36,36 @@
       border-radius: 5px;
       behavior: url(/javascripts/PIE.htc); }
 
+.right_column .app_big_title_bar.last_one {
+  margin-right: 0; }
+.right_column .app_big_title_bar {
+  margin-right: 20px; }
+.right_column .event_title_bar {
+  width: 630px;
+  float: left;
+  background-color: white;
+  border: 3px solid #d5ddde;
+  -moz-border-radius: 15px;
+  -webkit-border-radius: 15px;
+  border-radius: 15px;
+  behavior: url(/javascripts/PIE.htc);
+  padding: 17px; }
+  .right_column .event_title_bar .event_desc {
+    font-size: 1.2em;
+    line-height: 1.7em;
+    border-top: 1px dashed #d5ddde;
+    padding-top: 10px; }
 .right_column .event_title .status {
   color: #f78ca1; }
-.right_column .static .app_big_title_bar {
-  margin-right: 20px; }
 .right_column .operations {
   height: 40px; }
   .right_column .operations .join_button {
     float: left;
-    width: 80px;
-    height: 30px;
+    width: 60px;
+    height: 20px;
     background-color: #00bed4;
-    line-height: 30px;
-    font-size: 18px; }
+    line-height: 20px;
+    font-size: 13px; }
     .right_column .operations .join_button:hover {
       margin-top: 2px;
       background-color: #e76875; }
@@ -54,8 +74,10 @@
     .right_column .operations .join_button.quit:hover {
       margin-top: 2px;
       background-color: #00bed4; }
+  .right_column .operations .join_button.like {
+    margin-right: 17px; }
 .right_column .event_info {
-  width: 600px;
+  width: 630px;
   float: left;
   background-color: white;
   border: 3px solid #d5ddde;
@@ -65,16 +87,3 @@
   behavior: url(/javascripts/PIE.htc);
   padding: 20px;
   margin-bottom: 50px; }
-  .right_column .event_info .event_title {
-    color: #495659;
-    width: 600px;
-    float: left;
-    font-size: 30px;
-    font-weight: bold;
-    margin-bottom: 20px;
-    display: block; }
-  .right_column .event_info .event_desc {
-    width: 600px;
-    float: left;
-    font-size: 1.2em;
-    line-height: 1.7em; }
