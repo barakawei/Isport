@@ -13,7 +13,7 @@ class ItemsController < ApplicationController
     events_counts = {  }
     groups_counts = {  }  
 
-    Favorite.select("item_id, count(item_id) fansize")
+    Favorite.select("item_id, count(*) fansize")
       .where(:item_id => items_ids).group(:item_id).each do |count|
       fans_counts[count.item_id] = count.fansize
     end
@@ -24,12 +24,12 @@ class ItemsController < ApplicationController
       @city = City.first
     end
 
-    Event.week.joins(:location).select("subject_id, count(subject_id) evesize")
+    Event.week.joins(:location).select("subject_id, count(*) evesize")
       .where(:subject_id => items_ids, :locations => {:city_id => @city.id}).group(:subject_id).each do |count|
       events_counts[count.subject_id] = count.evesize
     end
 
-    Group.select("item_id, count(item_id) gpcount").where(:item_id => items_ids, :city_id => @city.id)
+    Group.select("item_id, count(*) gpcount").where(:item_id => items_ids, :city_id => @city.id)
       .group(:item_id).each do |count|
       groups_counts[count.item.id] = count.gpcount
     end
@@ -60,7 +60,7 @@ class ItemsController < ApplicationController
       @city = City.first      
     end
     
-    Event.week.joins(:location).select("subject_id, count(subject_id) evesize")
+    Event.week.joins(:location).select("subject_id, count(*) evesize")
       .where(:subject_id => items_ids, :locations => {:city_id => @city.id}).group(:subject_id).each do |count|
       events_counts[count.subject_id] = count.evesize
     end
@@ -72,7 +72,7 @@ class ItemsController < ApplicationController
       end
     end
 
-    Favorite.select("item_id, count(item_id) fansize")
+    Favorite.select("item_id, count(*) fansize")
       .where(:item_id => items_ids).group(:item_id).each do |count|
       fans_counts[count.item_id] = count.fansize
     end
@@ -119,13 +119,37 @@ class ItemsController < ApplicationController
               .group("involvements.person_id").order("count(event_id) DESC").limit(ACTLIMIT).includes(:profile)
 
     @groups = Group.joins(:members).where(:item_id => @item.id, :city_id => @city.id)
-          .group(:group_id).order("count(group_id) DESC").limit(EVELIMIT).includes(:memberships).includes(:topics).includes(:events)
+          .group(:group_id).order("count(group_id) DESC").limit(EVELIMIT)
 
-#    group_ids = @groups.map{|i| i.id}
+    group_ids = @groups.map{|i| i.id}
 
-#    group_members_counts = { }
-#    group_topics_counts = { }
-#    group_events_counts = { }
+    group_members_counts = { }
+    group_topics_counts = { }
+    group_events_counts = { }
+
+    Membership.select("group_id, count(*) membersize").where(:group_id => group_ids, :pending => false)
+      .group(:group_id).each do |count|
+        group_members_counts[count.group_id] = count.membersize
+    end
+
+
+    Event.select("group_id, count(*) eventsize").where(:group_id => group_ids)
+      .group(:group_id).each do |count|
+        group_events_counts[count.group_id] = count.evesize
+    end
+
+    Topic.joins(:forum).select("forums.discussable_id group_id, count(*) topicsize")
+      .where(:forums => {:discussable_id => group_ids, :discussable_type => "Group"}).group(:forum_id).each do |count|
+        group_topics_counts[count.group_id] = count.topicsize
+    end
+
+    @groups_hash = []
+    @groups.each do |group|
+      @groups_hash.push({:group => group,
+                        :membersize => group_members_counts[group.id]?group_members_counts[group.id]:0,
+                        :eventsize => group_events_counts[group.id]?group_events_counts[group.id]:0,
+                        :topicsize => group_topics_counts[group.id]?group_topics_counts[group.id]:0})      
+    end
 
     respond_to do |format|
       format.html # show.html.erb
