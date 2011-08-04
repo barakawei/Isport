@@ -1,6 +1,6 @@
 -content_for :head do
   = include_stylesheets :special_pages_topic_show, :media => 'all'
-.span-18.content
-  %h3=@topic.title
+.span-18.topic_content
+  %h2=@topic.title
   %p
     =simple_format @topic.content 

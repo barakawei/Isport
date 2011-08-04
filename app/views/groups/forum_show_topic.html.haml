@@ -1,22 +1,23 @@
 -content_for :head do
   = include_stylesheets :sepcial_pages_groups_common, :media => 'all'
 .span-24
-  = render "groups/group_nav_bar", :group => @group, :current => 'forum'
-  - unless @only_comment
-    .span-18
-      = render 'topics/show'
+  .span-18
+    =render 'common/header_box', :title => '"'+ @group.name + '"'+ '的话题:'
+    - unless @only_comment
+      .span-18
+        = render 'topics/show'
+          
+    .span-17.topic_comments
+      %hr.space
+      %hr.space
+      .span-10.topic_comments_title{:class => ('hide' unless @comments.size > 0)}
+        =render 'common/header_box', :title => '评论' 
+      = render 'topics/comments', :person => @topic.person, 
+                                  :comments => @comments, :comment => @new_comment, 
+                                  :topic => @topic, :current_person => @current_person
+  .span-6.last
     .span-5.last.topic_info
       %h4= link_to '<返回讨论区首页', forum_group_path(@group)
       .span-2
         = person_image_link(@person)
         %span.medium_avatar=link_to @person.name, person_path(@person)
-      .span-3.last
-        = link_to '关注此人', '#'
-        
-  .span-18.topic_comments
-    %hr.space
-    %h4.app_module_title="评论"
-    = render 'topics/comments', :person => @topic.person, 
-                                :comments => @comments, :new_comment => @new_comment, 
-                                :topic => @topic, :current_person => @current_person
-    

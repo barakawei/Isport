@@ -1,37 +1,57 @@
-.left_column .avatar img {
-  -moz-border-radius: 14px;
-  -webkit-border-radius: 14px;
-  border-radius: 14px;
-  behavior: url(/javascripts/PIE.htc);
-  width: 198px;
-  height: 198px;
-  border: 1px solid #f2f2f2; }
-.left_column .other_info {
-  margin: 0px 0 5px 0; }
-  .left_column .other_info .info_block {
-    display: block;
-    float: left;
-    background-color: #dbe0e3;
-    color: #546266;
-    padding: 10px 10px;
-    margin-right: 10px;
-    width: 180px; }
-    .left_column .other_info .info_block strong {
-      display: block; }
-.left_column .person_array {
-  width: 220px;
-  margin-bottom: 10px;
-  float: left; }
-  .left_column .person_array .avatar_container {
-    float: left;
-    margin-right: 5px; }
-    .left_column .person_array .avatar_container img {
-      width: 45px;
-      height: 45px;
-      -moz-border-radius: 5px;
-      -webkit-border-radius: 5px;
-      border-radius: 5px;
-      behavior: url(/javascripts/PIE.htc); }
+.left_column {
+  color: #666666; }
+  .left_column .avatar img {
+    -moz-border-radius: 14px;
+    -webkit-border-radius: 14px;
+    border-radius: 14px;
+    behavior: url(/javascripts/PIE.htc);
+    width: 198px;
+    height: 198px;
+    border: 1px solid #f2f2f2; }
+  .left_column .nav ul {
+    width: 130px;
+    padding: 0 20px 0 0px;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+    behavior: url(/javascripts/PIE.htc); }
+    .left_column .nav ul li {
+      width: 100px;
+      padding: 5px;
+      text-align: left;
+      border-bottom: 1px solid #e1e1e1; }
+      .left_column .nav ul li a {
+        font-size: 14px;
+        padding: 2px; }
+        .left_column .nav ul li a:hover {
+          color: white;
+          background: #fc4469; }
+    .left_column .nav ul li.last_li {
+      border-bottom: none; }
+  .left_column .other_info {
+    margin: 0px 0 5px 0; }
+    .left_column .other_info .info_block {
+      display: block;
+      float: left;
+      padding: 5px 0px;
+      margin-right: 10px;
+      width: 180px; }
+      .left_column .other_info .info_block strong {
+        display: block; }
+  .left_column .person_array {
+    width: 220px;
+    margin-bottom: 10px;
+    float: left; }
+    .left_column .person_array .avatar_container {
+      float: left;
+      margin-right: 5px; }
+      .left_column .person_array .avatar_container img {
+        width: 45px;
+        height: 45px;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        border-radius: 5px;
+        behavior: url(/javascripts/PIE.htc); }
 
 .right_column .app_big_title_bar.last_one {
   margin-right: 0; }
