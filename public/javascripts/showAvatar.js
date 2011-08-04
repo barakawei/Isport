@@ -21,22 +21,21 @@ $( function(){
                 +"<a href='"+link+"'><img class='person_avatar' src='"+url+"'/></a>"
                 +"<div class='person_content'>"
                 +"<a href='"+link+"'><div class='name'>"+person.name+"</div></a>"
-                +"<div class='action'><div class='relation_button'></div></div>"
+                +"<div class='action'><div class='follow_button'></div></div>"
                 +"</div>"
                 +"</div></div>");
       avatar_container.append( avatar_panel ); 
 
-      delete_html = $( "<span url='/contacts/destroy?person_id="+person.id+"' data-method='delete'> 取消关注</span>" );
-      post_html = $( "<span url='/contacts?person_id="+person.id+"' data-method='post'> 关注</span>" );
+
+      delete_html = $( "<a href='/contacts/destroy?person_id="+person.id+"' data-method='delete' data-remote='true'><div class='following glass_button' data_id='"+person.id+"'><span>已关注</span></div></a>" );
+      post_html = $( "<a href='/contacts?person_id="+person.id+"' data-method='post' data-remote='true'><div class='follow glass_button' data_id='"+person.id+"'><span>关注</span></div></a>" );
       if ( myself ){
-        $( ".relation_button",avatar_container ).remove();
+        $( ".follow_button",avatar_container ).remove();
       }else{
         if (contact && contact.receiving){
-        $( ".relation_button",avatar_container ).append(delete_html);
-        $( ".relation_button",avatar_container ).addClass( "unfollow" );
+        $( ".follow_button",avatar_container ).append(delete_html);
         }else{
-        $( ".relation_button",avatar_container ).append( post_html );
-        $( ".relation_button",avatar_container ).addClass( "follow" );
+        $( ".follow_button",avatar_container ).append( post_html );
         }  
       }
       
@@ -64,38 +63,6 @@ $( function(){
       $(".avatar_show",avatar_container).addClass( "hide" );
       clearTimeout(show_handle);
     }
-  });
-
-   var lock = 0;
-    $( ".relation_button" ).live( "click",function() {
-        person_id = $( this ).closest( ".avatar_panel" ).attr( "data_person_id" );
-        if( lock == 0 ){  
-        lock = 1;
-         delete_html = $( "<span url='/contacts/destroy?person_id="+person_id+"' data-method='delete'>- 取消关注</span>" );
-        post_html = $( "<span url='/contacts?person_id="+person_id+"' data-method='post'>+ 关注</span>" );
-        button = $(this);
-        type = $( this ).find( "span" ).attr( "data-method" );
-        url = $( this ).find( "span" ).attr( "url" );
-
-        $.ajax( {
-          url:url,
-          type:type,
-          success:function(){
-          if( type == 'delete' ){
-          button.find( "span" ).remove();
-          button.append( post_html );
-          button.removeClass( "unfollow" );
-          button.addClass( "follow" );
-        }else{
-          button.find( "span" ).remove();
-          button.append( delete_html );
-          button.removeClass( "follow" );
-          button.addClass( "unfollow" );
-        }
-          lock = 0;
-          }
-        } );
-        }
   });
 } );
 

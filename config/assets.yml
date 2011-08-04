@@ -56,6 +56,7 @@ stylesheets:
     - public/stylesheets/css/special_pages/conversations/index.css
     - public/stylesheets/css/special_pages/status_messages/status_message.css
     - public/stylesheets/css/special_pages/people/show.css
+    - public/stylesheets/css/special_pages/people/show_person_details.css
 
   forms:
     - public/stylesheets/css/general/forms/events_form.css

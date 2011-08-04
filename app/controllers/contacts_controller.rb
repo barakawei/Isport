@@ -1,9 +1,10 @@
 class ContactsController < ApplicationController
+  respond_to :js,:html
   def create
     @person = Person.find(params[:person_id])
     contact = current_user.share_with(@person)
     contact.dispatch_request 
-    render :nothing=>true,:status => 200
+    respond_with @person
   end
 
   def show_avatar_panel
@@ -36,7 +37,8 @@ class ContactsController < ApplicationController
         contact_person.update_attributes(:sharing => false)
       end
     end 
-    render :nothing=>true,:status => 200
+    @person = Person.find(params[:person_id])
+    respond_with @person
   end
 
   def request_to_person(person,message)
