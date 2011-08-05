@@ -1,5 +1,9 @@
 class ConversationsController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!,:select_tab
+
+  def select_tab
+    @select_tab = 'conversation'
+  end
 
   def index
     @conversations = Conversation.joins(:conversation_visibilities).where(
@@ -23,6 +27,7 @@ class ConversationsController < ApplicationController
       end
     end 
     @unread_message_count = ConversationVisibility.sum(:unread, :conditions => "person_id = #{current_user.person.id}")
+    @select_tab = 'conversation'
   end
 
   def create

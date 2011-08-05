@@ -2,15 +2,16 @@
 $blue: #5787B3
 
 #conversation_show
+  :width 610px
+  :float right 
   .stream
     .avatar
       :padding-right 10px
 
 #left_pane
+  :float left
   background-color: #DDDDDD
   border-right: 1px solid #999999
-  position: fixed
-  z-index: 4
   width: 320px
     
 #left_pane_header
@@ -97,10 +98,8 @@ $blue: #5787B3
   background-color: #FCFCFC
   border-bottom: 1px solid #666666
   @include box-shadow(0,3px,3px,-3px,#333)
-  margin-top: -50px
-  margin-bottom: 50px
-  padding: 50px 20px 10px
-  position: fixed
+  margin-top: 0px
+  padding: 20px 20px 10px
   .avatar
     width: 30px
     height: 30px

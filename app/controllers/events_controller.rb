@@ -1,12 +1,14 @@
 #encoding: utf-8
 require 'geocoder'
 class EventsController < ApplicationController
-  before_filter :authenticate_user!, 
+  before_filter :authenticate_user!,
                 :except => [:index, :show, :participants, 
                             :references, :paginate_participants,
                             :paginate_references, :filtered]
+                  
 
   LIMIT = 9 
+
 
   def index
     city_pinyin = params[:city] ? params[:city] : (current_user ? current_user.city.pinyin : City.first.pinyin)
@@ -14,6 +16,7 @@ class EventsController < ApplicationController
     @events = Event.all
     @hot_events = Event.hot_event(@city.id)
     @hot_items = Item.all
+    @select_tab = 'event'
   end
 
   def my_events
@@ -138,6 +141,7 @@ class EventsController < ApplicationController
     conditions[:district_id] = @district_id unless @district_id.nil?
     conditions[:subject_id] = @item_id unless @item_id.nil?
     @events = Event.filter_event(conditions).paginate :page => params[:page], :per_page => 15
+    @select_tab = 'event'
   end
   
   private

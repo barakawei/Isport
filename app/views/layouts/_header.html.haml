@@ -2,17 +2,17 @@
   %h2= t('Isport')
 %ul.sections#sections
   %li
-    =link_to t('home'), home_path,:class => 'red_tab'
+    =link_to t('home'), home_path,:class => 'red_tab',:id => 'home'
   %li
-    =link_to t('events_link'), events_path,:class => 'red_tab'
+    =link_to t('events_link'), events_path,:class => 'red_tab',:id => 'event'
   %li
-    =link_to t('items_link'), items_path,:class => 'red_tab'
+    =link_to t('items_link'), items_path,:class => 'red_tab',:id => 'item'
   %li
-    =link_to t('groups_link'), groups_path,:class => 'red_tab'
+    =link_to t('groups_link'), groups_path,:class => 'red_tab',:id => 'group'
 
   -if current_user
     %li
-      %a{:href => conversations_path,:class =>'red_tab'}
+      %a{:href => conversations_path,:class =>'red_tab',:id=>'conversation'}
         =t( 'inbox' )
         -if current_user && @unread_message_count != 0
           %span.message_count
@@ -27,16 +27,16 @@
   %ul.setting
     %li.notifaction
       #notification_badge
-        %a{ :href => "#" ,:class => 'red_tab'}
+        %a{ :href => "#" ,:class => 'red_tab',:id=> 'notifaction'}
           = "通知"
           -if current_user && @unread_notify_count != 0
             %span.message_count
               %span
                 %span=@unread_notify_count
     %li.set
-      .avatar
-        = person_image_tag( current_user.person,:thumb_small )
-      %a{:href => "#",:class => "current_user_link red_tab"}
+      %a{:href => "#",:class => "current_user_link red_tab",:id => 'set'}
+        .avatar
+          = person_image_tag( current_user.person,:thumb_small )
         .name  
           = current_user.name
         .icon
@@ -53,7 +53,6 @@
     .title
       = link_to "全部", notifications_path, :id => "view_all_notifications"
       %h4
-        通知
     .notifications.avatar_panel
       .ajax_loader
         = image_tag("/images/ui/ajax-loader.gif") 

@@ -14,7 +14,7 @@
           evt.stopPropagation();
 
           self.ajaxLoader.show();
-          self.badge.addClass("active");
+          self.badgeLink.removeClass( "red_tab" ).addClass("gray_tab");
           self.dropdown.css("display", "block");
 
           self.getNotifications(function() {
@@ -23,8 +23,7 @@
         },  function(evt) {
           evt.preventDefault();
           evt.stopPropagation();
-
-          self.badge.removeClass("active");
+          self.badgeLink.removeClass( "gray_tab" ).addClass("red_tab");
           self.dropdown.css("display", "none");
       });
 

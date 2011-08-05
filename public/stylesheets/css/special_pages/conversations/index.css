@@ -1,11 +1,13 @@
-#conversation_show .stream .avatar {
-  padding-right: 10px; }
+#conversation_show {
+  width: 610px;
+  float: right; }
+  #conversation_show .stream .avatar {
+    padding-right: 10px; }
 
 #left_pane {
+  float: left;
   background-color: #dddddd;
   border-right: 1px solid #999999;
-  position: fixed;
-  z-index: 4;
   width: 320px; }
 
 #left_pane_header {
@@ -94,10 +96,8 @@
   -moz-box-shadow: 0 3px 3px -3px #333333;
   box-shadow: 0 3px 3px -3px #333333;
   behavior: url(/javascripts/PIE.htc);
-  margin-top: -50px;
-  margin-bottom: 50px;
-  padding: 50px 20px 10px;
-  position: fixed;
+  margin-top: 0px;
+  padding: 20px 20px 10px;
   z-index: 3; }
   .conversation_participants .avatar {
     width: 30px;

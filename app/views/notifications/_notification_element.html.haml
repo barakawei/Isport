@@ -1,6 +1,6 @@
 .stream
   .stream_element
-    = notification_image_link(note,:thumb_small) 
+    = person_image_link(note.actor,:thumb_small) 
     .content
       .from
         = notification_message_for(note)
