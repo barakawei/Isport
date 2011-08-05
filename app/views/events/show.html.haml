@@ -3,102 +3,91 @@
   = include_javascripts :google_map
   =javascript_include_tag "http://maps.google.com/maps/api/js?sensor=false"
 .span-24
-  .span-24
-    .span-17
-      %h3.title.inline= @event.title
-      - if @event.is_owner(current_user)
-        %h4.inline= link_to t('编辑'), edit_event_path(@event), :class => "inline"
-      %hr
-    .span-7.last
-  .span-17
-    - if @page <= 1
-      .span-5.event_pic
-        = event_image_tag(@event, :thumb_large)
-      .span-8.last.event_info
-        .time
-          %p
-            %b= t('events.start_at')+":"
-            = l(@event.start_at, :format => :long)
-          %p
-            %b= t('events.end_at')+":"
-            = l(@event.end_at, :format => :long)
-        %p.location
-          %b= t('events.location')+":"
-          = @event.location
-        .subject_and_owner
-          %p
-            %b= t('events.event_subject')+":"
-            = link_to @event.item.name, item_path(@event.item)
-          %p
-            %b= t('events.event_owner')+":"
-            = link_to @event.person.profile.name, person_path(@event.person)
-        %p.at_bottom
-          %b= t('activerecord.attributes.event.participants_limit')+":"
-          = @event.participants_limit
-          %b= ",  " + t('events.remained_participants')
-          = @event.participants_limit - @event.participants.size
-      .span-3.last.left_border
-        = event_application_link(@event) 
-        - unless is_reference_of(@event)
-          %p.bottom
-            = link_to t('events.recommend'), 
-                      url_for(:controller => "event_recommendations",:action => "add_reference",
-                              :id => @event.id), :class => "button" 
-        -else
-          %br
-          %h4.top= t('events.recommended') 
-          %p.bottom
-          = link_to t('events.cancel_recommend'), 
-                    url_for(:controller => "event_recommendations", :action => "remove_reference",
-                            :id => @event.id), :class => "button"
-      .span-16.last.append-bottom
-        %br
-        %h4.app_module_title= t('events.event_description')
-        %hr
-        %p= simple_format(@event.description)
-        %hr
-    .span-16.last.comments_area.prepend-top#comments_href
-      %h4.app_module_title= t('events.event_comments')
-      = render :partial => "event_comments",  :locals => { :event => @event,
-                                                     :author => @person,
-                                                     :comments => @comments,
-                                                     :comment => @comment}
-  - if @page <= 1
-    .span-6.prepend-1.last
+  .span-6.left_column
+    .avatar=event_image_tag(@event, :thumb_large)
+    %h4.app_module_title='活动信息'
+    .span-7.other_info
+      %span.info_block
+        %strong
+          ='开始时间:'
+          =l(@event.start_at, :format => :long)
+        %strong
+          ='地点:'
+          =@event.location.to_s
+        %strong
+          ='项目:'
+          =@event.item.name
+    %hr.space
+    .span-6
+      %h4.app_module_title
+        ='活动地图'
+        = link_to '(详细)', event_map_path(@event)
+      #map
+    - if @participants.size > 0
+      %h4.app_module_title='活动成员'
+      .person_array
+        - @participants.each do |member|
+          = person_image_link(member)
+    
+    - if @references.size > 0
       .span-6
-        %h4= link_to '>更多'+@event.item.name + '活动', event_filter_path(@event.location.city.pinyin, nil, 
-                                                                        @event.subject_id, 'next_month') 
-      .span-6
-        %h4.app_module_title
-          = '活动地图'
-          = link_to "(详细)", event_map_path(@event)
-        #map
-      - if @event.participants.size > 0
-        %h4.app_module_title
-          = link_to "#{@event.participants.size}"+ t('events.person'),
-            url_for(:action => "show_participants", :id => @event.id), :class => "nounderline"
-          = t('events.involvement')
-        = render :partial => 'event_participants', :locals => { :participants => @participants, 
-                                                                :perline => 3, :no_pagination => true,  
-                                                                :edit => false }
-      .span-6.last.prepend-top
-        -if @event.references.size > 0 
-          %h4.app_module_title
-            = link_to "#{@event.references.size}" + t('events.person'),
-              url_for(:action => "show_references", :id => @event.id), :class => "nounderline"
-            = t('events.recommendation')
-          = render :partial => 'event_references', :locals => { :references => @references, 
-                                                                :perline => 3, :no_pagination => true } 
+        %h4.app_module_title='喜欢该活动的人'
+        .person_array
+          - @references.each do |member|
+            = person_image_link(member)
+      
 
+  .span-17.last.right_column
+    =render 'common/big_header_box', :number => @participants.size, :text => '参加', :width => '100px' 
+    =render 'common/big_header_box', :number => @references.size, 
+                                     :text => '推荐', :width => '100px', :font_color => '#a1d453'
+    =render 'common/big_header_box', :number => @comments_size,
+                                       :text => '评论', :width => '100px', :font_color => '#F5D34D', :class_name => 'last_one'
+    .span-17.prepend-top
+      .span-10
+        = render 'common/header_box', :title => '活动内容'
+      .operations.right
+        - if current_user
+          - if !is_reference_of(@event)
+            =link_to(url_for(:controller => "event_recommendations",:action => "add_reference",:id => @event.id)) do
+              .join_button.glass_button.like
+                ='喜欢'
+          - if is_reference_of(@event)
+            =link_to(url_for(:controller => "event_recommendations",:action => "remove_reference",:id => @event.id)) do
+              .join_button.glass_button.quit.like
+                ='取消喜欢'
+    .event_title_bar.append-bottom
+      .span-16  
+        .span-13.event_title
+          %h2=@event.title
+          %h4.status=event_status_info(@event)
+        .span-3.operations.last.right
+          - if current_user
+            - unless @event.is_owner(current_user)
+              - if @event.joinable? && !is_participant_of(@event)
+                =link_to(involvements_path(:id => @event.id), :method => 'post', :class => 'right') do
+                  .join_button.glass_button
+                    ='参加'
+              - if @event.quitable? && is_participant_of(@event)
+                =link_to(involvement_path(:id => @event.id), :method => 'delete', :class => 'right') do
+                  .join_button.glass_button.quit
+                    ='取消参加'
+            - else
+              =link_to(edit_event_path(@event), :class => 'right') do
+                .join_button.glass_button.quit
+                  ='编辑'
+      .span-16.event_desc
+        =simple_format(@event.description)
+
+
+    
+    .comments_title{:class => ('hide' unless @comments.size > 0)}
+      = render 'common/header_box', :title => '评论'
+    = render 'event_comments', :comments => @comments, :event => @event, 
+                               :current_person => @current_person, :comment => @comment 
+      
 :javascript
   $(function() {
-    $('.edit_event').button({
-      icons: {
-        primary: 'ui-icon-pencil'
-      } 
-    });
-
     var address = "#{@event.location}";
     codeAddress("map", address);
   });
-

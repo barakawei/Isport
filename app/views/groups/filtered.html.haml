@@ -2,15 +2,18 @@
   = include_stylesheets :sepcial_pages_groups_common, :media => 'all'
   = include_stylesheets :sepcial_pages_groups_index, :media => 'all'
 
-.span-24
-  %h2.title
-    = '小组:'
-    = link_to @city.name , '#', :id => 'switch_city'
-  %hr
+#city_select_box.hide    
+  - City.all.each do |city|
+    %h4.inline= link_to city.name, "/groups/#{city.pinyin}"
 
-.span-24.hot_box
-  %h4.app_module_title='寻找你喜欢的小组'
-  %h2
+.span-24.nav_bar
+  %h1.inline.app_subfunction_title.groups= '乐玩小组'
+  %h3.inline= link_to @city.name , '#', :id => 'switch_city', :class => 'dark_gray'
+  =link_to '创建小组', new_group_path, :class => 'button right new_group'
+
+.span-24.prepend-top
+  %hr.space
+  = render 'common/header_box',  :title => '寻找感兴趣的小组', :dark => false
   .hot_groups
     .search_line
       .filter_title
@@ -28,12 +31,24 @@
           = link_to d.name, group_filter_path(@city.pinyin, d.id, @item_id), :class => "#{ 'current' if d.id.to_s == @district_id}"
   %h2
 
-%hr.space
-.span-24.search_result
+.search_result
   - if @groups.size > 0
     - @groups.each do |g|
       = render 'group_by_search', :group => g
 
-  .span-24
-    = will_paginate @groups, {:previous_label => t("pagination.previous"), 
-                              :next_label => t("pagination.next")}
+    .span-24
+      = will_paginate @groups, {:previous_label => t("pagination.previous"), 
+                                :next_label => t("pagination.next")}
+:javascript
+  $(function() {
+    var left = $('#switch_city').offset().left;
+    var t =$('#switch_city').offset().top + $('#switch_city').innerHeight();
+    $('#city_select_box').css("left", left+"px");
+    $('#city_select_box').css("top", t+"px");
+  });
+
+  $("#switch_city").click(function(e) {
+    $('#city_select_box').toggleClass('hide'); 
+    e.stopPropagation();
+    return false;
+  });

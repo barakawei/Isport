@@ -1,3 +1,4 @@
+@import '../../general/ui/mixins'
 .title
   :margin-bottom 0
 
@@ -10,11 +11,39 @@ ul.nav
     :margin-left 5px
 
     a
-      :color #5179ac 
+      :color black
       :display block
-      :border 1px solid #dddddd 
+      :border 1px solid #b9bcbd
       :padding 10px 10px 5px 10px
+      :color #777777
+
+      &:hover
+        :text-decoration none
 
     a.active
-      :color #777777
       :border-bottom 1px solid #ffffff
+      :background-color #ffffff
+      :color black
+
+hr.nav
+  :background-color #b9bcbd
+  :color #4d4d4d
+
+.topics_area
+  :width 904px
+  :padding 20px
+  :background-color #ffffff
+  :border 3px solid #d5ddde
+  @include border-radius(15px)
+
+.new_button
+  :float left
+  :width 60px
+  :height 20px
+  :background-color #00bed4
+  :line-height 20px
+  :font-size 13px
+
+  &:hover
+    :margin-top 2px
+    :background-color #e76875

@@ -1,0 +1,9 @@
+.app_title_bar{:class => ('dark' if defined?(dark) && dark)}
+  .app_header_box
+    .box_all{:style => (defined?(background_color) ? "background-color:#{background_color}" : " " ) + (defined?(font_color) ? " color: #{font_color}" : "")}
+      .box_left
+      .box_middle
+        %strong=title
+      .box_right
+  .clear
+  .bottom_pic{:style => ("background-color:#{background_color}" if defined?(background_color))}

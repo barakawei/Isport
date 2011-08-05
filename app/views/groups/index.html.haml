@@ -1,33 +1,32 @@
 -content_for :head do
   = include_stylesheets :sepcial_pages_groups_common, :media => 'all'
   = include_stylesheets :sepcial_pages_groups_index, :media => 'all'
+  = include_stylesheets :common_index, :media => 'all'
 
 #city_select_box.hide    
   - City.all.each do |city|
-    %h4.inline= link_to city.name, "/groups/?city=#{city.pinyin}"
+    %h4.inline= link_to city.name, "/groups/?city=#{city.pinyin}", :class => 'group_color'
 
-.span-24
-  %h2.inline= '乐玩小组'
-  %h3.inline= link_to @city.name , '#', :id => 'switch_city'
-  =link_to '创建小组', new_group_path, :class => 'button right'
+.span-24.nav_bar
+  %h1.inline.app_subfunction_title.groups= '乐玩小组'
+  %h3.inline= link_to @city.name , '#', :id => 'switch_city', :class => 'dark_gray'
+  =link_to '创建小组', new_group_path, :class => 'button right new_group'
 
 - if @hot_groups.size > 0
-  .span-24.hot_box
-    %h4.app_module_title='本周热门'
-    %h2
-    .hot_groups
-      #slider
+  .span-24.prepend-top
+    = render 'common/header_box',  :title => '热门小组', :dark => true 
+  .hot_gallery
+    .gallery_content
+      =link_to 'pre', '#', :class => 'gallery_link_pre hide', :id => 'preBtn'
+      .gallery_inner
         %ul
-          - @hot_groups.each do |g|
+          - @hot_groups.each do |group|
             %li
-              = render 'hottest_group', :group => g
-      - if @hot_groups.size > 1
-        %span#preBtn= link_to left_arrow, 'javascript:void(0);'
-        %span#nextBtn= link_to right_arrow, 'javascript:void(0);'
+              = render 'hottest_group', :group => group 
+      =link_to 'next', '#', :class => "gallery_link_next #{"hide" unless @hot_groups.size > 2 }", :id => 'nextBtn'
     
-.span-24.hot_box
-  %h4.app_module_title='寻找你喜欢的小组'
-  %h2
+.span-24.prepend-top
+  = render 'common/header_box',  :title => '寻找感兴趣的小组', :dark => false
   .hot_groups
     .search_line
       .filter_title
@@ -44,9 +43,8 @@
         - @city.districts.each do |d| 
           = link_to d.name, group_filter_path(:city => @city.pinyin, @district_id => d.id)
 
-.span-24.hot_box
-  %h4.app_module_title='推荐小组'
-  %h2
+.span-24.prepend-top
+  = render 'common/header_box',  :title => '推荐小组', :dark => false
   .hot_groups
     - @hot_items.each do |i|
       .hot_item_groups
@@ -56,7 +54,7 @@
         - i.groups.at_city(@city).limit(5).each do |g|
           .item_group
             = group_image_link(g, :thumb_large) 
-            = trim_info(g.name, 9)
+            = link_to trim_info(g.name, 9), group_path(g)
 
 :javascript
   $(function() {
@@ -66,14 +64,21 @@
     $('#city_select_box').css("top", t+"px");
   });
 
+  $("#switch_city").click(function(e) {
+    $('#city_select_box').toggleClass('hide'); 
+    e.stopPropagation();
+    return false;
+  });
+      
+
   $('#nextBtn').bind('click', slideRight);
   $('#preBtn').bind('click', slideLeft);
 
   var first_li = "0px"; 
-  var last_li = "-" + parseInt("#{@hot_groups.size-1}") * 908 + 'px';
+  var last_li = "-" + parseInt("#{@hot_groups.size / 2 + @hot_groups.size % 2 - 1}") * 844 + 'px';
 
   function getPre(current) {
-    var pre = parseInt(current.match(/\d+/)) - 908;
+    var pre = parseInt(current.match(/\d+/)) - 844;
     if(pre == 0) {
       return pre+'px';
     }else {
@@ -82,7 +87,7 @@
   }
 
   function getNext(current) {
-    var next = parseInt(current.match(/\d+/)) + 908;
+    var next = parseInt(current.match(/\d+/)) + 844;
     if(next == 0) {
       return next+'px';
     }else {
@@ -90,42 +95,37 @@
     }
   }
 
-
   function slideLeft() {
     $('#preBtn').unbind('click');
-    var left = $('#slider ul').css('marginLeft');
-    if(left == first_li) {
-        $('#slider ul li:last').after($('#slider ul li:first'));
-        $('#slider ul').css('marginLeft', last_li);
-        $('#slider ul').animate({marginLeft: getPre(last_li)}, 300, function(){ 
-          $('#preBtn').bind('click', slideLeft);
-        });
-    } else {
-      $('#slider ul').animate({marginLeft: getPre(left)}, 300, function(){
-        $('#preBtn').bind('click', slideLeft);
-      });
-    }
+    var left = $('.hot_gallery ul').css('marginLeft');
+    $('.hot_gallery ul').animate({marginLeft: getPre(left)}, 300, function(){ 
+      $('#preBtn').bind('click', slideLeft);
+      var left = $('.hot_gallery ul').css('marginLeft');
+      if (left != last_li) {
+        $('#nextBtn').show();
+      }
+      if (left == first_li) {
+        $('#preBtn').hide(); 
+        $('.gallery_inner').css("marginLeft", '30px');
+      }
+    });
+    return false;
   }
 
   function slideRight() {
     $('#nextBtn').unbind('click');
-    var left = $('#slider ul').css('marginLeft');
-    if (left == last_li) {
-      $('#slider ul li:first').before($('#slider ul li:last'));
-      $('#slider ul').css('marginLeft', first_li);
-      $('#slider ul').animate({marginLeft: getNext(first_li)}, 300, function(){
-        $('#nextBtn').bind('click', slideRight);
-      });
-    } else {
-      $('#slider ul').animate({marginLeft: getNext(left)}, 300, function(){
-        $('#nextBtn').bind('click', slideRight);
-      });
-    }
+    var left = $('.hot_gallery ul').css('marginLeft');
+    $('.hot_gallery ul').animate({marginLeft: getNext(left)}, 300, function(){
+      $('#nextBtn').bind('click', slideRight);
+      var left = $('.hot_gallery ul').css('marginLeft');
+      if (left != first_li) {
+        $('#preBtn').show(); 
+        $('.gallery_inner').css("marginLeft", '0px');
+      }
+      if (left == last_li) {
+        $('#nextBtn').hide();
+      }
+    });
+    return false;
   }
 
-  $("#switch_city").click(function(e) {
-    $('#city_select_box').toggleClass('hide'); 
-    e.stopPropagation();
-    return false;
-  });
-      

@@ -36,7 +36,7 @@
         %b= t('events.event_owner')+":"
         = link_to event.person.profile.name, person_path(event.person)
     .span-1.operation.right
-      - if @removable
+      - if removable
         = link_to t('operations.delete'), "#remove_event_#{event.id}", :class => "delete right"
 
 .span-24

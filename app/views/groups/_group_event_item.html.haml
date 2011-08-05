@@ -1,0 +1,37 @@
+.span-24
+  .span-15.event_item.last{:class => (index % 2 == 0) ? "odd": "even" }
+    .span-3.pic
+      = link_to image_tag(event.image_url(:thumb_medium)), event
+    .span-10.description
+      %h3.title
+        = link_to trim_info(event.title,18), event, :class => "nounderline title"
+      %span.participants
+        - if event.participants.size > 0
+          = "(" + t('events.short_involvement', :count => event.participants.size) + ", "
+        - if event.references.size > 0
+          = t('events.short_recommendation', :count => event.references.size) + ")"
+      %p
+        %br
+      -if event.same_day
+        %p
+          %b
+            = t('events.period') + ":"
+          = l(event.start_at.to_date, :format => :short )  if event.current_year
+          = l(event.start_at.to_date, :format => :long )  unless event.current_year
+          = l(event.end_at.to_date, :format => :weekday)
+          = l(event.start_at, :format => :shortest) + " ~"
+          = l(event.end_at, :format => :shortest )
+      -else 
+        %p
+          %b= t('events.start_at')+":"
+          = l(event.start_at, :format => :long) + "~"
+          = l(event.end_at, :format => :long)
+      %p
+        %b= t('events.location')+":"
+        = trim_info(event.location.to_s, 20) 
+      %p
+        %b= t('events.event_subject')+":"
+        = event.item.name
+      %p
+        %b= t('events.event_owner')+":"
+        = link_to event.person.profile.name, person_path(event.person)

@@ -1,0 +1,149 @@
+@import '../../general/ui/mixins'
+.hot_gallery
+  :width 904px
+  :background url("/images/ui/bg-gallery.jpg") no-repeat scroll 0 0 transparent
+  @include border-radius(20px)
+  :height 285px
+  :float left
+  :padding 20px 18px
+    
+
+  .gallery_content
+    :width 904px
+    :float left
+    :height 285px
+
+    .gallery_link_pre, .gallery_link_next
+      :background url("/images/ui/gallery-arrow.gif") no-repeat scroll 0 -48px transparent
+      :float left
+      :height 42px
+      :margin-top 120px
+      :overflow hidden
+      :text-decoration none
+      :text-indent -9999px
+      :width 30px
+
+    .gallery_link_next
+      :float right
+      :background-position -40px -48px 
+
+    .gallery_inner
+      :width 844px
+      :float left
+      :height 285px
+      :overflow hidden
+      :position relative
+      :margin-left 30px
+
+      ul
+        :left 0
+        :list-style none outside non
+        :margin 0
+        :overflow hidden
+        :padding 0
+        :position absolute
+        :top 0
+        :width 99999px
+        :height 285px
+          
+        li
+          :float left
+          :padding 25px 15px 0 19px
+          :width 385px
+
+          a
+            :background url("/images/ui/bg-gallery-box.gif") no-repeat scroll 0 0 transparent
+            :cursor pointer
+            :float left
+            :height 244px
+            :padding 6px 20px 0 23px
+            :text-decoration none
+            :width 342px
+
+            &:hover
+              :background-position  0 -250px 
+              :text-decoration none
+              
+              .info
+                :background-position 0 -84px
+
+              .title, .info
+                strong, em
+                  :color #e76875
+            
+            .type
+              :font-size 14px
+              :display block
+              :color #f74367
+              :margin-bottom 17px
+
+            .title
+              :display block 
+              :height 110px
+              :margin-bottom 4px
+              :overflow hidden 
+
+              .time_and_location
+                :float left 
+                p
+                  :font-size 13px
+                  :color #829CA2
+                p.time
+                  :margin-top 10px
+
+              strong 
+                :color #00a2b8
+                :vertical-align middle
+                :width 100%
+                :float left
+                :font bold 24px/30px Arial,Helvetica,sans-serif
+
+            .info
+              :background url("/images/ui/bg-days-box.gif") no-repeat scroll 0 0 transparent
+              :clear both
+              :display block
+              :height 66px
+              :overflow hidden
+              :padding 10px 0 0 0
+              :width 180px
+              
+              .owner
+                :float left
+                :width 50px
+                :height 56px
+                :margin-left 10px
+                  
+                img
+                  :width 43px
+                  :height 43px
+                  @include border-radius(5px)
+                  :border 1px solid #f2f2f2
+                  :float left
+                  :margin 10px 10px 0 0 
+
+              
+              span.first
+                :border-bottom 2px solid #ffffff
+
+              span
+                :display block
+                :float left
+                :height 23px
+                :width 100px
+                :padding 4px 0 4px 20px
+
+                strong
+                  :font-size 21px
+                  :color #97b48a
+                  :float left
+
+                em
+                  :color #97b48a
+                  :float left
+                  :font bold 12px/11px Arial,Helvetica,sans-serif 
+                  :margin 10px 0 0 5px 
+                
+              
+                    
+                  
+        

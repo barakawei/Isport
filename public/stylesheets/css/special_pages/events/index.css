@@ -1,18 +1,13 @@
 .hot_events {
-  width: 908px;
+  width: 904px;
   padding: 20px 20px 0 20px;
-  border-top: none;
   float: left;
-  margin-top: 10px; }
-
-.hot_box {
-  margin-top: 20px; }
-  .hot_box h2 {
-    background: none repeat scroll 0 0 #7e9bc1;
-    width: 100%;
-    height: 4px;
-    overflow: hidden;
-    margin: 0; }
+  border: 3px solid #d5ddde;
+  -moz-border-radius: 14px;
+  -webkit-border-radius: 14px;
+  border-radius: 14px;
+  behavior: url(/javascripts/PIE.htc);
+  background-color: white; }
 
 .search_line {
   width: 908px;
@@ -35,55 +30,33 @@
     margin-left: 10px;
     width: 828px; }
     .search_line .filter_items a {
-      font-size: 12px;
-      color: #333333;
+      font-size: 13px;
+      color: #56656c;
       margin-right: 5px;
       display: inline-block; }
     .search_line .filter_items a.current {
       color: #a10000; }
 
-#slider {
-  width: 908px;
-  height: 210px;
-  overflow: hidden; }
-  #slider ul {
-    margin: 0;
-    padding: 0;
-    float: left; }
-    #slider ul li {
-      width: 908px;
-      float: left;
-      margin-bottom: 10px;
-      height: 210px;
-      overflow: hidden; }
-
-.search_result {
-  padding: 0px 20px 0 20px; }
-  .search_result .event_by_search {
-    float: left;
-    width: 182px;
-    height: 210px;
-    margin: 0 50px 20px 0; }
-    .search_result .event_by_search span.item_name {
-      color: #ff6600; }
-    .search_result .event_by_search img {
-      width: 180px;
-      height: 180px;
-      border: 1px solid #dddddd; }
-      .search_result .event_by_search img:hover {
-        border: 1px solid #ff6600; }
+.hot_items_events.last_item {
+  border: none; }
 
 .hot_items_events {
   width: 908px;
   margin-bottom: 10px;
   float: left;
-  border-bottom: 1px dashed #e1e1e1;
+  border-bottom: 1px dashed #d5ddde;
   padding-bottom: 10px; }
   .hot_items_events a.more {
     display: block; }
   .hot_items_events .item_avatar {
     margin-right: 5px;
     float: left; }
+    .hot_items_events .item_avatar img {
+      -moz-border-radius: 14px;
+      -webkit-border-radius: 14px;
+      border-radius: 14px;
+      behavior: url(/javascripts/PIE.htc);
+      border: 1px solid #f2f2f2; }
   .hot_items_events .item_event {
     width: 220px;
     float: left;
@@ -91,7 +64,11 @@
     margin-bottom: 15px; }
     .hot_items_events .item_event img {
       float: left;
-      border: 1px solid #e1e1e1;
+      -moz-border-radius: 10px;
+      -webkit-border-radius: 10px;
+      border-radius: 10px;
+      behavior: url(/javascripts/PIE.htc);
+      border: 1px solid #f2f2f2;
       width: 88px;
       height: 88px; }
     .hot_items_events .item_event .event_info {
@@ -104,21 +81,26 @@
         margin-bottom: 5px; }
       .hot_items_events .item_event .event_info .at_bottom {
         position: absolute;
-        bottom: 0px; }
+        bottom: 0px;
+        color: #546266; }
         .hot_items_events .item_event .event_info .at_bottom p {
+          color: #546266;
           margin: 0; }
 
 #city_select_box {
   position: absolute;
   width: 100px;
-  border: 1px solid black;
+  border: 1px solid #b9b9b9;
   padding: 10px;
   background-color: white; }
 
 #switch_city {
-  text-decoration: none; }
+  text-decoration: none;
+  border: 1px solid white;
+  padding: 3px; }
   #switch_city:hover {
-    border: 1px solid #b9b9b9; }
+    border: 1px solid #b9b9b9;
+    color: #666666; }
 
 .box_title {
   margin-bottom: 5px; }

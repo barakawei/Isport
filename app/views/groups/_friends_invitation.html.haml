@@ -1,6 +1,6 @@
 .span-24
   .span-16
-    %h4= link_to '全选', "#", :class => 'select_all_friend'
+    %h4= link_to '全选', "#", :class => 'select_all_friend' if to_be_invited.size > 0
    
     - if to_be_invited
       .span-14.friends
@@ -8,22 +8,24 @@
                                                                 :perline => 7, 
                                                                 :no_pagination => true, 
                                                                 :edit => true}
+    %h4= '您还没有好友，去找几个志同道合的人吧' if @friends.size > 0 
     .span-14
       %span.right
-        = link_to '发送邀请', '#', :class => 'button invite'
+        = link_to '发送邀请', '#', :class => 'button invite' if to_be_invited.size > 0
         = link_to '完成', group_path(group), :class => 'button'
 
   .span-6.prepend-1.invited_friends
-    .span-6
-      %h4
-        = '已向'
-        = link_to "#{invitees_size}", '#'
-        = '位好友发出邀请'
-    = render :partial => "events/event_participants", :locals => { :participants => invitees_summary, 
-                                                            :perline => 3, 
-                                                            :no_pagination => true, 
-                                                            :edit => false}
-    
+    - if invitees_size > 0
+      .span-6
+        %h4
+          = '已向'
+          = link_to "#{invitees_size}", '#'
+          = '位好友发出邀请'
+      = render :partial => "events/event_participants", :locals => { :participants => invitees_summary, 
+                                                              :perline => 3, 
+                                                              :no_pagination => true, 
+                                                              :edit => false}
+      
 
 :javascript
   $(function() {

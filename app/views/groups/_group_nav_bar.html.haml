@@ -1,8 +1,12 @@
+-content_for :head do
+  = include_stylesheets :sepcial_pages_groups_common, :media => 'all'
+  = include_stylesheets :sepcial_pages_groups_show, :media => 'all'
 .span-17
   .span-14.last
     %ul.nav
-      %li= link_to "小组主页", group_path(@group), :class => "#{is_active?(current,"show")}"
-      %li= link_to "小组成员", members_group_path(@group), :class => "#{is_active?(current, "members")}"
-      %li= link_to "讨论区", forum_group_path(@group), :class => "#{is_active?(current,"forum")}"
-%hr
+      %li= link_to "小组主页", group_path(@group), :class => "#{is_active?(current,"show")} app_tab_border_radius"
+      %li= link_to "小组活动", group_events_path(@group), :class => "#{is_active?(current, "events")} app_tab_border_radius"
+      %li= link_to "小组成员", members_group_path(@group), :class => "#{is_active?(current, "members")} app_tab_border_radius"
+      %li= link_to "讨论区", forum_group_path(@group), :class => "#{is_active?(current,"forum")} app_tab_border_radius"
+%hr.nav
 

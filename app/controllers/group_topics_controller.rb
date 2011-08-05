@@ -1,4 +1,6 @@
 class GroupTopicsController < ApplicationController
+  before_filter :authenticate_user!, :except => [:show, :summary]
+ 
   def new
     current_person = current_user.person
     @group = Group.find(params[:group_id])

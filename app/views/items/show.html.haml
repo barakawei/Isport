@@ -27,8 +27,8 @@
         = @item.fans.size
         = t('items.fans')
     .span-17
-      = link_to t('items.edit'), edit_item_path(@item), :class => "button"
-
+      - if is_admin
+        = link_to t('items.edit'), edit_item_path(@item), :class => "button"
       = link_to t('items.back'), items_path, :class => "button"
       .dash_middle
     .span-17
@@ -58,7 +58,7 @@
             %span.medium_avatar=link_to group.name, group
   .span-6.last
     .span-6.left_padding
-      %h4= link_to t('items.events'), event_filter_path(current_user.city.pinyin, nil, @item.id, :week)
+      %h4= link_to t('items.events'), event_filter_path(@city.pinyin, nil, @item.id, 'week') 
     .span-6
       - @events.each_with_index do |event, index|
         .span-6

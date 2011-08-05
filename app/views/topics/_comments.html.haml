@@ -1,119 +1,165 @@
 -content_for :head do
   = include_stylesheets :special_pages_topic_comments, :media => 'all'
+
 - if comments.size > 0
-  - comments.each_with_index do |comment, index| 
-    - person = comment.person
-    .span-18.comment_to_topic{:class => ("first" if index == 0)}
-      .avatar
-        = person_image_link(person) 
-      .content.span-15{:comment_id => "#{comment.id}"}
-        %hr 
-        %span.comment_info
-          = link_to person.name, person_path(person)
-          = l(comment.created_at, :format => :long) 
-          = link_to '回复', '#', :class => "response" if person != current_person
-        = simple_format comment.content 
-      - comment.responses.each do |r|
-        - rperson = r.person
-        .span-16.comment_to_comment
-          .avatar_response
-            = person_image_link(rperson)     
-          .content.span-13{:comment_id => "#{comment.id}"}
-            %hr
-            %span.comment_info
-              = link_to rperson.name, person_path(rperson) 
-              = l(r.created_at, :format => :long)
-              = link_to '回复', '#', :class => "response to_comment" if rperson != current_person
-            = simple_format r.content
-  .span-15.pagination_box
-    = will_paginate comments, {:previous_label => t("pagination.previous"), 
+  -comments.each_with_index do |comment, index|
+    -author = comment.person
+    .comment_block{:comment_id => comment.id}
+      .comment_top
+        .author_box
+          = person_image_link(author)
+        .author_text
+          = link_to author.name, person_path(author), :class => 'author_name'
+        - if current_person == author
+          %a{:class => 'editIconWrapper right delete_comment', :href => topic_topic_comment_path(topic.id, comment.id)}
+            %span.editIcon='删除'
+      .comment_text
+        %span.content=simple_format comment.content
+      .comment_bottom
+        = link_to '回复', '#', :class => 'response_link' if current_person && current_person !=author
+        %span.right.comment_time
+          %em=l(comment.created_at, :format => :long)
+    -comment.responses.each do |res|
+      .response_box{:comment_id => comment.id}
+        - rperson = res.person
+        = person_image_link(rperson) 
+        .res_text
+          .res_text_inner
+            .res_text_frame
+              %span.res_operation.right=link_to '回复', '#', :class => 'response_link' if current_person && current_person != rperson 
+              %span.right=link_to '删除', topic_topic_comment_path(topic.id, comment.id, :response_id => res.id), :class => 'delete_response' if current_person == rperson 
+              %span.res_time=l(res.created_at, :format => :long)
+              %storng.res_author=link_to rperson.name, person_path(rperson), :class => 'author_name'
+              .res_content
+                %span=res.content
+
+.pagination_box
+  - if comments.size > 0
+    = will_paginate comments, {:previous_label => t("pagination.previous"),
                                :next_label => t("pagination.next")}
-.span-18.new_comment
-  = form_for new_comment,  :url => topic_topic_comments_path(topic.id), do |c|
-    .avatar
-      = person_image_link(current_user.person) 
-    .content.span-15
-      = c.text_area :content
-      = submit_tag t('activerecord.operations.event.comment'), :class => 'button submit'
-  .response_box.hide.span-16
-    = form_tag topic_topic_comments_path(topic.id) do
-      = text_area_tag "comment[content]" 
-      = hidden_field_tag "comment[commentable_id]"
-      = submit_tag '回复', :class => 'button submit'
-      = link_to '取消', '#', :class => "button cancel"
-      
+
+- if current_person
+  .span-16.prepend-top
+    = render 'common/header_box', :title => '发表评论'
+    .new_comment
+      = form_for comment, :url => topic_topic_comments_path(topic.id), do |c|
+        = person_image_link(current_person)
+        .content
+          = c.text_area :content
+          = submit_tag '确定', :class => 'post_button'
+
+
+  .response_form.hide
+    .response_box
+      = person_image_link(current_person) 
+      .res_text
+        .res_text_inner
+          .res_text_frame
+            %p.res_author=current_person.name
+            =form_tag topic_topic_comments_path(topic.id) do
+              = text_area_tag "comment[content]"
+              = hidden_field_tag "comment[commentable_id]"
+              = link_to('#', :class => 'cancel') do
+                .form_button.glass_button='取消'
+              .submit_button
+                = submit_tag '回复', :class => 'glass_button right'
+          
+
+        
 :javascript
-  $(function() {
-    var options = { success: appendToComments, resetForm:true };
+  $(function(){
+    var options = {success: appendToComments, resetForm:true};
     $('#new_topic_comment').ajaxForm(options);
   });
   
-  $('a.response').click(function() {
-      replylinkCallback($(this)); 
-      return false;
+  $('.response_link').click(function() {
+    $(this).hide();
+    responseClick($(this));  
+    return false;
   });
 
+  $('a.delete_comment').click(delete_comment);
+  $('a.delete_response').click(delete_comment);
 
-  function appendToComments(responseText, statusText, xhr, $form){
-    if ($('.pagination_box').length > 0) {  
-      $('.pagination_box').before(responseText);  
-      $('.pagination_box').prev().find('a.response').click(function() {
-        replylinkCallback($(this)); 
-        return false;
-      });
+  function delete_comment() {
+     var response = confirm('确定要删除这条评论吗?');
+     if (!response) {
+       return false;
+     }
+     $.post(this.href, {_method: 'delete'});
+
+     if($(this).hasClass('delete_comment')) {
+       $comment = $(this).parents('.comment_block')
+       var c_id = $comment.attr("comment_id");
+       $('[comment_id="'+ c_id +'"]').fadeOut(function() {  
+        $(this).remove();
+        if ( $('.comment_block').size() == 0 ) {
+          $('.topic_comments_title').hide();
+        }
+       });
+     } else {
+       $(this).parents('.response_box').fadeOut(function() {
+        $(this).remove();
+       });
+     }
+     return false;
+  }
+  
+  function responseClick(link) {
+    var block=null;
+    if (link.parents('.response_box').size() > 0) {
+      block = link.parents('.response_box')
     } else {
-      $('.new_comment').before(responseText); 
-      $('.new_comment').prev().find('a.response').click(function() {
-        replylinkCallback($(this)); 
-        return false;
-      });
+      block = link.parents('.comment_block')
+    }
+    var $res_form = block.next('.response_form');
+    if ($res_form.size > 0) {
+      $res_form = slideDown();
+    } else {
+      cloneResponseForm(block, link); 
     }
   }
 
-  function appendToResponses(responseText, statusText, xhr, $form){ 
-    parent = $($form.parents('.comment_to_topic')[0]);
-    response_box = $($form.parents('.response_box')[0]);
-    response_box.hide(); 
-    $(response_box.prev('.content').find('a.response')[0]).show();
-    $(responseText).appendTo(parent);
-    parent.children(':last').find('a.response').click(function() {
-      replylinkCallback($(this)); 
-      return false;
+  function cloneResponseForm(block, link) {
+    var response_form = $('.response_form:last').clone();
+    block.after(response_form);
+
+    var options = {success: appendToResponses, resetForm: true};
+    response_form.find('form').ajaxForm(options);
+    response_form.find('#comment_commentable_id').val(block.attr('comment_id')); 
+    response_form.slideDown('fast', function() {
+      response_form.find('textarea')
+                   .val('回复'+ block.find('a.author_name').html() + ":")
+                   .end().find('a.cancel').click(function() {
+                      link.show();
+                      response_form.slideUp();                   
+                      return false;
+                   });
     });
   }
-
-  function replylinkCallback(link) {
-    link.hide();
-    var comment = $(link.parents('.content')[0]);
-    if(comment.next('.response_box').length > 0) {
-      comment.next('.response_box').slideDown('fast', function() {
-        comment.next('.response_box').find('textarea').focus()
-                                      .val('回复'+link.prev('a').html()+ ": ");
-      });
-    } else {
-      cloneResponseBox(comment, link);
+  
+  function appendToResponses(responseText, statusText, xhr, $form){
+    var $parent = $form.parents('.response_form').prev('.comment_block');
+    if ($parent.size() == 0) {
+      $parent = $form.parents('.response_form').prev('.response_box');
     }
+    $form.parents('.response_form').hide();
+    var c_id = $parent.attr('comment_id');
+    $res = $(responseText);
+    $('[comment_id="'+ c_id +'"]:last').after($res);
+    $res.fadeIn('slow', function(){
+        $parent.find('a.response_link').show();
+    });
+    jQuery("html,body").animate({scrollTop: $res.offset().top-200}, 0); 
+  }
+      
+  function appendToComments(responseText, statusText, xhr, $form){
+    $('.topic_comments_title').show();
+    $comment = $(responseText);
+    $('.pagination_box').before($comment);
+    $comment.fadeIn();
     return false;
   }
 
-  function cloneResponseBox(comment, link) {
-    var response_box = $('.response_box:last').clone().hide();
-    comment.after(response_box);
 
-    if(link.hasClass('to_comment')) {
-      response_box.addClass('to_comment');
-    }
-
-    response_box.find('#comment_commentable_id')[0].value = comment.attr('comment_id'); 
-    var options = { success: appendToResponses, resetForm: true};
-    response_box.find('form').ajaxForm(options);
-    response_box.find('a.cancel').click(function() {
-      link.show();
-      response_box.slideUp('fast');
-      return false;
-    });
-    response_box.slideDown('fast', function() {
-        response_box.find('textarea').focus()
-                                     .val('回复'+link.prev('a').html()+ ": ");
-    });
-  }
+  

@@ -1,33 +1,97 @@
-.edit_event
-  :margin-right 10px
+@import '../../general/ui/mixins'
+.left_column
+  #map
+    :width 198px
+    :border 1px solid  #d5ddde
+  .avatar
+    img
+      @include border-radius(14px)
+      :width 198px
+      :height 198px
+      :border 1px solid #f2f2f2
 
-.event_info
-  p
+  .other_info
+    :margin 0px 0 5px 0
+    
+    .info_block
+      :display block
+      :float left
+      :background-color #dbe0e3
+      :color #546266
+      :padding 10px 10px 
+      :margin-right 10px
+      :width 180px 
+        
+      strong
+        :display block
+  
+  .person_array
+    :width 220px
     :margin-bottom 10px
-  :height 200px
-  :position relative
+    :float left
+    .avatar_container
+      :float left
+      :margin-right 5px
+
+      img
+        :width 45px
+        :height 45px
+        @include border-radius(5px)
+
+.right_column 
+  .app_big_title_bar.last_one
+    :margin-right 0
+  .app_big_title_bar
+    :margin-right 20px  
+
+  .event_title_bar
+    :width 630px
+    :float left
+    :background-color #ffffff
+    :border 3px solid  #d5ddde
+    @include border-radius(15px)
+    :padding 17px
+
+    .event_desc
+      font-size: 1.2em
+      line-height: 1.7em
+      border-top: 1px dashed #d5ddde
+      padding-top: 10px
+
+
+  .event_title
+    .status
+      :color #F78CA1  
+  .operations
+    :height 40px
+    .join_button
+      :float left
+      :width 60px
+      :height 20px
+      :background-color #00bed4
+      :line-height 20px
+      :font-size 13px
   
-  p.location
-    :margin 10px 0
-  
-  .time, .subject_and_owner
-    p
-      :margin-bottom 0
-  
-  p.at_bottom
-    :position absolute
-    :bottom 0
-    :margin-bottom 0
+      &:hover
+        :margin-top 2px
+        :background-color #e76875
+    .join_button.quit
+      :background-color #e76875
+
+      &:hover
+        :margin-top 2px
+        :background-color #00bed4
+
+    .join_button.like
+      :margin-right 17px
+        
+  .event_info
+    :width 630px
+    :float left
+    :background-color #ffffff
+    :border 3px solid #d5ddde
+    @include border-radius(14px)
+    :padding 20px
+    :margin-bottom 50px
 
 
-h2.title
-  :margin-bottom 0
-
-
-.event_pic
-  :margin-right 20px
-
-  img
-    :border 1px solid #e1e1e1
-
-  

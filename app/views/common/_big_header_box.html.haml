@@ -1,0 +1,15 @@
+.app_big_title_bar{:class => (defined?(class_name) ? class_name : " ")}
+  .app_big_header_box
+    .box_all{:style => (defined?(background_color) ? "background-color:#{background_color}" : " " ) }
+      .box_left
+      .box_middle
+        .header_content{ :style => (defined?(width) ? " width: #{width}" : "")}
+          %div
+            .number{ :style => (defined?(font_color) ? " color: #{font_color}" : "")}
+              =number if defined? number
+            .info{ :style => (defined?(font_color) ? " color: #{font_color}" : "")}
+              =text if defined? text
+          
+      .box_right
+  .clear
+

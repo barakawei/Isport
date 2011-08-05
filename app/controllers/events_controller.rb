@@ -2,11 +2,11 @@
 require 'geocoder'
 class EventsController < ApplicationController
   before_filter :authenticate_user!, 
-                :except => [:index, :show, :show_participants, 
-                            :show_references, :paginate_participants,
+                :except => [:index, :show, :participants, 
+                            :references, :paginate_participants,
                             :paginate_references, :filtered]
 
-  LIMIT = 12
+  LIMIT = 9 
 
   def index
     city_pinyin = params[:city] ? params[:city] : (current_user ? current_user.city.pinyin : City.first.pinyin)
@@ -19,7 +19,7 @@ class EventsController < ApplicationController
   def my_events
     @type = params[:type]
     @events = []
-    @removable = (@type == "joined" || @type == "recommended") 
+    @removable = false 
     @events = current_user.send(@type)
   end
 
@@ -35,14 +35,15 @@ class EventsController < ApplicationController
   end
 
   def show
-    @page = params[:page] ? params[:page].to_i : 1
     @event = Event.find(params[:id])
     @participants = @event.participants_top(LIMIT)
     @references = @event.references_top(LIMIT)
+    @current_person = current_user ? current_user.person : nil
     @comments = []
-    if @event.comments.size > 0
+    @comments_size = @event.comments.size
+    if @comments_size > 0
       @comments = @event.comments.paginate :page => params[:page],
-                                           :per_page => 15, :order => 'created_at'
+                                           :per_page => 8, :order => 'created_at'
 
     end
     new_comment
@@ -57,6 +58,12 @@ class EventsController < ApplicationController
     @step = 1 
     @event = Event.new
     @event.location = Location.new(:city_id => 1, :district_id => 1, :detail => " ")
+    unless params[:group_id].nil?
+      @group = Group.find(params[:group_id])
+      @event.group = @group
+      @event.item = @group.item
+      @event.location = Location.new(:city_id => @group.city_id, :district_id => @group.district_id)
+    end
     @items = Item.find(:all, :select => 'id, name')
   end
 
@@ -78,8 +85,10 @@ class EventsController < ApplicationController
 
   def create
     event_attrs = params[:event]
-    location = Location.new(event_attrs[:location_attributes])
+    location = Location.create(event_attrs[:location_attributes])
     l_info = GoogleGeoCoder.getLocation(location.to_s)
+    puts '********************************'
+    puts l_info
     event_attrs[:location_attributes].merge!(l_info) unless l_info.nil?
     @event = Event.new(event_attrs)
     @event.person = current_user.person
@@ -111,11 +120,11 @@ class EventsController < ApplicationController
     redirect_to(events_url)
   end
 
-  def show_participants
+  def participants
     get_participants
   end
 
-  def show_references
+  def references
     get_references
   end
 

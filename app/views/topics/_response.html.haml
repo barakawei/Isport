@@ -1,10 +1,19 @@
-.span-16.comment_to_comment
-  .avatar_response
-    = person_image_link(person)     
-  .content.span-13{:comment_id => "#{commentable.id}"}
-    %hr
-    %span.comment_info
-      = link_to person.name, person_path(person) unless current_user.person == person
-      = l(comment.created_at, :format => :long)
-    = simple_format comment.content
+.response_box.hide{:comment_id => commentable.id, :class => "comment_#{comment.id}"}
+  = person_image_link(person) 
+  .res_text
+    .res_text_inner
+      .res_text_frame
+        %span.right=link_to '删除', topic_topic_comment_path(topic.id, commentable.id, :response_id => comment.id), :class => 'delete_response'
+        %span.res_time=l(comment.created_at, :format => :long)
+        %storng.res_author= link_to person.name, person_path(person), :class => 'author_name'
+        .res_content
+          %span=comment.content
 
+:javascript
+  $(".comment_#{comment.id} .response_link").click(function() {
+    $(this).hide();
+    responseClick($(this));
+    return false;
+  });
+  
+  $('.comment_#{comment.id} a.delete_response').click(delete_comment);

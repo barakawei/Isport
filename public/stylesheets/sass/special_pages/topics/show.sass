@@ -1,3 +1,23 @@
+@import '../../general/ui/mixins'
 .topic_info
   :padding-left 20px
+
+p, h2
+  :white-space normal 
+  :overflow hidden 
+  :word-wrap break-word
+
+.topic_content
+  :width 664px
+  :padding 20px
+  :border 3px solid #d5ddde
+  :background-color #ffffff
+  @include border-radius(14px)
+
+  h2
+    :color #111111
+
+  p
+    :color #546266
+    :font-size 14px
 

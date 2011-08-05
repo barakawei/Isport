@@ -1,6 +1,5 @@
 .group_by_search
   .group_avatar
     = group_image_link(group, :thumb_large)
-  %span.item_name= '(' + group.item.name + ')'
-  %span.group_name= group.name
+  %span.group_name= '(' + group.item.name + ')' + group.name
   

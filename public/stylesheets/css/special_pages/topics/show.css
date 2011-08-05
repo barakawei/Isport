@@ -1,2 +1,22 @@
 .topic_info {
   padding-left: 20px; }
+
+p, h2 {
+  white-space: normal;
+  overflow: hidden;
+  word-wrap: break-word; }
+
+.topic_content {
+  width: 664px;
+  padding: 20px;
+  border: 3px solid #d5ddde;
+  background-color: white;
+  -moz-border-radius: 14px;
+  -webkit-border-radius: 14px;
+  border-radius: 14px;
+  behavior: url(/javascripts/PIE.htc); }
+  .topic_content h2 {
+    color: #111111; }
+  .topic_content p {
+    color: #546266;
+    font-size: 14px; }

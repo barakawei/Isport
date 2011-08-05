@@ -12,7 +12,7 @@
     = render 'form', :is_edit => true 
     .span-4.right
       %hr.space
-      %h4= link_to '>编辑活动成员', edit_group_members_path(@group)
+      %h4= link_to '>编辑小组成员', edit_group_members_path(@group)
   - else
     = render :partial => 'edit_group_members', :locals => {:friend_members => @friend_members,
                                                            :other_members => @other_members,

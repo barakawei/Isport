@@ -13,16 +13,16 @@
       = l(event.end_at, :format => :shortest )
   -else 
     %p
-      %b= t('events.start_at')+":"
+      %b.app_info_label= t('events.start_at')+":"
       = l(event.start_at, :format => :long)
     %p
-      %b= t('events.end_at')+":"
+      %b.app_info_label= t('events.end_at')+":"
       = l(event.end_at, :format => :long)
   %p
-    %b= t('events.location')+":"
+    %b.app_info_label= t('events.location')+":"
     = event.location.to_s 
   %p
-    %b= t('events.event_subject')+":"
+    %b.app_info_label= t('events.event_subject')+":"
     = link_to event.item.name, item_path(event.item)
   %p.at_bottom
     %br

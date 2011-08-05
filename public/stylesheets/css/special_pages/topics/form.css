@@ -1,8 +1,12 @@
 .field {
   margin-bottom: 10px; }
-  .field label {
+  .field label.info {
     display: inline-block;
     width: 40px; }
+  .field label.error {
+    display: block;
+    color: #ff6600;
+    margin-left: 42px; }
   .field textarea {
     vertical-align: top;
     width: 450px; }

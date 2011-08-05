@@ -1,10 +1,15 @@
 @import '../ui/mixins'
 
-$blue: #5179AC
+$blue: #0BB6E5
 $red: #FF0000
 $background: rgb(252,252,252)
 $bright_yellow: #F6B24D
-$darkblue: #002DB3
+$orange: #f48043
+$dark_gray: #666666
+$group_color: #11a3e1
+$event_color: #4BC5BE
+$error_color: #a10000
+$link_red: #FC4469
 
 .dim
   @include opacity(0.3) 
@@ -15,8 +20,20 @@ body
 .blue
   :color $blue
 
+.error_color
+  :color $error_color
+
+.group_color
+  :color $group_color
+
+.event_color
+  :color $event_color
+
 .bright_yellow
   :color $bright_yellow
+
+.link_red
+  :color $link_red
 
 b
   :color black
@@ -239,23 +256,26 @@ span.medium_avatar
 .pagination
   :margin-top 20px
   a,em
-    :border 1px solid #dddddd
+    @include border-radius(4px)
+    :border 1px solid #ffffff
+    :background-color #f1f1f1
     :padding 2px 5px 1px 5px
     :font-size 13px
     :margin-right 5px
+    :color #4C4C4C
 
   em
-    :background-color #f1f1f1
-    :color #999999
+    :background-color #FC4469
+    border: 1px solid #82190B
+    :color #ffffff
 
   span.disabled
     :display none
 
   a
     &:hover
-      :background-color #ff6600
+      :background-color #ffffff
       :text-decoration none
-      :color white
   
 .welcome_box
   :background none repeat scroll 0 0 #DCDDDE
@@ -283,7 +303,12 @@ span.medium_avatar
   @include border-radius(10px)
 
 .app_module_title 
+  :margin 15px 0 5px 0
+  :color #fc4469 
+
+.app_module_title_black
   :margin-bottom 5px
+  :color black
 
 #photozone
   :left 5px
@@ -379,6 +404,35 @@ span.medium_avatar
 .relation_button
   display: inline-block
 
+a.button
+  &:hover
+    color: #f48043
+  :font-size 12px
+  .ui-button-text-only, .ui-button-text
+    :padding 4px  5px
+
+
+.app_subfunction_title
+  :margin-right 5px
+
+.app_subfunction_title.groups
+  :color #11A3E1
+
+.app_subfunction_title.events
+  :color #4CC5BE
+
+.app_color_orange
+  :color $orange 
+
+.app_info_label
+  :color $dark_gray
+  :margin-right 5px
+
+.dark_gray
+  :color $dark_gray
+
+.app_tab_border_radius
+  @include border-radius-feed(5px)
 .glass_button
   background:  url(/images/ui/glass-light.png) repeat-x 0 50%
   @include border-radius(6px)
@@ -390,7 +444,6 @@ span.medium_avatar
   text-align: center
   cursor: pointer
   
-
 .scroll
   :text-align center
   :margin-top 10px
@@ -431,6 +484,94 @@ span.medium_avatar
     :background-color #e76875
   input
     :cursor pointer
+    
+.app_title_bar
+  .app_header_box
+    :float left      
+    
+    .box_all
+      background-color: #00BED4
+      color: white
+      float: left
+
+      .box_left
+        background: url("/images/ui/border_hdrs.png") no-repeat scroll 0 0 transparent
+        float: left
+        height: 41px
+        width: 15px
+      .box_middle
+        float: left
+        height: 41px
+
+        strong
+          :display block
+          :margin-top 10px
+          :font-size 13px
+      .box_right
+        background: url("/images/ui/border_hdrs.png") no-repeat scroll -15px 0 transparent
+        float: left
+        height: 41px
+        width: 15px
+  .bottom_pic
+    background: url("/images/ui/border_bubble_point.gif") no-repeat scroll 0 0 transparent 
+    background-color: #00BED4
+    height: 10px
+    margin: 0 0 10px 20px
+    width: 10px
+    
+      
+.app_title_bar.dark
+  .box_all
+    background-color: #56656C
+  .bottom_pic
+    background: url("/images/ui/border_bubble_point.gif") no-repeat scroll 0 0 #56656c
+        
+.app_big_title_bar
+  :float left
+  :display inline-block     
+
+  .box_all
+    background-color: #41464C
+    color: white
+    float: left
+      
+    .box_left
+      background: url("/images/ui/border_userstats.png") no-repeat scroll 0 0 transparent
+      float: left
+      height: 90px
+      width: 15px
+    .box_middle
+      float: left
+      width: 160px
+
+      .header_content
+        margin: 15px auto 0
+        width: 120px 
+        
+        .number
+          color: #F74367
+          font-family: arial
+          font-weight: bold
+          font-size: 40px
+          float: left
+        .info
+          float: left
+          margin-top: 15px
+          color: #f74367
+          font-size: 20px
+          margin-left: 10px
+          
+        
+    .box_right
+      background: url("/images/ui/border_userstats.png") no-repeat scroll -15px 0 transparent
+      float: left
+      height: 90px
+      width: 15px
+      
+      
+      
+    
+        
 
 .follow_button
   .glass_button

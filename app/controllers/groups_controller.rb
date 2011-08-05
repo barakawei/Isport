@@ -1,6 +1,6 @@
 class GroupsController < ApplicationController
-  prepend_before_filter :authenticate_user!, :except => [:index, :show] 
-  before_filter :init, :except => [:index, :show] 
+  prepend_before_filter :authenticate_user!, :except => [:index, :show, :forum, :members, :events] 
+  before_filter :init, :except => [:index, :show, :forum, :members, :events] 
   
   def index
     city_pinyin = params[:city] ? params[:city] : (current_user ? current_user.city.pinyin : City.first.pinyin)
@@ -17,6 +17,10 @@ class GroupsController < ApplicationController
     @current_person = current_user.person if current_user
     @topics = @group.topics.limit(10)
     @topics.each {|t| t.url = group_topic_path(@group, t)}
+
+    @event_size  = @group.events.count
+    @topic_size = @group.topics.count
+    @member_size = @group.members.count
   end
 
   def new
@@ -33,7 +37,7 @@ class GroupsController < ApplicationController
 
   def edit_members
     @group = Group.find(params[:id])
-    @members = @group.members.order('created_at ASC') || []
+    @members = @group.deletable_members.order('created_at ASC') || []
     @friends = current_user.friends || [ ] 
     @friend_members = @members & @friends
     @other_members = @members - @friend_members
@@ -62,7 +66,8 @@ class GroupsController < ApplicationController
     @group = Group.find(params[:id])
     @invitees = @group.invitees
     @invitees_size = @invitees.size
-    @to_be_invited_friends = current_user.friends - @invitees || []
+    @friends = current_user.friends
+    @to_be_invited_friends = @friends - @group.related_person || []
     @invitees.slice!(9, @invitees.length)
     @step = 2
     @steps = [I18n.t('groups.new_group_wizard.step_1'),I18n.t('groups.new_group_wizard.step_2')]
@@ -91,6 +96,12 @@ class GroupsController < ApplicationController
   def members
     @group = Group.find(params[:id])
     @members = @group.members.paginate :page => params[:page], :per_page => 10
+  end
+
+  def events
+    @group = Group.find(params[:id])
+    @events = @group.events.order('start_at desc').paginate :page => params[:page],
+                                                            :per_page => 10
   end
 
   def forum
