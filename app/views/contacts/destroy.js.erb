@@ -1,0 +1,5 @@
+person_id = <%= @person.id %>;
+button = $(".following[data_id='"+person_id+"']" ).parent().parent();
+link_html = "<%= escape_javascript(follow_button_tag(@person)) %>";
+button.html( link_html );
+

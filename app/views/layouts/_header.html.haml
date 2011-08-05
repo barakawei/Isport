@@ -41,14 +41,6 @@
           = current_user.name
         .icon
           &nbsp; &nbsp; &nbsp;
-    %li
-      #notification_badge
-        %a{ :href => "#" }
-          = "通知"
-          -if current_user && @unread_notify_count != 0
-            %span.message_count
-              %span
-                %span=@unread_notify_count 
   .accout.overlay.hide
     .accout_body.overlay_body
       %ul

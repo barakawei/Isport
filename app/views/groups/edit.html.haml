@@ -1,12 +1,6 @@
 - content_for :head do
   = include_stylesheets :sepcial_pages_groups_form, :media => 'all'
   = include_stylesheets :sepcial_pages_groups_edit, :media => 'all'
-.span-24.title_bar
-  %h2.title= t('groups.edit_group')
-  %h4.tab{:class => ('current' if params[:action] == 'edit')}= link_to t("groups.edit.group_info"), edit_group_path(@group);
-  %h4.tab.last_tab{:class => ('current' if params[:action] == 'edit_members' )}= link_to t("groups.edit.group_members"), edit_group_members_path(@group) 
-
-%hr
 .span-24
   - if params[:action] == 'edit' 
     = render 'form', :is_edit => true 

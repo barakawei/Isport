@@ -26,6 +26,8 @@ zh:
   password_confirmation: "密码确认"
   back: "返回"
   message: "信息"
+  follow: "关注"
+  following: "已关注"
   pagination:
     previous: "上一页"
     next: "下一页" 

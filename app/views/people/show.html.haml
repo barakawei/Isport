@@ -14,9 +14,9 @@
           .contacts
             .link_tab
               -if current_user.person.id == @person.id
-                =link_to t( '你关注的人' ),{:controller => 'people',:action => 'show_friends',:type=>'followed'}
+                =link_to t( '你关注的人' ),{:controller => 'people',:action => 'show_friends',:type=>'followed',:person_id=>@person.id}
               - else
-                =link_to t( '他关注的人' ),{:controller => 'people',:action => 'show_friends',:type=>'followed'}
+                =link_to t( '他关注的人' ),{:controller => 'people',:action => 'show_friends',:type=>'followed',:person_id=>@person.id}
 
             - for person in @followed_people
               .person_avatar
@@ -27,9 +27,9 @@
           .contacts
             .link_tab 
               -if current_user.person.id == @person.id
-                =link_to t( '关注你的人' ),{:controller => 'people',:action => 'show_friends',:type=>'befollowed'}
+                =link_to t( '关注你的人' ),{:controller => 'people',:action => 'show_friends',:type=>'befollowed',:person_id=>@person.id}
               - else
-                =link_to t( '关注你的人' ),{:controller => 'people',:action => 'show_friends',:type=>'befollowed'}
+                =link_to t( '关注他的人' ),{:controller => 'people',:action => 'show_friends',:type=>'befollowed',:person_id=>@person.id}
 
             - for person in @befollowed_people
               .person_avatar
@@ -66,14 +66,9 @@
         -if @person.user_id == current_user.id
           .edit_profile.glass_button
             ="编辑个人资料"
-        -elsif @contact && @contact.receiving
-          = link_to({:controller => 'contacts', :action => 'destroy',:person_id => @person.id },:method =>'delete') do
-            .remove_friend.glass_button
-              = "取消关注"
-        -else
-          =link_to({:controller => 'contacts', :action => 'create',:person_id => @person.id},:method =>'post') do
-            .add_friend.glass_button
-              = "关注"
+        -else 
+          .follow_button
+            = follow_button_tag( @person )
       %div=@person.profile.signature
       .history_bar
         .create_event.panel

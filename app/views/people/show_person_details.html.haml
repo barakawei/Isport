@@ -1,0 +1,36 @@
+
+.span-17
+  .person_card
+    = person_image_link2( @person,:thumb_medium )
+    %h2
+      = person_link(@person)
+    .follow_prompt.follow_button
+      = follow_button_tag( @person )
+
+  .person_details_tab
+    %ul
+      %li.following_tab
+        = link_to({:controller => 'people',:action => 'show_friends',:type=>'followed',:person_id =>@person.id}) do
+          = "你关注的人"
+          %span
+            = 3
+      %li.followers_tab
+        = link_to({:controller => 'people',:action => 'show_friends',:type=>'befollowed',:person_id=>@person.id}) do
+          ="关注你的人"
+          %span
+            = 40
+      %li.groups_tab
+        = link_to( '#' ) do 
+          ="加入的小组"
+          %span
+            =2
+      %li.items_tab
+        = link_to( '#' ) do
+          = "喜欢的项目"
+          %span
+            = 3
+    .clear
+       
+  .person_details_content      
+    = render 'show_contacts',:people => @people
+    

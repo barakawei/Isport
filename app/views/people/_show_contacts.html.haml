@@ -1,0 +1,8 @@
+
+.friends_set
+  %ul
+    - for person in people
+      %li
+        = render 'people/person_element',:person => person
+.clear
+

@@ -10,7 +10,7 @@
     #followed_people
       - if @followed_people.length > 0
         .link_tab
-          = link_to '你关注的人',{:controller => 'people',:action => 'show_friends',:type=>'followed'}
+          = link_to '你关注的人',{:controller => 'people',:action => 'show_friends',:type=>'followed',:person_id =>@person.id}
         .contacts
           - for person in @followed_people
             .person_avatar

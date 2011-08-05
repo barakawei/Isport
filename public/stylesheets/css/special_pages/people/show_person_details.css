@@ -1,0 +1,110 @@
+.person_details_tab {
+  border-bottom: 2px solid #d5ddde;
+  margin-bottom: 15px;
+  margin-top: 15px;
+  padding: 0;
+  font-size: 13px; }
+  .person_details_tab li {
+    float: left;
+    margin: 0 20px 0 0;
+    font-weight: bold; }
+
+.person_card {
+  height: 100px; }
+  .person_card .avatar {
+    background-color: white;
+    padding: 4px;
+    border: 1px solid #e5e5e5;
+    height: 80px;
+    width: 80px;
+    float: left; }
+  .person_card h2 {
+    margin-left: 95px; }
+  .person_card .follow_prompt {
+    margin-left: 95px; }
+
+.person_element {
+  border: 1px solid #d5ddde;
+  padding: 4px 8px;
+  width: 95px;
+  height: 150px;
+  background-color: white; }
+  .person_element .person_avatar img {
+    width: 95px;
+    height: 95px; }
+  .person_element h4 {
+    margin: 0; }
+    .person_element h4 em {
+      color: #999999;
+      font-weight: normal;
+      font-size: 11px;
+      padding-left: 10px;
+      font-style: normal;
+      line-height: 1.7;
+      background: url(/images/ui/icon-location.png) no-repeat 0 50%; }
+  .person_element .content .person_status {
+    font-weight: bold;
+    height: 30px;
+    color: #777777; }
+    .person_element .content .person_status .follow_button_mini {
+      font-size: 1em;
+      font-weight: bold;
+      text-decoration: none;
+      float: right; }
+      .person_element .content .person_status .follow_button_mini .following {
+        margin-top: 5px;
+        padding: 6px;
+        width: 12px;
+        height: 12px;
+        background-color: #8aba56;
+        color: #666666; }
+        .person_element .content .person_status .follow_button_mini .following span {
+          background: url(/images/ui/icon-check.png) no-repeat 0 50%;
+          text-indent: -999em;
+          padding-left: 18px;
+          float: left;
+          line-height: 12px; }
+        .person_element .content .person_status .follow_button_mini .following:hover {
+          background-color: #ea4c88; }
+          .person_element .content .person_status .follow_button_mini .following:hover span {
+            background: url(/images/ui/icon-x.png) no-repeat 0 50%; }
+      .person_element .content .person_status .follow_button_mini .follow {
+        margin-top: 5px;
+        padding: 6px;
+        width: 12px;
+        height: 12px;
+        background-color: lightGrey;
+        color: #666666; }
+        .person_element .content .person_status .follow_button_mini .follow span {
+          background: url(/images/ui/follow-gray.gif) no-repeat 0 50%;
+          text-indent: -999em;
+          padding-left: 18px;
+          float: left;
+          line-height: 12px; }
+        .person_element .content .person_status .follow_button_mini .follow:hover {
+          background-color: #8aba56; }
+          .person_element .content .person_status .follow_button_mini .follow:hover span {
+            background: url(/images/ui/follow-white.gif) no-repeat 0 50%; }
+    .person_element .content .person_status .element {
+      border-left: 1px solid #e5e5e5;
+      height: 30px;
+      float: left;
+      padding-left: 5px;
+      margin-left: 5px; }
+      .person_element .content .person_status .element:first-child {
+        border: none;
+        margin-left: 0px;
+        padding-left: 0px; }
+      .person_element .content .person_status .element span {
+        margin-top: 3px;
+        display: block;
+        font-size: 11px;
+        font-weight: normal;
+        color: #999999;
+        line-height: 1px; }
+
+.friends_set ul li {
+  float: left;
+  width: 150px;
+  padding-bottom: 10px;
+  overflow: hidden; }

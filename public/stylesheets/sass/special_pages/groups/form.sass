@@ -1,14 +1,17 @@
+@import '../../general/ui/mixins'
 .form_area
-  :padding-left 20px
+  :padding 30px 10px 20px 30px
+  :background-color #ffffff
+  @include border-radius(15px)
   
   .field_with_errors
     :display inline-block
   
   .field.module
-    :margin-bottom 20px
+    :margin-bottom 25px
 
   .field
-    :margin-bottom 5px
+    :margin-bottom 10px
 
     .validation-error
       :color red
@@ -23,22 +26,60 @@
 
     label.field_info
       :display inline-block
-      :width 60px
+      :width 70px
+      :color #424f55
+      :font-size 13px
 
     label.error
       :display block
       :color #ff6600 
-      :margin-left 62px
+      :margin-left 72px
 
     textarea, input#group_name
+      border: 1px solid #D5DDDF
       :vertical-align top
       :width 400px
+      :font-size 13px
     textarea
       :height 200px
+    input#group_name
+      color: #576B72
+      height: 30px
+      line-height: 30px
+      
 
     select
       :font-size 13px
 
-    
 
-  
+
+#group_photo_upload
+  .img_contained
+    :width 180px
+    :background-color #ffffff  
+    @include border-radius(10px)
+    :margin-bottom 10px
+
+    img
+      :width 180px
+      :height 180px
+
+.actions
+  :padding-left 40px
+  input
+    background: url("/images/ui/btn-personal-settings.gif") no-repeat scroll 0 0 transparent
+    border: medium none
+    cursor: pointer
+    display: inline
+    float: right
+    font-style: normal
+    height: 46px
+    line-height: 0
+    margin: 13px 4px 0 0
+    overflow: hidden
+    text-indent: -9999px
+    width: 198px
+
+    &:hover
+      background: url("/images/ui/btn-personal-settings.gif") no-repeat scroll 100% -46px transparent
+    
