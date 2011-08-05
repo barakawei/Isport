@@ -56,30 +56,31 @@
 #group_photo_upload
   .img_contained
     :width 180px
-    :background-color #ffffff  
-    @include border-radius(10px)
     :margin-bottom 10px
 
     img
+      @include border-radius(10px)
       :width 180px
       :height 180px
 
 .actions
   :padding-left 40px
   input
-    background: url("/images/ui/btn-personal-settings.gif") no-repeat scroll 0 0 transparent
+    background: url("/images/ui/person_edit.png") no-repeat scroll 0 0 transparent
     border: medium none
     cursor: pointer
     display: inline
     float: right
-    font-style: normal
+    font-size: 16px
+    color: #ffffff
     height: 46px
-    line-height: 0
     margin: 13px 4px 0 0
     overflow: hidden
-    text-indent: -9999px
     width: 198px
 
     &:hover
-      background: url("/images/ui/btn-personal-settings.gif") no-repeat scroll 100% -46px transparent
+      background: url("/images/ui/person_edit.png") no-repeat scroll 100% -46px transparent
+      margin: 15px 4px 0 0
+      
+      
     

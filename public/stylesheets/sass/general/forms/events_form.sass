@@ -1,7 +1,9 @@
+@import '../../general/ui/mixins'
 #event_location_attributes_detail
   :width 250px
   :vertical-align bottom
   :padding 2px 0.3em
+
 .left_margin
   :margin-left 10px
 
@@ -10,82 +12,129 @@
   :overflow hidden
 
 .event_form
-  .top
-    :display inline
-    :margin 0
   
-  .edit_members_bar
-    h4
+  .form_area
+    :padding 30px 10px 20px 30px
+    :background-color #ffffff
+    @include border-radius(15px)
+    border: 1px solid #d5ddde
+      
+    .top
       :display inline
-
-  //fix ie bug(attribute selector useless)
-  input#event_title, input#event_location
-    :width 400px 
-    :padding-right 0
-
-  input:not([type='submit']):not([type='reset']):not([type='checkbox'])
-    :width 400px 
-    :vertical-align top 
-    :padding-right 0
-    :font-size 12px
-
-  select
-    :font-size 13px
-
-  #event_participants_limit
-    :width 50px
-
-  textarea
-    :width 400px 
-    :padding 0
-    :vertical-align top 
-    :margin 0
-    :font-size 12px
-    :height 200px
-
-  .field.module
-    :margin-top 20px
-
-  .field
-    :margin-bottom 5px
+      :margin 0
     
-    .address
-      :display inline-block
-
-    label.info
-      :display inline-block
-      :width 60px
-      :font-size 12px
-
-    label.error
-      :display block
-      :color #ff6600
-      :margin-left 62px
-
-  input[type='checkbox']
-    :vertical-align text-bottom 
-    :margin 0
-  
-  .subject
-    .field_with_errors
-      :width auto
-
-  .field_with_errors
-    :display inline 
-
+    //fix ie bug(attribute selector useless)
     input#event_title, input#event_location
       :width 400px 
+      :padding-right 0
+      border: 1px solid #D5DDDF
+      :font-size 13px
+      color: #576B72
 
+    input#event_title
+      :height 30px
+      :line-height 30px
 
     input:not([type='submit']):not([type='reset']):not([type='checkbox'])
       :width 400px 
+      :vertical-align top 
+      :padding-right 0
+      :font-size 13px
+      color: #576B72
 
+    select
+      :font-size 13px
+      border: 1px solid #D5DDDF
+
+    #event_participants_limit
+      :width 50px
 
     textarea
       :width 400px 
+      :padding 5px 
+      :vertical-align top 
+      :margin 0
+      :font-size 13px
+      :height 200px
 
-  .validation-error
-    :display block
-    :margin-left 62px
-    :color red
+    .field.module
+      :margin-top 20px
 
+    .field
+      :margin-bottom 5px
+      
+      .address
+        :display inline-block
+
+      label.info
+        :display inline-block
+        :width 70px
+        :color #424f55
+        :font-size 13px
+
+      label.error
+        :display block
+        :color #ff6600
+        :margin-left 72px
+
+    input[type='checkbox']
+      :vertical-align text-bottom 
+      :margin 0
+    
+    .subject
+      .field_with_errors
+        :width auto
+
+    .field_with_errors
+      :display inline 
+
+      input#event_title, input#event_location
+        :width 400px 
+
+
+      input:not([type='submit']):not([type='reset']):not([type='checkbox'])
+        :width 400px 
+
+
+      textarea
+        :width 400px 
+
+    .validation-error
+      :display block
+      :margin-left 62px
+      :color red
+
+
+#event_photo_upload
+  .img_contained
+    :width 180px
+    :margin-bottom 10px
+
+    img
+      @include border-radius(10px)
+      :width 180px
+      :height 180px
+      :border 1px solid #d5ddde
+
+.actions
+  :padding-left 40px
+  input
+    background: url("/images/ui/person_edit.png") no-repeat scroll 0 0 transparent
+    border: medium none
+    cursor: pointer
+    display: inline
+    float: right
+    font-size: 16px
+    color: #ffffff
+    height: 46px
+    margin: 13px 4px 0 0
+    overflow: hidden
+    width: 198px
+
+    &:hover
+      background: url("/images/ui/person_edit.png") no-repeat scroll 100% -46px transparent
+      margin: 15px 4px 0 0
+      
+      
+    
+    
