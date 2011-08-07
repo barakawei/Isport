@@ -1,5 +1,4 @@
-
-.span-17
+.span-18
   .person_card
     = person_image_link2( @person,:thumb_medium )
     %h2
@@ -13,24 +12,42 @@
         = link_to({:controller => 'people',:action => 'show_friends',:type=>'followed',:person_id =>@person.id}) do
           = "你关注的人"
           %span
-            = 3
+            = @person.user.followed_people.size
       %li.followers_tab
         = link_to({:controller => 'people',:action => 'show_friends',:type=>'befollowed',:person_id=>@person.id}) do
           ="关注你的人"
           %span
-            = 40
+            = @person.user.befollowed_people.size
       %li.groups_tab
-        = link_to( '#' ) do 
+        = link_to({:controller => 'people',:action => 'show_groups',:person_id=>@person.id}) do 
           ="加入的小组"
           %span
-            =2
+            =@person.joined_groups.size
       %li.items_tab
-        = link_to( '#' ) do
+        = link_to( {:controller => 'people',:action => 'show_items',:person_id=>@person.id}) do
           = "喜欢的项目"
           %span
-            = 3
+            = @person.interests.size
     .clear
        
   .person_details_content      
-    = render 'show_contacts',:people => @people
+    = render 'show_contacts',:people => @people,:groups => @groups,:items => @items
+  .pagination_box
+    - if !@people.nil? && @people.size > 0
+      = will_paginate @people, {:previous_label => t("pagination.previous"),
+                               :next_label => t("pagination.next")}
+
+    - if !@groups.nil? && @groups.size > 0
+      = will_paginate @groups, {:previous_label => t("pagination.previous"),
+                               :next_label => t("pagination.next")}
+
+    - if !@items.nil? && @items.size > 0
+      = will_paginate @items, {:previous_label => t("pagination.previous"),
+                               :next_label => t("pagination.next")}
+:javascript
+  select_tab = '#{@select_tab}';
+  if(select_tab != ''  ){
+    $( '.'+select_tab ).addClass( 'select_tab_on' ); 
+  }
+
     

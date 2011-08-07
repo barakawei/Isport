@@ -1,0 +1,21 @@
+.person_element
+  .content
+    %h4
+      = object_name_link( group )  
+    .person_avatar
+      = group_image_link( group,:thumb_medium )
+    .person_status
+      .element
+        =  group.members.size
+        %span
+          = "成员"
+      .element
+        = group.events.size
+        %span
+          = "活动"
+      .element
+        = group.topics.size
+        %span
+          = "话题"
+
+

@@ -2,7 +2,7 @@
   %a{ :href => event_path( event ) }
     .event_box
       .event_border
-        = "活动"
+        = event.item.name
       .content
         .title
           = event.title
@@ -24,3 +24,4 @@
                 .day
                   =event.start_at.strftime('%d').to_s
           .clear
+    .clear

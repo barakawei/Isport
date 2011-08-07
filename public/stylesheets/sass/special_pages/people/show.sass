@@ -59,10 +59,24 @@
   :background url(/images/ui/border_side.png) no-repeat 0 0
 .events_panel
   .event_box_panel
+    :float left
     a
       outline: none
       text-decoration: none
       :cursor pointer
+      &:hover
+        .content
+          :color #fc4469
+          .info
+            .info_left
+              :background url("/images/ui/arrowredreally.png") no-repeat scroll left top #FC5173
+              :color white
+            .info_right
+              :background url( "/images/ui/arrow-red.gif" )
+              .event_closed
+                :display none
+              .calendar
+                :display none
       
     .event_box
       :width 300px

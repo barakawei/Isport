@@ -14,15 +14,32 @@ class PeopleController < ApplicationController
     respond_with @people
   end
 
+  def show_groups
+    @person = Person.find( params[ :person_id ] )
+    @groups = @person.joined_groups.paginate(:page => params[:page], :per_page => 20)
+    @select_tab = 'groups_tab'  
+    render "people/show_person_details"
+  end
+
+  def show_items
+    @person = Person.find( params[ :person_id ] )
+    @items= @person.interests.paginate(:page => params[:page], :per_page => 20)
+    @select_tab = 'items_tab'  
+    render "people/show_person_details"
+  end
+
   def show_friends
     @type = params[ :type ]
     @person = Person.find( params[ :person_id ] )
     if @type == 'followed'
-      @people = @person.user.followed_people
-    else
-      @people = @person.user.befollowed_people
-    end
+      @people = @person.user.followed_people.paginate(:page => params[:page], :per_page => 20)
 
+      @select_tab = 'following_tab'  
+    else
+      @people = @person.user.befollowed_people.paginate(:page => params[:page], :per_page => 20)
+
+      @select_tab = 'followers_tab'  
+    end
     render "people/show_person_details"
 
   end

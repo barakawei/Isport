@@ -14,6 +14,7 @@ class NotificationsController < ApplicationController
     
     respond_to do |format|  
       format.json { render :json => { :notifications => @notifications}}    
+      format.html { render 'index.html.haml' }
     end 
   end
 

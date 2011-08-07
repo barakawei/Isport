@@ -2,9 +2,32 @@
 .red_tab
   :border 1px solid #F74367
   :background-color #F74367
+  :color white
+  :font-weight bold
+  :font-size 15px
+  :height 11px
+  :line-height 10px
+  &:hover
+    :border 1px solid #00BED4
+    :color white
+    :background-color #00BED4
+    :text-decoration none 
+    :margin-top 3px
+    :height 8px
+    :line-height 8px
+    .avatar
+      :margin-top 0.1em
+
 .gray_tab
+  :height 11px
+  :line-height 10px
   :border 1px solid #E9EEF1
   :background-color #E9EEF1
+  :color #FC4469
+  :font-weight bold
+  :font-size 15px
+  &:hover
+    :color #FC4469
 .notifaction
   :padding-right 60px
 
@@ -17,6 +40,9 @@
   :width 100%
   :top 0
   :left 0
+
+  .container
+    :height 91px
 
   .message_count
     background: url("/images/ui/message_count.png") no-repeat scroll transparent
@@ -51,6 +77,8 @@
 
 
   .sections
+    :position absolute
+    :bottom 0px
     :font-size 14px
     :font-weight normal
   ul
@@ -63,20 +91,10 @@
       margin-right: 2px
     a
       @include border-radius-feed(5px)
-      :color  #FCFCFC
       :width 70px
-      :height 10px
-      :line-height 10px
       display: block
       padding: 11px 10px
       text-decoration: none
-
-      &:hover
-        :border  1px solid #00BED4
-        :background-color #00BED4
-        :color #FCFCFC
-        :text-decoration none 
-        :margin-bottom -20px
 
       .active
         :font-size 11px
@@ -89,7 +107,7 @@
       :top 5px
       :left 5px
       :right 5px
-      :bottom 4px
+      :bottom 3px
     
     input
       font-size: 10px
@@ -104,19 +122,17 @@
   .setting
     :position absolute
     :right 0
-    :bottom 10px
     li 
       :position relative
-      :line-height 20px
       .avatar
         :position absolute
+        :top 4px
         :left 3px
         :width 20px
         :height 20px
       a
         :padding
           :right 2px
-        :display inline
         .name
           :display inline
           :margin-left 22px
@@ -153,14 +169,14 @@
     :padding-right 10px
   
 #notification_dropdown
-  
+  @include dropdown-shadow
   border-left: 2px solid #DBE1E1
   border-right: 2px solid #DBE1E1
   border-bottom: 2px solid #DBE1E1
   :background-color #E9EEf1
   :position absolute
-  :top 90px
-  :right -155px
+  :top 91px
+  :right -100px
   :width 350px
   :display none
   :z-index 999
@@ -172,6 +188,7 @@
   .title
     :padding 10px
     h4
+      :height 20px
       :padding
         :bottom 0
       :margin
@@ -179,6 +196,7 @@
 
   .notification_element,
   .title
+    background-color: #E9EEF1
     :border
       :bottom 1px solid #ddd
 
