@@ -18,7 +18,7 @@
               - else
                 =link_to t( '他关注的人' ),{:controller => 'people',:action => 'show_friends',:type=>'followed',:person_id=>@person.id}
 
-            - for person in @followed_people
+            - for person in @followed_people[ 0...20 ]
               .person_avatar
                 = person_image_link(person)
 
@@ -31,15 +31,16 @@
               - else
                 =link_to t( '关注他的人' ),{:controller => 'people',:action => 'show_friends',:type=>'befollowed',:person_id=>@person.id}
 
-            - for person in @befollowed_people
+            - for person in @befollowed_people[ 0...20 ]
               .person_avatar
                 = person_image_link(person)
       
       .groups
         .link_tab
-          = link_to '加入的小组','#'
+          = link_to '加入的小组',{:controller => 'people',:action => 'show_groups',:person_id=>@person.id}
+
         %ul
-          -for group in @person.joined_groups
+          -for group in @person.joined_groups[ 0...5 ]
             %li
               .group
                 .avatar
@@ -48,9 +49,10 @@
                   = object_name_link(group)
       .groups
         .link_tab
-          = link_to '喜欢的项目','#'
+          = link_to '喜欢的项目',{:controller => 'people',:action => 'show_items',:person_id=>@person.id}
+
         %ul
-          -for item in @person.interests
+          -for item in @person.interests[ 0...5 ]
             %li
               .group
                 .avatar
@@ -75,9 +77,9 @@
           .border_left_side
           .counts_center.red
             .title
-              = "组织"
+              = "参加"
             .counts
-              =68
+              =@person.involved_events.size
             .info
               = "活动"
           .border_right_side
@@ -87,25 +89,14 @@
           .border_left_side
           .counts_center.green
             .title
-              = "参加"
+              = "加入"
             .counts
-              =120
+              =@person.joined_groups.size
             .info
-              = "活动"
+              = "小组"
 
           .border_right_side
 
-
-        .points.panel
-          .border_left_side
-          .counts_center.yellow
-            .title
-              = "获得"
-            .counts
-              = 250
-            .info
-              = "红心"
-          .border_right_side
     .stream
       .events_panel
         .current_events

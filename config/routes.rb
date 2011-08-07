@@ -32,6 +32,8 @@ Isport::Application.routes.draw do
   end
 
   match '/people/show_posts' => 'people#show_posts'
+  match '/people/show_items' => 'people#show_items'
+  match '/people/show_groups' => 'people#show_groups'
   match '/profile/update_profile' => 'profiles#update_profile'
   match '/people/show_person_events' => 'people#show_person_events'
   match '/people/show_person_profile' => 'people#show_person_profile'

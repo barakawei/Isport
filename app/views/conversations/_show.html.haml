@@ -1,4 +1,4 @@
-.span-16.last
+.last
   .conversation_participants
     .span-9
       %h3
@@ -8,14 +8,11 @@
         = link_to  '回复', '#new_message'
         = link_to '删除并中止谈话', conversation_visibility_path(conversation), :method => 'delete',:confirm => "确定删除吗？"
 
-    .span-6.avatars.last
+    .avatars
       - for participant in conversation.participants
         .person_avatar
           = person_image_link(participant)
 
-  %br
-  %br
-  %br
   %br
 .span-16.last
   .stream

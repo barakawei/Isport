@@ -1,20 +1,22 @@
 .person_element
   .content
     %h4
-      = object_name_link( group )  
+      = object_name_link( item )  
     .person_avatar
-      = group_image_link( group,:thumb_medium )
+      = item_image_link( item,{ :size => :thumb_medium })
     .person_status
       .element
-        =  group.members.size
+        =  item.fans.size
         %span
           = "成员"
       .element
-        = group.events.size
+        = item.events.size
         %span
           = "活动"
       .element
-        = group.topics.size
+        = item.groups.size
         %span
-          = "话题"
+          = "小组"
+
+
 

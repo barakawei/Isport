@@ -227,9 +227,9 @@ span.medium_avatar {
   width: 950px;
   height: 500px; }
 
-.pagination {
+.pagination_box .pagination {
   margin-top: 20px; }
-  .pagination a, .pagination em {
+  .pagination_box .pagination a, .pagination_box .pagination em {
     -moz-border-radius: 4px;
     -webkit-border-radius: 4px;
     border-radius: 4px;
@@ -240,13 +240,13 @@ span.medium_avatar {
     font-size: 13px;
     margin-right: 5px;
     color: #4c4c4c; }
-  .pagination em {
+  .pagination_box .pagination em {
     background-color: #fc4469;
     border: 1px solid #82190b;
     color: white; }
-  .pagination span.disabled {
+  .pagination_box .pagination span.disabled {
     display: none; }
-  .pagination a:hover {
+  .pagination_box .pagination a:hover {
     background-color: white;
     text-decoration: none; }
 
@@ -531,3 +531,12 @@ a.button {
     .follow_button .follow:hover span {
       background: url(/images/ui/follow-white.gif) no-repeat 0 50%;
       color: white; }
+
+.notifactions {
+  width: 400px;
+  margin-left: 300px; }
+  .notifactions .stream_element {
+    background: #f5f5f3;
+    border-bottom: 1px solid #eceae8; }
+    .notifactions .stream_element .content {
+      margin-left: 60px; }

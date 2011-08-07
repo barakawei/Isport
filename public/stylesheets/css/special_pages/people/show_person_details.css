@@ -1,3 +1,6 @@
+.select_tab_on a {
+  color: black; }
+
 .person_details_tab {
   border-bottom: 2px solid #d5ddde;
   margin-bottom: 15px;
@@ -24,14 +27,26 @@
     margin-left: 95px; }
 
 .person_element {
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  behavior: url(/javascripts/PIE.htc);
+  -webkit-box-shadow: 0 0 2px 1px #cccccc;
+  -moz-box-shadow: 0 0 2px 1px #cccccc;
+  box-shadow: 0 0 2px 1px #cccccc;
+  behavior: url(/javascripts/PIE.htc);
   border: 1px solid #d5ddde;
-  padding: 4px 8px;
+  margin-left: 8px;
+  margin-top: 8px;
+  padding: 5px 8px 5px 8px;
   width: 95px;
   height: 150px;
   background-color: white; }
   .person_element .person_avatar img {
     width: 95px;
     height: 95px; }
+    .person_element .person_avatar img:hover {
+      opacity: 0.8; }
   .person_element h4 {
     margin: 0; }
     .person_element h4 em {
@@ -105,6 +120,6 @@
 
 .friends_set ul li {
   float: left;
-  width: 150px;
+  width: 140px;
   padding-bottom: 10px;
   overflow: hidden; }

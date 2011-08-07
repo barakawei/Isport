@@ -49,7 +49,7 @@
         = link_to "更多>>", group_filter_path(:city => @city.pinyin, :item_id => @item.id) 
        
     .hot_area
-      = render :partial => 'groups/group_element',:collection => @groups_hash,:as => :group
+      = render :partial => 'groups/group_box',:collection => @groups_hash,:as => :group
       
 
 

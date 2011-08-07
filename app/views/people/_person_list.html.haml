@@ -12,14 +12,15 @@
         .link_tab
           = link_to '你关注的人',{:controller => 'people',:action => 'show_friends',:type=>'followed',:person_id =>@person.id}
         .contacts
-          - for person in @followed_people
+          - for person in @followed_people[ 0...20]
             .person_avatar
               = person_image_link(person)
   .groups
     .link_tab
-      = link_to '加入的小组','#'
+      = link_to '加入的小组',{:controller => 'people',:action => 'show_groups',:person_id =>@person.id}
+
     %ul
-      -for group in current_user.person.joined_groups
+      -for group in current_user.person.joined_groups[ 0...5 ]
         %li
           .group
             .avatar
@@ -28,9 +29,10 @@
               = object_name_link(group)
   .groups
     .link_tab
-      = link_to '喜欢的项目','#'
+      = link_to '喜欢的项目',{:controller => 'people',:action => 'show_items',:person_id =>@person.id}
+
     %ul
-      -for item in current_user.person.interests
+      -for item in current_user.person.interests[ 0...5 ]
         %li
           .group
             .avatar

@@ -57,58 +57,71 @@
 
 .events_panel {
   margin-top: 30px; }
-  .events_panel .event_box_panel a {
-    outline: none;
-    text-decoration: none;
-    cursor: pointer; }
-  .events_panel .event_box_panel .event_box {
-    width: 300px;
-    margin: 0 10px 14px 15px;
+  .events_panel .event_box_panel {
     float: left; }
-    .events_panel .event_box_panel .event_box .event_border {
-      background: url(/images/ui/event_border.png) no-repeat scroll 0 0;
-      color: #fc4469;
-      font-size: 15px;
-      font-weight: normal;
-      margin: 0;
-      padding-left: 30px;
-      height: 26px; }
-    .events_panel .event_box_panel .event_box .content {
-      background: url(/images/ui/event-box.png) no-repeat scroll 0 100%;
-      min-height: 100px;
-      padding: 10px;
-      color: #11bacd; }
-      .events_panel .event_box_panel .event_box .content .title {
-        font-size: 14px;
-        font-weight: bold;
-        height: 40px; }
-      .events_panel .event_box_panel .event_box .content .info .info_left {
-        float: left;
-        display: inline;
-        font-weight: bold;
-        height: 30px;
-        padding: 10px 10px 10px 10px;
-        width: 188px;
-        background: url(/images/ui/box_arrow.png) top left no-repeat #ecf4f6;
-        color: #568ea6; }
-        .events_panel .event_box_panel .event_box .content .info .info_left img {
-          float: left;
-          margin-right: 5px;
-          vertical-align: middle;
-          height: 32px;
-          width: 32px; }
-      .events_panel .event_box_panel .event_box .content .info .info_right {
-        float: right;
-        background-color: #ecf4f6;
-        display: inline;
-        font-weight: bold;
-        color: #568ea6;
-        height: 30px;
+    .events_panel .event_box_panel a {
+      outline: none;
+      text-decoration: none;
+      cursor: pointer; }
+      .events_panel .event_box_panel a:hover .content {
+        color: #fc4469; }
+        .events_panel .event_box_panel a:hover .content .info .info_left {
+          background: url("/images/ui/arrowredreally.png") no-repeat scroll left top #fc5173;
+          color: white; }
+        .events_panel .event_box_panel a:hover .content .info .info_right {
+          background: url("/images/ui/arrow-red.gif"); }
+          .events_panel .event_box_panel a:hover .content .info .info_right .event_closed {
+            display: none; }
+          .events_panel .event_box_panel a:hover .content .info .info_right .calendar {
+            display: none; }
+    .events_panel .event_box_panel .event_box {
+      width: 300px;
+      margin: 0 10px 14px 15px;
+      float: left; }
+      .events_panel .event_box_panel .event_box .event_border {
+        background: url(/images/ui/event_border.png) no-repeat scroll 0 0;
+        color: #fc4469;
+        font-size: 15px;
+        font-weight: normal;
+        margin: 0;
+        padding-left: 30px;
+        height: 26px; }
+      .events_panel .event_box_panel .event_box .content {
+        background: url(/images/ui/event-box.png) no-repeat scroll 0 100%;
+        min-height: 100px;
         padding: 10px;
-        position: relative;
-        width: 50px; }
-      .events_panel .event_box_panel .event_box .content .info .event_closed {
-        padding-left: 10px; }
+        color: #11bacd; }
+        .events_panel .event_box_panel .event_box .content .title {
+          font-size: 14px;
+          font-weight: bold;
+          height: 40px; }
+        .events_panel .event_box_panel .event_box .content .info .info_left {
+          float: left;
+          display: inline;
+          font-weight: bold;
+          height: 30px;
+          padding: 10px 10px 10px 10px;
+          width: 188px;
+          background: url(/images/ui/box_arrow.png) top left no-repeat #ecf4f6;
+          color: #568ea6; }
+          .events_panel .event_box_panel .event_box .content .info .info_left img {
+            float: left;
+            margin-right: 5px;
+            vertical-align: middle;
+            height: 32px;
+            width: 32px; }
+        .events_panel .event_box_panel .event_box .content .info .info_right {
+          float: right;
+          background-color: #ecf4f6;
+          display: inline;
+          font-weight: bold;
+          color: #568ea6;
+          height: 30px;
+          padding: 10px;
+          position: relative;
+          width: 50px; }
+        .events_panel .event_box_panel .event_box .content .info .event_closed {
+          padding-left: 10px; }
   .events_panel .current_events .title_panel {
     width: 160px;
     height: 41px;

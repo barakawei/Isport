@@ -1,6 +1,7 @@
 class HomeController < ApplicationController
   before_filter :authenticate_user!
   respond_to :js,:html
+
   def index
     if current_user
       if (current_user.getting_started == true)
@@ -13,6 +14,7 @@ class HomeController < ApplicationController
       @followed_people = current_user.followed_people
       @befollowed_people = current_user.befollowed_people
       @post = Post.where( :author_id => current_user.person.id,:type => 'StatusMessage' ).order( "posts.created_at DESC" ).limit( 1 )
+      @select_tab = 'home'
       render
     end
   end
@@ -24,7 +26,7 @@ class HomeController < ApplicationController
   end
 
   def show_event
-    @events = Event.order( "created_at DESC" ).paginate(:page => params[:page], :per_page => 5)
+    @events = Event.at_city( current_user.city ).order( "events.created_at DESC" ).paginate(:page => params[:page], :per_page => 10)
     respond_with @events
   end
 

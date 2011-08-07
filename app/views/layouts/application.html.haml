@@ -30,6 +30,10 @@
 
 :javascript
   $(function() {
+      select_tab = '#{@select_tab}';
+    if(select_tab != ''  ){
+      $( '#'+select_tab ).removeClass( 'red_tab' ).addClass( 'gray_tab' ); 
+    }
     $.datepicker.setDefaults($.datepicker.regional["zh-CN"]); 
     $("textarea").autoResize();
       
@@ -40,8 +44,6 @@
       $('.accout').css({"left":left+"px","width":"85px"});
 
       $('.current_user_link').click(function(e) {
-        $( '.current_user_link').removeClass( 'red_tab' );
-        $( '.current_user_link').addClass( 'gray_tab' );
         $('.accout').toggleClass('hide');
         e.stopPropagation();
         return false

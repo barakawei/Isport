@@ -1,6 +1,6 @@
 class GroupsController < ApplicationController
   prepend_before_filter :authenticate_user!, :except => [:index, :show, :forum, :members, :events] 
-  before_filter :init, :except => [:index, :show, :forum, :members, :events] 
+  before_filter :init, :except => [:index, :show, :forum, :members, :events]
   
   def index
     city_pinyin = params[:city] ? params[:city] : (current_user ? current_user.city.pinyin : City.first.pinyin)
@@ -8,6 +8,7 @@ class GroupsController < ApplicationController
     @groups = Group.all
     @hot_groups = Group.hot_groups(@city).all
     @hot_items = Item.limit(5)
+    @select_tab = 'group'
   end
 
   def show
@@ -124,6 +125,7 @@ class GroupsController < ApplicationController
     search_hash[:district_id] = @district_id unless @district_id.nil?
     @groups = Group.filter_group(search_hash).paginate :page => params[:page], 
                                                        :per_page => 16
+    @select_tab = 'group'
   end
 
   private
