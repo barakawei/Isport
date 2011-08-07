@@ -6,8 +6,12 @@
       = render "photos/new_event_photo", :event => @event, :is_edit => is_edit, :model_name => "event"
       %ul.nav
         - if is_edit
-          %li=link_to '编辑活动信息', edit_event_path(@event), :class => ("current" if params[:action] == 'edit') 
-          %li=link_to '编辑活动成员', event_members_path(@event),:class => ("current" if params[:action] == 'edit_members')   
+          - unless new
+            %li=link_to '编辑活动信息', edit_event_path(@event), :class => ("current" if params[:action] == 'edit') 
+            %li=link_to '编辑活动成员', event_members_path(@event),:class => ("current" if params[:action] == 'edit_members')   
+          - else
+            %li=link_to '1.填写活动信息', edit_event_path(@event), :class => ("current" if params[:action] == 'edit') 
+            %li=link_to '2.邀请好友', new_event_invite_path(@event)
         - else
           %li=link_to '1.填写活动信息', new_event_path, :class => ("current" if params[:action] == 'new') 
           %li=link_to '2.邀请好友', 'javascript:void(0)',:class => 'inactive' 
@@ -15,7 +19,10 @@
     .span-14
       -if is_edit
         .span-9
-          = render 'common/header_box', :title => '编辑活动信息', :background_color => '#8DBC6E' 
+          - unless new
+            = render 'common/header_box', :title => '编辑活动信息', :background_color => '#8DBC6E' 
+          - else
+            = render 'common/header_box', :title => '填写活动信息', :background_color => '#8DBC6E' 
         .span-5.last
           %h4= link_to '<返回活动首页', event_path(@event), :class => 'right nav_back'
       - else

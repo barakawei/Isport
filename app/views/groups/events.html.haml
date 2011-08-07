@@ -2,7 +2,7 @@
   = include_stylesheets :sepcial_pages_groups_events, :media => 'all'
 .span-24
   .span-19
-    = render 'common/header_box', :title => '"' + @group.name + '"的活动:'
+    = render 'common/header_box', :title => '"' + @group.name + '"的活动'
   .span-5.last
     %h4.inline= link_to '<返回小组首页', group_path(@group), :class => 'right'
 

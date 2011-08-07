@@ -26,12 +26,13 @@ class GroupsController < ApplicationController
   def new
     @group = Group.new(:join_mode => 4)
     @group.city = City.first
-    
+    @friends = current_user.friends
     @step = 1
     @steps = [I18n.t('groups.new_group_wizard.step_1'),I18n.t('groups.new_group_wizard.step_2')]
   end
 
   def edit
+    @new = true if params[:new] == 'new'
     @group = Group.find(params[:id])
   end
 

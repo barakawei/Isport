@@ -10,7 +10,10 @@
 .span-24.append-bottom
   %h1.inline.app_subfunction_title.events= '乐玩活动'
   %h3.inline= link_to @city.name , 'javascript:void(0);', :id => 'switch_city', :class => 'dark_gray'
-  = link_to  '发起活动', new_event_path, :group_id => 1, :class => 'button right function_button'
+  .new_button_container
+    = link_to(new_event_path) do
+      .new_button.glass_button
+        ='发起活动'
 
 -if @hot_events.size > 0
   %hr.space

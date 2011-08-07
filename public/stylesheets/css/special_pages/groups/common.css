@@ -51,3 +51,22 @@ ul.nav {
     ul.nav li a.inactive:hover {
       background: none no-repeat scroll 160px 50% white !important;
       color: #d5ddde; }
+
+.invite_friends_area {
+  -moz-border-radius: 15px;
+  -webkit-border-radius: 15px;
+  border-radius: 15px;
+  behavior: url(/javascripts/PIE.htc);
+  background-color: white;
+  padding: 20px; }
+
+.group_avatar {
+  width: 180px;
+  margin-bottom: 10px; }
+  .group_avatar img {
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    behavior: url(/javascripts/PIE.htc);
+    width: 180px;
+    height: 180px; }

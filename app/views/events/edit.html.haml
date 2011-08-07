@@ -5,7 +5,7 @@
 .span-24
 - if params[:action] == 'edit' 
   .span-19
-    = render 'form', :is_edit => true
+    = render 'form', :is_edit => true, :new => @new
 - else
   .span-24.edit_event_members
     = render :partial => 'edit_event_members', :locals => { :friend_participants => @friend_participants,

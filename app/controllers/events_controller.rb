@@ -70,6 +70,7 @@ class EventsController < ApplicationController
   def edit
     @event = Event.find(params[:id])
     @items = Item.find(:all, :select => 'id, name')
+    @new = true if params[:new] == 'new'
     puts GoogleGeoCoder.getLocation("南京")
   end
 
