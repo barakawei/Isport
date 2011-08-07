@@ -17,6 +17,8 @@ zh:
         description: '小组描述'
         item_id: '小组所属项目'
         join_mode: '小组加入方式'
+      user:
+        email: '该电子邮箱'
     errors:
       event:
         start_at: 

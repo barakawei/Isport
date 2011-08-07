@@ -11,6 +11,7 @@
         .reg_email  
           = f.text_field :email, :id => "email"       
           = f.label :email, t('email'), :class => "email in_field"
+          = error_on(@user, :email)
 
         .reg_password
           = f.password_field :password, :id => "password"

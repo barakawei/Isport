@@ -11,6 +11,9 @@ form label.error {
   color: red;
   font-size: 12px;
   margin-top: 1px; }
+form span.validation-error {
+  color: red;
+  font-size: 14px; }
 form input {
   display: block; }
 form input#email,

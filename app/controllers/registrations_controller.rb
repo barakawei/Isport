@@ -4,7 +4,7 @@ class RegistrationsController < Devise::RegistrationsController
     if @user.save
       sign_in_and_redirect(:user,@user)
     else
-      new_user_registration_url
+      render :action => :new
     end
   end
 
