@@ -4,7 +4,7 @@ class EventsController < ApplicationController
   before_filter :authenticate_user!,
                 :except => [:index, :show, :participants, 
                             :references, :paginate_participants,
-                            :paginate_references, :filtered]
+                            :paginate_references, :filtered, :map]
                   
 
   LIMIT = 9 

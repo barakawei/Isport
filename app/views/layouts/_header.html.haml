@@ -27,14 +27,14 @@
   %ul.setting
     %li.notifaction
       #notification_badge
-        %a{ :href => "#" ,:class => 'red_tab',:id=> 'notifaction'}
+        %a{ :href => "#" ,:class => 'red_tab long_li',:id=> 'notifaction'}
           = "通知"
           -if current_user && @unread_notify_count != 0
             %span.message_count
               %span
                 %span=@unread_notify_count
     %li.set
-      %a{:href => "#",:class => "current_user_link red_tab",:id => 'set'}
+      %a{:href => "#",:class => "current_user_link red_tab long_li",:id => 'set'}
         .avatar
           = person_image_tag( current_user.person,:thumb_small )
         .name  

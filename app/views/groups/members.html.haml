@@ -5,9 +5,7 @@
     = render 'common/header_box', :title => '"' + @group.name + '"的成员:'
     %hr.space
     - if @members.size > 0
-      = render :partial => 'people/people_array', :locals => { :participants => @members, 
-                                                              :perline => 9,
-                                                              :edit => false }
+      = render :partial => 'people/person_element', :collection => @members, :as => :person 
   .span-5.prepend-1.prepend-top.last
     %h4= link_to '<返回小组主页', group_path(@group)
 

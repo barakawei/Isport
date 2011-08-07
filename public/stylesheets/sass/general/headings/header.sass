@@ -88,10 +88,10 @@
     li
       @include border-radius-feed(5px)
       float: left
-      margin-right: 2px
+      margin-right: 3px
     a
       @include border-radius-feed(5px)
-      :width 70px
+      :width 40px
       display: block
       padding: 11px 10px
       text-decoration: none
@@ -121,6 +121,7 @@
     
   .setting
     :position absolute
+    :bottom 0px
     :right 0
     li 
       :position relative
@@ -130,6 +131,8 @@
         :left 3px
         :width 20px
         :height 20px
+      a.long_li
+        :width 70px
       a
         :padding
           :right 2px

@@ -88,7 +88,7 @@
     border-top-right-radius: 5px;
     behavior: url(/javascripts/PIE.htc);
     float: left;
-    margin-right: 2px; }
+    margin-right: 3px; }
   .header .sections a, .header .setting a {
     -moz-border-radius-topleft: 5px;
     -moz-border-radius-topright: 5px;
@@ -97,7 +97,7 @@
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     behavior: url(/javascripts/PIE.htc);
-    width: 70px;
+    width: 40px;
     display: block;
     padding: 11px 10px;
     text-decoration: none; }
@@ -123,6 +123,7 @@
       behavior: url(/javascripts/PIE.htc); }
   .header .setting {
     position: absolute;
+    bottom: 0px;
     right: 0; }
     .header .setting li {
       position: relative; }
@@ -132,6 +133,8 @@
         left: 3px;
         width: 20px;
         height: 20px; }
+      .header .setting li a.long_li {
+        width: 70px; }
       .header .setting li a {
         padding-right: 2px; }
         .header .setting li a .name {

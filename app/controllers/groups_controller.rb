@@ -1,6 +1,6 @@
 class GroupsController < ApplicationController
-  prepend_before_filter :authenticate_user!, :except => [:index, :show, :forum, :members, :events] 
-  before_filter :init, :except => [:index, :show, :forum, :members, :events]
+  prepend_before_filter :authenticate_user!, :except => [:index, :show, :forum, :members, :events, :filtered] 
+  before_filter :init, :except => [:index, :show, :forum, :members, :events, :filtered]
   
   def index
     city_pinyin = params[:city] ? params[:city] : (current_user ? current_user.city.pinyin : City.first.pinyin)

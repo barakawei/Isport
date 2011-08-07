@@ -2,10 +2,10 @@
   = include_javascripts :google_map
   =javascript_include_tag "http://ditu.google.cn/maps/api/js?sensor=false"
 .span-24
-  %h2.title.inline
-    = @event.title
-  = link_to t('back'),  event_path(@event), :class => "button right"
-  %hr
+  .span-18
+    = render 'common/header_box', :title => '活动“' + @event.title + '的地图'
+  .span-6.last
+    %h4= link_to '<返回活动主页',  event_path(@event),:class => 'right'
   #map-big
 
 :javascript
