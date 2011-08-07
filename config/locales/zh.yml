@@ -109,6 +109,7 @@ zh:
       short_recommendation: '%{count}人推荐 '
       friend_participants: ' 好友%{count}人'
       other_participants: '其它%{count} 人'
+      members: '共%{count}位活动成员'
       friend_references: '共%{count}位好友推荐了此活动'
       other_references: '其他%{count}人也推荐了此活动'
       comments_count: '%{count}条评论'
@@ -206,6 +207,7 @@ zh:
     owner: '创建人'
     forum: '讨论区'
     members: '小组成员'
+    members_count: "共%{count}位成员"
     join_mode:
       name: '加入方式'
       invite_by_admin: '仅允许由管理员邀请加入'

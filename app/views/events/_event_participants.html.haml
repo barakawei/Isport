@@ -3,7 +3,7 @@
     - if edit 
       %span.left.checkbox
         = check_box_tag "member_ids", person.id, false, :class => "inline"
-    = person_image_link(person) 
+    .person_avatar= person_image_link(person) 
     %span.medium_avatar=link_to person.profile.name, person_path(person)
 .span-16
   -unless defined?(no_pagination)

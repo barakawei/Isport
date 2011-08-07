@@ -2,9 +2,6 @@
   = include_stylesheets :forms, :media => 'all'
   = include_stylesheets :sepcial_pages_events_common, :media => 'all'
 .span-24
-  .span-17
-    %h2.title= t('events.new_event')
-  =render :partial => 'common/wizard_steps', :locals => { :steps => @steps, :current_step => @step}
 - if @step == 1
   = render 'form', :is_edit => false
 - else

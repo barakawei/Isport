@@ -60,7 +60,7 @@ module EventsHelper
   def invite_link(friends, invitees, friend_participants)
     return if friends.size <= 0 || friends.size <= invitees.size + friend_participants.size
     name = (invitees.size == 0 && friend_participants.size == 0 ) ? I18n.t("events.invite_friends") : I18n.t("events.invite_more_friends")
-    link_to name, "#", :class => "friend_select_input" 
+    link_to name, "#", :class => "friend_select_input right inline" 
   end
 
   def group_options(person)

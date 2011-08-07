@@ -6,7 +6,7 @@ module GroupsHelper
   def invite_link(friends, invitees, friend_members)
     return if friends.size <= 0 || friends.size <= invitees.size + friend_members.size
     name = (invitees.size == 0 && friend_members.size == 0 ) ? I18n.t("events.invite_friends") : I18n.t("events.invite_more_friends")
-    link_to name, "#", :class => "friend_select_input" 
+    link_to name, "#", :class => "friend_select_input right" 
   end
 
   def group_status_info(group,person)

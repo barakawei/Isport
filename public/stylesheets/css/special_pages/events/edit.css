@@ -41,3 +41,59 @@
   margin-left: 50px;
   border-left: 1px solid #888888;
   padding-left: 10px; }
+
+ul.nav {
+  width: 200px; }
+  ul.nav li a {
+    background-color: white;
+    width: 160px;
+    display: block;
+    padding: 0px 10px;
+    margin-bottom: 3px;
+    font-size: 14px;
+    color: #00a2b7;
+    height: 45px;
+    line-height: 45px; }
+    ul.nav li a:hover {
+      background: url("/images/ui/arrow2.gif") no-repeat scroll 160px 50% white !important;
+      color: #f74367;
+      text-decoration: none; }
+  ul.nav li a.current {
+    background: url("/images/ui/arrow2.gif") no-repeat scroll 160px 50% white !important;
+    color: #f74367;
+    text-decoration: none; }
+
+.edit_event_members .event_avatar {
+  width: 180px;
+  margin-bottom: 10px; }
+  .edit_event_members .event_avatar img {
+    width: 180px;
+    height: 180px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    behavior: url(/javascripts/PIE.htc); }
+
+.members {
+  background-color: white;
+  width: 670px;
+  -moz-border-radius: 15px;
+  -webkit-border-radius: 15px;
+  border-radius: 15px;
+  behavior: url(/javascripts/PIE.htc);
+  float: left;
+  padding: 20px; }
+  .members .button_container {
+    height: 40px;
+    width: 200px;
+    float: left; }
+    .members .button_container .delete_button {
+      float: left;
+      width: 60px;
+      height: 20px;
+      background-color: #00bed4;
+      line-height: 20px;
+      font-size: 13px; }
+      .members .button_container .delete_button:hover {
+        margin-top: 2px;
+        background-color: #e76875; }

@@ -1,25 +1,6 @@
 .title {
   margin-bottom: 0; }
 
-ul.nav {
-  position: relative;
-  top: 1px; }
-  ul.nav li {
-    float: left;
-    margin-left: 5px; }
-    ul.nav li a {
-      color: black;
-      display: block;
-      border: 1px solid #b9bcbd;
-      padding: 10px 10px 5px 10px;
-      color: #777777; }
-      ul.nav li a:hover {
-        text-decoration: none; }
-    ul.nav li a.active {
-      border-bottom: 1px solid white;
-      background-color: white;
-      color: black; }
-
 hr.nav {
   background-color: #b9bcbd;
   color: #4d4d4d; }
@@ -44,3 +25,29 @@ hr.nav {
   .new_button:hover {
     margin-top: 2px;
     background-color: #e76875; }
+
+ul.nav {
+  width: 200px; }
+  ul.nav li a {
+    background-color: white;
+    width: 160px;
+    display: block;
+    padding: 0px 10px;
+    margin-bottom: 3px;
+    font-size: 14px;
+    color: #00a2b7;
+    height: 45px;
+    line-height: 45px; }
+    ul.nav li a:hover {
+      background: url("/images/ui/arrow2.gif") no-repeat scroll 160px 50% white !important;
+      color: #f74367;
+      text-decoration: none; }
+  ul.nav li a.current {
+    background: url("/images/ui/arrow2.gif") no-repeat scroll 160px 50% white !important;
+    color: #f74367;
+    text-decoration: none; }
+  ul.nav li a.inactive {
+    color: #d5ddde; }
+    ul.nav li a.inactive:hover {
+      background: none no-repeat scroll 160px 50% white !important;
+      color: #d5ddde; }

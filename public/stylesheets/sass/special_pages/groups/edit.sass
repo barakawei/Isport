@@ -1,21 +1,68 @@
-.title_bar
-  :height 35px
-  :position relative
-
-  h2
-    :margin-right 20px
-    :float left
-
-  .tab
-    :padding 5px
-    :border 1px solid #e1e1e1
-    :float left
-    :height 20px
-    :position relative 
-    :top 4px
+@import '../../general/ui/mixins'
+ul.nav
+  :width 200px
   
-  .tab.last_tab
-    :border-left none
+  li
+    a
+      :background-color #ffffff
+      :width 160px
+      :display block
+      :padding  0px 10px 
+      :margin-bottom 3px
+      :font-size 14px
+      :color #00a2b7
+      :height 45px
+      :line-height 45px
+      
+      &:hover
+        background: url("/images/ui/arrow2.gif") no-repeat scroll 160px 50% #FFFFFF !important
+        color: #F74367
+        text-decoration: none
 
-  .tab.current
-    :border-bottom 1px solid #ffffff
+    a.current
+      background: url("/images/ui/arrow2.gif") no-repeat scroll 160px 50% #FFFFFF !important
+      color: #F74367
+      text-decoration: none
+
+.edit_group_members
+  .group_avatar
+    :width 180px
+    :margin-bottom 10px
+
+    img
+      @include border-radius(10px)
+      :width 180px
+      :height 180px
+  
+.members
+  :background-color #ffffff
+  :width 670px
+  @include border-radius(15px)
+  :float left
+  :padding 20px
+
+  .button_container  
+    :height 40px
+    :width 200px
+    :float left
+    .delete_button
+      :float left
+      :width 60px
+      :height 20px
+      :background-color #00bed4
+      :line-height 20px
+      :font-size 13px
+    
+      &:hover
+        :margin-top 2px
+        :background-color #e76875
+
+.nav_back
+  :color #F74367
+
+  &:hover
+    :color  #00a2b7
+
+  
+        
+      

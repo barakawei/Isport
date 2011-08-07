@@ -21,7 +21,7 @@ class Group < ActiveRecord::Base
   has_many :invitees, :through => :memberships, :source => :person,
                         :conditions => ['memberships.pending = ? ', true] 
   has_many :deletable_members, :through => :memberships, :source => :person,
-           :conditions => ['memberships.is_admin = ?', false] 
+           :conditions => ['memberships.is_admin = ? and memberships.pending = ?', false, false] 
   has_many :related_person, :through => :memberships, :source => :person
   has_many :admins, :through => :memberships, :source => :person, 
                         :conditions => ['memberships.is_admin = ?', true]
@@ -112,8 +112,6 @@ class Group < ActiveRecord::Base
                         :group_id => self.id)
     end
   end
-
-
 
 
   def delete_member(person)

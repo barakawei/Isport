@@ -39,9 +39,8 @@ class GroupsController < ApplicationController
     @group = Group.find(params[:id])
     @members = @group.deletable_members.order('created_at ASC') || []
     @friends = current_user.friends || [ ] 
-    @friend_members = @members & @friends
-    @other_members = @members - @friend_members
     @invitees = @group.invitees.order("created_at ASC") || []
+    @friend_members = @members & @friends
     render :action => :edit 
   end
 

@@ -1,3 +1,4 @@
+@import '../../general/ui/mixins'
 #cancel_event_request
   textarea
     :width 90%
@@ -47,3 +48,62 @@
   :margin-left 50px
   :border-left 1px solid #888888
   :padding-left 10px
+
+ul.nav
+  :width 200px
+  
+  li
+    a
+      :background-color #ffffff
+      :width 160px
+      :display block
+      :padding  0px 10px 
+      :margin-bottom 3px
+      :font-size 14px
+      :color #00a2b7
+      :height 45px
+      :line-height 45px
+      
+      &:hover
+        background: url("/images/ui/arrow2.gif") no-repeat scroll 160px 50% #FFFFFF !important
+        color: #F74367
+        text-decoration: none
+
+    a.current
+      background: url("/images/ui/arrow2.gif") no-repeat scroll 160px 50% #FFFFFF !important
+      color: #F74367
+      text-decoration: none
+
+.edit_event_members
+  .event_avatar
+    :width 180px
+    :margin-bottom 10px
+
+    img
+      :width 180px
+      :height 180px
+      @include border-radius(10px)
+
+.members
+  :background-color #ffffff
+  :width 670px
+  @include border-radius(15px)
+  :float left
+  :padding 20px
+
+  .button_container  
+    :height 40px
+    :width 200px
+    :float left
+    .delete_button
+      :float left
+      :width 60px
+      :height 20px
+      :background-color #00bed4
+      :line-height 20px
+      :font-size 13px
+    
+      &:hover
+        :margin-top 2px
+        :background-color #e76875
+

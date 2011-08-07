@@ -1,17 +1,60 @@
-.title_bar {
-  height: 35px;
-  position: relative; }
-  .title_bar h2 {
-    margin-right: 20px;
+ul.nav {
+  width: 200px; }
+  ul.nav li a {
+    background-color: white;
+    width: 160px;
+    display: block;
+    padding: 0px 10px;
+    margin-bottom: 3px;
+    font-size: 14px;
+    color: #00a2b7;
+    height: 45px;
+    line-height: 45px; }
+    ul.nav li a:hover {
+      background: url("/images/ui/arrow2.gif") no-repeat scroll 160px 50% white !important;
+      color: #f74367;
+      text-decoration: none; }
+  ul.nav li a.current {
+    background: url("/images/ui/arrow2.gif") no-repeat scroll 160px 50% white !important;
+    color: #f74367;
+    text-decoration: none; }
+
+.edit_group_members .group_avatar {
+  width: 180px;
+  margin-bottom: 10px; }
+  .edit_group_members .group_avatar img {
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    behavior: url(/javascripts/PIE.htc);
+    width: 180px;
+    height: 180px; }
+
+.members {
+  background-color: white;
+  width: 670px;
+  -moz-border-radius: 15px;
+  -webkit-border-radius: 15px;
+  border-radius: 15px;
+  behavior: url(/javascripts/PIE.htc);
+  float: left;
+  padding: 20px; }
+  .members .button_container {
+    height: 40px;
+    width: 200px;
     float: left; }
-  .title_bar .tab {
-    padding: 5px;
-    border: 1px solid #e1e1e1;
-    float: left;
-    height: 20px;
-    position: relative;
-    top: 4px; }
-  .title_bar .tab.last_tab {
-    border-left: none; }
-  .title_bar .tab.current {
-    border-bottom: 1px solid white; }
+    .members .button_container .delete_button {
+      float: left;
+      width: 60px;
+      height: 20px;
+      background-color: #00bed4;
+      line-height: 20px;
+      font-size: 13px; }
+      .members .button_container .delete_button:hover {
+        margin-top: 2px;
+        background-color: #e76875; }
+
+.nav_back {
+  color: #f74367; }
+  .nav_back:hover {
+    color: #00a2b7; }
