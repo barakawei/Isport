@@ -63,6 +63,17 @@
       outline: none;
       text-decoration: none;
       cursor: pointer; }
+      .events_panel .event_box_panel a:hover .content {
+        color: #fc4469; }
+        .events_panel .event_box_panel a:hover .content .info .info_left {
+          background: url("/images/ui/arrowredreally.png") no-repeat scroll left top #fc5173;
+          color: white; }
+        .events_panel .event_box_panel a:hover .content .info .info_right {
+          background: url("/images/ui/arrow-red.gif"); }
+          .events_panel .event_box_panel a:hover .content .info .info_right .event_closed {
+            display: none; }
+          .events_panel .event_box_panel a:hover .content .info .info_right .calendar {
+            display: none; }
     .events_panel .event_box_panel .event_box {
       width: 300px;
       margin: 0 10px 14px 15px;

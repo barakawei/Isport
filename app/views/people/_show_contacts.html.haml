@@ -1,8 +1,19 @@
 
 .friends_set
   %ul
-    - for person in people
-      %li
-        = render 'people/person_element',:person => person
+    - if !people.nil?
+      - for person in people
+        %li
+          = render 'people/person_element',:person => person
+  %ul
+    - if !groups.nil?
+      - for group in groups
+        %li
+          = render 'groups/group_element',:group => group
+  %ul
+    - if !items.nil?
+      - for item in items 
+        %li
+          = render 'items/item_element',:item=> item
 .clear
 

@@ -1,3 +1,7 @@
+@import '../../general/ui/mixins'
+.select_tab_on
+  a
+    :color black
 .person_details_tab
   :border-bottom 2px solid #d5ddde
   :margin
@@ -9,6 +13,7 @@
     float: left
     margin: 0 20px 0 0
     font-weight: bold
+      
     
 .person_card
   :height 100px
@@ -25,12 +30,18 @@
     :margin-left 95px
 
 .person_element
+  @include border-radius( 10px )
+  @include box-shadow(0,0,2px,1px,#ccc  )
   :border 1px solid #d5ddde
-  :padding 4px 8px
+  :margin-left 8px
+  :margin-top 8px
+  :padding 5px 8px 5px 8px
   .person_avatar
     img
       :width 95px
       :height 95px
+      &:hover 
+        :opacity 0.8
   h4
     :margin 0
     em
@@ -108,11 +119,10 @@
           :font-weight normal
           :color #999
           :line-height 1px
-
 .friends_set
   ul
     li
       :float left
-      :width 150px
+      :width 140px
       :padding-bottom 10px
       :overflow hidden
