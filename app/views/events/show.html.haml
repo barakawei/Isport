@@ -27,7 +27,8 @@
       %h4.app_module_title='活动成员'
       .person_array
         - @participants.each do |member|
-          = person_image_link(member)
+          .member
+            = person_image_link(member)
     
     - if @references.size > 0
       .span-6

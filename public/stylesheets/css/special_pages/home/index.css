@@ -180,7 +180,6 @@
 .right_bar {
   border-right: 1px solid #ebebeb;
   height: 700px;
-  overflow: hidden;
   position: relative;
   z-index: 1; }
 

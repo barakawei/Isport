@@ -6,8 +6,8 @@
   width: 606px;
   float: left; }
   .comment_block .comment_top {
+    height: 50px;
     margin-bottom: 9px;
-    overflow: hidden;
     width: 100%; }
     .comment_block .comment_top .author_box {
       float: left;
@@ -61,15 +61,13 @@
   width: 601px;
   float: left; }
   .response_box .avatar_container {
-    background: none repeat scroll 0 0 white;
-    border: 2px solid #d5ddde;
-    float: left;
-    height: 30px;
-    padding: 4px;
-    width: 30px; }
-    .response_box .avatar_container img {
-      width: 30px;
-      height: 30px; }
+    float: left; }
+    .response_box .avatar_container .avatar {
+      background: none repeat scroll 0 0 white;
+      border: 2px solid #d5ddde;
+      padding: 4px;
+      height: 30px;
+      width: 30px; }
   .response_box .res_text {
     background: url("/images/ui/bg-comment-block-c.gif") repeat-y scroll 0 0 transparent;
     float: right;
