@@ -181,7 +181,8 @@
 
 .change_profile_photo {
   text-align: center;
-  height: 30px; }
+  height: 30px;
+  width: 100px; }
   .change_profile_photo #profile_photo_upload {
     padding-left: 0px; }
 
