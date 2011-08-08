@@ -42,7 +42,8 @@
       .span-16
         .span-13.group_title
           %h2=@group.name
-          %h4.status=group_status_info(@group, current_user.person)
+          - if current_user
+            %h4.status=group_status_info(@group, current_user.person)
         .span-3.operations.last.right
           - if current_user
             - unless @group.has_admin?(current_user.person)

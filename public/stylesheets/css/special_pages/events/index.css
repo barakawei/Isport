@@ -96,7 +96,7 @@
 
 #switch_city {
   text-decoration: none;
-  border: 1px solid white;
+  border: 1px solid #e9eef1;
   padding: 3px; }
   #switch_city:hover {
     border: 1px solid #b9b9b9;
@@ -104,3 +104,18 @@
 
 .box_title {
   margin-bottom: 5px; }
+
+.new_button_container {
+  height: 40px;
+  width: 80px;
+  float: right; }
+  .new_button_container .new_button {
+    float: right;
+    width: 60px;
+    height: 20px;
+    background-color: #00bed4;
+    line-height: 20px;
+    font-size: 13px; }
+    .new_button_container .new_button:hover {
+      margin-top: 2px;
+      background-color: #e76875; }

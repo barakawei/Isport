@@ -1,28 +1,13 @@
 .title {
   margin-bottom: 0; }
 
-ul.nav {
-  position: relative;
-  top: 1px; }
-  ul.nav li {
-    float: left;
-    margin-left: 5px; }
-    ul.nav li a {
-      color: black;
-      display: block;
-      border: 1px solid #b9bcbd;
-      padding: 10px 10px 5px 10px;
-      color: #777777; }
-      ul.nav li a:hover {
-        text-decoration: none; }
-    ul.nav li a.active {
-      border-bottom: 1px solid white;
-      background-color: white;
-      color: black; }
-
 hr.nav {
   background-color: #b9bcbd;
   color: #4d4d4d; }
+
+.person_element {
+  float: left;
+  margin: 5px 15px 0px 10px; }
 
 .topics_area {
   width: 904px;
@@ -44,3 +29,48 @@ hr.nav {
   .new_button:hover {
     margin-top: 2px;
     background-color: #e76875; }
+
+ul.nav {
+  width: 200px; }
+  ul.nav li a {
+    background-color: white;
+    width: 160px;
+    display: block;
+    padding: 0px 10px;
+    margin-bottom: 3px;
+    font-size: 14px;
+    color: #00a2b7;
+    height: 45px;
+    line-height: 45px; }
+    ul.nav li a:hover {
+      background: url("/images/ui/arrow2.gif") no-repeat scroll 160px 50% white !important;
+      color: #f74367;
+      text-decoration: none; }
+  ul.nav li a.current {
+    background: url("/images/ui/arrow2.gif") no-repeat scroll 160px 50% white !important;
+    color: #f74367;
+    text-decoration: none; }
+  ul.nav li a.inactive {
+    color: #d5ddde; }
+    ul.nav li a.inactive:hover {
+      background: none no-repeat scroll 160px 50% white !important;
+      color: #d5ddde; }
+
+.invite_friends_area {
+  -moz-border-radius: 15px;
+  -webkit-border-radius: 15px;
+  border-radius: 15px;
+  behavior: url(/javascripts/PIE.htc);
+  background-color: white;
+  padding: 20px; }
+
+.group_avatar {
+  width: 180px;
+  margin-bottom: 10px; }
+  .group_avatar img {
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    behavior: url(/javascripts/PIE.htc);
+    width: 180px;
+    height: 180px; }

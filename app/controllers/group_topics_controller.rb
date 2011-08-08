@@ -36,7 +36,7 @@ class GroupTopicsController < ApplicationController
                                           :per_page => 15, :order => 'created_at'
     end
     @person = @topic.person
-    @current_person = current_user.person
+    @current_person = current_user.person if current_user
     @new_comment = @topic.comments.new(:content => "")
 
     render 'groups/forum_show_topic'

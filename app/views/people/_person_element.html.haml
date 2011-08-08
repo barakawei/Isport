@@ -15,6 +15,7 @@
         = person.joined_groups.size
         %span
           = "小组"
-      .follow_button_mini
-        = follow_button_tag( person )
+      - if current_user
+        .follow_button_mini
+          = follow_button_tag( person )
 

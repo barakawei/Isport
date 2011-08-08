@@ -4,7 +4,7 @@ class EventsController < ApplicationController
   before_filter :authenticate_user!,
                 :except => [:index, :show, :participants, 
                             :references, :paginate_participants,
-                            :paginate_references, :filtered]
+                            :paginate_references, :filtered, :map]
                   
 
   LIMIT = 9 
@@ -73,6 +73,7 @@ class EventsController < ApplicationController
   def edit
     @event = Event.find(params[:id])
     @items = Item.find(:all, :select => 'id, name')
+    @new = true if params[:new] == 'new'
     puts GoogleGeoCoder.getLocation("南京")
   end
 

@@ -1,59 +1,84 @@
 -content_for :head do
   = include_javascripts :jquery_validation
-.span-19.event_form 
+.span-24.event_form 
   = form_for @event, :html => { :multipart => true }, do |f|
     .span-6
       = render "photos/new_event_photo", :event => @event, :is_edit => is_edit, :model_name => "event"
-    .span-13.last
-      .field
-        = f.label t('activerecord.attributes.event.title'), :class => "info"
-        = f.text_field :title
-        = error_on(@event, :title)
-      .field.module
-        = f.label t('activerecord.attributes.event.start_at'), :class => "info"
-        .top
-          = f.datetime_select :start_at
-        = error_on(@event, :start_at)
-      .field
-        = f.label t('activerecord.attributes.event.end_at'), :class => "info"
-        .top
-          = f.datetime_select :end_at
-        = error_on(@event, :end_at)
-      .field
-        = f.label t('activerecord.attributes.event.location'), :class => "info"
-        .address
-          = f.fields_for :location do |location_form|
-            = location_form.collection_select :city_id, City.all, :id, :name, {:prompt => true}
-            = location_form.collection_select :district_id, @event.location.city.districts, :id, :name, {:prompt => true}
-            = location_form.text_field :detail
-        = error_on(@event, :location)
-      .field.module
-        = f.label t('activerecord.attributes.event.description'), :class => "info"
-        = f.text_area :description
-        = error_on(@event, :description)
-      .field.module
-        = f.label '所属小组', :class => "info"
-        = f.select :group_id, group_options(current_user.person) 
-      .field.subject
-        = f.label t('activerecord.attributes.event.subject'), :class => "info"
-        = collection_select(:event, :subject_id, Item.all, :id, :name, {:prompt => true})
-        = error_on(@event, :subject_id)
-      .field
-        = f.label t('activerecord.attributes.event.is_private'), :class => "info"
-        = f.check_box :is_private
-        %br.clear
-      .field#participants_limit
-        = f.label t('activerecord.attributes.event.participants_limit'), :class => "info"
-        = f.text_field :participants_limit
-        = error_on(@event, :participants_limit)
-      .field.hide
-        = f.text_field :image_url
-        = f.text_field :image_url_medium
-        = f.text_field :image_url_small
-      .field.right
-        = f.submit '完成', :class => "button"
-        = link_to t('back'), "javascript:history.back()", :class => "button" 
-      %p 
+      %ul.nav
+        - if is_edit
+          - unless new
+            %li=link_to '编辑活动信息', edit_event_path(@event), :class => ("current" if params[:action] == 'edit') 
+            %li=link_to '编辑活动成员', event_members_path(@event),:class => ("current" if params[:action] == 'edit_members')   
+          - else
+            %li=link_to '1.填写活动信息', edit_event_path(@event), :class => ("current" if params[:action] == 'edit') 
+            %li=link_to '2.邀请好友', new_event_invite_path(@event)
+        - else
+          %li=link_to '1.填写活动信息', new_event_path, :class => ("current" if params[:action] == 'new') 
+          %li=link_to '2.邀请好友', 'javascript:void(0)',:class => 'inactive' 
+
+    .span-14
+      -if is_edit
+        .span-9
+          - unless new
+            = render 'common/header_box', :title => '编辑活动信息', :background_color => '#8DBC6E' 
+          - else
+            = render 'common/header_box', :title => '填写活动信息', :background_color => '#8DBC6E' 
+        .span-5.last
+          %h4= link_to '<返回活动首页', event_path(@event), :class => 'right nav_back'
+      - else
+        .span-9
+          = render 'common/header_box', :title => '填写活动信息', :background_color => '#8DBC6E' 
+        .span-5.last
+          %h4= link_to '<返回活动首页', events_path, :class => 'right nav_back'
+
+      .span-14.form_area
+        .field
+          = f.label t('activerecord.attributes.event.title'), :class => "info"
+          = f.text_field :title
+          = error_on(@event, :title)
+        .field.module
+          = f.label t('activerecord.attributes.event.start_at'), :class => "info"
+          .top
+            = f.datetime_select :start_at
+          = error_on(@event, :start_at)
+        .field
+          = f.label t('activerecord.attributes.event.end_at'), :class => "info"
+          .top
+            = f.datetime_select :end_at
+          = error_on(@event, :end_at)
+        .field
+          = f.label t('activerecord.attributes.event.location'), :class => "info"
+          .address
+            = f.fields_for :location do |location_form|
+              = location_form.collection_select :city_id, City.all, :id, :name, {:prompt => true}
+              = location_form.collection_select :district_id, @event.location.city.districts, :id, :name, {:prompt => true}
+              = location_form.text_field :detail
+          = error_on(@event, :location)
+        .field.module
+          = f.label t('activerecord.attributes.event.description'), :class => "info"
+          = f.text_area :description
+          = error_on(@event, :description)
+        .field.module
+          = f.label '所属小组', :class => "info"
+          = f.select :group_id, group_options(current_user.person) 
+        .field.subject
+          = f.label t('activerecord.attributes.event.subject'), :class => "info"
+          = collection_select(:event, :subject_id, Item.all, :id, :name, {:prompt => true})
+          = error_on(@event, :subject_id)
+        .field
+          = f.label t('activerecord.attributes.event.is_private'), :class => "info"
+          = f.check_box :is_private
+          %br.clear
+        .field#participants_limit
+          = f.label t('activerecord.attributes.event.participants_limit'), :class => "info"
+          = f.text_field :participants_limit
+          = error_on(@event, :participants_limit)
+        .field.hide
+          = f.text_field :image_url
+          = f.text_field :image_url_medium
+          = f.text_field :image_url_small
+      .span-14.actions
+        = f.submit '保存活动信息', :class => "button"
       
 :javascript
   $(function() {

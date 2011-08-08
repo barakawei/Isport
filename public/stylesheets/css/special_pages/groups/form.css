@@ -1,11 +1,16 @@
 .form_area {
-  padding-left: 20px; }
+  padding: 30px 10px 20px 30px;
+  background-color: white;
+  -moz-border-radius: 15px;
+  -webkit-border-radius: 15px;
+  border-radius: 15px;
+  behavior: url(/javascripts/PIE.htc); }
   .form_area .field_with_errors {
     display: inline-block; }
   .form_area .field.module {
-    margin-bottom: 20px; }
+    margin-bottom: 25px; }
   .form_area .field {
-    margin-bottom: 5px; }
+    margin-bottom: 10px; }
     .form_area .field .validation-error {
       color: red;
       margin-left: 10px; }
@@ -16,15 +21,52 @@
         width: auto; }
     .form_area .field label.field_info {
       display: inline-block;
-      width: 60px; }
+      width: 70px;
+      color: #424f55;
+      font-size: 13px; }
     .form_area .field label.error {
       display: block;
       color: #ff6600;
-      margin-left: 62px; }
+      margin-left: 72px; }
     .form_area .field textarea, .form_area .field input#group_name {
+      border: 1px solid #d5dddf;
       vertical-align: top;
-      width: 400px; }
+      width: 400px;
+      font-size: 13px; }
     .form_area .field textarea {
       height: 200px; }
+    .form_area .field input#group_name {
+      color: #576b72;
+      height: 30px;
+      line-height: 30px; }
     .form_area .field select {
       font-size: 13px; }
+
+#group_photo_upload .img_contained {
+  width: 180px;
+  margin-bottom: 10px; }
+  #group_photo_upload .img_contained img {
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    behavior: url(/javascripts/PIE.htc);
+    width: 180px;
+    height: 180px; }
+
+.actions {
+  padding-left: 40px; }
+  .actions input {
+    background: url("/images/ui/person_edit.png") no-repeat scroll 0 0 transparent;
+    border: medium none;
+    cursor: pointer;
+    display: inline;
+    float: right;
+    font-size: 16px;
+    color: white;
+    height: 46px;
+    margin: 13px 4px 0 0;
+    overflow: hidden;
+    width: 198px; }
+    .actions input:hover {
+      background: url("/images/ui/person_edit.png") no-repeat scroll 100% -46px transparent;
+      margin: 15px 4px 0 0; }

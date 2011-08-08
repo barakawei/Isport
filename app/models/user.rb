@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   delegate :name,:to => :person
   has_many :contacts
   has_one :profile, :through => :person
-  has_many :friends, :through => :contacts, :source => :person, :conditions => "receiving=true and sharing = true"
+  has_many :friends, :through => :contacts, :source => :person, :conditions => "receiving=true"
   has_many :followed_people, :through => :contacts, :source => :person,:conditions => "receiving=true"
   has_many :befollowed_people, :through => :contacts, :source => :person,:conditions => "sharing=true"
 

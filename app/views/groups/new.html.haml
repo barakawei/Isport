@@ -2,16 +2,10 @@
   = include_stylesheets :sepcial_pages_groups_common, :media => 'all'
   = include_stylesheets :sepcial_pages_groups_form, :media => 'all'
 .span-24
-  .span-17
-    - if @step == 1
-      %h2.title= t('groups.new_group')
-    - else
-      %h2.title= @group.name
-  =render :partial => 'common/wizard_steps', :locals => { :steps => @steps, :current_step => @step}
-  %hr.space
 - if @step ==1
   = render 'form', :is_edit => false
 - else
   = render 'friends_invitation', :group => @group, :invitees_summary => @invitees,
-                                 :invitees_size => @invitees_size, :to_be_invited => @to_be_invited_friends
+                                 :invitees_size => @invitees_size, :to_be_invited => @to_be_invited_friends, 
+                                 :friends => @friends
 

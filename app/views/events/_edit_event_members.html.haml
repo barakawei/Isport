@@ -1,46 +1,53 @@
 =content_for :head do
   =include_javascripts :friend_select
-.span-10.prepend-3.error_message_box
-  %h4.alert.prepend-2#select_none_error.hide=t('events.errors.select_no_participant')
-  %h4.info.prepend-2#invitation_sent.hide=t('events.info.invitation_sent')
-.span-16.members
-  .span-16.friend_member
-    - if friends.size > 0 && friend_participants.size > 0
-      %h4.append-bottom
-        = t("events.friend_participants", :count => friend_participants.size) 
-        = link_to t('events.participants.select_all'), "#", :class => "select_all_friend"
-      = render :partial => "event_participants", :locals => { :participants => friend_participants, 
-                                                              :perline => 8, 
-                                                              :no_pagination => true, 
-                                                              :edit => true}
-  .span-16.other_members
-    - if other_participants.size > 0
-      %h4
-        = t("events.other_participants", :count => @other_participants.size) 
-        = link_to t('events.participants.select_all'), "#", :class => "select_all_others"
-      = render :partial => "event_participants", :locals => { :participants => other_participants, 
-                                                              :perline => 8, 
-                                                              :no_pagination => true, 
-                                                              :edit => true}
-
-  = link_to t("operations.delete_selected"), '#', :class => "button delete", 
-                                                  :id => "delete_members" if participants.size > 0 
-  .span-16
-    - if invitees.size > 0
-      .span-12
-        - if participants.size > 0
-          %hr.space
+.span-6.last
+  .event_avatar 
+    = event_image_tag(@event, :thumb_large)
+  %hr.space
+  %ul.nav
+    %li=link_to '编辑活动信息', edit_event_path(@event), :class => ("current" if params[:action] == 'edit') 
+    %li=link_to '编辑活动成员', event_members_path(@event),:class => ("current" if params[:action] == 'edit_members')   
+.span-18
+  .span-13
+    = render 'common/header_box', :title => '编辑 "' + @event.title+ ' "成员', :background_color => '#8DBC6E' 
+  .span-5.last
+    %h4= link_to '<返回活动首页', event_path(@event), :class => 'right nav_back'
+  .members
+    .span-17.right
+      %h4= invite_link(friends, invitees, friend_participants)
+    .span-17.other_members
+      - if participants.size > 0
         %h4
-          = t("events.invitees", :count => invitees.size)
-      .span-16
-        = render :partial => "event_participants", :locals => { :participants => invitees, 
-                                                              :perline => 8, 
-                                                              :no_pagination => true, 
-                                                              :edit => false}
-.span-4.right
-  %h4= invite_link(friends, invitees, friend_participants)
-  %h4= link_to '<编辑活动信息', edit_event_path(@event)
-  %h4= link_to '<返回"'+trim_info(@event.title, 10) +'"', event_path(@event)
+          = t("events.members", :count => @participants.size) 
+          = link_to t('events.participants.select_all'), "#", :class => "select_all_members"
+        = render :partial => "event_participants", :locals => { :participants => participants, 
+                                                                :perline => 8, 
+                                                                :no_pagination => true, 
+                                                                :edit => true}
+    - if participants.size > 0
+      .button_container
+        = link_to('javascript:void(0)', :class => "delete") do
+          .delete_button.glass_button
+            =t("operations.delete_selected")
+    .span-17.invitations
+      - if invitees.size > 0
+        .span-12
+          - if participants.size > 0
+            %hr.space
+          %h4
+            = t("events.invitees", :count => invitees.size)
+            = link_to t('events.participants.select_all'), "#", :class => "select_all_invitations"
+        .span-16
+          = render :partial => "event_participants", :locals => { :participants => invitees, 
+                                                                :perline => 8, 
+                                                                :no_pagination => true, 
+                                                                :edit => true}
+        .span-16
+          - if invitees.size > 0 
+            .button_container
+              = link_to('javascript:void(0)', :class => "delete_invitation") do
+                .delete_button.glass_button
+                  ='取消邀请'
 
 .colorbox_content
   #friend_select
@@ -55,30 +62,26 @@
         = submit_tag t('activerecord.operations.event.save'), :class => 'button'
           
 :javascript
-  $('a.delete').bind('click', deleteMembers);
-  $('a.select_all_friend').click(function() {
-    if ($(this).hasClass('selected')) {
-      $('.friend_member input[type="checkbox"]').attr("checked", ""); 
-      $(this).html("#{t('events.participants.select_all')}");
-    } else {  
-      $('.friend_member input[type="checkbox"]').attr("checked", "true"); 
-      $(this).html("#{t('events.participants.select_none')}");
-    }
-      $(this).toggleClass("selected");
+  $('a.delete').bind('click', function(){
+    deleteMembers('.other_members', "#{I18n.t('activerecord.operations.event.delete_participants')}"); 
     return false;
   });
 
-  $('a.select_all_others').click(function() {
-    if ($(this).hasClass('selected')) {
-      $('.other_members input[type="checkbox"]').attr("checked", ""); 
-      $(this).html("#{t('events.participants.select_all')}");
-    } else {  
-      $('.other_members input[type="checkbox"]').attr("checked", "true"); 
-      $(this).html("#{t('events.participants.select_none')}");
-    }
-      $(this).toggleClass("selected");
+  $('a.delete_invitation').bind('click', function() {
+    deleteMembers('.invitations', "确定要取消选中的邀请吗?"); 
     return false;
   });
+
+  $('a.select_all_members').click(function() {
+    select_all('.other_members', $(this));
+    return false;
+  });
+
+  $('a.select_all_invitations').click(function() {
+    select_all('.invitations', $(this));
+    return false;
+  });
+
 
   $('#choose_member_notice .choose_notice').click(function() {
     $.colorbox.close(); 
@@ -92,6 +95,18 @@
     return false;
   });
 
+  function select_all(target, link) {
+    if (link.hasClass('selected')) {
+      $(target + ' input[type="checkbox"]').attr("checked", ""); 
+      link.html("#{t('events.participants.select_all')}");
+    } else {  
+      $(target + ' input[type="checkbox"]').attr("checked", "true"); 
+      link.html("#{t('events.participants.select_none')}");
+    }
+      link.toggleClass("selected");
+    return false;
+  }
+
   function friend_selected_callback(data) {
     $.post("#{event_invite_path(@event.id)}", { selectedIds: ""+data });     
     $.colorbox.close();
@@ -100,8 +115,9 @@
     return false;
   }
 
-  function deleteMembers(e) {
-    var checked = $('input[type="checkbox"]:checked');
+  function deleteMembers(target, alert_content) {
+    var checked = $(target + ' input[type="checkbox"]:checked');
+    $('#delete_member_request h4').html(alert_content);
     if (checked.length == 0) {
       $('a.delete').unbind('click');
       return false;
