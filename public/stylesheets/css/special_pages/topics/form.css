@@ -1,22 +1,50 @@
-.field {
-  margin-bottom: 10px; }
-  .field label.info {
-    display: inline-block;
-    width: 40px; }
-  .field label.error {
-    display: block;
-    color: #ff6600;
-    margin-left: 42px; }
-  .field textarea {
+.topic_form {
+  padding: 30px 10px 20px 30px;
+  background-color: white;
+  -moz-border-radius: 15px;
+  -webkit-border-radius: 15px;
+  border-radius: 15px;
+  behavior: url(/javascripts/PIE.htc); }
+  .topic_form .field {
+    margin-bottom: 10px; }
+    .topic_form .field label.info {
+      display: inline-block;
+      width: 40px;
+      color: #424f55;
+      font-size: 13px; }
+    .topic_form .field label.error {
+      display: block;
+      color: #ff6600;
+      margin-left: 42px; }
+    .topic_form .field textarea {
+      vertical-align: top;
+      width: 400px; }
+    .topic_form .field input#topic_title {
+      vertical-align: top;
+      width: 400px;
+      border: 1px solid #d5dddf;
+      font-size: 13px;
+      color: #576b72;
+      height: 30px;
+      line-height: 30px; }
+  .topic_form .author a {
     vertical-align: top;
-    width: 450px; }
-  .field input#topic_title {
-    vertical-align: top;
-    width: 300px; }
+    margin-left: 10px; }
 
 .actions {
-  margin-left: 40px; }
-
-.author a {
-  vertical-align: top;
-  margin-left: 10px; }
+  padding-left: 40px; }
+  .actions input {
+    background: url("/images/ui/person_edit.png") no-repeat scroll 0 0 transparent;
+    border: medium none;
+    cursor: pointer;
+    display: inline;
+    float: right;
+    font-size: 16px;
+    color: white;
+    height: 46px;
+    margin: 13px 4px 0 0;
+    overflow: hidden;
+    width: 198px; }
+    .actions input:hover {
+      background: url("/images/ui/person_edit.png") no-repeat scroll 100% -46px transparent;
+      margin: 15px 4px 0 0; }

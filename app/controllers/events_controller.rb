@@ -91,8 +91,6 @@ class EventsController < ApplicationController
     event_attrs = params[:event]
     location = Location.create(event_attrs[:location_attributes])
     l_info = GoogleGeoCoder.getLocation(location.to_s)
-    puts '********************************'
-    puts l_info
     event_attrs[:location_attributes].merge!(l_info) unless l_info.nil?
     @event = Event.new(event_attrs)
     @event.person = current_user.person

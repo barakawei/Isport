@@ -19,7 +19,18 @@
           =l(@group.created_at, :format => :long)
         %strong
           ='小组类型:'
-          =@group.item.name
+          =link_to @group.item.name, item_path(@group.item)
+        %strong
+          ='组长:'
+          =link_to @group.person.name, person_path(@group.person)
+    .span-7
+      - if @is_member
+        =link_to(new_event_path(:group_id => @group.id)) do
+          .new_button.glass_button.quit
+            ='发起活动'
+        =link_to(new_group_topic_path(:group_id => @group.id)) do
+          .new_button.glass_button.quit
+            ='发起话题'
     %hr.space
     - if @members.size > 0
       %h4.app_module_title='小组成员'
@@ -66,16 +77,60 @@
     .span-17.prepend-top
       .span-10
         =render 'common/header_box', :title => '近期活动'
-      .span-17.events_panel
-        =render :partial => 'events/event_element',:collection => @recent_events,:as => :event
+      - if @recent_events.size > 0
+        .span-6
+          %h4= link_to '更多活动>', group_events_path(@group), :class => 'right more'
+        .span-17.events_panel
+          =render :partial => 'events/event_element',:collection => @recent_events,:as => :event
+          - if @is_member
+            =render :partial => 'events/new_event_link', :locals => { :question => '没找到感兴趣的活动?',
+                                                                    :link => new_event_path(:group_id => @group),
+                                                                    :action => '发起活动'}
+      - else
+        .span-17.events_panel
+          - if @is_member
+            =render :partial => 'events/new_event_link', :locals => {  :question => '小组还没有活动?',
+                                                                     :link => new_group_topic_path(@group),
+                                                                     :action => '发起话题'}
+          
     .span-17.prepend-top
       .span-10
         =render 'common/header_box', :title => '近期话题'
+      .span-6
+        - if @topics.size > 0
+          %h4= link_to '更多话题>', forum_group_path(@group), :class => 'right more'
+
       - if @topics.size > 0
         .topics_panel
           = render 'topics/recent_topics.html.haml', :topics => @topics
+      - else
+        .span-17.no_topics_panel 
+          - if @is_member
+            =render :partial => 'events/new_event_link', :locals => { :question => '小组还没有话题?',
+                                                                    :link => new_group_topic_path(@group),
+                                                                    :action => '发起话题'}
+
+
         
-      
+:javascript
+  $(function() {
+    $('.events_panel .new_event_link').hover(
+      function() {
+        $('.events_panel .new_event_panel h2').toggle();
+      }, 
+      function() { 
+        $('.events_panel .new_event_panel h2').toggle();
+      }
+    );    
+    $('.no_topics_panel .new_event_link').hover(
+      function() {
+        $('.no_topics_panel .new_event_panel h2').toggle();
+      }, 
+      function() { 
+        $('.no_topics_panel .new_event_panel h2').toggle();
+      }
+    );    
+  });
 
         
 

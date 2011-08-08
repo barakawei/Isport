@@ -22,6 +22,7 @@ class GroupsController < ApplicationController
     @event_size  = @group.events.count
     @topic_size = @group.topics.count
     @member_size = @group.members.count
+    @is_member = @group.has_member?(@current_person)
   end
 
   def new

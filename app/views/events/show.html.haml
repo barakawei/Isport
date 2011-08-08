@@ -16,9 +16,12 @@
           =@event.location.to_s
         %strong
           ='项目:'
-          =@event.item.name
+          = link_to @event.item.name, item_path(@event.item)
+        %strong
+          ='发起人:'
+          =link_to @event.person.name, person_path(@event.person)
     %hr.space
-    .span-6
+    .span-6#map_div
       %h4.app_module_title
         ='活动地图'
         = link_to '(详细)', event_map_path(@event)
@@ -89,5 +92,5 @@
 :javascript
   $(function() {
     var address = "#{@event.location}";
-    codeAddress("map", address);
+    codeAddress("map", address, 'map_div');
   });

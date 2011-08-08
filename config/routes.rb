@@ -20,7 +20,7 @@ Isport::Application.routes.draw do
   
   resources :conversation_visibilities
 
-  root :to => "home#index"
+  root :to => "welcome#index"
 
   resource :user, :only => [:edit, :update, :destroy] 
   controller :people do
@@ -76,6 +76,8 @@ Isport::Application.routes.draw do
     match '/events/:id/edit/members' => :edit_members, :as => 'event_members',
           :constraints => { :id => /[1-9]\d*/}
     match '/events/:id/map' => :map, :as => 'event_map',
+          :constraints => { :id => /[1-9]\d*/}
+    match '/events/:id/participants' => :participants, :as => 'participants',
           :constraints => { :id => /[1-9]\d*/}
     match '/events/:id/invite_friends' => :invite_friends, :as => 'new_event_invite',
           :constraints => { :id => /[1-9]\d*/}

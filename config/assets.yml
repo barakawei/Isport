@@ -83,6 +83,8 @@ stylesheets:
     - public/stylesheets/css/special_pages/events/my_event_item.css
   sepcial_pages_events_hottest:
     - public/stylesheets/css/special_pages/events/hot_event.css
+  sepcial_pages_events_new_event_panel:
+    - public/stylesheets/css/special_pages/events/new_event_panel.css
 
   special_pages_items_show:
     - public/stylesheets/css/special_pages/item/show.css
