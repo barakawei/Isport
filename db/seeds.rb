@@ -74,7 +74,7 @@ image_path = '/images/items/'
   {:name => '乒乓球', :description => "xx", :category_id => 1,
     :large => "#{image_path}pingpang_large.jpg", :medium => "#{image_path}pingpang_medium.jpg",
     :small => "#{image_path}pingpang_small.jpg"},
-  {:name => '轮滑', :description => "xx", :category_id => 1,
+  {:name => '极限运动', :description => "xx", :category_id => 1,
     :large => "#{image_path}skating_large.jpg", :medium => "#{image_path}skating_medium.jpg",
     :small => "#{image_path}skating_small.jpg"},
   {:name => '保龄球', :description => "xx",  :category_id => 1,
@@ -88,12 +88,27 @@ image_path = '/images/items/'
     :small => "#{image_path}swimming_small.jpg"},
   {:name => '攀岩', :description => "xx",  :category_id => 1,
     :large => "#{image_path}climing_large.jpg", :medium => "#{image_path}climing_medium.jpg",
-    :small => "#{image_path}climing_small.jpg"}].each do |item|
-    Item.find_or_create_by_name(:name => item[:name], :description => item[:description],:category_id => item[:category_id]
-      :image_url_large => item[:large], :image_url_medium => item[:medium], :image_url_small => item[:small])
+    :small => "#{image_path}climing_small.jpg"},
+  {:name => 'K歌', :description => "唱起来", :category_id => 2,
+    :large => "#{image_path}ktv_large.jpg", :medium => "#{image_path}ktv_medium.jpg",
+    :small => "#{image_path}ktv_small.jpg"},
+  {:name => '酒吧', :description => "释放激情", :category_id => 2,
+    :large => "#{image_path}pub_large.jpg", :medium => "#{image_path}pub_medium.jpg",
+    :small => "#{image_path}pub_small.jpg"},
+  {:name => '桌游', :description => "xx", :category_id => 2,
+    :large => "#{image_path}boardgame_large.jpg", :medium => "#{image_path}boardgame_medium.jpg",
+    :small => "#{image_path}boardgame_small.jpg"},
+  {:name => '野炊', :description => "吃得要爽", :category_id => 2,
+    :large => "#{image_path}bbq_large.jpg", :medium => "#{image_path}bbq_medium.jpg",
+    :small => "#{image_path}bbq_small.jpg"},
+  {:name => '摄影', :description => "追逐光和影", :category_id => 2,
+    :large => "#{image_path}photographing_large.jpg", :medium => "#{image_path}photographing_medium.jpg",
+    :small => "#{image_path}photographing_small.jpg"}].each do |item|
+    Item.find_or_create_by_name(:name => item[:name], :description => item[:description],
+      :category_id => item[:category_id], :image_url_large => item[:large], :image_url_medium => item[:medium], :image_url_small => item[:small])
   end
 
-['体育运动'，'休闲娱乐'].each do |name|
+['体育运动', '休闲娱乐'].each do |name|
   Category.find_or_create_by_name(:name => name)
 end
 

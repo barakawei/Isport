@@ -3,7 +3,7 @@
   float: left; }
   .itemleft .item_image {
     width: 200px;
-    height: 200px;
+    position: relative;
     overflow: hidden;
     margin-bottom: 10px; }
     .itemleft .item_image img {
@@ -11,6 +11,13 @@
       -webkit-border-radius: 14px;
       border-radius: 14px;
       behavior: url(/javascripts/PIE.htc); }
+    .itemleft .item_image .item_name {
+      position: absolute;
+      left: 6px;
+      bottom: 6px;
+      font-size: 25px;
+      font-weight: bold;
+      color: white; }
   .itemleft .item_desc {
     width: 200px;
     display: block;

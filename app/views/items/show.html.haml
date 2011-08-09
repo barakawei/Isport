@@ -5,8 +5,8 @@
   .itemleft
     .item_image
       = item_image_tag(@item, :thumb_large)
-    .item_desc
-      = @item.description
+      .item_name
+        = @item.name
 
     .check_area
       - if current_user 

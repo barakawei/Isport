@@ -8,12 +8,20 @@ $darkgray: #74777B
 
   .item_image
     :width 200px
-    :height 200px
+    :position relative
     :overflow hidden
     :margin-bottom 10px
     
     img
       @include border-radius(14px)
+
+    .item_name
+      :position absolute
+      :left 6px
+      :bottom 6px
+      :font-size 25px
+      :font-weight bold
+      :color #FFFFFF
 
   .item_desc
     :width 200px

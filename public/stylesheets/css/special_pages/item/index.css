@@ -1,6 +1,6 @@
 .myitemlist {
   width: 142px;
-  margin-top: 11px;
+  margin-top: 42px;
   margin-left: 8px;
   overflow: hidden;
   display: block;
@@ -48,28 +48,38 @@
 
 .imageboard {
   width: 800px;
-  float: left; }
+  float: left;
+  position: relative; }
+  .imageboard .hidebutton {
+    float: right;
+    font-size: 12px;
+    position: absolute;
+    right: 10px; }
   .imageboard .imageheard {
     float: left;
     width: 800px;
-    height: 30px;
     font-size: 18px;
-    color: #ff7d56;
     margin-bottom: 12px; }
-    .imageboard .imageheard .hidebutton {
-      float: right;
-      font-size: 12px; }
   .imageboard .imagearea {
     width: 800px;
-    overflow: hidden; }
+    overflow: hidden;
+    margin-bottom: 60px; }
     .imageboard .imagearea .image {
       float: left;
-      width: 200px; }
+      width: 200px;
+      position: relative; }
       .imageboard .imagearea .image img {
         -moz-border-radius: 14px;
         -webkit-border-radius: 14px;
         border-radius: 14px;
         behavior: url(/javascripts/PIE.htc); }
+      .imageboard .imagearea .image .itemname {
+        position: absolute;
+        left: 6px;
+        bottom: 26px;
+        font-size: 20px;
+        font-weight: bold;
+        color: white; }
       .imageboard .imagearea .image .iteminfo {
         width: 200px; }
 

@@ -5,7 +5,7 @@
   .span-20{:style => "margin-left: 52px;"}
     = render 'common/header_box', :title =>t('items.myitems') , :dark => false
   .myitemarea
-    - @items_hash.each_with_index do |item, index|
+    - @items_array.each_with_index do |item, index|
       .oneitem
         .itemimage
           = item_image_link(item[:item], :size => :thumb_medium)

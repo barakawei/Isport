@@ -2,7 +2,7 @@
 
 .myitemlist
   :width 142px
-  :margin-top 11px
+  :margin-top 42px
   :margin-left 8px
   :overflow hidden
   :display block
@@ -54,29 +54,40 @@
 .imageboard 
   width: 800px
   float: left
+  position: relative
+
+  .hidebutton
+    :float right
+    :font-size 12px
+    :position absolute
+    :right 10px
 
   .imageheard
     :float left
     :width 800px
-    :height 30px
     :font-size 18px
-    :color #FF7D56
     :margin-bottom 12px
-
-    .hidebutton
-      :float right
-      :font-size 12px
 
   .imagearea
     :width 800px
     :overflow hidden
+    :margin-bottom 60px
 
     .image 
       :float left
       :width 200px
+      :position relative
       
       img
         @include border-radius(14px)
+      
+      .itemname
+        :position absolute
+        :left 6px
+        :bottom 26px
+        :font-size 20px
+        :font-weight bold
+        :color #FFFFFF
 
       .iteminfo 
         :width 200px
