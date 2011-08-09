@@ -41,59 +41,61 @@ end
 
 image_path = '/images/items/'
 
-[ {:name => '足球', :description => "速度，力量，激情，团队",
+[ {:name => '足球', :description => "速度，力量，激情，团队", :category_id => 1,
     :large => "#{image_path}soccer_large.jpg", :medium => "#{image_path}soccer_medium.jpg",
    :small => "#{image_path}soccer_small.jpg"},
-  {:name => '篮球', :description => "xx",
+  {:name => '篮球', :description => "xx", :category_id => 1,
     :large => "#{image_path}basketball_large.jpg", :medium => "#{image_path}basketball_medium.jpg",
     :small => "#{image_path}basketball_small.jpg"},
-  {:name => '慢跑', :description => "xx",
+  {:name => '慢跑', :description => "xx", :category_id => 1,
     :large => "#{image_path}running_large.jpg", :medium => "#{image_path}running_medium.jpg",
     :small => "#{image_path}running_small.jpg"},
-  {:name => '网球', :description => "xx",
+  {:name => '网球', :description => "xx", :category_id => 1,
     :large => "#{image_path}tennis_large.jpg", :medium => "#{image_path}tennis_medium.jpg",
     :small => "#{image_path}tennis_small.jpg"},
-  {:name => '单车', :description => "xx", 
+  {:name => '单车', :description => "xx",  :category_id => 1,
     :large => "#{image_path}cycling_large.jpg", :medium => "#{image_path}cycling_medium.jpg",
     :small => "#{image_path}cycling_small.jpg"},
-  {:name => '登山', :description => "xx",
+  {:name => '登山', :description => "xx", :category_id => 1,
     :large => "#{image_path}moutain_large.jpg", :medium => "#{image_path}moutain_medium.jpg",
     :small => "#{image_path}moutain_small.jpg"},
-  {:name => '桌球', :description => "xx", 
+  {:name => '桌球', :description => "xx",  :category_id => 1,
     :large => "#{image_path}pool_large.jpg", :medium => "#{image_path}pool_medium.jpg",
     :small => "#{image_path}pool_small.jpg"}, 
-  {:name => '徒步', :description => "xx", 
+  {:name => '徒步', :description => "xx",  :category_id => 1,
     :large => "#{image_path}walking_large.jpg", :medium => "#{image_path}walking_medium.jpg", 
     :small => "#{image_path}walking_small.jpg"}, 
-  {:name => '垂钓', :description => "xx",
+  {:name => '垂钓', :description => "xx", :category_id => 1,
     :large => "#{image_path}fishing_large.jpg", :medium => "#{image_path}fishing_medium.jpg",
     :small => "#{image_path}fishing_small.jpg"},
-  {:name => '橄榄球', :description => "xx",
+  {:name => '橄榄球', :description => "xx", :category_id => 1,
     :large => "#{image_path}football_large.jpg", :medium => "#{image_path}football_medium.jpg",
     :small => "#{image_path}football_small.jpg"},
-  {:name => '乒乓球', :description => "xx",
+  {:name => '乒乓球', :description => "xx", :category_id => 1,
     :large => "#{image_path}pingpang_large.jpg", :medium => "#{image_path}pingpang_medium.jpg",
     :small => "#{image_path}pingpang_small.jpg"},
-  {:name => '轮滑', :description => "xx",
+  {:name => '轮滑', :description => "xx", :category_id => 1,
     :large => "#{image_path}skating_large.jpg", :medium => "#{image_path}skating_medium.jpg",
     :small => "#{image_path}skating_small.jpg"},
-  {:name => '保龄球', :description => "xx", 
+  {:name => '保龄球', :description => "xx",  :category_id => 1,
     :large => "#{image_path}bowling_large.jpg", :medium => "#{image_path}bowling_medium.jpg",
     :small => "#{image_path}bowling_small.jpg"},
-  {:name => '羽毛球', :description => "xx",
+  {:name => '羽毛球', :description => "xx", :category_id => 1,
     :large => "#{image_path}badminton_large.jpg", :medium => "#{image_path}badminton_medium.jpg",
     :small => "#{image_path}badminton_small.jpg"},
-  {:name => '游泳', :description => "xx", 
+  {:name => '游泳', :description => "xx",  :category_id => 1,
     :large => "#{image_path}swimming_large.jpg", :medium => "#{image_path}swimming_medium.jpg",
     :small => "#{image_path}swimming_small.jpg"},
-  {:name => '攀岩', :description => "xx", 
+  {:name => '攀岩', :description => "xx",  :category_id => 1,
     :large => "#{image_path}climing_large.jpg", :medium => "#{image_path}climing_medium.jpg",
     :small => "#{image_path}climing_small.jpg"}].each do |item|
-    Item.find_or_create_by_name(:name => item[:name], :description => item[:description],
+    Item.find_or_create_by_name(:name => item[:name], :description => item[:description],:category_id => item[:category_id]
       :image_url_large => item[:large], :image_url_medium => item[:medium], :image_url_small => item[:small])
   end
 
-
+['体育运动'，'休闲娱乐'].each do |name|
+  Category.find_or_create_by_name(:name => name)
+end
 
 
 
