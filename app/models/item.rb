@@ -101,4 +101,14 @@ class Item < ActiveRecord::Base
     
     return items_array
   end
+
+  def self.add_fan(item_id, user)
+    favorite = Favorite.new(:item_id => item_id, :person_id => user.person.id)
+    favorite.save
+  end
+
+  def self.remove_fan(item_id, user)
+    Favorite.delete_all(:item_id => item_id, :person_id => user.person.id)
+  end
+
 end

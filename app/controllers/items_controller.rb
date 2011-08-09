@@ -174,6 +174,7 @@ class ItemsController < ApplicationController
 
   def delete
     @item = Item.find(params[:id])
+
     if @item.events.size == 0
       @item.destroy
       redirect_to(items_url)
@@ -183,14 +184,13 @@ class ItemsController < ApplicationController
   end
 
   def add_fan
-    @favorite = Favorite.new(:item_id => params[:id], :person_id => current_user.person.id)
-    @favorite.save
+    Item.add_fan(params[:id], current_user)
 
     redirect_to(item_url(@item))
   end
 
   def remove_fan
-    Favorite.delete_all(:item_id => params[:id], :person_id => current_user.person.id)
+    Item.remove_fan(params[:id], current_user)
 
     redirect_to(item_url(@item))
   end

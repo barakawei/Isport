@@ -60,4 +60,12 @@ class Person < ActiveRecord::Base
     }
   end 
 
+  def add_interests(item_ids)
+    ActiveRecord::Base.transaction do 
+      Favorite.delete_all(:person_id => self.id)
+      item_ids.each do |item_id|
+        Favorite.create(:item_id => item_id, :person_id => self.id)
+      end
+    end   
+  end
 end
