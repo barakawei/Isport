@@ -1,42 +1,41 @@
 -content_for :head do
-  = include_stylesheets :special_pages_items_show, :media => 'all'
   = include_stylesheets :special_pages_items_commom, :media => 'all'
-.span-24
+  = include_stylesheets :special_pages_items_index, :media => 'all'
+.span-24.last
   .imageboard
-    .left
-      .span-15
-        %span.maintitle= t 'items.items_list' 
-      .span-3.last
-        - if is_admin
-          = link_to t('items.new_item'), new_item_path, :class => 'butten new_item'
-    .imageboard.left
-      .dash_middle
-    .imageboard
-      - @items_hash.each_with_index do |item, index|
-        .image
+    .hidebutton.last
+      - if is_admin
+        = link_to t('items.new_item'), new_item_path, :class => 'butten new_item'
+    - @categories.each do |category|
+      .imageheard
+        .left
+          = render 'common/header_box', :title =>category.name, :dark => false 
+      .imagearea
+        - @items_hash[category.id].each_with_index do |item, index|
           .image
             = item_image_link(item[:item], :size => :thumb_large)
-          %br
-          .iteminfo
-            %span.title
-              = item_events_notify
-              = link_to t('items.eventsthisweek', :count => item[:events_count]), event_filter_path(@city.pinyin, nil, item[:item].id, 'week') 
-            %span.detail= item[:fans_count].to_s + t('items.fans')
+            .itemname
+              = item[:item].name
+            %br
+            .iteminfo
+              %span.title
+                = item_events_notify
+                = link_to t('items.eventsthisweek', :count => item[:events_count]), event_filter_path(@city.pinyin, nil, item[:item].id, 'week') 
+              %span.detail= item[:fans_count].to_s + t('items.fans')
+
   - if current_user
-    .span-4.myitemlist.last
-      .span-4.left_padding
-        %h4= link_to t('items.myitems'), myitems_path, :class => "nounderline"
-      .span-4
+    .myitemlist
+      .itemlisttitle
+        = link_to t('items.myitems'), myitems_path, :class => "nounderline"
+      .itemlistcontent
         - @myitems.each_with_index do |item, index|
-          .span-4
-            .left.left_padding
+          .itemlistrow
+            .itemimage
               = item_image_link(item[:item], :size => :thumb_small)
-            %span.itemsg= link_to item[:item].name, item, :class => "nounderline"
-            %br
-            %span.itemsg= link_to t('items.eventsthisweek', :count => item[:count]), event_filter_path(@city.pinyin, nil, item[:item].id, 'week')
-            %br
-            .dash_short
-          %br
+            .itemmsg
+              = link_to item[:item].name, item[:item]
+              %br
+              = link_to t('items.eventsthisweek', :count => item[:count]), event_filter_path(@city.pinyin, nil, item[:item].id, 'week')
 
 :javascript
   $(function() {

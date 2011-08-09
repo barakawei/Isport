@@ -29,14 +29,14 @@
   .follow_prompt
     :margin-left 95px
 
-.person_element
+.box_element
   @include border-radius( 10px )
   @include box-shadow(0,0,2px,1px,#ccc  )
   :border 1px solid #d5ddde
   :margin-left 8px
   :margin-top 8px
   :padding 5px 8px 5px 8px
-  .person_avatar
+  .box_avatar
     img
       :width 95px
       :height 95px
@@ -44,6 +44,8 @@
         :opacity 0.8
   h4
     :margin 0
+    :overflow hidden
+    :white-space nowrap
     em
       color: #999
       :font-weight normal
@@ -53,11 +55,11 @@
       line-height: 1.7
       background: url(/images/ui/icon-location.png) no-repeat 0 50%
       
-  :width 95px
+  :width 97px
   :height 150px
   :background-color white
   .content
-    .person_status
+    .box_status
       :font-weight bold
       :height 30px
       :color #777

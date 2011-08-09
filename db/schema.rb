@@ -10,10 +10,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110807195408) do
+ActiveRecord::Schema.define(:version => 20110809080413) do
 
   create_table "administrators", :force => true do |t|
     t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "categories", :force => true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -145,6 +151,7 @@ ActiveRecord::Schema.define(:version => 20110807195408) do
     t.string   "image_url_large"
     t.string   "image_url_medium"
     t.string   "image_url_small"
+    t.integer  "category_id",      :default => 1
   end
 
   create_table "locations", :force => true do |t|

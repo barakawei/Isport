@@ -2,7 +2,7 @@
   =include_javascripts :scroll_page
   =include_javascripts :show_photo
   =include_javascripts :status_message
-.span-17.last.content_panel
+.span-19.last.content_panel
   .events_panel
     .current_events
       .title_panel
@@ -12,7 +12,7 @@
         .border_right_side
       .pointer
     
-.span-6.last.right_bar
+.span-5.last.right_bar
   = render 'people/person_list', :person => @person
 :javascript
   $.get("/home/show_event");

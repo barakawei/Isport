@@ -133,10 +133,9 @@ class PeopleController < ApplicationController
   end
 
   def choose_interests
-    items_ids = params[:item_ids].split(',');
-    if items_ids.size > 0
-      
-    end
+    item_ids = params[:item_ids].split(',');
+    current_user.person.add_interests(item_ids)      
+    render :nothing => true
   end
 end
 

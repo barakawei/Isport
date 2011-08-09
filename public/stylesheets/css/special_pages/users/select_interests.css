@@ -42,6 +42,8 @@
       color: white; }
   .select_interests a.avatar.selected {
     background-color: #ed5272; }
+    .select_interests a.avatar.selected img {
+      display: none; }
   .select_interests .results {
     width: 700px;
     float: left; }

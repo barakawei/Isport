@@ -66,23 +66,16 @@
   border-radius: 14px;
   behavior: url(/javascripts/PIE.htc);
   background-color: white; }
-  .search_result .group_by_search {
+  .search_result .box_element {
     float: left;
-    width: 182px;
-    height: 210px;
+    width: 150px;
+    height: 198px;
     margin: 0 40px 20px 0; }
-    .search_result .group_by_search span.item_name {
-      color: #ff6600; }
-    .search_result .group_by_search img {
-      width: 180px;
-      height: 180px;
-      border: 1px solid #f2f2f2;
-      -moz-border-radius: 14px;
-      -webkit-border-radius: 14px;
-      border-radius: 14px;
-      behavior: url(/javascripts/PIE.htc); }
-      .search_result .group_by_search img:hover {
-        border: 1px solid #10a3e1; }
+    .search_result .box_element .box_status .element {
+      padding-left: 15px; }
+    .search_result .box_element img {
+      width: 150px;
+      height: 150px; }
 
 #city_select_box {
   position: absolute;

@@ -22,11 +22,10 @@ table.topics {
 
 .title {
   width: 590px; }
-  .title .avatar {
-    width: 30px;
-    float: left;
-    margin-right: 10px; }
-    .title .avatar img {
+  .title .author_avatar {
+    float: left; }
+    .title .author_avatar .avatar {
+      margin-right: 10px;
       width: 30px;
       height: 30px;
       -moz-border-radius: 4px;

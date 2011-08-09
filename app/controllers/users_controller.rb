@@ -17,5 +17,9 @@ class UsersController < ApplicationController
 
   def select_interests
     @items = Item.all
+    @my_items = current_user.person.interests
+    @items.each do |item|
+      item.selected = true if @my_items.include?(item)
+    end
   end
 end

@@ -1,33 +1,15 @@
-.dash_top, .dash_middle, .dash_bottom, .dash_short {
-  border-bottom: 1px dashed #002db3; }
+span.maintitle {
+  overflow: show;
+  text-align: left;
+  padding-top: 11px;
+  float: left;
+  height: 20px;
+  font-family: STKaiti, KaiTi, sans-serif;
+  font-size: large;
+  color: #ff7d56; }
 
-.dash_top, .dash_short {
-  margin-bottom: 10px; }
-
-.dash_short {
-  margin-left: 75px; }
-
-.dash_middle {
-  margin-bottom: 10px;
-  margin-top: 10px; }
-
-.dash_bottom {
-  margin-top: 10px; }
-
-.item_mark {
-  background: url("/images/items/item_mark.png") no-repeat scroll 0 0 transparent;
-  width: 100px;
-  height: 40px;
-  text-indent: -9999em;
-  display: block; }
-  .item_mark:hover {
-    background: url("/images/items/item_mark.png") no-repeat scroll left bottom transparent; }
-
-.item_unmark {
-  background: url("/images/items/item_unmark.png") no-repeat scroll 0 0 transparent;
-  width: 100px;
-  height: 40px;
-  text-indent: -9999em;
-  display: block; }
-  .item_unmark:hover {
-    background: url("/images/items/item_unmark.png") no-repeat scroll left bottom transparent; }
+span.eveinfo {
+  overflow: hidden;
+  float: right;
+  width: 120px;
+  text-align: right; }

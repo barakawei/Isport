@@ -6,8 +6,8 @@
   width: 606px;
   float: left; }
   .comment_block .comment_top {
+    height: 50px;
     margin-bottom: 9px;
-    overflow: hidden;
     width: 100%; }
     .comment_block .comment_top .author_box {
       float: left;

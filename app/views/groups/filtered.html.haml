@@ -36,7 +36,7 @@
 .search_result
   - if @groups.size > 0
     - @groups.each do |g|
-      = render 'group_by_search', :group => g
+      = render 'group_element', :group => g
 
     .span-24
       = will_paginate @groups, {:previous_label => t("pagination.previous"), 

@@ -26,7 +26,7 @@
   .person_card .follow_prompt {
     margin-left: 95px; }
 
-.person_element {
+.box_element {
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
   border-radius: 10px;
@@ -39,17 +39,19 @@
   margin-left: 8px;
   margin-top: 8px;
   padding: 5px 8px 5px 8px;
-  width: 95px;
+  width: 97px;
   height: 150px;
   background-color: white; }
-  .person_element .person_avatar img {
+  .box_element .box_avatar img {
     width: 95px;
     height: 95px; }
-    .person_element .person_avatar img:hover {
+    .box_element .box_avatar img:hover {
       opacity: 0.8; }
-  .person_element h4 {
-    margin: 0; }
-    .person_element h4 em {
+  .box_element h4 {
+    margin: 0;
+    overflow: hidden;
+    white-space: nowrap; }
+    .box_element h4 em {
       color: #999999;
       font-weight: normal;
       font-size: 11px;
@@ -57,60 +59,60 @@
       font-style: normal;
       line-height: 1.7;
       background: url(/images/ui/icon-location.png) no-repeat 0 50%; }
-  .person_element .content .person_status {
+  .box_element .content .box_status {
     font-weight: bold;
     height: 30px;
     color: #777777; }
-    .person_element .content .person_status .follow_button_mini {
+    .box_element .content .box_status .follow_button_mini {
       font-size: 1em;
       font-weight: bold;
       text-decoration: none;
       float: right; }
-      .person_element .content .person_status .follow_button_mini .following {
+      .box_element .content .box_status .follow_button_mini .following {
         margin-top: 5px;
         padding: 6px;
         width: 12px;
         height: 12px;
         background-color: #8aba56;
         color: #666666; }
-        .person_element .content .person_status .follow_button_mini .following span {
+        .box_element .content .box_status .follow_button_mini .following span {
           background: url(/images/ui/icon-check.png) no-repeat 0 50%;
           text-indent: -999em;
           padding-left: 18px;
           float: left;
           line-height: 12px; }
-        .person_element .content .person_status .follow_button_mini .following:hover {
+        .box_element .content .box_status .follow_button_mini .following:hover {
           background-color: #ea4c88; }
-          .person_element .content .person_status .follow_button_mini .following:hover span {
+          .box_element .content .box_status .follow_button_mini .following:hover span {
             background: url(/images/ui/icon-x.png) no-repeat 0 50%; }
-      .person_element .content .person_status .follow_button_mini .follow {
+      .box_element .content .box_status .follow_button_mini .follow {
         margin-top: 5px;
         padding: 6px;
         width: 12px;
         height: 12px;
         background-color: lightGrey;
         color: #666666; }
-        .person_element .content .person_status .follow_button_mini .follow span {
+        .box_element .content .box_status .follow_button_mini .follow span {
           background: url(/images/ui/follow-gray.gif) no-repeat 0 50%;
           text-indent: -999em;
           padding-left: 18px;
           float: left;
           line-height: 12px; }
-        .person_element .content .person_status .follow_button_mini .follow:hover {
+        .box_element .content .box_status .follow_button_mini .follow:hover {
           background-color: #8aba56; }
-          .person_element .content .person_status .follow_button_mini .follow:hover span {
+          .box_element .content .box_status .follow_button_mini .follow:hover span {
             background: url(/images/ui/follow-white.gif) no-repeat 0 50%; }
-    .person_element .content .person_status .element {
+    .box_element .content .box_status .element {
       border-left: 1px solid #e5e5e5;
       height: 30px;
       float: left;
       padding-left: 5px;
       margin-left: 5px; }
-      .person_element .content .person_status .element:first-child {
+      .box_element .content .box_status .element:first-child {
         border: none;
         margin-left: 0px;
         padding-left: 0px; }
-      .person_element .content .person_status .element span {
+      .box_element .content .box_status .element span {
         margin-top: 3px;
         display: block;
         font-size: 11px;

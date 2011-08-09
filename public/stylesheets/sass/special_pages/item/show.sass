@@ -1,0 +1,121 @@
+@import '../../general/ui/mixins'
+
+$darkgray: #74777B
+
+.itemleft
+  :width 220px
+  :float left
+
+  .item_image
+    :width 200px
+    :position relative
+    :overflow hidden
+    :margin-bottom 10px
+    
+    img
+      @include border-radius(14px)
+
+    .item_name
+      :position absolute
+      :left 6px
+      :bottom 6px
+      :font-size 25px
+      :font-weight bold
+      :color #FFFFFF
+
+  .item_desc
+    :width 200px
+    :display block
+    :float left
+    :text-align left
+    :font-size 18px
+    :color $darkgray 
+    :margin-bottom 10px
+
+  .check_area
+    :width 200px
+    :float left
+    :overflow hidden
+    :display block
+    :font-size 13px
+    :margin-bottom 10px
+  
+  .item_star
+    :width 220px
+    :display block
+    :float left
+
+    .star_one
+      :float left
+      :width 50px
+      :height 50px
+      :margin-right 5px
+      :margin-bottom 5px
+      
+      img
+        @include border-radius(5px)
+
+.itemright
+  :width 700px
+  :margin-left 25px
+  :float left
+
+  .item_info
+    :width 700px
+    :height 150px
+    :overflow hidden
+    :margin-left 0px
+    :margin-bottom 20px
+
+    .info_ele
+      :margin-top 20px
+      :margin-left 20px
+      :float left
+
+  .hot_title
+    :margin-bottom 20px
+    :width 700px
+    :display block
+    :float left
+    :position relative
+
+    .title
+      :margin-left 20px
+      :float left
+    .link
+      :margin-right 10px
+      :float right
+      :text-align right
+      :position absolute
+      :bottom 12px
+      :right 5px
+      a
+        :font-size 13px
+        :color blue
+
+  .hot_area
+    :width 700px
+    :margin-left 20px
+    :margin-bottom 20px
+    :overflow hidden
+    
+.item_mark, .item_unmark
+  :width 100px
+  :height 40px
+  :text-indent -9999em
+  :display block
+  :margin-bottom 7px
+
+.item_mark
+  :background url("/images/items/item_mark.png") no-repeat scroll 0 0 transparent
+
+  &:hover
+    :background url("/images/items/item_mark.png") no-repeat scroll left bottom transparent 
+
+.item_unmark
+  :background url("/images/items/item_unmark.png") no-repeat scroll 0 0 transparent 
+  
+  &:hover
+    :background url("/images/items/item_unmark.png") no-repeat scroll left bottom transparent
+
+

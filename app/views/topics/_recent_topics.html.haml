@@ -10,7 +10,7 @@
     -topics.each do |t|
       %tr{:class => "#{cycle('odd', 'even')}"}
         %td.title
-          .avatar
+          .author_avatar
             = person_image_link(t.person)
           .title_url
             = link_to trim_info(t.title, 25), t.url 

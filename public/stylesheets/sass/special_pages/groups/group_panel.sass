@@ -1,0 +1,82 @@
+@import '../../general/ui/mixins'
+
+.group_box_panel
+  a
+    :outline none
+    :text-decoration none
+    :cursor pointer
+
+  .group_box
+    :width 300px
+    :height 110px
+    :border 3px solid #d5ddde
+    @include border-radius(10px)
+    :background-color #ffffff
+    :float left
+    :margin 0 10px 14px 15px
+
+    .group_image
+      :width 110px
+      :height 100px
+      :margin 5px
+      :float left
+      
+      img
+        @include border-radius(10px)
+        
+    .group_message
+      :width 180px
+      :height 110px
+      :float left
+      :overflow hidden
+      :display block
+      :position relative
+
+      .group_title
+        :width 180px
+        :color #FC4469
+        :font-size 16px
+        :font-weight bold 
+        :float left
+
+      .group_detail
+        :width 180px
+        :float left
+        :position absolute
+        :right 0px
+        :bottom 5px
+
+        .detail_piece
+          :width 55px
+          :height 60px
+          :margin-right 5px
+          :overflow hidden
+          :float left
+          @include border-radius(6px)
+          :background-color #A8CDD7
+          :position relative
+
+          .number
+            :margin-top 3px
+            :width 55px
+            :font-size 17px
+            :margin-left 5px
+            :font-weight bold
+            :float left
+            :color yellow
+
+          .name 
+            :width 55px
+            :font-size 12px
+            :font-weight bold
+            :text-align right
+            :float left
+            :position absolute
+            :color white
+            :right 5px
+            :bottom 5px
+
+        
+
+
+

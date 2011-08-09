@@ -1,36 +1,23 @@
 -content_for :head do
-  = include_stylesheets :special_pages_items_show, :media => 'all'
+  = include_stylesheets :special_pages_items_myitems, :media => 'all'
   = include_stylesheets :special_pages_items_commom, :media => 'all'
-.span-24.prepend-top
-  .span-24
-    %span.maintitle= t 'items.myitems' 
-  .span-10
-    .dash_middle
-%br
-  .span-10
-    - @items_hash.each_with_index do |item, index|
-      .span-10.mycolor
-        .span-3.left
+.span-24
+  .span-20{:style => "margin-left: 52px;"}
+    = render 'common/header_box', :title =>t('items.myitems') , :dark => false
+  .myitemarea
+    - @items_array.each_with_index do |item, index|
+      .oneitem
+        .itemimage
           = item_image_link(item[:item], :size => :thumb_medium)
-        .span-6.right
-          %span.detail= link_to item[:item].name, item, :class => "nounderline"
+        .itemdetail
+          = link_to item[:item].name, item[:item], :class => "nounderline"
           %br
-          %span.detail= item[:fans_count].to_s + t('items.fans')
+          = item[:fans_count].to_s + t('items.fans')
           %br
-          %span.detail
-            = link_to t('items.eventsthisweek', :count => item[:events_count]), 
+          = link_to t('items.eventsthisweek', :count => item[:events_count]), 
                           event_filter_path(@city.pinyin, nil, item[:item].id, 'week')
           %br
-          %span.detail= link_to t('items.groupsthiscity', :count => item[:groups_count]), 
+          = link_to t('items.groupsthiscity', :count => item[:groups_count]), 
                           group_filter_path(:city => @city.pinyin, :item_id => item[:item].id)
-      %hr
-:javascript
-  $(function() {
-    $('.new_item').button({
-      icons: {
-        primary: 'ui-icon-plusthick'
-      }
-    });  
-  });
 
 

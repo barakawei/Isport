@@ -1,0 +1,108 @@
+@import '../../general/ui/mixins'
+
+.myitemlist
+  :width 142px
+  :margin-top 42px
+  :margin-left 8px
+  :overflow hidden
+  :display block
+  :position relative
+  :float left
+
+  .itemlisttitle
+    :font-size 16px
+    :height 16px
+    :margin-bottom 15px
+    :display block
+
+  .itemlistcontent
+    :width 142px
+    :overflow hidden
+
+    img
+      @include border-radius(5px)
+    
+    .itemlistrow
+      :width 142px
+      :height 50px
+      :margin-bottom 7px
+
+      .itemimage
+        :width 50px
+        :height 50px
+        :float left
+
+      .itemmsg
+        :margin-left 6px
+        :width 85px
+        :height 50px
+        :background none repeat scroll 0 0 #A8AAAD
+        :overflow hidden
+        @include border-radius(5px)
+        :float left
+        :font-size 12px
+        :display block
+        :text-align right
+       
+        a 
+          :color #000000
+            
+          &:hover
+            :color yellow
+
+
+.imageboard 
+  width: 800px
+  float: left
+  position: relative
+
+  .hidebutton
+    :float right
+    :font-size 12px
+    :position absolute
+    :right 10px
+
+  .imageheard
+    :float left
+    :width 800px
+    :font-size 18px
+    :margin-bottom 12px
+
+  .imagearea
+    :width 800px
+    :overflow hidden
+    :margin-bottom 60px
+
+    .image 
+      :float left
+      :width 200px
+      :position relative
+      
+      img
+        @include border-radius(14px)
+      
+      .itemname
+        :position absolute
+        :left 6px
+        :bottom 26px
+        :font-size 20px
+        :font-weight bold
+        :color #FFFFFF
+
+      .iteminfo 
+        :width 200px
+
+span.title 
+  overflow: show
+  text-align: left
+  float: left
+  display: inline
+  height: 20px
+
+span.detail 
+  overflow: hidden
+  float: right
+  text-align: right 
+  white-space: nowrap
+  margin-right: 7px 
+

@@ -88,9 +88,16 @@ stylesheets:
 
   special_pages_items_show:
     - public/stylesheets/css/special_pages/item/show.css
+  
+  special_pages_items_index:
+    - public/stylesheets/css/special_pages/item/index.css
+
+  special_pages_items_myitems:
+    - public/stylesheets/css/special_pages/item/myitems.css
 
   special_pages_items_commom:
     - public/stylesheets/css/special_pages/item/commom.css
+
 
   sepcial_pages_groups_form:
     - public/stylesheets/css/special_pages/groups/form.css
@@ -106,7 +113,8 @@ stylesheets:
     - public/stylesheets/css/special_pages/groups/edit.css
   sepcial_pages_groups_events:
     - public/stylesheets/css/special_pages/groups/events.css
-
+  special_pages_group_panel:
+    - public/stylesheets/css/special_pages/groups/group_panel.css
 
   special_pages_topic_form:
     - public/stylesheets/css/special_pages/topics/form.css

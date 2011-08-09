@@ -15,8 +15,9 @@ class Group < ActiveRecord::Base
   has_many :memberships, :dependent => :destroy
   has_many :events
   has_many :invitees_plus_members, :through => :memberships, :source => :person
+
   has_many :members, :through => :memberships,  :source => :person,
-                        :conditions => ['memberships.pending = ? ', false] 
+                        :conditions => ['memberships.pending = ? ', false]
   has_many :invitees, :through => :memberships, :source => :person,
                         :conditions => ['memberships.pending = ? ', true] 
   has_many :deletable_members, :through => :memberships, :source => :person,
