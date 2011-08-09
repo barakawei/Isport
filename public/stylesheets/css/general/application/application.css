@@ -318,6 +318,7 @@ span.medium_avatar {
     cursor: pointer; }
 
 .avatar_show {
+  z-index: 100;
   position: absolute; }
   .avatar_show .person_content {
     padding-left: 85px;

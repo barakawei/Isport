@@ -1,4 +1,5 @@
 module ApplicationHelper
+  
   def follow_button_tag( person )
     link_html = "<div class='follow_button'></div>"
     contact = current_user.contact_for( person )
@@ -34,9 +35,14 @@ module ApplicationHelper
     eval("#{object.class.name.underscore}_path(object)")
   end
 
-  def object_name_link( object )
+  def object_name_link( object,opts={  } )
     return "" if object.nil?
-    link_to object.name,object_path( object )
+    if !opts[:length].nil?
+      name = truncate(object.name,:length => opts[:length])
+    else
+      name = object.name
+    end
+    link_to name,object_path( object )
   end
 
   def object_image_link(object,size=:thumb_small)

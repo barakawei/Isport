@@ -45,7 +45,7 @@
     .left_column .person_array .avatar_container {
       float: left;
       margin-right: 5px; }
-      .left_column .person_array .avatar_container img {
+      .left_column .person_array .avatar_container .avatar {
         width: 45px;
         height: 45px;
         -moz-border-radius: 5px;

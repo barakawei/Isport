@@ -25,16 +25,16 @@
   width: 220px;
   margin-bottom: 10px;
   float: left; }
-  .left_column .person_array .avatar_container {
-    float: left;
-    margin-right: 5px; }
-    .left_column .person_array .avatar_container img {
-      width: 45px;
-      height: 45px;
-      -moz-border-radius: 5px;
-      -webkit-border-radius: 5px;
-      border-radius: 5px;
-      behavior: url(/javascripts/PIE.htc); }
+  .left_column .person_array .member {
+    float: left; }
+  .left_column .person_array .avatar {
+    margin-right: 5px;
+    width: 45px;
+    height: 45px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    behavior: url(/javascripts/PIE.htc); }
 
 .right_column .app_big_title_bar.last_one {
   margin-right: 0; }

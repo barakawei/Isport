@@ -63,17 +63,17 @@
       outline: none;
       text-decoration: none;
       cursor: pointer; }
-      .events_panel .event_box_panel a:hover .content {
+      .events_panel .event_box_panel a:hover .content .name {
         color: #fc4469; }
-        .events_panel .event_box_panel a:hover .content .info .info_left {
-          background: url("/images/ui/arrowredreally.png") no-repeat scroll left top #fc5173;
-          color: white; }
-        .events_panel .event_box_panel a:hover .content .info .info_right {
-          background: url("/images/ui/arrow-red.gif"); }
-          .events_panel .event_box_panel a:hover .content .info .info_right .event_closed {
-            display: none; }
-          .events_panel .event_box_panel a:hover .content .info .info_right .calendar {
-            display: none; }
+      .events_panel .event_box_panel a:hover .content .info .info_left {
+        background: url("/images/ui/arrowredreally.png") no-repeat scroll left top #fc5173;
+        color: white; }
+      .events_panel .event_box_panel a:hover .content .info .info_right {
+        background: url("/images/ui/arrow-red.gif"); }
+        .events_panel .event_box_panel a:hover .content .info .info_right .event_closed {
+          display: none; }
+        .events_panel .event_box_panel a:hover .content .info .info_right .calendar {
+          display: none; }
     .events_panel .event_box_panel .event_box {
       width: 300px;
       margin: 0 10px 14px 15px;
@@ -92,9 +92,23 @@
         padding: 10px;
         color: #11bacd; }
         .events_panel .event_box_panel .event_box .content .title {
+          position: relative;
+          width: 240px;
           font-size: 14px;
           font-weight: bold;
-          height: 40px; }
+          height: 50px; }
+          .events_panel .event_box_panel .event_box .content .title .joined {
+            color: #349fba;
+            position: absolute;
+            right: -40px;
+            top: -10px; }
+            .events_panel .event_box_panel .event_box .content .title .joined .icon {
+              display: inline-block;
+              height: 16px;
+              width: 16px;
+              background: url(/images/ui/icons_all.png) no-repeat -342px -182px; }
+            .events_panel .event_box_panel .event_box .content .title .joined:hover {
+              opacity: 0.8; }
         .events_panel .event_box_panel .event_box .content .info .info_left {
           float: left;
           display: inline;
@@ -104,6 +118,8 @@
           width: 188px;
           background: url(/images/ui/box_arrow.png) top left no-repeat #ecf4f6;
           color: #568ea6; }
+          .events_panel .event_box_panel .event_box .content .info .info_left .address {
+            height: 15px; }
           .events_panel .event_box_panel .event_box .content .info .info_left img {
             float: left;
             margin-right: 5px;
@@ -165,7 +181,8 @@
 
 .change_profile_photo {
   text-align: center;
-  height: 30px; }
+  height: 30px;
+  width: 100px; }
   .change_profile_photo #profile_photo_upload {
     padding-left: 0px; }
 
@@ -220,7 +237,7 @@
 
 .person_left_bar .contacts {
   margin-top: 20px; }
-  .person_left_bar .contacts .person_avatar {
+  .person_left_bar .contacts .avatar {
     margin-top: 5px; }
 .person_left_bar .groups {
   margin-top: 20px;
@@ -233,11 +250,13 @@
       height: 50px;
       width: 50px; }
   .person_left_bar .group .name {
-    line-height: 50px;
-    margin-left: 60px;
+    display: table-cell;
+    vertical-align: middle;
+    padding-left: 10px;
     font-size: 15px;
     font-weight: normal;
-    height: 50px; }
+    height: 50px;
+    width: 110px; }
 
 .stream .event_element {
   height: 180px;

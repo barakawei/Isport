@@ -66,7 +66,8 @@
       :cursor pointer
       &:hover
         .content
-          :color #fc4469
+          .name
+            :color #fc4469
           .info
             .info_left
               :background url("/images/ui/arrowredreally.png") no-repeat scroll left top #FC5173
@@ -97,12 +98,29 @@
         :padding 10px
         :color #11BACD
         .title
+          :position relative
+          :width 240px
           :font-size 14px
           :font-weight bold
-          :height 40px
+          :height 50px
+          .joined
+            :color #349fba
+            :position absolute
+            :right -40px
+            :top -10px
+            .icon
+              :display inline-block
+              :height 16px
+              :width 16px
+              :background url(/images/ui/icons_all.png) no-repeat -342px -182px
+            .counts
+            &:hover
+              :opacity 0.8
         .info
           .info_left
             :float left
+            .address
+              :height 15px
             img
               float: left
               margin-right: 5px
@@ -181,6 +199,7 @@
     :padding-left 0px
   :text-align center
   :height 30px
+  :width 100px
 #person_panel
   :margin
     :top 10px
@@ -234,7 +253,7 @@
 .person_left_bar
   .contacts
     :margin-top 20px
-    .person_avatar
+    .avatar
       :margin-top 5px
   .groups
     :margin-top 20px
@@ -247,11 +266,13 @@
         :height 50px
         :width 50px
     .name
-      :line-height 50px
-      :margin-left 60px
+      :display table-cell
+      :vertical-align middle
+      :padding-left 10px
       :font-size 15px
       :font-weight normal
       :height 50px
+      :width 110px
 .stream
   .event_element
     :height 180px
