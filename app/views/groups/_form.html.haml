@@ -5,8 +5,12 @@
     = render "photos/new_group_photo", :group => @group, :is_edit => is_edit, :model_name => "group"
     %ul.nav
       - if is_edit
-        %li=link_to '编辑小组信息', edit_group_path(@group), :class => ("current" if params[:action] == 'edit') 
-        %li=link_to '编辑小组成员', edit_group_members_path(@group)
+        - unless new
+          %li=link_to '编辑小组信息', edit_group_path(@group), :class => ("current" if params[:action] == 'edit') 
+          %li=link_to '编辑小组成员', edit_group_members_path(@group)
+        - else
+          %li=link_to '1.填写小组信息', edit_group_path(@group), :class => ("current" if params[:action] == 'edit') 
+          %li=link_to '2.邀请好友', new_group_invite_path(@group)
       - else
         %li=link_to '1.填写小组信息', new_group_path, :class => ("current" if params[:action] == 'new') 
         %li=link_to '2.邀请好友', 'javascript:void(0)', :class => 'inactive' 
@@ -14,7 +18,10 @@
   .span-14
     - if is_edit
       .span-9
-        = render 'common/header_box', :title => '编辑小组信息', :background_color => '#8DBC6E' 
+        - unless new
+          = render 'common/header_box', :title => '编辑小组信息', :background_color => '#8DBC6E' 
+        - else
+          = render 'common/header_box', :title => '填写小组信息', :background_color => '#8DBC6E' 
       .span-5.last
         %h4= link_to '<返回小组首页', group_path(@group), :class => 'right nav_back'
     - else

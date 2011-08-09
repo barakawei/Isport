@@ -1,3 +1,4 @@
+@import '../../general/ui/mixins'
 .title
   :margin-bottom 0
 
@@ -34,3 +35,33 @@ ul.nav
         :color #d5ddde
 
         
+.invite_friends_area        
+  @include border-radius(15px)
+  :background-color #ffffff
+  :padding 20px
+
+.event_avatar
+  :width 180px
+  :margin-bottom 10px
+
+  img
+    @include border-radius(10px)
+    :width 180px
+    :height 180px
+
+.button_container  
+  :height 40px
+  :width 80px
+  :float left
+  .invite_button
+    :float left
+    :width 60px
+    :height 20px
+    :background-color #00bed4
+    :line-height 20px
+    :font-size 13px
+  
+    &:hover
+      :margin-top 2px
+      :background-color #e76875
+

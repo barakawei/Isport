@@ -52,13 +52,16 @@
 
 .flack {
   margin-top: 5px;
-  color: #232221; }
+  color: #232221;
+  text-shadow: 0 1px 1px #cccccc; }
   .flack:hover {
     color: green; }
 
 .flackplus {
-  font-size: 20px;
-  color: #ff5724; }
+  font-size: 18px;
+  color: #fc4469;
+  font-weight: bold;
+  text-shadow: 0 1px 1px #cccccc; }
 
 .welcome_box {
   background: none repeat scroll 0 0 #a8aaad;
@@ -68,13 +71,14 @@
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
   border-radius: 10px;
-  behavior: url(/javascripts/PIE.htc); }
+  behavior: url(/javascripts/PIE.htc);
+  border: 5px solid #d5ddde; }
   .welcome_box .poster_box {
     background: white;
-    width: 550px;
-    height: 290px;
-    margin-left: 5px;
-    margin-top: 5px;
+    width: 540px;
+    height: 284px;
+    margin-left: 8px;
+    margin-top: 8px;
     float: left;
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
@@ -82,7 +86,7 @@
     behavior: url(/javascripts/PIE.htc); }
 
 .welcomenav_box {
-  width: 275px;
+  width: 278px;
   height: 300px;
   margin-left: 24px;
   margin-top: 20px;

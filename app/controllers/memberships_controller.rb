@@ -12,7 +12,6 @@ class MembershipsController < ApplicationController
       @group.delete_member(current_user.person)
     else
       unless @group.is_admin(@person)
-        redirect_to :back
       else
         member_ids = params[:member_ids].split(',');
         Membership.delete_all(:group_id => @group.id, :person_id => member_ids)
