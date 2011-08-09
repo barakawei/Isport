@@ -60,6 +60,7 @@ class ItemsController < ApplicationController
       @items_hash[category.id].sort!{ |x, y| y[:fans_count] <=> x[:fans_count] }
     end
 
+    @select_tab = 'item'
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @items }
