@@ -1,10 +1,10 @@
-.person_element
+.box_element
   .content
     %h4
       = object_name_link( item )  
-    .person_avatar
+    .box_avatar
       = item_image_link( item,{ :size => :thumb_medium })
-    .person_status
+    .box_status
       .element
         =  item.fans.size
         %span

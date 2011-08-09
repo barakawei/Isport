@@ -1,12 +1,12 @@
-.person_element
+.box_element
   .content
     %h4
       = person_link(person)
       %em
         = person.profile.location.city.name
-    .person_avatar
+    .box_avatar
       = person_image_link2( person,:thumb_medium )
-    .person_status
+    .box_status
       .element
         =  person.involved_events.size
         %span
