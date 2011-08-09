@@ -7,9 +7,11 @@
     %h4.inline= link_to city.name, "/groups/#{city.pinyin}"
 
 .span-24.nav_bar
-  %h1.inline.app_subfunction_title.groups= '乐玩小组'
-  %h3.inline= link_to @city.name , '#', :id => 'switch_city', :class => 'dark_gray'
-  =link_to '创建小组', new_group_path, :class => 'button right new_group'
+  .span-17
+    %h1.inline.app_subfunction_title.groups= '乐玩小组'
+    %h3.inline= link_to @city.name , '#', :id => 'switch_city', :class => 'dark_gray'
+  .span-7.last
+    = render 'common/big_link_button', :content => '创建小组', :path => new_group_path
 
 .span-24.prepend-top
   %hr.space

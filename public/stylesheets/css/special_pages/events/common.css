@@ -60,3 +60,7 @@ ul.nav {
     .button_container .invite_button:hover {
       margin-top: 2px;
       background-color: #e76875; }
+
+.people_array .person_element {
+  float: left;
+  margin-right: 10px; }

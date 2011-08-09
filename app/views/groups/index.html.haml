@@ -8,9 +8,11 @@
     %h4.inline= link_to city.name, "/groups/?city=#{city.pinyin}", :class => 'group_color'
 
 .span-24.nav_bar
-  %h1.inline.app_subfunction_title.groups= '乐玩小组'
-  %h3.inline= link_to @city.name , '#', :id => 'switch_city', :class => 'dark_gray'
-  =link_to '创建小组', new_group_path, :class => 'button right new_group'
+  .span-17
+    %h1.inline.app_subfunction_title.groups= '乐玩小组'
+    %h3.inline= link_to @city.name , '#', :id => 'switch_city', :class => 'dark_gray'
+  .span-7.last
+    = render 'common/big_link_button', :content => '创建小组', :path => new_group_path
 
 - if @hot_groups.size > 0
   .span-24.prepend-top
@@ -51,10 +53,7 @@
         = link_to '更多', group_filter_path(:city => @city.pinyin, :item_id => i.id), :class => 'right'
         .item_avatar
           = item_image_link(i, :size => :thumb_large) 
-        - i.groups.at_city(@city).limit(5).each do |g|
-          .item_group
-            = group_image_link(g, :thumb_large) 
-            = link_to trim_info(g.name, 9), group_path(g)
+        = render :partial => 'group_element', :collection => i.groups.at_city(@city).limit(5), :as => :group
 
 :javascript
   $(function() {

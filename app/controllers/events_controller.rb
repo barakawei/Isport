@@ -147,10 +147,8 @@ class EventsController < ApplicationController
 
   def get_participants
     @event = Event.find(params[:id])
-    @participants =  @event.participants.order("created_at ASC")
-    @friends = current_user ? current_user.friends : []
-    @friend_participants = @participants & @friends
-    @other_participants = @participants - @friend_participants  
+    @participants =  @event.participants.order("created_at ASC").paginate :page => params[:page],
+                                                                          :per_page => 10
   end
 
   def get_references

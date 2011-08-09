@@ -52,16 +52,13 @@
       .field
         = f.label t('groups.join_mode.name') + ":", :class => 'field_info' 
         .group_radio_button
-          = f.radio_button :join_mode, 4 
+          = f.radio_button :join_mode, Group::JOIN_FREE
           = f.label 'xixi',  t('groups.join_mode.no_restrict') 
           %br
-          = f.radio_button :join_mode, 3 
+          = f.radio_button :join_mode, Group::JOIN_AFTER_AUTHENTICATAION  
           = f.label 'xixi', t('groups.join_mode.authenticate_before_join') 
           %br
-          = f.radio_button :join_mode, 2
-          = f.label 'xixi', t('groups.join_mode.invite_by_member') 
-          %br
-          = f.radio_button :join_mode, 1 
+          = f.radio_button :join_mode, Group::JOIN_BY_INVITATION_FROM_ADMIM
           = f.label t('groups.join_mode.invite_by_admin') 
         = error_on(@group, :join_mode)
       .field.hide

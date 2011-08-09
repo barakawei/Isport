@@ -14,4 +14,8 @@ class UsersController < ApplicationController
     @profile = @user.profile
     render "users/getting_started"
   end
+
+  def select_interests
+    @items = Item.all
+  end
 end
