@@ -104,9 +104,9 @@
             top: -10px; }
             .events_panel .event_box_panel .event_box .content .title .joined .icon {
               display: inline-block;
-              height: 16px;
-              width: 16px;
-              background: url(/images/ui/icons_all.png) no-repeat -342px -182px; }
+              height: 12px;
+              width: 15px;
+              background: url(/images/ui/people.png) no-repeat; }
             .events_panel .event_box_panel .event_box .content .title .joined:hover {
               opacity: 0.8; }
         .events_panel .event_box_panel .event_box .content .info .info_left {

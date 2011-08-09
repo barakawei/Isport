@@ -1,10 +1,10 @@
-.person_element
+.box_element
   .content
     %h4
       = object_name_link( group)  
-    .person_avatar
-      = group_image_link( group,:thumb_medium )
-    .person_status
+    .box_avatar
+      = group_image_link( group,:thumb_large )
+    .box_status
       .element
         =  group.members.size
         %span
