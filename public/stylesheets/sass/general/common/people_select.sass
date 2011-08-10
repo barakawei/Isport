@@ -1,0 +1,37 @@
+.select_area
+  :float left
+  :margin-bottom 10px
+    
+  a.person_block
+    :display block
+    :width 91px
+    :padding 2px
+    :border 1px solid #d8dfea
+    background: url("/images/ui/bg-range-container-h.gif") no-repeat scroll 80px 33px #ffffff
+    :float left
+    :margin 0 3px 5px 0
+
+    &:hover
+      background: url("/images/ui/bg-range-container-h.gif") no-repeat scroll 80px 33px #e0f4f5
+      border-color: #f3e8ea
+      color: #78AD55
+      
+
+    .avatar
+      :float left
+      :margin-right 3px
+
+      img
+        :width 45px
+        :height 45px
+
+    p.person_name
+      :float left
+      :width 39px
+      :word-wrap break-word
+      :height 30px
+      :overflow hidden
+
+  a.person_block.selected
+    background: url("/images/ui/bg-range-container-active.gif") no-repeat scroll 80px 33px #e0f4f5
+    color: #78AD55

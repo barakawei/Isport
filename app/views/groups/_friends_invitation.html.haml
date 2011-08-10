@@ -14,11 +14,8 @@
       %h4= link_to '全选', "#", :class => 'select_all_friend' if to_be_invited.size > 0
      
       - if to_be_invited
-        .span-14.friends
-          = render :partial => "events/event_participants", :locals => { :participants => to_be_invited, 
-                                                                  :perline => 7, 
-                                                                  :no_pagination => true, 
-                                                                  :edit => true}
+        .span-16.friends
+          = render 'people/select_people', :people => to_be_invited, :class_name => 'select_invitees'
       %h4= '您还没有好友，去找几个志同道合的人吧' unless friends.size > 0 
       .span-14
         %span.right
@@ -40,16 +37,12 @@
         
 
 :javascript
-  $(function() {
-    $('.friends input[type="checkbox"]').attr("checked", ""); 
-  });
-
   $('a.select_all_friend').click(function() {
     if ($(this).hasClass('selected')) {
-      $('.friends input[type="checkbox"]').attr("checked", ""); 
+      $('.friends a.person_block').removeClass('selected');
       $(this).html("#{t('events.participants.select_all')}");
     } else {  
-      $('.friends input[type="checkbox"]').attr("checked", "true"); 
+      $('.friends a.person_block').addClass('selected');
       $(this).html("#{t('events.participants.select_none')}");
     }
       $(this).toggleClass("selected");
@@ -58,9 +51,9 @@
 
   $('a.invite').click(function() {
     var data = "";
-    if ($('.friends input:checked').length > 0) {
-      $('.friends input:checked').each(function(index) {
-        data = data + $(this).val() + ',';
+    if ($('.friends a.person_block.selected').length > 0) {
+      $('.friends a.person_block.selected').each(function(index) {
+        data = data + $(this).attr('person_id') + ',';
       });
       $.post("#{group_invite_path(group.id)}", {selectedIds: data}); 
       location.reload();

@@ -20,10 +20,8 @@
         %h4
           = t("events.members", :count => @participants.size) 
           = link_to t('events.participants.select_all'), "#", :class => "select_all_members"
-        = render :partial => "event_participants", :locals => { :participants => participants, 
-                                                                :perline => 8, 
-                                                                :no_pagination => true, 
-                                                                :edit => true}
+      .span-16
+        = render 'people/select_people', :people => participants, :class_name => 'select_participants' 
     - if participants.size > 0
       .button_container
         = link_to('javascript:void(0)', :class => "delete") do
@@ -38,10 +36,7 @@
             = t("events.invitees", :count => invitees.size)
             = link_to t('events.participants.select_all'), "#", :class => "select_all_invitations"
         .span-16
-          = render :partial => "event_participants", :locals => { :participants => invitees, 
-                                                                :perline => 8, 
-                                                                :no_pagination => true, 
-                                                                :edit => true}
+          = render 'people/select_people', :people => invitees, :class_name => 'select_invitees'
         .span-16
           - if invitees.size > 0 
             .button_container
@@ -97,10 +92,10 @@
 
   function select_all(target, link) {
     if (link.hasClass('selected')) {
-      $(target + ' input[type="checkbox"]').attr("checked", ""); 
+      $(target + ' a.person_block').removeClass('selected'); 
       link.html("#{t('events.participants.select_all')}");
     } else {  
-      $(target + ' input[type="checkbox"]').attr("checked", "true"); 
+      $(target + ' a.person_block').addClass('selected'); 
       link.html("#{t('events.participants.select_none')}");
     }
       link.toggleClass("selected");
@@ -116,7 +111,7 @@
   }
 
   function deleteMembers(target, alert_content) {
-    var checked = $(target + ' input[type="checkbox"]:checked');
+    var checked = $(target + ' a.person_block.selected');
     $('#delete_member_request h4').html(alert_content);
     if (checked.length == 0) {
       $('a.delete').unbind('click');
@@ -124,7 +119,7 @@
     }
     var arr = new Array(checked.length); 
     for(var i=0; i< checked.length; i++) {
-      arr[i] = $(checked[i]).val(); 
+      arr[i] = $(checked[i]).attr('person_id'); 
     }
     $('.facebox_content #member_ids').val(arr);
     $.colorbox({ inline:true, href:"#delete_member_request", opacity:0.5 });

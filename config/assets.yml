@@ -46,6 +46,9 @@ stylesheets:
     - public/stylesheets/css/general/common/index.css
   common_vertical_nav:
     - public/stylesheets/css/general/common/vertical_nav.css
+  common_people_select:
+    - public/stylesheets/css/general/common/people_select.css
+    
     
     
     
