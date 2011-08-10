@@ -5,3 +5,4 @@ require File.expand_path('../application', __FILE__)
 Isport::Application.initialize!
 
 Sass::Plugin.options[:template_location] = [['./public/stylesheets/sass', './public/stylesheets/css']]
+

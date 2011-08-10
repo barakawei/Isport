@@ -2,6 +2,10 @@ class UsersController < ApplicationController
   before_filter :authenticate_user!, :except => [:new, :create, :public]
   
   def getting_started
+    if (current_user.getting_started == false)
+        redirect_to home_path
+        return
+    end
     @user = current_user
     @person = @user.person
     @profile = @user.profile
@@ -16,6 +20,10 @@ class UsersController < ApplicationController
   end
 
   def select_interests
+    if (current_user.getting_started == false)
+        redirect_to home_path
+        return
+    end
     @items = Item.all
     @my_items = current_user.person.interests
     @items.each do |item|

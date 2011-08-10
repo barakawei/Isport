@@ -38,7 +38,7 @@
     - @groups.each do |g|
       = render 'group_element', :group => g
 
-    .span-24
+    .span-24.pagination_box
       = will_paginate @groups, {:previous_label => t("pagination.previous"), 
                                 :next_label => t("pagination.next")}
 :javascript

@@ -1,7 +1,6 @@
 #profile_photo_upload
-  = owner_image_tag(:thumb_medium) 
-  #file-upload.button{ :style => "overflow: hidden;width: 90px" }
-    = t( 'upload_photo' )
+  #file-upload.glass_button
+    = "上传照片"
   %br
   %br
     #fileInfo
@@ -25,14 +24,14 @@
              
              onSubmit: function(id, fileName){
               $('#file-upload').addClass("loading");
-              $("#profile_photo_upload").find(".avatar").fadeTo(200,0.5);
+              $(".person_avatar").find(".avatar").fadeTo(200,0.5);
              },
              
              onComplete: function(id, fileName, responseJSON){
               $('#fileInfo').text(fileName + ' completed').fadeOut(2000);
               $('#file-upload').removeClass("loading");
               var id = responseJSON.data.photo.id
-              var url = responseJSON.data.photo.thumb_medium
+              var url = responseJSON.data.photo.thumb_large
               var oldPhoto = $('#photo_id');
 
               if(oldPhoto.length == 0) {
@@ -41,8 +40,8 @@
                 oldPhoto.val(id);
               }
 
-              $("#profile_photo_upload").find(".avatar").fadeTo(200,1);
-              $("#profile_photo_upload").find(".avatar").attr("src",url);
+              $(".person_avatar").find(".avatar").fadeTo(200,1);
+              $(".person_avatar").find(".avatar").attr("src",url);
              }
              
          });

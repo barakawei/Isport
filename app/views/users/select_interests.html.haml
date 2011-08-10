@@ -3,16 +3,18 @@
   :css
     .header{ display:none; } 
 .span-24.select_interests
-  %h2='2.选择感兴趣的活动类型'
-  - @items.each do |item|
-    %a.avatar{:item_id => item.id, :class => (item.selected ? 'selected' : '')}
-      = item_image_tag(item, :thumb_medium)
-      %h4.title= item.name
-  .span-21.prepend-top
+  %h2='选择感兴趣的活动'
+  .items
+    - @items.each do |item|
+      %a.avatar{:item_id => item.id, :class => (item.selected ? 'selected' : '')}
+        = item_image_tag(item, :thumb_medium)
+        %h4.title= item.name
+    .clear
+  .bg_bottom
     %h3.selected_items='你的兴趣:'
     .results
       %br
-      %span.item.hide='haha'
+      %span.item.hide
       - @my_items.each do |item|
         %span.item{:item_id => item.id}=item.name
     .submit_button
@@ -22,7 +24,8 @@
   $('a.avatar').click(function() {
     var item_id = $(this).attr('item_id');
     $(this).toggleClass('selected'); 
-    if ($(this).find('img:visible').size() >  0) {
+    item = $('.results .item[item_id="'+ item_id + '"]');
+    if (item.length > 0) {
       $('.results .item[item_id="'+ item_id + '"]').remove(); 
     } else {  
       var item = $('.results .item:first').clone();
@@ -42,7 +45,7 @@
     }
     $.post("#{choose_interests_path}", {item_ids: data}, function(data, textStatus){
       if (textStatus == 'success') {  
-        $(location).attr('href', "#{root_path}");
+        $(location).attr('href', "#{home_path}");
       }
     }); 
     

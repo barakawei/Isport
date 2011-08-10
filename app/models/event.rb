@@ -5,7 +5,7 @@ class Event < ActiveRecord::Base
   PARTICIPANTS_LIMIT_MIN = 0
   PARTICIPANTS_LIMIT_MAX = 100 
 
-  attr_accessor :same_day, :current_year
+  attr_accessor :same_day, :current_year,:invited_people
   validates_presence_of :title, :start_at, :description, :subject_id,
                         :participants_limit, 
                         :message => I18n.t('activerecord.errors.messages.blank')

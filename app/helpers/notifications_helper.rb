@@ -12,8 +12,12 @@ module NotificationsHelper
         post = note.target.post
         post_link = "<a href='#{object_path(post)}'>#{t( 'message' )}</a>"
         translation(target_type, :actor_link => actor_link,:post_link => post_link)
-      else
-        event = note.target
+      elsif note.target_type == 'Group'
+        group = note.target
+        group_link =  "<a href='#{object_path(group)}'>#{group.name}</a>"
+        translation(target_type, :actor_link => actor_link,:group_link => group_link)
+      elsif note.target_type == 'Event'
+        event= note.target
         event_link =  "<a href='#{object_path(event)}'>#{event.title}</a>"
         translation(target_type, :actor_link => actor_link,:event_link => event_link)
       end
