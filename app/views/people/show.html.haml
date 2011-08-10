@@ -6,8 +6,6 @@
   .avatar_panel
     #profile_photo
       = person_image_tag(@person,:thumb_large )
-      .change_profile_photo.hide
-        = render 'photos/change_profile_photo', :person => @person
     .information
       #followed_people
         - if @followed_people.length > 0
@@ -125,7 +123,7 @@
 :javascript
 
   $( ".edit_profile" ).click( function(  ){
-    $.get("/people/edit_profile",{person_id:#{@person.id}}  ); 
+    $( location ).attr( "href","#{edit_profile_path}" );
   } );
 
   $( ".my_events" ).live( "click",function(  ){  

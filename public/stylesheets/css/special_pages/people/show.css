@@ -243,7 +243,8 @@
   margin-top: 20px;
   left: 0; }
 .person_left_bar .group {
-  padding: 5px; }
+  background-color: #dbe0e3;
+  margin-bottom: 2px; }
   .person_left_bar .group .avatar {
     float: left; }
     .person_left_bar .group .avatar img {
@@ -321,6 +322,17 @@ dd {
   background-color: white;
   padding-bottom: 20px;
   padding-top: 20px; }
+  .person_profile input {
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    behavior: url(/javascripts/PIE.htc);
+    margin-top: 5px;
+    font-size: 15px;
+    border: 1px solid white;
+    height: 26px;
+    padding: 4px;
+    width: 250px; }
   .person_profile .info_text {
     margin-left: 30px;
     margin-bottom: 30px; }
@@ -331,11 +343,34 @@ dd {
     display: inline-block;
     font-size: 15px;
     color: #888888; }
+  .person_profile #gender input {
+    width: 20px; }
+  .person_profile #gender span {
+    margin-top: 5px;
+    margin-left: 0px;
+    width: 15px;
+    line-height: 25px; }
   .person_profile .content {
     width: 350px;
     margin-left: 20px;
     display: inline-block;
     font-size: 15px; }
+    .person_profile .content select {
+      border: 2px solid #d5dddf;
+      -moz-border-radius: 5px;
+      -webkit-border-radius: 5px;
+      border-radius: 5px;
+      behavior: url(/javascripts/PIE.htc);
+      margin-top: 5px;
+      font-size: 15px;
+      height: 30px;
+      padding: 4px;
+      width: 265px; }
+    .person_profile .content textarea {
+      -moz-border-radius: 5px;
+      -webkit-border-radius: 5px;
+      border-radius: 5px;
+      behavior: url(/javascripts/PIE.htc); }
 
 .person_profile_button {
   margin-top: 20px;

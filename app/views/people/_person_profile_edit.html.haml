@@ -25,9 +25,11 @@
         %span="性别"
         .content#gender
           = f.radio_button :gender,0
-          =  "男"
+          %span
+            =  "男"
           = f.radio_button :gender,1
-          =  "女"
+          %span
+            =  "女"
       .location.info_text
         %span="城市"
         .content#location

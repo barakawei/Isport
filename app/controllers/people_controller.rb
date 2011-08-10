@@ -92,9 +92,10 @@ class PeopleController < ApplicationController
   end
   
   def edit_profile
-    @person = Person.find( params[ :person_id ] )
+    @person = current_user.person
     @profile = @person.profile
-    respond_with @profile
+
+    render
   end
 
   def show_person_events

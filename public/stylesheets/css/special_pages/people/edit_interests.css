@@ -1,8 +1,8 @@
 .left_column .avatar {
-  width: 180px; }
+  width: 200px; }
   .left_column .avatar img {
-    width: 180px;
-    height: 180px;
+    width: 200px;
+    height: 200px;
     background-color: white;
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;

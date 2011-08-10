@@ -1,0 +1,16 @@
+-content_for :head do
+  = include_stylesheets :sepcial_pages_people_edit_interests, :media => 'all'
+
+.span-6.left_column
+  .avatar
+    #profile_photo
+      = person_image_tag(@person,:thumb_large )
+      .change_profile_photo
+        = render 'photos/change_profile_photo', :person => @person
+
+  %hr.space
+  = render :partial => 'edit_nav'
+
+.span-18.last.right_column
+  =render('people/person_profile_edit')
+
