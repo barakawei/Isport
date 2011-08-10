@@ -138,6 +138,15 @@ class PeopleController < ApplicationController
     current_user.update_attributes( :getting_started => false )
     render :nothing => true
   end
+
+  def edit_interests
+    @current_person = current_user.person
+    @items = Item.all
+    @my_items = current_user.person.interests
+    @items.each do |item|
+      item.selected = true if @my_items.include?(item)
+    end
+  end
 end
 
 

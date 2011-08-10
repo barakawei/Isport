@@ -44,6 +44,9 @@ stylesheets:
     - public/stylesheets/css/general/common/wizard_steps.css
   common_index:
     - public/stylesheets/css/general/common/index.css
+  common_vertical_nav:
+    - public/stylesheets/css/general/common/vertical_nav.css
+    
     
     
   default:
@@ -135,5 +138,7 @@ stylesheets:
 
   sepcial_pages_users_selectinterests:
     - public/stylesheets/css/special_pages/users/select_interests.css
+  sepcial_pages_people_edit_interests:
+    - public/stylesheets/css/special_pages/people/edit_interests.css
 
  

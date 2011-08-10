@@ -1,0 +1,52 @@
+@import '../../general/ui/mixins'
+.left_column
+  .avatar
+    :width 180px
+
+    img
+      :width 180px
+      :height 180px
+      :background-color #ffffff
+      @include border-radius(10px)
+
+.right_column
+  .items_panel
+    :width 600px
+    :float left
+
+    .item
+      :padding 3px
+      background-color: #ffffff
+      float: left
+      margin: 0 2px 2px 0
+      a
+        display: block
+        width: 110px
+        height: 72px
+        color: #00a2b7
+        font-weight: bold
+        font-size: 13px
+        float: left
+        border: 1px solid #f4f7f7
+        background-color: #ffffff
+        text-align: center
+
+        &:hover
+          background: url("/images/ui/bg-range-container-h.gif") no-repeat scroll 6px 5px #fdf0f1
+          border-color: #f3e8ea
+          color: #f74367
+        
+        
+        span
+          display: block 
+          height: 16px
+          line-height: 16px
+          margin-top: 24px
+
+      a.selected
+        background: url("/images/ui/bg-range-container-active.gif") no-repeat scroll 6px 5px #E0F4F5
+        border-color: #E0F4F5
+        color: #78AD55
+        
+
+      

@@ -1,0 +1,43 @@
+.left_column .avatar {
+  width: 180px; }
+  .left_column .avatar img {
+    width: 180px;
+    height: 180px;
+    background-color: white;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    behavior: url(/javascripts/PIE.htc); }
+
+.right_column .items_panel {
+  width: 600px;
+  float: left; }
+  .right_column .items_panel .item {
+    padding: 3px;
+    background-color: white;
+    float: left;
+    margin: 0 2px 2px 0; }
+    .right_column .items_panel .item a {
+      display: block;
+      width: 110px;
+      height: 72px;
+      color: #00a2b7;
+      font-weight: bold;
+      font-size: 13px;
+      float: left;
+      border: 1px solid #f4f7f7;
+      background-color: white;
+      text-align: center; }
+      .right_column .items_panel .item a:hover {
+        background: url("/images/ui/bg-range-container-h.gif") no-repeat scroll 6px 5px #fdf0f1;
+        border-color: #f3e8ea;
+        color: #f74367; }
+      .right_column .items_panel .item a span {
+        display: block;
+        height: 16px;
+        line-height: 16px;
+        margin-top: 24px; }
+    .right_column .items_panel .item a.selected {
+      background: url("/images/ui/bg-range-container-active.gif") no-repeat scroll 6px 5px #e0f4f5;
+      border-color: #e0f4f5;
+      color: #78ad55; }
