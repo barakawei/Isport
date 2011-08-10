@@ -3,6 +3,7 @@ class Group < ActiveRecord::Base
   belongs_to :city
   belongs_to :district
   belongs_to :person
+  attr_accessor :invited_people
 
   validates_presence_of :name, :description, :item_id, :city_id, :district_id,
                         :join_mode,
@@ -120,6 +121,24 @@ class Group < ActiveRecord::Base
   def is_admin(person)
     Membership.where(:person_id => person.id, 
                      :group_id => self.id, :is_admin => true).count > 0
+  end
+
+  def dispatch_group(action,user=self.person.user)
+    Dispatch.new(user, self,action).notify_user
+  end
+
+  def subscribers(user,action=false)
+    action = action.to_sym
+    if action == :invite
+      self.invited_people
+    end
+  end
+
+  def notification_type( action=false )
+    action = action.to_sym
+    if action == :invite
+      Notifications::InviteGroup
+    end
   end
 
   private
