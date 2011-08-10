@@ -1,14 +1,15 @@
 = content_for :head do
+  = include_stylesheets :sepcial_pages_users_selectinterests, :media => 'all'
   :css
     .header{ display:none; } 
-.span-15.prepend-4.last{:style =>'position:relative;'}
-  %br
-  %br
-  .profile_block{ :style => "position:relative;width: 500px;height:300px" }
-    .floating{ :style => "width: 500px;height:300px" }
+.span-24.select_interests
+  %h2='你的个人信息'
+  .profile_block
+    .person_info
       = form_tag @profile,:method => :put,:multipart =>true,:id=>'update_profile_form' do
-        %div{ :style=>"padding: 10px" }
+        .info_panel
           = render 'profiles/edit_public',:profile => @profile,:person =>@person, :location => @profile.location
+        .clear
         .submit_block
-          =submit_tag t('submit'),:class => "button"
+          =submit_tag '',:class => 'next_button'
 

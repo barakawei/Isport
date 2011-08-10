@@ -135,6 +135,7 @@ class PeopleController < ApplicationController
   def choose_interests
     item_ids = params[:item_ids].split(',');
     current_user.person.add_interests(item_ids)      
+    current_user.update_attributes( :getting_started => false )
     render :nothing => true
   end
 end

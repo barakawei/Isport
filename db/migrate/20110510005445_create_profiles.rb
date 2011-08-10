@@ -1,7 +1,7 @@
 class CreateProfiles < ActiveRecord::Migration
   def self.up
     create_table :profiles do |t|
-      t.string :name, :limit => 127
+      t.string :name, :limit => 127,:default => ""
       t.string :image_url
       t.string :image_url_small
       t.date :birthday
