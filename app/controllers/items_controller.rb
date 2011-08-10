@@ -1,50 +1,17 @@
 class ItemsController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show ]
 
-  EVELIMIT = 5
-  ACTLIMIT = 8
+  EVELIMIT = 6
+  ACTLIMIT = 12
   ITELIMIT = 5
 
   def myitems
-    @items = current_user.person.interests 
-    items_ids = @items.map{|i| i.id}
-
-    fans_counts = {  }
-    events_counts = {  }
-    groups_counts = {  }  
-
-    Favorite.select("item_id, count(item_id) fansize")
-      .where(:item_id => items_ids).group(:item_id).each do |count|
-      fans_counts[count.item_id] = count.fansize
-    end
-
-    if current_user
-      @city = City.find_by_pinyin(current_user.city.pinyin)
-    else
-      @city = City.first
-    end
-
-    Event.week.joins(:location).select("subject_id, count(subject_id) evesize")
-      .where(:subject_id => items_ids, :locations => {:city_id => @city.id}).group(:subject_id).each do |count|
-      events_counts[count.subject_id] = count.evesize
-    end
-
-    Group.select("item_id, count(item_id) gpcount").where(:item_id => items_ids, :city_id => @city.id)
-      .group(:item_id).each do |count|
-      groups_counts[count.item.id] = count.gpcount
-    end
-
-    @items_hash = [ ]
-    @items.each do |item|
-      @items_hash.push({:item => item, 
-                        :fans_count=>fans_counts[item.id]?fans_counts[item.id]:0,
-                        :events_count=>events_counts[item.id]?events_counts[item.id]:0,
-                        :groups_count=>groups_counts[item.id]?groups_counts[item.id]:0})
-    end
-
+    @items_array = Item.get_user_items(current_user)
+    @city = City.find_by_pinyin(current_user.city.pinyin)
+    
     respond_to do |format|
       format.html # myitems.html.haml
-      format.xml  { render :xml => @items }
+      format.xml  { render :xml => @items_array }
     end
   end
 
@@ -60,7 +27,7 @@ class ItemsController < ApplicationController
       @city = City.first      
     end
     
-    Event.week.joins(:location).select("subject_id, count(subject_id) evesize")
+    Event.week.joins(:location).select("subject_id, count(*) evesize")
       .where(:subject_id => items_ids, :locations => {:city_id => @city.id}).group(:subject_id).each do |count|
       events_counts[count.subject_id] = count.evesize
     end
@@ -72,19 +39,27 @@ class ItemsController < ApplicationController
       end
     end
 
-    Favorite.select("item_id, count(item_id) fansize")
+    Favorite.select("item_id, count(*) fansize")
       .where(:item_id => items_ids).group(:item_id).each do |count|
       fans_counts[count.item_id] = count.fansize
     end
 
-    @items_hash=[ ]
-    @items.each do |item|
-      @items_hash.push({:item => item, 
-                        :events_count => events_counts[item.id]?events_counts[item.id]:0, 
-                        :fans_count => fans_counts[item.id]?fans_counts[item.id]:0})
+    @items_hash = {  }
+    @categories = Category.all
+    @categories.each do |category|
+      @items_hash[category.id] = [  ]  
     end
 
-    @items_hash.sort!{ |x, y| y[:fans_count] <=> x[:fans_count] }
+    @items.each do |item|
+      @items_hash[item.category_id].push({:item => item, 
+                                          :events_count => events_counts[item.id]?events_counts[item.id]:0, 
+                                          :fans_count => fans_counts[item.id]?fans_counts[item.id]:0})
+    end
+
+    @categories.each do |category|
+      @items_hash[category.id].sort!{ |x, y| y[:fans_count] <=> x[:fans_count] }
+    end
+
     @select_tab = 'item'
     respond_to do |format|
       format.html # index.html.erb
@@ -101,13 +76,55 @@ class ItemsController < ApplicationController
       @city = City.first
     end
 
-    @events = Event.week.joins(:location).where(:subject_id => @item.id, :locations => {:city_id => @city.id})
+    @events = Event.week.not_started.joins(:location).where(:subject_id => @item.id, :locations => {:city_id => @city.id})
         .limit(EVELIMIT)
+  
+    if @events.length < EVELIMIT
+      pevents = Event.next_week.not_started.joins(:location).where(:subject_id => @item.id, :locations => {:city_id => @city.id})
+        .limit(EVELIMIT-@events.length)
 
-    @actors = @item.fans.includes(:profile).limit(ACTLIMIT)
+      if pevents
+        @events += pevents
+      end
+    end
+
+    @actors = Person.joins(:involved_events).joins(:interests)
+              .where(:events => {:subject_id => @item.id}, :items => {:id => @item.id}, 
+                     :involvements => {:is_pending => false})
+              .group("involvements.person_id").order("count(event_id) DESC").limit(ACTLIMIT).includes(:profile)
 
     @groups = Group.joins(:members).where(:item_id => @item.id, :city_id => @city.id)
-          .group(:group_id).order("count(group_id) DESC").limit(ACTLIMIT)
+          .group(:group_id).order("count(group_id) DESC").limit(EVELIMIT)
+
+    group_ids = @groups.map{|i| i.id}
+
+    group_members_counts = { }
+    group_topics_counts = { }
+    group_events_counts = { }
+
+    Membership.select("group_id, count(*) membersize").where(:group_id => group_ids, :pending => false)
+      .group(:group_id).each do |count|
+        group_members_counts[count.group_id] = count.membersize
+    end
+
+
+    Event.select("group_id, count(*) eventsize").where(:group_id => group_ids)
+      .group(:group_id).each do |count|
+        group_events_counts[count.group_id] = count.evesize
+    end
+
+    Topic.joins(:forum).select("forums.discussable_id group_id, count(*) topicsize")
+      .where(:forums => {:discussable_id => group_ids, :discussable_type => "Group"}).group(:forum_id).each do |count|
+        group_topics_counts[count.group_id] = count.topicsize
+    end
+
+    @groups_hash = []
+    @groups.each do |group|
+      @groups_hash.push({:group => group,
+                        :membersize => group_members_counts[group.id]?group_members_counts[group.id]:0,
+                        :eventsize => group_events_counts[group.id]?group_events_counts[group.id]:0,
+                        :topicsize => group_topics_counts[group.id]?group_topics_counts[group.id]:0})      
+    end
 
     respond_to do |format|
       format.html # show.html.erb
@@ -158,6 +175,7 @@ class ItemsController < ApplicationController
 
   def delete
     @item = Item.find(params[:id])
+
     if @item.events.size == 0
       @item.destroy
       redirect_to(items_url)
@@ -167,14 +185,13 @@ class ItemsController < ApplicationController
   end
 
   def add_fan
-    @favorite = Favorite.new(:item_id => params[:id], :person_id => current_user.person.id)
-    @favorite.save
+    Item.add_fan(params[:id], current_user)
 
     redirect_to(item_url(@item))
   end
 
   def remove_fan
-    Favorite.delete_all(:item_id => params[:id], :person_id => current_user.person.id)
+    Item.remove_fan(params[:id], current_user)
 
     redirect_to(item_url(@item))
   end

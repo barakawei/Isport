@@ -44,11 +44,13 @@
         = link_to '一个月内', event_filter_path(@city.pinyin, @district_id, @item_id, 'next_month'),  :class => "#{ 'current' if 'next_month' == @time}" 
         = link_to '时间选择', 'javascript:void(0)'
 
-.span-24.search_result
+.span-24.events_panel
   - if @events.size > 0
-    - @events.each_with_index do |e,i|
-      .span-12.last.event_item
-        = render "event_item", :event => e
+    =render :partial => 'events/event_element',:collection => @events,:as => :event
+    =render :partial => 'events/new_event_link', :locals => {:question => '没有感兴趣的活动?',
+                                                             :link => new_event_path,
+                                                             :action => '发起活动'}
+    
 
   .span-24
     = will_paginate @events, {:previous_label => t("pagination.previous"), 
@@ -60,6 +62,15 @@
     var t =$('#switch_city').offset().top + $('#switch_city').innerHeight();
     $('#city_select_box').css("left", left+"px");
     $('#city_select_box').css("top", t+"px");
+
+    $('.new_event_panel .new_event_link').hover(
+      function() {
+        $('.new_event_panel .new_event_link h2').toggle();
+      }, 
+      function() { 
+        $('.new_event_panel .new_event_link h2').toggle();
+      }
+    );    
   });
 
   $("#switch_city").click(function(e) {
@@ -67,3 +78,4 @@
     e.stopPropagation();
     return false;
   });
+

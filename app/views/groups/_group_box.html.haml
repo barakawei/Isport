@@ -1,0 +1,30 @@
+-content_for :head do
+  = include_stylesheets :special_pages_group_panel, :media => 'all'
+.group_box_panel
+  %a{ :href => group_path(group[:group]) }
+    .group_box
+      .group_image
+        = group_image_tag(group[:group], :thumb_medium)
+      
+      .group_message
+        .group_title
+          = group[:group].name
+
+        .group_detail
+          .detail_piece
+            .number
+              = group[:membersize]
+            .name
+              = "成员"
+          .detail_piece
+            .number
+              = group[:topicsize]
+            .name
+              = "话题"
+          .detail_piece
+            .number
+              = group[:eventsize]
+            .name
+              = "活动"
+
+

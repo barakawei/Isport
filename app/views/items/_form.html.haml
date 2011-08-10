@@ -10,6 +10,10 @@
       = f.label t('items.description')+":"
       = f.text_area :description, :rows => 12
     .field
+      = f.label "项目类型:"
+      = collection_select(:item, :category_id, Category.all, :id, :name, {:prompt => true})
+      = error_on(@item, :category_id)
+    .field
       = f.label "项目大图标"
       = f.text_field :image_url_large
     .field

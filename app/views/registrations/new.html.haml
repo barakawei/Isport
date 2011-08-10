@@ -4,34 +4,38 @@
 .span-24
   .reg_area
     = form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
-      .logo_area
-        = "isport logo"
-
       %h3
         = t('.sign_up_for_isport')
 
-      .blank  
-        = f.label :email , t('email')
-        = f.text_field :email, :title => t('.enter_email')
-      
-      .blank
-        = f.label :password , t('password')
-        = f.password_field :password, :title => t('.enter_password')
+      .reg_relative
+        .reg_email  
+          = f.text_field :email, :id => "email"       
+          = f.label :email, t('email'), :class => "email in_field"
+          = error_on(@user, :email)
 
-      .blank
-        = f.label :password_confirmation , t('password_confirmation')
-        = f.password_field :password_confirmation, :title => t('.enter_password_again') 
+        .reg_password
+          = f.password_field :password, :id => "password"
+          = f.label :password, t('password'), :class => "password in_field"
 
-      .blank
-        = f.submit t('.sign_up'), :class => 'button'
+        .reg_password
+          = f.password_field :password_confirmation, :id => "password_confirmation"
+          = f.label :password_confirmation, t('password_confirmation'), :class => "password in_field"
+
+        = f.submit t('.sign_up'), :class => "signup_botton"
 
   .flack_area
     = "欢迎来到乐玩"
     %br
     .reg_reason
-      =link_to "找到你的活动", events_path, :class => "plus_area"
-      =link_to "找到你的运动", items_path, :class => "plus_area"
-      =link_to "找到你的小组", groups_path, :class => "plus_area"
+      .plus_row 
+        .plus_area
+          = render 'common/header_box', :title => "找到你的活动" , :dark => false
+      .plus_row 
+        .plus_area
+          = render 'common/header_box', :title => "找到你的项目" , :dark => false
+      .plus_row 
+        .plus_area
+          = render 'common/header_box', :title => "找到你的小组" , :dark => false
 
       .direct_login
         ="> 如果你已经有乐玩帐号："  
@@ -51,7 +55,7 @@
         },
         'user[password_confirmation]': {
           required: true,
-          equalTo: "#user_password"
+          equalTo: "#password"
         }
       },
       messages: {
@@ -69,5 +73,34 @@
         }
       }
     });
+  });
+
+  $(".in_field").click(function() {
+    $(this).hide();
+    $(this).siblings("input").focus();
+  }); 
+
+  $("#email").add("#password").add("#password_confirmation").focus(function() {
+    $(this).siblings(".in_field").hide();
+  }); 
+
+  $("#email").add("#password").add("#password_confirmation").blur(function() {
+    field = $(this).siblings(".in_field")
+    if ($.trim($(this).val()) == '' ) {
+      $(this).val('');
+      field.show();
+    }
+  });
+
+  $(document).ready(function() {
+    if ($.trim($('#email').val()) != '') {
+      $('#email').siblings(".in_field").hide();
+    }
+    if ($.trim($('#password').val()) != '') {
+      $('#password').siblings(".in_field").hide();
+    }
+    if ($.trim($('#password_confirmation').val()) != '') {
+      $('#password_confirmation').siblings(".in_field").hide();
+    }
   });
 

@@ -74,3 +74,20 @@ ul.nav {
     behavior: url(/javascripts/PIE.htc);
     width: 180px;
     height: 180px; }
+
+.title_bar {
+  border-bottom: 2px solid #d5ddde;
+  padding-bottom: 10px; }
+  .title_bar .group_logo {
+    float: left; }
+    .title_bar .group_logo .avatar {
+      background-color: white;
+      border: 1px solid #e5e5e5;
+      padding: 4px;
+      float: left; }
+      .title_bar .group_logo .avatar img {
+        height: 80px;
+        width: 80px; }
+    .title_bar .group_logo h2 {
+      float: left;
+      margin-left: 10px; }

@@ -28,7 +28,8 @@ ul.nav {
     border-radius: 10px;
     behavior: url(/javascripts/PIE.htc);
     width: 180px;
-    height: 180px; }
+    height: 180px;
+    background-color: white; }
 
 .members {
   background-color: white;

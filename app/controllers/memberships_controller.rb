@@ -28,7 +28,7 @@ class MembershipsController < ApplicationController
       person_ids = params[:selectedIds].split(',');
       person_ids.each do |person_id|
         Membership.create(:group_id => @group.id, :person_id => person_id,
-                          :pending => true)
+                          :pending => true, :join_mode => @group.join_mode)
       end
         invited_people = Person.where( :id => person_ids )
         @group.invited_people = invited_people

@@ -276,14 +276,14 @@ span.medium_avatar
         :text-decoration none
   
 .welcome_box
-  :background none repeat scroll 0 0 #DCDDDE
+  :background none repeat scroll 0 0 #f8f8f8
   :width 903px
   :height 300px
   :margin-left 24px
   @include border-radius(10px)
 
   .poster_box
-    :background #FFFFFF
+    :background #f8f8f8
     :width 550px
     :height 290px
     :margin-left 5px
@@ -292,7 +292,7 @@ span.medium_avatar
     @include border-radius(10px)
 
 .welcomenav_box
-  :background none repeat scroll 0 0 #DCDDDE
+  :background none repeat scroll 0 0 #f8f8f8
   :width 285px
   :height 300px
   :margin-left 24px
@@ -432,6 +432,7 @@ a.button
 
 .app_tab_border_radius
   @include border-radius-feed(5px)
+
 .glass_button
   background:  url(/images/ui/glass-light.png) repeat-x 0 50%
   @include border-radius(6px)
@@ -505,6 +506,10 @@ a.button
           :display block
           :margin-top 10px
           :font-size 13px
+
+        a
+          color: #f74267
+          font-size: 15px
       .box_right
         background: url("/images/ui/border_hdrs.png") no-repeat scroll -15px 0 transparent
         float: left
@@ -608,7 +613,41 @@ a.button
     .content
       :margin-left 60px
     
+a.app_big_link_button
+  cursor: pointer
+  margin: 4px 0 0 21px
+  position: relative
+  float: right
+  color: #FFFFFF !important
+  display: inline
+  font-size: 20px
+  font-weight: bold
+  line-height: 25px
+  text-decoration: none
 
+  em
+    background: url("/images/ui/big_button.gif") no-repeat scroll 0 0 transparent !important
+    float: left
+    font-style: normal
+    padding: 13px 18px 13px 24px
+  
+  span
+    background: url("/images/ui/big_button.gif") no-repeat scroll -890px -51px transparent !important
+    float: left
+    height: 51px
+    width: 10px
+
+  &:hover span
+    background-position: -890px -153px !important
+
+  &:hover em 
+    background-position: 0 -102px !important
+    color: #ffffff
+    padding: 15px 18px 11px 24px
+    
+    
+  
+   
 
 
 

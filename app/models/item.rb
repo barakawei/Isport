@@ -1,12 +1,21 @@
 class Item < ActiveRecord::Base
   validates :name, :presence => true
   validates :description, :presence => true
+  validates :category_id, :presence => true
 
   has_many :favorites, :dependent => :destroy
   has_many :fans, :through => :favorites, :source => :person
 
   has_many :events, :foreign_key => "subject_id" 
   has_many :groups, :foreign_key => "item_id"
+
+  belongs_to :category
+  attr_accessor :selected
+
+  def initialize
+    super
+    self.selected = false
+  end
 
   def image_url(size = :thumb_large)
     result = if size == :thumb_medium && self[:image_url_medium]
@@ -34,26 +43,78 @@ class Item < ActiveRecord::Base
 
     if user == nil
       items = self.joins(:events).where(:events => {:start_at => (Time.now.beginning_of_week)..(Time.now.end_of_week)})
-          .group(:subject_id).order("count(subject_id) DESC").limit(size)
+        .group(:subject_id).order("count(subject_id) DESC").limit(size)
 
       if items.length < size
         items = self.joins(:events).where(:events => {:start_at => (Time.now.beginning_of_month)..(Time.now.end_of_month)})
-         .group(:subject_id).order("count(subject_id) DESC").limit(size)
+          .group(:subject_id).order("count(subject_id) DESC").limit(size)
       end
     else
       city = City.find_by_pinyin(user.city.pinyin)
-      items = self.joins(:events).joins(:location)
-          .where(:events => {:start_at => (Time.now.beginning_of_week)..(Time.now.end_of_week), :locations => {:city_id => city.id}})
-          .group(:id).order("group(subject_id) DESC").limit(size)
+      items = self.joins(:events).joins(:events => [:location])
+        .where(:events => {:start_at => (Time.now.beginning_of_week)..(Time.now.end_of_week),
+                           :locations => {:city_id => city.id}})
+        .group(:subject_id).order("count(subject_id) DESC").limit(size)
 
       if items.length < size
-       items = self.joins(:events).joins(:location)
-         .where(:events => {:start_at => (Time.now.beginning_of_month)..(Time.now.end_of_month), :locations => {:city_id => city.id}})
-         .group(:subject_id).order("group(subject_id) DESC").limit(size)
+        items = self.joins(:events).joins(:events => [:location])
+         .where(:events => {:start_at => (Time.now.beginning_of_month)..(Time.now.end_of_month), 
+                            :locations => {:city_id => city.id}})
+         .group(:subject_id).order("count(subject_id) DESC").limit(size)
       end
     end
     
     return items
+  end
+
+  def self.get_user_items(user)
+    items_array = []
+
+    if user == nil
+       return items_array
+    end
+
+    items = user.person.interests 
+    items_ids = items.map{|i| i.id}
+
+    fans_counts = {  }
+    events_counts = {  }
+    groups_counts = {  }  
+
+    Favorite.select("item_id, count(*) fansize")
+      .where(:item_id => items_ids).group(:item_id).each do |count|
+      fans_counts[count.item_id] = count.fansize
+    end
+
+    city = City.find_by_pinyin(user.city.pinyin)
+
+    Event.week.joins(:location).select("subject_id, count(*) evesize")
+      .where(:subject_id => items_ids, :locations => {:city_id => city.id}).group(:subject_id).each do |count|
+      events_counts[count.subject_id] = count.evesize
+    end
+
+    Group.select("item_id, count(*) gpcount").where(:item_id => items_ids, :city_id => city.id)
+      .group(:item_id).each do |count|
+      groups_counts[count.item.id] = count.gpcount
+    end
+
+    items.each do |item|
+      items_array.push({:item => item, 
+                        :fans_count=>fans_counts[item.id]?fans_counts[item.id]:0,
+                        :events_count=>events_counts[item.id]?events_counts[item.id]:0,
+                        :groups_count=>groups_counts[item.id]?groups_counts[item.id]:0})
+    end
+    
+    return items_array
+  end
+
+  def self.add_fan(item_id, user)
+    favorite = Favorite.new(:item_id => item_id, :person_id => user.person.id)
+    favorite.save
+  end
+
+  def self.remove_fan(item_id, user)
+    Favorite.delete_all(:item_id => item_id, :person_id => user.person.id)
   end
 
 end

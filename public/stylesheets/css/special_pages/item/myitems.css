@@ -1,0 +1,35 @@
+.myitemarea {
+  margin-top: 20px;
+  float: left;
+  width: 800px;
+  margin-left: 50px; }
+  .myitemarea .oneitem {
+    width: 350px;
+    height: 110px;
+    border: 3px solid #d5ddde;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    behavior: url(/javascripts/PIE.htc);
+    background-color: white;
+    float: left;
+    margin-bottom: 10px;
+    margin-right: 15px; }
+    .myitemarea .oneitem .itemimage {
+      width: 100px;
+      height: 100px;
+      margin-top: 5px;
+      margin-bottom: 5px;
+      margin-left: 5px;
+      float: left; }
+      .myitemarea .oneitem .itemimage img {
+        -moz-border-radius: 8px;
+        -webkit-border-radius: 8px;
+        border-radius: 8px;
+        behavior: url(/javascripts/PIE.htc); }
+    .myitemarea .oneitem .itemdetail {
+      margin-right: 5px;
+      float: right;
+      text-align: right;
+      display: block;
+      overflow: hidden; }

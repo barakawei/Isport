@@ -1,28 +1,61 @@
-.field
-  :margin-bottom 10px
+@import '../../general/ui/mixins'
+.topic_form
+  :padding 30px 10px 20px 30px
+  :background-color #ffffff
+  @include border-radius(15px)
+  .field
+    :margin-bottom 10px
 
-  label.info
-    :display inline-block
-    :width 40px
+    label.info
+      :display inline-block
+      :width 40px
+      :color #424f55
+      :font-size 13px
 
-  label.error
-    :display block
-    :color #ff6600
-    :margin-left 42px
+    label.error
+      :display block
+      :color #ff6600
+      :margin-left 42px
 
-  textarea
-    :vertical-align top
-    :width 450px
+    textarea
+      :vertical-align top
+      :width 400px
 
-  input#topic_title 
-    :vertical-align top
-    :width 300px
+    input#topic_title 
+      :vertical-align top
+      :width 400px 
+      border: 1px solid #D5DDDF
+      :font-size 13px
+      color: #576B72
+      :height 30px
+      :line-height 30px
+
+
+  .author
+    a
+      :vertical-align top
+      :margin-left 10px
 
 .actions
-  :margin-left 40px
+  :padding-left 40px
+  input
+    background: url("/images/ui/person_edit.png") no-repeat scroll 0 0 transparent
+    border: medium none
+    cursor: pointer
+    display: inline
+    float: right
+    font-size: 16px
+    color: #ffffff
+    height: 46px
+    margin: 13px 4px 0 0
+    overflow: hidden
+    width: 198px
 
-.author
-  a
-    :vertical-align top
-    :margin-left 10px
+    &:hover
+      background: url("/images/ui/person_edit.png") no-repeat scroll 100% -46px transparent
+      margin: 15px 4px 0 0
+      
+      
+    
+    
 

@@ -1,11 +1,10 @@
 @import '../../general/ui/mixins'
 .hot_events
-  :width 950 
+  :width 910px 
   :padding 20px 20px 0 20px
   :float left
   :border 3px solid #d5ddde
   @include border-radius(14px)
-  :border-bottom none
   :background-color #ffffff
 
   .search_line
@@ -43,42 +42,11 @@
       a.current
         :color #4bc5be
 
-.search_result
-  :padding 30px 20px 
-  :border 3px solid #d5ddde
-  @include border-radius(14px)
-  :background-color #ffffff
-  .event_item
-    :padding-bottom 20px
-
-    img
-      @include border-radius(14px)
-      :border 1px solid #f2f2f2
-      :float left
-      :width 148px
-      :height 148px
-    
-    .information
-      :width 300px
-      :height 150px
-      :float left
-      :margin 0 10px
-      :overflow hidden
-      :position relative
-       
-
-      p
-        :margin 0
-
-      .title
-        :font-size 14px
-        :margin-bottom 5px
-      
-      .at_bottom
-        :position absolute
-        :bottom 1px  
-        :color #666666
-
+.events_panel
+  .event_box_panel
+    .event_box
+      :margin 0px 15px 20px 0px
+  
 #city_select_box
   :position absolute
   :width 100px

@@ -63,11 +63,16 @@ module EventsHelper
     link_to name, "#", :class => "friend_select_input right inline" 
   end
 
-  def group_options(person)
-    groups = person.joined_groups
-    options = groups.collect {|g| [g.name, g.id]}
-    options.insert(0, [I18n.t("events.not_group_event_option"), 0])
-    options
+  def group_options(person, group)
+    options = []
+    unless group
+      groups = person.joined_groups
+      options = groups.collect {|g| [g.name, g.id]}
+      options.insert(0, [I18n.t("events.not_group_event_option"), 0])
+      options
+    else
+      options << [group.name, group.id] 
+    end
   end
 
 end

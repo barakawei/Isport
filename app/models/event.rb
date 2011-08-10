@@ -57,8 +57,9 @@ class Event < ActiveRecord::Base
   scope :week, lambda { where("start_at > ? and start_at < ?", Time.now.beginning_of_week, Time.now.end_of_week) }
   scope :month, lambda { where("start_at > ? and start_at < ?", Time.now.beginning_of_month, Time.now.end_of_month)}
   scope :today, lambda { where("start_at >= ? and start_at <= ?", Time.now.beginning_of_day, Time.now.end_of_day) }
-  scope :weekends, lambda {where("DAYOFWEEK(start_at) = 7 or DAYOFWEEK(start_at) = 1") }
-  scope :next_month, lambda {where("start_at >= ? and start_at <= ?", Time.now, Time.now.next_month)}
+  scope :weekends, lambda { where("DAYOFWEEK(start_at) = 7 or DAYOFWEEK(start_at) = 1") }
+  scope :next_week, lambda { where("start_at >= ? and start_at <= ?", Time.now.next_week, Time.now.next_week.end_of_week) }
+  scope :next_month, lambda { where("start_at >= ? and start_at <= ?", Time.now, Time.now.next_month) }
   scope :on_date, lambda {|date| where("start_at >= ? and start_at <= ?", date.beginning_of_day, date.end_of_day )}
   scope :alltime, lambda { select("*") }
   scope :at_city, lambda {|city| includes("location").where(:locations => {:city_id => city}) }

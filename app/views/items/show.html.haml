@@ -1,78 +1,57 @@
 -content_for :head do
   = include_stylesheets :special_pages_items_show, :media => 'all'
   = include_stylesheets :special_pages_items_commom, :media => 'all'
-.span-24
-  .span-17
-    .span-5
+.span-24.last
+  .itemleft
+    .item_image
       = item_image_tag(@item, :thumb_large)
-    .span-7.left_padding.right_border
-      %h2= @item.name
-      %p#notice= notice
-      %p
-        = @item.description
-    .span-4.last.left_padding
+      .item_name
+        = @item.name
+
+    .check_area
       - if current_user 
         - unless is_fan_of(@item)
-          %p
-            = link_to t('items.like'), url_for(:action=> "add_fan", :id => @item.id), :class => "item_mark"
-          %br
-            = t('items.likeinfo')
+          = link_to t('items.like'), url_for(:action=> "add_fan", :id => @item.id), :class => "item_mark"
+          = t('items.likeinfo')
         - else
-          %p
-            = link_to t('items.unlike' ), url_for(:action=> "remove_fan", :id => @item.id), :class => "item_unmark" 
-          %br
-            = t('items.unlikeinfo', :name => @item.name)
-      %br
-        = t('items.all')
-        = @item.fans.size
-        = t('items.fans')
-    .span-17
-      - if is_admin
-        = link_to t('items.edit'), edit_item_path(@item), :class => "button"
-      = link_to t('items.back'), items_path, :class => "button"
-      .dash_middle
-    .span-17
-      .span-2.left_close
-        %h4
-          =@item.name + t('items.mavin')
-      .span-12.left_close
-        %span.detail= t('items.mavinfo')
-      %br
-      .span-17
-        -@actors.each_with_index do |person, index|
-          .span-2.left_close
-            = person_image_link(person) 
-            %span.medium_avatar=link_to person.profile.name, person_path(person)
-    .span-17
-      .dash_middle
-      .span-2.left_close
-        %h4
-          = link_to t('items.citygroups'), group_filter_path(:city => @city.pinyin, :item_id => @item.id)
-      .span-12.left_close
-        %span.detail= t('items.findgroups')
-      %br
-      .span-17
-        -@groups.each_with_index do |group, index|
-          .span-2.left_close
-            = link_to group_image_tag(group, :thumb_small), group
-            %span.medium_avatar=link_to group.name, group
-  .span-6.last
-    .span-6.left_padding
-      %h4= link_to t('items.events'), event_filter_path(@city.pinyin, nil, @item.id, 'week') 
-    .span-6
-      - @events.each_with_index do |event, index|
-        .span-6
-          .span-2.left_padding
-            = event_image_link(event, :thumb_small) 
-          .span-3.last
-            %span.eveinfo= l(event.start_at, :format => :short)
-            %span.eveinfo= t('events.location')+ ":" + event.location.detail.to_s
-            %span.eveinfo
-              - if event.participants.size > 0
-                = t('events.short_involvement', :count => event.participants.size) + ", "
-              - if event.references.size > 0
-                = t('events.short_recommendation', :count => event.references.size)
-              .dash_top
-        %br
+          = link_to t('items.unlike' ), url_for(:action=> "remove_fan", :id => @item.id), :class => "item_unmark" 
+          = t('items.unlikeinfo', :name => @item.name)
+
+    .item_star
+      = render 'common/header_box', :title =>@item.name + t('items.mavin') , :dark => false 
+
+      -@actors.each_with_index do |person, index|
+        .star_one{:class => ("last" if (index+1)%4==0)}
+          = person_image_link(person) 
+
+  .itemright
+    .item_info
+      .info_ele
+        = render 'common/big_header_box', :number => @item.fans.count, :text => "粉丝", :font_color => "#A8CDD7"
+      .info_ele
+        = render 'common/big_header_box', :number => @item.events.count, :text => "活动", :font_color => "yellow"
+      .info_ele
+        = render 'common/big_header_box', :number => @item.groups.count, :text => "小组", :font_color => "white"
+
+    .hot_title
+      .title
+        = render 'common/header_box', :title =>t('items.events') , :dark => true 
+      .link
+        = link_to "更多>>", event_filter_path(@city.pinyin, nil, @item.id, 'week') 
+
+    .hot_area.events_panel
+      = render :partial => 'events/event_element',:collection => @events,:as => :event 
+
+    .hot_title
+      .title
+        = render 'common/header_box', :title =>t('items.citygroups') , :dark => true 
+      .link
+        = link_to "更多>>", group_filter_path(:city => @city.pinyin, :item_id => @item.id) 
+       
+    .hot_area
+      = render :partial => 'groups/group_box',:collection => @groups_hash,:as => :group
+      
 
 
+
+      

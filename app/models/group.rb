@@ -16,8 +16,9 @@ class Group < ActiveRecord::Base
   has_many :memberships, :dependent => :destroy
   has_many :events
   has_many :invitees_plus_members, :through => :memberships, :source => :person
+
   has_many :members, :through => :memberships,  :source => :person,
-                        :conditions => ['memberships.pending = ? ', false] 
+                        :conditions => ['memberships.pending = ? ', false]
   has_many :invitees, :through => :memberships, :source => :person,
                         :conditions => ['memberships.pending = ? ', true] 
   has_many :deletable_members, :through => :memberships, :source => :person,
@@ -32,10 +33,9 @@ class Group < ActiveRecord::Base
   scope :at_city, lambda {|city| where(:city_id => city.id) }
   scope :filter_group, lambda  {|search_hash| where(search_hash)}
   
-  JOIN_BY_INVITATION_FROM_ADMIM = 1 
-  JOIN_BY_INVITATION_FROM_MEMBER= 2
-  JOIN_AFTER_AUTHENTICATAION = 3
-  JOIN_FREE = 4
+  JOIN_FREE = 1 
+  JOIN_AFTER_AUTHENTICATAION = 2 
+  JOIN_BY_INVITATION_FROM_ADMIM = 3 
 
 
   def image_url(size = :thumb_large)
@@ -63,13 +63,9 @@ class Group < ActiveRecord::Base
     join_mode == JOIN_BY_INVITATION_FROM_ADMIM 
   end
 
-  def need_invitation_from_member
-    join_mode == JOIN_BY_INVITATION_FROM_MEMBER
-  end
 
   def need_invitation
-    join_mode == JOIN_BY_INVITATION_FROM_ADMIM ||
-    join_mode == JOIN_BY_INVITATION_FROM_MEMBER
+    join_mode == JOIN_BY_INVITATION_FROM_ADMIM
   end
 
   def need_authenticate
@@ -102,11 +98,11 @@ class Group < ActiveRecord::Base
     membership =  Membership.where(:person_id => person.id, 
                                :group_id => self.id,
                                :pending => true)
-    if need_invitation
+    if need_invitation && membership.size > 0
       membership.first.update_attributes(:pending => false) if  membership.size > 0
     elsif need_authenticate
       Membership.create(:person_id => person.id, :group_id => self.id,
-                        :pending => true) 
+                        :pending => true, :join_mode =>JOIN_AFTER_AUTHENTICATAION ) 
     else
       Membership.create(:person_id => person.id, 
                         :group_id => self.id)

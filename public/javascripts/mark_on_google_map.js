@@ -16,8 +16,8 @@ function initialize(zoom,element) {
   map = new google.maps.Map(document.getElementById(element), myOptions);
 }
 
-function codeAddress(element,address, zoom) {
-  var z = arguments[2] ? arguments[2] : 13;
+function codeAddress(element,address, parent_div, zoom) {
+  var z = arguments[3] ? arguments[3] : 13;
   initialize(z, element);
   
   var contentString = '<div id="content" style="width: 300px">'+
@@ -47,7 +47,7 @@ function codeAddress(element,address, zoom) {
         }
         
       } else {
-        alert("Geocode was not successful for the following reason: " + status);
+        document.getElementById(parent_div).style.display = 'none';
       }
     });
   }

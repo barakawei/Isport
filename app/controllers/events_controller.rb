@@ -91,8 +91,6 @@ class EventsController < ApplicationController
     event_attrs = params[:event]
     location = Location.create(event_attrs[:location_attributes])
     l_info = GoogleGeoCoder.getLocation(location.to_s)
-    puts '********************************'
-    puts l_info
     event_attrs[:location_attributes].merge!(l_info) unless l_info.nil?
     @event = Event.new(event_attrs)
     @event.person = current_user.person
@@ -149,10 +147,8 @@ class EventsController < ApplicationController
 
   def get_participants
     @event = Event.find(params[:id])
-    @participants =  @event.participants.order("created_at ASC")
-    @friends = current_user ? current_user.friends : []
-    @friend_participants = @participants & @friends
-    @other_participants = @participants - @friend_participants  
+    @participants =  @event.participants.order("created_at ASC").paginate :page => params[:page],
+                                                                          :per_page => 10
   end
 
   def get_references

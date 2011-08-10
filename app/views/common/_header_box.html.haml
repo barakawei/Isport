@@ -3,7 +3,10 @@
     .box_all{:style => (defined?(background_color) ? "background-color:#{background_color}" : " " ) + (defined?(font_color) ? " color: #{font_color}" : "")}
       .box_left
       .box_middle
-        %strong=title
+        %strong
+          - if defined?(link_content)
+            = link_to link_content, path
+          =title
       .box_right
   .clear
   .bottom_pic{:style => ("background-color:#{background_color}" if defined?(background_color))}
