@@ -1,0 +1,62 @@
+.select_interests {
+  background-color: white;
+  padding: 50px;
+  width: 800px;
+  border: 10px solid #d5ddde;
+  -moz-border-radius: 15px;
+  -webkit-border-radius: 15px;
+  border-radius: 15px;
+  behavior: url(/javascripts/PIE.htc); }
+  .select_interests h3.selected_items {
+    color: #546266;
+    margin-bottom: 0; }
+  .select_interests h2 {
+    color: #00bed4; }
+  .select_interests .results span.item {
+    background: none repeat scroll 0 0 #ed5272;
+    border: 2px solid #e1e1e1;
+    color: white;
+    float: left;
+    font-size: 1.2em;
+    margin-bottom: 1px;
+    padding: 5px; }
+  .select_interests a.avatar {
+    float: left;
+    margin-right: 3px;
+    margin-bottom: 3px;
+    display: block;
+    width: 89px;
+    height: 89px;
+    overflow: hidden;
+    border: 4px solid #e4eff0; }
+    .select_interests a.avatar img {
+      width: 89px;
+      height: 89px; }
+    .select_interests a.avatar .title {
+      width: 89px;
+      text-align: center;
+      height: 20px;
+      line-height: 20px;
+      font-size: 15px;
+      margin-top: 35px;
+      color: white; }
+  .select_interests a.avatar.selected {
+    background-color: #ed5272; }
+    .select_interests a.avatar.selected img {
+      display: none; }
+  .select_interests .results {
+    width: 700px;
+    float: left; }
+  .select_interests .submit_button {
+    width: 100px;
+    float: left; }
+    .select_interests .submit_button a {
+      background: url("/images/ui/f2_btn_next.gif") no-repeat scroll 0 0 transparent;
+      cursor: pointer;
+      float: right;
+      height: 63px;
+      width: 63px;
+      display: block;
+      text-indent: -9999px; }
+      .select_interests .submit_button a:hover {
+        background-position: -63px 0; }

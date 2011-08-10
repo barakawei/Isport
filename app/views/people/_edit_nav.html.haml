@@ -1,0 +1,5 @@
+-content_for :head do
+  = include_stylesheets :common_vertical_nav, :media => 'all'
+%ul.nav
+  %li=link_to '编辑个人信息', '#', :class => ("current" if params[:action] == 'edit') 
+  %li=link_to '编辑个人兴趣', '#',:class => ("current" if params[:action] == 'edit_interests')   

@@ -26,21 +26,8 @@
       -webkit-border-radius: 14px;
       border-radius: 14px;
       behavior: url(/javascripts/PIE.htc); }
-  .hot_item_groups .item_group {
-    width: 120px;
-    float: left;
-    margin-right: 10px;
-    margin-bottom: 10px; }
-    .hot_item_groups .item_group img {
-      width: 120px;
-      height: 120px;
-      border: 1px solid #f2f2f2;
-      -moz-border-radius: 10px;
-      -webkit-border-radius: 10px;
-      border-radius: 10px;
-      behavior: url(/javascripts/PIE.htc); }
-      .hot_item_groups .item_group img:hover {
-        border: 1px solid #10a3e1; }
+  .hot_item_groups .person_element {
+    margin-left: 0px; }
 
 .search_line {
   width: 908px;

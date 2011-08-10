@@ -1,19 +1,19 @@
 -content_for :head do
   = include_javascripts :jquery_validation
   = include_stylesheets :special_pages_topic_form, :media => 'all'
-.span-14
-  = form_for @topic, :url => url  do  |f|
+= form_for @topic, :url => url  do  |f|
+  .span-14.topic_form
     .field
       = f.label '标题', :class => 'info'
       = f.text_field :title
     .field
       = f.label '内容', :class => 'info'
       = f.text_area :content
-    .actions
-      = f.submit '确认'
-.span-3.last
-  %h4.inline='作者:'
-  %span.author= person_image_link(person)
+  .span-3.last
+    %h4.inline='作者:'
+    %span.author= person_image_link(person)
+  .actions.span-14
+    = f.submit '发表话题'
   
 :javascript
   $(function() {

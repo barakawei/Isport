@@ -13,8 +13,6 @@ module GroupsHelper
     case group.join_mode  
       when Group::JOIN_BY_INVITATION_FROM_ADMIM 
         I18n.t("groups.join_mode_des.invite_by_admin")
-      when Group::JOIN_BY_INVITATION_FROM_MEMBER
-        I18n.t("groups.join_mode_des.invite_by_member") 
       when Group::JOIN_AFTER_AUTHENTICATAION
         if group.has_pending_member?(person)
           I18n.t('groups.person.status.request_pending')

@@ -1,0 +1,41 @@
+@import '../../general/ui/mixins'
+.new_event_panel
+  :float left
+  :margin 0 10px 14px 0px
+  :width 300px
+  :min-height 100px
+  
+  .event_border
+    background: url("/images/ui/event_border.png") no-repeat scroll 0 0 transparent
+    color: #FC4469
+    font-size: 15px
+    font-weight: normal
+    height: 26px
+    margin: 0
+    padding-left: 40px
+
+  .content
+    background: url("/images/ui/event-box.png") no-repeat scroll 0 100% transparent
+    color: #11BACD
+    min-height: 100px
+    padding: 10px
+    padding-left: 30px
+
+    h2
+      :height 40px
+      :line-height 40px
+      :font-size  23px
+      :color #11BACD
+      :margin-top 20px
+
+    .new_event
+      @include border-radius(7px)
+      :margin-left 50px
+      :background #fc5173
+      :color #ffffff
+      :padding 0 10px
+      :width 100px
+      :border 4px solid #dbe0e3
+
+    
+

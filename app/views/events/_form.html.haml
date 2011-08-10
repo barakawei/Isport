@@ -60,10 +60,10 @@
           = error_on(@event, :description)
         .field.module
           = f.label '所属小组', :class => "info"
-          = f.select :group_id, group_options(current_user.person) 
+          = f.select :group_id, group_options(current_user.person, @group) 
         .field.subject
           = f.label t('activerecord.attributes.event.subject'), :class => "info"
-          = collection_select(:event, :subject_id, Item.all, :id, :name, {:prompt => true})
+          = collection_select(:event, :subject_id, (@group ? [@group.item] : Item.all), :id, :name, {:prompt => true})
           = error_on(@event, :subject_id)
         .field
           = f.label t('activerecord.attributes.event.is_private'), :class => "info"

@@ -252,6 +252,39 @@ span.medium_avatar {
     background-color: white;
     text-decoration: none; }
 
+.welcome_box {
+  background: none repeat scroll 0 0 #f8f8f8;
+  width: 903px;
+  height: 300px;
+  margin-left: 24px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  behavior: url(/javascripts/PIE.htc); }
+  .welcome_box .poster_box {
+    background: #f8f8f8;
+    width: 550px;
+    height: 290px;
+    margin-left: 5px;
+    margin-top: 5px;
+    float: left;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    behavior: url(/javascripts/PIE.htc); }
+
+.welcomenav_box {
+  background: none repeat scroll 0 0 #f8f8f8;
+  width: 285px;
+  height: 300px;
+  margin-left: 24px;
+  margin-top: 12px;
+  float: left;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  behavior: url(/javascripts/PIE.htc); }
+
 .app_module_title {
   margin: 15px 0 5px 0;
   color: #fc4469; }
@@ -456,6 +489,9 @@ a.button {
         display: block;
         margin-top: 10px;
         font-size: 13px; }
+      .app_title_bar .app_header_box .box_all .box_middle a {
+        color: #f74267;
+        font-size: 15px; }
     .app_title_bar .app_header_box .box_all .box_right {
       background: url("/images/ui/border_hdrs.png") no-repeat scroll -15px 0 transparent;
       float: left;
@@ -543,3 +579,31 @@ a.button {
     border-bottom: 1px solid #eceae8; }
     .notifactions .stream_element .content {
       margin-left: 60px; }
+
+a.app_big_link_button {
+  cursor: pointer;
+  margin: 4px 0 0 21px;
+  position: relative;
+  float: right;
+  color: white !important;
+  display: inline;
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 25px;
+  text-decoration: none; }
+  a.app_big_link_button em {
+    background: url("/images/ui/big_button.gif") no-repeat scroll 0 0 transparent !important;
+    float: left;
+    font-style: normal;
+    padding: 13px 18px 13px 24px; }
+  a.app_big_link_button span {
+    background: url("/images/ui/big_button.gif") no-repeat scroll -890px -51px transparent !important;
+    float: left;
+    height: 51px;
+    width: 10px; }
+  a.app_big_link_button:hover span {
+    background-position: -890px -153px !important; }
+  a.app_big_link_button:hover em {
+    background-position: 0 -102px !important;
+    color: white;
+    padding: 15px 18px 11px 24px; }

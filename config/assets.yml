@@ -44,6 +44,12 @@ stylesheets:
     - public/stylesheets/css/general/common/wizard_steps.css
   common_index:
     - public/stylesheets/css/general/common/index.css
+  common_vertical_nav:
+    - public/stylesheets/css/general/common/vertical_nav.css
+  common_people_select:
+    - public/stylesheets/css/general/common/people_select.css
+    
+    
     
     
   default:
@@ -83,6 +89,8 @@ stylesheets:
     - public/stylesheets/css/special_pages/events/my_event_item.css
   sepcial_pages_events_hottest:
     - public/stylesheets/css/special_pages/events/hot_event.css
+  sepcial_pages_events_new_event_panel:
+    - public/stylesheets/css/special_pages/events/new_event_panel.css
 
   special_pages_items_show:
     - public/stylesheets/css/special_pages/item/show.css
@@ -130,5 +138,10 @@ stylesheets:
 
   special_pages_registration_new:
     - public/stylesheets/css/special_pages/registration/new.css
+
+  sepcial_pages_users_selectinterests:
+    - public/stylesheets/css/special_pages/users/select_interests.css
+  sepcial_pages_people_edit_interests:
+    - public/stylesheets/css/special_pages/people/edit_interests.css
 
  

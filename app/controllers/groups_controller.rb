@@ -1,11 +1,11 @@
 class GroupsController < ApplicationController
   prepend_before_filter :authenticate_user!, :except => [:index, :show, :forum, :members, :events, :filtered] 
   before_filter :init, :except => [:index, :show, :forum, :members, :events, :filtered]
+  before_filter :authenticate_admin!, :only => [:edit, :edit_members, :invite_friends, :update, :create]
   
   def index
     city_pinyin = params[:city] ? params[:city] : (current_user ? current_user.city.pinyin : City.first.pinyin)
     @city = City.find_by_pinyin(city_pinyin)
-    @groups = Group.all
     @hot_groups = Group.hot_groups(@city).all
     @hot_items = Item.limit(5)
     @select_tab = 'group'
@@ -22,6 +22,7 @@ class GroupsController < ApplicationController
     @event_size  = @group.events.count
     @topic_size = @group.topics.count
     @member_size = @group.members.count
+    @is_member = @group.has_member?(@current_person) if @current_person
   end
 
   def new
@@ -38,8 +39,15 @@ class GroupsController < ApplicationController
   end
 
   def edit_members
+    @current_person = current_user.person
     @group = Group.find(params[:id])
-    @members = @group.deletable_members.order('created_at ASC') || []
+    if @group.person == @current_person 
+      @members = @group.members
+      puts '***************'
+      puts @members.size
+    else
+      @members = @group.deletable_members.order('created_at ASC') || []
+    end
     @friends = current_user.friends || [ ] 
     @invitees = @group.invitees.order("created_at ASC") || []
     @friend_members = @members & @friends
@@ -88,9 +96,6 @@ class GroupsController < ApplicationController
   end
 
   def destroy
-    @group = Group.find(params[:id])
-    @group.destroy
-
     redirect_to(groups_url) 
   end
 
@@ -133,5 +138,12 @@ class GroupsController < ApplicationController
 
   def init
     @current_person = current_user.person    
+  end
+
+  def authenticate_admin!  
+    @group = Group.find(params[:id])
+    unless @group.is_admin(@current_user) 
+      redirect_to group_path(@group) 
+    end
   end
 end

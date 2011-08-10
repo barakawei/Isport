@@ -14,4 +14,12 @@ class UsersController < ApplicationController
     @profile = @user.profile
     render "users/getting_started"
   end
+
+  def select_interests
+    @items = Item.all
+    @my_items = current_user.person.interests
+    @items.each do |item|
+      item.selected = true if @my_items.include?(item)
+    end
+  end
 end

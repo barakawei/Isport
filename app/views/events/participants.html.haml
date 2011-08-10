@@ -1,23 +1,14 @@
+- content_for :head do
+  = include_stylesheets :sepcial_pages_events_common, :media => 'all'
 .span-24
-  %h2=@event.title
-.span-16
-  - if @friend_participants.size > 0
-    %h4= t("events.friend_participants", :count => @friend_participants.size)
-    .span-16#friend_participants
-      = render :partial => "event_participants", :locals => { :participants => @friend_participants, 
-                                                              :perline => 8, 
-                                                              :no_pagination => true,
-                                                              :edit => false }
-  .span-16
-    %h4.app_module_title= t("events.other_participants", :count => @other_participants.size)
-  .span-16#other_participants
-    = render :partial => "event_participants", :locals => { :participants => @other_participants,
-                                                            :perline => 8, 
-                                                            :no_pagination => true,
-                                                            :edit => false }
-.span-6.prepend-1.last
-  - if @event.is_owner(current_user)
-    %h4= link_to '>编辑活动成员', event_members_path(@event)
-  %hr.space
-    %h4= link_to '<返回"'+@event.title+'"', event_path(@event)
+  .span-18
+    = render 'common/header_box',  :title => '活动"' + @event.title + '"成员'
+  .span-6.last
+    %h4= link_to '<返回本活动主页', event_path(@event)
+.span-18
+  .span-18.people_array
+    = render :partial => 'people/person_element', :collection => @participants, :as => :person
+  .span-18
+    = will_paginate @participants, {:previous_label => t("pagination.previous"), 
+                                    :next_label => t("pagination.next")}
 

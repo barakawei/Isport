@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110809080413) do
+ActiveRecord::Schema.define(:version => 20110810151217) do
 
   create_table "administrators", :force => true do |t|
     t.integer  "user_id"
@@ -133,9 +133,6 @@ ActiveRecord::Schema.define(:version => 20110809080413) do
     t.string   "image_url_large"
     t.integer  "person_id"
     t.integer  "district_id"
-    t.integer  "members_count",    :default => 0
-    t.integer  "events_count",     :default => 0
-    t.integer  "topics_count",     :default => 0
   end
 
   create_table "involvements", :force => true do |t|
@@ -171,10 +168,11 @@ ActiveRecord::Schema.define(:version => 20110809080413) do
   create_table "memberships", :force => true do |t|
     t.integer  "person_id"
     t.integer  "group_id"
-    t.boolean  "is_admin"
+    t.boolean  "is_admin",   :default => false
     t.boolean  "pending",    :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "join_mode",  :default => 1
   end
 
   add_index "memberships", ["group_id"], :name => "index_memberships_on_group_id"

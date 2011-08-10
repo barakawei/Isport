@@ -84,6 +84,7 @@ class PeopleController < ApplicationController
     end
   end
 
+
   def show_posts
     @posts = Post.where( :author_id => params[ :person_id ],:type => 'StatusMessage' ).order( "posts.created_at DESC" ).paginate(:page => params[:page], :per_page => 10)
     @page = params[ :page ]
@@ -128,6 +129,21 @@ class PeopleController < ApplicationController
     @left_invitees = current_user.friends - group.invitees_plus_members
     respond_to do |format|
       format.json { render(:layout => false, :json => {"success" => true, "data" => @left_invitees}.to_json) }
+    end
+  end
+
+  def choose_interests
+    item_ids = params[:item_ids].split(',');
+    current_user.person.add_interests(item_ids)      
+    render :nothing => true
+  end
+
+  def edit_interests
+    @current_person = current_user.person
+    @items = Item.all
+    @my_items = current_user.person.interests
+    @items.each do |item|
+      item.selected = true if @my_items.include?(item)
     end
   end
 end

@@ -10,6 +10,12 @@ class Item < ActiveRecord::Base
   has_many :groups, :foreign_key => "item_id"
 
   belongs_to :category
+  attr_accessor :selected
+
+  def initialize
+    super
+    self.selected = false
+  end
 
   def image_url(size = :thumb_large)
     result = if size == :thumb_medium && self[:image_url_medium]
