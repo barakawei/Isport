@@ -30,6 +30,7 @@ Isport::Application.routes.draw do
     match 'grouop_invitees_select/:id' => :group_invitees_select, :as => "group_invitees_select",
           :constraints => { :id => /[1-9]\d*/}
     match 'choose_interests' => :choose_interests, :as => "choose_interests", :via => :post
+    match '/people/edit_interests' => :edit_interests, :as => "edit_interests"
   end
 
   match '/people/show_posts' => 'people#show_posts'
@@ -54,6 +55,8 @@ Isport::Application.routes.draw do
     match '/items/:id' => :show, :via => :get,
           :constraints => {:id => /[1-9]\d*/}
     match '/items/myitems' => :myitems, :as => 'myitems'
+    match '/items/add_fan_ajax' => :add_fan_ajax, :as => 'add_fan_ajax'
+    match '/items/remove_fan_ajax' => :remove_fan_ajax, :as => 'remove_fan_ajax'
   end
 
   controller :home do

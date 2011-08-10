@@ -195,5 +195,15 @@ class ItemsController < ApplicationController
 
     redirect_to(item_url(@item))
   end
+
+  def add_fan_ajax
+    Item.add_fan(params[:id], current_user) if params[:id]
+    render :nothing => true
+  end
+
+  def remove_fan_ajax
+    Item.remove_fan(params[:id], current_user)if params[:id]
+    render :nothing => true
+  end
 end
 

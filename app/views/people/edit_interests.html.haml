@@ -1,0 +1,35 @@
+-content_for :head do
+  = include_stylesheets :sepcial_pages_people_edit_interests, :media => 'all'
+
+.span-6.left_column
+  .avatar
+    = person_image_tag(@current_person, :thumb_large)
+  %hr.space
+  = render :partial => 'edit_nav'
+
+.span-18.last.right_column
+  .span-17
+    = render 'common/header_box', :title => '选择感兴趣的项目', :background_color => '#8dbc6e'
+  .items_panel
+    - @items.each do |item|
+      %span.item
+        %a{:class => (item.selected ? 'selected' : ''), :item_id => item.id}
+          %span=item.name 
+
+:javascript
+  $('.items_panel .item a').bind('click', select_item);
+
+  function select_item() {
+    var $this = $(this);
+    $this.unbind('click').toggleClass('selected');
+    var item_id = $this.attr('item_id');
+    if($this.hasClass('selected')) {
+      $.post("#{add_fan_ajax_path}", {id: item_id}, function(data, textStatus){
+        $this.bind('click', select_item);
+      });
+    } else {
+      $.post("#{remove_fan_ajax_path}", {id: item_id}, function(data, textStatus){
+        $this.bind('click', select_item);
+      });
+    } 
+  }
