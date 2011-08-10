@@ -30,6 +30,9 @@ class MembershipsController < ApplicationController
         Membership.create(:group_id => @group.id, :person_id => person_id,
                           :pending => true, :join_mode => @group.join_mode)
       end
+        invited_people = Person.where( :id => person_ids )
+        @group.invited_people = invited_people
+        @group.dispatch_group( :invite )
     end 
     render :nothing => true
   end

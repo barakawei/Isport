@@ -90,23 +90,11 @@ textarea {
   font-size: 14px;
   padding: 0.3em; }
 
-#profile_photo_upload {
-  margin-top: 5px;
-  min-height: 100px;
-  padding-left: 120px; }
-  #profile_photo_upload img {
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
-    behavior: url(/javascripts/PIE.htc);
-    -webkit-box-shadow: 0 1px 2px 0 #666666;
-    -moz-box-shadow: 0 1px 2px 0 #666666;
-    box-shadow: 0 1px 2px 0 #666666;
-    behavior: url(/javascripts/PIE.htc);
-    position: absolute;
-    left: 10px;
-    height: 100px;
-    width: 100px; }
+#profile_photo_upload img {
+  position: absolute;
+  left: 10px;
+  height: 100px;
+  width: 100px; }
 
 h1 .description, h2 .description, h3 .description, h4 .description {
   font-size: 80%;

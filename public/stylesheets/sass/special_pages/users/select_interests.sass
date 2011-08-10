@@ -1,51 +1,126 @@
 @import '../../general/ui/mixins'
 
 .select_interests
-  :background-color #ffffff
-  :padding 50px 
-  :width 800px
-  :border 10px solid #d5ddde
+  :position relative
+  :background url( /images/ui/init_bg_content.png ) repeat
+  :padding 0 30px 0px 30px 
+  :width 885px
+  :border 10px solid #FFFFFF
   @include border-radius(15px)
+  .person_info
+    :margin-left 200px
+    .person_avatar
+      img
+        @include border-radius(5px)
+        @include box-shadow(0,1px,2px,0,#666)
+      :text-align center
+      :height 300px
+      :width 220px
+      :position relative
+      :float left
+      img
+        :height 200px
+        :width 200px
+      #profile_photo_upload
+        #file-upload.glass_button
+          :margin-top 10px
+          :margin-left 65px
+          :width 80px
+    .person_basic
+      :width 400px
+      :float left
+      input,select
+        @include border-radius(5px)
+        :margin-top 5px
+        :font-size 15px
+        border: 1px solid white
+        height: 26px
+        padding: 4px
+        width: 250px
+      select
+        border: 2px solid #D5DDDF
+        @include border-radius(5px)
+        :margin-top 5px
+        :font-size 15px
+        height: 40px
+        padding: 4px
+        width: 265px
+      h4
+        :font-size 18px
+        :color #536673
+    .submit_block
+      :float left
+      :margin-bottom 30px
+      :margin-left 560px
+      .next_button
+        :border none
+        height: 96px
+        width: 96px
+        background: url(/images/ui/person_info_arrow.gif) no-repeat 0 0
+        cursor: pointer
+        &:hover
+          :background-position -96px 0
 
   h3.selected_items
     color: #546266
     margin-bottom: 0
 
   h2
-    :color #00bed4
+    :color #536673
+    :font-size 30px
+    :height 80px
+    :text-align center
+    :padding-top 20px
+    :background url( /images/ui/init_bg_top.png ) no-repeat
 
   .results
     span.item
       background: none repeat scroll 0 0 #ED5272
-      border: 2px solid #e1e1e1
+      border: 2px solid white
       color: white
       float: left
       font-size: 1.2em
       margin-bottom: 1px
       padding: 5px
-      
+
+  .bg_bottom
+    :position relative
+    :left -30px
+    :bottom 0
+    :width 100%
+    :height 150px
+    :padding
+      :top 20px
+      :left 30px
+    :background url( /images/ui/init_bg_bottom.png ) no-repeat 
 
   a.avatar
+    :cursor pointer
     :float left
     :margin-right 3px
     :margin-bottom 3px
     :display block
-    :width 89px
-    :height 89px
+    :width 99px
+    :height 99px
     :overflow hidden
     border: 4px solid #E4EFF0
+    &:hover
+      img
+        :display none
+      :background-color #ED5272 
     img
-      :width 89px
-      :height 89px
+      :width 99px
+      :height 99px
 
     .title
-      :width 89px
+      :width 99px
       :text-align center
       :height 20px
       :line-height 20px
-      :font-size 15px
-      :margin-top 35px
+      :font-size 18px
+      :margin-top 37px
       :color #ffffff
+      :font-weight bold
     
   a.avatar.selected
     :background-color #ED5272 
@@ -59,19 +134,19 @@
     :float left
 
   .submit_button
-    :width 100px
+    :margin-left 75px
     :float left
 
     a
-      background: url("/images/ui/f2_btn_next.gif") no-repeat scroll 0 0 transparent
+      background: url("/images/ui/select_interests.png") no-repeat  0 0 
+      height: 96px
+      width: 96px
       cursor: pointer
       float: right
-      height: 63px
-      width: 63px
       display: block
       text-indent:  -9999px
 
       &:hover
-        :background-position -63px 0
+        :background-position -98px 0
       
     

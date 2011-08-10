@@ -3,11 +3,10 @@ class ProfilesController < ApplicationController
   def update
     params[:profile] ||= {}
     if current_user.profile.update_attributes params[:profile]
-      current_user.update_attributes(:getting_started=>false)
       if params[ :profile_edit ] 
         redirect_to :back
       else
-        redirect_to root_path
+        redirect_to select_interests_path
       end
     end
   end   
