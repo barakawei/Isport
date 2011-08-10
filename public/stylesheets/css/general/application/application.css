@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .dim {
   filter: alpha(opacity=30);
   -moz-opacity: 0.3;
@@ -5,7 +6,8 @@
   opacity: 0.3; }
 
 body {
-  background-color: #e9eef1; }
+  background-color: #e9eef1;
+  font-family: "Microsoft YaHei", "微软雅黑", SimHei, STHeiti, Tahoma, Arial, Helvetica, "Helvetica Neue", sans-serif; }
 
 .blue {
   color: #0bb6e5; }
