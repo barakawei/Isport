@@ -33,10 +33,29 @@
   #home_user .groups {
     margin-top: 20px;
     left: 0; }
+    #home_user .groups .title {
+      background-color: #f5f9fa;
+      padding: 10px; }
+      #home_user .groups .title .name {
+        float: left;
+        font-size: 15px;
+        color: #fc4469; }
+      #home_user .groups .title .link {
+        float: right; }
   #home_user .avatar_panel_container {
-    padding-top: 20px; }
+    background-color: #f5f9fa;
+    margin-top: 20px; }
+    #home_user .avatar_panel_container .title {
+      background-color: #f5f9fa;
+      padding: 10px; }
+      #home_user .avatar_panel_container .title .name {
+        float: left;
+        font-size: 15px;
+        color: #fc4469; }
+      #home_user .avatar_panel_container .title .link {
+        float: right; }
     #home_user .avatar_panel_container .contacts {
-      padding: 5px; }
+      padding: 5px 10px 5px 10px; }
       #home_user .avatar_panel_container .contacts .person_avatar_detail {
         height: 30px;
         width: 30px; }

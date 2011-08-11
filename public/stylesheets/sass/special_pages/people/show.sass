@@ -1,10 +1,10 @@
 @import '../../general/ui/mixins'
 .following_people_panel
-  :margin-top 20px
+  :margin-top 25px
 
 .history_bar
   :display block
-  :margin-top 60px
+  :margin-top 45px
   :height 90px
   .app_big_title_bar
     :margin-right 20px
@@ -200,6 +200,15 @@
     .avatar
       :margin-top 5px
   .groups
+    .title
+      background-color: #F5F9FA 
+      :padding 10px
+      .name
+        :float left
+        :font-size 15px
+        :color #fc4469
+      .link
+        :float right
     :margin-top 20px
     :left 0
   .group
@@ -282,6 +291,8 @@ dd
   :background-color white
   :padding-bottom 20px
   :padding-top 20px
+  input,select,textarea
+    :color #576b72
   input
     @include border-radius(5px)
     :margin-top 5px
@@ -298,9 +309,10 @@ dd
     :vertical-align top
     :text-align right
     :width 110px
+    :font-weight bold
     :display inline-block
     :font-size 15px
-    :color #888
+    :color #424f55
   #gender
     input
       :width 20px
@@ -408,7 +420,7 @@ dd
     :padding 10px 0 10px 0
   .title
     h3
-      color: #22AEC1
+      color: #fc4469
       :font-size 15px
       :float left
       :margin-top 5px
@@ -423,11 +435,11 @@ dd
       &:hover
         :background-color #e76875
   span
-    color: #FC4469
+    color: #7F8D8E
     font-weight: bold
     margin-right: 5px
     margin-top: -2px
     :display inline
   p
-    color: #7F8D8E
+    color: #546266
     :display inline

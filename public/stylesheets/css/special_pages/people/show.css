@@ -1,9 +1,9 @@
 .following_people_panel {
-  margin-top: 20px; }
+  margin-top: 25px; }
 
 .history_bar {
   display: block;
-  margin-top: 60px;
+  margin-top: 45px;
   height: 90px; }
   .history_bar .app_big_title_bar {
     margin-right: 20px; }
@@ -192,6 +192,15 @@
 .person_left_bar .groups {
   margin-top: 20px;
   left: 0; }
+  .person_left_bar .groups .title {
+    background-color: #f5f9fa;
+    padding: 10px; }
+    .person_left_bar .groups .title .name {
+      float: left;
+      font-size: 15px;
+      color: #fc4469; }
+    .person_left_bar .groups .title .link {
+      float: right; }
 .person_left_bar .group {
   padding: 10px;
   background-color: #f5f9fa;
@@ -273,6 +282,8 @@ dd {
   background-color: white;
   padding-bottom: 20px;
   padding-top: 20px; }
+  .person_profile input, .person_profile select, .person_profile textarea {
+    color: #576b72; }
   .person_profile input {
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
@@ -291,9 +302,10 @@ dd {
     vertical-align: top;
     text-align: right;
     width: 110px;
+    font-weight: bold;
     display: inline-block;
     font-size: 15px;
-    color: #888888; }
+    color: #424f55; }
   .person_profile #gender input {
     width: 20px; }
   .person_profile #gender span {
@@ -406,7 +418,7 @@ dd {
   #person_profile_box .info_text {
     padding: 10px 0 10px 0; }
   #person_profile_box .title h3 {
-    color: #22aec1;
+    color: #fc4469;
     font-size: 15px;
     float: left;
     margin-top: 5px; }
@@ -421,11 +433,11 @@ dd {
     #person_profile_box .title .edit_profile:hover {
       background-color: #e76875; }
   #person_profile_box span {
-    color: #fc4469;
+    color: #7f8d8e;
     font-weight: bold;
     margin-right: 5px;
     margin-top: -2px;
     display: inline; }
   #person_profile_box p {
-    color: #7f8d8e;
+    color: #546266;
     display: inline; }
