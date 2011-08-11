@@ -5,7 +5,7 @@
       .box_middle
         .header_content{ :style => (defined?(width) ? " width: #{width}" : "")}
           %div
-            .number{ :style => (defined?(font_color) ? " color: #{font_color}" : "")}
+            .number{ :style => (defined?(number_color) ? " color: #{number_color}" : "")}
               =number if defined? number
             .info{ :style => (defined?(font_color) ? " color: #{font_color}" : "")}
               =text if defined? text
