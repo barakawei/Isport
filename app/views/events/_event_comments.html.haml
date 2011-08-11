@@ -40,7 +40,7 @@
 
 - if current_person
   .span-16.prepend-top
-    = render 'common/header_box', :title => '发表评论'
+    = render 'common/header_box', :title => '发表评论', :dark => 'true'
     .new_comment
       = form_for comment, :url => event_event_comments_path(event.id), do |c|
         = person_image_link(current_person)

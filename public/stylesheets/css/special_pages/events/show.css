@@ -1,6 +1,9 @@
+.left_column #map_div {
+  width: 200px; }
 .left_column #map {
   width: 198px;
-  border: 1px solid #d5ddde; }
+  border: 1px solid #d5ddde;
+  margin-bottom: 0px; }
 .left_column .avatar img {
   -moz-border-radius: 14px;
   -webkit-border-radius: 14px;
@@ -14,13 +17,18 @@
   .left_column .other_info .info_block {
     display: block;
     float: left;
-    background-color: #dbe0e3;
+    background-color: white;
     color: #546266;
     padding: 10px 10px;
     margin-right: 10px;
     width: 180px; }
-    .left_column .other_info .info_block strong {
-      display: block; }
+    .left_column .other_info .info_block span {
+      display: block;
+      font-size: 13px;
+      padding: 5px 0;
+      border-bottom: 1px dashed #e9eef1; }
+      .left_column .other_info .info_block span strong {
+        color: #fb4b6f; }
 .left_column .person_array {
   width: 220px;
   margin-bottom: 10px;
@@ -63,7 +71,7 @@
     float: left;
     width: 60px;
     height: 20px;
-    background-color: #00bed4;
+    background-color: #8dbc6e;
     line-height: 20px;
     font-size: 13px; }
     .right_column .operations .join_button:hover {

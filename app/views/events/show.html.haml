@@ -8,23 +8,22 @@
     %h4.app_module_title='活动信息'
     .span-7.other_info
       %span.info_block
-        %strong
-          ='开始时间:'
+        %span
+          ='时间:'
           =l(@event.start_at, :format => :long)
-        %strong
+        %span
           ='地点:'
           =@event.location.to_s
-        %strong
-          ='项目:'
+        %span
+          ='活动类型:'
           = link_to @event.item.name, item_path(@event.item)
-        %strong
+        %span
           ='发起人:'
           =link_to @event.person.name, person_path(@event.person)
     %hr.space
     .span-6#map_div
-      %h4.app_module_title
-        ='活动地图'
-        = link_to '(详细)', event_map_path(@event)
+      %h4.app_module_title.inline='活动地图'
+      %span.right= link_to '详细>>', event_map_path(@event)
       #map
     - if @participants.size > 0
       %h4.app_module_title='活动成员'
@@ -42,12 +41,12 @@
       
 
   .span-17.last.right_column
-    =render 'common/big_header_box', :number => @participants.size, :text => '参加', :width => '100px' 
-    =render 'common/big_header_box', :number => @references.size, 
-                                     :text => '推荐', :width => '100px', :font_color => '#a1d453'
-    =render 'common/big_header_box', :number => @comments_size,
-                                       :text => '评论', :width => '100px', :font_color => '#F5D34D', :class_name => 'last_one'
-    .span-17.prepend-top
+    .span-17.append-bottom
+      =render 'common/big_header_box', :number => @participants.size, :text => '参加', :background_color => '#ff8a3c'
+      =render 'common/big_header_box', :number => @references.size, :text => '推荐', :background_color => '#aad450'
+      =render 'common/big_header_box', :number => @comments_size, :background_color => '#4ebaff', :text => '评论'
+    .span-17
+      %hr.space
       .span-10
         = render 'common/header_box', :title => '活动内容'
       .operations.right
@@ -78,13 +77,14 @@
                     ='取消参加'
             - else
               =link_to(edit_event_path(@event), :class => 'right') do
-                .join_button.glass_button.quit
+                .join_button.glass_button
                   ='编辑'
       .span-16.event_desc
         =simple_format(@event.description)
 
 
-    
+     
+    %hr.space
     .comments_title{:class => ('hide' unless @comments.size > 0)}
       = render 'common/header_box', :title => '评论'
     = render 'event_comments', :comments => @comments, :event => @event, 

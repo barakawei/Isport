@@ -12,11 +12,8 @@
       %h4= link_to '全选', "#", :class => 'select_all_friend'
      
       - if to_be_invited
-        .span-14.friends
-          = render :partial => "event_participants", :locals => { :participants => to_be_invited, 
-                                                                  :perline => 7, 
-                                                                  :no_pagination => true, 
-                                                                  :edit => true}
+        .span-16.friends
+          = render 'people/select_people', :people => to_be_invited, :class_name => 'select_invitees'
       .span-14
         .button_container
           = link_to('javascript:void(0)', :class => "invite") do
@@ -42,16 +39,12 @@
     
 
 :javascript
-  $(function() {
-    $('.friends input[type="checkbox"]').attr("checked", ""); 
-  });
-
   $('a.select_all_friend').click(function() {
     if ($(this).hasClass('selected')) {
-      $('.friends input[type="checkbox"]').attr("checked", ""); 
+      $('.friends a.person_block').removeClass('selected'); 
       $(this).html("#{t('events.participants.select_all')}");
     } else {  
-      $('.friends input[type="checkbox"]').attr("checked", "true"); 
+      $('.friends a.person_block').addClass('selected'); 
       $(this).html("#{t('events.participants.select_none')}");
     }
       $(this).toggleClass("selected");
@@ -60,9 +53,9 @@
 
   $('a.invite').click(function() {
     var data = "";
-    if ($('.friends input:checked').length > 0) {
-      $('.friends input:checked').each(function(index) {
-        data = data + $(this).val() + ',';
+    if ($('.friends a.person_block.selected').length > 0) {
+      $('.friends a.person_block.selected').each(function(index) {
+        data = data + $(this).attr('person_id') + ',';
       });
       
       $.post("#{event_invite_path(event.id)}", {selectedIds: data}); 

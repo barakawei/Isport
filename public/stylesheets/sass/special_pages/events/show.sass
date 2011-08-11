@@ -1,8 +1,11 @@
 @import '../../general/ui/mixins'
 .left_column
+  #map_div
+    :width 200px
   #map
     :width 198px
     :border 1px solid  #d5ddde
+    :margin-bottom 0px
   .avatar
     img
       @include border-radius(14px)
@@ -16,14 +19,20 @@
     .info_block
       :display block
       :float left
-      :background-color #dbe0e3
+      :background-color #ffffff
       :color #546266
       :padding 10px 10px 
       :margin-right 10px
       :width 180px 
         
-      strong
+      span 
         :display block
+        :font-size 13px
+        :padding 5px 0
+        :border-bottom 1px dashed #e9eef1
+
+        strong 
+          :color #FB4B6F
   
   .person_array
     :width 220px
@@ -67,7 +76,7 @@
       :float left
       :width 60px
       :height 20px
-      :background-color #00bed4
+      :background-color #8DBC6E
       :line-height 20px
       :font-size 13px
   

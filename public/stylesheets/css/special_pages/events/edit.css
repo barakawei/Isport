@@ -97,3 +97,7 @@ ul.nav {
       .members .button_container .delete_button:hover {
         margin-top: 2px;
         background-color: #e76875; }
+
+.select_invitees, .select_participants {
+  width: 600px;
+  float: left; }

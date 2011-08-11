@@ -1,0 +1,16 @@
+-content_for :head do
+  = include_stylesheets :common_people_select, :media => 'all'
+.select_area{:class => class_name}
+  - people.each do |person|
+    %a.person_block{:person_id => person.id}
+      .avatar=person_image_tag(person, :thumb_small)
+      %p.person_name=person.name
+
+:javascript
+  $(function() {
+    $(".#{class_name} a").click(function() {
+      $(this).toggleClass('selected'); 
+    }); 
+  });
+
+

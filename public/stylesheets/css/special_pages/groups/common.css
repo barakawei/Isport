@@ -91,3 +91,7 @@ ul.nav {
     .title_bar .group_logo h2 {
       float: left;
       margin-left: 10px; }
+
+.select_invitees {
+  width: 500px;
+  float: left; }
