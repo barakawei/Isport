@@ -11,7 +11,7 @@
   .hot_events .search_line {
     width: 950px;
     float: left;
-    margin-bottom: 20px; }
+    margin-bottom: 10px; }
     .hot_events .search_line .filter_title {
       float: left;
       padding: 5px;
@@ -31,27 +31,35 @@
       .hot_events .search_line .filter_items a {
         font-size: 13px;
         color: #56656c;
-        margin-right: 5px;
+        margin: 0 5px 10px 0;
         display: inline-block; }
       .hot_events .search_line .filter_items a.current {
         color: #4bc5be; }
 
-.events_panel .event_box_panel .event_box {
+.events_panel .event_box_panel .event_box, .events_panel .new_event_panel .event_box {
   margin: 0px 15px 20px 0px; }
 
 #city_select_box {
   position: absolute;
   width: 100px;
-  border: 1px solid #b9b9b9;
+  border: 3px solid #d5ddde;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  behavior: url(/javascripts/PIE.htc);
   padding: 10px;
   background-color: white; }
 
 #switch_city {
   text-decoration: none;
-  border: 1px solid #e9eef1;
+  border: 3px solid #e9eef1;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  behavior: url(/javascripts/PIE.htc);
   padding: 3px; }
   #switch_city:hover {
-    border: 1px solid #b9b9b9;
+    border: 3px solid #d5ddde;
     color: #666666; }
 
 .new_button_container {

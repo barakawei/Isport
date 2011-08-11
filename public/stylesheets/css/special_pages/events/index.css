@@ -90,16 +90,24 @@
 #city_select_box {
   position: absolute;
   width: 100px;
-  border: 1px solid #b9b9b9;
+  border: 3px solid #d5ddde;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  behavior: url(/javascripts/PIE.htc);
   padding: 10px;
   background-color: white; }
 
 #switch_city {
   text-decoration: none;
-  border: 1px solid #e9eef1;
+  border: 3px solid #e9eef1;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  behavior: url(/javascripts/PIE.htc);
   padding: 3px; }
   #switch_city:hover {
-    border: 1px solid #b9b9b9;
+    border: 3px solid #d5ddde;
     color: #666666; }
 
 .box_title {

@@ -7,13 +7,11 @@
     %h4.inline= link_to city.name, event_filter_path(:city => city.pinyin), :class => 'event_color'
 
 .span-24.append-bottom
-  %h1.title.inline.app_subfunction_title.events= '乐玩活动'
-  %h3.inline= link_to @city.name, '#', :id => 'switch_city', :class => 'dark_gray'
-  .new_button_container
-    = link_to(new_event_path) do
-      .new_button.glass_button
-        ='发起活动'
-
+  .span-17
+    %h1.title.inline.app_subfunction_title.events= '乐玩活动'
+    %h3.inline= link_to @city.name, '#', :id => 'switch_city', :class => 'dark_gray'
+  .span-7.last
+    = render 'common/big_link_button', :content => '发起活动', :path => new_event_path 
 
 .span-24.prepend-top
   = render 'common/header_box',  :title => '寻找感兴趣的活动', :dark => false
@@ -46,10 +44,17 @@
 
 .span-24.events_panel
   - if @events.size > 0
-    =render :partial => 'events/event_element',:collection => @events,:as => :event
-    =render :partial => 'events/new_event_link', :locals => {:question => '没有感兴趣的活动?',
+    - @events.each_with_index do |event, index|
+      =render :partial => 'events/event_element', :locals => {:event => event}
+      - if index == @events.size / 2
+        =render :partial => 'events/new_event_link', :locals => {:question => '没有感兴趣的活动?',
+                                                                 :link =>  new_event_path,
+                                                                 :action => '发起活动'}
+  - else
+    =render :partial => 'events/new_event_link', :locals => {:question => '没有找到活动?',
                                                              :link => new_event_path,
                                                              :action => '发起活动'}
+  
     
 
   .span-24.pagination_box
@@ -62,20 +67,19 @@
     var t =$('#switch_city').offset().top + $('#switch_city').innerHeight();
     $('#city_select_box').css("left", left+"px");
     $('#city_select_box').css("top", t+"px");
-
-    $('.new_event_panel .new_event_link').hover(
-      function() {
-        $('.new_event_panel .new_event_link h2').toggle();
-      }, 
-      function() { 
-        $('.new_event_panel .new_event_link h2').toggle();
-      }
-    );    
   });
+
+  $('.new_event_panel .new_event_link').hover(
+    function() {
+      $('.new_event_panel .new_event_link h2').toggle();
+    }, 
+    function() { 
+      $('.new_event_panel .new_event_link h2').toggle();
+    }
+  );    
 
   $("#switch_city").click(function(e) {
     $('#city_select_box').toggleClass('hide'); 
     e.stopPropagation();
     return false;
   });
-
