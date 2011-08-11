@@ -1,7 +1,7 @@
 ul.nav {
   width: 200px; }
   ul.nav li a {
-    background-color: white;
+    background-color: #f5f9fa;
     padding-left: 10px;
     width: 190px;
     display: block;
