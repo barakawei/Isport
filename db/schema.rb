@@ -133,6 +133,9 @@ ActiveRecord::Schema.define(:version => 20110810151217) do
     t.string   "image_url_large"
     t.integer  "person_id"
     t.integer  "district_id"
+    t.integer  "members_count",    :default => 0
+    t.integer  "events_count",     :default => 0
+    t.integer  "topics_count",     :default => 0
   end
 
   create_table "involvements", :force => true do |t|
