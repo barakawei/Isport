@@ -1,5 +1,6 @@
 -content_for :head do
   = include_stylesheets :special_pages_topic_comments, :media => 'all'
+  = include_javascripts :jquery_validation
 
 - if comments.size > 0
   -comments.each_with_index do |comment, index|
@@ -68,9 +69,26 @@
         
 :javascript
   $(function(){
-    var options = {success: appendToComments, resetForm:true};
+    var options = {success: appendToComments, resetForm:true, beforeSubmit: validate_form};
     $('#new_topic_comment').ajaxForm(options);
+
+    $('#new_topic_comment').validate({
+      rules: {
+        "topic_comment[content]": {
+          required: true
+        }
+      },
+      messages: {
+        "topic_comment[content]": {
+          required: "请输入评论内容"
+        }
+      }
+    });
   });
+
+  function validate_form() {
+    return $('#new_topic_comment').validate().form();
+  }
   
   $('.response_link').click(function() {
     $(this).hide();

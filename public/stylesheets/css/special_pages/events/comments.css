@@ -105,14 +105,21 @@
   .new_comment .avatar_container {
     width: 60px;
     float: left; }
-  .new_comment textarea {
+  .new_comment .content {
     float: left;
-    width: 550px;
-    height: 150px;
-    border: 3px solid #d5ddde;
-    color: #424f54;
-    font: 14px/22px Arial, Helvetica, sans-serif;
-    margin: 0 0 10px; }
+    width: 560px; }
+    .new_comment .content textarea {
+      float: left;
+      width: 550px;
+      height: 150px;
+      border: 3px solid #d5ddde;
+      color: #424f54;
+      font: 14px/22px Arial, Helvetica, sans-serif;
+      margin: 0 0 10px; }
+    .new_comment .content label.error {
+      float: left;
+      color: #ff8a3c;
+      font-size: 13px; }
   .new_comment .post_button {
     background: url("/images/ui/btn-post.gif") no-repeat scroll 0 0 transparent;
     border: medium none;
