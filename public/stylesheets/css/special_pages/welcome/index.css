@@ -17,16 +17,28 @@
     display: block;
     overflow: hidden; }
   .reg_box a.reg_main_button {
-    background: url("/images/ui/main_reg_button.png") no-repeat scroll 0 0 transparent;
     width: 280px;
     height: 70px;
     margin-left: 5px;
-    margin-top: 2px;
+    margin-top: 4px;
+    overflow: hidden;
+    background: url("/images/ui/main_reg_button.png") no-repeat scroll 0 0 transparent;
+    display: inline;
     float: left;
-    text-indent: -9999em;
-    display: block; }
+    position: relative; }
     .reg_box a.reg_main_button:hover {
       background: url("/images/ui/main_reg_button.png") no-repeat scroll left bottom transparent; }
+    .reg_box a.reg_main_button em {
+      text-align: middle;
+      font-size: 30px;
+      font-style: normal;
+      font-weight: bold;
+      color: white;
+      position: absolute;
+      top: 10px;
+      left: 72px; }
+    .reg_box a.reg_main_button:hover em {
+      top: 12px; }
 
 .item_area, .event_area, .group_area {
   width: 260px;
