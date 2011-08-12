@@ -1,3 +1,40 @@
+@import '../../general/ui/mixins'
+.home_container
+  :width 680px
+  margin-top: 22px
+  background: #f5f9fa
+  @include border-radius( 10px )
+  .new_event
+    :padding-right 10px
+  .home_tabs
+    background: #F9F9F9 url('/images/ui/tabs-bg.png')  repeat
+    height: 62px
+    border-bottom: solid 1px white
+    border-radius: 10px 10px 0 0
+    .active
+      a
+        :color #fc4469
+        &:hover
+          :color #fc4469
+          
+        
+    li
+      font-size: 16px
+      display: inline-block
+      float: left
+      height: 62px
+      line-height: 62px
+      width: 137px
+      text-align: center
+      a
+        font-weight: bold
+        :color #999
+        &:hover
+          :color #fc4469
+    
+
+    
+  
 .events_panel
   .pagination
     :position absolute

@@ -1,3 +1,36 @@
+.home_container {
+  width: 680px;
+  margin-top: 22px;
+  background: #f5f9fa;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  behavior: url(/javascripts/PIE.htc); }
+  .home_container .new_event {
+    padding-right: 10px; }
+  .home_container .home_tabs {
+    background: #f9f9f9 url("/images/ui/tabs-bg.png") repeat;
+    height: 62px;
+    border-bottom: solid 1px white;
+    border-radius: 10px 10px 0 0; }
+    .home_container .home_tabs .active a {
+      color: #fc4469; }
+      .home_container .home_tabs .active a:hover {
+        color: #fc4469; }
+    .home_container .home_tabs li {
+      font-size: 16px;
+      display: inline-block;
+      float: left;
+      height: 62px;
+      line-height: 62px;
+      width: 137px;
+      text-align: center; }
+      .home_container .home_tabs li a {
+        font-weight: bold;
+        color: #999999; }
+        .home_container .home_tabs li a:hover {
+          color: #fc4469; }
+
 .events_panel .pagination {
   position: absolute;
   bottom: -40px;

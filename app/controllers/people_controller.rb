@@ -99,7 +99,7 @@ class PeopleController < ApplicationController
 
   def show_person_events
     person = Person.find( params[ :person_id ] )
-    @events = person.involved_events.paginate(:page => params[:page], :per_page => 10)
+    @events = person.involved_events.order( "events.start_at DESC" ).paginate(:page => params[:page], :per_page => 10)
     respond_with @events
   end
 
