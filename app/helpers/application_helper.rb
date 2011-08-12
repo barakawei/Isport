@@ -1,5 +1,4 @@
 module ApplicationHelper
-  
   def follow_button_tag( person )
     link_html = "<div class='follow_button'></div>"
     contact = current_user.contact_for( person )

@@ -8,8 +8,7 @@
   padding: 0 0 22px 0;
   font-size: 14px;
   line-height: 1;
-  text-transform: uppercase;
-  border-bottom: 2px solid #d5ddde; }
+  text-transform: uppercase; }
   .link_tab a {
     float: left;
     padding: 0 12px 8px 0;
@@ -34,15 +33,36 @@
   #home_user .groups {
     margin-top: 20px;
     left: 0; }
+    #home_user .groups .title {
+      background-color: #f5f9fa;
+      padding: 10px; }
+      #home_user .groups .title .name {
+        float: left;
+        font-size: 15px;
+        color: #fc4469; }
+      #home_user .groups .title .link {
+        float: right; }
   #home_user .avatar_panel_container {
-    padding-top: 20px; }
+    background-color: #f5f9fa;
+    margin-top: 20px; }
+    #home_user .avatar_panel_container .title {
+      background-color: #f5f9fa;
+      padding: 10px; }
+      #home_user .avatar_panel_container .title .name {
+        float: left;
+        font-size: 15px;
+        color: #fc4469; }
+      #home_user .avatar_panel_container .title .link {
+        float: right; }
     #home_user .avatar_panel_container .contacts {
-      padding: 5px; }
+      padding: 5px 10px 5px 10px; }
       #home_user .avatar_panel_container .contacts .person_avatar_detail {
         height: 30px;
         width: 30px; }
   #home_user .group {
-    padding: 5px; }
+    padding: 10px;
+    background-color: #f5f9fa;
+    margin-bottom: 2px; }
     #home_user .group .avatar {
       float: left; }
       #home_user .group .avatar img {

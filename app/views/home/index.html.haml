@@ -4,13 +4,7 @@
   =include_javascripts :status_message
 .span-19.last.content_panel
   .events_panel
-    .current_events
-      .title_panel
-        .border_left_side
-        .content_center
-          = "推荐活动"
-        .border_right_side
-      .pointer
+    =render 'common/header_box',:title => "推荐活动"
     
 .span-5.last.right_bar
   = render 'people/person_list', :person => @person

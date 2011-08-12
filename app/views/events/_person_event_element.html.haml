@@ -1,0 +1,32 @@
+.person_event_box_panel{ :class => ((event.over?)? 'event_status_over' : 'event_status_open') }
+  %a{ :href => event_path( event ) }
+    .person_event_box
+      .event_avatar
+        = event_image_tag( event,:thumb_small )
+      .content
+        .title
+          = truncate(event.title,:length => 40)
+        .time
+          = I18n.l(event.start_at,:format => :normal)
+          = "-"
+          = I18n.l(event.end_at,:format => :shortest)
+
+        .address
+          = truncate("@"+event.location.to_s,:length => 40)
+      .status
+        -if event.over?
+          .sucess
+            =image_tag( '/images/ui/event_status_sucess.png' )
+        -elsif event.not_started?
+          .not_started
+        -elsif event.ongoing?
+          .ongoing
+      .member
+        = event.participants.size
+      .calendar_panel
+        .calendar
+          .month
+            =I18n.l(event.start_at,:format => :month)
+          .day
+            =event.start_at.strftime('%d').to_s
+
