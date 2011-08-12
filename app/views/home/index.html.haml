@@ -2,11 +2,23 @@
   =include_javascripts :scroll_page
   =include_javascripts :show_photo
   =include_javascripts :status_message
-.span-19.last.content_panel
-  .events_panel
-    =render 'common/header_box',:title => "推荐活动"
+.span-18.last.content_panel
+  .home_container
+    %ul.home_tabs
+      %li#recent_event
+        =link_to "近期活动","/home/show_event",:remote => true
+      %li#my_event
+        =link_to "我的活动","/home/show_my_event",:remote => true
+      %li#following_event
+        =link_to "朋友活动","/home/show_following_event",:remote => true
+      .new_event
+        = render 'common/big_link_button', :content => '发起活动', :path => new_event_path 
+
+
+    .events_panel
+    .clear
     
-.span-5.last.right_bar
+.span-6.last.right_bar
   = render 'people/person_list', :person => @person
 :javascript
   $.get("/home/show_event");
