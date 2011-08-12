@@ -9,15 +9,23 @@
   .avatar_panel_container
     #followed_people
       - if @followed_people.length > 0
-        .link_tab
-          = link_to '你关注的人',{:controller => 'people',:action => 'show_friends',:type=>'followed',:person_id =>@person.id}
+        .title
+          .name
+            = '你关注的人'
+          .link
+            = link_to '>>',{:controller => 'people',:action => 'show_friends',:type=>'followed',:person_id =>@person.id}
+          .clear
         .contacts
           - for person in @followed_people[ 0...20]
             .person_avatar
               = person_image_link(person)
   .groups
-    .link_tab
-      = link_to '加入的小组',{:controller => 'people',:action => 'show_groups',:person_id =>@person.id}
+    .title
+      .name
+        = '加入的小组'
+      .link
+        = link_to '>>',{:controller => 'people',:action => 'show_groups',:person_id =>@person.id}
+      .clear
 
     %ul
       -for group in current_user.person.joined_groups[ 0...5 ]
@@ -28,8 +36,12 @@
             .name
               = object_name_link(group)
   .groups
-    .link_tab
-      = link_to '喜欢的项目',{:controller => 'people',:action => 'show_items',:person_id =>@person.id}
+    .title
+      .name
+        = '喜欢的项目'
+      .link
+        = link_to '>>',{:controller => 'people',:action => 'show_items',:person_id =>@person.id}
+      .clear
 
     %ul
       -for item in current_user.person.interests[ 0...5 ]

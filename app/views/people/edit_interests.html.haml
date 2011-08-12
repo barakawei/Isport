@@ -3,7 +3,10 @@
 
 .span-6.left_column
   .avatar
-    = person_image_tag(@current_person, :thumb_large)
+    #profile_photo
+      = person_image_tag(@current_person,:thumb_large )
+      .change_profile_photo
+        = render 'photos/change_profile_photo', :person => @person
   %hr.space
   = render :partial => 'edit_nav'
 

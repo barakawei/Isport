@@ -1,3 +1,40 @@
+@import '../../general/ui/mixins'
+.home_container
+  :width 680px
+  margin-top: 22px
+  background: #f5f9fa
+  @include border-radius( 10px )
+  .new_event
+    :padding-right 10px
+  .home_tabs
+    background: #F9F9F9 url('/images/ui/tabs-bg.png')  repeat
+    height: 62px
+    border-bottom: solid 1px white
+    border-radius: 10px 10px 0 0
+    .active
+      a
+        :color #fc4469
+        &:hover
+          :color #fc4469
+          
+        
+    li
+      font-size: 16px
+      display: inline-block
+      float: left
+      height: 62px
+      line-height: 62px
+      width: 137px
+      text-align: center
+      a
+        font-weight: bold
+        :color #999
+        &:hover
+          :color #fc4469
+    
+
+    
+  
 .events_panel
   .pagination
     :position absolute
@@ -9,7 +46,6 @@
   font-size: 14px
   line-height: 1
   text-transform: uppercase
-  border-bottom: 2px solid #d5ddde
   a
     float: left
     padding: 0 12px 8px 0
@@ -31,18 +67,40 @@
   h4
     :margin 0
   .groups
+    .title
+      background-color: #F5F9FA 
+      :padding 10px
+      .name
+        :float left
+        :font-size 15px
+        :color #fc4469
+      .link
+        :float right
     :margin-top 20px
     :left 0
   .avatar_panel_container
-    :padding-top 20px
+    background-color: #F5F9FA 
+    :margin-top 20px
+    .title
+      background-color: #F5F9FA 
+      :padding 10px
+      .name
+        :float left
+        :font-size 15px
+        :color #fc4469
+      .link
+        :float right
+
     .contacts
-      :padding 5px
+      :padding 5px 10px 5px 10px
       .person_avatar_detail
         :height 30px
         :width 30px
 
   .group
-    :padding 5px
+    :padding 10px
+    background-color: #F5F9FA 
+    :margin-bottom 2px
     .avatar
       :float left
       img

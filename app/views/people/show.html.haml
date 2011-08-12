@@ -2,63 +2,68 @@
   =include_javascripts :scroll_page
   =include_javascripts :show_photo
   =include_javascripts :status_message
-.span-5.person_left_bar
+.person_left_bar
   .avatar_panel
     #profile_photo
       = person_image_tag(@person,:thumb_large )
-      .change_profile_photo.hide
-        = render 'photos/change_profile_photo', :person => @person
-    .information
-      #followed_people
-        - if @followed_people.length > 0
-          .contacts
-            .link_tab
-              -if current_user.person.id == @person.id
-                =link_to t( '你关注的人' ),{:controller => 'people',:action => 'show_friends',:type=>'followed',:person_id=>@person.id}
-              - else
-                =link_to t( '他关注的人' ),{:controller => 'people',:action => 'show_friends',:type=>'followed',:person_id=>@person.id}
-
-            - for person in @followed_people[ 0...20 ]
-              .person_avatar
-                = person_image_link(person)
-
-      #befollowed_people
-        - if @befollowed_people.length > 0
-          .contacts
-            .link_tab 
-              -if current_user.person.id == @person.id
-                =link_to t( '关注你的人' ),{:controller => 'people',:action => 'show_friends',:type=>'befollowed',:person_id=>@person.id}
-              - else
-                =link_to t( '关注他的人' ),{:controller => 'people',:action => 'show_friends',:type=>'befollowed',:person_id=>@person.id}
-
-            - for person in @befollowed_people[ 0...20 ]
-              .person_avatar
-                = person_image_link(person)
+  .information
+    #person_profile_box
+      .title
+        %h3="个人信息"
+        - if current_user.person.id == @person.id
+          .edit_profile.glass_button
+            = "编辑"
+      .clear
+      .divider
+      .gender.info_text
+        %span="性别:"
+        %p
+          = @person.profile.gender == '1' ? "男" : "女"
+      .divider
+      .location.info_text
+        %span="城市:"
+        %p
+          = @person.profile.location.city.name
+      .divider
+      .bio.info_text
+        %span="个人介绍:"
+        %p
+          = @person.profile.bio
       
-      .groups
-        .link_tab
-          = link_to '加入的小组',{:controller => 'people',:action => 'show_groups',:person_id=>@person.id}
+    .groups
+      .title
+        .name
+          = "加入的小组"
+        .link
+          = link_to '>>',{:controller => 'people',:action => 'show_groups',:person_id=>@person.id}
+        .clear
 
-        %ul
-          -for group in @person.joined_groups[ 0...5 ]
-            %li
-              .group
-                .avatar
-                  = group_image_link(group,:thumb_small)
-                .name
-                  = object_name_link(group)
-      .groups
-        .link_tab
-          = link_to '喜欢的项目',{:controller => 'people',:action => 'show_items',:person_id=>@person.id}
 
-        %ul
-          -for item in @person.interests[ 0...5 ]
-            %li
-              .group
-                .avatar
-                  = item_image_link(item)
-                .name
-                  = object_name_link(item)
+      %ul
+        -for group in @person.joined_groups[ 0...5 ]
+          %li
+            .group
+              .avatar
+                = group_image_link(group,:thumb_small)
+              .name
+                = object_name_link(group)
+    .groups
+      .title
+        .name
+          = '喜欢的项目'
+        .link
+          = link_to '>>',{:controller => 'people',:action => 'show_items',:person_id=>@person.id}
+        .clear
+
+
+      %ul
+        -for item in @person.interests[ 0...5 ]
+          %li
+            .group
+              .avatar
+                = item_image_link(item)
+              .name
+                = object_name_link(item)
 
 .span-18
   #person_panel
@@ -66,66 +71,39 @@
       %h2=@person.name
       .action  
         -if @person.user_id == current_user.id
-          .edit_profile.glass_button
-            ="编辑个人资料"
         -else 
           .follow_button
             = follow_button_tag( @person )
       %div=@person.profile.signature
       .history_bar
-        .create_event.panel
-          .border_left_side
-          .counts_center.red
-            .title
-              = "参加"
-            .counts
-              =@person.involved_events.size
-            .info
-              = "活动"
-          .border_right_side
+        =render 'common/big_header_box', :number => @person.involved_events.size, :text => '活动', :background_color => '#ff8a3c'
+        =render 'common/big_header_box', :number => @person.joined_groups.size, :text => '小组', :background_color => '#aad450'
+        =render 'common/big_header_box', :number => @person.joined_groups.size, :background_color => '#4ebaff', :text => '评论'
 
-
-        .attend_event.panel
-          .border_left_side
-          .counts_center.green
-            .title
-              = "加入"
-            .counts
-              =@person.joined_groups.size
-            .info
-              = "小组"
-
-          .border_right_side
-
+    .following_people_panel
+      - if @followed_people.length > 0
+        .titile
+          =render 'common/header_box',:title => "你关注的人"
+        - for person in @followed_people[ 0...20 ]
+          .person_avatar
+            = person_image_link(person)
+    .following_people_panel
+      - if @befollowed_people.length > 0
+        .titile
+          =render 'common/header_box',:title => "关注你的人"
+        - for person in @befollowed_people[ 0...20 ]
+          .person_avatar
+            = person_image_link(person)
     .stream
       .events_panel
         .current_events
-          .title_panel
-            .border_left_side
-            .content_center
-              = "准备参加的活动"
-            .border_right_side
-          .pointer
-          = render :partial => 'events/event_element',:collection => @events,:as => :event
-
-          .clear
-
-        .past_events
-          .title_panel
-            .border_left_side
-            .content_center
-              ="成功参加的活动"
-            .border_right_side
-          .pointer
-          = render :partial => 'events/past_event_element',:collection => @events,:as => :event
-          .clear
-        .clear
-
-
+          =render 'common/header_box',:title => "参加的活动"
+          .person_event_container
 :javascript
+  $.get("/people/show_person_events",{person_id:#{@person.id}}  ); 
 
   $( ".edit_profile" ).click( function(  ){
-    $.get("/people/edit_profile",{person_id:#{@person.id}}  ); 
+    $( location ).attr( "href","#{edit_profile_path}" );
   } );
 
   $( ".my_events" ).live( "click",function(  ){  

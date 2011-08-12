@@ -1,4 +1,12 @@
 content = "<%= escape_javascript(render('home/event_container')) %>";
-
+number = '<%=params[:page]%>' ;
+if( number !='' ){
 $(' .events_panel').append(content);
-
+}else{
+$(' .events_panel').html(content);
+}
+event_tab = '<%=@event_tab%>';
+if(event_tab != ''  ){
+  $( '.active' ).removeClass( 'active' );
+  $( '#'+event_tab).addClass( 'active' );
+}

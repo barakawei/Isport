@@ -252,6 +252,7 @@ zh:
       short: "%b%d日 %H:%M"
       long: "%Y年%b%d日 %H:%M"
       normal: "%A %H:%M"
+      week: "%m月%d日 %A %H:%M"
       month: "%b"
       shortest: "%H:%M"
     am: "上午"
