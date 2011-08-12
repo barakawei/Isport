@@ -128,6 +128,32 @@
     line-height: 1.7em;
     border-top: 1px dashed #d5ddde;
     padding-top: 10px; }
+.right_column .group_tabs .home_tabs {
+  background: #f9f9f9 url("/images/ui/tabs-bg.png") repeat;
+  height: 62px;
+  border-radius: 10px 10px 0 0; }
+  .right_column .group_tabs .home_tabs li {
+    font-size: 16px;
+    display: inline-block;
+    float: left;
+    height: 62px;
+    line-height: 62px;
+    width: 110px;
+    text-align: center; }
+    .right_column .group_tabs .home_tabs li a {
+      padding: 10px;
+      -moz-border-radius: 6px;
+      -webkit-border-radius: 6px;
+      border-radius: 6px;
+      behavior: url(/javascripts/PIE.htc);
+      font-weight: bold;
+      color: #999999; }
+      .right_column .group_tabs .home_tabs li a:hover {
+        background-color: #e1e1e1;
+        color: #697d84; }
+    .right_column .group_tabs .home_tabs li a.current {
+      background-color: #697d84;
+      color: white; }
 .right_column .events_panel {
   margin-top: 0; }
 .right_column .topics_panel {

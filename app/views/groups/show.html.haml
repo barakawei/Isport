@@ -4,16 +4,6 @@
 .span-24
   .span-6.left_column
     .avatar=group_image_tag(@group, :thumb_large)
-
-    .span-7.new_operations
-      - if @is_member
-        =link_to(new_event_path(:group_id => @group.id)) do
-          .new_button.glass_button.quit
-            ='发起活动'
-        =link_to(new_group_topic_path(:group_id => @group.id)) do
-          .new_button.glass_button.quit
-            ='发起话题'
-    
     
     .span-6.nav.append-bottom.prepend-top
       %ul
@@ -76,18 +66,29 @@
           
       .span-16.group_desc
         = simple_format(@group.description)
-    .span-17.prepend-top
-      .span-10
-        =render 'common/header_box', :title => '近期活动'
+    =render 'common/header_box', :title => '近期动态', :blue => true
+    .span-17.group_tabs
+      %ul.home_tabs
+        %li#recent_event
+          =link_to "近期活动","javascript:void(0)", :class => 'current'
+        %li#recent_topic
+          =link_to "近期话题","javascript:void(0)"
+        - if @is_member
+          .new_event_link
+            = render 'common/big_link_button', :content => '发起活动', :path => new_event_path(:group_id => @group.id) 
+          .new_topic_link.hide
+            = render 'common/big_link_button', :content => '发起话题', :path => new_group_topic_path(:group_id => @group.id)
+
+    .span-17.prepend-top.recent_events_area
       - if @recent_events.size > 0
-        .span-6
-          %h4= link_to '更多>', group_events_path(@group), :class => 'right more'
         .span-17.events_panel
           =render :partial => 'events/event_element',:collection => @recent_events,:as => :event
           - if @is_member
             =render :partial => 'events/new_event_link', :locals => { :question => '没找到感兴趣的活动?',
                                                                     :link => new_event_path(:group_id => @group),
                                                                     :action => '发起活动'}
+        .span-16
+          %h4= link_to '更多>>', group_events_path(@group), :class => 'right more'
       - else
         - if @is_member
           .span-17.events_panel
@@ -95,21 +96,17 @@
                                                                      :link => new_group_topic_path(@group),
                                                                      :action => '发起活动'}
         - else
-          .span-17
+          .span-17.recent_topic
             =render :partial => 'events/new_event_link', :locals => {:question => '本小组还没有活动...'}
             
             
           
-    .span-17.prepend-top
-      .span-10
-        =render 'common/header_box', :title => '近期话题'
-      .span-6
-        - if @topics.size > 0
-          %h4= link_to '更多>', forum_group_path(@group), :class => 'right more'
-
+    .span-17.prepend-top.hide.recent_topics_area
       - if @topics.size > 0
         .topics_panel
           = render 'topics/recent_topics.html.haml', :topics => @topics
+        .span-16
+          %h4= link_to '更多>', forum_group_path(@group), :class => 'right more'
       - else
         - if @is_member
           .span-17.no_topics_panel 
@@ -123,7 +120,6 @@
 
         
 :javascript
-  $(function() {
     $('.events_panel .new_event_link').hover(
       function() {
         $('.events_panel .new_event_panel h2').toggle();
@@ -140,11 +136,21 @@
         $('.no_topics_panel .new_event_panel h2').toggle();
       }
     );    
+
+  $('li#recent_event a').click(function() {
+   $(this).addClass('current'); 
+   $('.recent_events_area').show();
+   $('.recent_topics_area').hide();
+   $('li#recent_topic a').removeClass('current');
+   $('.group_tabs .new_event_link').show();
+   $('.group_tabs .new_topic_link').hide();
   });
 
-        
-
-      
-
-
-   
+  $('li#recent_topic a').click(function() {
+   $(this).addClass('current'); 
+   $('.recent_topics_area').show();
+   $('.recent_events_area').hide();
+   $('li#recent_event a').removeClass('current');
+   $('.group_tabs .new_event_link').hide();
+   $('.group_tabs .new_topic_link').show();
+  });
