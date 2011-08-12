@@ -5,16 +5,13 @@
     .box_avatar
       = group_image_link( group,:thumb_large )
     .box_status
+      .element.first
+        %span.member{:style => "height: 12px; text-align: center; display:block;  color: #ff8a3c"}=group.members.size
+        %span{:style => "height: 12px; text-align: center; display:block; "}= "成员"
       .element
-        =  group.members.size
-        %span
-          = "成员"
+        %span.events{:style => "height: 12px; text-align: center; display:block;  color: #aad450"}= group.events.size
+        %span{:style => "height: 12px; text-align: center; display:block; "}= "活动"
       .element
-        = group.events.size
-        %span
-          = "活动"
-      .element
-        = group.topics.size
-        %span
-          = "话题"
+        %span.topics{:style => "height: 12px; text-align: center; display:block;  color: #4ebaff"}= group.topics.size
+        %span{:style => "height: 12px; text-align: center; display:block;"}= "话题"
 

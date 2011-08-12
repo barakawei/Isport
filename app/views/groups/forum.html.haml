@@ -10,6 +10,9 @@
     = render 'common/big_link_button', :content => '发起话题', :path => new_group_topic_path(@group)
 .span-24.prepend-top
   = render 'common/header_box', :title => '小组讨论区'
-.span-24.topics_area
-  = render "topics/index"
+- if @topics.size > 0
+  .span-24.topics_area
+    = render "topics/index"
+- else
+  =render :partial => 'events/new_event_link', :locals => {:question => '本小组还没有话题...'}
 
