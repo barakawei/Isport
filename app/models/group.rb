@@ -1,4 +1,8 @@
 class Group < ActiveRecord::Base
+  JOIN_FREE = 1 
+  JOIN_AFTER_AUTHENTICATAION = 2 
+  JOIN_BY_INVITATION_FROM_ADMIM = 3 
+
   belongs_to :item
   belongs_to :city
   belongs_to :district
@@ -20,7 +24,11 @@ class Group < ActiveRecord::Base
   has_many :members, :through => :memberships,  :source => :person,
                         :conditions => ['memberships.pending = ? ', false]
   has_many :invitees, :through => :memberships, :source => :person,
-                        :conditions => ['memberships.pending = ? ', true] 
+                        :conditions => ['memberships.pending = ? and memberships.pending_type = ? ', true, JOIN_BY_INVITATION_FROM_ADMIM] 
+  
+  has_many :applicants, :through => :memberships, :source => :person,
+                        :conditions => ['memberships.pending = ? and memberships.pending_type = ? ', true,  JOIN_AFTER_AUTHENTICATAION] 
+
   has_many :deletable_members, :through => :memberships, :source => :person,
            :conditions => ['memberships.is_admin = ? and memberships.pending = ?', false, false] 
   has_many :related_person, :through => :memberships, :source => :person
@@ -33,9 +41,6 @@ class Group < ActiveRecord::Base
   scope :at_city, lambda {|city| where(:city_id => city.id) }
   scope :filter_group, lambda  {|search_hash| where(search_hash)}
   
-  JOIN_FREE = 1 
-  JOIN_AFTER_AUTHENTICATAION = 2 
-  JOIN_BY_INVITATION_FROM_ADMIM = 3 
 
 
   def image_url(size = :thumb_large)
@@ -72,9 +77,17 @@ class Group < ActiveRecord::Base
     join_mode == JOIN_AFTER_AUTHENTICATAION
   end
 
-  def joinable?
-    return join_mode == JOIN_AFTER_AUTHENTICATAION || 
-           join_mode == JOIN_FREE 
+  def joinable?(person)
+    m = Membership.where(:person_id => person.id, :group_id => self.id)
+    if (join_mode == JOIN_FREE || join_mode == JOIN_AFTER_AUTHENTICATAION)
+      if (m.size == 0)
+        return true
+      else
+        return m[0].pending == true && m[0].pending_type== JOIN_BY_INVITATION_FROM_ADMIM 
+      end
+    else
+      return m.size > 0 && m[0].pending == true 
+    end 
   end
 
   def has_admin?(person) 
@@ -89,6 +102,11 @@ class Group < ActiveRecord::Base
     Membership.where(:person_id => person.id, :group_id => id,
                      :pending => true).size > 0
   end
+  
+  def applied_pending_member?(person)
+    Membership.where(:person_id => person.id, :group_id => id,
+                     :pending => true, :pending_type=> Group::JOIN_AFTER_AUTHENTICATAION).size > 0
+  end
 
   def has_member_include_pending?(person)
     Membership.where(:person_id => person.id, :group_id => id).size > 0
@@ -97,12 +115,12 @@ class Group < ActiveRecord::Base
   def add_member(person)
     membership =  Membership.where(:person_id => person.id, 
                                :group_id => self.id,
-                               :pending => true)
-    if need_invitation && membership.size > 0
-      membership.first.update_attributes(:pending => false) if  membership.size > 0
+                               :pending => true, :pending_type => JOIN_BY_INVITATION_FROM_ADMIM) 
+    if  membership.size > 0
+      membership.first.update_attributes(:pending => false)
     elsif need_authenticate
       Membership.create(:person_id => person.id, :group_id => self.id,
-                        :pending => true, :join_mode =>JOIN_AFTER_AUTHENTICATAION ) 
+                        :pending => true, :pending_type=>JOIN_AFTER_AUTHENTICATAION ) 
     else
       Membership.create(:person_id => person.id, 
                         :group_id => self.id)

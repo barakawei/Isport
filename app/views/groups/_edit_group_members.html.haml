@@ -45,6 +45,23 @@
               = link_to('javascript:void(0)', :class => "delete_invitation") do
                 .delete_button.glass_button
                   ='取消邀请'
+    .span-17.applicants
+      - if applicants.size > 0
+        %hr.space
+        .span-12
+          %h4
+            = t("events.applicants", :count => applicants.size)
+            = link_to t('events.participants.select_all'), "#", :class => "select_all_applicants"
+        .span-16
+          = render 'people/select_people', :people => applicants, :class_name => 'select_applicants'
+        .span-16
+          .button_container
+            = link_to('javascript:void(0)', :class => "accept_applicants") do
+              .delete_button.glass_button
+                ='接受'
+            = link_to('javascript:void(0)', :class => "delete_applicants") do
+              .delete_button.glass_button
+                ='忽略'
 
 .colorbox_content
   #friend_select
@@ -68,6 +85,17 @@
     return false;
   });
 
+  $('a.delete_applicants').bind('click', function() {
+    deleteMembers('.applicants', "确定要忽略选中的申请吗?"); 
+    return false;
+  });
+
+  $('a.accept_applicants').bind('click', function() {
+    acceptApplicants('.applicants');
+    return false;
+  });
+
+
   $('a.select_all_members').click(function() {
     select_all('.other_members', $(this));
     return false;
@@ -78,6 +106,10 @@
     return false;
   });
 
+  $('a.select_all_applicants').click(function() {
+    select_all('.applicants', $(this));
+    return false;
+  });
   $('#choose_member_notice .choose_notice').click(function() {
     $.colorbox.close(); 
     return false;
@@ -122,6 +154,20 @@
     }
     $('.facebox_content #member_ids').val(arr);
     $.colorbox({ inline:true, href:"#delete_member_request", opacity:0.5 });
+    return false;
+  }
+
+  function acceptApplicants(target) {
+    var checked = $(target + ' a.person_block.selected');
+    if (checked.length == 0) {
+      return false;
+    }
+    var arr = new Array(checked.length); 
+    for(var i=0; i< checked.length; i++) {
+      arr[i] = $(checked[i]).attr('person_id'); 
+    }
+    $.post("#{group_memberships_path(:group_id => @group.id)}", {selectedIds: arr});
+    location.reload();
     return false;
   }
 

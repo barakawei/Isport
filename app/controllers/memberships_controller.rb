@@ -2,8 +2,16 @@ class MembershipsController < ApplicationController
   before_filter :find_group, :except => [:invite]
 
   def create
-    @group.add_member(current_user.person)  
-    redirect_to :back
+    unless params[:selectedIds]
+      @group.add_member(current_user.person)  
+      redirect_to :back
+    else
+      @person = current_user.person
+      if params[:selectedIds] && params[:selectedIds].length > 0 && @group.is_admin(@person)
+        Membership.update_all ['pending = ?', false], :person_id => params[:selectedIds] 
+      end
+      render :nothing => true
+    end
   end
 
   def destroy
@@ -11,8 +19,7 @@ class MembershipsController < ApplicationController
     unless params[:member_ids]
       @group.delete_member(current_user.person)
     else
-      unless @group.is_admin(@person)
-      else
+      if @group.is_admin(@person)
         member_ids = params[:member_ids].split(',');
         Membership.delete_all(:group_id => @group.id, :person_id => member_ids)
       end
@@ -24,18 +31,19 @@ class MembershipsController < ApplicationController
     @person = current_user.person
     @group = Group.find(params[:id])
 
-    if params[:selectedIds] && params[:selectedIds].length > 0
+    if params[:selectedIds] && params[:selectedIds].length > 0 && @group.is_admin(@person)
       person_ids = params[:selectedIds].split(',');
       person_ids.each do |person_id|
-        Membership.create(:group_id => @group.id, :person_id => person_id,
-                          :pending => true, :join_mode => @group.join_mode)
+        member = Membership.find_or_create_by_group_id_and_person_id(:group_id => @group.id, :person_id => person_id,
+                          :pending => true, :pending_type=> Group::JOIN_BY_INVITATION_FROM_ADMIM) 
       end
         invited_people = Person.where( :id => person_ids )
         @group.invited_people = invited_people
-        @group.dispatch_group( :invite )
+        @group.dispatch_group(:invite)
     end 
     render :nothing => true
   end
+
 
   private
 

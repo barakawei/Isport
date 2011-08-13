@@ -49,6 +49,8 @@ class GroupsController < ApplicationController
     end
     @friends = current_user.friends || [ ] 
     @invitees = @group.invitees.order("created_at ASC") || []
+    @applicants = @group.applicants.order("created_at ASC") || []
+    puts @applicants.size
     @friend_members = @members & @friends
     render :action => :edit 
   end

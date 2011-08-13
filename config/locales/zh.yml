@@ -147,7 +147,8 @@ zh:
         select_all: '(全选)'
         select_none: '(取消全选)'
       no_friend_member: '还没有好友参加你的活动'
-      invitees: '已向%{count}位好友发出邀请'
+      invitees: '已经向%{count}人发出邀请'
+      applicants: '%{count}人申请加入小组'
       errors:
         select_no_participant: '请选择需要删除的活动成员'
       info:
@@ -218,13 +219,14 @@ zh:
     join_mode_des:
       invite_by_admin: '需要管理员邀请才能加入该小组'
       invite_by_member: '需要小组成员邀请才能加入该小组'
+      invited_by_admin: '该小组邀请你加入'
     new_group_wizard:
       step_1: '1.填写小组信息'
       step_2: '2.邀请好友'
     person:
       status:
         invited: '该小组邀请你加入'
-        request_pending: '加入申请已发出，请耐心等待...'
+        request_pending: '加入申请已发出...'
         joined: '已经加入该小组'
       operations:
         accept: '接受'
