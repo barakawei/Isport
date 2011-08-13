@@ -6,7 +6,7 @@ class GroupsController < ApplicationController
   def index
     city_pinyin = params[:city] ? params[:city] : (current_user ? current_user.city.pinyin : City.first.pinyin)
     @city = City.find_by_pinyin(city_pinyin)
-    @hot_groups = Group.hot_groups(@city).all
+    @hot_groups = Group.interested_groups(@city,current_user.person)
     @hot_items = Item.limit(5)
     @select_tab = 'group'
   end
@@ -78,7 +78,7 @@ class GroupsController < ApplicationController
     @invitees_size = @invitees.size
     @friends = current_user.friends
     @to_be_invited_friends = @friends - @group.related_person || []
-    @invitees.slice!(9, @invitees.length)
+    @invitees
     @step = 2
     @steps = [I18n.t('groups.new_group_wizard.step_1'),I18n.t('groups.new_group_wizard.step_2')]
     render :action => "new" 

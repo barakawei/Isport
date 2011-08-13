@@ -40,6 +40,7 @@ class Group < ActiveRecord::Base
 
   scope :at_city, lambda {|city| where(:city_id => city.id) }
   scope :filter_group, lambda  {|search_hash| where(search_hash)}
+  scope :of_item, lambda  {|item_id| where(:item_id => item_id)}
   
 
 
@@ -59,9 +60,17 @@ class Group < ActiveRecord::Base
       group.update_attributes(url_params)
   end
 
-  def self.hot_groups(city)
-     groups = Group.joins(:memberships).where(:city_id => city.id)
-            .group(:group_id).order('count(group_id) desc').limit(3);
+  def self.interested_groups(city,person)
+    groups  = []
+    person.interests.each do |item|
+      groups += Group.where(:item_id => item.id, :city_id => city.id).limit(4)
+    end
+    groups
+  end
+
+  def self.hot_group_by_item(city, item)
+     groups = Group.joins(:memberships).where('city_id = ? and  item_id = ? and memberships.pending = ?', city.id, item.id, false)
+            .group(:group_id).order('count(group_id) desc').limit(5)
   end
 
   def need_invitation_from_admin
