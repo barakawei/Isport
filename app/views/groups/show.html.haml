@@ -87,13 +87,11 @@
             =render :partial => 'events/new_event_link', :locals => { :question => '没找到感兴趣的活动?',
                                                                     :link => new_event_path(:group_id => @group),
                                                                     :action => '发起活动'}
-        .span-16
-          %h4= link_to '更多>>', group_events_path(@group), :class => 'right more'
       - else
         - if @is_member
           .span-17.events_panel
             =render :partial => 'events/new_event_link', :locals => {:question => '小组还没有活动?',
-                                                                     :link => new_group_topic_path(@group),
+                                                                     :link => new_event_path(:grouo_id => @group),
                                                                      :action => '发起活动'}
         - else
           .span-17.recent_topic
@@ -105,8 +103,6 @@
       - if @topics.size > 0
         .topics_panel
           = render 'topics/recent_topics.html.haml', :topics => @topics
-        .span-16
-          %h4= link_to '更多>', forum_group_path(@group), :class => 'right more'
       - else
         - if @is_member
           .span-17.no_topics_panel 
