@@ -43,8 +43,7 @@ class GroupsController < ApplicationController
     @group = Group.find(params[:id])
     if @group.person == @current_person 
       @members = @group.members
-      puts '***************'
-      puts @members.size
+      @members -= [@current_person]
     else
       @members = @group.deletable_members.order('created_at ASC') || []
     end

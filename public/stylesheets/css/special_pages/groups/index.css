@@ -8,6 +8,8 @@
   behavior: url(/javascripts/PIE.htc);
   background-color: white;
   float: left; }
+  .hot_groups .box_element .box_status span.member, .hot_groups .box_element .box_status span.events, .hot_groups .box_element .box_status span.topics {
+    font-size: 13px; }
 
 .hot_item_groups {
   width: 908px;
@@ -32,7 +34,7 @@
 .search_line {
   width: 908px;
   float: left;
-  margin-bottom: 20px; }
+  margin-bottom: 10px; }
   .search_line .filter_title {
     float: left;
     padding: 5px;
@@ -50,17 +52,17 @@
     .search_line .filter_items a {
       font-size: 13px;
       color: #56656c;
-      margin-right: 5px;
+      margin: 0 5px 10px 0;
       display: inline-block; }
     .search_line .filter_items a.current {
       color: #11a3e1; }
 
 .search_result {
+  margin-top: 20px;
   width: 904px;
   float: left;
   padding: 20px;
   border: 3px solid #d5ddde;
-  border-top: none;
   -moz-border-radius: 14px;
   -webkit-border-radius: 14px;
   border-radius: 14px;
@@ -71,8 +73,12 @@
     width: 150px;
     height: 198px;
     margin: 0 40px 20px 0; }
-    .search_result .box_element .box_status .element {
-      padding-left: 15px; }
+    .search_result .box_element .box_status {
+      width: 150px; }
+      .search_result .box_element .box_status .element {
+        width: 40px; }
+        .search_result .box_element .box_status .element span.member, .search_result .box_element .box_status .element span.events, .search_result .box_element .box_status .element span.topics {
+          font-size: 16px; }
     .search_result .box_element img {
       width: 150px;
       height: 150px; }

@@ -10,7 +10,7 @@
   .search_line
     :width 950px
     :float left
-    :margin-bottom 20px
+    :margin-bottom 10px
 
     .filter_title
       :float left
@@ -36,31 +36,33 @@
       a
         :font-size 13px
         :color #56656c
-        :margin-right 5px
+        :margin 0 5px 10px 0
         :display inline-block
 
       a.current
         :color #4bc5be
 
 .events_panel
-  .event_box_panel
+  .event_box_panel, .new_event_panel
     .event_box
       :margin 0px 15px 20px 0px
   
 #city_select_box
   :position absolute
   :width 100px
-  :border 1px solid#b9b9b9 
+  :border 3px solid #d5ddde
+  @include border-radius(5px)
   :padding 10px
   :background-color #ffffff
 
 #switch_city
   :text-decoration none
-  :border 1px solid #e9eef1
+  :border 3px solid #e9eef1
+  @include border-radius(5px)
   :padding 3px
   &:hover
-    :border 1px solid #b9b9b9
-    :color #666666 
+    :border 3px solid #d5ddde
+    :color #666666
 
 .new_button_container  
   :height 40px

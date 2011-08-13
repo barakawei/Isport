@@ -1,9 +1,9 @@
 -content_for :head do
   = include_stylesheets :sepcial_pages_events_new_event_panel, :media => 'all'
 .new_event_panel
-  %a{:href => link, :class => 'new_event_link'}          
+  %a{:href => (link if defined?(link)), :class => 'new_event_link'}          
     .event_border="?"
     .content
       %h2=question
-      %h2.new_event.hide=action
+      %h2.new_event.hide= action if defined?(action)
 

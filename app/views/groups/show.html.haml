@@ -10,27 +10,25 @@
         %li=link_to '小组活动', group_events_path(@group)
         %li=link_to '小组讨论区', forum_group_path(@group) 
         %li.last_li=link_to '小组成员', members_group_path(@group) 
-    
-    %h4.app_module_title='小组信息'
+
     .span-7.other_info
       %span.info_block
-        %strong
-          ='创建时间:'
-          =l(@group.created_at, :format => :long)
-        %strong
-          ='小组类型:'
-          =link_to @group.item.name, item_path(@group.item)
-        %strong
-          ='组长:'
-          =link_to @group.person.name, person_path(@group.person)
-    .span-7
-      - if @is_member
-        =link_to(new_event_path(:group_id => @group.id)) do
-          .new_button.glass_button.quit
-            ='发起活动'
-        =link_to(new_group_topic_path(:group_id => @group.id)) do
-          .new_button.glass_button.quit
-            ='发起话题'
+        %span.des.info
+          .left='小组信息:'
+          - if  current_user && @group.has_admin?(current_user.person) 
+            .content
+              =link_to(edit_group_path(@group), :class => 'right') do
+                .edit_button.glass_button.quit
+                  ='编辑'
+        %span.info
+          .left='创建时间:'
+          .content=l(@group.created_at, :format => :long) 
+        %span.info
+          .left='小组类型:'
+          .content=link_to @group.item.name, item_path(@group.item)
+        %span.info
+          .left='小组组长:'
+          .content=link_to @group.person.name, person_path(@group.person)
     %hr.space
     - if @members.size > 0
       %h4.app_module_title='小组成员'
@@ -39,11 +37,9 @@
           = person_image_link(member)
   
   .span-17.last.right_column
-    =render 'common/big_header_box', :number => @member_size, :text => '成员', :width => '100px' 
-    =render 'common/big_header_box', :number => @event_size, 
-                                     :text => '活动', :width => '100px', :font_color => '#a1d453'
-    =render 'common/big_header_box', :number => @topic_size,
-                                       :text => '话题', :width => '100px', :font_color => '#F5D34D', :class_name => 'last_one'
+    =render 'common/big_header_box', :number => @member_size, :text => '成员', :background_color => '#ff8a3c'
+    =render 'common/big_header_box', :number => @event_size, :text => '活动', :background_color => '#aad450'
+    =render 'common/big_header_box', :number => @topic_size, :text => '话题',  :background_color => '#4ebaff'
     .span-17.prepend-top
       %hr.space
       .span-10
@@ -66,54 +62,64 @@
                 =link_to(group_membership_path(@group), :method => 'delete', :class => 'right') do
                   .join_button.glass_button.quit
                     ='退出小组'
-            - else 
-              =link_to(edit_group_path(@group), :class => 'right') do
-                .join_button.glass_button.quit
-                  ='编辑'
 
           
       .span-16.group_desc
         = simple_format(@group.description)
-    .span-17.prepend-top
-      .span-10
-        =render 'common/header_box', :title => '近期活动'
+    =render 'common/header_box', :title => '近期动态', :blue => true
+    .span-17.group_tabs
+      %ul.home_tabs
+        %li#recent_event
+          =link_to "近期活动","javascript:void(0)", :class => 'current'
+        %li#recent_topic
+          =link_to "近期话题","javascript:void(0)"
+        - if @is_member
+          .new_event_link
+            = render 'common/big_link_button', :content => '发起活动', :path => new_event_path(:group_id => @group.id) 
+          .new_topic_link.hide
+            = render 'common/big_link_button', :content => '发起话题', :path => new_group_topic_path(:group_id => @group.id)
+
+    .span-17.prepend-top.recent_events_area
       - if @recent_events.size > 0
-        .span-6
-          %h4= link_to '更多活动>', group_events_path(@group), :class => 'right more'
         .span-17.events_panel
           =render :partial => 'events/event_element',:collection => @recent_events,:as => :event
           - if @is_member
             =render :partial => 'events/new_event_link', :locals => { :question => '没找到感兴趣的活动?',
                                                                     :link => new_event_path(:group_id => @group),
                                                                     :action => '发起活动'}
+        .span-16
+          %h4= link_to '更多>>', group_events_path(@group), :class => 'right more'
       - else
-        .span-17.events_panel
-          - if @is_member
-            =render :partial => 'events/new_event_link', :locals => {  :question => '小组还没有活动?',
+        - if @is_member
+          .span-17.events_panel
+            =render :partial => 'events/new_event_link', :locals => {:question => '小组还没有活动?',
                                                                      :link => new_group_topic_path(@group),
-                                                                     :action => '发起话题'}
+                                                                     :action => '发起活动'}
+        - else
+          .span-17.recent_topic
+            =render :partial => 'events/new_event_link', :locals => {:question => '本小组还没有活动...'}
+            
+            
           
-    .span-17.prepend-top
-      .span-10
-        =render 'common/header_box', :title => '近期话题'
-      .span-6
-        - if @topics.size > 0
-          %h4= link_to '更多话题>', forum_group_path(@group), :class => 'right more'
-
+    .span-17.prepend-top.hide.recent_topics_area
       - if @topics.size > 0
         .topics_panel
           = render 'topics/recent_topics.html.haml', :topics => @topics
+        .span-16
+          %h4= link_to '更多>', forum_group_path(@group), :class => 'right more'
       - else
-        .span-17.no_topics_panel 
-          - if @is_member
+        - if @is_member
+          .span-17.no_topics_panel 
             =render :partial => 'events/new_event_link', :locals => { :question => '小组还没有话题?',
                                                                     :link => new_group_topic_path(@group),
                                                                     :action => '发起话题'}
+        - else
+          .span-17
+            =render :partial => 'events/new_event_link', :locals => {:question => '本小组还没有话题...'}
 
 
         
 :javascript
-  $(function() {
     $('.events_panel .new_event_link').hover(
       function() {
         $('.events_panel .new_event_panel h2').toggle();
@@ -130,11 +136,21 @@
         $('.no_topics_panel .new_event_panel h2').toggle();
       }
     );    
+
+  $('li#recent_event a').click(function() {
+   $(this).addClass('current'); 
+   $('.recent_events_area').show();
+   $('.recent_topics_area').hide();
+   $('li#recent_topic a').removeClass('current');
+   $('.group_tabs .new_event_link').show();
+   $('.group_tabs .new_topic_link').hide();
   });
 
-        
-
-      
-
-
-   
+  $('li#recent_topic a').click(function() {
+   $(this).addClass('current'); 
+   $('.recent_topics_area').show();
+   $('.recent_events_area').hide();
+   $('li#recent_event a').removeClass('current');
+   $('.group_tabs .new_event_link').hide();
+   $('.group_tabs .new_topic_link').show();
+  });

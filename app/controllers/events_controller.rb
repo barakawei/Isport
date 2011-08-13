@@ -80,6 +80,7 @@ class EventsController < ApplicationController
   def edit_members
     @event = Event.find(params[:id])
     @participants = (@event.participants.order("created_at ASC") || [ ]) 
+    @participants -= [current_user.person] 
     @friends = (current_user.friends || [ ])
     @friend_participants = @participants & @friends
     @other_participants = @participants - @friend_participants  
@@ -88,13 +89,15 @@ class EventsController < ApplicationController
   end
 
   def create
+    @current_person = current_user.person 
     event_attrs = params[:event]
     location = Location.create(event_attrs[:location_attributes])
     l_info = GoogleGeoCoder.getLocation(location.to_s)
     event_attrs[:location_attributes].merge!(l_info) unless l_info.nil?
     @event = Event.new(event_attrs)
-    @event.person = current_user.person
+    @event.person = @current_person 
     if @event.save
+      Involvement.create(:event_id => @event.id, :person_id => @current_person)
       redirect_to new_event_invite_path(@event)
     else
       @step = 1
