@@ -397,7 +397,7 @@ dd {
     height: 74px;
     float: right;
     border-left: 1px solid #e9eff0; }
-    .person_event_box_panel .person_event_box .status .sucess {
+    .person_event_box_panel .person_event_box .status .sucess, .person_event_box_panel .person_event_box .status .not_started, .person_event_box_panel .person_event_box .status .ongoing {
       width: 29px;
       height: 25px;
       margin: 25px 0 5px 23px; }
