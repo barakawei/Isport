@@ -14,8 +14,8 @@ class EventsController < ApplicationController
     city_pinyin = params[:city] ? params[:city] : (current_user ? current_user.city.pinyin : City.first.pinyin)
     @city = City.find_by_pinyin(city_pinyin)
     @events = Event.all
-    @hot_events = Event.interested_event(@city.id, current_user.person)
-    @hot_items = Item.hot_items(5, current_user)
+    @hot_events = current_user ? Event.interested_event(@city.id, current_user.person) : []
+    @hot_items = current_user ? Item.hot_items(5, current_user): []
     @select_tab = 'event'
   end
 
