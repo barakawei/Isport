@@ -52,7 +52,8 @@ class Event < ActiveRecord::Base
   scope :on_going, lambda { where("start_at <= ? and end_at >= ?", Time.now, Time.now) }
   scope :over, lambda {where("end_at < ?", Time.now)}
 
-  scope :of_item, lambda {|item_id| where('item_id = ?', item_id)}
+  scope :of_item, lambda {|item_id| where('subject_d = ?', item_id)}
+  scope :in_items, lambda {|item_ids| where(:subject_id => item_ids)}
 
   scope :week, lambda { where("start_at > ? and start_at < ?", Time.now.beginning_of_week, Time.now.end_of_week) }
   scope :month, lambda { where("start_at > ? and start_at < ?", Time.now.beginning_of_month, Time.now.end_of_month)}
@@ -73,33 +74,19 @@ class Event < ActiveRecord::Base
       event.update_attributes(url_params)
   end
 
-  def self.hot_event(city)
-    events = Event.includes(:involvements, :recommendations)
-                  .month.not_started.at_city(city) 
-    events = Event.includes(:involvements, :recommendations)
-                  .month.at_city(city) unless events.size > 0
-
-    events.sort! {|x,y| y.involvements.size + y.recommendations.size <=> 
-                        x.involvements.size + x.recommendations.size } 
-    if events.size > 3
-      events = events[0..2] 
-    end
+  def self.interested_event(city, person)
+    item_ids = person.interests.collect {|i| i.id}
+    events = Event.in_items(item_ids).week.at_city(city).not_started
+    events = Event.in_items(item_ids).month.at_city(city).not_started unless events.size > 0
     events
   end
 
   def self.hot_event_by_item(city, item)
+    events = Event .week.not_started.at_city(city).of_item(item.id)
+    events = Event .month.not_started.at_city(city).of_item(item.id) unless events.size > 0
+    events = Event .week.at_city(city).of_item(item.id) unless events.size > 0
+    events = Event .month.at_city(city).of_item(item.id) unless events.size > 0
 
-    events = Event.includes(:involvements, :recommendations)
-                  .week.not_started.at_city(city).of_item(item.id)
-    events = Event.includes(:involvements, :recommendations)
-                  .month.not_started.at_city(city).of_item(item.id) unless events.size > 0
-    events = Event.includes(:involvements, :recommendations)
-                  .week.at_city(city).of_item(item.id) unless events.size > 0
-    events = Event.includes(:involvements, :recommendations)
-                  .month.at_city(city).of_item(item.id) unless events.size > 0
-
-    events.sort! {|x,y| y.involvements.size + y.recommendations.size <=>
-                        x.involvements.size + x.recommendations.size } 
     if events.size > 6 
       events = events[0..5] 
     end

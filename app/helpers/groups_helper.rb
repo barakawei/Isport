@@ -10,11 +10,13 @@ module GroupsHelper
   end
 
   def group_status_info(group,person)
+    m = Membership.where(:person_id => person.id, :group_id => group.id)
+    return I18n.t('groups.join_mode_des.invited_by_admin')  if m.size > 0 && m[0].pending &&m[0].pending_type == Group::JOIN_BY_INVITATION_FROM_ADMIM 
     case group.join_mode  
       when Group::JOIN_BY_INVITATION_FROM_ADMIM 
         I18n.t("groups.join_mode_des.invite_by_admin")
       when Group::JOIN_AFTER_AUTHENTICATAION
-        if group.has_pending_member?(person)
+        if m.size > 0 && m[0].pending 
           I18n.t('groups.person.status.request_pending')
         end
       else
