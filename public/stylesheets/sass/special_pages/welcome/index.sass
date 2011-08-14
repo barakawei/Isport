@@ -23,18 +23,31 @@ $darkgray: #A8AAAD
     :overflow hidden
 
   a.reg_main_button
-    :background url("/images/ui/main_reg_button.png") no-repeat scroll 0 0 transparent 
     :width 280px
     :height 70px
     :margin-left 5px
-    :margin-top 2px
+    :margin-top 4px
+    :overflow hidden
+    :background url("/images/ui/main_reg_button.png") no-repeat scroll 0 0 transparent 
+    :display inline
     :float left
-    :text-indent -9999em
-    :display block
+    :position relative
 
-    &:hover
+    &:hover 
       :background url("/images/ui/main_reg_button.png") no-repeat scroll left bottom transparent 
-         
+
+    em
+      :text-align middle
+      :font-size 30px
+      :font-style normal
+      :font-weight bold
+      :color white
+      :position absolute
+      :top 10px
+      :left 72px
+
+    &:hover em
+      :top 12px
 
 .item_area, .event_area, .group_area
   :width 260px
@@ -52,7 +65,7 @@ $darkgray: #A8AAAD
   :width 260px
   :margin-left 12px
   :font-size 26px
-  :font-family STLiti, STXingkai, KaiTi 
+  :font-family "Microsoft YaHei"
   :display block
   :overflow hidden
   :white-space normal
@@ -73,7 +86,7 @@ $darkgray: #A8AAAD
   :text-shadow 0 1px 1px #ccc
 
 .welcome_box
-  :background none repeat scroll 0 0 $darkgray
+  :background none repeat scroll 0 0 #F8F8F8
   :width 903px
   :height 300px
   :margin-left 24px
