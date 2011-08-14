@@ -88,11 +88,7 @@ class ItemsController < ApplicationController
       end
     end
 
-    @actors = Person.joins(:involved_events).joins(:interests)
-              .where(:events => {:subject_id => @item.id}, :items => {:id => @item.id}, 
-                     :involvements => {:is_pending => false})
-              .group("involvements.person_id").order("count(event_id) DESC").limit(ACTLIMIT).includes(:profile)
-
+    @actors = Person.hot_stars(@item, ACTLIMIT)
     @groups = Group.joins(:members).where(:item_id => @item.id, :city_id => @city.id)
           .group(:group_id).order("count(group_id) DESC").limit(EVELIMIT)
 
