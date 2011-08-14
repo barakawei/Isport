@@ -7,6 +7,8 @@
       = item_image_tag(@item, :thumb_large)
       .item_name
         = @item.name
+    .item_desc
+      = @item.description
 
     .check_area
       - if current_user 
@@ -18,7 +20,8 @@
           = t('items.unlikeinfo', :name => @item.name)
 
     .item_star
-      = render 'common/header_box', :title =>@item.name + t('items.mavin') , :background_color => "#008EE6" 
+      .star_title
+        = @item.name + t('items.mavin')
 
       -@actors.each_with_index do |person, index|
         .star_one{:class => ("last" if (index+1)%4==0)}
