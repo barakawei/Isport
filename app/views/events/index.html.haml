@@ -58,7 +58,7 @@
         = link_to '一个月内', event_filter_path(@city.pinyin, @district_id, @item_id, 'next_month')
         = link_to '时间选择', 'javascript:void(0)'
 
-- if @hot_items.all.size > 0
+- if @hot_items.size > 0
   .span-24.prepend-top
     = render 'common/header_box',  :title => '热门项目活动'
     .hot_events
