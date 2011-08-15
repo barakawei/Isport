@@ -9,7 +9,7 @@
     - @categories.each do |category|
       .imageheard
         .left
-          = render 'common/header_box', :title =>category.name, :dark => false 
+          = render 'common/header_box', :title =>category.name, :background_color => "#4EBAFF"
       .imagearea
         - @items_hash[category.id].each_with_index do |item, index|
           .image

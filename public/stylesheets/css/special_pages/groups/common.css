@@ -62,7 +62,22 @@ ul.nav {
   border-radius: 15px;
   behavior: url(/javascripts/PIE.htc);
   background-color: white;
-  padding: 20px; }
+  padding: 15px; }
+  .invite_friends_area .button_container {
+    height: 40px;
+    width: 200px;
+    float: left; }
+    .invite_friends_area .button_container .invite_button {
+      float: left;
+      width: 60px;
+      height: 20px;
+      background-color: #8dbc6e;
+      line-height: 20px;
+      font-size: 13px;
+      margin-right: 15px; }
+      .invite_friends_area .button_container .invite_button:hover {
+        margin-top: 2px;
+        background-color: #e76875; }
 
 .group_avatar {
   width: 180px;
@@ -93,5 +108,5 @@ ul.nav {
       margin-left: 10px; }
 
 .select_invitees {
-  width: 500px;
+  width: 650px;
   float: left; }

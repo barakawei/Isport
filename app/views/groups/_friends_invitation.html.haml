@@ -8,19 +8,23 @@
       %li=link_to '2.邀请好友', 'javascript:void(0)', :class => 'current'
 
     
-  .span-17    
+  .span-18.last   
     = render 'common/header_box', :title => '邀请好友',  :background_color => '#8dbc6e'
-    .span-16.invite_friends_area
+    .span-17.invite_friends_area
       %h4= link_to '全选', "#", :class => 'select_all_friend' if to_be_invited.size > 0
      
       - if to_be_invited
-        .span-16.friends
+        .span-17.friends
           = render 'people/select_people', :people => to_be_invited, :class_name => 'select_invitees'
       %h4= '您还没有好友，去找几个志同道合的人吧' unless friends.size > 0 
-      .span-14
-        %span.right
-          = link_to '发送邀请', '#', :class => 'button invite' if to_be_invited.size > 0
-          = link_to '完成', group_path(group), :class => 'button'
+      .span-17
+        .button_container
+          = link_to('javascript:void(0)', :class => "invite") do
+            .invite_button.glass_button
+              ='发送邀请'
+          = link_to(group_path(group)) do
+            .invite_button.glass_button
+              ='完成'
 
       .span-14.invited_friends
         - if invitees_size > 0

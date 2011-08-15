@@ -46,6 +46,7 @@ Isport::Application.routes.draw do
   controller :users do
     match 'getting_started' => :getting_started, :as => 'getting_started'
     match 'select_interests' => :select_interests, :as => 'select_interests'
+    match 'select_interested_people' => :select_interested_people, :as => 'select_interested_people'
   end
 
   match '/users/sign_in' => 'users#sign_in', :as => 'sign_in' 

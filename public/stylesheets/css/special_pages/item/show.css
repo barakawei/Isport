@@ -55,12 +55,12 @@
   float: left; }
   .itemright .item_info {
     width: 700px;
-    height: 150px;
+    height: 100px;
     overflow: hidden;
     margin-left: 0px;
     margin-bottom: 20px; }
     .itemright .item_info .info_ele {
-      margin-top: 20px;
+      margin-top: 1px;
       margin-left: 20px;
       float: left; }
   .itemright .hot_title {

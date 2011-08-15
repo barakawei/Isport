@@ -21,7 +21,7 @@
         %h4
           = t("events.members", :count => @participants.size) 
           = link_to t('events.participants.select_all'), "#", :class => "select_all_members"
-      .span-16
+      .span-17
         = render 'people/select_people', :people => participants, :class_name => 'select_participants' 
     - if participants.size > 0
       .button_container
@@ -36,7 +36,7 @@
           %h4
             = t("events.invitees", :count => invitees.size)
             = link_to t('events.participants.select_all'), "#", :class => "select_all_invitations"
-        .span-16
+        .span-17
           = render 'people/select_people', :people => invitees, :class_name => 'select_invitees'
         .span-16
           - if invitees.size > 0 

@@ -18,7 +18,7 @@
           = t('items.unlikeinfo', :name => @item.name)
 
     .item_star
-      = render 'common/header_box', :title =>@item.name + t('items.mavin') , :dark => false 
+      = render 'common/header_box', :title =>@item.name + t('items.mavin') , :background_color => "#008EE6" 
 
       -@actors.each_with_index do |person, index|
         .star_one{:class => ("last" if (index+1)%4==0)}
@@ -27,15 +27,15 @@
   .itemright
     .item_info
       .info_ele
-        = render 'common/big_header_box', :number => @item.fans.count, :text => "粉丝", :font_color => "#A8CDD7"
+        = render 'common/big_header_box', :number => @item.fans.count, :text => "粉丝", :background_color => "#FF8A3C"
       .info_ele
-        = render 'common/big_header_box', :number => @item.events.count, :text => "活动", :font_color => "yellow"
+        = render 'common/big_header_box', :number => @item.events.count, :text => "活动", :background_color => "#AAD450"
       .info_ele
-        = render 'common/big_header_box', :number => @item.groups.count, :text => "小组", :font_color => "white"
+        = render 'common/big_header_box', :number => @item.groups.count, :text => "小组", :background_color => "#4EBAFF"
 
     .hot_title
       .title
-        = render 'common/header_box', :title =>t('items.events') , :dark => true 
+        = render 'common/header_box', :title =>t('items.events')  
       .link
         = link_to "更多>>", event_filter_path(@city.pinyin, nil, @item.id, 'week') 
 
@@ -44,7 +44,7 @@
 
     .hot_title
       .title
-        = render 'common/header_box', :title =>t('items.citygroups') , :dark => true 
+        = render 'common/header_box', :title =>t('items.citygroups')  
       .link
         = link_to "更多>>", group_filter_path(:city => @city.pinyin, :item_id => @item.id) 
        

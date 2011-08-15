@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .right_arrow {
   cursor: pointer;
   height: 20px;
@@ -11,8 +12,8 @@
   opacity: 0.3; }
 
 body {
-  background-color: #e9eef1;
-  color: #546266; }
+  background: url("/images/ui/bg.jpg") repeat scroll center top #e7e7e7;
+  font-family: "Microsoft YaHei", "微软雅黑", SimHei, STHeiti, Tahoma, Arial, Helvetica, "Helvetica Neue", sans-serif; }
 
 .blue {
   color: #0bb6e5; }
@@ -452,7 +453,6 @@ a.button {
     height: 23px; }
 
 .content_panel {
-  background-color: #e9eef1;
   position: relative;
   z-index: 4;
   margin-top: -20px; }

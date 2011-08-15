@@ -6,13 +6,13 @@
     %ul.nav
       %li=link_to '1.填写活动信息', edit_event_path(@event, 'new') 
       %li=link_to '2.邀请好友', 'javascript:void(0)', :class => 'current'
-  .span-17
+  .span-18.last
     = render 'common/header_box', :title => '邀请好友参加"' + @event.title + '"',  :background_color => '#8dbc6e'
-    .span-16.invite_friends_area
+    .span-17.invite_friends_area
       %h4= link_to '全选', "#", :class => 'select_all_friend'
      
       - if to_be_invited
-        .span-16.friends
+        .span-17.friends
           = render 'people/select_people', :people => to_be_invited, :class_name => 'select_invitees'
       .span-14
         .button_container

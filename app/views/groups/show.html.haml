@@ -54,7 +54,7 @@
         .span-3.operations.last.right
           - if current_user
             - unless @group.has_admin?(current_user.person)
-              - if @group.joinable? && !@group.has_member_include_pending?(current_user.person)
+              - if @group.joinable?(current_user.person)
                 =link_to(group_memberships_path(@group), :method => 'post', :class => 'right') do
                   .join_button.glass_button
                     ='加入小组'
@@ -66,7 +66,7 @@
           
       .span-16.group_desc
         = simple_format(@group.description)
-    =render 'common/header_box', :title => '近期动态', :blue => true
+    =render 'common/header_box', :title => '小组动态', :blue => true
     .span-17.group_tabs
       %ul.home_tabs
         %li#recent_event
@@ -87,13 +87,11 @@
             =render :partial => 'events/new_event_link', :locals => { :question => '没找到感兴趣的活动?',
                                                                     :link => new_event_path(:group_id => @group),
                                                                     :action => '发起活动'}
-        .span-16
-          %h4= link_to '更多>>', group_events_path(@group), :class => 'right more'
       - else
         - if @is_member
           .span-17.events_panel
             =render :partial => 'events/new_event_link', :locals => {:question => '小组还没有活动?',
-                                                                     :link => new_group_topic_path(@group),
+                                                                     :link => new_event_path(:grouo_id => @group),
                                                                      :action => '发起活动'}
         - else
           .span-17.recent_topic
@@ -105,8 +103,6 @@
       - if @topics.size > 0
         .topics_panel
           = render 'topics/recent_topics.html.haml', :topics => @topics
-        .span-16
-          %h4= link_to '更多>', forum_group_path(@group), :class => 'right more'
       - else
         - if @is_member
           .span-17.no_topics_panel 
