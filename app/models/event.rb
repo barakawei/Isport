@@ -78,14 +78,15 @@ class Event < ActiveRecord::Base
     item_ids = person.interests.collect {|i| i.id}
     events = Event.in_items(item_ids).week.at_city(city).not_started
     events = Event.in_items(item_ids).month.at_city(city).not_started unless events.size > 0
+    events = Event.in_items(item_ids).next_month.at_city(city).not_started unless events.size > 0
     events
   end
 
   def self.hot_event_by_item(city, item)
-    events = Event .week.not_started.at_city(city).of_item(item.id)
-    events = Event .month.not_started.at_city(city).of_item(item.id) unless events.size > 0
-    events = Event .week.at_city(city).of_item(item.id) unless events.size > 0
-    events = Event .month.at_city(city).of_item(item.id) unless events.size > 0
+    events = Event.week.not_started.at_city(city).of_item(item.id)
+    events = Event.month.not_started.at_city(city).of_item(item.id) unless events.size > 0
+    events = Event.week.at_city(city).of_item(item.id) unless events.size > 0
+    events = Event.month.at_city(city).of_item(item.id) unless events.size > 0
 
     if events.size > 6 
       events = events[0..5] 
@@ -134,6 +135,20 @@ class Event < ActiveRecord::Base
 
   def dispatch_event(action,user=self.person.user)
     Dispatch.new(user, self,action).notify_user
+  end
+
+  def self.total_event_count
+    total_count = Event.count
+    count_array = []
+       
+    while(total_count > 0) 
+      count_array << total_count % 10 
+      total_count /= 10
+    end 
+    (4-count_array.size).downto(1) do 
+      count_array << 0
+    end
+    count_array.reverse!
   end
 
   def subscribers(user,action=false)

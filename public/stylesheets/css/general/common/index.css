@@ -45,7 +45,7 @@
           float: left;
           padding: 25px 15px 0 19px;
           width: 385px; }
-          .hot_gallery .gallery_content .gallery_inner ul li a {
+          .hot_gallery .gallery_content .gallery_inner ul li a.hot {
             background: url("/images/ui/bg-gallery-box.gif") no-repeat scroll 0 0 transparent;
             cursor: pointer;
             float: left;
@@ -53,37 +53,37 @@
             padding: 6px 20px 0 23px;
             text-decoration: none;
             width: 342px; }
-            .hot_gallery .gallery_content .gallery_inner ul li a:hover {
+            .hot_gallery .gallery_content .gallery_inner ul li a.hot:hover {
               background-position: 0 -250px;
               text-decoration: none; }
-              .hot_gallery .gallery_content .gallery_inner ul li a:hover .info {
+              .hot_gallery .gallery_content .gallery_inner ul li a.hot:hover .info {
                 background-position: 0 -84px; }
-              .hot_gallery .gallery_content .gallery_inner ul li a:hover .title strong, .hot_gallery .gallery_content .gallery_inner ul li a:hover .title em, .hot_gallery .gallery_content .gallery_inner ul li a:hover .info strong, .hot_gallery .gallery_content .gallery_inner ul li a:hover .info em {
+              .hot_gallery .gallery_content .gallery_inner ul li a.hot:hover .title strong, .hot_gallery .gallery_content .gallery_inner ul li a.hot:hover .title em, .hot_gallery .gallery_content .gallery_inner ul li a.hot:hover .info strong, .hot_gallery .gallery_content .gallery_inner ul li a.hot:hover .info em {
                 color: #e76875; }
-            .hot_gallery .gallery_content .gallery_inner ul li a .type {
+            .hot_gallery .gallery_content .gallery_inner ul li a.hot .type {
               font-size: 14px;
               display: block;
               color: #f74367;
               margin-bottom: 17px; }
-            .hot_gallery .gallery_content .gallery_inner ul li a .title {
+            .hot_gallery .gallery_content .gallery_inner ul li a.hot .title {
               display: block;
               height: 110px;
               margin-bottom: 4px;
               overflow: hidden; }
-              .hot_gallery .gallery_content .gallery_inner ul li a .title .time_and_location {
+              .hot_gallery .gallery_content .gallery_inner ul li a.hot .title .time_and_location {
                 float: left; }
-                .hot_gallery .gallery_content .gallery_inner ul li a .title .time_and_location p {
+                .hot_gallery .gallery_content .gallery_inner ul li a.hot .title .time_and_location p {
                   font-size: 13px;
                   color: #829ca2; }
-                .hot_gallery .gallery_content .gallery_inner ul li a .title .time_and_location p.time {
+                .hot_gallery .gallery_content .gallery_inner ul li a.hot .title .time_and_location p.time {
                   margin-top: 10px; }
-              .hot_gallery .gallery_content .gallery_inner ul li a .title strong {
+              .hot_gallery .gallery_content .gallery_inner ul li a.hot .title strong {
                 color: #00a2b8;
                 vertical-align: middle;
                 width: 100%;
                 float: left;
                 font: bold 24px/30px Arial, Helvetica, sans-serif; }
-            .hot_gallery .gallery_content .gallery_inner ul li a .info {
+            .hot_gallery .gallery_content .gallery_inner ul li a.hot .info {
               background: url("/images/ui/bg-days-box.gif") no-repeat scroll 0 0 transparent;
               clear: both;
               display: block;
@@ -91,12 +91,12 @@
               overflow: hidden;
               padding: 10px 0 0 0;
               width: 180px; }
-              .hot_gallery .gallery_content .gallery_inner ul li a .info .owner {
+              .hot_gallery .gallery_content .gallery_inner ul li a.hot .info .owner {
                 float: left;
                 width: 50px;
                 height: 56px;
                 margin-left: 10px; }
-                .hot_gallery .gallery_content .gallery_inner ul li a .info .owner img {
+                .hot_gallery .gallery_content .gallery_inner ul li a.hot .info .owner img {
                   width: 43px;
                   height: 43px;
                   -moz-border-radius: 5px;
@@ -106,19 +106,19 @@
                   border: 1px solid #f2f2f2;
                   float: left;
                   margin: 10px 10px 0 0; }
-              .hot_gallery .gallery_content .gallery_inner ul li a .info span.first {
+              .hot_gallery .gallery_content .gallery_inner ul li a.hot .info span.first {
                 border-bottom: 2px solid white; }
-              .hot_gallery .gallery_content .gallery_inner ul li a .info span {
+              .hot_gallery .gallery_content .gallery_inner ul li a.hot .info span {
                 display: block;
                 float: left;
                 height: 23px;
                 width: 100px;
                 padding: 4px 0 4px 20px; }
-                .hot_gallery .gallery_content .gallery_inner ul li a .info span strong {
+                .hot_gallery .gallery_content .gallery_inner ul li a.hot .info span strong {
                   font-size: 21px;
                   color: #97b48a;
                   float: left; }
-                .hot_gallery .gallery_content .gallery_inner ul li a .info span em {
+                .hot_gallery .gallery_content .gallery_inner ul li a.hot .info span em {
                   color: #97b48a;
                   float: left;
                   font: bold 12px/11px Arial, Helvetica, sans-serif;

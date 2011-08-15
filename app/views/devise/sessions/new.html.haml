@@ -33,10 +33,6 @@
             =f.label :remember_me,t('.remember_me'), :class=> "ckbox"
           -else
             \.
-  -if devise_mapping.registerable? && controller_name !='registrations'
-    =link_to t('devise.shared.links.sign_up'),new_registration_path(resource_name), :class => "reg_button"
-  -else
-    \.
 
 :javascript
   $(".in_field").click(function() {
