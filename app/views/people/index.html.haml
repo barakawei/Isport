@@ -3,17 +3,19 @@
 .span-24.last
   -if params[:q].blank?
     %h2
-      =t('.no_results')
+      = '请输入搜索条件'
   -else
     %h2#search_title
-      =t('.results_for')
-      %span.term
-        =params[:q]
+      ="搜索结果"
 .span-15.append-1
-  -if @hashes.empty?
+  -if @people.empty?
     %p
-      =t('.no_one_found')
+      ="没找到相关人员"
   -else
-    #people_stream.stream
-      -for hash in @hashes
-        =render :partial => 'people/person',:locals=>hash
+    .person_details_content      
+      = render 'show_contacts',:people => @people,:groups => @groups,:items => @items
+    .pagination_box
+      - if !@people.nil? && @people.size > 0
+        = will_paginate @people, {:previous_label => t("pagination.previous"),
+                               :next_label => t("pagination.next")}
+

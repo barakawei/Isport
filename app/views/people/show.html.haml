@@ -5,6 +5,8 @@
 .person_left_bar
   .avatar_panel
     #profile_photo
+      %h2
+        =@person.name
       = person_image_tag(@person,:thumb_large )
   .information
     #person_profile_box
@@ -68,13 +70,11 @@
 .span-18
   #person_panel
     .person_bar
-      %h2=@person.name
       .action  
         -if @person.user_id == current_user.id
         -else 
           .follow_button
             = follow_button_tag( @person )
-      %div=@person.profile.signature
       .history_bar
         =render 'common/big_header_box', :number => @person.involved_events.size, :text => '活动', :background_color => '#ff8a3c'
         =render 'common/big_header_box', :number => @person.joined_groups.size, :text => '小组', :background_color => '#aad450'

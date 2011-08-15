@@ -1,3 +1,9 @@
+.right_arrow {
+  cursor: pointer;
+  height: 20px;
+  width: 30px;
+  background: url(/images/ui/link_arrow.gif) no-repeat -31px 0; }
+
 .dim {
   filter: alpha(opacity=30);
   -moz-opacity: 0.3;
@@ -5,7 +11,8 @@
   opacity: 0.3; }
 
 body {
-  background-color: #e9eef1; }
+  background-color: #e9eef1;
+  color: #546266; }
 
 .blue {
   color: #0bb6e5; }
@@ -407,6 +414,7 @@ a.button {
 
 .glass_button {
   background: url(/images/ui/glass-light.png) repeat-x 0 50%;
+  background-color: #8dbc6e;
   -moz-border-radius: 6px;
   -webkit-border-radius: 6px;
   border-radius: 6px;
@@ -418,6 +426,11 @@ a.button {
   text-shadow: 0 -1px rgba(41, 41, 41, 0.5);
   text-align: center;
   cursor: pointer; }
+  .glass_button:hover {
+    background-color: #e76b75;
+    margin-top: 2px; }
+  .glass_button a, .glass_button input {
+    color: white; }
 
 .scroll {
   text-align: center;

@@ -1,19 +1,20 @@
 #conversation_show {
   width: 610px;
   float: right; }
-  #conversation_show .stream .avatar {
-    padding-right: 10px; }
 
 #left_pane {
+  border: 3px solid #d5ddde;
   float: left;
-  background-color: #dddddd;
-  border-right: 1px solid #999999;
   width: 320px; }
 
 #left_pane_header {
-  margin-top: 5px;
-  margin-left: 5px;
-  margin-right: 5px; }
+  background-color: #f5f9fa;
+  padding: 10px; }
+  #left_pane_header h3 {
+    line-height: 25px;
+    font-weight: bold;
+    height: 25px;
+    margin: 0; }
 
 #conversation_inbox {
   background-color: #f3f3f3;
@@ -31,21 +32,14 @@
   text-align: center; }
 
 .conversation:hover:not(.selected) {
-  background-color: #fafafa;
+  background-color: white;
   cursor: pointer; }
 
 .conversation.selected {
-  background-color: #3f8fba;
-  border-bottom: 1px solid #327294;
-  border-top: 1px solid #327294; }
-  .conversation.selected .last_author {
-    color: white; }
-  .conversation.selected .subject {
-    color: white; }
-  .conversation.selected .timeago {
-    color: #eeeeee; }
+  background-color: white; }
 
 .conversation {
+  background-color: #f8f8f8;
   border-bottom: 1px solid #dddddd;
   border-top: 1px solid white;
   padding-top: 10px;
@@ -64,10 +58,10 @@
     margin-left: 10px;
     width: 35px; }
   .conversation .last_author {
-    color: #777777;
+    color: #546266;
     font-size: 12px; }
   .conversation .subject {
-    color: #444444;
+    color: #546266;
     font-size: 13px;
     font-weight: bold;
     overflow: hidden;
@@ -91,20 +85,20 @@
 
 .conversation_participants {
   background-color: #fcfcfc;
-  border-bottom: 1px solid #666666;
-  -webkit-box-shadow: 0 3px 3px -3px #333333;
-  -moz-box-shadow: 0 3px 3px -3px #333333;
-  box-shadow: 0 3px 3px -3px #333333;
-  behavior: url(/javascripts/PIE.htc);
+  border: 3px solid #d5ddde;
   margin-top: 0px;
   padding: 20px 20px 10px;
+  width: 554px;
   z-index: 3; }
   .conversation_participants .avatar {
     width: 30px;
     height: 30px; }
 
-.stream_element.new_message {
-  border-bottom: none; }
-  .stream_element.new_message textarea {
-    height: 100px;
-    width: 520px; }
+#conversation_show .new_comment textarea {
+  height: 100px;
+  width: 525px; }
+#conversation_show .new_comment .post_button {
+  margin-right: 25px; }
+#conversation_show .response_box {
+  margin-left: 0px !important;
+  padding: 0px !important; }
