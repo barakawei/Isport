@@ -31,7 +31,8 @@
 .notifaction
   :padding-right 60px
 
-
+.header.wizard
+  :height 70px
 .header
   :background-color #17282E
   :text-align left
@@ -77,6 +78,19 @@
       :color #fe905d  
 
   .events_count
+    a
+      :color #F74367
+      :margin-left 30px
+      :font-size 20px
+      :height 26px
+      :line-height 26px
+      :padding 5px
+      :margin-top 8px
+      @include border-radius(4px)
+
+      &:hover
+        :background-color #f74367
+        :color #ffffff
     :margin-top 5px
     :color #ffffff
     strong 

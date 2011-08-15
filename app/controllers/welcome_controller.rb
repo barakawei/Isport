@@ -3,6 +3,7 @@ class WelcomeController < ApplicationController
     if current_user
       redirect_to home_path
     else
+      @registe_wizard = true
       @citycount = City.count
       @usercount = User.count
       @groupcount = Group.count

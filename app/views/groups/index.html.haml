@@ -14,18 +14,20 @@
   .span-7.last
     = render 'common/big_link_button', :content => '创建小组', :path => new_group_path
 
-- if @hot_groups.size > 0
-  .span-24.prepend-top
-    = render 'common/header_box',  :title => '你可能感兴趣的小组', :dark => true 
-  .hot_gallery
-    .gallery_content
-      =link_to 'pre', '#', :class => 'gallery_link_pre hide', :id => 'preBtn'
-      .gallery_inner
-        %ul
-          - @hot_groups.each do |group|
-            %li
-              = render 'hottest_group', :group => group 
-      =link_to 'next', '#', :class => "gallery_link_next #{"hide" unless @hot_groups.size > 2 }", :id => 'nextBtn'
+.span-24.prepend-top
+  = render 'common/header_box',  :title => '你可能感兴趣的小组', :dark => true 
+.hot_gallery
+  .gallery_content
+    =link_to 'pre', '#', :class => 'gallery_link_pre hide', :id => 'preBtn'
+    .gallery_inner
+      %ul
+        - @hot_groups.each do |group|
+          %li
+            = render 'hottest_group', :group => group 
+        - if @hot_groups.length == 0
+          %li
+            = render 'no_hot_groups_interested'
+    =link_to 'next', '#', :class => "gallery_link_next #{"hide" unless @hot_groups.size > 2 }", :id => 'nextBtn'
     
 .span-24.prepend-top
   = render 'common/header_box',  :title => '寻找感兴趣的小组', :dark => false
@@ -49,11 +51,13 @@
   = render 'common/header_box',  :title => '热门项目小组', :dark => false
   .hot_groups
     - @hot_items.each do |i|
-      .hot_item_groups
-        = link_to '更多', group_filter_path(:city => @city.pinyin, :item_id => i.id), :class => 'right'
-        .item_avatar
-          = item_image_link(i, :size => :thumb_large) 
-        = render :partial => 'group_element', :collection => Group.hot_group_by_item(@city, i), :as => :group
+      - hot_groups = Group.hot_group_by_item(@city, i).all 
+      - if hot_groups.size > 0
+        .hot_item_groups
+          = link_to '更多', group_filter_path(:city => @city.pinyin, :item_id => i.id), :class => 'right'
+          .item_avatar
+            = item_image_link(i, :size => :thumb_large) 
+          = render :partial => 'group_element', :collection => hot_groups, :as => :group
 
 :javascript
   $(function() {

@@ -6,6 +6,7 @@ class UsersController < ApplicationController
         redirect_to home_path
         return
     end
+    @registe_wizard = true
     @user = current_user
     @person = @user.person
     @profile = @user.profile
@@ -24,6 +25,7 @@ class UsersController < ApplicationController
         redirect_to home_path
         return
     end
+    @registe_wizard = true
     @items = Item.all
     @my_items = current_user.person.interests
     @items.each do |item|
@@ -31,6 +33,12 @@ class UsersController < ApplicationController
     end
   end
 
-  def select_interested_people    
+  def select_interested_people
+    if (current_user.getting_started == false)
+        redirect_to home_path
+        return
+    end
+    @registe_wizard = true
+    current_user.update_attributes(:getting_started => false)
   end
 end

@@ -1,13 +1,10 @@
 = content_for :head do
   = include_stylesheets :sepcial_pages_users_selectinterests, :media => 'all'
-  :css
-    .header{ display:none; } 
 
 .span-24.select_interests
-  %h2='关注你感兴趣的人'
+  %h2='关注和你志同道合的人'
   -current_user.person.interests.each do |item|
-    - stars = Person.hot_stars(item, 8).all - [current_user.person]
-    = item.name
+    - stars = item.active_fans(current_user.person.location.city, 8) - [current_user.person]
     - if stars.size > 0
       = render 'common/header_box', :title => item.name + '达人'
       =render 'people/show_contacts',:people => stars, :groups => nil, :items => nil
