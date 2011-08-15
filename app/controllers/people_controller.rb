@@ -9,7 +9,7 @@ class PeopleController < ApplicationController
       return
     end
 
-    @people = Person.search(params[:q],current_user)
+    @people = Person.search(params[:q],current_user).paginate(:page => params[:page], :per_page => 20)
     @hashes = hashes_for_people(@people)
     respond_with @people
   end

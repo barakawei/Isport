@@ -3,7 +3,7 @@
 
 .history_bar {
   display: block;
-  margin-top: 45px;
+  margin-top: 55px;
   height: 90px; }
   .history_bar .app_big_title_bar {
     margin-right: 20px; }
@@ -145,7 +145,6 @@
     margin-bottom: 0px;
     display: inline; }
   #person_panel .action {
-    margin-top: 10px;
     float: right; }
 
 .menu_bar.edit {
@@ -305,7 +304,7 @@ dd {
     font-weight: bold;
     display: inline-block;
     font-size: 15px;
-    color: #424f55; }
+    color: #7f8d8e; }
   .person_profile #gender input {
     width: 20px; }
   .person_profile #gender span {
@@ -397,7 +396,7 @@ dd {
     height: 74px;
     float: right;
     border-left: 1px solid #e9eff0; }
-    .person_event_box_panel .person_event_box .status .sucess {
+    .person_event_box_panel .person_event_box .status .sucess, .person_event_box_panel .person_event_box .status .not_started, .person_event_box_panel .person_event_box .status .ongoing {
       width: 29px;
       height: 25px;
       margin: 25px 0 5px 23px; }
@@ -427,11 +426,7 @@ dd {
     line-height: 15px;
     width: 30px;
     height: 15px;
-    background-color: #00a2b7;
-    font-size: 11px;
-    margin-top: 2px; }
-    #person_profile_box .title .edit_profile:hover {
-      background-color: #e76875; }
+    font-size: 11px; }
   #person_profile_box span {
     color: #7f8d8e;
     font-weight: bold;

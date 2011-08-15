@@ -1,8 +1,8 @@
 #left_pane.span-7
   #left_pane_header
     #new_conversation.right
-      .new_message
-        =link_to "新消息",new_conversation_path,:class=>"button new_message_action"
+      .new_message.glass_button
+        =link_to "新消息",new_conversation_path,:class=>"new_message_action"
     %h3
       = t( 'inbox' )
   #conversation_inbox
