@@ -11,6 +11,12 @@ $event_color: #4BC5BE
 $error_color: #a10000
 $link_red: #FC4469
 
+input[ type=text ],textarea
+  @include border-radius( 5px )
+  &:focus
+    outline: 5px auto -webkit-focus-ring-color
+    border: 1px solid #7ecef4 !important
+
 .right_arrow
   :cursor pointer
   :height 20px
@@ -446,8 +452,11 @@ a.button
   &:hover
     :background-color #e76b75
     :margin-top 2px
-  a,input
+  a
     :color white
+input
+  :margin 0
+  :border none
   
 .scroll
   :text-align center
@@ -476,10 +485,8 @@ a.button
   :position relative
   :overflow hidden
   :height 25px
-  :background-color #00a2b7
   :line-height 25px
-  &:hover
-    :background-color #e76875
+  :width 100px
   input
     :cursor pointer
     

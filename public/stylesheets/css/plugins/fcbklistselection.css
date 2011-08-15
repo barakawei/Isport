@@ -15,6 +15,10 @@ body
 	padding:0pt;
 	z-index:1;
 }
+
+#fcbklist .content{
+  color: #546266;
+}
 #filters {
     position:absolute;
     left:200px;

@@ -1,8 +1,11 @@
 .left_column #map_div {
-  width: 200px; }
+  background-color: white;
+  padding: 5px;
+  width: 190px; }
 .left_column #map {
-  width: 198px;
+  width: 188px;
   border: 1px solid #d5ddde;
+  margin-top: 5px;
   margin-bottom: 0px; }
 .left_column .avatar {
   margin-bottom: 10px; }

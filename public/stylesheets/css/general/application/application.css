@@ -1,4 +1,13 @@
 @charset "UTF-8";
+input[type=text], textarea {
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  behavior: url(/javascripts/PIE.htc); }
+  input[type=text]:focus, textarea:focus {
+    outline: 5px auto -webkit-focus-ring-color;
+    border: 1px solid #7ecef4 !important; }
+
 .right_arrow {
   cursor: pointer;
   height: 20px;
@@ -430,8 +439,12 @@ a.button {
   .glass_button:hover {
     background-color: #e76b75;
     margin-top: 2px; }
-  .glass_button a, .glass_button input {
+  .glass_button a {
     color: white; }
+
+input {
+  margin: 0;
+  border: none; }
 
 .scroll {
   text-align: center;
@@ -461,10 +474,8 @@ a.button {
   position: relative;
   overflow: hidden;
   height: 25px;
-  background-color: #00a2b7;
-  line-height: 25px; }
-  #file-upload:hover {
-    background-color: #e76875; }
+  line-height: 25px;
+  width: 100px; }
   #file-upload input {
     cursor: pointer; }
 

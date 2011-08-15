@@ -81,17 +81,18 @@
     margin-left: 62px;
     color: red; }
 
-#event_photo_upload .img_contained {
-  width: 180px;
-  margin-bottom: 10px; }
-  #event_photo_upload .img_contained img {
-    -moz-border-radius: 10px;
-    -webkit-border-radius: 10px;
-    border-radius: 10px;
-    behavior: url(/javascripts/PIE.htc);
-    width: 180px;
-    height: 180px;
-    border: 1px solid #d5ddde; }
+#event_photo_upload {
+  height: 250px; }
+  #event_photo_upload .img_contained {
+    width: 180px; }
+    #event_photo_upload .img_contained img {
+      -moz-border-radius: 10px;
+      -webkit-border-radius: 10px;
+      border-radius: 10px;
+      behavior: url(/javascripts/PIE.htc);
+      width: 200px;
+      height: 200px;
+      border: 1px solid #d5ddde; }
 
 .actions {
   padding-left: 40px; }

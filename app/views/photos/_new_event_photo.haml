@@ -2,8 +2,7 @@
   .img_contained  
     = event_image_tag(event, :thumb_large)
   .relative 
-    %div
-    #file-upload
+    #file-upload.glass_button
       =t('upload')
     %br
     %br
@@ -53,12 +52,3 @@
          });
        }
        window.onload = createUploader;
-   
-:javascript
-  $(function() {
-    $('#file-upload').button({
-      icons: {
-        primary: 'ui-icon-circle-arrow-n'
-      }
-    });  
-  });

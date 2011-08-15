@@ -33,7 +33,7 @@
       float: left;
       padding: 5px 5px 5px 10px;
       margin-right: 10px;
-      width: 180px; }
+      width: 185px; }
       .left_column .other_info .info_block .edit_button {
         float: left;
         width: 30px;
@@ -45,6 +45,7 @@
           margin-top: 2px;
           background-color: #e76875; }
       .left_column .other_info .info_block span.info {
+        width: 180px;
         float: left;
         display: block;
         font-size: 13px;
