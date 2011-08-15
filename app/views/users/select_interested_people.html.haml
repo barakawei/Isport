@@ -6,6 +6,14 @@
 .span-24.select_interests
   %h2='关注你感兴趣的人'
   -current_user.person.interests.each do |item|
-    = render 'common/header_box', :title => item.name + '达人'
-    =render 'people/show_contacts',:people => Person.all, :groups => nil, :items => nil 
+    - stars = Person.hot_stars(item, 8).all - [current_user.person]
+    = item.name
+    - if stars.size > 0
+      = render 'common/header_box', :title => item.name + '达人'
+      =render 'people/show_contacts',:people => stars, :groups => nil, :items => nil
+  .bg_bottom
+    .results
+      %br
+    .submit_button
+      =link_to 'next', home_path, :class => 'submit'
         
