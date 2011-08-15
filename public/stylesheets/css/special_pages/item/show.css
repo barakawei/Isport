@@ -37,6 +37,12 @@
     width: 220px;
     display: block;
     float: left; }
+    .itemleft .item_star .star_title {
+      margin-top: 3px;
+      width: 220px;
+      height: 32px;
+      font-size: 16px;
+      color: #fc4469; }
     .itemleft .item_star .star_one {
       float: left;
       width: 50px;

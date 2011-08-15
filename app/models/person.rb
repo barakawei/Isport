@@ -65,4 +65,12 @@ class Person < ActiveRecord::Base
       Favorite.create(:item_id => item_id, :person_id => self.id)
     end
   end
+
+  def self.hot_stars(item, limited)
+    self.joins(:involved_events).joins(:interests)
+          .where(:events => {:subject_id => item.id}, :items => {:id => item.id}, 
+                 :involvements => {:is_pending => false})
+          .group("involvements.person_id").order("count(event_id) DESC").limit(limited).includes(:profile)
+
+  end
 end
