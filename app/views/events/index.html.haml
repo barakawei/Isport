@@ -67,7 +67,7 @@
           .item_avatar
             = item_image_link(i, :size => :thumb_large)
           = link_to '更多', event_filter_path(:city => @city.pinyin, :item_id => i.id), :class => 'right more'
-          - i.events.at_city(@city.id).limit(4).each do |e|
+          - Event.hot_event_by_item(current_user.person.location.city, i).each do |e|
             .item_event
               = event_image_link(e, :thumb_medium)
               .event_info
