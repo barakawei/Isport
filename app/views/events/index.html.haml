@@ -58,7 +58,7 @@
         = link_to '一个月内', event_filter_path(@city.pinyin, @district_id, @item_id, 'next_month')
         = link_to '时间选择', 'javascript:void(0)'
 
-- if @hot_items.all.size > 0
+- if @hot_items.size > 0
   .span-24.prepend-top
     = render 'common/header_box',  :title => '热门项目活动'
     .hot_events
@@ -67,7 +67,7 @@
           .item_avatar
             = item_image_link(i, :size => :thumb_large)
           = link_to '更多', event_filter_path(:city => @city.pinyin, :item_id => i.id), :class => 'right more'
-          - i.events.at_city(@city.id).limit(4).each do |e|
+          - Event.hot_event_by_item(current_user.person.location.city, i).each do |e|
             .item_event
               = event_image_link(e, :thumb_medium)
               .event_info

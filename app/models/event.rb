@@ -52,7 +52,7 @@ class Event < ActiveRecord::Base
   scope :on_going, lambda { where("start_at <= ? and end_at >= ?", Time.now, Time.now) }
   scope :over, lambda {where("end_at < ?", Time.now)}
 
-  scope :of_item, lambda {|item_id| where('subject_d = ?', item_id)}
+  scope :of_item, lambda {|item_id| where('subject_id = ?', item_id)}
   scope :in_items, lambda {|item_ids| where(:subject_id => item_ids)}
 
   scope :week, lambda { where("start_at > ? and start_at < ?", Time.now.beginning_of_week, Time.now.end_of_week) }
@@ -91,6 +91,7 @@ class Event < ActiveRecord::Base
     if events.size > 6 
       events = events[0..5] 
     end
+    events
   end
 
 
