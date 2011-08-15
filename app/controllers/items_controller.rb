@@ -88,7 +88,7 @@ class ItemsController < ApplicationController
       end
     end
 
-    @actors = Person.hot_stars(@item, ACTLIMIT)
+    @actors = @item.hot_stars(ACTLIMIT)
     @groups = Group.joins(:members).where(:item_id => @item.id, :city_id => @city.id)
           .group(:group_id).order("count(group_id) DESC").limit(EVELIMIT)
 
