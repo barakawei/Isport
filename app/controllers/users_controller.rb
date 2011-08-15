@@ -30,4 +30,7 @@ class UsersController < ApplicationController
       item.selected = true if @my_items.include?(item)
     end
   end
+
+  def select_interested_people    
+  end
 end
