@@ -1,15 +1,16 @@
-.stream_element{:data=>{:guid=>message.id}}
+.response_box{:data=>{:guid=>message.id}}
   = person_image_link(message.person, :thumb_small)
-
-  .element_body
-    .content
-      .from
-        = person_link(message.person, :class => 'author')
-        %time.timeago{:datetime => message.created_at}
+  .res_text
+    .res_text_inner
+      .res_text_frame
+        %span.res_time
           =how_long_ago( message )
-
-      %p
-        = message.text
+        %strong.res_uthor
+          = person_link(message.person, :class => 'author')
+        .res_content
+          %span
+            = simple_format(message.text)
+.clear
 :javascript
   jQuery("abbr.timeago").timeago();
 

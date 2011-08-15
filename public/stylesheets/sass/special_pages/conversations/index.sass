@@ -1,24 +1,45 @@
 @import '../../general/ui/mixins'
 $blue: #5787B3
 
+.new_message_pane
+  .as-selections
+    @include border-radius( 5px )
+    background-color: white
+    border: 1px solid #BBB
+    color: #576B72
+    width: 400px
+    #contact_ids
+      border: none !important
+  .subject
+    input
+      :width 391px
+      :height 20px
+  .content
+    textarea
+      :width 391px
+  .submit
+    :margin-left 400px
+    :height 30px
+
+
 #conversation_show
   :width 610px
   :float right 
-  .stream
-    .avatar
-      :padding-right 10px
 
 #left_pane
+  :border 3px solid #d5ddde
   :float left
-  background-color: #DDDDDD
-  border-right: 1px solid #999999
   width: 320px
+
     
 #left_pane_header
-  margin:
-    top: 5px
-    left: 5px
-    right: 5px
+  :background-color #e9eef1
+  padding: 10px
+  h3
+    line-height: 25px
+    font-weight: bold
+    :height 25px
+    :margin 0
 
 #conversation_inbox
   background-color: #F3F3F3
@@ -35,55 +56,56 @@ $blue: #5787B3
   text-align: center
 
 .conversation:hover:not(.selected)
-  background-color: #FAFAFA
+  background-color: white
   cursor: pointer
 
 
 .conversation.selected
-  background-color: #3F8FBA
-  border-bottom: 1px solid #327294
-  border-top: 1px solid #327294
+  background-color: white
   .last_author
-    color: white
   .subject
-    color: white
   .timeago
-    color: #EEEEEE
 
 .conversation
+  background-color: #f8f8f8
   border-bottom: 1px solid #DDDDDD
   border-top: 1px solid white
   padding:
     top:  10px
     bottom: 10px
   .timeago
+    :margin-right 5px
     color: #3F8FBA
     border: medium none
     font-weight: normal
-    margin-left: 70px
-    text-align: right
   .avatar
-    display: inline
     float: left
     height: 35px
+    width: 35px
     margin:
       right: 10px
       left: 10px
-    width: 35px
+  .content
+    :float left
+  .info
+    :float right
   .last_author
-    color: #777777
+    color: #546266
     font-size: 12px
     
   .subject
-    color: #444444
+    color: #546266
     font-size: 13px
     font-weight: bold
-    overflow: hidden
     white-space: nowrap
-    .message_count
+  .message_count
+    :position relative
+    :margin-right 10px
+    :height 25px
+    span
+      :position absolute
+      :right 0px
       background-color: #999999
-      position: absolute
-      margin-left: 220px
       color: #EEEEEE
       font-size: 12px
       font-weight: normal
@@ -96,18 +118,23 @@ $blue: #5787B3
 
 .conversation_participants
   background-color: #FCFCFC
-  border-bottom: 1px solid #666666
-  @include box-shadow(0,3px,3px,-3px,#333)
+  border: 3px solid #D5DDDE
   margin-top: 0px
   padding: 20px 20px 10px
+  :width 554px
   .avatar
     width: 30px
     height: 30px
   z-index: 3
-.stream_element.new_message
-  border-bottom: none
-  textarea
-    height: 100px
-    width: 520px
+#conversation_show
+  .new_comment
+    textarea
+      height: 100px
+      width: 525px
+    .post_button
+      :margin-right 25px
+  .response_box
+    :margin-left 0px !important
+    :padding 0px !important
     
     

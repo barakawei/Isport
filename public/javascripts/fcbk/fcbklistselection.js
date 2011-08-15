@@ -108,8 +108,8 @@ jQuery.fcbkListSelection = function(elem, width, height, row){
         var html = 
         '<div id="filters" style="width:' + (parseInt(width, 10) + 2) + 'px;">' +
         '<ul class="selections" id="selections"><li id="view_all" class="view_on">' +
-        '<a onclick="return false;" href="#">All</a></li><li id="view_selected" class="">' +
-        '<a onclick="return false;" href="#">Selected (<strong id="view_selected_count">0</strong>)</a></li>' +
+        '<a onclick="return false;" href="#">全部</a></li><li id="view_selected" class="">' +
+        '<a onclick="return false;" href="#">已选 (<strong id="view_selected_count">0</strong>)</a></li>' +
         '</ul>' +
         '</div>';
         elem.before(html);

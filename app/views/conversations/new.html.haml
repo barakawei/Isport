@@ -24,18 +24,23 @@
     = form_for Conversation.new do |c|
       .span-2
         %h4
-          = t('.to')
+          = "收信人"
       .span-10.last
         = text_field_tag "contact_autocomplete"
       .clearfix
       .span-2
         %h4
-          = t('.subject')
-      .span-10.last
+          = "主题"
+      .span-10.subject
         = c.text_field :subject
 
       .clearfix
-      .span-12.last
+      .span-2
+        %h4
+          = "内容"
+
+      .span-11.content
         = text_area_tag "conversation[text]", '', :rows => 5
       .clearfix
-      = c.submit t('send'), :class => 'button'
+      .submit
+        = c.submit '发送信息', :class => 'glass_button'

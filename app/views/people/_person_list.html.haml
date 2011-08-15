@@ -13,7 +13,8 @@
           .name
             = '你关注的人'
           .link
-            = link_to '>>',{:controller => 'people',:action => 'show_friends',:type=>'followed',:person_id =>@person.id}
+            = link_to({:controller => 'people',:action => 'show_friends',:type=>'followed',:person_id =>@person.id}) do
+              .right_arrow
           .clear
         .contacts
           - for person in @followed_people[ 0...20]
@@ -24,7 +25,8 @@
       .name
         = '加入的小组'
       .link
-        = link_to '>>',{:controller => 'people',:action => 'show_groups',:person_id =>@person.id}
+        - link_to({:controller => 'people',:action => 'show_groups',:person_id =>@person.id}) do
+          .right_arrow 
       .clear
 
     %ul
@@ -40,7 +42,8 @@
       .name
         = '喜欢的项目'
       .link
-        = link_to '>>',{:controller => 'people',:action => 'show_items',:person_id =>@person.id}
+        = link_to({:controller => 'people',:action => 'show_items',:person_id =>@person.id}) do
+          .right_arrow
       .clear
 
     %ul
@@ -48,7 +51,7 @@
         %li
           .group
             .avatar
-              = item_image_link(item)
+              = item_image_link(item,{ :size =>:thumb_small })
             .name
               = object_name_link(item)
     

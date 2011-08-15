@@ -11,6 +11,17 @@ $event_color: #4BC5BE
 $error_color: #a10000
 $link_red: #FC4469
 
+input[ type=text ],textarea
+  @include border-radius( 5px )
+  &:focus
+    outline: 5px auto -webkit-focus-ring-color
+    border: 1px solid #7ecef4 !important
+
+.right_arrow
+  :cursor pointer
+  :height 20px
+  :width 30px
+  :background url( /images/ui/link_arrow.gif ) no-repeat -31px 0
 .dim
   @include opacity(0.3) 
 body
@@ -429,6 +440,7 @@ a.button
 
 .glass_button
   background:  url(/images/ui/glass-light.png) repeat-x 0 50%
+  background-color: #8dbc6e
   @include border-radius(6px)
   color: white
   font-size: 13px
@@ -437,6 +449,14 @@ a.button
   text-shadow: 0 -1px rgba(41, 41, 41, 0.5)
   text-align: center
   cursor: pointer
+  &:hover
+    :background-color #e76b75
+    :margin-top 2px
+  a
+    :color white
+input
+  :margin 0
+  :border none
   
 .scroll
   :text-align center
@@ -457,7 +477,6 @@ a.button
     :width 345px
     :height 23px
 .content_panel
-  :background-color #E9EEF1
   :position relative
   :z-index 4
   :margin-top -20px
@@ -466,10 +485,8 @@ a.button
   :position relative
   :overflow hidden
   :height 25px
-  :background-color #00a2b7
   :line-height 25px
-  &:hover
-    :background-color #e76875
+  :width 100px
   input
     :cursor pointer
     
@@ -493,8 +510,8 @@ a.button
 
         strong
           :display block
-          :margin-top 10px
-          :font-size 13px
+          :line-height 41px
+          :font-size 15px
 
         a
           color: #f74267

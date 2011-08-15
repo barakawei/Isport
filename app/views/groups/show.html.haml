@@ -1,12 +1,13 @@
 -content_for :head do
   = include_stylesheets :sepcial_pages_groups_show, :media => 'all'
+  =include_stylesheets :common_vertical_nav
 
 .span-24
   .span-6.left_column
     .avatar=group_image_tag(@group, :thumb_large)
     
-    .span-6.nav.append-bottom.prepend-top
-      %ul
+    .span-6.append-bottom.prepend-top
+      %ul.nav
         %li=link_to '小组活动', group_events_path(@group)
         %li=link_to '小组讨论区', forum_group_path(@group) 
         %li.last_li=link_to '小组成员', members_group_path(@group) 

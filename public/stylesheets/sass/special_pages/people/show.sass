@@ -4,7 +4,7 @@
 
 .history_bar
   :display block
-  :margin-top 45px
+  :margin-top 55px
   :height 90px
   .app_big_title_bar
     :margin-right 20px
@@ -154,7 +154,6 @@
     :margin-bottom 0px
     :display inline
   .action
-    :margin-top 10px
     :float right
 .menu_bar.edit
   :padding-bottom 5px
@@ -201,7 +200,7 @@
       :margin-top 5px
   .groups
     .title
-      background-color: #F5F9FA 
+      background-color: white
       :padding 10px
       .name
         :float left
@@ -213,7 +212,7 @@
     :left 0
   .group
     :padding 10px
-    background-color: #F5F9FA 
+    background-color: white
     :margin-bottom 2px
     .avatar
       :float left
@@ -276,16 +275,6 @@ dt
   width: 70px
 dd
   display: inline-block
-
-.person_settings
-  display: block
-  height: 45px
-  width: 91px
-  background: url(/images/ui/person_settings.gif) no-repeat
-  font-weight: bold 
-  font-size: 19px
-  color: white
-  padding: 8px 0 0px 14px
   
 .person_profile
   :background-color white
@@ -312,7 +301,7 @@ dd
     :font-weight bold
     :display inline-block
     :font-size 15px
-    :color #424f55
+    :color #7F8D8E
   #gender
     input
       :width 20px
@@ -338,17 +327,23 @@ dd
     :font-size 15px
 
 .person_profile_button
-  :margin-top 20px
   :margin-left 20px
   input
-    :font-size 13px
-    :background-color #00a2b7
-    :width 90px
-    :height 31px
-    :border none
+    background: url("/images/ui/person_edit.png") no-repeat scroll 0 0 transparent
+    border: medium none
+    cursor: pointer
+    display: inline
+    float: right
+    font-size: 16px
+    color: #ffffff
+    height: 46px
+    margin: 13px 4px 0 0
+    overflow: hidden
+    width: 198px
     &:hover
-      :margin-top 2px
-      :background-color #e76875
+      background: url("/images/ui/person_edit.png") no-repeat scroll 100% -46px transparent
+      margin: 15px 4px 0 0
+
 .event_status_over
   :background-color #F5F9FA
 .event_status_open
@@ -397,12 +392,10 @@ dd
       height: 74px
       float: right
       border-left: 1px solid #E9EFF0
-      .sucess
+      .sucess,.not_started,.ongoing
         width: 29px
         height: 25px
         margin: 25px 0 5px 23px
-      .not_started
-      .ongoning
 .divider
   background: url(/images/ui/line_divider.png) repeat-x
   width: 180px
@@ -412,7 +405,7 @@ dd
 #person_profile_box   
   :font-size 14px
   margin-bottom: 20px
-  background: #F5F9FA
+  background: white
   padding: 10px
   position: relative
   margin-top: 20px
@@ -429,11 +422,7 @@ dd
       :line-height 15px
       :width 30px
       :height 15px
-      :background-color #00a2b7
       :font-size 11px
-      :margin-top 2px
-      &:hover
-        :background-color #e76875
   span
     color: #7F8D8E
     font-weight: bold

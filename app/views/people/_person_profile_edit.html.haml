@@ -1,7 +1,7 @@
 = form_for @profile do |f|
   = hidden_field_tag "profile_edit","1"
   .person_settings
-    = "个人资料"
+    = render 'common/header_box', :title => '编辑个人资料', :background_color => '#8DBC6E' 
   .stream
     .person_profile.edit 
       .name.info_text
@@ -38,7 +38,7 @@
 
 
   .person_profile_button
-    =submit_tag '完成',:class => "glass_button"
+    =submit_tag '保存个人信息',:class => "button"
 
 
 

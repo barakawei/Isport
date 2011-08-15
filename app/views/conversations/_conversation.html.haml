@@ -1,16 +1,19 @@
 %a{ :href=>conversations_path(:conversation_id => conversation.id) }
   .conversation{:remote_href => conversation_path(conversation),:id => conversation.id, :class => ('unread' if unread_counts[conversation.id].to_i > 0)}
     = person_image_tag(conversation.person)
-
-    .subject
-      .message_count
-        = conversation.messages.size
-      %div
+    
+    .content
+      .subject
         = conversation.subject[0..30]
-    .last_author
-      = authors[conversation.id].name
+      .last_author
+        = authors[conversation.id].name
+    .info
+      .message_count
+        %span
+          = conversation.messages.size
       %time.timeago
         =how_long_ago( conversation )
+    .clear
 
       - if conversation.participants.size > 2
         %span.participant_count

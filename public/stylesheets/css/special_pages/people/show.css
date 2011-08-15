@@ -3,7 +3,7 @@
 
 .history_bar {
   display: block;
-  margin-top: 45px;
+  margin-top: 55px;
   height: 90px; }
   .history_bar .app_big_title_bar {
     margin-right: 20px; }
@@ -145,7 +145,6 @@
     margin-bottom: 0px;
     display: inline; }
   #person_panel .action {
-    margin-top: 10px;
     float: right; }
 
 .menu_bar.edit {
@@ -193,7 +192,7 @@
   margin-top: 20px;
   left: 0; }
   .person_left_bar .groups .title {
-    background-color: #f5f9fa;
+    background-color: white;
     padding: 10px; }
     .person_left_bar .groups .title .name {
       float: left;
@@ -203,7 +202,7 @@
       float: right; }
 .person_left_bar .group {
   padding: 10px;
-  background-color: #f5f9fa;
+  background-color: white;
   margin-bottom: 2px; }
   .person_left_bar .group .avatar {
     float: left; }
@@ -268,16 +267,6 @@ dt {
 dd {
   display: inline-block; }
 
-.person_settings {
-  display: block;
-  height: 45px;
-  width: 91px;
-  background: url(/images/ui/person_settings.gif) no-repeat;
-  font-weight: bold;
-  font-size: 19px;
-  color: white;
-  padding: 8px 0 0px 14px; }
-
 .person_profile {
   background-color: white;
   padding-bottom: 20px;
@@ -305,7 +294,7 @@ dd {
     font-weight: bold;
     display: inline-block;
     font-size: 15px;
-    color: #424f55; }
+    color: #7f8d8e; }
   .person_profile #gender input {
     width: 20px; }
   .person_profile #gender span {
@@ -336,17 +325,22 @@ dd {
       behavior: url(/javascripts/PIE.htc); }
 
 .person_profile_button {
-  margin-top: 20px;
   margin-left: 20px; }
   .person_profile_button input {
-    font-size: 13px;
-    background-color: #00a2b7;
-    width: 90px;
-    height: 31px;
-    border: none; }
+    background: url("/images/ui/person_edit.png") no-repeat scroll 0 0 transparent;
+    border: medium none;
+    cursor: pointer;
+    display: inline;
+    float: right;
+    font-size: 16px;
+    color: white;
+    height: 46px;
+    margin: 13px 4px 0 0;
+    overflow: hidden;
+    width: 198px; }
     .person_profile_button input:hover {
-      margin-top: 2px;
-      background-color: #e76875; }
+      background: url("/images/ui/person_edit.png") no-repeat scroll 100% -46px transparent;
+      margin: 15px 4px 0 0; }
 
 .event_status_over {
   background-color: #f5f9fa; }
@@ -397,7 +391,7 @@ dd {
     height: 74px;
     float: right;
     border-left: 1px solid #e9eff0; }
-    .person_event_box_panel .person_event_box .status .sucess {
+    .person_event_box_panel .person_event_box .status .sucess, .person_event_box_panel .person_event_box .status .not_started, .person_event_box_panel .person_event_box .status .ongoing {
       width: 29px;
       height: 25px;
       margin: 25px 0 5px 23px; }
@@ -411,7 +405,7 @@ dd {
 #person_profile_box {
   font-size: 14px;
   margin-bottom: 20px;
-  background: #f5f9fa;
+  background: white;
   padding: 10px;
   position: relative;
   margin-top: 20px; }
@@ -427,11 +421,7 @@ dd {
     line-height: 15px;
     width: 30px;
     height: 15px;
-    background-color: #00a2b7;
-    font-size: 11px;
-    margin-top: 2px; }
-    #person_profile_box .title .edit_profile:hover {
-      background-color: #e76875; }
+    font-size: 11px; }
   #person_profile_box span {
     color: #7f8d8e;
     font-weight: bold;
