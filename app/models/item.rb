@@ -107,7 +107,21 @@ class Item < ActiveRecord::Base
   end
 
   def active_fans(city, limited)
-    
+    time_scope = (Time.now.beginning_of_week)..(Time.now.end_of_week)
+    people = Person.joins(:involved_events).joins(:interests).joins(:profile =>[:location])
+          .where(:events => {:subject_id => self.id, :start_at => time_scope},
+                 :items => {:id => self.id}, :involvements => {:is_pending => false}, :locations =>{:city_id => city.id})
+          .group("involvements.person_id").order("count(event_id) DESC").limit(limited).includes(:profile)
+
+    if people.length < limited
+      time_scope = (Time.now.beginning_of_month)..(Time.now.end_of_month)
+      people = Person.joins(:involved_events).joins(:interests).joins(:profile =>[:location])
+                     .where(:events => {:subject_id => self.id, :start_at => time_scope},
+                            :items => {:id => self.id}, :involvements => {:is_pending => false}, :locations =>{:city_id => city.id})
+                     .group("involvements.person_id").order("count(event_id) DESC").limit(limited).includes(:profile)
+    end
+
+    return people
   end
 
   def hot_stars(limited)
