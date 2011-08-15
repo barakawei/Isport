@@ -136,6 +136,20 @@ class Event < ActiveRecord::Base
     Dispatch.new(user, self,action).notify_user
   end
 
+  def self.total_event_count
+    total_count = Event.count
+    count_array = []
+       
+    while(total_count > 0) 
+      count_array << total_count % 10 
+      total_count /= 10
+    end 
+    (4-count_array.size).downto(1) do 
+      count_array << 0
+    end
+    count_array.reverse!
+  end
+
   def subscribers(user,action=false)
     action = action.to_sym
     if action == :delete
