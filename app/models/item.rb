@@ -28,20 +28,10 @@ class Item < ActiveRecord::Base
     (result != nil && result.length > 0) ? result : default_url(size)
   end
 
-  private
-
-  def default_url(size)
-     case size
-        when :thumb_medium then "/images/event/event_medium.jpg"
-        when :thumb_large   then "/images/event/event_large.jpg"
-        when :thumb_small   then "/images/event/event_small.jpg"
-     end
-  end
-
-  def self.hot_items(size, user)
+  def self.hot_items(size, city)
     items = [  ]
 
-    if user == nil
+    if city == nil
       items = self.joins(:events).where(:events => {:start_at => (Time.now.beginning_of_week)..(Time.now.end_of_week)})
         .group(:subject_id).order("count(subject_id) DESC").limit(size)
 
@@ -50,7 +40,6 @@ class Item < ActiveRecord::Base
           .group(:subject_id).order("count(subject_id) DESC").limit(size)
       end
     else
-      city = City.find_by_pinyin(user.city.pinyin)
       items = self.joins(:events).joins(:events => [:location])
         .where(:events => {:start_at => (Time.now.beginning_of_week)..(Time.now.end_of_week),
                            :locations => {:city_id => city.id}})
@@ -117,4 +106,26 @@ class Item < ActiveRecord::Base
     Favorite.delete_all(:item_id => item_id, :person_id => user.person.id)
   end
 
+  def active_fans(city, limited)
+    
+  end
+
+  def hot_stars(limited)
+    Person.joins(:involved_events).joins(:interests)
+          .where(:events => {:subject_id => self.id}, :items => {:id => self.id}, 
+                 :involvements => {:is_pending => false})
+          .group("involvements.person_id").order("count(event_id) DESC").limit(limited).includes(:profile)
+  end
+
+  private
+
+  def default_url(size)
+     case size
+        when :thumb_medium then "/images/event/event_medium.jpg"
+        when :thumb_large   then "/images/event/event_large.jpg"
+        when :thumb_small   then "/images/event/event_small.jpg"
+     end
+  end
+
 end
+

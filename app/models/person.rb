@@ -66,11 +66,5 @@ class Person < ActiveRecord::Base
     end
   end
 
-  def self.hot_stars(item, limited)
-    self.joins(:involved_events).joins(:interests)
-          .where(:events => {:subject_id => item.id}, :items => {:id => item.id}, 
-                 :involvements => {:is_pending => false})
-          .group("involvements.person_id").order("count(event_id) DESC").limit(limited).includes(:profile)
-
-  end
 end
+
