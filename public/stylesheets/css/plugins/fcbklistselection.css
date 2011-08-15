@@ -33,18 +33,34 @@ body
 }
 
 #filters .selections li.view_on {
-	background:#FFFFFF url(/images/fcbk/multi_selector_bg.gif) repeat-x scroll center top;	
+  background-color: #697D84;
+  color: white;
+}
+#filters .selections li.view_on a {
+  color: white;
 }
 #filters .selections li {
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    behavior: url(/javascripts/PIE.htc);
 	float:left;
-	padding:4px 7px;
-    width:100px;
+	padding:4px 5px;
+    width:80px;
+    margin-right: 10px;
 	text-align:center;
+    cursor: pointer;
 }
 #filters .selections li a{
-	color:#3B5998;
+    font-weight: bold;
+	color: #999;
 	text-decoration:none;
 }
+#filters .selections li:hover:not(.view_on){
+  background-color: #E1E1E1;
+  color: #697D84;
+}
+
 #fcbklist li {
 	background-color:#F7F7F7;
 	border:1px solid #D8DFEA;

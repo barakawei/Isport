@@ -267,16 +267,6 @@ dt {
 dd {
   display: inline-block; }
 
-.person_settings {
-  display: block;
-  height: 45px;
-  width: 91px;
-  background: url(/images/ui/person_settings.gif) no-repeat;
-  font-weight: bold;
-  font-size: 19px;
-  color: white;
-  padding: 8px 0 0px 14px; }
-
 .person_profile {
   background-color: white;
   padding-bottom: 20px;
@@ -335,17 +325,22 @@ dd {
       behavior: url(/javascripts/PIE.htc); }
 
 .person_profile_button {
-  margin-top: 20px;
   margin-left: 20px; }
   .person_profile_button input {
-    font-size: 13px;
-    background-color: #00a2b7;
-    width: 90px;
-    height: 31px;
-    border: none; }
+    background: url("/images/ui/person_edit.png") no-repeat scroll 0 0 transparent;
+    border: medium none;
+    cursor: pointer;
+    display: inline;
+    float: right;
+    font-size: 16px;
+    color: white;
+    height: 46px;
+    margin: 13px 4px 0 0;
+    overflow: hidden;
+    width: 198px; }
     .person_profile_button input:hover {
-      margin-top: 2px;
-      background-color: #e76875; }
+      background: url("/images/ui/person_edit.png") no-repeat scroll 100% -46px transparent;
+      margin: 15px 4px 0 0; }
 
 .event_status_over {
   background-color: #f5f9fa; }

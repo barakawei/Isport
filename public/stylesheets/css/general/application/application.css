@@ -495,8 +495,8 @@ input {
       height: 41px; }
       .app_title_bar .app_header_box .box_all .box_middle strong {
         display: block;
-        margin-top: 10px;
-        font-size: 13px; }
+        line-height: 41px;
+        font-size: 15px; }
       .app_title_bar .app_header_box .box_all .box_middle a {
         color: #f74267;
         font-size: 15px; }

@@ -4,11 +4,7 @@
   .left_column .avatar img {
     width: 200px;
     height: 200px;
-    background-color: white;
-    -moz-border-radius: 10px;
-    -webkit-border-radius: 10px;
-    border-radius: 10px;
-    behavior: url(/javascripts/PIE.htc); }
+    background-color: white; }
 
 .right_column .items_panel {
   width: 600px;
