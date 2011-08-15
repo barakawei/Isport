@@ -40,13 +40,13 @@ class Item < ActiveRecord::Base
           .group(:subject_id).order("count(subject_id) DESC").limit(size)
       end
     else
-      items = self.joins(:events).joins(:events => [:location])
+      items = self.joins(:events, :events => :location)
         .where(:events => {:start_at => (Time.now.beginning_of_week)..(Time.now.end_of_week),
                            :locations => {:city_id => city.id}})
         .group(:subject_id).order("count(subject_id) DESC").limit(size)
 
       if items.length < size
-        items = self.joins(:events).joins(:events => [:location])
+        items = self.joins(:events, :events => :location)
          .where(:events => {:start_at => (Time.now.beginning_of_month)..(Time.now.end_of_month), 
                             :locations => {:city_id => city.id}})
          .group(:subject_id).order("count(subject_id) DESC").limit(size)
@@ -108,24 +108,34 @@ class Item < ActiveRecord::Base
 
   def active_fans(city, limited)
     time_scope = (Time.now.beginning_of_week)..(Time.now.end_of_week)
-    people = Person.joins(:involved_events).joins(:interests).joins(:profile =>[:location])
+    people = Person.joins(:involved_events, :interests, :profile => :location)
           .where(:events => {:subject_id => self.id, :start_at => time_scope},
                  :items => {:id => self.id}, :involvements => {:is_pending => false}, :locations =>{:city_id => city.id})
           .group("involvements.person_id").order("count(event_id) DESC").limit(limited).includes(:profile)
 
     if people.length < limited
       time_scope = (Time.now.beginning_of_month)..(Time.now.end_of_month)
-      people = Person.joins(:involved_events).joins(:interests).joins(:profile =>[:location])
+      people = Person.joins(:involved_events, :interests, :profile => :location)
                      .where(:events => {:subject_id => self.id, :start_at => time_scope},
-                            :items => {:id => self.id}, :involvements => {:is_pending => false}, :locations =>{:city_id => city.id})
+                            :items => {:id => self.id}, :involvements => {:is_pending => false}, :locations => {:city_id => city.id})
                      .group("involvements.person_id").order("count(event_id) DESC").limit(limited).includes(:profile)
     end
 
+    if people.length < limited
+      peopleplus = self.fans.joins(:profile => :location)
+                  .find(:all, :limit => (limited - people.length),
+                        :conditions => ['people.id not in (?) AND locations.city_id = ?', people.map(&:id), city.id],
+                        :order => 'rand()')
+                       
+      if peopleplus
+        people += peopleplus 
+      end
+    end
     return people
   end
 
   def hot_stars(limited)
-    Person.joins(:involved_events).joins(:interests)
+    Person.joins(:involved_events, :interests)
           .where(:events => {:subject_id => self.id}, :items => {:id => self.id}, 
                  :involvements => {:is_pending => false})
           .group("involvements.person_id").order("count(event_id) DESC").limit(limited).includes(:profile)
