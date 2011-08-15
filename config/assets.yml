@@ -50,8 +50,6 @@ stylesheets:
     - public/stylesheets/css/general/common/people_select.css
     
     
-    
-    
   default:
     - public/stylesheets/css/general/application/application.css
     - public/stylesheets/css/plugins/fileuploader.css

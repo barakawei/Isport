@@ -1,0 +1,11 @@
+= content_for :head do
+  = include_stylesheets :sepcial_pages_users_selectinterests, :media => 'all'
+  :css
+    .header{ display:none; } 
+
+.span-24.select_interests
+  %h2='关注你感兴趣的人'
+  -current_user.person.interests.each do |item|
+    = render 'common/header_box', :title => item.name + '达人'
+    =render 'people/show_contacts',:people => Person.all, :groups => nil, :items => nil 
+        

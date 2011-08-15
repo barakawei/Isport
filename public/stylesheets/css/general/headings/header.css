@@ -20,8 +20,8 @@
 .gray_tab {
   height: 11px;
   line-height: 10px;
-  border: 1px solid #e9eef1;
-  background-color: #e9eef1;
+  border: 1px solid #e3e3e3;
+  background: url("/images/ui/bg.jpg") repeat scroll center top #e7e7e7;
   color: #fc4469;
   font-weight: bold;
   font-size: 15px; }
