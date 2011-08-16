@@ -136,6 +136,8 @@ stylesheets:
 
   special_pages_registration_new:
     - public/stylesheets/css/special_pages/registration/new.css
+  special_pages_registration_reset_password:
+    - public/stylesheets/css/special_pages/registration/reset_password.css
 
   sepcial_pages_users_selectinterests:
     - public/stylesheets/css/special_pages/users/select_interests.css
