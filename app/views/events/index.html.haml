@@ -14,18 +14,20 @@
   .span-7.last
     = render 'common/big_link_button', :content => '发起活动', :path => new_event_path 
 
--if @hot_events.size > 0
-  %hr.space
-  = render 'common/header_box',  :title => '你可能感兴趣的活动', :dark => true 
-  .hot_gallery
-    .gallery_content
-      =link_to 'pre', 'javascript:void(0)', :class => 'gallery_link_pre hide', :id => 'preBtn'
-      .gallery_inner
-        %ul
-          - @hot_events.each do |event|
-            %li
-              = render 'hot_events', :event => event 
-      =link_to 'next', 'javascript:void(0)', :class => "gallery_link_next #{"hide" unless @hot_events.size > 2 }" , :id => 'nextBtn'
+%hr.space
+= render 'common/header_box',  :title => '你可能感兴趣的活动', :dark => true 
+.hot_gallery
+  .gallery_content
+    =link_to 'pre', 'javascript:void(0)', :class => 'gallery_link_pre hide', :id => 'preBtn'
+    .gallery_inner
+      %ul
+        - @hot_events.each_with_index do |event, index|
+          %li
+            = render 'hot_events', :event => event 
+        - if @hot_events.length == 0 
+          %li
+            =render 'no_hot_events_interested'
+    =link_to 'next', 'javascript:void(0)', :class => "gallery_link_next #{"hide" unless @hot_events.size > 2 }" , :id => 'nextBtn'
 
 .span-24.prepend-top
   = render 'common/header_box',  :title => '寻找感兴趣的活动'
@@ -56,22 +58,23 @@
         = link_to '一个月内', event_filter_path(@city.pinyin, @district_id, @item_id, 'next_month')
         = link_to '时间选择', 'javascript:void(0)'
 
-.span-24.prepend-top
-  = render 'common/header_box',  :title => '热门项目活动'
-  .hot_events
-    -@hot_items.each_with_index do |i, index|
-      .hot_items_events{:class => ('last_item' if index == @hot_items.length - 1)}
-        .item_avatar
-          = item_image_link(i, :size => :thumb_large)
-        = link_to '更多', event_filter_path(:city => @city.pinyin, :item_id => i.id), :class => 'right more'
-        - i.events.at_city(@city.id).limit(4).each do |e|
-          .item_event
-            = event_image_link(e, :thumb_medium)
-            .event_info
-              %h4= link_to trim_info(e.title, 15), event_path(e)
-              %p= l(e.start_at, :format => :long)
-              .at_bottom
-                %p= t('events.short_involvement', :count => e.participants.size)
+- if @hot_items.size > 0
+  .span-24.prepend-top
+    = render 'common/header_box',  :title => '热门项目活动'
+    .hot_events
+      -@hot_items.each_with_index do |i, index|
+        .hot_items_events{:class => ('last_item' if index == @hot_items.length - 1)}
+          .item_avatar
+            = item_image_link(i, :size => :thumb_large)
+          = link_to '更多', event_filter_path(:city => @city.pinyin, :item_id => i.id), :class => 'right more'
+          - Event.hot_event_by_item(current_user.person.location.city, i).each do |e|
+            .item_event
+              = event_image_link(e, :thumb_medium)
+              .event_info
+                %h4= link_to trim_info(e.title, 15), event_path(e)
+                %p= l(e.start_at, :format => :long)
+                .at_bottom
+                  %p= t('events.short_involvement', :count => e.participants.size)
 
 
 :javascript

@@ -15,9 +15,12 @@
     = yield :head
      
   %body{:class => "#{yield(:body_class)}"}
-    .header{:class => ( 'landing' unless current_user)}
+    .header{:class => ( current_user ? 'landing  ' : '' ) + ((defined?(@registe_wizard) && @registe_wizard || current_user.nil?) ? 'wizard' : '')}
       .container{ :style=>"position: relative" }
-        = render 'layouts/header' 
+        - if (defined? @registe_wizard) && @registe_wizard || current_user.nil?
+          = render 'layouts/wizard_header' 
+        - else
+          = render 'layouts/header' 
     .container.body
       .span-24.last
         =yield 

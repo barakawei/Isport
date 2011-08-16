@@ -65,4 +65,6 @@ class Person < ActiveRecord::Base
       Favorite.create(:item_id => item_id, :person_id => self.id)
     end
   end
+
 end
+

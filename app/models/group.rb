@@ -69,7 +69,7 @@ class Group < ActiveRecord::Base
   end
 
   def self.hot_group_by_item(city, item)
-     groups = Group.joins(:memberships).where('city_id = ? and  item_id = ? and memberships.pending = ?', city.id, item.id, false)
+     groups = Group.includes(:events).joins(:memberships).where('city_id = ? and  item_id = ? and memberships.pending = ?', city.id, item.id, false)
             .group(:group_id).order('count(group_id) desc').limit(5)
   end
 

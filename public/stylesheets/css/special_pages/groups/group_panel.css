@@ -31,11 +31,14 @@
     display: block;
     position: relative; }
     .group_box_panel .group_box .group_message .group_title {
-      width: 180px;
+      width: 175px;
+      height: 44px;
       color: #fc4469;
       font-size: 16px;
       font-weight: bold;
-      float: left; }
+      float: left;
+      margin-top: 1px;
+      overflow: hidden; }
     .group_box_panel .group_box .group_message .group_detail {
       width: 180px;
       float: left;
@@ -43,8 +46,8 @@
       right: 0px;
       bottom: 5px; }
       .group_box_panel .group_box .group_message .group_detail .detail_piece {
-        width: 55px;
-        height: 60px;
+        width: 53px;
+        height: 58px;
         margin-right: 5px;
         overflow: hidden;
         float: left;
@@ -52,23 +55,22 @@
         -webkit-border-radius: 6px;
         border-radius: 6px;
         behavior: url(/javascripts/PIE.htc);
-        background-color: #a8cdd7;
+        background-color: #e9eff0;
         position: relative; }
         .group_box_panel .group_box .group_message .group_detail .detail_piece .number {
           margin-top: 3px;
           width: 55px;
-          font-size: 17px;
-          margin-left: 5px;
+          font-size: 18px;
+          text-align: center;
           font-weight: bold;
           float: left;
-          color: yellow; }
+          color: #97b48a; }
         .group_box_panel .group_box .group_message .group_detail .detail_piece .name {
           width: 55px;
           font-size: 12px;
           font-weight: bold;
-          text-align: right;
+          text-align: center;
           float: left;
           position: absolute;
-          color: white;
-          right: 5px;
+          color: #97b48a;
           bottom: 5px; }

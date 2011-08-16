@@ -17,7 +17,7 @@
       %span.item.hide
       - @my_items.each do |item|
         %span.item{:item_id => item.id}=item.name
-    .submit_button
+    .submit_button.right
       %a.submit='next'
 
 :javascript
@@ -45,7 +45,7 @@
     }
     $.post("#{choose_interests_path}", {item_ids: data}, function(data, textStatus){
       if (textStatus == 'success') {  
-        $(location).attr('href', "#{home_path}");
+        $(location).attr('href', "#{select_interested_people_path}");
       }
     }); 
     

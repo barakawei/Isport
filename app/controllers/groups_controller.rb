@@ -7,7 +7,7 @@ class GroupsController < ApplicationController
     city_pinyin = params[:city] ? params[:city] : (current_user ? current_user.city.pinyin : City.first.pinyin)
     @city = City.find_by_pinyin(city_pinyin)
     @hot_groups = current_user ? Group.interested_groups(@city,current_user.person) : []
-    @hot_items = Item.limit(5)
+    @hot_items = Item.hot_items(5, current_user.person.location.city)
     @select_tab = 'group'
   end
 
