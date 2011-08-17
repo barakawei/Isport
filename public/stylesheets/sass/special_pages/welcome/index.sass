@@ -50,11 +50,12 @@ $darkgray: #A8AAAD
   
 
 .welcome_box
+  @include border-radius(10px)
   :padding 5px 0
   :float left
   :background none repeat scroll 0 0 #ffffff
-  :width 940px
-  :border 5px solid #d5ddde
+  :width 944px
+  :border 3px solid #bbbbbb
 
   .poster_box
     :background #FFFFFF
@@ -68,9 +69,9 @@ $darkgray: #A8AAAD
 .des_box
   :float left
   :margin-top 10px
-  :width 940px
+  :width 950px
+  @include border-radius(10px)
   :background none repeat scroll 0 0 #ffffff
-  :border 5px solid #d5ddde
 
   .welcomenav_box
     :width 280px
@@ -83,6 +84,7 @@ $darkgray: #A8AAAD
       :font-family "Microsoft YaHei"
       :font-weight bold
       :display block
+      :color black
       :margin-bottom 10px
 
     .item_block

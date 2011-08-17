@@ -40,6 +40,11 @@
   $("#email").add("#password").focus(function() {
     $(this).siblings(".in_field").hide();
   }); 
+  
+  $("#email").add("#password").change(function() {
+    $(this).siblings(".in_field").hide();
+  }); 
+  
 
   $("#email").add("#password").blur(function() {
     field = $(this).siblings(".in_field")

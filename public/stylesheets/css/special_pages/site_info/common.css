@@ -1,0 +1,57 @@
+.left_column {
+  width: 220px;
+  float: left; }
+
+ul.nav {
+  width: 200px; }
+  ul.nav li a {
+    background-color: white;
+    width: 160px;
+    display: block;
+    padding: 0px 10px;
+    margin-bottom: 3px;
+    font-size: 14px;
+    color: #00a2b7;
+    height: 45px;
+    line-height: 45px; }
+    ul.nav li a:hover {
+      background: url("/images/ui/arrow2.gif") no-repeat scroll 160px 50% white !important;
+      color: #f74367;
+      text-decoration: none; }
+  ul.nav li a.current {
+    background: url("/images/ui/arrow2.gif") no-repeat scroll 160px 50% white !important;
+    color: #f74367;
+    text-decoration: none; }
+  ul.nav li a.inactive {
+    color: #d5ddde; }
+    ul.nav li a.inactive:hover {
+      background: none no-repeat scroll 160px 50% white !important;
+      color: #d5ddde; }
+
+.content_area {
+  -moz-border-radius: 7px;
+  -webkit-border-radius: 7px;
+  border-radius: 7px;
+  behavior: url(/javascripts/PIE.htc);
+  background-color: white;
+  padding: 20px;
+  border: 1px solid #d5ddde; }
+  .content_area form .field {
+    width: 600px;
+    height: 200px;
+    border: 2px solid #d5ddde;
+    padding: 1px; }
+    .content_area form .field label.error {
+      font-size: 13px;
+      color: #c14140; }
+    .content_area form .field textarea {
+      width: 570px;
+      height: 170px;
+      padding: 15px;
+      border: none; }
+    .content_area form .field .submit_div {
+      float: left;
+      width: 600px;
+      height: 50px; }
+      .content_area form .field .submit_div .app_big_submit_button {
+        margin-top: 10px; }

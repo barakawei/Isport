@@ -144,4 +144,6 @@ stylesheets:
   sepcial_pages_people_edit_interests:
     - public/stylesheets/css/special_pages/people/edit_interests.css
 
+  sepcial_pages_site_info_common:
+    - public/stylesheets/css/special_pages/site_info/common.css
  

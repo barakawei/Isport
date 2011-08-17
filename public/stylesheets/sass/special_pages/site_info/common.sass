@@ -1,0 +1,70 @@
+@import '../../general/ui/mixins'
+.left_column
+  :width 220px
+  :float left
+ul.nav
+  :width 200px
+  
+  li
+    a
+      :background-color #ffffff
+      :width 160px
+      :display block
+      :padding  0px 10px 
+      :margin-bottom 3px
+      :font-size 14px
+      :color #00a2b7
+      :height 45px
+      :line-height 45px
+      
+      &:hover
+        background: url("/images/ui/arrow2.gif") no-repeat scroll 160px 50% #FFFFFF !important
+        color: #F74367
+        text-decoration: none
+
+    a.current
+      background: url("/images/ui/arrow2.gif") no-repeat scroll 160px 50% #FFFFFF !important
+      color: #F74367
+      text-decoration: none
+
+    a.inactive
+      :color #d5ddde
+
+      &:hover
+        :background none no-repeat scroll 160px 50% #FFFFFF !important
+        :color #d5ddde
+
+.content_area
+  @include border-radius(7px)
+  :background-color #ffffff
+  :padding 20px
+  :border 1px solid #d5ddde
+
+  form
+    .field
+      :width 600px
+      :height 200px
+      :border 2px solid #d5ddde
+      :padding 1px
+
+      label.error
+        :font-size 13px
+        :color #C14140
+
+      textarea
+        :width 570px
+        :height 170px
+        :padding 15px
+        :border none
+
+      .submit_div
+        :float left
+        :width 600px
+        :height 50px
+
+        .app_big_submit_button
+          :margin-top 10px
+
+    
+
+  

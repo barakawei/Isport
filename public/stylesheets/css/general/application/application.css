@@ -614,3 +614,13 @@ a.app_black_link_button {
   .app_big_submit_button:hover {
     background: url("/images/ui/person_edit.png") no-repeat scroll 100% -46px transparent;
     margin: 3px 4px 0 0; }
+
+.new_user_feedback {
+  background: url("/images/ui/feedback-side.$2159.png") no-repeat scroll 0 0 transparent;
+  height: 99px;
+  overflow: hidden;
+  position: fixed;
+  right: 0;
+  text-indent: -9999em;
+  top: 40%;
+  width: 28px; }
