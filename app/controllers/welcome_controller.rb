@@ -10,6 +10,7 @@ class WelcomeController < ApplicationController
       @eventcount = Event.count
       @events = Event.order('created_at desc').limit(3)
       @groups = Group.order('created_at desc').limit(3)
+      @people = Person.limit(40)
 
       render
     end

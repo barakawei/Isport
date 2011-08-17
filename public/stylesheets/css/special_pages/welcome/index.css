@@ -1,6 +1,6 @@
 .reg_box {
   width: 315px;
-  height: 290px;
+  height: 218px;
   float: right; }
   .reg_box .reg_info {
     width: 280px;
@@ -44,12 +44,12 @@
   padding: 5px 0;
   float: left;
   background: none repeat scroll 0 0 white;
-  width: 944px;
-  border: 3px solid #bbbbbb; }
+  width: 948px;
+  border: 1px solid #aaaaaa; }
   .welcome_box .poster_box {
     background: white;
     width: 580px;
-    height: 284px;
+    height: 200px;
     margin-left: 8px;
     margin-top: 8px;
     float: left;
@@ -57,11 +57,31 @@
     -webkit-border-radius: 10px;
     border-radius: 10px;
     behavior: url(/javascripts/PIE.htc); }
+    .welcome_box .poster_box img {
+      float: left;
+      margin: 0px 2px 2px 0; }
+    .welcome_box .poster_box a:hover .plus_you_pic {
+      background-color: #fc4469; }
+    .welcome_box .poster_box a .plus_you_pic {
+      width: 102px;
+      height: 102px;
+      float: left;
+      margin: 0px 2px 2px 0;
+      background-color: #4ebaff;
+      text-align: center;
+      color: white; }
+      .welcome_box .poster_box a .plus_you_pic span {
+        display: block;
+        font-size: 25px;
+        line-height: 30px;
+        height: 30px;
+        margin-top: 35px; }
 
 .des_box {
   float: left;
   margin-top: 10px;
-  width: 950px;
+  width: 948px;
+  border: 1px solid #aaaaaa;
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
   border-radius: 10px;
