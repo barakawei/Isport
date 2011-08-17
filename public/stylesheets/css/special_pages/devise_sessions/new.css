@@ -8,67 +8,79 @@
   color: #5179ac; }
 
 .login {
-  margin-top: 100px;
-  width: 600px; }
+  margin: 100px 0 0 275px;
+  width: 428px;
+  float: left; }
   .login h1 {
     color: #fe935e; }
   .login form input,
   .login form label {
-    font-size: 20px;
+    font-size: 27px;
     text-shadow: 0 1px 1px #cccccc;
     margin: 0; }
   .login form label.in_field {
     position: absolute;
     top: 8px;
-    left: 8px; }
+    left: 18px; }
   .login form input {
     display: block; }
   .login form input#email,
   .login form input#password {
-    width: 194px;
-    height: 34px;
-    font-size: 18px;
+    height: 27px;
+    font-size: 23px;
     line-height: 34px;
-    border: medium none;
-    background: none repeat scroll 0 0 transparent;
-    color: #324f65;
-    margin: 0 0;
-    padding: 0 0; }
+    background-color: white;
+    border: none;
+    margin: 0px 0 10px 0;
+    padding: 15px;
+    width: 346px; }
+  .login form .reg_input.submit {
+    background: none;
+    border: none; }
   .login form .reg_input {
-    background: url("/images/ui/reg-input.png") no-repeat scroll 0 0 transparent;
-    height: 34px;
-    border: medium none;
     overflow: hidden;
     position: relative;
-    padding: 4px;
-    width: 194px; }
-  .login form .reg_relative {
+    width: 378px;
+    margin-bottom: 10px;
+    height: 57px;
     float: left;
-    margin-right: 8px;
-    position: relative; }
+    border: 1px solid #bbbbbb;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+    behavior: url(/javascripts/PIE.htc);
+    background-color: white; }
   .login form .reg_action {
-    width: 100px;
-    float: left; }
+    float: right;
+    height: 50px; }
+    .login form .reg_action .log_submit {
+      background: url("/images/ui/person_edit.png") no-repeat scroll 0 0 transparent;
+      border: medium none;
+      cursor: pointer;
+      display: inline;
+      float: right;
+      font-size: 16px;
+      color: white;
+      height: 46px;
+      margin: 0px 4px 0 0;
+      overflow: hidden;
+      width: 198px; }
+      .login form .reg_action .log_submit:hover {
+        background: url("/images/ui/person_edit.png") no-repeat scroll 100% -46px transparent;
+        margin: 3px 4px 0 0; }
 
-.log_submit {
-  background: url("/images/ui/login_button.png") no-repeat 0 0 transparent;
-  border: medium none;
-  height: 40px;
-  width: 80px;
-  text-indent: -9999em; }
-
-.log_submit_hover {
-  background: url("/images/ui/login_button.png") no-repeat left bottom transparent; }
-
-a.reg_button {
-  position: absolute;
-  display: block;
-  background: url("/images/ui/reg_button.png") no-repeat left top transparent;
-  height: 30px;
-  width: 60px;
-  text-indent: -9999em;
-  right: 50px;
-  top: 50px; }
-
-a.reg_button_hover {
-  background: url("/images/ui/reg_button.png") no-repeat left bottom transparent; }
+.login_footer {
+  margin-top: 50px; }
+  .login_footer .forget_password {
+    float: right;
+    padding: 17px 30px 12px 20px;
+    width: 160px;
+    background-color: #dddddd; }
+  .login_footer .notify {
+    background: url("/images/ui/icon-notify.gif") no-repeat scroll 0 0 transparent;
+    float: left;
+    height: 41px;
+    margin: 5px 0 0 7px;
+    overflow: hidden;
+    text-indent: -9999px;
+    width: 45px; }

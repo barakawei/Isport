@@ -9,15 +9,43 @@
       %a{:class => "reg_main_button", :href => sign_up_path()}
         %em= "果断注册"
 
-  .welcomenav_box
-    = link_to t('welcome.itemflack'), items_path, :class => "flack"
-    = link_to t('item_link'), items_path, :class => "item_area"
+  .des_box
+    .welcomenav_box
+      %span.flack=t('welcome.itemflack')
+      - @items.each do |item|
+        .item_block
+          .avatar
+            =item_image_tag(item, :thumb_medium)
+          .item_info
+            %span.title=item.name
+            %span.desc=item.description
+            %span.like
+              =item.fans.count.to_s + '人喜欢,  '
+              =item.events.count.to_s + '个活动'
+      
+    .welcomenav_box
+      %span.flack=t('welcome.eventflack')
+      - @events.each do |event|
+        .item_block
+          .avatar
+            =event_image_tag(event, :thumb_medium)
+          .item_info
+            %span.title=event.title
+            %span.desc=event.description
+            %span.like
+              =event.participants.count.to_s + '人参加'
+       
 
-  .welcomenav_box
-    = link_to t('welcome.eventflack'), events_path, :class => "flack"
-    = link_to t('evnet_link'), events_path, :class => "event_area"
 
-  .welcomenav_box
-    = link_to t('welcome.groupflack'), groups_path, :class => "flack"
-    = link_to t('group_link'), groups_path, :class => "group_area"
+    .welcomenav_box
+      %span.flack=t('welcome.groupflack')
+      - @groups.each do |group|
+        .item_block
+          .avatar
+            =group_image_tag(group, :thumb_medium)
+          .item_info
+            %span.title= group.name
+            %span.desc= group.description
+            %span.like
+              =group.members.count.to_s + '位成员' 
 

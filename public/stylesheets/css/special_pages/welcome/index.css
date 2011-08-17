@@ -1,14 +1,10 @@
 .reg_box {
-  background: #f8f8f8;
   width: 315px;
   height: 290px;
-  margin-top: 5px;
-  margin-left: 25px;
-  float: left; }
+  float: right; }
   .reg_box .reg_info {
     width: 280px;
     height: 80px;
-    color: #002db3;
     white-space: normal;
     position: relative;
     margin-top: 10px;
@@ -40,54 +36,19 @@
     .reg_box a.reg_main_button:hover em {
       top: 12px; }
 
-.item_area, .event_area, .group_area {
-  width: 260px;
-  height: 200px;
-  margin-left: 10px;
-  margin-top: 10px;
-  float: left;
-  text-indent: -9999em;
-  display: block; }
-
-.item_area {
-  background: url("/images/ui/item_nav.png") no-repeat scroll 0 0 transparent; }
-
-.flack, .flackplus {
-  width: 260px;
-  margin-left: 12px;
-  font-size: 26px;
-  font-family: "Microsoft YaHei";
-  display: block;
-  overflow: hidden;
-  white-space: normal;
-  position: relative; }
-
-.flack {
-  margin-top: 5px;
-  color: #232221;
-  text-shadow: 0 1px 1px #cccccc; }
-  .flack:hover {
-    color: green; }
-
-.flackplus {
-  font-size: 18px;
-  color: #fc4469;
-  font-weight: bold;
-  text-shadow: 0 1px 1px #cccccc; }
-
 .welcome_box {
-  background: none repeat scroll 0 0 #f8f8f8;
-  width: 903px;
-  height: 300px;
-  margin-left: 24px;
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
   border-radius: 10px;
   behavior: url(/javascripts/PIE.htc);
-  border: 5px solid #d5ddde; }
+  padding: 5px 0;
+  float: left;
+  background: none repeat scroll 0 0 white;
+  width: 944px;
+  border: 3px solid #bbbbbb; }
   .welcome_box .poster_box {
     background: white;
-    width: 540px;
+    width: 580px;
     height: 284px;
     margin-left: 8px;
     margin-top: 8px;
@@ -97,15 +58,54 @@
     border-radius: 10px;
     behavior: url(/javascripts/PIE.htc); }
 
-.welcomenav_box {
-  width: 278px;
-  height: 300px;
-  margin-left: 24px;
-  margin-top: 20px;
+.des_box {
   float: left;
+  margin-top: 10px;
+  width: 950px;
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
   border-radius: 10px;
   behavior: url(/javascripts/PIE.htc);
-  border: 5px solid #d5ddde;
-  background-color: white; }
+  background: none repeat scroll 0 0 white; }
+  .des_box .welcomenav_box {
+    width: 280px;
+    padding-left: 30px;
+    margin-top: 10px;
+    float: left; }
+    .des_box .welcomenav_box .flack {
+      font-size: 18px;
+      font-family: "Microsoft YaHei";
+      font-weight: bold;
+      display: block;
+      color: black;
+      margin-bottom: 10px; }
+    .des_box .welcomenav_box .item_block {
+      float: left;
+      margin-bottom: 15px; }
+      .des_box .welcomenav_box .item_block .avatar {
+        float: left; }
+        .des_box .welcomenav_box .item_block .avatar img {
+          -moz-border-radius: 10px;
+          -webkit-border-radius: 10px;
+          border-radius: 10px;
+          behavior: url(/javascripts/PIE.htc);
+          border: 1px solid #d5ddde; }
+      .des_box .welcomenav_box .item_block .item_info {
+        float: left;
+        width: 150px;
+        height: 100px;
+        margin-left: 10px;
+        position: relative; }
+        .des_box .welcomenav_box .item_block .item_info span {
+          display: block;
+          font-size: 11px; }
+        .des_box .welcomenav_box .item_block .item_info span.title {
+          font-size: 12px;
+          color: #222222; }
+        .des_box .welcomenav_box .item_block .item_info span.desc {
+          color: #666666;
+          margin-bottom: 10px;
+          width: 140px; }
+        .des_box .welcomenav_box .item_block .item_info span.like {
+          bottom: 0;
+          position: absolute; }

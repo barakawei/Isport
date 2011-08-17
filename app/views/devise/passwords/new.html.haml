@@ -1,0 +1,19 @@
+-content_for :head do
+  = include_javascripts :jquery_validation
+  = include_stylesheets :special_pages_registration_reset_password, :media => 'all'
+.span-24
+  %h2.title='忘记密码?'
+  .reset_area
+    .form_area
+      =form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f|
+        = devise_error_messages! 
+
+        %p=f.label '请输入电子邮箱' 
+        .field
+          %p=f.email_field :email
+        .action
+          %p=f.submit "重设密码", :class => 'app_big_submit_button'
+    .info_area
+      %p
+        ='输入您注册时使用的电子邮箱，点击‘重设密码’按钮，系统将会把重设密码链接发至您指定的邮箱'
+

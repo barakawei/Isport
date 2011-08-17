@@ -136,10 +136,14 @@ stylesheets:
 
   special_pages_registration_new:
     - public/stylesheets/css/special_pages/registration/new.css
+  special_pages_registration_reset_password:
+    - public/stylesheets/css/special_pages/registration/reset_password.css
 
   sepcial_pages_users_selectinterests:
     - public/stylesheets/css/special_pages/users/select_interests.css
   sepcial_pages_people_edit_interests:
     - public/stylesheets/css/special_pages/people/edit_interests.css
 
+  sepcial_pages_site_info_common:
+    - public/stylesheets/css/special_pages/site_info/common.css
  

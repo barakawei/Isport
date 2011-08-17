@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110813105726) do
+ActiveRecord::Schema.define(:version => 20110817053048) do
 
   create_table "administrators", :force => true do |t|
     t.integer  "user_id"
@@ -112,6 +112,13 @@ ActiveRecord::Schema.define(:version => 20110813105726) do
     t.datetime "updated_at"
   end
 
+  create_table "feedbacks", :force => true do |t|
+    t.integer  "person_id"
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "forums", :force => true do |t|
     t.integer  "discussable_id"
     t.string   "discussable_type"
@@ -133,6 +140,9 @@ ActiveRecord::Schema.define(:version => 20110813105726) do
     t.string   "image_url_large"
     t.integer  "person_id"
     t.integer  "district_id"
+    t.integer  "members_count",    :default => 0
+    t.integer  "events_count",     :default => 0
+    t.integer  "topics_count",     :default => 0
   end
 
   create_table "involvements", :force => true do |t|

@@ -8,6 +8,9 @@ class WelcomeController < ApplicationController
       @usercount = User.count
       @groupcount = Group.count
       @eventcount = Event.count
+      @items = Item.order('rand()').limit(3)
+      @events = Event.where(:id => 1...10).order('rand()').limit(3)
+      @groups = Group.where(:id => 1...10).order('rand()').limit(3)
 
       render
     end

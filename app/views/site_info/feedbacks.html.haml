@@ -1,0 +1,16 @@
+- content_for :head do
+  = include_stylesheets :sepcial_pages_site_info_common, :media => 'all'
+.span-24.feedbacks_area
+  %h1='用户反馈'
+  - @feedbacks.each do |f|
+    .span-17.feedback_block
+      .avatar
+        =person_image_link(f.person, :thumb_small)
+      .content
+        %p=f.content
+        %span.date=l(f.created_at, :format => :long)
+
+  .span-17.pagination_box
+    = will_paginate @feedbacks, {:previous_label => t("pagination.previous"), 
+                              :next_label => t("pagination.next")}
+    
