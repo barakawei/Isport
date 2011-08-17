@@ -48,8 +48,13 @@ a {
     color: #205f82;
     text-decoration: none; }
 
-ol, ul, li {
+ul {
   list-style: none; }
+  ul li {
+    list-style: none; }
+
+.app_empty_area {
+  margin-top: 50px; }
 
 .container.body {
   padding-top: 30px; }

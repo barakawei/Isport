@@ -1,0 +1,8 @@
+- content_for :head do
+  = include_stylesheets :sepcial_pages_site_info_common, :media => 'all'
+.span-24
+  .left_column
+    = render 'left_nav_bar'
+  .span-18.last
+    .span-16.content_area.site_info
+      = render "#{@info_type}"
