@@ -63,8 +63,9 @@ Isport::Application.routes.draw do
   end
 
   controller :site_info do
-    match "/site_info/feedback" => :feedback, :as => 'new_feedback', :via => :get
+    match "/site_info/new_feedback" => :new_feedback, :as => 'new_feedback', :via => :get
     match "/site_info/create_feedback" => :create_feedback, :as => 'create_feedback', :via => :post
+    match "/site_info/feedbacks" => :feedbacks, :as => 'feedbacks', :via => :get
   end
 
   controller :home do
