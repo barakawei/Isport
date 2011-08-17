@@ -6,26 +6,38 @@
 #
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Daley', :city => cities.first)
-['南京', '上海', '北京'].each do |name|
+['南京', '上海', '北京','苏州','广州','深圳','杭州'].each do |name|
   City.find_or_create_by_name(:name => name)
 end
 
 nanjing = City.find_by_name('南京')
 shanghai = City.find_by_name('上海')
 beijing = City.find_by_name('北京')
+suzhou = City.find_by_name('苏州')
+guangzhou = City.find_by_name('广州')
+shenzhen = City.find_by_name('深圳')
+hangzhou = City.find_by_name('杭州')
+
 nanjing.pinyin = 'nanjing'
 shanghai.pinyin = 'shanghai'
 beijing.pinyin = 'beijing'
+suzhou.pinyin = 'suzhou'
+guangzhou.pinyin = 'guangzhou'
+shenzhen.pinyin = 'shenzhen'
+hangzhou.pinyin = 'hangzhou'
 nanjing.save
 shanghai.save
 beijing.save
+suzhou.save
+guangzhou.save
+shenzhen.save
+hangzhou.save
 
 ['宣武区', '鼓楼区', '建邺区', '白下区', '秦淮区', 
  '下关区', '雨花台区', '栖霞区', '浦口区', '江宁区', '六合区', '溧水县', '高淳县'].each do |name|
   District.find_or_create_by_name(:name => name, :city_id => nanjing.id) 
 end
 
-gulou = District.find_by_name('鼓楼')
 
 ['黄浦区','徐汇区','长宁区','静安区','普陀区','闸北区','虹口区','杨浦区','浦东新区','宝山区','闵行区',
  '嘉定区','金山区','松江区','青浦区','奉贤区','崇明县'].each do |name|
@@ -36,6 +48,27 @@ end
   '大兴区','怀柔区','平谷区','密云县','延庆县'].each do |name|
   District.find_or_create_by_name(:name => name, :city_id => beijing.id)
 end
+
+[ '吴中区','相城区','平江区','金阊区','沧浪区','高新区','工业园区','常熟市','昆山市','张家港市','吴江市',
+  '太仓市'].each do |name|
+  District.find_or_create_by_name(:name => name, :city_id => suzhou.id)    
+end
+
+[ '越秀区','天河区','白云区','荔湾区','萝岗区','黄埔区','海珠区','番禺区','花都区','南沙区','增城市','从化市' ]
+  .each do |name|
+  District.find_or_create_by_name(:name => name, :city_id => guangzhou.id)
+end
+
+[ '福田区','罗湖区','南山区','盐田区','宝安区','龙岗区'].each do |name|
+  District.find_or_create_by_name(:name => name, :city_id => shenzhen.id)
+end
+
+[ '上城区','下城区','江干区','拱墅区','西湖区','滨江区','萧山区','余杭区','桐庐县','淳安县','建德市','富阳市',
+  '临安市'].each do |name|
+  District.find_or_create_by_name(:name => name, :city_id => hangzhou.id)
+end
+
+
 
 #init table items
 
