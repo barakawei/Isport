@@ -1,0 +1,70 @@
+-content_for :head do
+  = include_javascripts :jquery_validation
+  = include_stylesheets :special_pages_registration_new, :media => 'all'
+.span-24.change_password
+  .login.reg_area
+    %h2= "修改密码"
+    = form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f|
+      = f.hidden_field :reset_password_token
+      .reg_relative
+        .reg_input.reg_password
+          = f.password_field :password, :id => "password"
+          = f.label :password, t('password'), :class => "password in_field"
+        .reg_input.reg_password
+          = f.password_field :password_confirmation, :id => "password_confirmation"
+          = f.label :password_confirmation, t('password_confirmation'), :class => "password in_field"
+        .reg_input.submit
+          .reg_action
+            =f.submit '完成', :class => "log_submit right"
+
+:javascript
+  $(function() {
+    $('#user_new').validate({  
+      rules: {
+        'user[password]': {
+          required: true,
+          minlength: 5 
+        },
+        'user[password_confirmation]': {
+          required: true,
+          equalTo: "#password"
+        }
+      },
+      messages: {
+        'user[password]': {
+          required: '请输入密码',
+          minlength: '密码长度不能少于{0}位'
+        },
+        'user[password_confirmation]': {
+          required: '请再一次输入您的密码',
+          equalTo: '两次输入的密码不一致'
+        }
+      }
+    });
+  });
+
+  $(".in_field").click(function() {
+    $(this).hide();
+    $(this).siblings("input").focus();
+  }); 
+
+  $("#email").add("#password").add("#password_confirmation").focus(function() {
+    $(this).siblings(".in_field").hide();
+  }); 
+
+  $("#email").add("#password").add("#password_confirmation").blur(function() {
+    field = $(this).siblings(".in_field")
+    if ($.trim($(this).val()) == '' ) {
+      $(this).val('');
+      field.show();
+    }
+  });
+
+  $(document).ready(function() {
+    if ($.trim($('#password').val()) != '') {
+      $('#password').siblings(".in_field").hide();
+    }
+    if ($.trim($('#password_confirmation').val()) != '') {
+      $('#password_confirmation').siblings(".in_field").hide();
+    }
+  });

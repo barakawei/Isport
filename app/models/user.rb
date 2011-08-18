@@ -5,11 +5,13 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :getting_started
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :getting_started,:invitation_service,:invitation_identifier
   
   has_one :person
   has_many :contacts
   has_one :profile, :through => :person
+  has_many :invitations_from_me, :class_name => 'Invitation', :foreign_key => :sender_id, :dependent => :destroy
+  has_many :invitations_to_me, :class_name => 'Invitation', :foreign_key => :recipient_id, :dependent => :destroy
   has_many :friends, :through => :contacts, :source => :person, :conditions => "receiving=true"
   has_many :followed_people, :through => :contacts, :source => :person,:conditions => "receiving=true"
   has_many :befollowed_people, :through => :contacts, :source => :person,:conditions => "sharing=true"
@@ -101,6 +103,29 @@ class User < ActiveRecord::Base
 
   def city 
     profile.location.city
+  end
+
+  def invite_user(service, identifier, invite_message = "")
+      Invitation.invite(:service => service,
+                        :identifier => identifier,
+                        :from => self,
+                        :message => invite_message)
+  end
+  
+
+  def accept_invitation!(opts = {})
+    begin
+      if self.invited?
+        self.setup(opts)
+        self.invitation_token = nil
+        self.password = opts[:password]
+        self.password_confirmation = opts[:password_confirmation]
+        self.save!
+        invitations_to_me.each{|invitation| invitation.share_with!} 
+        self.reload # Because to_request adds a request and saves elsewhere
+        self
+      end
+    end
   end
 
 end
