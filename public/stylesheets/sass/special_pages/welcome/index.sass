@@ -50,12 +50,12 @@ $darkgray: #A8AAAD
   
 
 .welcome_box
+  @include box-shadow(0,1px,5px,0,#333)
   @include border-radius(10px)
   :padding 5px 0
   :float left
   :background none repeat scroll 0 0 #ffffff
   :width 948px
-  :border 1px solid #aaaaaa
 
   .poster_box
     :background #FFFFFF
@@ -93,10 +93,10 @@ $darkgray: #A8AAAD
 
 .des_box
   :float left
-  :margin-top 10px
+  :margin-top 5px
   :width 948px
-  :border 1px solid #aaaaaa
   @include border-radius(10px)
+  @include box-shadow(0,1px,5px,0,#333)
   :background none repeat scroll 0 0 #ffffff
 
   .welcomenav_box

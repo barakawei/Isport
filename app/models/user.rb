@@ -6,13 +6,16 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :getting_started
+  
   has_one :person
-  delegate :name,:to => :person
   has_many :contacts
   has_one :profile, :through => :person
   has_many :friends, :through => :contacts, :source => :person, :conditions => "receiving=true"
   has_many :followed_people, :through => :contacts, :source => :person,:conditions => "receiving=true"
   has_many :befollowed_people, :through => :contacts, :source => :person,:conditions => "sharing=true"
+  
+  delegate :name,:to => :person
+  delegate :location,:to => :profile
 
 
   def self.build( opts={} )

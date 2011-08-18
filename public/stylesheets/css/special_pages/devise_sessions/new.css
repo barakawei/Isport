@@ -12,10 +12,16 @@
   -webkit-border-radius: 8px;
   border-radius: 8px;
   behavior: url(/javascripts/PIE.htc);
+  -webkit-box-shadow: 0 1px 5px 0 #333333;
+  -moz-box-shadow: 0 1px 5px 0 #333333;
+  box-shadow: 0 1px 5px 0 #333333;
+  behavior: url(/javascripts/PIE.htc);
+  position: relative;
+  z-index: 1;
+  background-color: white;
   margin: 80px 0 0 240px;
   width: 428px;
   float: left;
-  border: 1px solid #aaaaaa;
   background-color: white;
   padding: 10px 0 0 35px; }
   .login h1 {
