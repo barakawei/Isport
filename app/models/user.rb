@@ -6,8 +6,8 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :getting_started,:invitation_service,:invitation_identifier
+  
   has_one :person
-  delegate :name,:to => :person
   has_many :contacts
   has_one :profile, :through => :person
   has_many :invitations_from_me, :class_name => 'Invitation', :foreign_key => :sender_id, :dependent => :destroy
@@ -15,6 +15,9 @@ class User < ActiveRecord::Base
   has_many :friends, :through => :contacts, :source => :person, :conditions => "receiving=true"
   has_many :followed_people, :through => :contacts, :source => :person,:conditions => "receiving=true"
   has_many :befollowed_people, :through => :contacts, :source => :person,:conditions => "sharing=true"
+  
+  delegate :name,:to => :person
+  delegate :location,:to => :profile
 
 
   def self.build( opts={} )
@@ -114,6 +117,7 @@ class User < ActiveRecord::Base
     begin
       if self.invited?
         self.setup(opts)
+        self.invitation_token = nil
         self.password = opts[:password]
         self.password_confirmation = opts[:password_confirmation]
         self.save!

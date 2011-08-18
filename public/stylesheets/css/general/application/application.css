@@ -4,9 +4,6 @@ input[type=text], textarea {
   -webkit-border-radius: 5px;
   border-radius: 5px;
   behavior: url(/javascripts/PIE.htc); }
-  input[type=text]:focus, textarea:focus {
-    outline: 5px auto -webkit-focus-ring-color;
-    border: 2px solid #7ecef4 !important; }
 
 .right_arrow {
   cursor: pointer;
@@ -650,3 +647,17 @@ a.app_black_link_button {
   text-indent: -9999em;
   top: 40%;
   width: 28px; }
+
+.change_password .login form input#password {
+  line-height: 45px;
+  margin: 0;
+  padding: 0;
+  height: 45px;
+  font-size: 30px; }
+.change_password .login form .reg_input {
+  padding-left: 15px;
+  overflow: visible;
+  height: 45px;
+  margin-bottom: 20px; }
+.change_password .login form label.in_field {
+  top: 4px; }

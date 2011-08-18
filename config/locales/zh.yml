@@ -477,16 +477,16 @@ zh:
         has_invited_you: "%{name} 邀请你加入 好享玩"
         have_invited_you: "%{names} 邀请你加入 好享玩"
       reset_password_instructions: 
-        change: "更改密碼"
-        ignore: "如果你沒請求過, 請忽略這封信件."
-        someone_requested: "有人請求要更改你的密碼, 請使用以下連結."
-        subject: "密碼重設步驟"
-        wont_change: "在使用以上連結設定新的密碼後, 你的密碼才會改變."
+        change: "更改密码"
+        ignore: "如果你没有请求重置密码, 请忽略这封邮件."
+        someone_requested: "有人请求重置密码, 请点击以下链接."
+        subject: "重置密码"
+        wont_change: "在使用以上链接设定新的密码后, 你的密码才会改变."
       unlock_instructions: 
-        account_locked: "你的帳號因為登入失敗太多次而被鎖定了."
-        click_to_unlock: "點一下以下連結以將你的帳號解鎖:"
-        subject: "解鎖步驟"
-        unlock: "帳號解鎖"
+        account_locked: "你的帐号因为登录失敗太多次而被锁定."
+        click_to_unlock: "点击下面的链接将你的帐号解锁:"
+        subject: "解锁步骤"
+        unlock: "帐号解锁"
       welcome: "您好, %{email}!"
     passwords: 
       edit: 
