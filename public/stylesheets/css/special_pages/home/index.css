@@ -75,7 +75,7 @@
     margin-top: 20px;
     left: 0; }
     #home_user .groups .title {
-      background-color: #f5f9fa;
+      background-color: white;
       padding: 10px; }
       #home_user .groups .title .name {
         float: left;
@@ -84,10 +84,10 @@
       #home_user .groups .title .link {
         float: right; }
   #home_user .avatar_panel_container {
-    background-color: #f5f9fa;
+    background-color: white;
     margin-top: 20px; }
     #home_user .avatar_panel_container .title {
-      background-color: #f5f9fa;
+      background-color: white;
       padding: 10px; }
       #home_user .avatar_panel_container .title .name {
         float: left;
@@ -102,7 +102,7 @@
         width: 30px; }
   #home_user .group {
     padding: 10px;
-    background-color: #f5f9fa;
+    background-color: white;
     margin-bottom: 2px; }
     #home_user .group .avatar {
       float: left; }
@@ -279,3 +279,13 @@
     float: left;
     height: 220px;
     margin-left: 20px; }
+
+.invitation_panel {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: white; }
+  .invitation_panel h4 {
+    font-size: 15px;
+    color: #fc4469; }
+  .invitation_panel .link {
+    font-size: 15px; }

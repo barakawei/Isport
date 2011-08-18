@@ -1,22 +1,25 @@
-.new_message_pane .as-selections {
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
-  behavior: url(/javascripts/PIE.htc);
-  background-color: white;
-  border: 1px solid #bbbbbb;
-  color: #576b72;
-  width: 400px; }
-  .new_message_pane .as-selections #contact_ids {
-    border: none !important; }
-.new_message_pane .subject input {
-  width: 391px;
-  height: 20px; }
-.new_message_pane .content textarea {
-  width: 391px; }
-.new_message_pane .submit {
-  margin-left: 400px;
-  height: 30px; }
+.new_message_pane {
+  width: 520px;
+  height: 220px; }
+  .new_message_pane .as-selections {
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    behavior: url(/javascripts/PIE.htc);
+    background-color: white;
+    border: 1px solid #bbbbbb;
+    color: #576b72;
+    width: 400px; }
+    .new_message_pane .as-selections #contact_ids {
+      border: none !important; }
+  .new_message_pane .subject input {
+    width: 391px;
+    height: 20px; }
+  .new_message_pane .content textarea {
+    width: 391px; }
+  .new_message_pane .submit {
+    margin-left: 400px;
+    height: 40px; }
 
 #conversation_show {
   width: 610px;

@@ -44,9 +44,9 @@ form input#password_confirmation {
     position: relative;
     padding: 2px;
     margin-bottom: 18px;
-    -moz-border-radius: 8px;
-    -webkit-border-radius: 8px;
-    border-radius: 8px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
     behavior: url(/javascripts/PIE.htc);
     border: 1px solid #bbbbbb; }
   .reg_relative .reg_email {
@@ -72,6 +72,16 @@ form input#password_confirmation {
       background: url("/images/ui/register.png") no-repeat scroll left bottom transparent; }
 
 .reg_area {
-  margin: 50px 0 0 225px;
-  width: 500px;
-  float: left; }
+  margin: 80px 0 0 225px;
+  width: 460px;
+  float: left;
+  background: white;
+  padding: 20px 0 20px 30px;
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  border-radius: 8px;
+  behavior: url(/javascripts/PIE.htc);
+  -webkit-box-shadow: 0 1px 5px 0 #333333;
+  -moz-box-shadow: 0 1px 5px 0 #333333;
+  box-shadow: 0 1px 5px 0 #333333;
+  behavior: url(/javascripts/PIE.htc); }

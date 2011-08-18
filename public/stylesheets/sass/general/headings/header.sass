@@ -1,8 +1,7 @@
 @import '../ui/mixins'
 .red_tab
-  :border 1px solid #F74367
-  :background-color #F74367
-  :color white
+  :border 1px solid #414141
+  :color #dddddd
   :font-weight bold
   :font-size 15px
   :height 11px
@@ -34,7 +33,7 @@
 .header.wizard
   :height 70px
 .header
-  :background-color #17282E
+  :background url( /images/ui/mainmenu-bg.png ) repeat
   :text-align left
   :height 100px
   :z-index 50
@@ -209,7 +208,6 @@
     :padding-right 10px
   
 #notification_dropdown
-  @include dropdown-shadow
   border-left: 2px solid #DBE1E1
   border-right: 2px solid #DBE1E1
   border-bottom: 2px solid #DBE1E1

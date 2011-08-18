@@ -1,5 +1,5 @@
 class SiteInfoController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :only => [:new_feedback, :create_feedback, :feedbacks]
   
   def new_feedback
     @succ = true if params[:succ] and params[:succ] == 'true'
@@ -17,4 +17,7 @@ class SiteInfoController < ApplicationController
     @feedbacks = Feedback.paginate :page => params[:page], :per_page => 30, :order => 'created_at desc' 
   end
 
+  def site_info
+    @info_type = params[:info_type]
+  end
 end
