@@ -14,9 +14,11 @@
     border-bottom: solid 1px white;
     border-radius: 10px 10px 0 0; }
     .home_container .home_tabs .active a {
-      color: #fc4469; }
+      background-color: #697d84;
+      color: white; }
       .home_container .home_tabs .active a:hover {
-        color: #fc4469; }
+        background-color: #697d84;
+        color: white; }
     .home_container .home_tabs li {
       font-size: 16px;
       display: inline-block;
@@ -26,10 +28,16 @@
       width: 137px;
       text-align: center; }
       .home_container .home_tabs li a {
+        padding: 10px;
+        -moz-border-radius: 6px;
+        -webkit-border-radius: 6px;
+        border-radius: 6px;
+        behavior: url(/javascripts/PIE.htc);
         font-weight: bold;
         color: #999999; }
         .home_container .home_tabs li a:hover {
-          color: #fc4469; }
+          background-color: #e1e1e1;
+          color: #697d84; }
 
 .events_panel .pagination {
   position: absolute;

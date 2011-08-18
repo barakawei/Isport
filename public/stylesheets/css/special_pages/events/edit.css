@@ -10,6 +10,8 @@
 
 .box_content {
   padding: 10px 5px 5px 5px; }
+  .box_content .submit {
+    height: 30px; }
 
 .title_bar {
   height: 35px;
@@ -42,44 +44,41 @@
   border-left: 1px solid #888888;
   padding-left: 10px; }
 
-ul.nav {
-  width: 200px; }
-  ul.nav li a {
-    background-color: white;
-    width: 160px;
-    display: block;
-    padding: 0px 10px;
-    margin-bottom: 3px;
-    font-size: 14px;
-    color: #00a2b7;
-    height: 45px;
-    line-height: 45px; }
-    ul.nav li a:hover {
-      background: url("/images/ui/arrow2.gif") no-repeat scroll 160px 50% white !important;
-      color: #f74367;
-      text-decoration: none; }
-  ul.nav li a.current {
+ul.nav li a {
+  background-color: white;
+  width: 150px;
+  display: block;
+  margin-bottom: 3px;
+  font-size: 14px;
+  color: #00a2b7;
+  height: 45px;
+  line-height: 45px; }
+  ul.nav li a:hover {
     background: url("/images/ui/arrow2.gif") no-repeat scroll 160px 50% white !important;
     color: #f74367;
     text-decoration: none; }
+ul.nav li a.current {
+  background: url("/images/ui/arrow2.gif") no-repeat scroll 160px 50% white !important;
+  color: #f74367;
+  text-decoration: none; }
 
 .edit_event_members .event_avatar {
   width: 180px;
   margin-bottom: 10px; }
   .edit_event_members .event_avatar img {
-    width: 180px;
-    height: 180px;
-    -moz-border-radius: 10px;
-    -webkit-border-radius: 10px;
-    border-radius: 10px;
+    width: 200px;
+    height: 200px;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
     behavior: url(/javascripts/PIE.htc); }
 
 .members {
   background-color: white;
   width: 670px;
-  -moz-border-radius: 15px;
-  -webkit-border-radius: 15px;
-  border-radius: 15px;
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  border-radius: 8px;
   behavior: url(/javascripts/PIE.htc);
   float: left;
   padding: 20px; }

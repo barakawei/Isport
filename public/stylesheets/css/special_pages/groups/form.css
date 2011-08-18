@@ -1,9 +1,9 @@
 .form_area {
   padding: 30px 10px 20px 30px;
   background-color: white;
-  -moz-border-radius: 15px;
-  -webkit-border-radius: 15px;
-  border-radius: 15px;
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  border-radius: 8px;
   behavior: url(/javascripts/PIE.htc); }
   .form_area .field_with_errors {
     display: inline-block; }
@@ -42,17 +42,18 @@
     .form_area .field select {
       font-size: 13px; }
 
-#group_photo_upload .img_contained {
-  width: 180px;
-  margin-bottom: 10px; }
-  #group_photo_upload .img_contained img {
-    -moz-border-radius: 10px;
-    -webkit-border-radius: 10px;
-    border-radius: 10px;
-    behavior: url(/javascripts/PIE.htc);
-    width: 180px;
-    height: 180px;
-    background-color: white; }
+#group_photo_upload {
+  height: 250px; }
+  #group_photo_upload .img_contained {
+    width: 180px; }
+    #group_photo_upload .img_contained img {
+      -moz-border-radius: 8px;
+      -webkit-border-radius: 8px;
+      border-radius: 8px;
+      behavior: url(/javascripts/PIE.htc);
+      width: 200px;
+      height: 200px;
+      background-color: white; }
 
 .actions {
   padding-left: 40px; }

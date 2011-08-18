@@ -10,13 +10,13 @@ hr.nav {
   margin: 5px 15px 0px 10px; }
 
 .topics_area {
-  width: 904px;
-  padding: 20px;
+  width: 906px;
+  padding: 20px 20px 5px;
   background-color: white;
-  border: 3px solid #d5ddde;
-  -moz-border-radius: 15px;
-  -webkit-border-radius: 15px;
-  border-radius: 15px;
+  border: 2px solid #d5ddde;
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  border-radius: 8px;
   behavior: url(/javascripts/PIE.htc); }
 
 .new_button {
@@ -36,7 +36,6 @@ ul.nav {
     background-color: white;
     width: 160px;
     display: block;
-    padding: 0px 10px;
     margin-bottom: 3px;
     font-size: 14px;
     color: #00a2b7;

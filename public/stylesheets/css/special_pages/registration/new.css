@@ -44,9 +44,9 @@ form input#password_confirmation {
     position: relative;
     padding: 2px;
     margin-bottom: 18px;
-    -moz-border-radius: 8px;
-    -webkit-border-radius: 8px;
-    border-radius: 8px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
     behavior: url(/javascripts/PIE.htc);
     border: 1px solid #bbbbbb; }
   .reg_relative .reg_email {

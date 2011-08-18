@@ -1,6 +1,27 @@
 @import '../../general/ui/mixins'
 $blue: #5787B3
 
+.new_message_pane
+  .as-selections
+    @include border-radius( 5px )
+    background-color: white
+    border: 1px solid #BBB
+    color: #576B72
+    width: 400px
+    #contact_ids
+      border: none !important
+  .subject
+    input
+      :width 391px
+      :height 20px
+  .content
+    textarea
+      :width 391px
+  .submit
+    :margin-left 400px
+    :height 30px
+
+
 #conversation_show
   :width 610px
   :float right 
@@ -53,19 +74,21 @@ $blue: #5787B3
     top:  10px
     bottom: 10px
   .timeago
+    :margin-right 5px
     color: #3F8FBA
     border: medium none
     font-weight: normal
-    margin-left: 70px
-    text-align: right
   .avatar
-    display: inline
     float: left
     height: 35px
+    width: 35px
     margin:
       right: 10px
       left: 10px
-    width: 35px
+  .content
+    :float left
+  .info
+    :float right
   .last_author
     color: #546266
     font-size: 12px
@@ -74,12 +97,15 @@ $blue: #5787B3
     color: #546266
     font-size: 13px
     font-weight: bold
-    overflow: hidden
     white-space: nowrap
-    .message_count
+  .message_count
+    :position relative
+    :margin-right 10px
+    :height 25px
+    span
+      :position absolute
+      :right 0px
       background-color: #999999
-      position: absolute
-      margin-left: 220px
       color: #EEEEEE
       font-size: 12px
       font-weight: normal

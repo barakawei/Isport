@@ -1,9 +1,9 @@
 .left_column {
   color: #666666; }
   .left_column .avatar img {
-    -moz-border-radius: 14px;
-    -webkit-border-radius: 14px;
-    border-radius: 14px;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
     behavior: url(/javascripts/PIE.htc);
     width: 198px;
     height: 198px;
@@ -33,7 +33,7 @@
       float: left;
       padding: 5px 5px 5px 10px;
       margin-right: 10px;
-      width: 180px; }
+      width: 185px; }
       .left_column .other_info .info_block .edit_button {
         float: left;
         width: 30px;
@@ -45,6 +45,7 @@
           margin-top: 2px;
           background-color: #e76875; }
       .left_column .other_info .info_block span.info {
+        width: 180px;
         float: left;
         display: block;
         font-size: 13px;
@@ -88,6 +89,8 @@
         border-radius: 5px;
         behavior: url(/javascripts/PIE.htc); }
 
+.right_column .app_header_box {
+  margin-top: 50px; }
 .right_column .new_event_panel {
   margin: 0 10px 14px 15px; }
 .right_column .app_big_title_bar.last_one {
@@ -99,9 +102,9 @@
   float: left;
   background-color: white;
   border: 3px solid #d5ddde;
-  -moz-border-radius: 15px;
-  -webkit-border-radius: 15px;
-  border-radius: 15px;
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  border-radius: 8px;
   behavior: url(/javascripts/PIE.htc);
   padding: 17px; }
   .right_column .group_title_bar .status {
@@ -155,17 +158,14 @@
       background-color: #697d84;
       color: white; }
 .right_column .events_panel {
-  margin-top: 0; }
+  margin-top: 0;
+  background-color: white;
+  padding: 30px 0; }
 .right_column .topics_panel {
   background-color: white;
-  width: 624px;
+  width: 630px;
   padding: 20px;
-  float: left;
-  border: 3px solid #d5ddde;
-  -moz-border-radius: 15px;
-  -webkit-border-radius: 15px;
-  border-radius: 15px;
-  behavior: url(/javascripts/PIE.htc); }
+  float: left; }
 
 a.more {
   margin-top: 25px; }

@@ -2,8 +2,7 @@ function friend_select(get_url){
      var url = arguments[0] ? arguments[0] : "/people/friend_select";
      $("#friend_select").empty();
      $("#friend_select").append(
-     '<div class="filter" style="position:relative"> <input id="filter" type="text" style="width:100px;height:16px"></div><ul id="fcbklist"></ul><br><h4 id="error_message" style="float:left; display:none; color:red">您还没有选择好友!</h4><div class="button " style="width: 40px;float:right" id="friend_select_button"><a href="#">ok</a></div>');
-     $('#friend_select_button').button({});      
+     '<div class="filter" style="position:relative"> <input id="filter" type="text" style="width:100px;height:16px"></div><ul id="fcbklist"></ul><br><h4 id="error_message" style="float:left; display:none; color:red">您还没有选择好友!</h4><div class="glass_button " style="width: 40px;float:right" id="friend_select_button"><a href="#">完成</a></div>');
      
      var $fcbklist = $('#fcbklist');
      $('#friend_select_button').click( function(){

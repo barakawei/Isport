@@ -54,8 +54,8 @@
       = form_tag involvement_path, :method => 'delete' do
         = hidden_field_tag :member_ids
         = hidden_field_tag :id, @event.id
-        %br
-        = submit_tag t('activerecord.operations.event.save'), :class => 'button'
+        .submit
+          = submit_tag t('activerecord.operations.event.save'), :class => 'glass_button'
           
 :javascript
   $('a.delete').bind('click', function(){

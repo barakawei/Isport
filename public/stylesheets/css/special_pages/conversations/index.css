@@ -1,3 +1,23 @@
+.new_message_pane .as-selections {
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  behavior: url(/javascripts/PIE.htc);
+  background-color: white;
+  border: 1px solid #bbbbbb;
+  color: #576b72;
+  width: 400px; }
+  .new_message_pane .as-selections #contact_ids {
+    border: none !important; }
+.new_message_pane .subject input {
+  width: 391px;
+  height: 20px; }
+.new_message_pane .content textarea {
+  width: 391px; }
+.new_message_pane .submit {
+  margin-left: 400px;
+  height: 30px; }
+
 #conversation_show {
   width: 610px;
   float: right; }
@@ -45,18 +65,20 @@
   padding-top: 10px;
   padding-bottom: 10px; }
   .conversation .timeago {
+    margin-right: 5px;
     color: #3f8fba;
     border: medium none;
-    font-weight: normal;
-    margin-left: 70px;
-    text-align: right; }
+    font-weight: normal; }
   .conversation .avatar {
-    display: inline;
     float: left;
     height: 35px;
+    width: 35px;
     margin-right: 10px;
-    margin-left: 10px;
-    width: 35px; }
+    margin-left: 10px; }
+  .conversation .content {
+    float: left; }
+  .conversation .info {
+    float: right; }
   .conversation .last_author {
     color: #546266;
     font-size: 12px; }
@@ -64,12 +86,15 @@
     color: #546266;
     font-size: 13px;
     font-weight: bold;
-    overflow: hidden;
     white-space: nowrap; }
-    .conversation .subject .message_count {
-      background-color: #999999;
+  .conversation .message_count {
+    position: relative;
+    margin-right: 10px;
+    height: 25px; }
+    .conversation .message_count span {
       position: absolute;
-      margin-left: 220px;
+      right: 0px;
+      background-color: #999999;
       color: #eeeeee;
       font-size: 12px;
       font-weight: normal;

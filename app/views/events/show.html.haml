@@ -48,7 +48,7 @@
       
 
   .span-17.last.right_column
-    .span-17.append-bottom
+    .span-17
       =render 'common/big_header_box', :number => @participants.size, :text => '参加', :background_color => '#ff8a3c'
       =render 'common/big_header_box', :number => @references.size, :text => '喜欢', :background_color => '#aad450'
       =render 'common/big_header_box', :number => @comments_size, :background_color => '#4ebaff', :text => '评论'
@@ -62,11 +62,8 @@
             =link_to(url_for(:controller => "event_recommendations",:action => "remove_reference",:id => @event.id)) do
               .join_button.glass_button.quit.like
                 ='取消喜欢'
-    .span-17
-      %hr.space
-      .span-10
-        = render 'common/header_box', :title => '活动内容'
-    .event_title_bar.append-bottom
+    = render 'common/header_box', :title => '活动内容'
+    .event_title_bar
       .span-16  
         .span-13.event_title
           %h2=@event.title
@@ -87,9 +84,7 @@
 
 
      
-    %hr.space
-    .comments_title{:class => ('hide' unless @comments.size > 0)}
-      = render 'common/header_box', :title => '评论'
+    = render 'common/header_box', :title => '评论'
     = render 'event_comments', :comments => @comments, :event => @event, 
                                :current_person => @current_person, :comment => @comment 
       

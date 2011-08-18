@@ -25,7 +25,7 @@
           %li
             = render 'hot_events', :event => event 
         - if @hot_events.length == 0 
-          %li
+          %li.no_hot_events
             =render 'no_hot_events_interested'
     =link_to 'next', 'javascript:void(0)', :class => "gallery_link_next #{"hide" unless @hot_events.size > 2 }" , :id => 'nextBtn'
 
