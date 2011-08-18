@@ -43,6 +43,14 @@
     =render 'common/big_header_box', :number => @member_size, :text => '成员', :background_color => '#ff8a3c'
     =render 'common/big_header_box', :number => @event_size, :text => '活动', :background_color => '#aad450'
     =render 'common/big_header_box', :number => @topic_size, :text => '话题',  :background_color => '#4ebaff'
+    .share_operations.right
+      %span='分享此小组'
+      #share_to_sina
+        %br
+      #share_to_qq
+        %a{:class=> 'share', :href => 'javascript:void(0)',:alt=>"转播到腾讯微博"}
+          %img{:src=>"http://v.t.qq.com/share/images/s/weiboicon32.png", 
+               :align=>"absmiddle", :border=>"0"}  
     .span-17
       =render 'common/header_box', :title => '小组描述'
 
@@ -80,43 +88,62 @@
           .new_topic_link.hide
             = render 'common/big_link_button', :content => '发起话题', :path => new_group_topic_path(:group_id => @group.id)
 
-    .span-17.recent_events_area
-      - if @recent_events.size > 0
-        .span-17.events_panel
-          =render :partial => 'events/event_element',:collection => @recent_events,:as => :event
-          - if @is_member
-            =render :partial => 'events/new_event_link', :locals => { :question => '没找到感兴趣的活动?',
-                                                                    :link => new_event_path(:group_id => @group),
-                                                                    :action => '发起活动'}
-      - else
-        - if @is_member
+      .span-17.recent_events_area
+        - if @recent_events.size > 0
           .span-17.events_panel
-            =render :partial => 'events/new_event_link', :locals => {:question => '小组还没有活动?',
-                                                                     :link => new_event_path(:grouo_id => @group),
-                                                                     :action => '发起活动'}
+            =render :partial => 'events/event_element',:collection => @recent_events,:as => :event
+            - if @is_member
+              =render :partial => 'events/new_event_link', :locals => { :question => '没找到感兴趣的活动?',
+                                                                      :link => new_event_path(:group_id => @group),
+                                                                      :action => '发起活动'}
         - else
-          .span-17.recent_topic
-            =render :partial => 'events/new_event_link', :locals => {:question => '本小组还没有活动...'}
+          - if @is_member
+            .span-17.events_panel
+              =render :partial => 'events/new_event_link', :locals => {:question => '小组还没有活动?',
+                                                                       :link => new_event_path(:grouo_id => @group),
+                                                                       :action => '发起活动'}
+          - else
+            .span-17.recent_topic
+              =render :partial => 'events/new_event_link', :locals => {:question => '本小组还没有活动...'}
+              
+              
             
-            
-          
-    .span-17.hide.recent_topics_area
-      - if @topics.size > 0
-        .topics_panel
-          = render 'topics/recent_topics.html.haml', :topics => @topics
-      - else
-        - if @is_member
-          .span-17.no_topics_panel 
-            =render :partial => 'events/new_event_link', :locals => { :question => '小组还没有话题?',
-                                                                    :link => new_group_topic_path(@group),
-                                                                    :action => '发起话题'}
+      .span-17.hide.recent_topics_area
+        - if @topics.size > 0
+          .topics_panel
+            = render 'topics/recent_topics.html.haml', :topics => @topics
         - else
-          .span-17
-            =render :partial => 'events/new_event_link', :locals => {:question => '本小组还没有话题...'}
+          - if @is_member
+            .span-17.no_topics_panel 
+              =render :partial => 'events/new_event_link', :locals => { :question => '小组还没有话题?',
+                                                                      :link => new_group_topic_path(@group),
+                                                                      :action => '发起话题'}
+          - else
+            .span-17
+              =render :partial => 'events/new_event_link', :locals => {:question => '本小组还没有话题...'}
 
 
         
 :javascript
+    $(function() {
+      var _w = 32 , _h = 32;
+      var param = {
+        url:location.href,
+        type:'1',
+        count:'', 
+        appkey:'', 
+        title:"喜欢#{@group.item.name}的看过来，分享一个#{@group.item.name}小组<#{@group.name}>，感兴趣的人火速加进来，定期有精彩活动哦!", 
+        pic:'', 
+        ralateUid:'2320930322', 
+        rnd:new Date().valueOf()
+      }
+      var temp = [];
+      for( var p in param ){
+        temp.push(p + '=' + encodeURIComponent( param[p] || '' ) )
+      }
+     $('#share_to_sina').html('<iframe allowTransparency="true" frameborder="0" scrolling="no" src="http://hits.sinajs.cn/A1/weiboshare.html?' + temp.join('&') + '" width="'+ _w+'" height="'+_h+'"></iframe>')
+        
+    });
     $('.events_panel .new_event_link').hover(
       function() {
         $('.events_panel .new_event_panel h2').toggle();
@@ -151,3 +178,19 @@
    $('.group_tabs .new_event_link').hide();
    $('.group_tabs .new_topic_link').show();
   });
+
+   $('#share_to_qq a').click(function() {
+    postToWb();
+    return false;
+   });
+
+  function postToWb(){
+    var _t = encodeURI("喜欢#{@group.item.name}的看过来，分享一个#{@group.item.name}小组<#{@group.name}>，感兴趣的人火速加进来，定期有精彩活动哦!");
+    var _url = encodeURIComponent(document.location);
+    var _appkey = encodeURI("appkey")
+    var _pic = encodeURI('');
+    var _site = 'www.haoxiangwan.net';
+    var _u = 'http://v.t.qq.com/share/share.php?url='+_url+'&site='+_site+'&title='+_t;
+    window.open( _u,'', 'width=700, height=680, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, location=yes, resizable=no, status=no' );
+  }
+  
