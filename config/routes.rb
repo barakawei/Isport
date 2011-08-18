@@ -64,6 +64,14 @@ Isport::Application.routes.draw do
     match '/items/remove_fan_ajax' => :remove_fan_ajax, :as => 'remove_fan_ajax'
   end
 
+  controller :site_info do
+    match "/site_info/new_feedback" => :new_feedback, :as => 'new_feedback', :via => :get
+    match "/site_info/create_feedback" => :create_feedback, :as => 'create_feedback', :via => :post
+    match "/site_info/feedbacks" => :feedbacks, :as => 'feedbacks', :via => :get
+    match "/site_info/:info_type" => :site_info, :as => 'site_info', :via => :get,
+          :constraints => { :info_type => /about|contact|service/ }
+  end
+
   controller :home do
     match 'home' => :index, :as => 'home'
   end

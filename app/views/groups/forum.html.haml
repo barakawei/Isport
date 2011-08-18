@@ -5,11 +5,11 @@
   .span-17.group_logo
     .avatar
       =group_image_link(@group, :thumb_medium)
-    %h2=link_to @group.name, group_path(@group)
+    %h2
+      =link_to @group.name, group_path(@group)
+      ='的讨论区'
   .span-7.last
     = render 'common/big_link_button', :content => '发起话题', :path => new_group_topic_path(@group)
-.span-24.prepend-top
-  = render 'common/header_box', :title => '小组讨论区'
 - if @topics.size > 0
   .span-24.topics_area
     = render "topics/index"

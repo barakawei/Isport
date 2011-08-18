@@ -22,14 +22,12 @@
         - else
           = render 'layouts/header' 
     .container.body
+      - if params[:controller] == 'home' && params[:action] == 'index'
+        =link_to 'suggestion', new_feedback_path, :class => 'new_user_feedback'
       .span-24.last
         =yield 
       .span-24
         %br
-        %br
-        %br
-    .footer
-      .container
 
 :javascript
   $(function() {

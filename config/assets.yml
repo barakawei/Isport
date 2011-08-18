@@ -54,6 +54,7 @@ stylesheets:
     - public/stylesheets/css/general/application/application.css
     - public/stylesheets/css/plugins/fileuploader.css
     - public/stylesheets/css/general/headings/header.css
+    - public/stylesheets/css/general/footer/footer.css
     - public/stylesheets/css/special_pages/home/index.css
     - public/stylesheets/css/special_pages/devise_sessions/new.css
     - public/javascripts/jquery-ui-1.8.14/css/custom-theme/jquery-ui-1.8.14.custom.css
@@ -136,10 +137,14 @@ stylesheets:
 
   special_pages_registration_new:
     - public/stylesheets/css/special_pages/registration/new.css
+  special_pages_registration_reset_password:
+    - public/stylesheets/css/special_pages/registration/reset_password.css
 
   sepcial_pages_users_selectinterests:
     - public/stylesheets/css/special_pages/users/select_interests.css
   sepcial_pages_people_edit_interests:
     - public/stylesheets/css/special_pages/people/edit_interests.css
 
+  sepcial_pages_site_info_common:
+    - public/stylesheets/css/special_pages/site_info/common.css
  

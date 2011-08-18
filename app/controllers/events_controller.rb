@@ -59,7 +59,7 @@ class EventsController < ApplicationController
     @steps = [I18n.t('events.new_event_wizards.step_1'), I18n.t('events.new_event_wizards.step_2')]
     @step = 1 
     @event = Event.new
-    @event.location = Location.new(:city_id => 1, :district_id => 1, :detail => " ")
+    @event.location = Location.new(:city_id => current_user.person.location.city.id, :district_id => 1, :detail => " ")
     unless params[:group_id].nil?
       @group = Group.find(params[:group_id])
       @event.group = @group

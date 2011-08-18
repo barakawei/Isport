@@ -3,17 +3,13 @@ $darkblue: #002DB3
 $darkgray: #A8AAAD
 
 .reg_box
-  :background #f8f8f8
   :width 315px
-  :height 290px
-  :margin-top 5px
-  :margin-left 25px
-  :float left
+  :height 218px
+  :float right 
 
   .reg_info
     :width 280px
     :height  80px
-    :color $darkblue
     :white-space normal
     :position relative
     :margin-top 10px
@@ -48,68 +44,105 @@ $darkgray: #A8AAAD
 
     &:hover em
       :top 12px
-
-.item_area, .event_area, .group_area
-  :width 260px
-  :height 200px
-  :margin-left 10px
-  :margin-top 10px
-  :float left
-  :text-indent -9999em
-  :display block
-
-.item_area
-  :background url("/images/ui/item_nav.png") no-repeat scroll 0 0 transparent 
   
-.flack, .flackplus
-  :width 260px
-  :margin-left 12px
-  :font-size 26px
-  :font-family "Microsoft YaHei"
-  :display block
-  :overflow hidden
-  :white-space normal
-  :position relative
 
-.flack
-  :margin-top 5px
-  :color #232221
-  :text-shadow 0 1px 1px #ccc
-
-  &:hover
-    :color green
-
-.flackplus
-  :font-size 18px
-  :color #FC4469
-  :font-weight bold 
-  :text-shadow 0 1px 1px #ccc
+  
+  
 
 .welcome_box
-  :background none repeat scroll 0 0 #F8F8F8
-  :width 903px
-  :height 300px
-  :margin-left 24px
   @include border-radius(10px)
-  :border 5px solid #d5ddde
+  :padding 5px 0
+  :float left
+  :background none repeat scroll 0 0 #ffffff
+  :width 948px
+  :border 1px solid #aaaaaa
 
   .poster_box
     :background #FFFFFF
-    :width 540px
-    :height 284px
+    :width 580px
+    :height 200px
     :margin-left 8px
     :margin-top 8px
     :float left
     @include border-radius(10px)
 
-.welcomenav_box
-  :width 278px
-  :height 300px
-  :margin-left 24px
-  :margin-top 20px
-  :float left
-  @include border-radius(10px)
-  :border 5px solid #d5ddde
-  :background-color #ffffff
+    img
+      :float left
+      :margin 0px 2px 2px 0
+    a
+      &:hover
+        .plus_you_pic 
+          :background-color #FC4469
+           
+      .plus_you_pic
+        :width 102px
+        :height 102px
+        :float left
+        :margin 0px 2px 2px 0
+        :background-color #4EBAFF
+        :text-align center
+        :color #ffffff
+        
+        span
+          :display block
+          :font-size 25px 
+          :line-height 30px
+          :height 30px
+          :margin-top 35px
+    
 
+.des_box
+  :float left
+  :margin-top 10px
+  :width 948px
+  :border 1px solid #aaaaaa
+  @include border-radius(10px)
+  :background none repeat scroll 0 0 #ffffff
+
+  .welcomenav_box
+    :width 280px
+    :padding-left 30px
+    :margin-top 10px
+    :float left
+
+    .flack
+      :font-size 18px
+      :font-family "Microsoft YaHei"
+      :font-weight bold
+      :display block
+      :color black
+      :margin-bottom 10px
+
+    .item_block
+      :float left
+      :margin-bottom 15px
+      .avatar
+        :float left
+        img
+          @include border-radius(10px)
+          border: 1px solid #d5ddde
+      .item_info
+        :float left
+        :width 150px
+        :height 100px
+        :margin-left 10px
+        :position relative
+
+        span
+          :display block
+          :font-size 11px
+
+        span.title
+          :font-size 12px
+          :color #222222
+
+        span.desc
+          :color #666666
+          :margin-bottom 10px
+          :width 140px
+
+        span.like
+          :bottom 0 
+          :position absolute
+        
 

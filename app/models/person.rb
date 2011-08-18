@@ -5,6 +5,7 @@ class Person < ActiveRecord::Base
   belongs_to :user
   has_many :contacts
   has_many :events
+  has_many :feedbacks
   has_many :groups
   has_many :topics
   has_many :topic_comments, :class_name => 'topic_comment'

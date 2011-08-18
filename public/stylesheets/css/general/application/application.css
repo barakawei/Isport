@@ -57,8 +57,13 @@ a {
     color: #205f82;
     text-decoration: none; }
 
-ol, ul, li {
+ul {
   list-style: none; }
+  ul li {
+    list-style: none; }
+
+.app_empty_area {
+  margin-top: 50px; }
 
 .container.body {
   padding-top: 30px; }
@@ -254,39 +259,6 @@ span.medium_avatar {
   .pagination_box .pagination a:hover {
     background-color: white;
     text-decoration: none; }
-
-.welcome_box {
-  background: none repeat scroll 0 0 #f8f8f8;
-  width: 903px;
-  height: 300px;
-  margin-left: 24px;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
-  border-radius: 10px;
-  behavior: url(/javascripts/PIE.htc); }
-  .welcome_box .poster_box {
-    background: #f8f8f8;
-    width: 550px;
-    height: 290px;
-    margin-left: 5px;
-    margin-top: 5px;
-    float: left;
-    -moz-border-radius: 10px;
-    -webkit-border-radius: 10px;
-    border-radius: 10px;
-    behavior: url(/javascripts/PIE.htc); }
-
-.welcomenav_box {
-  background: none repeat scroll 0 0 #f8f8f8;
-  width: 285px;
-  height: 300px;
-  margin-left: 24px;
-  margin-top: 12px;
-  float: left;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
-  border-radius: 10px;
-  behavior: url(/javascripts/PIE.htc); }
 
 .app_module_title {
   margin: 15px 0 5px 0;
@@ -630,3 +602,51 @@ a.app_big_link_button {
   margin-top: 5px; }
 .invitation #email_invitation {
   height: 180px; }
+
+a.app_black_link_button {
+  color: white;
+  background: url("/images/ui/bg-sp4_button.gif") no-repeat scroll 0 0 transparent;
+  color: white;
+  cursor: pointer;
+  float: right;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  font-weight: bold;
+  line-height: 15px;
+  margin: 3px 0 0 10px; }
+  a.app_black_link_button:hover {
+    background-position: 0px -90px; }
+    a.app_black_link_button:hover span.content {
+      background-position: 100% -135px;
+      padding: 14px 14px 16px 15px; }
+  a.app_black_link_button span.content {
+    background: url("/images/ui/bg-sp4_button.gif") no-repeat scroll 100% -45px transparent;
+    float: left;
+    padding: 13px 14px 17px 15px;
+    white-space: nowrap; }
+
+.app_big_submit_button {
+  background: url("/images/ui/person_edit.png") no-repeat scroll 0 0 transparent;
+  border: medium none;
+  cursor: pointer;
+  display: inline;
+  float: right;
+  font-size: 16px;
+  color: white;
+  height: 46px;
+  margin: 0px 4px 0 0;
+  overflow: hidden;
+  width: 198px; }
+  .app_big_submit_button:hover {
+    background: url("/images/ui/person_edit.png") no-repeat scroll 100% -46px transparent;
+    margin: 3px 4px 0 0; }
+
+.new_user_feedback {
+  background: url("/images/ui/feedback-side.$2159.png") no-repeat scroll 0 0 transparent;
+  height: 99px;
+  overflow: hidden;
+  position: fixed;
+  right: 0;
+  text-indent: -9999em;
+  top: 40%;
+  width: 28px; }

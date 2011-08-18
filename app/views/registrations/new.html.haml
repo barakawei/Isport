@@ -4,7 +4,7 @@
 .span-24
   .reg_area
     = form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
-      %h3
+      %h2
         = t('.sign_up_for_isport')
 
       .reg_relative
@@ -23,23 +23,8 @@
 
         = f.submit t('.sign_up'), :class => "signup_botton"
 
-  .flack_area
-    = "欢迎来到乐玩"
-    %br
-    .reg_reason
-      .plus_row 
-        .plus_area
-          = render 'common/header_box', :title => "找到你的活动" , :dark => false
-      .plus_row 
-        .plus_area
-          = render 'common/header_box', :title => "找到你的项目" , :dark => false
-      .plus_row 
-        .plus_area
-          = render 'common/header_box', :title => "找到你的小组" , :dark => false
-
-      .direct_login
-        ="> 如果你已经有乐玩帐号："  
-        =link_to "直接登录", sign_in_path
+.footer
+  = render 'layouts/footer'
 
 :javascript
   $(function() {

@@ -1,36 +1,92 @@
-= javascript_include_tag "validation"
+-content_for :head do
+  = include_javascripts :jquery_validation
+  = include_stylesheets :special_pages_registration_new, :media => 'all'
+.span-24
+  .reg_area
+    = form_for(resource, :as => resource_name, :url => invitation_path(resource_name), :html => {:method => :put, :class => 'accept_invitation_form'}) do |f|
+      %h2
+        = t('registrations.new.sign_up_for_isport')
+
+      .reg_relative
+        .reg_email  
+          %h2
+            = resource.email
+
+        .reg_password
+          = f.password_field :password, :id => "password"
+          = f.label :password, t('password'), :class => "password in_field"
+
+        .reg_password
+          = f.password_field :password_confirmation, :id => "password_confirmation"
+          = f.label :password_confirmation, t('password_confirmation'), :class => "password in_field"
+          = f.hidden_field :invitation_token
+
+        = f.submit t('registrations.new.sign_up'), :class => "signup_botton"
+
+.footer
+  = render 'layouts/footer'
+
 :javascript
   $(function() {
-    $("#user_username").focus();
+    $('.accept_invitation_form').validate({  
+      rules: {
+        'user[email]': {
+          required: true,
+          email: true
+        },
+        'user[password]': {
+          required: true,
+          minlength: 5 
+        },
+        'user[password_confirmation]': {
+          required: true,
+          equalTo: "#password"
+        }
+      },
+      messages: {
+        'user[email]': {
+          required: '请输入电子邮箱',
+          email: '邮箱格式错误'
+        },
+        'user[password]': {
+          required: '请输入密码',
+          minlength: '密码长度不能少于{0}位'
+        },
+        'user[password_confirmation]': {
+          required: '请再一次输入您的密码',
+          equalTo: '两次输入的密码不一致'
+        }
+      }
+    });
   });
 
-.span-7.append-1.prepend-3
-  %br
-  %br
-  %br
-  %br
-  %h2
-    = "创建帐号"
-  %h3.accept_invitation_text
-    = "接受邀请"
+  $(".in_field").click(function() {
+    $(this).hide();
+    $(this).siblings("input").focus();
+  }); 
 
-.span-10
-  %br
-  %br
-  %br
-  %br
-  = form_for(resource, :as => resource_name, :url => invitation_path(resource_name), :html => {:method => :put, :class => 'accept_invitation_form'}) do |f|
-    %p  
-      = f.label :email , t('email')
-      = resource.email
-    %p
-      = f.label :password , t('password')
-      = f.password_field :password, :title => t('registrations.new.enter_password') 
-    %p
-      = f.label :password_confirmation , t('password_confirmation')
-      = f.password_field :password_confirmation, :title => t('registrations.new.enter_password_again') 
-      = f.hidden_field :invitation_token
+  $("#email").add("#password").add("#password_confirmation").focus(function() {
+    $(this).siblings(".in_field").hide();
+  }); 
 
-    .submit_field
-      = f.submit '确定'
+  $("#email").add("#password").add("#password_confirmation").blur(function() {
+    field = $(this).siblings(".in_field")
+    if ($.trim($(this).val()) == '' ) {
+      $(this).val('');
+      field.show();
+    }
+  });
+
+  $(document).ready(function() {
+    if ($.trim($('#email').val()) != '') {
+      $('#email').siblings(".in_field").hide();
+    }
+    if ($.trim($('#password').val()) != '') {
+      $('#password').siblings(".in_field").hide();
+    }
+    if ($.trim($('#password_confirmation').val()) != '') {
+      $('#password_confirmation').siblings(".in_field").hide();
+    }
+  });
+
 

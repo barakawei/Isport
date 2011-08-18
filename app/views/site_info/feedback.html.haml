@@ -1,0 +1,41 @@
+- content_for :head do
+  = include_stylesheets :sepcial_pages_site_info_common, :media => 'all'
+  = include_javascripts :jquery_validation
+.span-24
+  .left_column
+    %ul.nav
+      %li=link_to '意见反馈', 'javascript:void(0)', :class => ("current" if params[:action] == 'feedback') 
+      %li=link_to '联系我们', 'javascript:void(0)', :class => ("current" if params[:action] == 'contact') 
+  .span-18.last
+    .span-16.content_area
+      - unless @succ
+        %h1='给我们提建议'
+        %h4='如果您在使用好想玩的过程中遇到疑问，或者有任何的意见或者建议，欢迎随时向我们反馈。我们会尽快回答您的问题，并依据您的反馈，不断完善。' 
+        = form_for @feedback, :url => create_feedback_path(@feedback) do |f|
+          .field
+            = f.text_area :content
+            .submit_div
+              = f.submit '提交反馈', :class =>'app_big_submit_button' 
+      - else
+        %h1='反馈发送成功'
+        %h4='您的反馈已经收到了，非常感谢您的支持！ 我们会尽快答复您的问题，会通过“私信”发送给您。'
+        = render 'common/big_link_button', :content => '更多建议', :path => new_feedback_path
+
+      
+:javascript
+  $(function() {
+    $('#new_feedback').validate({ 
+      rules: {
+        "feedback[content]": {
+          required: true,
+          maxlength: 3000 
+        } 
+      },
+      messages: {
+        "feedback[content]": {
+          required: "请输入建议内容",
+          maxlength: "建议内容不能超过{0}个字符"
+        }
+      } 
+    }); 
+  });      

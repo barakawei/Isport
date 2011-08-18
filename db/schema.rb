@@ -112,6 +112,13 @@ ActiveRecord::Schema.define(:version => 20110817125623) do
     t.datetime "updated_at"
   end
 
+  create_table "feedbacks", :force => true do |t|
+    t.integer  "person_id"
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "forums", :force => true do |t|
     t.integer  "discussable_id"
     t.string   "discussable_type"
@@ -133,6 +140,7 @@ ActiveRecord::Schema.define(:version => 20110817125623) do
     t.string   "image_url_large"
     t.integer  "person_id"
     t.integer  "district_id"
+<<<<<<< HEAD
   end
 
   create_table "invitations", :force => true do |t|
@@ -141,6 +149,8 @@ ActiveRecord::Schema.define(:version => 20110817125623) do
     t.text     "message"
     t.datetime "created_at"
     t.datetime "updated_at"
+=======
+>>>>>>> 5bfe07b280a0250b764bf3ec9b1525d835971971
   end
 
   create_table "involvements", :force => true do |t|

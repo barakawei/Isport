@@ -4,35 +4,35 @@
     footer{position:absolute;bottom:12px;}
 
 .span-24.relative
-  .span-5.relative
-    %br
-  .login.span-16.relative
-    %h1=t("Isport")
+  .login.relative
+    %h2='登录'
 
     = form_for(resource, :as =>resource_name,:url=> session_path(resource_name)) do |f|
-      .reg_relative
-        .reg_input
-          = f.text_field :email, :id => "email"
-          = f.label :email,t('email'), :class => "email in_field"
-      .reg_relative
-        .reg_input.relative
-          = f.password_field :password, :id=> "password"
-          = f.label :password,t('password'), :class => "password in_field"
-        %span
-          - if devise_mapping.recoverable? && controller_name != 'passwords'
-            =link_to t('devise.shared.links.forgot_your_password'),new_password_path(resource_name)
-          -else
-            \.
-          %br
+      .reg_input
+        = f.text_field :email, :id => "email"
+        = f.label :email,t('email'), :class => "email in_field"
+      .reg_input
+        = f.password_field :password, :id=> "password"
+        = f.label :password,t('password'), :class => "password in_field"
+      .reg_input.submit
+        .span-3
+          %span#remember_me
+            -if devise_mapping.rememberable?
+              =f.check_box :remember_me
+              =f.label :remember_me,t('.remember_me'), :class=> "ckbox"
+            -else
+              \.
+        .reg_action
+          =f.submit t('.sign_in'), :class => "log_submit right"
 
-      .reg_action
-        =f.submit t('.sign_in'), :class => "log_submit"
-        %span#remember_me
-          -if devise_mapping.rememberable?
-            =f.check_box :remember_me
-            =f.label :remember_me,t('.remember_me'), :class=> "ckbox"
-          -else
-            \.
+.span-24.login_footer
+  .forget_password
+    %span.notify='notify'
+    = render 'common/small_link_button', :path => new_password_path(resource), :content => '忘记密码？'
+
+.footer
+  = render 'layouts/footer'
+  
 
 :javascript
   $(".in_field").click(function() {
@@ -43,6 +43,11 @@
   $("#email").add("#password").focus(function() {
     $(this).siblings(".in_field").hide();
   }); 
+  
+  $("#email").add("#password").change(function() {
+    $(this).siblings(".in_field").hide();
+  }); 
+  
 
   $("#email").add("#password").blur(function() {
     field = $(this).siblings(".in_field")
