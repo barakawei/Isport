@@ -1,8 +1,9 @@
 #left_pane.span-7
   #left_pane_header
     #new_conversation.right
-      .new_message.glass_button
-        =link_to "新消息",new_conversation_path,:class=>"new_message_action"
+      =link_to(new_conversation_path,:class=>"new_message_action") do
+        .new_message.glass_button
+          = "新信息"
     %h3
       = t( 'inbox' )
   #conversation_inbox
@@ -23,9 +24,7 @@
     = render 'conversations/show', :conversation => @conversation
   - else
     #no_conversation_text
-      = "未选中对话"
-    #no_conversation_action
-      = link_to "发送新消息",new_conversation_path,:class=>"new_message_action" 
+      = link_to "发送新信息",new_conversation_path,:class=>"new_message_action" 
       
 :javascript 
   $(".new_message_action").colorbox();

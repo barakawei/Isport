@@ -31,16 +31,16 @@
       %span.right= link_to '详细>>', event_map_path(@event)
       #map
     - if @participants.size > 0
-      .span-6
-        %h4.app_module_title='活动成员'
+      .span-6.members
+        %h4.app_module_title.inline='活动成员'
         .person_array
           - @participants.each do |member|
             .member
               = person_image_link(member)
     
     - if @references.size > 0
-      .span-6
-        %h4.app_module_title='喜欢该活动的人'
+      .span-6.members
+        %h4.app_module_title.inline='喜欢该活动的人'
         .person_array
           - @references.each do |member|
             .member

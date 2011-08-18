@@ -1,5 +1,9 @@
 Isport::Application.routes.draw do
-  devise_for :users, :controllers => { :registrations => "registrations" }
+  devise_for :users, :controllers => { :registrations => "registrations",:invitations   => "invitations" } do
+    get 'invitations/resend/:id' => 'invitations#resend', :as => 'invitation_resend'
+    get 'invitations/email' => 'invitations#email', :as => 'invite_email'
+    
+  end
   resources :contacts
   resources :profiles
   resources :posts do

@@ -74,16 +74,20 @@
       .left_column .new_operations .new_button:hover {
         margin-top: 2px;
         background-color: #e76875; }
+  .left_column .members {
+    padding: 10px;
+    width: 180px;
+    background-color: white; }
   .left_column .person_array {
     width: 220px;
-    margin-bottom: 10px;
+    margin-top: 10px;
     float: left; }
     .left_column .person_array .avatar_container {
       float: left;
-      margin-right: 5px; }
+      margin-right: 2px; }
       .left_column .person_array .avatar_container .avatar {
-        width: 45px;
-        height: 45px;
+        width: 43px;
+        height: 43px;
         -moz-border-radius: 5px;
         -webkit-border-radius: 5px;
         border-radius: 5px;

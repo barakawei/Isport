@@ -6,7 +6,7 @@ input[type=text], textarea {
   behavior: url(/javascripts/PIE.htc); }
   input[type=text]:focus, textarea:focus {
     outline: 5px auto -webkit-focus-ring-color;
-    border: 1px solid #7ecef4 !important; }
+    border: 2px solid #7ecef4 !important; }
 
 .right_arrow {
   cursor: pointer;
@@ -620,3 +620,13 @@ a.app_big_link_button {
     background-position: 0 -102px !important;
     color: white;
     padding: 15px 18px 11px 24px; }
+
+.invitation .email input {
+  width: 350px; }
+.invitation .message textarea {
+  width: 350px; }
+.invitation h4 {
+  margin-bottom: 5px;
+  margin-top: 5px; }
+.invitation #email_invitation {
+  height: 180px; }

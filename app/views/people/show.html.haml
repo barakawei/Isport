@@ -35,7 +35,7 @@
     .groups
       .title
         .name
-          = "加入的小组"
+          = "小组"
         .link
           = link_to '>>',{:controller => 'people',:action => 'show_groups',:person_id=>@person.id}
         .clear
@@ -52,7 +52,7 @@
     .groups
       .title
         .name
-          = '喜欢的项目'
+          = '项目'
         .link
           = link_to '>>',{:controller => 'people',:action => 'show_items',:person_id=>@person.id}
         .clear
@@ -83,14 +83,14 @@
     .following_people_panel
       - if @followed_people.length > 0
         .titile
-          =render 'common/header_box',:title => "你关注的人"
+          =render 'common/header_box',:title => "关注"
         - for person in @followed_people[ 0...20 ]
           .person_avatar
             = person_image_link(person)
     .following_people_panel
       - if @befollowed_people.length > 0
         .titile
-          =render 'common/header_box',:title => "关注你的人"
+          =render 'common/header_box',:title => "被关注"
         - for person in @befollowed_people[ 0...20 ]
           .person_avatar
             = person_image_link(person)

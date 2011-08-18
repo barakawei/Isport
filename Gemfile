@@ -20,6 +20,7 @@ gem "ruby_parser"
 gem 'mini_magick',"3.3"
 gem 'carrierwave',"0.5.6"
 gem 'date_validator'
+gem 'settingslogic'
 
 group :development, :test do
   gem 'rspec-rails'

@@ -32,10 +32,12 @@
           .content=link_to @group.person.name, person_path(@group.person)
     %hr.space
     - if @members.size > 0
-      %h4.app_module_title='小组成员'
-      .person_array
-        - @members.each do |member|
-          = person_image_link(member)
+      .members
+        %h4.app_module_title.inline='小组成员'
+        .person_array
+          - @members.each do |member|
+            = person_image_link(member)
+        .clear
   
   .span-17.last.right_column
     =render 'common/big_header_box', :number => @member_size, :text => '成员', :background_color => '#ff8a3c'

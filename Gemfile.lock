@@ -120,6 +120,7 @@ GEM
     ruby_parser (2.0.6)
       sexp_processor (~> 3.0)
     sass (3.1.1)
+    settingslogic (2.0.6)
     sexp_processor (3.0.5)
     sinatra (1.2.6)
       rack (~> 1.1)
@@ -159,4 +160,5 @@ DEPENDENCIES
   rspec-rails
   ruby_parser
   sass
+  settingslogic
   will_paginate (= 3.0.pre2)
