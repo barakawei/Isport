@@ -1,5 +1,13 @@
 .following_people_panel {
   margin-top: 25px; }
+  .following_people_panel .person_avatar .avatar_container {
+    -webkit-box-shadow: 0 1px 3px 0 #aaaaaa;
+    -moz-box-shadow: 0 1px 3px 0 #aaaaaa;
+    box-shadow: 0 1px 3px 0 #aaaaaa;
+    behavior: url(/javascripts/PIE.htc);
+    height: 50px;
+    padding: 1px;
+    background-color: #d5ddde; }
 
 .history_bar {
   display: block;

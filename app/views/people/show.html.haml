@@ -82,8 +82,7 @@
 
     .following_people_panel
       - if @followed_people.length > 0
-        .titile
-          =render 'common/header_box',:title => "关注"
+        =render 'common/header_box',:title => "关注"
         - for person in @followed_people[ 0...20 ]
           .person_avatar
             = person_image_link(person)

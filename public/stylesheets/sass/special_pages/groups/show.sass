@@ -3,7 +3,7 @@
   color: #666666
   .avatar
     img
-      @include border-radius(14px)
+      @include border-radius(8px)
       :width 198px
       :height 198px
       :border 1px solid #f2f2f2
@@ -105,19 +105,45 @@
         @include border-radius(5px)
 
 .right_column 
+  .app_header_box
+    :margin-top 50px
   .new_event_panel
     margin: 0 10px 14px 15px
   .app_big_title_bar.last_one
     :margin-right 0
   .app_big_title_bar
     :margin-right 20px  
+  .share_operations
+    :float left
+    :padding 5px
+    :background-color #ffffff
+    :border 3px solid #d5ddde
+    :color #FC4469
+    @include border-radius(5px)
+
+    span
+      :font-weight bold
+      :font-size 14px
+      :display block
+      :margin 0 5px 5px 0 
+
+    #share_to_sina, #share_to_qq
+      :float left
+      :margin-right 5px
+    #share_to_qq
+      a
+        :display block
+        :width 32px
+        :height 32px
+
+    
 
   .group_title_bar
     :width 630px
     :float left
     :background-color #ffffff
     :border 3px solid  #d5ddde
-    @include border-radius(15px)
+    @include border-radius(8px)
     :padding 17px
     
     .status
@@ -152,10 +178,10 @@
       padding-top: 10px
 
   .group_tabs
+    @include border-radius(8px)
     .home_tabs
       background: #F9F9F9 url('/images/ui/tabs-bg.png')  repeat
       height: 62px
-      border-radius: 10px 10px 0 0
             
           
       li
@@ -177,17 +203,20 @@
         a.current
           :background-color  #697d84
           :color #ffffff
+        
+      .app_big_link_button
+        :margin-right 10px
   
   .events_panel
     :margin-top 0
+    :background-color #ffffff
+    :padding 30px 0
   
   .topics_panel
     :background-color #ffffff
-    :width 624px
+    :width 630px
     :padding 20px
     :float left
-    :border 3px solid  #d5ddde
-    @include border-radius(15px)
 
 
 a.more

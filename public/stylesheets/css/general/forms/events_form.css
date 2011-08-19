@@ -13,9 +13,9 @@
 .event_form .form_area {
   padding: 30px 10px 20px 30px;
   background-color: white;
-  -moz-border-radius: 15px;
-  -webkit-border-radius: 15px;
-  border-radius: 15px;
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  border-radius: 8px;
   behavior: url(/javascripts/PIE.htc);
   border: 1px solid #d5ddde; }
   .event_form .form_area .top {
@@ -86,9 +86,9 @@
   #event_photo_upload .img_contained {
     width: 180px; }
     #event_photo_upload .img_contained img {
-      -moz-border-radius: 10px;
-      -webkit-border-radius: 10px;
-      border-radius: 10px;
+      -moz-border-radius: 8px;
+      -webkit-border-radius: 8px;
+      border-radius: 8px;
       behavior: url(/javascripts/PIE.htc);
       width: 200px;
       height: 200px;

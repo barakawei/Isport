@@ -48,7 +48,7 @@
       
 
   .span-17.last.right_column
-    .span-17.append-bottom
+    .span-17
       =render 'common/big_header_box', :number => @participants.size, :text => '参加', :background_color => '#ff8a3c'
       =render 'common/big_header_box', :number => @references.size, :text => '喜欢', :background_color => '#aad450'
       =render 'common/big_header_box', :number => @comments_size, :background_color => '#4ebaff', :text => '评论'
@@ -62,11 +62,17 @@
             =link_to(url_for(:controller => "event_recommendations",:action => "remove_reference",:id => @event.id)) do
               .join_button.glass_button.quit.like
                 ='取消喜欢'
-    .span-17
-      %hr.space
-      .span-10
-        = render 'common/header_box', :title => '活动内容'
-    .event_title_bar.append-bottom
+
+        .share_operations
+          %span='分享此活动'
+          #share_to_sina
+            %br
+          #share_to_qq
+            %a{:class=> 'share', :href => 'javascript:void(0)',:alt=>"转播到腾讯微博"}
+              %img{:src=>"http://v.t.qq.com/share/images/s/weiboicon32.png", 
+                   :align=>"absmiddle", :border=>"0"}  
+    = render 'common/header_box', :title => '活动内容'
+    .event_title_bar
       .span-16  
         .span-13.event_title
           %h2=@event.title
@@ -87,9 +93,7 @@
 
 
      
-    %hr.space
-    .comments_title{:class => ('hide' unless @comments.size > 0)}
-      = render 'common/header_box', :title => '评论'
+    = render 'common/header_box', :title => '评论'
     = render 'event_comments', :comments => @comments, :event => @event, 
                                :current_person => @current_person, :comment => @comment 
       
@@ -97,4 +101,38 @@
   $(function() {
     var address = "#{@event.location}";
     codeAddress("map", address, 'map_div');
+
+    var _w = 32 , _h = 32;
+    var param = {
+      url:location.href,
+      type:'1',
+      count:'', 
+      appkey:'', 
+      title:"喜欢#{@event.item.name}的看过来，分享一个#{@event.item.name}活动<#{@event.title}>，感兴趣的人火速来参加吧!",
+      pic:'', 
+      ralateUid:'2320930322', 
+      rnd:new Date().valueOf()
+    }
+    var temp = [];
+    for( var p in param ){
+      temp.push(p + '=' + encodeURIComponent( param[p] || '' ) )
+    }
+   $('#share_to_sina').html('<iframe allowTransparency="true" frameborder="0" scrolling="no" src="http://hits.sinajs.cn/A1/weiboshare.html?' + temp.join('&') + '" width="'+ _w+'" height="'+_h+'"></iframe>')
+  
   });
+  
+   $('#share_to_qq a').click(function() {
+    postToWb();
+    return false;
+   });
+
+  function postToWb(){
+    var _t = encodeURI("喜欢#{@event.item.name}的看过来，分享一个#{@event.item.name}活动<#{@event.title}>，感兴趣的人火速来参加吧!");
+    var _url = encodeURIComponent(document.location);
+    var _appkey = encodeURI("appkey")
+    var _pic = encodeURI('');
+    var _site = 'www.haoxiangwan.net';
+    var _u = 'http://v.t.qq.com/share/share.php?url='+_url+'&site='+_site+'&title='+_t;
+    window.open( _u,'', 'width=700, height=680, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, location=yes, resizable=no, status=no' );
+  }
+  

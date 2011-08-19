@@ -74,6 +74,8 @@
     border-radius: 5px;
     behavior: url(/javascripts/PIE.htc); }
 
+.right_column .app_header_box {
+  margin-top: 50px; }
 .right_column .app_big_title_bar.last_one {
   margin-right: 0; }
 .right_column .app_big_title_bar {
@@ -83,9 +85,9 @@
   float: left;
   background-color: white;
   border: 3px solid #d5ddde;
-  -moz-border-radius: 15px;
-  -webkit-border-radius: 15px;
-  border-radius: 15px;
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  border-radius: 8px;
   behavior: url(/javascripts/PIE.htc);
   padding: 17px; }
   .right_column .event_title_bar .event_desc {
@@ -97,6 +99,28 @@
   color: #f78ca1; }
 .right_column .operations {
   height: 40px; }
+  .right_column .operations .share_operations {
+    float: left;
+    padding: 5px;
+    background-color: white;
+    border: 3px solid #d5ddde;
+    color: #fc4469;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    behavior: url(/javascripts/PIE.htc); }
+    .right_column .operations .share_operations span {
+      font-weight: bold;
+      font-size: 14px;
+      display: block;
+      margin: 0 5px 5px 0; }
+    .right_column .operations .share_operations #share_to_sina, .right_column .operations .share_operations #share_to_qq {
+      float: left;
+      margin-right: 10px; }
+    .right_column .operations .share_operations #share_to_qq a {
+      display: block;
+      width: 32px;
+      height: 32px; }
   .right_column .operations .join_button {
     float: left;
     width: 60px;
