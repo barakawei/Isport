@@ -1,6 +1,7 @@
 #encoding: utf-8
 require 'geocoder'
 class EventsController < ApplicationController
+  before_filter :registrations_closed?
   before_filter :authenticate_user!,
                 :except => [:index, :show, :participants, 
                             :references, :paginate_participants,

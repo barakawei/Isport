@@ -1,4 +1,5 @@
 class HomeController < ApplicationController
+  before_filter :registrations_closed?
   before_filter :authenticate_user!
   respond_to :js,:html
 

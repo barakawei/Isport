@@ -1,4 +1,5 @@
 class GroupTopicsController < ApplicationController
+  before_filter :registrations_closed?
   before_filter :authenticate_user!, :except => [:show, :summary]
  
   def new

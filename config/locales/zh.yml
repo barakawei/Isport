@@ -530,3 +530,12 @@ zh:
       send_instructions: "幾分鐘後你將收到一封說明如何將你的帳號解鎖的信件."
       unlocked: "帳號解鎖成功. 你已經登入了."
     all: '(全部)'
+  errors:
+    messages:
+      expired: "has expired, please request a new one"
+      not_found: "未找到"
+      already_confirmed: "was already confirmed, please try signing in"
+      not_locked: "was not locked"
+      not_saved:
+        one: "发生了一个错误"
+        other: "%{count} errors prohibited this %{resource} from being saved:"

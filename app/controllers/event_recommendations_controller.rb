@@ -1,4 +1,5 @@
 class EventRecommendationsController < ApplicationController
+  before_filter :registrations_closed?
   before_filter :get_event
 
   def add_reference
