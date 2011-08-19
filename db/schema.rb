@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110817053048) do
+ActiveRecord::Schema.define(:version => 20110817125623) do
 
   create_table "administrators", :force => true do |t|
     t.integer  "user_id"
@@ -140,6 +140,14 @@ ActiveRecord::Schema.define(:version => 20110817053048) do
     t.string   "image_url_large"
     t.integer  "person_id"
     t.integer  "district_id"
+  end
+
+  create_table "invitations", :force => true do |t|
+    t.integer  "sender_id"
+    t.integer  "recipient_id"
+    t.text     "message"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "involvements", :force => true do |t|
@@ -315,6 +323,8 @@ ActiveRecord::Schema.define(:version => 20110817053048) do
     t.string   "invited_by_type"
     t.string   "name"
     t.boolean  "getting_started",                       :default => true
+    t.string   "invitation_service"
+    t.string   "invitation_identifier"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
