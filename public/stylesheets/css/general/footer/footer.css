@@ -13,6 +13,9 @@
       color: #4083a9; }
   .footer a, .footer span {
     margin-right: 15px; }
+  .footer span.guanzhu {
+    display: block;
+    margin-bottom: 10px; }
 
 .footer.welcome {
   position: static;

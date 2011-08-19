@@ -127,3 +127,8 @@
     .new_button_container .new_button:hover {
       margin-top: 2px;
       background-color: #e76875; }
+
+#date {
+  width: 80px;
+  text-align: center;
+  padding: 5px 0; }
