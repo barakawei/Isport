@@ -9,11 +9,12 @@
             .plus_you_pic
               %span='+You'
         = person_image_link(p)
-    .reg_box
-      .reg_info
-        = t('welcome.globalinfo', :citycount=>@citycount, :usercount=>@usercount, :groupcount=>@groupcount, :eventcount=>@eventcount)
-      %a{:class => "reg_main_button", :href => sign_up_path()}
-        %em= "果断注册"
+    - if !AppConfig[:registrations_closed] 
+      .reg_box
+        .reg_info
+          = t('welcome.globalinfo', :citycount=>@citycount, :usercount=>@usercount, :groupcount=>@groupcount, :eventcount=>@eventcount)
+        %a{:class => "reg_main_button", :href => sign_up_path()}
+          %em= "果断注册"
 
   .des_box
     .welcomenav_box

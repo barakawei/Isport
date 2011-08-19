@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+  before_filter :registrations_closed?
   before_filter :authenticate_user!, :except => [:index, :show ]
 
   EVELIMIT = 6

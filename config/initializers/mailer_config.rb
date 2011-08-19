@@ -1,9 +1,5 @@
-#   Copyright (c) 2010, Diaspora Inc.  This file is
-#   licensed under the Affero General Public License version 3 or later.  See
-#   the COPYRIGHT file.
-
 Isport::Application.configure do
-  config.action_mailer.default_url_options = {:host => AppConfig[:pod_url]}
+  config.action_mailer.default_url_options = {:host => AppConfig[:host_url]}
   unless Rails.env == 'test' || AppConfig[:mailer_on] != true
     if AppConfig[:mailer_method] == "sendmail"
       config.action_mailer.delivery_method = :sendmail

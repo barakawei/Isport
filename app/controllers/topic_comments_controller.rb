@@ -1,4 +1,5 @@
 class TopicCommentsController < ApplicationController
+  before_filter :registrations_closed?
   def create
     topic = Topic.find(params[:topic_id]) 
     if params[:comment]

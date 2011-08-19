@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  before_filter :registrations_closed?
   respond_to :js
   def create
     if params[:comment][:type] == "EventComment"
