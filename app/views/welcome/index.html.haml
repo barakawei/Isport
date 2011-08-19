@@ -19,37 +19,17 @@
   .des_box
     .welcomenav_box
       %span.flack=t('welcome.itemflack')
-      - danche = Item.find_by_name('单车')
-      .item_block
-        .avatar
-          =item_image_tag(danche, :thumb_medium)
-        .item_info
-          %span.title=danche.name
-          %span.desc=danche.description
-          %span.like
-            =danche.fans.count.to_s + '人喜欢,  '
-            =danche.events.count.to_s + '个' + '活动'
-      - kge= Item.find_by_name('K歌')
-      .item_block
-        .avatar
-          =item_image_tag(kge, :thumb_medium)
-        .item_info
-          %span.title=kge.name
-          %span.desc=kge.description
-          %span.like
-            =kge.fans.count.to_s + '人喜欢,  '
-            =kge.events.count.to_s + '个' + '活动'
-      - zhuoyou = Item.find_by_name('桌游')
-      .item_block
-        .avatar
-          =item_image_tag(zhuoyou, :thumb_medium)
-        .item_info
-          %span.title=zhuoyou.name
-          %span.desc=zhuoyou.description
-          %span.like
-            =zhuoyou.fans.count.to_s + '人喜欢,  '
-            =zhuoyou.events.count.to_s + '个' + '活动'
-
+      - @items.each do |item|
+        .item_block
+          .avatar
+            =item_image_tag(item, :thumb_medium)
+          .item_info
+            %span.title=item.name
+            %span.desc=item.description
+            %span.like
+              =item.fans.count.to_s + '人喜欢,  '
+              =item.events.count.to_s + '个活动'
+      
     .welcomenav_box
       %span.flack=t('welcome.eventflack')
       - @events.each do |event|
@@ -71,8 +51,8 @@
           .avatar
             =group_image_tag(group, :thumb_medium)
           .item_info
-            %span.title=group.name
-            %span.desc=group.description
+            %span.title= group.name
+            %span.desc= group.description
             %span.like
               =group.members.count.to_s + '位成员' 
         
