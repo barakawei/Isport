@@ -56,7 +56,7 @@
         = link_to '本周', event_filter_path(@city.pinyin, @district_id, @item_id, 'week')
         = link_to '周末', event_filter_path(@city.pinyin, @district_id, @item_id, 'weekends')
         = link_to '一个月内', event_filter_path(@city.pinyin, @district_id, @item_id, 'next_month')
-        = link_to '时间选择', 'javascript:void(0)'
+        =text_field_tag 'date', t('filter.time.select_time'), :readonly => true
 
 - if @hot_items.size > 0
   .span-24.prepend-top
@@ -83,6 +83,9 @@
     var t =$('#switch_city').offset().top + $('#switch_city').innerHeight();
     $('#city_select_box').css("left", left+"px");
     $('#city_select_box').css("top", t+"px");
+
+    $("#date").datepicker(); 
+    $("#date").val("#{I18n.t('filter.time.select_time')}"); 
   });
   
   $('#nextBtn').bind('click', slideRight);
@@ -148,3 +151,10 @@
     e.stopPropagation();
     return false;
   });
+
+  $('input#date').change(function() {
+    var path = "#{event_filter_path(@city.pinyin, @district_id, @item_id)}/"+ $('input#date').val();
+    $(location).attr('href', path);
+    return false;
+  });
+  
