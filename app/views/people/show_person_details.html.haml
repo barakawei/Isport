@@ -10,22 +10,22 @@
     %ul
       %li.following_tab
         = link_to({:controller => 'people',:action => 'show_friends',:type=>'followed',:person_id =>@person.id}) do
-          = "你关注的人"
+          = "关注"
           %span
             = @person.user.followed_people.size
       %li.followers_tab
         = link_to({:controller => 'people',:action => 'show_friends',:type=>'befollowed',:person_id=>@person.id}) do
-          ="关注你的人"
+          ="被关注"
           %span
             = @person.user.befollowed_people.size
       %li.groups_tab
         = link_to({:controller => 'people',:action => 'show_groups',:person_id=>@person.id}) do 
-          ="加入的小组"
+          ="小组"
           %span
             =@person.joined_groups.size
       %li.items_tab
         = link_to( {:controller => 'people',:action => 'show_items',:person_id=>@person.id}) do
-          = "喜欢的项目"
+          = "项目"
           %span
             = @person.interests.size
     .clear

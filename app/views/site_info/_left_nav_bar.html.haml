@@ -1,0 +1,5 @@
+%ul.nav
+  %li=link_to '关于我们', site_info_path("about"), :class => ("current" if @info_type== 'about') 
+  %li=link_to '联系我们', site_info_path("contact"), :class => ("current" if @info_type== 'contact') 
+  %li=link_to '服务条款', site_info_path("service"), :class => ("current" if @info_type== 'service') 
+  %li=link_to '意见反馈', new_feedback_path, :class => ("current" if params[:action] == 'new_feedback') 

@@ -1,7 +1,6 @@
 .red_tab {
-  border: 1px solid #f74367;
-  background-color: #f74367;
-  color: white;
+  border: 1px solid #414141;
+  color: #dddddd;
   font-weight: bold;
   font-size: 15px;
   height: 11px;
@@ -35,7 +34,7 @@
   height: 70px; }
 
 .header {
-  background-color: #17282e;
+  background: url(/images/ui/mainmenu-bg.png) repeat;
   text-align: left;
   height: 100px;
   z-index: 50;
@@ -210,10 +209,6 @@
   padding-right: 10px; }
 
 #notification_dropdown {
-  -webkit-box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.3);
-  -moz-box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.3);
-  box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.3);
-  behavior: url(/javascripts/PIE.htc);
   border-left: 2px solid #dbe1e1;
   border-right: 2px solid #dbe1e1;
   border-bottom: 2px solid #dbe1e1;

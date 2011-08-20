@@ -59,7 +59,7 @@ class EventsController < ApplicationController
     @steps = [I18n.t('events.new_event_wizards.step_1'), I18n.t('events.new_event_wizards.step_2')]
     @step = 1 
     @event = Event.new
-    @event.location = Location.new(:city_id => 1, :district_id => 1, :detail => " ")
+    @event.location = Location.new(:city_id => current_user.person.location.city.id, :district_id => 1, :detail => " ")
     unless params[:group_id].nil?
       @group = Group.find(params[:group_id])
       @event.group = @group
@@ -138,6 +138,8 @@ class EventsController < ApplicationController
     @district_id = params[:district_id]
     @item_id = params[:item_id]
     @time = params[:time].nil? ?  'alltime' : params[:time] 
+    @time_filter_str = (@time =~ /\d\d\d\d-\d\d-\d\d/) ? @time : I18n.t('filter.time.select_time')
+       
     conditions = {:city_id => @city.id, :time => @time}
     conditions[:district_id] = @district_id unless @district_id.nil?
     conditions[:subject_id] = @item_id unless @item_id.nil?

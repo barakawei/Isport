@@ -2,6 +2,13 @@
 .following_people_panel
   :margin-top 25px
 
+  .person_avatar
+    .avatar_container
+      @include box-shadow(0,1px,3px,0,#aaa)
+      :height 50px
+      :padding 1px
+      :background-color #d5ddde
+
 .history_bar
   :display block
   :margin-top 55px
@@ -198,6 +205,7 @@
     :margin-top 20px
     .avatar
       :margin-top 5px
+        
   .groups
     .title
       background-color: white
@@ -408,7 +416,7 @@ dd
   background: white
   padding: 10px
   position: relative
-  margin-top: 20px
+  margin-top: 15px
   .info_text
     :padding 10px 0 10px 0
   .title

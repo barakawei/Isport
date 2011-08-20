@@ -52,6 +52,8 @@
     .accout_body.overlay_body
       %ul
         %li
+          = link_to "帐户设置", 'javascript:void(0)' 
+        %li
           = link_to "个人页面", person_path( current_user.person )
         %li
           = link_to t('logout'), destroy_user_session_path

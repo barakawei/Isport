@@ -8,7 +8,7 @@
 
       .conversation_controls
         = link_to  '回复', '#new_message'
-        = link_to '删除并中止谈话', conversation_visibility_path(conversation), :method => 'delete',:confirm => "确定删除吗？"
+        = link_to '删除', conversation_visibility_path(conversation), :method => 'delete',:confirm => "确定删除吗？"
 
     .avatars
       - for participant in conversation.participants
