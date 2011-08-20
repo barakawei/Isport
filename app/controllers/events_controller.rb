@@ -139,6 +139,8 @@ class EventsController < ApplicationController
     @district_id = params[:district_id]
     @item_id = params[:item_id]
     @time = params[:time].nil? ?  'alltime' : params[:time] 
+    @time_filter_str = (@time =~ /\d\d\d\d-\d\d-\d\d/) ? @time : I18n.t('filter.time.select_time')
+       
     conditions = {:city_id => @city.id, :time => @time}
     conditions[:district_id] = @district_id unless @district_id.nil?
     conditions[:subject_id] = @item_id unless @item_id.nil?

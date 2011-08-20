@@ -151,4 +151,7 @@ stylesheets:
 
   sepcial_pages_site_info_common:
     - public/stylesheets/css/special_pages/site_info/common.css
+
+  sepcial_pages_friends_common:
+    - public/stylesheets/css/special_pages/friends/common.css
  

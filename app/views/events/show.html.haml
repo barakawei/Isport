@@ -108,7 +108,7 @@
       type:'1',
       count:'', 
       appkey:'', 
-      title:"喜欢#{@event.item.name}的看过来，分享一个#{@event.item.name}活动<#{@event.title}>，感兴趣的人火速来参加吧!",
+      title:"喜欢#{@event.item.name}的看过来，分享一个#{@event.item.name}活动:\n\n名称:<#{@event.title}>\n时间: #{I18n.l(@event.start_at, :format =>:long)} \n地点:#{@event.location} \n\n感兴趣的人火速来报名吧!",
       pic:'', 
       ralateUid:'2320930322', 
       rnd:new Date().valueOf()
@@ -127,7 +127,7 @@
    });
 
   function postToWb(){
-    var _t = encodeURI("喜欢#{@event.item.name}的看过来，分享一个#{@event.item.name}活动<#{@event.title}>，感兴趣的人火速来参加吧!");
+    var _t = encodeURI("喜欢#{@event.item.name}的看过来，分享一个#{@event.item.name}活动:\n\n名称:<#{@event.title}>\n时间: #{I18n.l(@event.start_at, :format =>:long)} \n地点:#{@event.location} \n\n感兴趣的人火速来报名吧!");
     var _url = encodeURIComponent(document.location);
     var _appkey = encodeURI("appkey")
     var _pic = encodeURI('');

@@ -120,6 +120,11 @@ Isport::Application.routes.draw do
     :constraints => { :id => /[1-9]\d*/, :group_id => /[1-9]\d*/}
   end
 
+  controller :friends do
+    match '/friends/invite' => :invite, :as => 'invite_friends_to_site'
+    match '/friends/find' => :find, :as => 'find_interested_people'
+  end
+
 
   controller :location do
     match '/locations/districts_of_city' => :districts_of_city, :as => 'districts_of_city'
