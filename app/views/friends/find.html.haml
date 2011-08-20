@@ -4,5 +4,7 @@
 .span-24
   = render 'nav'
   .span-22.content_area
-    %br
+    %h1='寻找志趣相投的玩伴'
+    - current_user.person.interests.each do |item|
+      
   
