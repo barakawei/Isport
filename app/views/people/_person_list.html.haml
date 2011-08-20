@@ -6,12 +6,16 @@
       -if current_user.person.id == @person.id && ( @requests_count == 0 || !@requests_count)
         = "Welcome back!"
 
+  .invitation_panel
+    .link
+      = link_to '邀请朋友', new_user_invitation_path,:class => 'invitation_link'
+
   .avatar_panel_container
     #followed_people
       - if @followed_people.length > 0
         .title
           .name
-            = '你关注的人'
+            = '关注'
           .link
             = link_to({:controller => 'people',:action => 'show_friends',:type=>'followed',:person_id =>@person.id}) do
               .right_arrow
@@ -20,38 +24,41 @@
           - for person in @followed_people[ 0...20]
             .person_avatar
               = person_image_link(person)
-  .groups
-    .title
-      .name
-        = '加入的小组'
-      .link
-        - link_to({:controller => 'people',:action => 'show_groups',:person_id =>@person.id}) do
-          .right_arrow 
-      .clear
+  -if current_user.person.joined_groups.size > 0
+    .groups
+      .title
+        .name
+          = '小组'
+        .link
+          - link_to({:controller => 'people',:action => 'show_groups',:person_id =>@person.id}) do
+            .right_arrow 
+        .clear
 
-    %ul
-      -for group in current_user.person.joined_groups[ 0...5 ]
-        %li
-          .group
-            .avatar
-              = group_image_link(group,:thumb_small)
-            .name
-              = object_name_link(group)
-  .groups
-    .title
-      .name
-        = '喜欢的项目'
-      .link
-        = link_to({:controller => 'people',:action => 'show_items',:person_id =>@person.id}) do
-          .right_arrow
-      .clear
+      %ul
+        -for group in current_user.person.joined_groups[ 0...5 ]
+          %li
+            .group
+              .avatar
+                = group_image_link(group,:thumb_small)
+              .name
+                = object_name_link(group)
+  -if current_user.person.interests.size > 0
+    .groups
+      .title
+        .name
+          = '项目'
+        .link
+          = link_to({:controller => 'people',:action => 'show_items',:person_id =>@person.id}) do
+            .right_arrow
+        .clear
 
-    %ul
-      -for item in current_user.person.interests[ 0...5 ]
-        %li
-          .group
-            .avatar
-              = item_image_link(item,{ :size =>:thumb_small })
-            .name
-              = object_name_link(item)
-    
+      %ul
+        -for item in current_user.person.interests[ 0...5 ]
+          %li
+            .group
+              .avatar
+                = item_image_link(item,{ :size =>:thumb_small })
+              .name
+                = object_name_link(item)
+:javascript
+  $(".invitation_link").colorbox();   

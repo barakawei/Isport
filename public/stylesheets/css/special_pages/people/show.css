@@ -1,5 +1,13 @@
 .following_people_panel {
   margin-top: 25px; }
+  .following_people_panel .person_avatar .avatar_container {
+    -webkit-box-shadow: 0 1px 3px 0 #aaaaaa;
+    -moz-box-shadow: 0 1px 3px 0 #aaaaaa;
+    box-shadow: 0 1px 3px 0 #aaaaaa;
+    behavior: url(/javascripts/PIE.htc);
+    height: 50px;
+    padding: 1px;
+    background-color: #d5ddde; }
 
 .history_bar {
   display: block;
@@ -408,7 +416,7 @@ dd {
   background: white;
   padding: 10px;
   position: relative;
-  margin-top: 20px; }
+  margin-top: 15px; }
   #person_profile_box .info_text {
     padding: 10px 0 10px 0; }
   #person_profile_box .title h3 {

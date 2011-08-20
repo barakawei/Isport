@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_filter :registrations_closed?
   before_filter :authenticate_user!, :except => [:new, :create, :public]
   
   def getting_started

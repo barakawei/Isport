@@ -1,4 +1,5 @@
 class MessagesController < ApplicationController
+  before_filter :registrations_closed?
   before_filter :authenticate_user!
   def create
     cnv = Conversation.joins(:conversation_visibilities).where(:id => params[:conversation_id],:conversation_visibilities => {:person_id => current_user.person.id}).first

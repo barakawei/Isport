@@ -4,7 +4,7 @@ $darkgray: #A8AAAD
 
 .reg_box
   :width 315px
-  :height 290px
+  :height 218px
   :float right 
 
   .reg_info
@@ -50,27 +50,53 @@ $darkgray: #A8AAAD
   
 
 .welcome_box
-  @include border-radius(10px)
+  @include box-shadow(0,1px,5px,0,#333)
+  @include border-radius(5px)
   :padding 5px 0
   :float left
   :background none repeat scroll 0 0 #ffffff
-  :width 944px
-  :border 3px solid #bbbbbb
+  :width 948px
 
   .poster_box
     :background #FFFFFF
     :width 580px
-    :height 284px
+    :height 200px
     :margin-left 8px
     :margin-top 8px
     :float left
     @include border-radius(10px)
 
+    img
+      :float left
+      :margin 0px 2px 2px 0
+    a
+      &:hover
+        .plus_you_pic 
+          :background-color #FC4469
+           
+      .plus_you_pic
+        :width 102px
+        :height 102px
+        :float left
+        :margin 0px 2px 2px 0
+        :background-color #4EBAFF
+        :text-align center
+        :color #ffffff
+        
+        span
+          :display block
+          :font-size 25px 
+          :line-height 30px
+          :height 30px
+          :margin-top 35px
+    
+
 .des_box
   :float left
-  :margin-top 10px
-  :width 950px
-  @include border-radius(10px)
+  :margin-top 5px
+  :width 948px
+  @include border-radius(5px)
+  @include box-shadow(0,1px,5px,0,#333)
   :background none repeat scroll 0 0 #ffffff
 
   .welcomenav_box
@@ -118,5 +144,5 @@ $darkgray: #A8AAAD
         span.like
           :bottom 0 
           :position absolute
-
+        
 

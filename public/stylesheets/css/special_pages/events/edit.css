@@ -68,17 +68,17 @@ ul.nav li a.current {
   .edit_event_members .event_avatar img {
     width: 200px;
     height: 200px;
-    -moz-border-radius: 10px;
-    -webkit-border-radius: 10px;
-    border-radius: 10px;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
     behavior: url(/javascripts/PIE.htc); }
 
 .members {
   background-color: white;
   width: 670px;
-  -moz-border-radius: 15px;
-  -webkit-border-radius: 15px;
-  border-radius: 15px;
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  border-radius: 8px;
   behavior: url(/javascripts/PIE.htc);
   float: left;
   padding: 20px; }

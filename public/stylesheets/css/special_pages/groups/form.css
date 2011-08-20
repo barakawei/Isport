@@ -1,9 +1,9 @@
 .form_area {
   padding: 30px 10px 20px 30px;
   background-color: white;
-  -moz-border-radius: 15px;
-  -webkit-border-radius: 15px;
-  border-radius: 15px;
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  border-radius: 8px;
   behavior: url(/javascripts/PIE.htc); }
   .form_area .field_with_errors {
     display: inline-block; }
@@ -47,9 +47,9 @@
   #group_photo_upload .img_contained {
     width: 180px; }
     #group_photo_upload .img_contained img {
-      -moz-border-radius: 10px;
-      -webkit-border-radius: 10px;
-      border-radius: 10px;
+      -moz-border-radius: 8px;
+      -webkit-border-radius: 8px;
+      border-radius: 8px;
       behavior: url(/javascripts/PIE.htc);
       width: 200px;
       height: 200px;

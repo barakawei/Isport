@@ -13,9 +13,6 @@ $link_red: #FC4469
 
 input[ type=text ],textarea
   @include border-radius( 5px )
-  &:focus
-    outline: 5px auto -webkit-focus-ring-color
-    border: 1px solid #7ecef4 !important
 
 .right_arrow
   :cursor pointer
@@ -60,9 +57,13 @@ a
   &:hover
     :color #205f82
     :text-decoration none
-ol, ul, li
+ul
   :list-style none
+  li
+    :list-style none
   
+.app_empty_area
+  :margin-top 50px
 .container.body
   :padding-top 30px 
 
@@ -629,7 +630,20 @@ a.app_big_link_button
     background-position: 0 -102px !important
     color: #ffffff
     padding: 15px 18px 11px 24px
-
+    
+.invitation
+  .email
+    input
+      :width 350px
+  .message
+    textarea
+      :width 350px
+  h4
+    :margin-bottom 5px
+    :margin-top 5px
+  .title
+  #email_invitation
+    :height 180px
 
 a.app_black_link_button
   :color #ffffff
@@ -682,11 +696,19 @@ a.app_black_link_button
   text-indent: -9999em
   top: 40%
   width: 28px
+.change_password
+  .login form 
+    input#password
+      :line-height 45px
+      :margin 0
+      :padding 0
+      :height 45px
+      :font-size 30px
+    .reg_input
+      :padding-left 15px
+      :overflow visible
+      :height 45px
+      :margin-bottom 20px
+    label.in_field
+      :top 4px 
   
-  
-
-
-
-
-    
-

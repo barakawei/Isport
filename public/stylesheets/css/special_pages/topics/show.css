@@ -11,9 +11,9 @@ p, h2 {
   padding: 20px;
   border: 3px solid #d5ddde;
   background-color: white;
-  -moz-border-radius: 14px;
-  -webkit-border-radius: 14px;
-  border-radius: 14px;
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  border-radius: 8px;
   behavior: url(/javascripts/PIE.htc); }
   .topic_content h2 {
     color: #111111; }

@@ -2,6 +2,8 @@ class WelcomeController < ApplicationController
   def index
     if current_user
       redirect_to home_path
+    elsif AppConfig[:registrations_closed]
+      redirect_to sign_in_path
     else
       @registe_wizard = true
       @citycount = City.count
@@ -11,6 +13,7 @@ class WelcomeController < ApplicationController
       @items = Item.order('rand()').limit(3)
       @events = Event.where(:id => 1...10).order('rand()').limit(3)
       @groups = Group.where(:id => 1...10).order('rand()').limit(3)
+      @people = Person.limit(40)
 
       render
     end

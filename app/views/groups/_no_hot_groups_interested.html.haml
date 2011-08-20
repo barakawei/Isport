@@ -1,2 +1,3 @@
-%a{:href => new_event_path}
-  %img{:alt=>"", :src=>"/images/ui/int_thumbs.jpg"}    
+%span{:class => 'no_interested_event hot'}
+  %h2='暂时没有你感兴趣的小组...'
+  = render 'common/big_link_button', :content => '创建小组', :path => new_group_path

@@ -1,4 +1,5 @@
 class ConversationVisibilitiesController < ApplicationController
+  before_filter :registrations_closed?
   before_filter :authenticate_user!
 
   def destroy

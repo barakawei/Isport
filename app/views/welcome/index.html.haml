@@ -3,11 +3,18 @@
 .span-24
   .welcome_box
     .poster_box
-    .reg_box
-      .reg_info
-        = t('welcome.globalinfo', :citycount=>@citycount, :usercount=>@usercount, :groupcount=>@groupcount, :eventcount=>@eventcount)
-      %a{:class => "reg_main_button", :href => sign_up_path()}
-        %em= "果断注册"
+      - @people.each_with_index do |p, index|
+        - if index == 22
+          %a{:href => sign_up_path}
+            .plus_you_pic
+              %span='+You'
+        = person_image_link(p)
+    - if !AppConfig[:registrations_closed] 
+      .reg_box
+        .reg_info
+          = t('welcome.globalinfo', :citycount=>@citycount, :usercount=>@usercount, :groupcount=>@groupcount, :eventcount=>@eventcount)
+        %a{:class => "reg_main_button", :href => sign_up_path()}
+          %em= "果断注册"
 
   .des_box
     .welcomenav_box
@@ -48,4 +55,8 @@
             %span.desc= group.description
             %span.like
               =group.members.count.to_s + '位成员' 
+        
 
+.footer.welcome
+  = render 'layouts/footer'
+  

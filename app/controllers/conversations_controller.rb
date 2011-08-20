@@ -1,4 +1,5 @@
 class ConversationsController < ApplicationController
+  before_filter :registrations_closed?
   before_filter :authenticate_user!,:select_tab
 
   def select_tab

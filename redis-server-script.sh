@@ -1,8 +1,8 @@
 #! /bin/sh
 ### BEGIN INIT INFO
 # Provides:		redis-server
-# Required-Start:	$syslog
-# Required-Stop:	$syslog
+# Required-Start:	$syslog $remote_fs
+# Required-Stop:	$syslog $remote_fs
 # Should-Start:		$local_fs
 # Should-Stop:		$local_fs
 # Default-Start:	2 3 4 5
@@ -20,7 +20,6 @@ DESC=redis-server
 PIDFILE=/var/run/redis.pid
 
 test -x $DAEMON || exit 0
-test -x $DAEMONBOOTSTRAP || exit 0
 
 set -e
 
@@ -51,6 +50,18 @@ case "$1" in
 	${0} stop
 	${0} start
 	;;
+
+  status)
+	echo -n "$DESC is "
+	if start-stop-daemon --stop --quiet --signal 0 --name ${NAME} --pidfile ${PIDFILE}
+	then
+		echo "running"
+	else
+		echo "not running"
+		exit 1
+	fi
+	;;
+
   *)
 	echo "Usage: /etc/init.d/$NAME {start|stop|restart|force-reload}" >&2
 	exit 1

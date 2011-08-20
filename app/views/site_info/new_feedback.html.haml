@@ -3,10 +3,7 @@
   = include_javascripts :jquery_validation
 .span-24
   .left_column
-    %ul.nav
-      %li=link_to '意见反馈', 'javascript:void(0)', :class => ("current" if params[:action] == 'new_feedback') 
-      %li=link_to '联系我们', 'javascript:void(0)', :class => ("current" if params[:action] == 'contact') 
-
+    = render 'left_nav_bar'
     =render 'common/big_link_button', :content => '反馈浏览', :path => feedbacks_path
   .span-18.last
     .span-16.content_area

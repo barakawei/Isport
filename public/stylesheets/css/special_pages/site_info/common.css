@@ -89,3 +89,16 @@
     float: right;
     font-size: 11px;
     color: #999999; }
+
+.site_info ol {
+  display: block;
+  margin-left: 30px; }
+  .site_info ol li {
+    font-size: 14px;
+    margin-bottom: 10px;
+    line-height: 20px; }
+.site_info ul {
+  margin-left: 10px; }
+  .site_info ul li {
+    font-size: 14px;
+    margin-bottom: 10px; }

@@ -44,17 +44,43 @@
 
     .hot_area.events_panel
       = render :partial => 'events/event_element',:collection => @events,:as => :event 
+      - if @events.size == 0
+        =render :partial => 'events/new_event_link', :locals => { :question => '最近没有该类型活动?',
+                                                                :link => new_event_path,
+                                                                :action => '发起活动'}
+        
 
     .hot_title
       .title
         = render 'common/header_box', :title =>t('items.citygroups')  
       .link
-        = link_to "更多>>", group_filter_path(:city => @city.pinyin, :item_id => @item.id) 
+        = link_to "更多>>", group_filter_path(:city => @city.pinyin, :item_id => @item.id)
        
-    .hot_area
+    .hot_area.groups_panel
       = render :partial => 'groups/group_box',:collection => @groups_hash,:as => :group
+      - if @groups_hash.size == 0
+        =render :partial => 'events/new_event_link', :locals => { :question => '该项目还没有小组?',
+                                                                :link => new_group_path,
+                                                                :action => '创建小组'}
       
 
+:javascript
+  $('.events_panel .new_event_link').hover(
+      function() {
+        $('.events_panel .new_event_panel h2').toggle();
+      }, 
+      function() { 
+        $('.events_panel .new_event_panel h2').toggle();
+      }
+    );    
+    $('.groups_panel .new_event_link').hover(
+      function() {
+        $('.groups_panel .new_event_panel h2').toggle();
+      }, 
+      function() { 
+        $('.groups_panel .new_event_panel h2').toggle();
+      }
+    );    
 
 
       
