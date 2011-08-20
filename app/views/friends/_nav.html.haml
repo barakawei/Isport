@@ -1,0 +1,5 @@
+%ul.nav
+  %li
+    = link_to '发现玩伴', find_interested_people_path, :class => ('current' if params[:action] == 'find')
+  %li
+    = link_to '邀请好友', invite_friends_to_site_path, :class => ('current' if params[:action] == 'invite') 
