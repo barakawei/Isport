@@ -35,6 +35,7 @@ Isport::Application.routes.draw do
           :constraints => { :id => /[1-9]\d*/}
     match 'choose_interests' => :choose_interests, :as => "choose_interests", :via => :post
     match '/people/edit_interests' => :edit_interests, :as => "edit_interests"
+    match '/people/item_fans' => :random_item_fans, :as => "random_item_fans", :via => :post
   end
 
   match '/people/show_posts' => 'people#show_posts'

@@ -146,6 +146,12 @@ class PeopleController < ApplicationController
       item.selected = true if @my_items.include?(item)
     end
   end
+
+  def random_item_fans
+    item  = Item.find params[:item_id]
+    @people = item.random_people(current_user.location.city, 6, current_user.person) 
+    render :partial => 'people/show_contacts', :locals => {:people => @people, :groups => nil, :items => nil}
+  end
 end
 
 

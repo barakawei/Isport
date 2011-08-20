@@ -25,7 +25,6 @@ ul.nav {
 .content_area {
   padding: 30px;
   background-color: white;
-  height: 600px;
   -moz-border-radius-bottomleft: 10px;
   -moz-border-radius-bottomright: 10px;
   -moz-border-radius-topright: 10px;
@@ -55,3 +54,9 @@ ul.nav {
       font-size: 15px;
       color: #666666;
       float: left; }
+  .content_area a.refresh {
+    margin-right: 50px;
+    height: 41px;
+    float: right;
+    font-size: 15px;
+    line-height: 41px; }

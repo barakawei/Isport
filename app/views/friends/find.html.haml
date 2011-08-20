@@ -4,7 +4,23 @@
 .span-24
   = render 'nav'
   .span-22.content_area
-    %h1='寻找志趣相投的玩伴'
-    - current_user.person.interests.each do |item|
+    %h1='发现志趣相投的玩伴'
+    - @interests.each do |item|
+      - fans= item.random_people(current_user.person.location.city, 6, @current_person) 
+      - if fans.size > 0
+        .span-22
+          .span-15 
+            = render 'common/header_box', :title => item.name, :blue => true
+          .span-7.last
+            = link_to '换一换', 'javascript:void(0)', :class => 'refresh', :item_id => item.id
+        .item_fans{:item_id => item.id}
+          =render 'people/show_contacts',:people => fans, :groups => nil, :items => nil
       
-  
+:javascript  
+  $('a.refresh').click(function(){
+    var $target = $('.item_fans[item_id="'+ $(this).attr("item_id") + '"]');
+    $.post("#{random_item_fans_path}/?item_id="+ $(this).attr("item_id"), function(data){
+      $target.html(data);
+      return false;
+    });
+  });
