@@ -4,8 +4,11 @@ log/*.log
 tmp/
 .DS_Store
 public/uploads/
+public/assets/
 config/database.yml
 log/*
 Isport.log
 quepid
-
+redis-server-script.s
+nginx.sh
+nginx.conf

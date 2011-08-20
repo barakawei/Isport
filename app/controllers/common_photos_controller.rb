@@ -1,4 +1,5 @@
 class CommonPhotosControllerController < ApplicationController
+  before_filter :registrations_closed?
   respond_to :html, :json
 
   def create

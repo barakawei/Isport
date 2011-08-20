@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110817125623) do
+ActiveRecord::Schema.define(:version => 20110819035816) do
 
   create_table "administrators", :force => true do |t|
     t.integer  "user_id"
@@ -140,9 +140,6 @@ ActiveRecord::Schema.define(:version => 20110817125623) do
     t.string   "image_url_large"
     t.integer  "person_id"
     t.integer  "district_id"
-    t.integer  "members_count",    :default => 0
-    t.integer  "events_count",     :default => 0
-    t.integer  "topics_count",     :default => 0
   end
 
   create_table "invitations", :force => true do |t|
@@ -254,7 +251,7 @@ ActiveRecord::Schema.define(:version => 20110817125623) do
   end
 
   create_table "profiles", :force => true do |t|
-    t.string   "name",             :limit => 127
+    t.string   "name",             :limit => 127, :default => ""
     t.string   "image_url"
     t.string   "image_url_small"
     t.date     "birthday"
@@ -307,7 +304,7 @@ ActiveRecord::Schema.define(:version => 20110817125623) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "email",                                 :default => "",   :null => false
+    t.string   "email",                                 :default => "",    :null => false
     t.string   "encrypted_password",     :limit => 128, :default => ""
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -328,6 +325,7 @@ ActiveRecord::Schema.define(:version => 20110817125623) do
     t.boolean  "getting_started",                       :default => true
     t.string   "invitation_service"
     t.string   "invitation_identifier"
+    t.boolean  "admin",                                 :default => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

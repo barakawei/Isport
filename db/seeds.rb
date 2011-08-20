@@ -54,8 +54,7 @@ end
   District.find_or_create_by_name(:name => name, :city_id => suzhou.id)    
 end
 
-[ '越秀区','天河区','白云区','荔湾区','萝岗区','黄埔区','海珠区','番禺区','花都区','南沙区','增城市','从化市' ]
-  .each do |name|
+[ '越秀区','天河区','白云区','荔湾区','萝岗区','黄埔区','海珠区','番禺区','花都区','南沙区','增城市','从化市' ].each do |name|
   District.find_or_create_by_name(:name => name, :city_id => guangzhou.id)
 end
 

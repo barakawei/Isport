@@ -1,4 +1,5 @@
 class GroupsController < ApplicationController
+  before_filter :registrations_closed?
   prepend_before_filter :authenticate_user!, :except => [:index, :show, :forum, :members, :events, :filtered] 
   before_filter :init, :except => [:index, :show, :forum, :members, :events, :filtered]
   before_filter :authenticate_admin!, :only => [:edit, :edit_members, :invite_friends, :update]

@@ -1,4 +1,6 @@
 class InvolvementsController < ApplicationController
+
+  before_filter :registrations_closed?
   before_filter :init
   prepend_before_filter :authenticate_user!
 

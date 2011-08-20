@@ -1,5 +1,6 @@
 class NotificationsController < ApplicationController
   include NotificationsHelper
+  before_filter :registrations_closed?
   def index
     @notifications = Notification.includes( :actor ).where( :recipient_id => current_user).order( "created_at DESC" )
 
