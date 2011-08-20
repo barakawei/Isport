@@ -29,7 +29,14 @@
     .person_basic
       :width 400px
       :float left
-      input,select
+      label[ class=error ]
+        :position absolute
+        :margin-left 300px
+        :color red
+        :font-size 18px
+      input[ type=radio ]
+        :width 20px
+      input[ type=text ],select
         @include border-radius(5px)
         :margin-top 5px
         :font-size 15px
@@ -45,9 +52,13 @@
         height: 40px
         padding: 4px
         width: 265px
-      h4
+      h4,input
+        :display inline
         :font-size 18px
         :color #536673
+      .relative
+        :font-size 18px
+        :margin-bottom 20px
     .submit_block
       :float left
       :margin-bottom 30px

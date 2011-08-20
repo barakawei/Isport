@@ -28,10 +28,10 @@
 
   %li#search
     = form_tag(people_path, :method => 'get', :id => "global_search_form") do
-      = text_field_tag 'q', nil, :placeholder => t('search'), :type => 'text', :results => 5
+      = text_field_tag 'q', nil, :placeholder => t('search'), :type => 'text', :results => 5 
 
 -if current_user
-  %ul.setting
+  %ul.setting.long_li
     %li.notifaction
       #notification_badge
         %a{ :href => "#" ,:class => 'red_tab long_li',:id=> 'notifaction'}

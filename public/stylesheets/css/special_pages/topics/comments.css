@@ -116,8 +116,8 @@
       margin: 0 0 10px; }
     .new_comment .content label.error {
       float: left;
-      color: #ff8a3c;
-      font-size: 13px; }
+      color: red;
+      font-size: 14px; }
   .new_comment .post_button {
     background: url("/images/ui/btn-post.gif") no-repeat scroll 0 0 transparent;
     border: medium none;

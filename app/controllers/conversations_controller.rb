@@ -62,9 +62,11 @@ class ConversationsController < ApplicationController
   end
 
   def new
-    all_contacts_and_ids = Contact.connection.execute(current_user.contacts.joins(:person => :profile).select("contacts.id, profiles.name").to_sql).map do |r|
+    all_contacts_and_ids = Contact.connection.execute(current_user.contacts.joins(:person => :profile).select("contacts.id, profiles.name,profiles.image_url_small").to_sql).map do |r|
       {:value => r[0],
-       :name => r[1].gsub(/(")/, "'")}
+       :name => r[1].gsub(/(")/, "'"),
+       :url => (r[2].nil?) ? '/images/user/default_small.png':r[2]
+      }
     end
     @contacts_json = all_contacts_and_ids.to_json.gsub!(/(")/, '\\"')
     @contact = current_user.contacts.find(params[:contact_id]) if params[:contact_id]

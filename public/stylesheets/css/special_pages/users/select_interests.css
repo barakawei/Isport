@@ -35,7 +35,14 @@
     .select_interests .person_info .person_basic {
       width: 400px;
       float: left; }
-      .select_interests .person_info .person_basic input, .select_interests .person_info .person_basic select {
+      .select_interests .person_info .person_basic label[class=error] {
+        position: absolute;
+        margin-left: 300px;
+        color: red;
+        font-size: 18px; }
+      .select_interests .person_info .person_basic input[type=radio] {
+        width: 20px; }
+      .select_interests .person_info .person_basic input[type=text], .select_interests .person_info .person_basic select {
         -moz-border-radius: 5px;
         -webkit-border-radius: 5px;
         border-radius: 5px;
@@ -57,9 +64,13 @@
         height: 40px;
         padding: 4px;
         width: 265px; }
-      .select_interests .person_info .person_basic h4 {
+      .select_interests .person_info .person_basic h4, .select_interests .person_info .person_basic input {
+        display: inline;
         font-size: 18px;
         color: #536673; }
+      .select_interests .person_info .person_basic .relative {
+        font-size: 18px;
+        margin-bottom: 20px; }
     .select_interests .person_info .submit_block {
       float: left;
       margin-bottom: 30px;

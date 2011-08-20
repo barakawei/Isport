@@ -21,7 +21,7 @@ class Conversation < ActiveRecord::Base
   end
 
   def subject
-    self[:subject].blank? ? "no subject" : self[:subject]
+    self[:subject].blank? ? "" : self[:subject]
   end
   
 end

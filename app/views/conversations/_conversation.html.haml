@@ -1,10 +1,13 @@
-%a{ :href=>conversations_path(:conversation_id => conversation.id) }
+%a{ :href=>conversations_path(:conversation_id => conversation.id,:page =>params[ "page" ]) }
   .conversation{:remote_href => conversation_path(conversation),:id => conversation.id, :class => ('unread' if unread_counts[conversation.id].to_i > 0)}
     = person_image_tag(conversation.person)
     
     .content
       .subject
-        = conversation.subject[0..30]
+        -if conversation.subject == ""
+          = "无主题"
+        -else
+          = conversation.subject[0..30]
       .last_author
         = authors[conversation.id].name
     .info
