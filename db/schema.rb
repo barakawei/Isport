@@ -140,8 +140,9 @@ ActiveRecord::Schema.define(:version => 20110819035816) do
     t.string   "image_url_large"
     t.integer  "person_id"
     t.integer  "district_id"
-<<<<<<< HEAD
-=======
+    t.integer  "members_count",    :default => 0
+    t.integer  "events_count",     :default => 0
+    t.integer  "topics_count",     :default => 0
   end
 
   create_table "invitations", :force => true do |t|
@@ -150,7 +151,6 @@ ActiveRecord::Schema.define(:version => 20110819035816) do
     t.text     "message"
     t.datetime "created_at"
     t.datetime "updated_at"
->>>>>>> 023f2950de0afe440f0dbaec0ab02c23c507e458
   end
 
   create_table "involvements", :force => true do |t|
@@ -254,7 +254,7 @@ ActiveRecord::Schema.define(:version => 20110819035816) do
   end
 
   create_table "profiles", :force => true do |t|
-    t.string   "name",             :limit => 127, :default => ""
+    t.string   "name",             :limit => 127
     t.string   "image_url"
     t.string   "image_url_small"
     t.date     "birthday"
