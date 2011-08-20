@@ -1,8 +1,8 @@
 #! /bin/sh
 WORKPATH=`pwd`
 
-NGINXDAEMON=nginx
-REDISDAEMON=redis-server-script
+NGINXDAEMON=$WORKPATH/nginx.sh
+REDISDAEMON=$WORKPATH/redis-server-script.sh
 
 QUEPIDFILE=$WORKPATH/quepid
 
