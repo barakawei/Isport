@@ -58,4 +58,18 @@
 
 .footer.welcome
   = render 'layouts/footer'
-  
+
+:javascript
+  $(function(){
+    pic_change();
+  });
+
+  function pic_change() {
+    setTimeout(pic_change, 500); 
+    if($('.plus_you_pic').css('background-color') == 'rgb(252, 68, 105)') {
+      $('.plus_you_pic span').show();
+      return
+    }
+    $('.plus_you_pic span').toggle();
+  }
+   

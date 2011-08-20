@@ -20,7 +20,8 @@
   $('a.refresh').click(function(){
     var $target = $('.item_fans[item_id="'+ $(this).attr("item_id") + '"]');
     $.post("#{random_item_fans_path}/?item_id="+ $(this).attr("item_id"), function(data){
-      $target.html(data);
+      $target.html(data).hide();
+      $target.fadeIn('slow');
       return false;
     });
   });
