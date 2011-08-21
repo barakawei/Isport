@@ -1,0 +1,55 @@
+@import '../../general/ui/mixins'
+ul.nav
+  :float left
+
+  li
+    :float left
+    a
+      :float left
+      :text-align center
+      :width 150px
+      :height 40px
+      :background-color #dddddd
+      :font-size 20px
+      :line-height 40px
+      :color #666666
+      :margin-right 10px
+      @include border-radius-feed(5px)
+    a.current
+      :background-color #ffffff
+
+.content_area
+  :padding 30px
+  :background-color #ffffff 
+  @include border-radius-except-topleft(10px)
+
+  h1
+    :margin-bottom 30px
+
+  .share_button
+    :padding 8px
+    :display block
+    :height 32px
+    :margin 10px 15px 15px 15px 
+    :border 1px solid #ffffff
+    :float left
+
+    .avatar
+      :float left
+
+    &:hover
+      :border 1px solid #d5ddde
+    
+    span
+      :margin-left 5px
+      :line-height 35px
+      :font-size 15px
+      :color #666666
+      :float left
+
+  a.refresh
+    :margin-right 50px  
+    :height 41px
+    :float right
+    :font-size 15px
+    :line-height 41px

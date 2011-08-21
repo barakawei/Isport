@@ -1,0 +1,46 @@
+- content_for :head do
+  = include_stylesheets :sepcial_pages_friends_common, :media => 'all'
+
+.span-24
+  = render 'nav'
+  .span-21.content_area
+    %h1='邀请好友一起好享玩'
+    = render 'common/header_box', :title => '1. 向好友分享好享玩', :blue => true
+    
+    %a{:class => 'share_button', :href=>"javascript:void((function(s,d,e,r,l,p,t,z,c){var%20f='http://v.t.sina.com.cn/share/share.php?appkey=',u=z||d.location,p=['&url=',e(u),'&title=',e(t||d.title),'&ralateUid=2320930322','&source=',e(r),'&sourceUrl=',e(l),'&content=',c||'gb2312','&pic=',e(p||'')].join('');function%20a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=440,height=430,left=',(s.width-700)/2,',top=',(s.height-500)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else%20a();})(screen,document,encodeURIComponent,'好享玩','www.haoxiangwan.net','','我正在好享玩参加各种感兴趣的活动，加入喜欢的兴趣小组，和志趣相投的朋友一起玩，快来好享玩关注我吧!','http://www.haoxiangwan.net','页面编码gb2312|utf-8默认gb2312'));"}
+      .avatar
+        %img{:src => '/images/ui/sina_weibo.png'}
+      %span='新浪微博' 
+
+    %a{:id => 'share_to_qq', :class => 'share_button', :href => 'javascript:void(0)'}
+      .avatar
+        %img{:src => '/images/ui/tengxun_weibo.png'}
+      %span='腾讯微博'
+
+    %a{:class => 'share_button', :href=>"javascript:void((function(s,d,e,url,title){if(/renren\.com/.test(d.location))return;var f='http://share.renren.com/share/buttonshare?link=',u=url,l=title,p=[e(u),'&title=',e(title)].join('');function%20a(){if(!window.open([f,p].join(''),'xnshare',['toolbar=0,status=0,resizable=1,width=640,height=430,left=',(s.width-700)/2,',top=',(s.height-500)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else%20a();})(screen,document,encodeURIComponent, 'http://www.haoxiangwan.net', '我正在好享玩参加各种感兴趣的活动，加入喜欢的兴趣小组，和志趣相投的朋友一起玩，快来好享玩关注我吧!'));"}
+      .avatar
+        %img{:src => '/images/ui/renren_fenxiang.png'}
+      %span='人人'
+
+    %a{:class => 'share_button', :href=>"javascript:void(function(){var url='www.haoxiangwan.net', title='我正在好享玩参加各种感兴趣的活动，加入喜欢的兴趣小组，和志趣相投的朋友一起玩，快来好享玩关注我吧!', d=document,e=encodeURIComponent,s1=window.getSelection,s2=d.getSelection,s3=d.selection,s=s1?s1():s2?s2():s3?s3.createRange().text:'',r='http://www.douban.com/recommend/?url='+e(url)+'&title='+e(title)+'&sel='+e(s)+'&v=1',x=function(){if(!window.open(r,'douban','toolbar=0,resizable=1,scrollbars=yes,status=1,width=500,height=400'))location.href=r+'&r=1'};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})()"}
+      .avatar
+        %img{:src=>"/images/ui/douban_fenxiang.jpg"}
+      %span='豆瓣'
+
+:javascript
+   $('#share_to_qq').click(function() {
+    postToWb();
+    return false;
+   });
+
+   function postToWb(){
+    var _t = encodeURI("我正在好享玩参加各种感兴趣的活动，加入喜欢的兴趣小组，和志趣相投的朋友一起玩，快来好享玩关注我吧!");
+    var _url = encodeURIComponent('www.haoxiangwan.net');
+    var _appkey = encodeURI("appkey")
+    var _pic = encodeURI('');
+    var _site = 'www.haoxiangwan.net';
+    var _u = 'http://v.t.qq.com/share/share.php?url='+_url+'&site='+_site+'&title='+_t;
+    window.open( _u,'', 'width=700, height=680, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, location=yes, resizable=no, status=no' );
+  }
+
+   

@@ -106,6 +106,10 @@ class Item < ActiveRecord::Base
     Favorite.delete_all(:item_id => item_id, :person_id => user.person.id)
   end
 
+  def random_people(city, limit_num, except)
+    fans.at_city(city.id).order('rand()').limit(limit_num) - [except]
+  end
+
   def active_fans(city, limited)
     time_scope = (Time.now.beginning_of_week)..(Time.now.end_of_week)
     people = Person.joins(:involved_events, :interests, :profile => :location)
