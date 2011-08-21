@@ -661,3 +661,21 @@ a.app_black_link_button {
   margin-bottom: 20px; }
 .change_password .login form label.in_field {
   top: 4px; }
+
+.radius_small {
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  behavior: url(/javascripts/PIE.htc); }
+
+.radius_medium {
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
+  behavior: url(/javascripts/PIE.htc); }
+
+.radius_large {
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  border-radius: 8px;
+  behavior: url(/javascripts/PIE.htc); }

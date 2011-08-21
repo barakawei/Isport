@@ -9,7 +9,7 @@
     .span-16.content_area
       - unless @succ
         %h1='给我们提建议'
-        %h4='如果您在使用好想玩的过程中遇到疑问，或者有任何的意见或者建议，欢迎随时向我们反馈。我们会尽快回答您的问题，并依据您的反馈，不断完善。' 
+        %h4='如果您在使用好享玩的过程中遇到疑问，或者有任何的意见或者建议，欢迎随时向我们反馈。我们会尽快回答您的问题，并依据您的反馈，不断完善。' 
         = form_for @feedback, :url => create_feedback_path(@feedback) do |f|
           .field
             = f.text_area :content

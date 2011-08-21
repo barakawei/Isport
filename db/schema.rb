@@ -140,6 +140,9 @@ ActiveRecord::Schema.define(:version => 20110819035816) do
     t.string   "image_url_large"
     t.integer  "person_id"
     t.integer  "district_id"
+    t.integer  "members_count",    :default => 0
+    t.integer  "events_count",     :default => 0
+    t.integer  "topics_count",     :default => 0
   end
 
   create_table "invitations", :force => true do |t|
@@ -251,7 +254,7 @@ ActiveRecord::Schema.define(:version => 20110819035816) do
   end
 
   create_table "profiles", :force => true do |t|
-    t.string   "name",             :limit => 127, :default => ""
+    t.string   "name",             :limit => 127
     t.string   "image_url"
     t.string   "image_url_small"
     t.date     "birthday"
