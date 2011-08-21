@@ -3,5 +3,7 @@ class FriendsController < ApplicationController
   end
 
   def find
+    @current_person = current_user.person
+    @interests = @current_person.interests
   end
 end

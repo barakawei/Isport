@@ -10,6 +10,7 @@ class ItemsController < ApplicationController
     @items_array = Item.get_user_items(current_user)
     @city = City.find_by_pinyin(current_user.city.pinyin)
     
+    @select_tab = 'item'
     respond_to do |format|
       format.html # myitems.html.haml
       format.xml  { render :xml => @items_array }
@@ -123,6 +124,7 @@ class ItemsController < ApplicationController
                         :topicsize => group_topics_counts[group.id]?group_topics_counts[group.id]:0})      
     end
 
+    @select_tab = 'item'
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @item }

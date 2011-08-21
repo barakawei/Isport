@@ -5,6 +5,15 @@
     :outline none
     :text-decoration none
     :cursor pointer
+    
+    &:hover
+      .group_message
+        .group_title
+          :color #11BACD
+        .group_detail
+          .detail_piece
+            :background-color #FC4469
+            :color white
 
   .group_box
     :width 300px
@@ -55,6 +64,7 @@
           :margin-right 5px
           :overflow hidden
           :float left
+          :color #97B48A
           @include border-radius(6px)
           :background-color #E9EFF0
           :position relative
@@ -66,7 +76,6 @@
             :text-align center
             :font-weight bold
             :float left
-            :color #97B48A
 
           .name 
             :width 55px
@@ -75,7 +84,6 @@
             :text-align center
             :float left
             :position absolute
-            :color #97B48A
             :bottom 5px
 
         
