@@ -1,0 +1,17 @@
+- content_for :head do
+  = include_stylesheets :sepcial_pages_site_admin_common, :media => 'all'
+
+= render 'nav'
+.span-23.content_area
+  - @feedbacks.each do |f|
+    .span-21.content_block
+      .avatar
+        =person_image_link(f.person, :thumb_small)
+      .content
+        %p=f.content
+        %span.date=l(f.created_at, :format => :long)
+
+  .span-17.pagination_box
+    = will_paginate @feedbacks, {:previous_label => t("pagination.previous"), 
+                              :next_label => t("pagination.next")}
+    

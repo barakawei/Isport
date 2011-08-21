@@ -5,6 +5,11 @@ class Event < ActiveRecord::Base
   PARTICIPANTS_LIMIT_MIN = 0
   PARTICIPANTS_LIMIT_MAX = 100 
 
+  BEING_REVIEWED = 0
+  DENIED = 1
+  PASSED = 2
+  CANCELED_BY_EVENT_ADMIN = 3
+
   attr_accessor :same_day, :current_year,:invited_people
   validates_presence_of :title, :start_at, :description, :subject_id,
                         :participants_limit, 

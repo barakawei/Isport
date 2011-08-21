@@ -154,4 +154,7 @@ stylesheets:
 
   sepcial_pages_friends_common:
     - public/stylesheets/css/special_pages/friends/common.css
+
+  sepcial_pages_site_admin_common:
+    - public/stylesheets/css/special_pages/site_admin/common.css
  
