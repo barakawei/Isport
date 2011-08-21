@@ -1,6 +1,7 @@
 class PeopleController < ApplicationController
+  before_filter :registrations_closed?
   before_filter :authenticate_user!
-  respond_to :js,:html
+  respond_to :json,:js,:html
 
   def index
     params[:q] ||= params[:term]
@@ -8,10 +9,18 @@ class PeopleController < ApplicationController
       redirect_to "/p/?tag=#{params[:q].gsub("#","")}"
       return
     end
+    limit = params[:limit] ? params[:limit].to_i : 15 
+    respond_to do |format|
+      format.json do
+        @people = Person.search(params[:q], current_user).limit(limit)
+        render :json => @people
+      end
 
-    @people = Person.search(params[:q],current_user).paginate(:page => params[:page], :per_page => 20)
-    @hashes = hashes_for_people(@people)
-    respond_with @people
+      format.html do
+        @people = Person.search(params[:q],current_user).paginate(:page => params[:page], :per_page => 20)
+        @hashes = hashes_for_people(@people)
+      end 
+    end
   end
 
   def show_groups

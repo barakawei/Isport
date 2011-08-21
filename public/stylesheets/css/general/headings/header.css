@@ -127,7 +127,13 @@
     behavior: url(/javascripts/PIE.htc);
     float: left;
     margin-right: 3px; }
+  .header .sections .set a.long_li, .header .setting .set a.long_li {
+    padding-left: 5px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-top: 10px; }
   .header .sections a, .header .setting a {
+    text-align: center;
     -moz-border-radius-topleft: 5px;
     -moz-border-radius-topright: 5px;
     -webkit-border-top-left-radius: 5px;
@@ -172,7 +178,7 @@
         width: 20px;
         height: 20px; }
       .header .setting li a.long_li {
-        width: 70px; }
+        width: 90%; }
       .header .setting li a {
         padding-right: 2px; }
         .header .setting li a .name {
@@ -214,8 +220,8 @@
   border-bottom: 2px solid #dbe1e1;
   background-color: #e9eef1;
   position: absolute;
-  top: 91px;
-  right: -100px;
+  top: 100px;
+  right: -110px;
   width: 350px;
   display: none;
   z-index: 999;

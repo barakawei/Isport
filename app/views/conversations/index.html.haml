@@ -1,3 +1,5 @@
+-content_for :head do
+  = include_javascripts :jquery_validation
 #left_pane.span-7
   #left_pane_header
     #new_conversation.right
@@ -10,7 +12,8 @@
     - if @conversations.count > 0
       .stream.conversations
         = render :partial => 'conversations/conversation', :collection => @conversations, :locals => {:authors => @authors, :unread_counts => @unread_counts,:selected_id => ((@conversation.id) if @conversation)}
-      = will_paginate @conversations
+      .pagination_box
+        = will_paginate @conversations
     - else
       %br
       %br
@@ -18,7 +21,7 @@
       %br
       %div{:style => 'text-align:center;'}
         %i
-          = t('.no_messages')
+          = '没有信息'
 #conversation_show
   - if @conversation
     = render 'conversations/show', :conversation => @conversation

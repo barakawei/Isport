@@ -3,7 +3,7 @@
 #   the COPYRIGHT file.
 
 class InvitationsController < Devise::InvitationsController
-
+  before_filter :registrations_closed?
   before_filter :check_token, :only => [:edit]
 
   def new

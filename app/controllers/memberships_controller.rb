@@ -1,4 +1,5 @@
 class MembershipsController < ApplicationController
+  before_filter :registrations_closed?
   before_filter :find_group, :except => [:invite]
 
   def create

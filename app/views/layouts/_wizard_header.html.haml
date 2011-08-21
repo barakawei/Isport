@@ -3,7 +3,8 @@
     %h2= t('Isport')
   .events_count.span-8.last.right
     - if params[:controller] == 'devise/sessions' && params[:action] == 'new' 
-      = link_to "注册", new_registration_path(resource), :class => 'right'
+      -if !AppConfig[:registrations_closed]
+        = link_to "注册", new_registration_path(resource), :class => 'right'
     - else
       = link_to "登录", sign_in_path, :class => 'right'
     .right

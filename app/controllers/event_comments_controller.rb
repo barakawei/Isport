@@ -1,4 +1,5 @@
 class EventCommentsController < ApplicationController
+  before_filter :registrations_closed?
   def create
     event = Event.find(params[:event_id])
     if params[:comment]

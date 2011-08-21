@@ -135,6 +135,7 @@ ul.as-list {
 }
 
 li.as-result-item, li.as-message {
+    height: 40px;
 	margin: 0 0 0 0;
 	padding: 5px 12px;
 	background-color: transparent;
@@ -144,6 +145,14 @@ li.as-result-item, li.as-message {
 	border-radius: 5px;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
+}
+li.as-result-item .avatar {
+height: 35px; 
+width: 35px;
+float:left;
+left: 5px;
+top: 5px;
+margin-right: 5px;
 }
 
 li:first-child.as-result-item {
@@ -156,11 +165,9 @@ li.as-message {
 }
 
 li.as-result-item.active {
-	background-color: #3668d9;
-	background-image: -webkit-gradient(linear, 0% 0%, 0% 64%, from(rgb(110, 129, 245)), to(rgb(62, 82, 242)));
-	border-color: #3342e8;
+	background-color: #00bed4;
+	border-color: #00bed4;
 	color: #fff;
-	text-shadow: 0 1px 2px #122042;
 }
 
 li.as-result-item em { 
@@ -171,7 +178,6 @@ li.as-result-item em {
 }
 
 li.as-result-item.active em { 
-	background: #253f7a;  
 	color: #fff;
 }
 
