@@ -26,21 +26,23 @@
         = c.submit '发送信息', :class => 'glass_button'
 :javascript
     $(document).ready(function () {
-    var data = $.parseJSON( "#{@contacts_json}" ),
+    var data = $.parseJSON( "#{@people_json}" ),
         autocompleteInput = $("#contact_autocomplete");
 
     autocompleteInput.autoSuggest(data, {
       selectedItemProp: "name",
       searchObjProps: "name",
-      asHtmlID: "contact_ids",
+      asHtmlID: "person_ids",
       retrieveLimit: 10,
       minChars: 1,
       keyDelay: 0,
       startText: '',
       emptyText: '无此人',
       preFill: [{ 'name' : "#{params[:name]}",
-        'value' : "#{params[:contact_id]}",
-        'url':"#{params[:url]}"}]
+        'value' : "#{params[:person_id]}",
+        'url':"#{params[:url]}",
+        'filled':"#{params[ :filled ]}"
+        }]
       });
 
     autocompleteInput.focus();
@@ -51,7 +53,7 @@
     $(function() {
     $('#new_conversation').validate({  
       rules: {
-        'contact_ids': {
+        'person_ids': {
           required: true,
           minlength: 3 
         },
@@ -60,7 +62,7 @@
         }
       },
       messages: {
-        'contact_ids':{
+        'person_ids':{
           required: '请输入收信人',
           minlength: '请输入收信人'
 

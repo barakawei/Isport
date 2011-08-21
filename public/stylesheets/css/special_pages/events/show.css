@@ -98,9 +98,17 @@
 .right_column .event_title .status {
   color: #f78ca1; }
 .right_column .operations {
-  height: 40px; }
+  height: 40px;
+  position: relative; }
+  .right_column .operations .message_box {
+    position: absolute;
+    top: 50px; }
+    .right_column .operations .message_box .glass_button {
+      width: 60px;
+      height: 22px;
+      line-height: 22px; }
   .right_column .operations .share_operations {
-    float: left;
+    float: right;
     padding: 5px;
     background-color: white;
     border: 3px solid #d5ddde;

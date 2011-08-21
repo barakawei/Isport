@@ -62,6 +62,11 @@
             =link_to(url_for(:controller => "event_recommendations",:action => "remove_reference",:id => @event.id)) do
               .join_button.glass_button.quit.like
                 ='取消喜欢'
+          - if @event.is_owner( current_user ) 
+            .message_box
+              = link_to(new_conversation_path(:person_ids => @par_ids),:class=>"new_message_action") do
+                .glass_button
+                  ="消息"
 
         .share_operations
           %span='分享此活动'
@@ -135,4 +140,6 @@
     var _u = 'http://v.t.qq.com/share/share.php?url='+_url+'&site='+_site+'&title='+_t;
     window.open( _u,'', 'width=700, height=680, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, location=yes, resizable=no, status=no' );
   }
+
+  $( '.new_message_action' ).colorbox();
   

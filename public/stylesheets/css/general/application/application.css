@@ -535,14 +535,14 @@ input {
   height: 25px;
   line-height: 25px; }
 .follow_button .following {
-  background-color: #8aba56; }
+  background-color: #8dbc6e; }
   .follow_button .following span {
     background: url(/images/ui/icon-check.png) no-repeat 0 50%;
     padding-left: 18px; }
   .follow_button .following:hover {
-    background-color: #ea4c88; }
+    background-color: #e76b75; }
     .follow_button .following:hover span {
-      color: #ff99cc;
+      color: #e76b75;
       background: url(/images/ui/icon-x.png) no-repeat 0 50%; }
 .follow_button .follow {
   background-color: lightGrey; }

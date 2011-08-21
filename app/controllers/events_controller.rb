@@ -40,6 +40,7 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     @participants = @event.participants_top(LIMIT)
+    @par_ids = @event.participants.map{ |p|p.id }
     @references = @event.references_top(LIMIT)
     @current_person = current_user ? current_user.person : nil
     @comments = []

@@ -1,3 +1,13 @@
+.person_show .person_action {
+  margin-left: 20px;
+  height: 30px; }
+  .person_show .person_action .message_box {
+    margin-left: 15px; }
+    .person_show .person_action .message_box .glass_button {
+      height: 25px;
+      line-height: 25px;
+      width: 70px; }
+
 .following_people_panel {
   margin-top: 25px; }
   .following_people_panel .person_avatar .avatar_container {
@@ -11,7 +21,7 @@
 
 .history_bar {
   display: block;
-  margin-top: 55px;
+  margin-top: 22px;
   height: 90px; }
   .history_bar .app_big_title_bar {
     margin-right: 20px; }
@@ -152,8 +162,6 @@
   #person_panel h2 {
     margin-bottom: 0px;
     display: inline; }
-  #person_panel .action {
-    float: right; }
 
 .menu_bar.edit {
   padding-bottom: 5px;

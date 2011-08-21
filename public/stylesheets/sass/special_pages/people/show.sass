@@ -1,7 +1,16 @@
 @import '../../general/ui/mixins'
+.person_show
+  .person_action
+    :margin-left 20px
+    :height 30px
+    .message_box
+      :margin-left 15px
+      .glass_button
+        :height 25px
+        :line-height 25px
+        :width 70px
 .following_people_panel
   :margin-top 25px
-
   .person_avatar
     .avatar_container
       @include box-shadow(0,1px,3px,0,#aaa)
@@ -11,7 +20,7 @@
 
 .history_bar
   :display block
-  :margin-top 55px
+  :margin-top 22px
   :height 90px
   .app_big_title_bar
     :margin-right 20px
@@ -160,8 +169,7 @@
   h2
     :margin-bottom 0px
     :display inline
-  .action
-    :float right
+
 .menu_bar.edit
   :padding-bottom 5px
   :padding-right 0px

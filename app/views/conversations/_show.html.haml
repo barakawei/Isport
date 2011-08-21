@@ -28,6 +28,8 @@
 
       .content
         = form_for  [conversation, Message.new] do |message|
+          -if  params[ :page ] && params[:page] != ''
+            = hidden_field_tag :page, params[:page]
           = message.text_area :text, :rows => 5
           .right
             = message.submit '回复', :class => 'post_button'
@@ -48,4 +50,9 @@
     });
   });
 
+  if( "#{@conversation.id}" !="" ){
+      $( "##{@conversation.id}" ).removeClass( "unread" ).addClass( "selected" ); 
+      $( "##{@conversation.id} .unread_message_count" ).addClass( "hide ");
+    }
+    jQuery("abbr.timeago").timeago();
 
