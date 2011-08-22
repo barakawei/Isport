@@ -1,0 +1,173 @@
+- content_for :head do
+  = include_stylesheets :sepcial_pages_site_admin_common, :media => 'all'
+
+= render 'nav'
+.span-23.content_area
+  - @groups.each do |g|
+    .span-21.content_block{:group_id => g.id}
+      .avatar
+        =group_image_link(g, :thumb_small)
+      .content
+        %h4.title
+          %span.des_label='名称:'
+          =link_to g.name, group_path(g)
+        %p
+          %span.des_label='类型:'
+          =g.item.name
+        %p
+          %span.des_label='活动区域:'
+          =g.location
+        %p
+          %span.des_label='描述:'
+          =g.description
+        %p.status
+          %span.des_label='审核状态:'
+          =review_status(g.status)
+        .created_at 
+          %span.date=l(g.created_at, :format => :long)
+        
+        .operations
+          .buttons
+            - if g.status == Group::BEING_REVIEWED
+              = link_to(pass_group_path(:group_id => g.id), :class => 'pass', :group_id => g.id) do
+                .pass_button.glass_button
+                  ='通过'
+              = link_to('#', :class => 'deny', :group_id => g.id) do
+                .deny_button.glass_button
+                  ='不通过'
+            - elsif g.status == Group::DENIED
+              = link_to(pass_group_path(:group_id => g.id), :class => 'pass', :event_id => g.id) do
+                .pass_button.glass_button
+                  ='通过'
+            - elsif g.status == Group::PASSED
+              = link_to('#', :class => 'deny', :group_id => g.id) do
+                .deny_button.glass_button
+                  ='不通过'
+            = link_to('#',:class => 'delete', :group_id => g.id) do
+              .delete_button.glass_button
+                ='删除'
+            
+          
+
+
+  .span-17.pagination_box
+    = will_paginate @groups, {:previous_label => t("pagination.previous"), 
+                              :next_label => t("pagination.next")}
+    
+
+  .colorbox_content
+    #denied_form
+      .span-12.box_content
+        %h3= "请输入小组审核不通过的确切理由:"
+        = form_tag deny_group_path, do
+          = hidden_field_tag :group_id
+          = text_area_tag :reason, "对不起,您创建的小组没有通过审核，原因如下:\n"
+          .submit
+            = submit_tag '确定', :class => 'glass_button'
+    
+  .colorbox_content
+    #delete_form
+      .span-12.box_content
+        %h3="请输入删除该小组的理由:" 
+        = form_tag delete_group_path, do
+          = hidden_field_tag :group_id
+          = text_area_tag :reason, "对不起，你创建的小组因为以下原因被删除: \n" 
+          .submit
+            = submit_tag '确定', :class => 'glass_button'
+:javascript
+  $(function() {
+    var options = {success: replaceData, resetForm:true,beforeSubmit: colorbox_close};
+    var d_options = {success: removeData, resetForm:true,beforeSubmit: colorbox_close};
+    $('#denied_form form').ajaxForm(options); 
+    $('#delete_form form').ajaxForm(d_options); 
+    refresh_count();
+  });
+
+  $('a.pass').click(function(){
+    pass_group($(this));
+    return false;
+  });
+
+  function pass_group($link) {
+    var id = $link.attr('group_id');
+    $.post($link.attr('href'), function(data){
+      $('.content_block[group_id="' + id +'"]').replaceWith(data);
+      $('.content_block[group_id="' + id +'"] a.deny').click(function(){
+        deny_group($(this));
+        return false;
+      });
+    });
+  }
+
+  $('a.deny').click(function(){
+    deny_group($(this));
+    return false;
+  });
+
+  function deny_group($link) {
+    $.colorbox({ inline:true, href:"#denied_form",
+                                     opacity:0.2, width:"600", height:"350" });
+    $('#denied_form input#group_id').val($link.attr('group_id'));
+  }
+
+  function colorbox_close() {
+    $.colorbox.close();
+  }
+
+  function replaceData(responseText, statusText, xhr, $form){
+    if (statusText == 'success') {  
+      var id = $form.find('input#group_id').val();   
+      $('.content_block[group_id="' + id +'"]').replaceWith(responseText);
+      $('.content_block[group_id="' + id +'"] a.pass').click(function(){
+        pass_group($(this));
+        return false;
+      });
+    } else {
+      alert('error');
+    }
+  }
+
+  function removeData(responseText, statusText, xhr, $form){
+    var id = $form.find('input#group_id').val();   
+    if (statusText == 'success') { 
+      $('.content_block[group_id="' + id +'"]').fadeOut('slow', function() {
+        $(this).remove();
+      });
+    }
+    return false;
+  }
+
+   $('a.delete').click(function() {
+    delete_group($(this)); 
+    return false;
+  });
+
+  function delete_group($link) {
+    $.colorbox({ inline:true, href:"#delete_form",
+                                     opacity:0.2, width:"600", height:"350" });
+    $('#delete_form input#group_id').val($link.attr('group_id'));
+  }
+
+   function removeData(responseText, statusText, xhr, $form){
+    var id = $form.find('input#group_id').val();   
+    if (statusText == 'success') { 
+      $('.content_block[group_id="' + id +'"]').fadeOut('slow', function() {
+        $(this).remove();
+      });
+    }
+    return false;
+  }
+
+  function refresh_count() {
+    var sound = document.getElementById('sound1');
+    setTimeout(refresh_count, 120000); 
+    $.get("#{groups_count_path}", function(data){
+      $('ul li span.count').hide();
+      $('ul li span.count').html(data);
+      $('ul li span.count').fadeIn(3000);
+      if (parseInt(data) > 0) {
+        sound.Play();
+      }
+    });
+  }
+

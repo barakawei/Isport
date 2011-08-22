@@ -1,0 +1,46 @@
+.span-21.content_block{:event_id => e.id}
+  .avatar
+    =event_image_link(e, :thumb_small)
+  .content
+    %h4.title
+      %span.des_label='名称:'
+      =link_to e.title, event_path(e)
+    %p
+      %span.des_label='时间:'
+      =l(e.start_at, :format => :long)
+      %span.des_label='类型:'
+      =e.item.name
+    %p
+      %span.des_label='地点:'
+      =e.location
+    %p
+      %span.des_label='描述:'
+      =e.description
+    %p.status
+      %span.des_label='审核状态:'
+      =review_status(e.status)
+    .created_at 
+      %span.date=l(e.created_at, :format => :long)
+    
+    .operations
+      .buttons
+        - if e.status == Event::BEING_REVIEWED
+          = link_to(pass_event_path(:event_id => e.id), :class => 'pass', :event_id => e.id) do
+            .pass_button.glass_button
+              ='通过'
+          = link_to('#', :class => 'deny', :event_id => e.id) do
+            .deny_button.glass_button
+              ='不通过'
+        - elsif e.status == Event::DENIED
+          = link_to(pass_event_path(:event_id => e.id), :class => 'pass', :event_id => e.id) do
+            .pass_button.glass_button
+              ='通过'
+        - elsif e.status == Event::PASSED
+          = link_to('#', :class => 'deny', :event_id => e.id) do
+            .deny_button.glass_button
+              ='不通过'
+        
+        = link_to() do
+          .delete_button.glass_button
+            ='删除'
+

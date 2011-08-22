@@ -17,8 +17,8 @@
       %span.item.hide
       - @my_items.each do |item|
         %span.item{:item_id => item.id}=item.name
-    .submit_button.right
-      %a.submit='next'
+    .right
+      %a.next_button='next'
 
 :javascript
   $('a.avatar').click(function() {
@@ -36,7 +36,7 @@
   }
   });
 
-  $('a.submit').click(function() {
+  $('a.next_button').click(function() {
     var data = "";
     if($('a.avatar.selected').size() > 0) {
       $('a.avatar.selected').each(function(index) {

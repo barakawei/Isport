@@ -1,11 +1,47 @@
+-content_for :head do
+  = include_javascripts :jquery_validation
 .person_avatar
   = owner_image_tag(:thumb_large) 
   = render 'photos/new_profile_photo', :person => person
 .person_basic
-  %h4
-    = "名字"
+  .relative
+    %h4
+      = "名字"
     = text_field_tag 'profile[name]', profile.name, :placeholder => t('profiles.edit.name')
-  %h4
-    = "城市"
+  .relative
+    %h4
+      = "性别"
+    = radio_button_tag 'profile[gender]',1
+    %span
+      =  "男"
+    = radio_button_tag 'profile[gender]',0
+    %span
+      =  "女"
+  .relative
+    %h4
+      = "城市"
     = select_tag "profile[location_attributes][city_id]",
                options_from_collection_for_select(City.all, "id", "name", location.city_id)
+
+:javascript
+  $(function() {
+    $('#update_profile_form').validate({  
+      rules: {
+        'profile[name]': {
+          required: true
+        },
+        'profile[gender]': {
+          required: true
+        }
+      },
+      messages: {
+        'profile[name]': {
+          required: '请输入名字'
+        },
+        'profile[gender]': {
+          required: '请选择性别'
+        }
+      }
+    });
+  });
+  

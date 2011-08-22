@@ -166,11 +166,6 @@
     margin-left: 400px; }
   .edit ul {
     display: inline; }
-  .edit .name {
-    display: inline;
-    margin-left: 23px; }
-  .edit .signature {
-    margin-top: 10px; }
   .edit .name input, .edit .signature input, .edit .hobby input {
     width: 340px; }
   .edit textarea {
@@ -279,6 +274,8 @@ dd {
   background-color: white;
   padding-bottom: 20px;
   padding-top: 20px; }
+  .person_profile label[class=error] {
+    color: red; }
   .person_profile input, .person_profile select, .person_profile textarea {
     color: #576b72; }
   .person_profile input {
