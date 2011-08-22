@@ -45,7 +45,7 @@ class Event < ActiveRecord::Base
            :dependent => :destroy
   has_many :commentors, :through => :comments, :source => :person
 
-  belongs_to :item, :foreign_key => "subject_id"
+  belongs_to :item, :foreign_key => "subject_id", :counter_cache => true
 
 
   scope :not_started, lambda { where("start_at > ?", Time.now) }

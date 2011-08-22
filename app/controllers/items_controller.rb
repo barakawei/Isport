@@ -4,7 +4,6 @@ class ItemsController < ApplicationController
 
   EVELIMIT = 6
   ACTLIMIT = 12
-  ITELIMIT = 5
 
   def myitems
     @items_array = Item.get_user_items(current_user)
@@ -18,50 +17,17 @@ class ItemsController < ApplicationController
   end
 
   def index
-    @items = Item.all
-    items_ids = @items.map{|i| i.id}
+    @categories = Category.all
+    @myitems = []
 
-    fans_counts = {  }
-    events_counts = {  }
     if current_user
       @city = City.find_by_pinyin(current_user.city.pinyin)
     else
       @city = City.first      
     end
+
+    @items_hash = Item.all_items(@categories, @myitems, @city, current_user)
     
-    Event.week.joins(:location).select("subject_id, count(*) evesize")
-      .where(:subject_id => items_ids, :locations => {:city_id => @city.id}).group(:subject_id).each do |count|
-      events_counts[count.subject_id] = count.evesize
-    end
-
-    if current_user
-      @myitems = [  ]
-      current_user.person.interests.limit(ITELIMIT).each do |myitem| 
-          @myitems.push({:item => myitem, :count=>events_counts[myitem.id]?events_counts[myitem.id]:0})
-      end
-    end
-
-    Favorite.select("item_id, count(*) fansize")
-      .where(:item_id => items_ids).group(:item_id).each do |count|
-      fans_counts[count.item_id] = count.fansize
-    end
-
-    @items_hash = {  }
-    @categories = Category.all
-    @categories.each do |category|
-      @items_hash[category.id] = [  ]  
-    end
-
-    @items.each do |item|
-      @items_hash[item.category_id].push({:item => item, 
-                                          :events_count => events_counts[item.id]?events_counts[item.id]:0, 
-                                          :fans_count => fans_counts[item.id]?fans_counts[item.id]:0})
-    end
-
-    @categories.each do |category|
-      @items_hash[category.id].sort!{ |x, y| y[:fans_count] <=> x[:fans_count] }
-    end
-
     @select_tab = 'item'
     respond_to do |format|
       format.html # index.html.erb
@@ -91,38 +57,7 @@ class ItemsController < ApplicationController
     end
 
     @actors = @item.hot_stars(ACTLIMIT)
-    @groups = Group.joins(:members).where(:item_id => @item.id, :city_id => @city.id)
-          .group(:group_id).order("count(group_id) DESC").limit(EVELIMIT)
-
-    group_ids = @groups.map{|i| i.id}
-
-    group_members_counts = { }
-    group_topics_counts = { }
-    group_events_counts = { }
-
-    Membership.select("group_id, count(*) membersize").where(:group_id => group_ids, :pending => false)
-      .group(:group_id).each do |count|
-        group_members_counts[count.group_id] = count.membersize
-    end
-
-
-    Event.select("group_id, count(*) eventsize").where(:group_id => group_ids)
-      .group(:group_id).each do |count|
-        group_events_counts[count.group_id] = count.evesize
-    end
-
-    Topic.joins(:forum).select("forums.discussable_id group_id, count(*) topicsize")
-      .where(:forums => {:discussable_id => group_ids, :discussable_type => "Group"}).group(:forum_id).each do |count|
-        group_topics_counts[count.group_id] = count.topicsize
-    end
-
-    @groups_hash = []
-    @groups.each do |group|
-      @groups_hash.push({:group => group,
-                        :membersize => group_members_counts[group.id]?group_members_counts[group.id]:0,
-                        :eventsize => group_events_counts[group.id]?group_events_counts[group.id]:0,
-                        :topicsize => group_topics_counts[group.id]?group_topics_counts[group.id]:0})      
-    end
+    @groups_hash = @item.hot_groups(EVELIMIT, @city)  
 
     @select_tab = 'item'
     respond_to do |format|

@@ -28,6 +28,48 @@ class Item < ActiveRecord::Base
     (result != nil && result.length > 0) ? result : default_url(size)
   end
 
+  def self.all_items(categories, myitems, city, user)
+    items = Item.all
+    items_ids = items.map{|i| i.id}
+
+    fans_counts = {  }
+    events_counts = {  }  
+
+    Event.week.joins(:location).select("subject_id, count(*) evesize")
+      .where(:subject_id => items_ids, :locations => {:city_id => city.id}).group(:subject_id).each do |count|
+      events_counts[count.subject_id] = count.evesize
+    end
+
+    if user
+      user.person.interests.order("rand()").limit(5).each do |myitem| 
+          myitems.push({:item => myitem, :count=>events_counts[myitem.id]?events_counts[myitem.id]:0})
+      end
+    end
+
+    Favorite.select("item_id, count(*) fansize")
+      .where(:item_id => items_ids).group(:item_id).each do |count|
+      fans_counts[count.item_id] = count.fansize
+    end
+
+    items_hash = {  }
+
+    categories.each do |category|
+      items_hash[category.id] = [  ]  
+    end
+
+    items.each do |item|
+      items_hash[item.category_id].push({:item => item, 
+                                          :events_count => events_counts[item.id]?events_counts[item.id]:0, 
+                                          :fans_count => fans_counts[item.id]?fans_counts[item.id]:0})
+    end
+
+    categories.each do |category|
+      items_hash[category.id].sort!{ |x, y| y[:fans_count] <=> x[:fans_count] }
+    end
+
+    return items_hash
+  end
+
   def self.hot_items(size, city)
     items = [  ]
 
@@ -103,7 +145,7 @@ class Item < ActiveRecord::Base
   end
 
   def self.remove_fan(item_id, user)
-    Favorite.delete_all(:item_id => item_id, :person_id => user.person.id)
+    Favorite.destroy_all(:item_id => item_id, :person_id => user.person.id)
   end
 
   def random_people(city, limit_num, except)
@@ -143,6 +185,42 @@ class Item < ActiveRecord::Base
           .where(:events => {:subject_id => self.id}, :items => {:id => self.id}, 
                  :involvements => {:is_pending => false})
           .group("involvements.person_id").order("count(event_id) DESC").limit(limited).includes(:profile)
+  end
+
+  def hot_groups(limited, city)
+    groups = Group.joins(:members).where(:item_id => self.id, :city_id => city.id)
+          .group(:group_id).order("count(group_id) DESC").limit(limited)
+
+    group_ids = groups.map{|i| i.id}
+
+    group_members_counts = { }
+    group_topics_counts = { }
+    group_events_counts = { }
+
+    Membership.select("group_id, count(*) membersize").where(:group_id => group_ids, :pending => false)
+      .group(:group_id).each do |count|
+        group_members_counts[count.group_id] = count.membersize
+    end
+
+
+    Event.select("group_id, count(*) eventsize").where(:group_id => group_ids)
+      .group(:group_id).each do |count|
+        group_events_counts[count.group_id] = count.evesize
+    end
+
+    Topic.joins(:forum).select("forums.discussable_id group_id, count(*) topicsize")
+      .where(:forums => {:discussable_id => group_ids, :discussable_type => "Group"}).group(:forum_id).each do |count|
+        group_topics_counts[count.group_id] = count.topicsize
+    end
+
+    groups_hash = []
+    groups.each do |group|
+      groups_hash.push({:group => group,
+                        :membersize => group_members_counts[group.id]?group_members_counts[group.id]:0,
+                        :eventsize => group_events_counts[group.id]?group_events_counts[group.id]:0,
+                        :topicsize => group_topics_counts[group.id]?group_topics_counts[group.id]:0})      
+    end
+    return groups_hash 
   end
 
   private

@@ -30,11 +30,11 @@
   .itemright
     .item_info
       .info_ele
-        = render 'common/big_header_box', :number => @item.fans.count, :text => "粉丝", :background_color => "#FF8A3C"
+        = render 'common/big_header_box', :number => @item.fans.size, :text => "粉丝", :background_color => "#FF8A3C"
       .info_ele
-        = render 'common/big_header_box', :number => @item.events.count, :text => "活动", :background_color => "#AAD450"
+        = render 'common/big_header_box', :number => @item.events.size, :text => "活动", :background_color => "#AAD450"
       .info_ele
-        = render 'common/big_header_box', :number => @item.groups.count, :text => "小组", :background_color => "#4EBAFF"
+        = render 'common/big_header_box', :number => @item.groups.size, :text => "小组", :background_color => "#4EBAFF"
 
     .hot_title
       .title

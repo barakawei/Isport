@@ -3,7 +3,7 @@ class Group < ActiveRecord::Base
   JOIN_AFTER_AUTHENTICATAION = 2 
   JOIN_BY_INVITATION_FROM_ADMIM = 3 
 
-  belongs_to :item
+  belongs_to :item, :counter_cache => true
   belongs_to :city
   belongs_to :district
   belongs_to :person
@@ -138,7 +138,7 @@ class Group < ActiveRecord::Base
 
 
   def delete_member(person)
-    Membership.delete_all(:group_id => id, :person_id => person.id)
+    Membership.destroy_all(:group_id => id, :person_id => person.id)
   end
 
   def is_admin(person)
