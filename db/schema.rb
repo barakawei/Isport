@@ -10,11 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(:version => 20110821164448) do
-=======
-ActiveRecord::Schema.define(:version => 20110821172135) do
->>>>>>> e3df71916520e5055ced0616df647efebdb63c82
+ActiveRecord::Schema.define(:version => 20110822135252) do
 
   create_table "administrators", :force => true do |t|
     t.integer  "user_id"
@@ -149,6 +145,9 @@ ActiveRecord::Schema.define(:version => 20110821172135) do
     t.integer  "status",           :default => 0
     t.string   "status_msg"
     t.integer  "audit_person_id"
+    t.integer  "members_count",    :default => 0
+    t.integer  "events_count",     :default => 0
+    t.integer  "topics_count",     :default => 0
   end
 
   create_table "invitations", :force => true do |t|

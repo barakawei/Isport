@@ -57,8 +57,8 @@
         = link_to "更多>>", group_filter_path(:city => @city.pinyin, :item_id => @item.id)
        
     .hot_area.groups_panel
-      = render :partial => 'groups/group_box',:collection => @groups_hash,:as => :group
-      - if @groups_hash.size == 0
+      = render :partial => 'groups/group_box',:collection => @groups,:as => :group
+      - if @groups.size == 0
         =render :partial => 'events/new_event_link', :locals => { :question => '该项目还没有小组?',
                                                                 :link => new_group_path,
                                                                 :action => '创建小组'}

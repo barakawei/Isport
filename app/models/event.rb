@@ -10,6 +10,10 @@ class Event < ActiveRecord::Base
   PASSED = 2
   CANCELED_BY_EVENT_ADMIN = 3
 
+  after_create :update_owner_counter
+  after_destroy :update_owner_counter
+  after_update :update_owner_counter
+
   attr_accessor :same_day, :current_year,:invited_people
   validates_presence_of :title, :start_at, :description, :subject_id,
                         :participants_limit, 
@@ -50,7 +54,7 @@ class Event < ActiveRecord::Base
            :dependent => :destroy
   has_many :commentors, :through => :comments, :source => :person
 
-  belongs_to :item, :foreign_key => "subject_id", :counter_cache => true
+  belongs_to :item, :foreign_key => "subject_id"
 
 
   scope :not_started, lambda { where("start_at > ?", Time.now) }
@@ -248,6 +252,16 @@ class Event < ActiveRecord::Base
   def validate_location_detail
     if location.detail.nil? || location.detail.size == 0
       errors.add(:location, I18n.t('activerecord.errors.event.location.detail_need'));
+    end
+  end
+
+  def update_owner_counter
+    self.item.events_count = self.item.events.count
+    self.item.save
+  
+    if self.group
+      self.group.events_count = self.group.events.count
+      self.group.save
     end
   end
 end

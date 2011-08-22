@@ -44,11 +44,11 @@ class ItemsController < ApplicationController
       @city = City.first
     end
 
-    @events = Event.week.not_started.joins(:location).where(:subject_id => @item.id, :locations => {:city_id => @city.id})
+    @events = @item.events.week.not_started.joins(:location).where(:locations => {:city_id => @city.id})
         .limit(EVELIMIT)
   
     if @events.length < EVELIMIT
-      pevents = Event.next_week.not_started.joins(:location).where(:subject_id => @item.id, :locations => {:city_id => @city.id})
+      pevents = @item.events.next_week.not_started.joins(:location).where(:locations => {:city_id => @city.id})
         .limit(EVELIMIT-@events.length)
 
       if pevents
@@ -57,7 +57,7 @@ class ItemsController < ApplicationController
     end
 
     @actors = @item.hot_stars(ACTLIMIT)
-    @groups_hash = @item.hot_groups(EVELIMIT, @city)  
+    @groups = @item.hot_groups(EVELIMIT, @city)  
 
     @select_tab = 'item'
     respond_to do |format|

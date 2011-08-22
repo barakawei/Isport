@@ -3,7 +3,11 @@ class Group < ActiveRecord::Base
   JOIN_AFTER_AUTHENTICATAION = 2 
   JOIN_BY_INVITATION_FROM_ADMIM = 3 
 
-  belongs_to :item, :counter_cache => true
+  after_save :update_owner_counter
+  after_destroy :update_owner_counter
+  after_update :update_owner_counter
+
+  belongs_to :item
   BEING_REVIEWED = 0
   DENIED = 1
   PASSED = 2
@@ -23,11 +27,14 @@ class Group < ActiveRecord::Base
 
 
   has_many :memberships, :dependent => :destroy
-  has_many :events, :dependent => :destroy
+
+  has_many :events, :dependent => :destroy, 
+                    :conditions => ["events.status = ?", 2]
   has_many :invitees_plus_members, :through => :memberships, :source => :person
 
   has_many :members, :through => :memberships,  :source => :person,
                         :conditions => ['memberships.pending = ? ', false]
+
   has_many :invitees, :through => :memberships, :source => :person,
                         :conditions => ['memberships.pending = ? and memberships.pending_type = ? ', true, JOIN_BY_INVITATION_FROM_ADMIM] 
   
@@ -180,5 +187,11 @@ class Group < ActiveRecord::Base
         when :thumb_large   then "/images/group/group_large.jpg"
         when :thumb_small   then "/images/group/group_small.jpg"
      end
+  end
+
+  def update_owner_counter
+    self.item.groups_count = self.item.groups.count
+    self.item.save
+    
   end
 end

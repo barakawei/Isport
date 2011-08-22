@@ -21,7 +21,7 @@
               %span.title
                 = item_events_notify
                 = link_to t('items.eventsthisweek', :count => item[:events_count]), event_filter_path(@city.pinyin, nil, item[:item].id, 'week') 
-              %span.detail= item[:fans_count].to_s + t('items.fans')
+              %span.detail= item[:item].fans.size.to_s + t('items.fans')
 
   - if current_user
     .myitemlist
