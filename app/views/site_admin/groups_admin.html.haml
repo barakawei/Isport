@@ -80,6 +80,7 @@
     var d_options = {success: removeData, resetForm:true,beforeSubmit: colorbox_close};
     $('#denied_form form').ajaxForm(options); 
     $('#delete_form form').ajaxForm(d_options); 
+    refresh_count();
   });
 
   $('a.pass').click(function(){
@@ -157,5 +158,16 @@
     return false;
   }
 
-
+  function refresh_count() {
+    var sound = document.getElementById('sound1');
+    setTimeout(refresh_count, 120000); 
+    $.get("#{groups_count_path}", function(data){
+      $('ul li span.count').hide();
+      $('ul li span.count').html(data);
+      $('ul li span.count').fadeIn(3000);
+      if (parseInt(data) > 0) {
+        sound.Play();
+      }
+    });
+  }
 

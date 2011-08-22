@@ -18,6 +18,7 @@ class SiteAdminController < ApplicationController
 
   def get_groups_count_ajax
     @count = Group.where(:status => Group::BEING_REVIEWED).count
+    render :text => @count
   end
 
   def deny_event
