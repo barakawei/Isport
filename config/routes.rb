@@ -74,6 +74,7 @@ Isport::Application.routes.draw do
   end
 
   controller :site_admin do
+    match '/site_admin' => :events_admin
     match '/site_admin/deny_event' => :deny_event, :as => 'deny_event', :via => :post
     match '/site_admin/pass_event' => :pass_event, :as => 'pass_event', :via => :post
     match '/site_admin/delete_event' => :delete_event, :as => 'delete_event', :via => :post
@@ -119,6 +120,8 @@ Isport::Application.routes.draw do
           :constraints => { :id => /[1-9]\d*/}
     match '/events/:id/edit(/:new)' => :edit, :as => 'edit_event',
           :constraints => { :id => /[1-9]\d*/, :new => /new/}
+    match '/events/:id/cancel' => :cancel, :as => 'cancel_event',
+          :constraints => { :id => /[1-9]\d*/, :new => /new/}, :via => :post
   end
 
   controller :involvements do

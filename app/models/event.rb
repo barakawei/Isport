@@ -51,6 +51,7 @@ class Event < ActiveRecord::Base
   has_many :commentors, :through => :comments, :source => :person
 
   belongs_to :item, :foreign_key => "subject_id"
+  belongs_to :audit_person, :foreign_key => "audit_person_id", :class_name => 'Person'
 
 
   scope :not_started, lambda { where("start_at > ?", Time.now) }
@@ -227,6 +228,14 @@ class Event < ActiveRecord::Base
     else
       send(time)
     end
+  end
+
+  def need_notice?
+    status == Event::BEING_REVIEWED || status == Event::DENIED || status == Event::CANCELED_BY_EVENT_ADMIN 
+  end
+
+  def in_audit_process?
+    status == Event::BEING_REVIEWED || status == Event::DENIED
   end
 
   private

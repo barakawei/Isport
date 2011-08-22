@@ -153,4 +153,13 @@ module ApplicationHelper
       else ''
     end 
   end
+
+  def long_review_status(status)
+    case status
+      when Event::BEING_REVIEWED then I18n.t('events.audit_status.to_be_reviewed')
+      when Event::DENIED then I18n.t('events.audit_status.not_passed')
+      when Event::CANCELED_BY_EVENT_ADMIN then I18n.t('events.audit_status.canceled_by_event_admin')
+      else ''
+    end 
+  end
 end

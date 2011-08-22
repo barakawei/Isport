@@ -46,5 +46,9 @@ class InvolvementsController < ApplicationController
   def init
     @event = Event.find(params[:id])
     @person = current_user.person 
+    if @event.status == Event::CANCELED_BY_EVENT_ADMIN 
+      redirect_to event_path(@event) 
+    end
   end
+
 end

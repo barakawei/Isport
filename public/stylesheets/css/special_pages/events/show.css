@@ -7,9 +7,9 @@
   border: 1px solid #d5ddde;
   margin-bottom: 0px; }
   .left_column #map img {
-    -moz-border-radius: 14px;
-    -webkit-border-radius: 14px;
-    border-radius: 14px;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
     behavior: url(/javascripts/PIE.htc);
     width: 198px;
     height: 198px;
@@ -88,6 +88,20 @@
   -webkit-border-radius: 5px;
   border-radius: 5px;
   behavior: url(/javascripts/PIE.htc); }
+  .right_column .event_status_info h3 {
+    color: #fc4469; }
+  .right_column .event_status_info p.audit_info {
+    font-size: 14px;
+    color: #666666; }
+  .right_column .event_status_info .avatar span.info {
+    display: block;
+    float: right;
+    font-size: 14px; }
+  .right_column .event_status_info .avatar img {
+    width: 30px;
+    height: 30px;
+    float: right;
+    margin-left: 10px; }
 .right_column .event_title_bar {
   width: 630px;
   float: left;
