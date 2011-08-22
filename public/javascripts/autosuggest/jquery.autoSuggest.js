@@ -27,6 +27,7 @@
 			emptyText: "No Results Found",
 			preFill: {},
 			limitText: "No More Selections Are Allowed",
+            image_url:"url",
 			selectedItemProp: "value", //name of object property
 			selectedValuesProp: "value", //name of object property
 			searchObjProps: "value", //comma separated list of object property names
@@ -192,7 +193,7 @@
 								timeout = setTimeout(function(){ keyChange(); }, opts.keyDelay);
 							}
 							break;
-						case 9: case 188:  // tab or comma
+					/*	case 9: case 188:  // tab or comma
 							tab_press = true;
 							var i_input = input.val().replace(/(,)/g, "");
 							if(i_input != "" && values_input.val().search(","+i_input+",") < 0 && i_input.length >= opts.minChars){	
@@ -203,7 +204,11 @@
 								var lis = $("li", selections_holder).length;
 								add_selected_item(n_data, "00"+(lis+1));
 								input.val("");
-							}
+							}*/
+                        case 9: //tab
+                            if( input.val() == ''){
+                              break;
+                            }
 						case 13: // return
 							tab_press = false;
 							var active = $("li.active:first", results_holder);
@@ -315,7 +320,7 @@
 								this_data[opts.selectedItemProp] = this_data[opts.selectedItemProp].replace(regx,"<em>$1</em>");
 							}
 							if(!opts.formatList){
-								formatted = formatted.html(this_data[opts.selectedItemProp]);
+								formatted = formatted.html("<image src='"+this_data[opts.image_url] +"' class='avatar'/>"+this_data[opts.selectedItemProp]);
 							} else {
 								formatted = opts.formatList.call(this, this_data, formatted);	
 							}

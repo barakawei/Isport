@@ -95,6 +95,7 @@ class EventsController < ApplicationController
     l_info = GoogleGeoCoder.getLocation(location.to_s)
     event_attrs[:location_attributes].merge!(l_info) unless l_info.nil?
     @event = Event.new(event_attrs)
+    @event.status_msg = 
     @event.person = @current_person 
     if @event.save
       Involvement.create(:event_id => @event.id, :person_id => @current_person)

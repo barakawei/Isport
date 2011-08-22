@@ -13,9 +13,6 @@ class SiteInfoController < ApplicationController
     redirect_to new_feedback_path(:succ => true) 
   end
 
-  def feedbacks
-    @feedbacks = Feedback.paginate :page => params[:page], :per_page => 30, :order => 'created_at desc' 
-  end
 
   def site_info
     @info_type = params[:info_type]

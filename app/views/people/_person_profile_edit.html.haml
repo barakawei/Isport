@@ -1,3 +1,5 @@
+-content_for :head do
+  = include_javascripts :jquery_validation
 = form_for @profile do |f|
   = hidden_field_tag "profile_edit","1"
   .person_settings
@@ -8,19 +10,6 @@
         %span="姓名"
         .content#name
           = f.text_field :name
-      %div.signature.info_text
-        %span="个性签名"
-        .content#signature
-          = f.text_field :signature
-      .bio.info_text
-        %span="介绍"
-        .content#bio
-          = f.text_area  :bio
-
-      .hobby.info_text
-        %span="爱好"
-        .content#hobby
-          = f.text_field :hobby
       .gender.info_text
         %span="性别"
         .content#gender
@@ -30,6 +19,15 @@
           = f.radio_button :gender,0
           %span
             =  "女"
+      .bio.info_text
+        %span="介绍"
+        .content#bio
+          = f.text_area  :bio
+
+      .hobby.info_text
+        %span="爱好"
+        .content#hobby
+          = f.text_field :hobby
       .location.info_text
         %span="城市"
         .content#location
@@ -40,8 +38,27 @@
   .person_profile_button
     =submit_tag '保存个人信息',:class => "button"
 
-
-
+:javascript
+  $(function() {
+    $('.edit_profile').validate({  
+      rules: {
+        'profile[name]': {
+          required: true
+        },
+        'profile[gender]': {
+          required: true
+        }
+      },
+      messages: {
+        'profile[name]': {
+          required: '请输入名字'
+        },
+        'profile[gender]': {
+          required: '请选择性别'
+        }
+      }
+    });
+  });
   
 
 

@@ -159,6 +159,15 @@ zh:
         step_1: '1.填写活动信息'
         step_2: '2.邀请好友'
       not_group_event_option: '非小组活动'
+      audit_status:
+        being_reviewed: '该活动正在审核中...'
+        not_passed: '该活动没有通过审核'
+        canceled_by_event_admin: '该活动已被活动管理员取消'
+        canceled_by_site_admin: '该活动已被好想玩管理员取消'
+        to_be_reviewed_short: '待审核'
+        denied_short: '不合格'
+        passed_short: '合格'
+
   items:
       items_list: "所有项目"
       new_item: "添加项目"

@@ -17,7 +17,7 @@
   %body{:class => "#{yield(:body_class)}"}
     .header{:class => ( current_user ? 'landing  ' : '' ) + ((defined?(@registe_wizard) && @registe_wizard || current_user.nil?) ? 'wizard' : '')}
       .container{ :style=>"position: relative" }
-        - if (defined? @registe_wizard) && @registe_wizard || current_user.nil?
+        - if (defined? @registe_wizard) && @registe_wizard || current_user.nil? 
           = render 'layouts/wizard_header' 
         - else
           = render 'layouts/header' 
