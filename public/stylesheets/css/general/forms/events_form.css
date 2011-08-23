@@ -1,6 +1,6 @@
 #event_location_attributes_detail {
   width: 250px;
-  vertical-align: bottom;
+  vertical-align: top;
   padding: 2px 0.3em; }
 
 .left_margin {
@@ -10,6 +10,10 @@
   width: 100px;
   overflow: hidden; }
 
+.event_form a.app_black_link_button {
+  float: left;
+  margin: 15px 0;
+  font-size: 13px; }
 .event_form .form_area {
   padding: 30px 10px 20px 30px;
   background-color: white;
@@ -52,8 +56,6 @@
     margin-top: 20px; }
   .event_form .form_area .field {
     margin-bottom: 5px; }
-    .event_form .form_area .field .address {
-      display: inline-block; }
     .event_form .form_area .field label.info {
       display: inline-block;
       width: 70px;
@@ -61,7 +63,7 @@
       font-size: 13px; }
     .event_form .form_area .field label.error {
       display: block;
-      color: #ff6600;
+      color: #f74367;
       margin-left: 72px; }
   .event_form .form_area input[type='checkbox'] {
     vertical-align: text-bottom;
@@ -111,3 +113,23 @@
     .actions input:hover {
       background: url("/images/ui/person_edit.png") no-repeat scroll 100% -46px transparent;
       margin: 15px 4px 0 0; }
+
+#colorbox .box_content {
+  padding: 20px 20px 0 20px;
+  margin-top: 10px; }
+  #colorbox .box_content h3 {
+    color: #e76b75; }
+  #colorbox .box_content h4 {
+    margin: 15px 0 3px 0; }
+  #colorbox .box_content form textarea {
+    width: 450px;
+    height: 150px; }
+  #colorbox .box_content form label.error {
+    display: block;
+    color: #f74367; }
+  #colorbox .box_content form .submit {
+    margin-top: 10px;
+    height: 30px; }
+    #colorbox .box_content form .submit input {
+      width: 60px;
+      height: 30px; }

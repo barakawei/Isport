@@ -101,6 +101,41 @@
   margin-right: 0; }
 .right_column .app_big_title_bar {
   margin-right: 20px; }
+.right_column .status_info {
+  padding: 20px;
+  background-color: white;
+  margin-top: 5px;
+  border: 2px solid #eaeaea;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  behavior: url(/javascripts/PIE.htc); }
+  .right_column .status_info h3 {
+    color: #fc4469; }
+  .right_column .status_info p.audit_info {
+    font-size: 14px;
+    color: #444444; }
+  .right_column .status_info .avatar span.info {
+    display: block;
+    float: right;
+    font-size: 14px; }
+  .right_column .status_info .avatar img {
+    width: 30px;
+    height: 30px;
+    float: right;
+    margin-left: 10px; }
+  .right_column .status_info .reason_area {
+    padding: 10px 0;
+    border-top: 1px dashed #d5ddde;
+    border-bottom: 1px dashed #d5ddde;
+    margin: 10px 0; }
+  .right_column .status_info .re_audit {
+    font-size: 12px;
+    color: #999999;
+    height: 30px; }
+    .right_column .status_info .re_audit span {
+      float: left;
+      display: block; }
 .right_column .share_operations {
   float: left;
   padding: 5px;

@@ -14,4 +14,8 @@ class ApplicationController < ActionController::Base
       @unread_notify_count = Notification.sum(:unread, :conditions => "recipient_id = #{current_user.person.id}")
     end
   end
+
+  def is_admin
+    redirect_to events_path unless current_user.try(:admin?)
+  end
 end

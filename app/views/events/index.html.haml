@@ -74,7 +74,7 @@
                 %h4= link_to trim_info(e.title, 15), event_path(e)
                 %p= l(e.start_at, :format => :long)
                 .at_bottom
-                  %p= t('events.short_involvement', :count => e.participants.size)
+                  %p= t('events.short_involvement', :count => e.participants_count)
 
 
 :javascript
