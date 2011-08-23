@@ -88,19 +88,6 @@ class Event < ActiveRecord::Base
     events
   end
 
-  def self.hot_event_by_item(city, item)
-    events = Event.week.not_started.at_city(city).of_item(item.id).not_full.order('start_at')
-    events = Event.month.not_started.at_city(city).of_item(item.id).not_full.order('start_at') unless events.size > 0
-    events = Event.week.at_city(city).of_item(item.id).not_full.order('start_at') unless events.size > 0
-    events = Event.month.at_city(city).of_item(item.id).not_full.order('start_at') unless events.size > 0
-
-    if events.size > 6 
-      events = events[0..5] 
-    end
-    events
-  end
-
-
   def image_url(size = :thumb_large)
     result = if size == :thumb_medium && self[:image_url_medium]
                self[:image_url_medium]
