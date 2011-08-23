@@ -73,18 +73,23 @@
                      :align=>"absmiddle", :border=>"0"}  
     .span-13.event_status_info{:class => ("hide" unless @event.need_notice?)}
       .span-8
-        %h3=long_review_status(@event.status)
+        %h3=long_review_status(@event.status, '活动')
       .span-4.avatar
-        - audit_person = @event.audit_person
-        - owner = @event.person
         - if @event.status == Event::CANCELED_BY_EVENT_ADMIN
-          %a{:href => person_path(owner)}= person_image_tag(owner)
+          %a{:href => person_path(@event_owner)}= person_image_tag(@event_owner)
           %span.info='发起人:'
-        - else
-          %a{:href => person_path(audit_person)}= person_image_tag(audit_person)
+        - elsif @event.status != Event::BEING_REVIEWED && @audit_person
+          %a{:href => person_path(@audit_person)}= person_image_tag(@audit_person)
           %span.info='审核人:'
-      .span-12
-        =simple_format @event.status_msg, :class => 'audit_info'
+      - unless @event.status == Event::BEING_REVIEWED
+        .span-12.reason_area
+          =simple_format @event.status_msg, :class => 'audit_info'
+      - if @event.status == Event::DENIED && @is_owner
+        .span-12.re_audit
+          %span='请修改对应活动信息后，重新提交审核'
+          =link_to(event_reaudit_path(@event), :class => 'right') do
+            .glass_button
+              ='申请重新审核'
     .span-13
       = render 'common/header_box', :title => '活动内容'
     .event_title_bar

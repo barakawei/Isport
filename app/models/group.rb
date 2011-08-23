@@ -12,6 +12,7 @@ class Group < ActiveRecord::Base
   belongs_to :city
   belongs_to :district
   belongs_to :person
+  belongs_to :audit_person, :foreign_key => "audit_person_id", :class_name => 'Person'
   attr_accessor :invited_people
 
   validates_presence_of :name, :description, :item_id, :city_id, :district_id,
@@ -172,6 +173,24 @@ class Group < ActiveRecord::Base
   def location  
     city.name + district.name    
   end
+
+  def need_notice?
+    status == Group::BEING_REVIEWED || status == Group::DENIED
+  end
+  
+  def in_audit_process?
+    status == Group::BEING_REVIEWED || status == Group::DENIED
+  end
+
+  def is_owner(user)
+    if user
+      return user.person.id == person_id
+    else
+      false
+    end
+  end
+
+
 
   private
   def default_url(size)

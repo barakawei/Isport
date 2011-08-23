@@ -40,7 +40,10 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
-    if @event.in_audit_process? && !@event.is_owner(current_user) && !current_user.try(:admin?)
+    @event_owner = @event.person
+    @audit_person = @event.audit_person
+    @is_owner = @event.is_owner(current_user) 
+    if @event.in_audit_process? && !@is_owner && !current_user.try(:admin?)
       render 'common/in_audit', :locals => {:type => I18n.t('events_link'), 
               :link_content => I18n.t('events.other_events'), :path => events_path}
     end
@@ -88,6 +91,14 @@ class EventsController < ApplicationController
     @other_participants = @participants - @friend_participants  
     @invitees = (@event.invitees.order("created_at ASC") || [ ])
     render :action => :edit
+  end
+
+  def apply_reaudit
+    @event= Event.find(params[:id])
+    if @event.status == Event::DENIED && @event.is_owner(current_user)
+      @event.update_attributes(:status => Group::BEING_REVIEWED, :status_msg => "");
+    end
+    redirect_to :back
   end
 
   def create

@@ -122,6 +122,8 @@ Isport::Application.routes.draw do
           :constraints => { :id => /[1-9]\d*/, :new => /new/}
     match '/events/:id/cancel' => :cancel, :as => 'cancel_event',
           :constraints => { :id => /[1-9]\d*/, :new => /new/}, :via => :post
+    match '/events/:id/reaudit' => :apply_reaudit, :as => 'event_reaudit',
+          :constraints => { :id => /[1-9]\d*/ } 
   end
 
   controller :involvements do
@@ -162,6 +164,8 @@ Isport::Application.routes.draw do
           :constraints => { :id => /[1-9]\d*/}
     match '/groups/:id/edit(/:new)' => :edit, :as => 'edit_group',
           :constraints => { :id => /[1-9]\d*/, :new => /new/}
+    match '/groups/:id/reaudit' => :apply_reaudit, :as => 'group_audit',
+          :constraints => { :id => /[1-9]\d*/ } 
   end 
 
   resources :groups do
