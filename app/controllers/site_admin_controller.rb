@@ -46,13 +46,9 @@ class SiteAdminController < ApplicationController
   def deny_group
     msg = params[:reason]
     group = Group.find(params[:group_id])
-<<<<<<< HEAD
-    group.update_attributes(:status => Group::DENIED, :status_msg => msg, :audit_person_id => current_user.person.id)
-=======
     unless group.status == Group::DENIED
       group.update_attributes(:status => Group::DENIED, :status_msg => msg, :audit_person_id => current_user.person.id)
     end
->>>>>>> e1827f753ba50701de6ffaec23bf6f826b81eb6a
     render :partial => 'group_audit_block', :locals => {:g => group}
   end
 
@@ -67,13 +63,10 @@ class SiteAdminController < ApplicationController
     group.destroy
     render :nothing => true
   end
-<<<<<<< HEAD
-=======
 
   private 
 
   def is_admin
     raise ActionController::RoutingError.new("not such route") unless current_user.try(:admin?)
   end
->>>>>>> e1827f753ba50701de6ffaec23bf6f826b81eb6a
 end
