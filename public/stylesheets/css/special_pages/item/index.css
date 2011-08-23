@@ -15,9 +15,9 @@
     width: 142px;
     overflow: hidden; }
     .myitemlist .itemlistcontent img {
-      -moz-border-radius: 5px;
-      -webkit-border-radius: 5px;
-      border-radius: 5px;
+      -moz-border-radius: 4px;
+      -webkit-border-radius: 4px;
+      border-radius: 4px;
       behavior: url(/javascripts/PIE.htc); }
     .myitemlist .itemlistcontent .itemlistrow {
       width: 142px;
@@ -28,14 +28,15 @@
         height: 50px;
         float: left; }
       .myitemlist .itemlistcontent .itemlistrow .itemmsg {
-        margin-left: 6px;
-        width: 85px;
+        margin-left: 4px;
+        padding-right: 3px;
+        width: 83px;
         height: 50px;
         background: none repeat scroll 0 0 #a8aaad;
         overflow: hidden;
-        -moz-border-radius: 5px;
-        -webkit-border-radius: 5px;
-        border-radius: 5px;
+        -moz-border-radius: 4px;
+        -webkit-border-radius: 4px;
+        border-radius: 4px;
         behavior: url(/javascripts/PIE.htc);
         float: left;
         font-size: 12px;
@@ -68,11 +69,6 @@
       float: left;
       width: 200px;
       position: relative; }
-      .imageboard .imagearea .image img {
-        -moz-border-radius: 14px;
-        -webkit-border-radius: 14px;
-        border-radius: 14px;
-        behavior: url(/javascripts/PIE.htc); }
       .imageboard .imagearea .image .itemname {
         position: absolute;
         left: 6px;
