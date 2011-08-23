@@ -44,18 +44,7 @@ class ItemsController < ApplicationController
       @city = City.first
     end
 
-    @events = @item.events.week.not_started.joins(:location).where(:locations => {:city_id => @city.id})
-        .limit(EVELIMIT)
-  
-    if @events.length < EVELIMIT
-      pevents = @item.events.next_week.not_started.joins(:location).where(:locations => {:city_id => @city.id})
-        .limit(EVELIMIT-@events.length)
-
-      if pevents
-        @events += pevents
-      end
-    end
-
+    @events = @item.hot_events(EVELIMIT, @city)  
     @actors = @item.hot_stars(ACTLIMIT)
     @groups = @item.hot_groups(EVELIMIT, @city)  
 
