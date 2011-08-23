@@ -12,12 +12,17 @@
   :overflow hidden
 
 .event_form
+  a.app_black_link_button
+    :float left
+    :margin 15px 0
+    :font-size 13px
   
   .form_area
     :padding 30px 10px 20px 30px
     :background-color #ffffff
     @include border-radius(8px)
     border: 1px solid #d5ddde
+
       
     .top
       :display inline
@@ -74,7 +79,7 @@
 
       label.error
         :display block
-        :color #ff6600
+        :color #F74367
         :margin-left 72px
 
     input[type='checkbox']
@@ -135,6 +140,30 @@
       background: url("/images/ui/person_edit.png") no-repeat scroll 100% -46px transparent
       margin: 15px 4px 0 0
       
-      
-    
+#colorbox
+  .box_content
+    :padding 20px 20px 0 20px 
+    :margin-top 10px
+
+    h3
+      :color #e76b75
+
+    h4
+      :margin 15px 0 3px 0
+
+    form
+      textarea
+        :width 450px
+        :height 150px
+
+      label.error
+        :display block
+        :color #F74367
+
+      .submit
+        :margin-top 10px
+        :height 30px
+        input
+          :width 60px
+          :height 30px
     

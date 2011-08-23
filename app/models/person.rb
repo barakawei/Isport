@@ -13,6 +13,7 @@ class Person < ActiveRecord::Base
   has_many :involvements, :dependent => :destroy
   has_many :involved_events, :through => :involvements, :source => :event
 
+  has_many :audit_events, :foreign_key => "audit_person_id", :class_name => 'Event' 
   has_many :memberships, :dependent => :destroy
   has_many :joined_groups, :through => :memberships, :source => :group
 

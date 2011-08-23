@@ -9,7 +9,7 @@
       %span.info_block
         %span.des.info
           ='活动信息:'
-          - if @event.is_owner(current_user)
+          - if @event.is_owner(current_user) && @event.status != Event::CANCELED_BY_EVENT_ADMIN 
             =link_to(edit_event_path(@event), :class => 'right') do
               .edit_button.glass_button
                 ='编辑'
@@ -51,6 +51,7 @@
       =render 'common/big_header_box', :number => @participants.size, :text => '参加', :background_color => '#ff8a3c'
       =render 'common/big_header_box', :number => @references.size, :text => '喜欢', :background_color => '#aad450'
       =render 'common/big_header_box', :number => @comments_size, :background_color => '#4ebaff', :text => '评论'
+<<<<<<< HEAD
       .operations.right
         - if current_user
           - if !is_reference_of(@event)
@@ -77,6 +78,42 @@
                    :align=>"absmiddle", :border=>"0"}  
     .span-13.event_status_info
       %h3='活动正在审核中...' 
+=======
+      - if @event.status == Event::PASSED 
+        .operations.right
+          - if current_user
+            - if !is_reference_of(@event)
+              =link_to(url_for(:controller => "event_recommendations",:action => "add_reference",:id => @event.id)) do
+                .join_button.glass_button.like
+                  ='喜欢'
+            - if is_reference_of(@event)
+              =link_to(url_for(:controller => "event_recommendations",:action => "remove_reference",:id => @event.id)) do
+                .join_button.glass_button.quit.like
+                  ='取消喜欢'
+
+          .share_operations
+            %span='分享此活动'
+            #share_to_sina
+              %br
+            #share_to_qq
+              %a{:class=> 'share', :href => 'javascript:void(0)',:alt=>"转播到腾讯微博"}
+                %img{:src=>"http://v.t.qq.com/share/images/s/weiboicon32.png", 
+                     :align=>"absmiddle", :border=>"0"}  
+    .span-13.event_status_info{:class => ("hide" unless @event.need_notice?)}
+      .span-8
+        %h3=long_review_status(@event.status)
+      .span-4.avatar
+        - audit_person = @event.audit_person
+        - owner = @event.person
+        - if @event.status == Event::CANCELED_BY_EVENT_ADMIN
+          %a{:href => person_path(owner)}= person_image_tag(owner)
+          %span.info='发起人:'
+        - else
+          %a{:href => person_path(audit_person)}= person_image_tag(audit_person)
+          %span.info='审核人:'
+      .span-12
+        =simple_format @event.status_msg, :class => 'audit_info'
+>>>>>>> e1827f753ba50701de6ffaec23bf6f826b81eb6a
     .span-13
       = render 'common/header_box', :title => '活动内容'
     .event_title_bar
@@ -84,17 +121,18 @@
         .span-13.event_title
           %h2=@event.title
           %h4.status=event_status_info(@event)
-        .span-3.operations.last.right
-          - if current_user
-            - unless @event.is_owner(current_user)
-              - if @event.joinable? && !is_participant_of(@event)
-                =link_to(involvements_path(:id => @event.id), :method => 'post', :class => 'right') do
-                  .join_button.glass_button
-                    ='参加'
-              - if @event.quitable? && is_participant_of(@event)
-                =link_to(involvement_path(:id => @event.id), :method => 'delete', :class => 'right') do
-                  .join_button.glass_button.quit
-                    ='取消参加'
+        - if @event.status == Event::PASSED 
+          .span-3.operations.last.right
+            - if current_user
+              - unless @event.is_owner(current_user)
+                - if @event.joinable? && !is_participant_of(@event)
+                  =link_to(involvements_path(:id => @event.id), :method => 'post', :class => 'right') do
+                    .join_button.glass_button
+                      ='参加'
+                - if @event.quitable? && is_participant_of(@event)
+                  =link_to(involvement_path(:id => @event.id), :method => 'delete', :class => 'right') do
+                    .join_button.glass_button.quit
+                      ='取消参加'
       .span-16.event_desc
         =simple_format(@event.description)
 

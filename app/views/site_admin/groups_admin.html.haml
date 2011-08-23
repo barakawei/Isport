@@ -80,6 +80,10 @@
     var d_options = {success: removeData, resetForm:true,beforeSubmit: colorbox_close};
     $('#denied_form form').ajaxForm(options); 
     $('#delete_form form').ajaxForm(d_options); 
+<<<<<<< HEAD
+=======
+    refresh_count();
+>>>>>>> e1827f753ba50701de6ffaec23bf6f826b81eb6a
   });
 
   $('a.pass').click(function(){
@@ -157,5 +161,20 @@
     return false;
   }
 
+<<<<<<< HEAD
 
+=======
+  function refresh_count() {
+    var sound = document.getElementById('sound1');
+    setTimeout(refresh_count, 120000); 
+    $.get("#{groups_count_path}", function(data){
+      $('ul li span.count').hide();
+      $('ul li span.count').html(data);
+      $('ul li span.count').fadeIn(3000);
+      if (parseInt(data) > 0) {
+        sound.Play();
+      }
+    });
+  }
+>>>>>>> e1827f753ba50701de6ffaec23bf6f826b81eb6a
 

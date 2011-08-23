@@ -6,7 +6,8 @@ class EventsController < ApplicationController
                 :except => [:index, :show, :participants, 
                             :references, :paginate_participants,
                             :paginate_references, :filtered, :map]
-                  
+  before_filter :check_canceled,
+                :only => [:edit, :edit_members, :update]                 
 
   LIMIT = 9 
 
@@ -39,6 +40,10 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
+    if @event.in_audit_process? && !@event.is_owner(current_user) && !current_user.try(:admin?)
+      render 'common/in_audit', :locals => {:type => I18n.t('events_link'), 
+              :link_content => I18n.t('events.other_events'), :path => events_path}
+    end
     @participants = @event.participants_top(LIMIT)
     @par_ids = @event.participants.map{ |p|p.id }
     @references = @event.references_top(LIMIT)
@@ -72,14 +77,11 @@ class EventsController < ApplicationController
   end
 
   def edit
-    @event = Event.find(params[:id])
     @items = Item.find(:all, :select => 'id, name')
     @new = true if params[:new] == 'new'
-    puts GoogleGeoCoder.getLocation("南京")
   end
 
   def edit_members
-    @event = Event.find(params[:id])
     @participants = (@event.participants.order("created_at ASC") || [ ]) 
     @participants -= [current_user.person] 
     @friends = (current_user.friends || [ ])
@@ -109,7 +111,6 @@ class EventsController < ApplicationController
   end
 
   def update
-    @event = Event.find(params[:id])
     event_attrs = params[:event]
     location = Location.new(event_attrs[:location_attributes])
     l_info = GoogleGeoCoder.getLocation(location.to_s)
@@ -120,11 +121,13 @@ class EventsController < ApplicationController
       render :action => "edit" 
     end
   end
-
-  def destroy
+  
+  def cancel
     @event = Event.find(params[:id])
-    @event.destroy
-    redirect_to(events_url)
+    unless @event.status == Event::CANCELED_BY_EVENT_ADMIN && @event.is_owner(current_user) 
+      @event.update_attributes(:status => Event::CANCELED_BY_EVENT_ADMIN, :status_msg => params[:reason])
+    end
+    redirect_to event_path(@event)
   end
 
   def participants
@@ -151,6 +154,13 @@ class EventsController < ApplicationController
   end
   
   private
+
+  def check_canceled 
+    @event = Event.find(params[:id])
+    if @event.status == Event::CANCELED_BY_EVENT_ADMIN 
+      redirect_to event_path(@event) 
+    end
+  end
 
   def get_participants
     @event = Event.find(params[:id])

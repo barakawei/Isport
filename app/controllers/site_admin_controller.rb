@@ -1,4 +1,8 @@
 class SiteAdminController < ApplicationController
+<<<<<<< HEAD
+=======
+  before_filter :is_admin
+>>>>>>> e1827f753ba50701de6ffaec23bf6f826b81eb6a
   def feedbacks_admin
     @feedbacks = Feedback.paginate :page => params[:page], :per_page => 15, :order => 'created_at desc' 
   end
@@ -18,11 +22,23 @@ class SiteAdminController < ApplicationController
 
   def get_groups_count_ajax
     @count = Group.where(:status => Group::BEING_REVIEWED).count
+<<<<<<< HEAD
   end
 
   def deny_event
     event = Event.find(params[:event_id])
     event.update_attributes(:status => Event::DENIED)
+=======
+    render :text => @count
+  end
+
+  def deny_event
+    msg = params[:reason]
+    event = Event.find(params[:event_id])
+    unless event.status == Event::DENIED
+      event.update_attributes(:status => Event::DENIED,:status_msg => msg, :audit_person_id => current_user.person.id)
+    end
+>>>>>>> e1827f753ba50701de6ffaec23bf6f826b81eb6a
     render :partial => 'event_audit_block', :locals => {:e => event}
   end
 
@@ -41,7 +57,13 @@ class SiteAdminController < ApplicationController
   def deny_group
     msg = params[:reason]
     group = Group.find(params[:group_id])
+<<<<<<< HEAD
     group.update_attributes(:status => Group::DENIED, :status_msg => msg, :audit_person_id => current_user.person.id)
+=======
+    unless group.status == Group::DENIED
+      group.update_attributes(:status => Group::DENIED, :status_msg => msg, :audit_person_id => current_user.person.id)
+    end
+>>>>>>> e1827f753ba50701de6ffaec23bf6f826b81eb6a
     render :partial => 'group_audit_block', :locals => {:g => group}
   end
 
@@ -56,4 +78,13 @@ class SiteAdminController < ApplicationController
     group.destroy
     render :nothing => true
   end
+<<<<<<< HEAD
+=======
+
+  private 
+
+  def is_admin
+    raise ActionController::RoutingError.new("not such route") unless current_user.try(:admin?)
+  end
+>>>>>>> e1827f753ba50701de6ffaec23bf6f826b81eb6a
 end

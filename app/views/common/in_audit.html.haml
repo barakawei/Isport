@@ -1,0 +1,5 @@
+-content_for :head do
+  = include_stylesheets :sepcial_pages_events_in_audit, :media => 'all'
+.in_audit
+  %h2="对不起，您查看的#{type}还在审核中, 请稍后再次访问"
+  = render 'common/big_link_button', :content => link_content, :path => path 

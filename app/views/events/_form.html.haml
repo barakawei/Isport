@@ -15,6 +15,7 @@
         - else
           %li=link_to '1.填写活动信息', new_event_path, :class => ("current" if params[:action] == 'new') 
           %li=link_to '2.邀请好友', 'javascript:void(0)',:class => 'inactive' 
+      = render 'common/small_link_button', :content => '取消活动', :path => '#' 
 
     .span-14
       -if is_edit
@@ -79,9 +80,32 @@
           = f.text_field :image_url_small
       .span-14.actions
         = f.submit '保存活动信息', :class => "button"
+
+.colorbox_content
+  #cancel_event
+    .span-12.box_content
+      %h3='活动取消后将无法恢复， 确认要取消此活动吗？'
+      %h4='请输入取消理由，理由将发送给所有活动的参加者。'
+      = form_tag cancel_event_path, :id => 'cancel_event_form', do
+        = hidden_field_tag :id, @event.id
+        = text_area_tag :reason
+        .submit
+          = submit_tag '确定', :class => 'glass_button'
       
 :javascript
   $(function() {
+    $('#cancel_event_form').validate({
+      rules: {
+        "reason": {
+          required: true
+        } 
+      },
+      messages: {
+        "reason": {
+          required: "请输入取消活动的理由",
+        } 
+      }
+    });
     var validator = $('#new_event').add('form.edit_event').validate({
       rules: {
         "event[title]": {
@@ -125,4 +149,8 @@
   });
 
 
-  
+  $('a.app_black_link_button').click(function(){
+    $.colorbox({ inline:true, href:"#cancel_event",
+                                     opacity:0.2, width:"600", height:"370" });
+    return false;
+  }); 
