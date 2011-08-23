@@ -1,0 +1,34 @@
+.home_event_box_panel{ :class => 'event_status_open' }
+  %div
+    .person_event_box
+      .event_avatar
+        = event_image_link( event,:thumb_small )
+      .content
+        .title
+          = link_to truncate(event.title,:length => 40),event_path( event )
+        .time
+          = I18n.l(event.start_at,:format => :normal)
+          = "-"
+          = I18n.l(event.end_at,:format => :shortest)
+          = link_to truncate("@"+event.location.to_s,:length => 20),event_home_map_path(event),:class =>'map_link'
+      .action
+        .event_edit
+          - if event.is_owner(current_user) && event.status != Event::CANCELED_BY_EVENT_ADMIN 
+            =link_to(edit_event_path(event)) do
+              .edit_button.glass_button
+                ='编辑'
+      .calendar_panel
+        .calendar
+          .month
+            =I18n.l(event.start_at,:format => :month)
+          .day
+            =event.start_at.strftime('%d').to_s
+      .clear
+  .member
+    .count
+      =image_tag( '/images/ui/people.png' )
+      = event.participants.size
+    -for member in event.participants[ 0...10 ]
+      .person_avatar
+        =person_image_link( member,:thumb_small )
+

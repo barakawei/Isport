@@ -1,7 +1,6 @@
 .home_container {
   width: 680px;
   margin-top: 22px;
-  background: #f5f9fa;
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
   border-radius: 10px;
@@ -39,10 +38,12 @@
           background-color: #e1e1e1;
           color: #697d84; }
 
-.events_panel .pagination {
-  position: absolute;
-  bottom: -40px;
-  left: 315px; }
+.events_panel {
+  margin-top: 0 !important; }
+  .events_panel .pagination {
+    position: absolute;
+    bottom: -40px;
+    left: 315px; }
 
 .link_tab {
   margin: 0 0 5px 0;
@@ -285,3 +286,59 @@
   background-color: white;
   margin-top: 10px;
   font-size: 18px; }
+
+.home_event_box_panel {
+  margin: 0 0px 2px 0px; }
+  .home_event_box_panel .person_event_box .action {
+    margin-top: 14px;
+    margin-right: 10px;
+    margin-left: 10px;
+    width: 70px;
+    height: 74px;
+    float: right;
+    position: relative; }
+    .home_event_box_panel .person_event_box .action .glass_button {
+      width: 60px;
+      height: 20px;
+      line-height: 20px; }
+    .home_event_box_panel .person_event_box .action .event_edit, .home_event_box_panel .person_event_box .action .event_like {
+      display: inline-block; }
+  .home_event_box_panel .person_event_box .event_avatar {
+    float: left;
+    padding: 10px; }
+  .home_event_box_panel .person_event_box .content {
+    float: left;
+    width: 350px;
+    line-height: 16px;
+    color: #22aec1;
+    padding: 10px; }
+    .home_event_box_panel .person_event_box .content .title {
+      color: #e9727e;
+      font-size: 18px; }
+    .home_event_box_panel .person_event_box .content .time {
+      margin-top: 5px;
+      color: #546266; }
+  .home_event_box_panel .person_event_box .calendar_panel {
+    border-right: 1px solid #e9eff0;
+    width: 68px;
+    height: 88px;
+    float: right; }
+    .home_event_box_panel .person_event_box .calendar_panel .calendar {
+      margin-top: 15px;
+      margin-left: 10px; }
+  .home_event_box_panel .member {
+    margin-left: 10px;
+    display: block;
+    height: 40px;
+    width: 579px;
+    color: #88b66a;
+    font-size: 18px;
+    font-weight: bold;
+    border-right: 1px solid #e9eff0; }
+    .home_event_box_panel .member .count {
+      margin-right: 10px;
+      display: inline-block;
+      float: left; }
+    .home_event_box_panel .member .person_avatar .person_avatar_detail {
+      height: 30px;
+      width: 30px; }

@@ -62,6 +62,10 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
   end
 
+  def home_map
+    @event = Event.find(params[:id])
+  end
+
   def new
     @steps = [I18n.t('events.new_event_wizards.step_1'), I18n.t('events.new_event_wizards.step_2')]
     @step = 1 

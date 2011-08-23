@@ -2,7 +2,6 @@
 .home_container
   :width 680px
   margin-top: 22px
-  background: #f5f9fa
   @include border-radius( 10px )
   .new_event
     :padding-right 10px
@@ -36,10 +35,9 @@
           :background-color #e1e1e1 
           :color #697d84
     
-
-    
   
 .events_panel
+  :margin-top 0 !important
   .pagination
     :position absolute
     :bottom -40px
@@ -298,3 +296,64 @@
     :background-color white
     :margin-top 10px
     :font-size 18px
+
+
+.home_event_box_panel
+  margin: 0 0px 2px 0px
+  .person_event_box
+    .action
+      :margin-top 14px
+      :margin-right 10px
+      :margin-left 10px
+      width: 70px
+      height: 74px
+      :float right
+      :position relative
+      .glass_button
+        :width 60px
+        :height 20px
+        :line-height 20px
+      .event_edit,.event_like
+        :display inline-block
+      
+    .event_avatar
+      :float left
+      :padding 10px
+    .content
+      :float left
+      width: 350px
+      line-height: 16px
+      color: #22AEC1
+      padding: 10px
+      .title
+        :color #E9727E
+        :font-size 18px
+      .time
+        :margin-top 5px
+        :color #546266
+    .calendar_panel
+      :border-right 1px solid #E9EFF0
+      width: 68px
+      height: 88px
+      float: right
+      .calendar
+        :margin-top 15px
+        :margin-left 10px
+
+  .member
+    :margin-left 10px
+    :display block
+    height: 40px
+    :width 579px
+    :color #88b66a
+    :font-size 18px
+    :font-weight bold
+    :border-right 1px solid #E9EFF0
+    .count
+      :margin-right 10px
+      :display inline-block
+      :float left
+    .person_avatar
+      .person_avatar_detail
+        :height 30px
+        :width 30px
