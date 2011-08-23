@@ -9,7 +9,7 @@
       %span.info_block
         %span.des.info
           ='活动信息:'
-          - if @event.is_owner(current_user)
+          - if @event.is_owner(current_user) && @event.status != Event::CANCELED_BY_EVENT_ADMIN 
             =link_to(edit_event_path(@event), :class => 'right') do
               .edit_button.glass_button
                 ='编辑'
@@ -48,30 +48,48 @@
 
   .span-17.last.right_column
     .span-17
-      =render 'common/big_header_box', :number => @participants.size, :text => '参加', :background_color => '#ff8a3c'
-      =render 'common/big_header_box', :number => @references.size, :text => '喜欢', :background_color => '#aad450'
-      =render 'common/big_header_box', :number => @comments_size, :background_color => '#4ebaff', :text => '评论'
-      .operations.right
-        - if current_user
-          - if !is_reference_of(@event)
-            =link_to(url_for(:controller => "event_recommendations",:action => "add_reference",:id => @event.id)) do
-              .join_button.glass_button.like
-                ='喜欢'
-          - if is_reference_of(@event)
-            =link_to(url_for(:controller => "event_recommendations",:action => "remove_reference",:id => @event.id)) do
-              .join_button.glass_button.quit.like
-                ='取消喜欢'
+      =render 'common/big_header_box', :number => @event.participants_count, :text => '参加', :background_color => '#ff8a3c'
+      =render 'common/big_header_box', :number => @event.fans_count, :text => '喜欢', :background_color => '#aad450'
+      =render 'common/big_header_box', :number => @event.comments_count, :background_color => '#4ebaff', :text => '评论'
+      - if @event.status == Event::PASSED 
+        .operations.right
+          - if current_user
+            - if !is_reference_of(@event)
+              =link_to(url_for(:controller => "event_recommendations",:action => "add_reference",:id => @event.id)) do
+                .join_button.glass_button.like
+                  ='喜欢'
+            - if is_reference_of(@event)
+              =link_to(url_for(:controller => "event_recommendations",:action => "remove_reference",:id => @event.id)) do
+                .join_button.glass_button.quit.like
+                  ='取消喜欢'
 
-        .share_operations
-          %span='分享此活动'
-          #share_to_sina
-            %br
-          #share_to_qq
-            %a{:class=> 'share', :href => 'javascript:void(0)',:alt=>"转播到腾讯微博"}
-              %img{:src=>"http://v.t.qq.com/share/images/s/weiboicon32.png", 
-                   :align=>"absmiddle", :border=>"0"}  
-    .span-13.event_status_info
-      %h3='活动正在审核中...' 
+          .share_operations
+            %span='分享此活动'
+            #share_to_sina
+              %br
+            #share_to_qq
+              %a{:class=> 'share', :href => 'javascript:void(0)',:alt=>"转播到腾讯微博"}
+                %img{:src=>"http://v.t.qq.com/share/images/s/weiboicon32.png", 
+                     :align=>"absmiddle", :border=>"0"}  
+    .span-13.event_status_info{:class => ("hide" unless @event.need_notice?)}
+      .span-8
+        %h3=long_review_status(@event.status, '活动')
+      .span-4.avatar
+        - if @event.status == Event::CANCELED_BY_EVENT_ADMIN
+          %a{:href => person_path(@event_owner)}= person_image_tag(@event_owner)
+          %span.info='发起人:'
+        - elsif @event.status != Event::BEING_REVIEWED && @audit_person
+          %a{:href => person_path(@audit_person)}= person_image_tag(@audit_person)
+          %span.info='审核人:'
+      - unless @event.status == Event::BEING_REVIEWED
+        .span-12.reason_area
+          =simple_format @event.status_msg, :class => 'audit_info'
+      - if @event.status == Event::DENIED && @is_owner
+        .span-12.re_audit
+          %span='请修改对应活动信息后，重新提交审核'
+          =link_to(event_reaudit_path(@event), :class => 'right') do
+            .glass_button
+              ='申请重新审核'
     .span-13
       = render 'common/header_box', :title => '活动内容'
     .event_title_bar
@@ -79,17 +97,18 @@
         .span-13.event_title
           %h2=@event.title
           %h4.status=event_status_info(@event)
-        .span-3.operations.last.right
-          - if current_user
-            - unless @event.is_owner(current_user)
-              - if @event.joinable? && !is_participant_of(@event)
-                =link_to(involvements_path(:id => @event.id), :method => 'post', :class => 'right') do
-                  .join_button.glass_button
-                    ='参加'
-              - if @event.quitable? && is_participant_of(@event)
-                =link_to(involvement_path(:id => @event.id), :method => 'delete', :class => 'right') do
-                  .join_button.glass_button.quit
-                    ='取消参加'
+        - if @event.status == Event::PASSED 
+          .span-3.operations.last.right
+            - if current_user
+              - unless @event.is_owner(current_user)
+                - if @event.joinable? && !is_participant_of(@event)
+                  =link_to(involvements_path(:id => @event.id), :method => 'post', :class => 'right') do
+                    .join_button.glass_button
+                      ='参加'
+                - if @event.quitable? && is_participant_of(@event)
+                  =link_to(involvement_path(:id => @event.id), :method => 'delete', :class => 'right') do
+                    .join_button.glass_button.quit
+                      ='取消参加'
       .span-16.event_desc
         =simple_format(@event.description)
 
@@ -101,8 +120,10 @@
       
 :javascript
   $(function() {
-    var address = "#{@event.location}";
-    codeAddress("map", address, 'map_div');
+    $.getScript("http://maps.google.com/maps/api/js?sensor=false", function() {
+      var address = "#{@event.location}";
+      codeAddress("map", address, 'map_div');
+    });
 
     var _w = 32 , _h = 32;
     var param = {
@@ -137,4 +158,3 @@
     var _u = 'http://v.t.qq.com/share/share.php?url='+_url+'&site='+_site+'&title='+_t;
     window.open( _u,'', 'width=700, height=680, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, location=yes, resizable=no, status=no' );
   }
-  

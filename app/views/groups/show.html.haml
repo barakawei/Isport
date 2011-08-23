@@ -51,6 +51,22 @@
         %a{:class=> 'share', :href => 'javascript:void(0)',:alt=>"转播到腾讯微博"}
           %img{:src=>"http://v.t.qq.com/share/images/s/weiboicon32.png", 
                :align=>"absmiddle", :border=>"0"}  
+    .span-13.status_info{:class => ("hide" unless @group.need_notice?)}
+      - audit_person = @group.audit_person
+      .span-8
+        %h3=long_review_status(@group.status, '小组')
+      - if audit_person && @group.status == Group::DENIED
+        .span-4.avatar
+          %a{:href => person_path(audit_person)}= person_image_tag(audit_person)
+          %span.info='审核人:'
+        .span-12.reason_area
+          =simple_format @group.status_msg, :class => 'audit_info'
+        .span-12.re_audit
+          %span='请修改对应小组信息后，重新提交审核'
+          =link_to(group_audit_path(@group), :class => 'right') do
+            .glass_button
+              ='申请重新审核'
+
     .span-17
       =render 'common/header_box', :title => '小组描述'
 

@@ -16,12 +16,7 @@ class Topic < ActiveRecord::Base
   end
 
   private
-
   def update_owner_counter
-    if self.forum.discussable_type == "Group"
-      group = Group.find(self.forum.discussable_id)
-      group.topics_count = group.topics.count
-      group.save
-    end
+      self.forum.discussable.update_attributes(:topics_count => self.forum.topics.count)
   end
 end

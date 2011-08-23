@@ -234,8 +234,17 @@ span.medium_avatar {
   margin-bottom: 20px; }
 
 #map-big {
-  width: 950px;
-  height: 500px; }
+  width: 944px;
+  height: 500px;
+  border: 3px solid white;
+  -webkit-box-shadow: 0 1px 5px 0 #333333;
+  -moz-box-shadow: 0 1px 5px 0 #333333;
+  box-shadow: 0 1px 5px 0 #333333;
+  behavior: url(/javascripts/PIE.htc);
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  border-radius: 8px;
+  behavior: url(/javascripts/PIE.htc); }
 
 .pagination_box .pagination {
   margin-top: 20px; }

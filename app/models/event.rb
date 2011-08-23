@@ -10,9 +10,6 @@ class Event < ActiveRecord::Base
   PASSED = 2
   CANCELED_BY_EVENT_ADMIN = 3
 
-  after_create :update_owner_counter
-  after_destroy :update_owner_counter
-  after_update :update_owner_counter
 
   attr_accessor :same_day, :current_year,:invited_people
   validates_presence_of :title, :start_at, :description, :subject_id,
@@ -55,6 +52,7 @@ class Event < ActiveRecord::Base
   has_many :commentors, :through => :comments, :source => :person
 
   belongs_to :item, :foreign_key => "subject_id"
+  belongs_to :audit_person, :foreign_key => "audit_person_id", :class_name => 'Person'
 
 
   scope :not_started, lambda { where("start_at > ?", Time.now) }
@@ -74,9 +72,8 @@ class Event < ActiveRecord::Base
   scope :alltime, lambda { select("*") }
   scope :at_city, lambda {|city| includes("location").where(:locations => {:city_id => city}) }
   scope :filter_by_location_and_item, lambda  {|filter| includes("location").where(filter)}
+  scope :not_full,  lambda { where("participants_count < participants_limit") }
 
-
-  
 
   def self.update_avatar_urls(params,url_params)
       event = find(params[:photo][:model_id])
@@ -85,17 +82,17 @@ class Event < ActiveRecord::Base
 
   def self.interested_event(city, person)
     item_ids = person.interests.collect {|i| i.id}
-    events = Event.in_items(item_ids).week.at_city(city).not_started
-    events = Event.in_items(item_ids).month.at_city(city).not_started unless events.size > 0
-    events = Event.in_items(item_ids).next_month.at_city(city).not_started unless events.size > 0
+    events = Event.in_items(item_ids).week.at_city(city).not_started.not_full.order('start_at')
+    events = Event.in_items(item_ids).month.at_city(city).not_started.not_full.order('start_at') unless events.size > 0
+    events = Event.in_items(item_ids).next_month.at_city(city).not_started.not_full.order('start_at') unless events.size > 0
     events
   end
 
   def self.hot_event_by_item(city, item)
-    events = Event.week.not_started.at_city(city).of_item(item.id)
-    events = Event.month.not_started.at_city(city).of_item(item.id) unless events.size > 0
-    events = Event.week.at_city(city).of_item(item.id) unless events.size > 0
-    events = Event.month.at_city(city).of_item(item.id) unless events.size > 0
+    events = Event.week.not_started.at_city(city).of_item(item.id).not_full.order('start_at')
+    events = Event.month.not_started.at_city(city).of_item(item.id).not_full.order('start_at') unless events.size > 0
+    events = Event.week.at_city(city).of_item(item.id).not_full.order('start_at') unless events.size > 0
+    events = Event.month.at_city(city).of_item(item.id).not_full.order('start_at') unless events.size > 0
 
     if events.size > 6 
       events = events[0..5] 
@@ -231,6 +228,14 @@ class Event < ActiveRecord::Base
     else
       send(time)
     end
+  end
+
+  def need_notice?
+    status == Event::BEING_REVIEWED || status == Event::DENIED || status == Event::CANCELED_BY_EVENT_ADMIN 
+  end
+
+  def in_audit_process?
+    status == Event::BEING_REVIEWED || status == Event::DENIED
   end
 
   private
