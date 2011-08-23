@@ -157,8 +157,6 @@ module ApplicationHelper
       else ''
     end 
   end
-<<<<<<< HEAD
-=======
 
   def long_review_status(status)
     case status
@@ -168,5 +166,4 @@ module ApplicationHelper
       else ''
     end 
   end
->>>>>>> e1827f753ba50701de6ffaec23bf6f826b81eb6a
 end

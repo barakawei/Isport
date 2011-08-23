@@ -1,8 +1,5 @@
 class SiteAdminController < ApplicationController
-<<<<<<< HEAD
-=======
   before_filter :is_admin
->>>>>>> e1827f753ba50701de6ffaec23bf6f826b81eb6a
   def feedbacks_admin
     @feedbacks = Feedback.paginate :page => params[:page], :per_page => 15, :order => 'created_at desc' 
   end
@@ -22,13 +19,6 @@ class SiteAdminController < ApplicationController
 
   def get_groups_count_ajax
     @count = Group.where(:status => Group::BEING_REVIEWED).count
-<<<<<<< HEAD
-  end
-
-  def deny_event
-    event = Event.find(params[:event_id])
-    event.update_attributes(:status => Event::DENIED)
-=======
     render :text => @count
   end
 
@@ -38,7 +28,6 @@ class SiteAdminController < ApplicationController
     unless event.status == Event::DENIED
       event.update_attributes(:status => Event::DENIED,:status_msg => msg, :audit_person_id => current_user.person.id)
     end
->>>>>>> e1827f753ba50701de6ffaec23bf6f826b81eb6a
     render :partial => 'event_audit_block', :locals => {:e => event}
   end
 
