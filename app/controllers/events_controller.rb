@@ -51,8 +51,7 @@ class EventsController < ApplicationController
     @references = @event.references_top(LIMIT)
     @current_person = current_user ? current_user.person : nil
     @comments = []
-    @comments_size = @event.comments.size
-    if @comments_size > 0
+    if @event.comments_count> 0
       @comments = @event.comments.paginate :page => params[:page],
                                            :per_page => 8, :order => 'created_at'
 

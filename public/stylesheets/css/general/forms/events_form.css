@@ -1,6 +1,6 @@
 #event_location_attributes_detail {
   width: 250px;
-  vertical-align: bottom;
+  vertical-align: top;
   padding: 2px 0.3em; }
 
 .left_margin {
@@ -56,8 +56,6 @@
     margin-top: 20px; }
   .event_form .form_area .field {
     margin-bottom: 5px; }
-    .event_form .form_area .field .address {
-      display: inline-block; }
     .event_form .form_area .field label.info {
       display: inline-block;
       width: 70px;

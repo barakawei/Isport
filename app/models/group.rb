@@ -211,6 +211,5 @@ class Group < ActiveRecord::Base
   def update_owner_counter
     self.item.groups_count = self.item.groups.count
     self.item.save
-    
   end
 end
