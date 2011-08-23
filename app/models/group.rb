@@ -3,6 +3,11 @@ class Group < ActiveRecord::Base
   JOIN_AFTER_AUTHENTICATAION = 2 
   JOIN_BY_INVITATION_FROM_ADMIM = 3 
 
+  BEING_REVIEWED = 0
+  DENIED = 1
+  PASSED = 2
+  CANCELED_BY_EVENT_ADMIN = 3
+
   belongs_to :item
   belongs_to :city
   belongs_to :district
@@ -18,7 +23,7 @@ class Group < ActiveRecord::Base
 
 
   has_many :memberships, :dependent => :destroy
-  has_many :events
+  has_many :events, :dependent => :destroy
   has_many :invitees_plus_members, :through => :memberships, :source => :person
 
   has_many :members, :through => :memberships,  :source => :person,
@@ -35,7 +40,7 @@ class Group < ActiveRecord::Base
   has_many :admins, :through => :memberships, :source => :person, 
                         :conditions => ['memberships.is_admin = ?', true]
 
-  has_one :forum,  :as => :discussable
+  has_one :forum,  :as => :discussable, :dependent => :destroy
   has_many :topics, :through => :forum, :source => :topics
 
   scope :at_city, lambda {|city| where(:city_id => city.id) }
@@ -162,6 +167,10 @@ class Group < ActiveRecord::Base
     if action == :invite
       Notifications::InviteGroup
     end
+  end
+
+  def location  
+    city.name + district.name    
   end
 
   private

@@ -593,16 +593,6 @@ a.app_big_link_button {
     color: white;
     padding: 15px 18px 11px 24px; }
 
-.invitation .email input {
-  width: 350px; }
-.invitation .message textarea {
-  width: 350px; }
-.invitation h4 {
-  margin-bottom: 5px;
-  margin-top: 5px; }
-.invitation #email_invitation {
-  height: 180px; }
-
 a.app_black_link_button {
   color: white;
   background: url("/images/ui/bg-sp4_button.gif") no-repeat scroll 0 0 transparent;

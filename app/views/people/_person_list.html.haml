@@ -6,9 +6,11 @@
       -if current_user.person.id == @person.id && ( @requests_count == 0 || !@requests_count)
         = "Welcome back!"
 
-  .invitation_panel
+  .home_invitation_link
     .link
-      = link_to '邀请朋友', new_user_invitation_path,:class => 'invitation_link'
+      = link_to('/friends/invite') do
+        .title
+          ="邀请好友"
 
   .avatar_panel_container
     #followed_people
@@ -60,5 +62,3 @@
                 = item_image_link(item,{ :size =>:thumb_small })
               .name
                 = object_name_link(item)
-:javascript
-  $(".invitation_link").colorbox();   

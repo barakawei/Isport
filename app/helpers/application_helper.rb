@@ -148,4 +148,13 @@ module ApplicationHelper
         *#{I18n.t("activerecord.attributes."+ model.class.to_s.downcase + "."+field.to_s)}#{model.errors[field].flatten[0]}</span>).html_safe
     end
   end
+
+  def review_status(status)
+    case status
+      when Event::BEING_REVIEWED then ('<span class="to_be">'+ I18n.t('events.audit_status.to_be_reviewed_short')+'<span/>').html_safe
+      when Event::DENIED then ('<span class="denied">'+ I18n.t('events.audit_status.denied_short')+'<span/>').html_safe
+      when Event::PASSED then ('<span class="passed">'+ I18n.t('events.audit_status.passed_short')+'<span/>').html_safe
+      else ''
+    end 
+  end
 end

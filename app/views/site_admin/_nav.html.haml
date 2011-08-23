@@ -1,0 +1,19 @@
+.span-24
+  %ul.nav
+    %li
+      = link_to '活动管理', manage_events_path, :class => ('current' if params[:action] == 'events_admin')
+    %li
+      = link_to '小组管理', manage_groups_path, :class => ('current' if params[:action] == 'groups_admin')
+    %li
+      = link_to '用户反馈管理', manage_feedbacks_path, :class => ('current' if params[:action] == 'feedbacks_admin')
+    %li.right
+      -if params[:action] == 'events_admin'
+        %span.count= Event.where(:status => Event::BEING_REVIEWED).count 
+        %span.desc='未审核' 
+      -if params[:action] == 'groups_admin'
+        %span.count= Group.where(:status => Group::BEING_REVIEWED).count
+        %span.desc='未审核' 
+  %embed{:src=>"/sound/beep.wav",:autostart=>"false", :width=>1, :height=>1, :id=>"sound1", :enablejavascript=>"true"}
+  
+
+

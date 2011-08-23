@@ -25,7 +25,6 @@
         %span.info
           .left='发起人:'
           .content=link_to @event.person.name, person_path(@event.person)
-    %hr.space
     .span-6#map_div
       %h4.app_module_title.inline='活动地图'
       %span.right= link_to '详细>>', event_map_path(@event)
@@ -76,7 +75,10 @@
             %a{:class=> 'share', :href => 'javascript:void(0)',:alt=>"转播到腾讯微博"}
               %img{:src=>"http://v.t.qq.com/share/images/s/weiboicon32.png", 
                    :align=>"absmiddle", :border=>"0"}  
-    = render 'common/header_box', :title => '活动内容'
+    .span-13.event_status_info
+      %h3='活动正在审核中...' 
+    .span-13
+      = render 'common/header_box', :title => '活动内容'
     .event_title_bar
       .span-16  
         .span-13.event_title

@@ -1,0 +1,44 @@
+.span-21.content_block{:group_id => g.id}
+  .avatar
+    =group_image_link(g, :thumb_small)
+  .content
+    %h4.title
+      %span.des_label='名称:'
+      =link_to g.name, group_path(g)
+    %p
+      %span.des_label='类型:'
+      =g.item.name
+    %p
+      %span.des_label='活动区域:'
+      =g.location
+    %p
+      %span.des_label='描述:'
+      =g.description
+    %p.status
+      %span.des_label='审核状态:'
+      =review_status(g.status)
+    .created_at 
+      %span.date=l(g.created_at, :format => :long)
+    
+    .operations
+      .buttons
+        - if g.status == Group::BEING_REVIEWED
+          = link_to(pass_group_path(:group_id => g.id), :class => 'pass', :group_id => g.id) do
+            .pass_button.glass_button
+              ='通过'
+          = link_to('#', :class => 'deny', :group_id => g.id) do
+            .deny_button.glass_button
+              ='不通过'
+        - elsif g.status == Group::DENIED
+          = link_to(pass_group_path(:group_id => g.id), :class => 'pass', :group_id => g.id) do
+            .pass_button.glass_button
+              ='通过'
+        - elsif g.status == Group::PASSED
+          = link_to('#', :class => 'deny', :group_id => g.id) do
+            .deny_button.glass_button
+              ='不通过'
+        
+        = link_to() do
+          .delete_button.glass_button
+            ='删除'
+
