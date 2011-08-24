@@ -2,7 +2,7 @@
 defaults: &defaults
 
   # For development and testing, you can leave this as is.
-  host_url: "localhost:3000"
+  host_url: "haoxiangwan.net"
 
   # Set this to true to prevent people from signing up for your pod without an invitation.
   registrations_closed: false
