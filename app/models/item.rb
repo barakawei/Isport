@@ -183,6 +183,15 @@ class Item < ActiveRecord::Base
           .group("involvements.person_id").order("count(event_id) DESC").limit(limited).includes(:profile)
   end
 
+  def hot_events(limited, city) 
+    events = Event.week.not_started.at_city(city).of_item(self.id).not_full.order('start_at').limit(limited)
+    events = Event.month.not_started.at_city(city).of_item(self.id).not_full.order('start_at').limit(limited) unless events.size > limited
+    events = Event.week.at_city(city).of_item(self.id).not_full.order('start_at').limit(limited) unless events.size > limited
+    events = Event.month.at_city(city).of_item(self.id).not_full.order('start_at').limit(limited) unless events.size > limited
+
+    return events
+  end
+
   def hot_groups(limited, city)
     groups = self.groups.where(:city_id => city.id).order("members_count DESC").limit(limited)
 

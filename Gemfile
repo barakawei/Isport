@@ -23,7 +23,7 @@ gem 'date_validator'
 gem 'settingslogic'
 
 group :development, :test do
-  gem 'rspec-rails'
+  gem 'rspec-rails', '~>2.6'
   gem 'haml-rails'
 end
 
