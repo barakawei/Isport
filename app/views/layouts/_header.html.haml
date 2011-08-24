@@ -17,21 +17,19 @@
   %li
     =link_to t('groups_link'), groups_path,:class => 'red_tab',:id => 'group'
 
-  -if current_user
-    %li
-      %a{:href => conversations_path,:class =>'red_tab',:id=>'conversation'}
-        =t( 'inbox' )
-        -if current_user && @unread_message_count != 0
-          %span.message_count
-            %span
-              %span=@unread_message_count
-
   %li#search
     = form_tag(people_path, :method => 'get', :id => "global_search_form") do
       = text_field_tag 'q', nil, :placeholder => t('search'), :type => 'text', :results => 5 
 
 -if current_user
   %ul.setting.long_li
+    %li.inbox
+      %a{:href => conversations_path,:class =>'red_tab long_li',:id=>'conversation'}
+        =t( 'inbox' )
+        -if current_user && @unread_message_count != 0
+          %span.message_count
+            %span
+              %span=@unread_message_count
     %li.notifaction
       #notification_badge
         %a{ :href => "#" ,:class => 'red_tab long_li',:id=> 'notifaction'}

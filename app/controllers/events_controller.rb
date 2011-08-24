@@ -48,6 +48,7 @@ class EventsController < ApplicationController
               :link_content => I18n.t('events.other_events'), :path => events_path}
     end
     @participants = @event.participants_top(LIMIT)
+    @par_ids = @event.participants.map{ |p|p.id }
     @references = @event.references_top(LIMIT)
     @current_person = current_user ? current_user.person : nil
     @comments = []
@@ -60,6 +61,10 @@ class EventsController < ApplicationController
   end
 
   def map
+    @event = Event.find(params[:id])
+  end
+
+  def home_map
     @event = Event.find(params[:id])
   end
 

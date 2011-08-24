@@ -28,6 +28,7 @@
 			preFill: {},
 			limitText: "No More Selections Are Allowed",
             image_url:"url",
+            filled:"filled",
 			selectedItemProp: "value", //name of object property
 			selectedValuesProp: "value", //name of object property
 			searchObjProps: "value", //comma separated list of object property names
@@ -116,6 +117,13 @@
 					values_input.val(","+prefill_value);
 					$("li.as-selection-item", selections_holder).addClass("blur").removeClass("selected");
 				}
+               //init filled data 
+                for( var i = 0;i< data.length;i++ ){
+                  if( data[i].filled ){
+                    add_selected_item(data[i], i+1);
+                  }
+                }
+
 				input.after(values_input);
 				selections_holder.click(function(){
 					input_focus = true;

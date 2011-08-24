@@ -544,14 +544,14 @@ input {
   height: 25px;
   line-height: 25px; }
 .follow_button .following {
-  background-color: #8aba56; }
+  background-color: #8dbc6e; }
   .follow_button .following span {
     background: url(/images/ui/icon-check.png) no-repeat 0 50%;
     padding-left: 18px; }
   .follow_button .following:hover {
-    background-color: #ea4c88; }
+    background-color: #e76b75; }
     .follow_button .following:hover span {
-      color: #ff99cc;
+      color: #e76b75;
       background: url(/images/ui/icon-x.png) no-repeat 0 50%; }
 .follow_button .follow {
   background-color: lightGrey; }
@@ -601,16 +601,6 @@ a.app_big_link_button {
     background-position: 0 -102px !important;
     color: white;
     padding: 15px 18px 11px 24px; }
-
-.invitation .email input {
-  width: 350px; }
-.invitation .message textarea {
-  width: 350px; }
-.invitation h4 {
-  margin-bottom: 5px;
-  margin-top: 5px; }
-.invitation #email_invitation {
-  height: 180px; }
 
 a.app_black_link_button {
   color: white;

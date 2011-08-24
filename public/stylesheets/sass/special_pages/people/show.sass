@@ -1,7 +1,16 @@
 @import '../../general/ui/mixins'
+.person_show
+  .person_action
+    :margin-left 20px
+    :height 30px
+    .message_box
+      :margin-left 15px
+      .glass_button
+        :height 25px
+        :line-height 25px
+        :width 70px
 .following_people_panel
   :margin-top 25px
-
   .person_avatar
     .avatar_container
       @include box-shadow(0,1px,3px,0,#aaa)
@@ -11,7 +20,7 @@
 
 .history_bar
   :display block
-  :margin-top 55px
+  :margin-top 22px
   :height 90px
   .app_big_title_bar
     :margin-right 20px
@@ -143,6 +152,10 @@
   :float left
   :width 200px
   :padding-right 20px
+  #profile_photo
+    h2
+      :line-height 15px
+      :margin-bottom 38px
   .information
     :width 100%
 .change_profile_photo
@@ -160,8 +173,7 @@
   h2
     :margin-bottom 0px
     :display inline
-  .action
-    :float right
+
 .menu_bar.edit
   :padding-bottom 5px
   :padding-right 0px
@@ -357,6 +369,7 @@ dd
   :position relative
   .pagination
     :bottom -50px
+
 .person_event_box_panel
   height: 74px
   margin: 0 0px 2px 0px

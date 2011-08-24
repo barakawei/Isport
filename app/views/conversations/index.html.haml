@@ -11,7 +11,7 @@
   #conversation_inbox
     - if @conversations.count > 0
       .stream.conversations
-        = render :partial => 'conversations/conversation', :collection => @conversations, :locals => {:authors => @authors, :unread_counts => @unread_counts,:selected_id => ((@conversation.id) if @conversation)}
+        = render :partial => 'conversations/conversation', :collection => @conversations, :locals => {:authors => @authors, :unread_counts => @unread_counts}
       .pagination_box
         = will_paginate @conversations
     - else
@@ -31,3 +31,4 @@
       
 :javascript 
   $(".new_message_action").colorbox();
+  jQuery("abbr.timeago").timeago();

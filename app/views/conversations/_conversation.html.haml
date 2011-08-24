@@ -1,6 +1,6 @@
 %a{ :href=>conversations_path(:conversation_id => conversation.id,:page =>params[ "page" ]) }
-  .conversation{:remote_href => conversation_path(conversation),:id => conversation.id, :class => ('unread' if unread_counts[conversation.id].to_i > 0)}
-    = person_image_tag(conversation.person)
+  .conversation{:id => conversation.id, :class => ('unread' if unread_counts[conversation.id].to_i > 0)}
+    = person_image_tag(authors[conversation.id])
     
     .content
       .subject
@@ -10,19 +10,16 @@
           = conversation.subject[0..30]
       .last_author
         = authors[conversation.id].name
+        - if conversation.participants.size > 2
+          %span.participant_count
+            = "(+#{conversation.participants.size - 1})" 
     .info
       .message_count
-        %span
-          = conversation.messages.size
+        - if unread_counts[conversation.id].to_i > 0
+          %span.unread_message_count
+            = unread_counts[conversation.id].to_i
+        
       %time.timeago
-        =how_long_ago( conversation )
+        =how_long_ago_conversation( conversation )
     .clear
 
-      - if conversation.participants.size > 2
-        %span.participant_count
-          = "(+#{conversation.participants.size - 1})" 
-
-:javascript
-    if( "#{selected_id}" !="" ){  $( "##{selected_id}" ).addClass( "selected" ); }
-    jQuery("abbr.timeago").timeago();
-   

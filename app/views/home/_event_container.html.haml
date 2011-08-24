@@ -1,4 +1,7 @@
-= render :partial => 'events/event_element',
+= render :partial => 'events/home_event_element',
          :collection => @events,
          :as => :event
 = will_paginate @events,:page_links => false,:next_label=> '',:previous_label=>''
+
+:javascript
+  $( ".map_link" ).colorbox({ iframe:true,width:'750px',height:'400px'});
