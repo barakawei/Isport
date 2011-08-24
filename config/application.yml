@@ -5,7 +5,7 @@ defaults: &defaults
   host_url: "www.haoxiangwan.net"
 
   # Set this to true to prevent people from signing up for your pod without an invitation.
-  registrations_closed: true
+  registrations_closed: false
 
   # Set this to true to prevent users from sending invitations.
   invites_off: false
