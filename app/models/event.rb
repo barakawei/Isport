@@ -1,6 +1,6 @@
 class Event < ActiveRecord::Base
   COMMENT_PER_PAGE = 5 
-  PARTICIPANTS_LIMIT_MIN = 0
+  PARTICIPANTS_LIMIT_MIN = 0 
   PARTICIPANTS_LIMIT_MAX = 100 
 
   BEING_REVIEWED = 0
@@ -10,10 +10,10 @@ class Event < ActiveRecord::Base
 
   attr_accessor :same_day, :current_year,:invited_people
 
-  validates_presence_of :title, :start_at, :description, :subject_id, :participants_limit, 
+  validates_presence_of :title, :start_at, :description, :subject_id, :participants_limit, :location, 
                         :message => I18n.t('activerecord.errors.messages.blank')
   validates_length_of :title, :maximum => 30
-  validates_length_of :description, :maximum => 800
+  validates_length_of :description, :maximum => 2000
   validates_numericality_of :participants_limit, :only_integer => true,
                             :greater_than => PARTICIPANTS_LIMIT_MIN,
                             :less_than_or_equal_to => PARTICIPANTS_LIMIT_MAX
@@ -218,12 +218,12 @@ class Event < ActiveRecord::Base
   
   def participants_limit_cannot_be_less_than_current_participants
     if self.participants_limit < self.participants.size
-      errors.add(:participants_limit, I18n.t('activerecord.errors.event.participants_limit.     less_than_current'));
+      errors.add(:participants_limit, I18n.t('activerecord.errors.event.participants_limit.less_than_current'));
     end
   end
 
   def validate_location_detail
-    if location.detail.nil? || location.detail.size == 0
+    if location.nil? || location.detail.nil? || location.detail.size == 0
       errors.add(:location, I18n.t('activerecord.errors.event.location.detail_need'));
     end
   end
