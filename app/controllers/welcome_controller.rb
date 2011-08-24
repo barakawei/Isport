@@ -13,8 +13,14 @@ class WelcomeController < ApplicationController
       @items = Item.order('rand()').limit(3)
       @events = Event.where(:id => 1...10).order('rand()').limit(3)
       @groups = Group.where(:id => 1...10).order('rand()').limit(3)
-      @people = Person.limit(40)
 
+      @photos = [ ]
+      numbers = Array.new(40).fill{|i| i+1}
+      numbers.each do |n|
+        @photos.push("/welcome/#{n}.jpg")
+      end
+      
+      @photos.sort_by!{rand}
       render
     end
   end
