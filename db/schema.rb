@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110822151110) do
+ActiveRecord::Schema.define(:version => 20110823123012) do
 
   create_table "administrators", :force => true do |t|
     t.integer  "user_id"
@@ -105,6 +105,9 @@ ActiveRecord::Schema.define(:version => 20110822151110) do
     t.integer  "group_id",           :default => 0
     t.integer  "status",             :default => 0
     t.string   "status_msg"
+    t.integer  "participants_count", :default => 0
+    t.integer  "comments_count",     :default => 0
+    t.integer  "fans_count",         :default => 0
     t.integer  "audit_person_id"
   end
 
@@ -146,6 +149,9 @@ ActiveRecord::Schema.define(:version => 20110822151110) do
     t.integer  "status",           :default => 0
     t.string   "status_msg"
     t.integer  "audit_person_id"
+    t.integer  "members_count",    :default => 0
+    t.integer  "events_count",     :default => 0
+    t.integer  "topics_count",     :default => 0
   end
 
   create_table "invitations", :force => true do |t|
@@ -173,6 +179,9 @@ ActiveRecord::Schema.define(:version => 20110822151110) do
     t.string   "image_url_medium"
     t.string   "image_url_small"
     t.integer  "category_id",      :default => 1
+    t.integer  "fans_count",       :default => 0
+    t.integer  "events_count",     :default => 0
+    t.integer  "groups_count",     :default => 0
   end
 
   create_table "locations", :force => true do |t|

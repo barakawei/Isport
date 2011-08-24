@@ -64,7 +64,14 @@ module ApplicationHelper
   end
 
   def person_image_tag(person, size=:thumb_small)
-    avatar_html = "<img  class=\"avatar person_avatar_detail\" data_person_id=\"#{person.id}\" src=\"#{person.profile.image_url(size)}\">"
+    if size == :thumb_small
+      avatar_html = "<img  class=\"avatar person_avatar_detail radius_small\" data_person_id=\"#{person.id}\" src=\"#{person.profile.image_url(size)}\">"
+    elsif size == :thumb_medium
+      avatar_html = "<img  class=\"avatar person_avatar_detail radius_medium\" data_person_id=\"#{person.id}\" src=\"#{person.profile.image_url(size)}\">"
+    elsif size == :thumb_large
+      avatar_html = "<img  class=\"avatar person_avatar_detail radius_large\" data_person_id=\"#{person.id}\" src=\"#{person.profile.image_url(size)}\">"
+    end
+
     avatar_html.html_safe
   end
   
@@ -108,19 +115,39 @@ module ApplicationHelper
   end
 
   def event_image_tag(event,size)
-    "<img title=\"#{h(event.title)}\" class=\"avatar\"  src=\"#{event.image_url(size)}\" >".html_safe
+    if size == :thumb_small
+      "<img title=\"#{h(event.title)}\" class=\"avatar radius_small\"  src=\"#{event.image_url(size)}\" >".html_safe
+    elsif size == :thumb_medium
+      "<img title=\"#{h(event.title)}\" class=\"avatar radius_medium\"  src=\"#{event.image_url(size)}\" >".html_safe
+    elsif size == :thumb_large
+      "<img title=\"#{h(event.title)}\" class=\"avatar radius_large\"  src=\"#{event.image_url(size)}\" >".html_safe
+    else
+      "<img title=\"#{h(event.title)}\" class=\"avatar radius_little\"  src=\"#{event.image_url(size)}\" >".html_safe
+    end
   end
 
-  def group_image_tag(group, size=nil)
-    "<img title=\"#{h(group.name)}\" class=\"avatar\"  src=\"#{group.image_url(size)}\" >".html_safe
+  def group_image_tag(group, size=:thumb_small)
+    if size == :thumb_small
+      "<img title=\"#{h(group.name)}\" class=\"avatar radius_small\"  src=\"#{group.image_url(size)}\" >".html_safe
+    elsif size == :thumb_medium
+      "<img title=\"#{h(group.name)}\" class=\"avatar radius_medium\"  src=\"#{group.image_url(size)}\" >".html_safe
+    elsif size == :thumb_large
+      "<img title=\"#{h(group.name)}\" class=\"avatar radius_large\"  src=\"#{group.image_url(size)}\" >".html_safe
+    end
   end
 
   def group_image_link(group, size=nil)
      link_to group_image_tag(group, size), group_path(group)
   end
 
-  def item_image_tag(item,size=nil)
-    "<img title=\"#{h(item.name)}\" class=\"avatar\"  src=\"#{item.image_url(size)}\" >".html_safe
+  def item_image_tag(item, size=:thumb_small)
+    if size == :thumb_small
+      "<img title=\"#{h(item.name)}\" class=\"avatar radius_small\"  src=\"#{item.image_url(size)}\" >".html_safe
+    elsif size == :thumb_medium
+      "<img title=\"#{h(item.name)}\" class=\"avatar radius_medium\"  src=\"#{item.image_url(size)}\" >".html_safe
+    elsif size == :thumb_large
+      "<img title=\"#{h(item.name)}\" class=\"avatar radius_large\"  src=\"#{item.image_url(size)}\" >".html_safe
+    end
   end
 
   def item_events_notify
@@ -151,18 +178,19 @@ module ApplicationHelper
 
   def review_status(status)
     case status
-      when Event::BEING_REVIEWED then ('<span class="to_be">'+ I18n.t('events.audit_status.to_be_reviewed_short')+'<span/>').html_safe
-      when Event::DENIED then ('<span class="denied">'+ I18n.t('events.audit_status.denied_short')+'<span/>').html_safe
-      when Event::PASSED then ('<span class="passed">'+ I18n.t('events.audit_status.passed_short')+'<span/>').html_safe
+      when Event::BEING_REVIEWED then ('<span class="to_be">'+ I18n.t('audit_status.to_be_reviewed_short')+'<span/>').html_safe
+      when Event::DENIED then ('<span class="denied">'+ I18n.t('audit_status.denied_short')+'<span/>').html_safe
+      when Event::PASSED then ('<span class="passed">'+ I18n.t('audit_status.passed_short')+'<span/>').html_safe
+      when Event::CANCELED_BY_EVENT_ADMIN then ('<span class="passed">'+ I18n.t('audit_status.canceled_short')+'<span/>').html_safe
       else ''
     end 
   end
 
-  def long_review_status(status)
+  def long_review_status(status, type)
     case status
-      when Event::BEING_REVIEWED then I18n.t('events.audit_status.to_be_reviewed')
-      when Event::DENIED then I18n.t('events.audit_status.not_passed')
-      when Event::CANCELED_BY_EVENT_ADMIN then I18n.t('events.audit_status.canceled_by_event_admin')
+      when Event::BEING_REVIEWED then I18n.t('audit_status.to_be_reviewed', :type => type)
+      when Event::DENIED then I18n.t('audit_status.not_passed', :type => type)
+      when Event::CANCELED_BY_EVENT_ADMIN then I18n.t('audit_status.canceled_by_event_admin', :type => type)
       else ''
     end 
   end

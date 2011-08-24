@@ -10,6 +10,7 @@ class Event < ActiveRecord::Base
   PASSED = 2
   CANCELED_BY_EVENT_ADMIN = 3
 
+
   attr_accessor :same_day, :current_year,:invited_people
   validates_presence_of :title, :start_at, :description, :subject_id,
                         :participants_limit, 
@@ -71,9 +72,8 @@ class Event < ActiveRecord::Base
   scope :alltime, lambda { select("*") }
   scope :at_city, lambda {|city| includes("location").where(:locations => {:city_id => city}) }
   scope :filter_by_location_and_item, lambda  {|filter| includes("location").where(filter)}
+  scope :not_full,  lambda { where("participants_count < participants_limit") }
 
-
-  
 
   def self.update_avatar_urls(params,url_params)
       event = find(params[:photo][:model_id])
@@ -82,17 +82,17 @@ class Event < ActiveRecord::Base
 
   def self.interested_event(city, person)
     item_ids = person.interests.collect {|i| i.id}
-    events = Event.in_items(item_ids).week.at_city(city).not_started
-    events = Event.in_items(item_ids).month.at_city(city).not_started unless events.size > 0
-    events = Event.in_items(item_ids).next_month.at_city(city).not_started unless events.size > 0
+    events = Event.in_items(item_ids).week.at_city(city).not_started.not_full.order('start_at')
+    events = Event.in_items(item_ids).month.at_city(city).not_started.not_full.order('start_at') unless events.size > 0
+    events = Event.in_items(item_ids).next_month.at_city(city).not_started.not_full.order('start_at') unless events.size > 0
     events
   end
 
   def self.hot_event_by_item(city, item)
-    events = Event.week.not_started.at_city(city).of_item(item.id)
-    events = Event.month.not_started.at_city(city).of_item(item.id) unless events.size > 0
-    events = Event.week.at_city(city).of_item(item.id) unless events.size > 0
-    events = Event.month.at_city(city).of_item(item.id) unless events.size > 0
+    events = Event.week.not_started.at_city(city).of_item(item.id).not_full.order('start_at')
+    events = Event.month.not_started.at_city(city).of_item(item.id).not_full.order('start_at') unless events.size > 0
+    events = Event.week.at_city(city).of_item(item.id).not_full.order('start_at') unless events.size > 0
+    events = Event.month.at_city(city).of_item(item.id).not_full.order('start_at') unless events.size > 0
 
     if events.size > 6 
       events = events[0..5] 
@@ -257,6 +257,16 @@ class Event < ActiveRecord::Base
   def validate_location_detail
     if location.detail.nil? || location.detail.size == 0
       errors.add(:location, I18n.t('activerecord.errors.event.location.detail_need'));
+    end
+  end
+
+  def update_owner_counter
+    self.item.events_count = self.item.events.count
+    self.item.save
+  
+    if self.group
+      self.group.events_count = self.group.events.count
+      self.group.save
     end
   end
 end

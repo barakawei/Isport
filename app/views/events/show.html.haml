@@ -48,10 +48,10 @@
 
   .span-17.last.right_column
     .span-17
-      =render 'common/big_header_box', :number => @participants.size, :text => '参加', :background_color => '#ff8a3c'
-      =render 'common/big_header_box', :number => @references.size, :text => '喜欢', :background_color => '#aad450'
-      =render 'common/big_header_box', :number => @comments_size, :background_color => '#4ebaff', :text => '评论'
 
+      =render 'common/big_header_box', :number => @event.participants_count, :text => '参加', :background_color => '#ff8a3c'
+      =render 'common/big_header_box', :number => @event.fans_count, :text => '喜欢', :background_color => '#aad450'
+      =render 'common/big_header_box', :number => @event.comments_count, :background_color => '#4ebaff', :text => '评论'
       - if @event.status == Event::PASSED 
         .operations.right
           - if current_user
@@ -79,18 +79,23 @@
                      :align=>"absmiddle", :border=>"0"}  
     .span-13.event_status_info{:class => ("hide" unless @event.need_notice?)}
       .span-8
-        %h3=long_review_status(@event.status)
+        %h3=long_review_status(@event.status, '活动')
       .span-4.avatar
-        - audit_person = @event.audit_person
-        - owner = @event.person
         - if @event.status == Event::CANCELED_BY_EVENT_ADMIN
-          %a{:href => person_path(owner)}= person_image_tag(owner)
+          %a{:href => person_path(@event_owner)}= person_image_tag(@event_owner)
           %span.info='发起人:'
-        - else
-          %a{:href => person_path(audit_person)}= person_image_tag(audit_person)
+        - elsif @event.status != Event::BEING_REVIEWED && @audit_person
+          %a{:href => person_path(@audit_person)}= person_image_tag(@audit_person)
           %span.info='审核人:'
-      .span-12
-        =simple_format @event.status_msg, :class => 'audit_info'
+      - unless @event.status == Event::BEING_REVIEWED
+        .span-12.reason_area
+          =simple_format @event.status_msg, :class => 'audit_info'
+      - if @event.status == Event::DENIED && @is_owner
+        .span-12.re_audit
+          %span='请修改对应活动信息后，重新提交审核'
+          =link_to(event_reaudit_path(@event), :class => 'right') do
+            .glass_button
+              ='申请重新审核'
     .span-13
       = render 'common/header_box', :title => '活动内容'
     .event_title_bar
@@ -121,8 +126,10 @@
       
 :javascript
   $(function() {
-    var address = "#{@event.location}";
-    codeAddress("map", address, 'map_div');
+    $.getScript("http://maps.google.com/maps/api/js?sensor=false", function() {
+      var address = "#{@event.location}";
+      codeAddress("map", address, 'map_div');
+    });
 
     var _w = 32 , _h = 32;
     var param = {
@@ -157,6 +164,9 @@
     var _u = 'http://v.t.qq.com/share/share.php?url='+_url+'&site='+_site+'&title='+_t;
     window.open( _u,'', 'width=700, height=680, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, location=yes, resizable=no, status=no' );
   }
+<<<<<<< HEAD
 
   $( '.new_message_action' ).colorbox();
   
+=======
+>>>>>>> f51435b21b45fccb57e991454c59d72ef9c24fad

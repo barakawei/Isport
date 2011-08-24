@@ -6,8 +6,11 @@ class Item < ActiveRecord::Base
   has_many :favorites, :dependent => :destroy
   has_many :fans, :through => :favorites, :source => :person
 
-  has_many :events, :foreign_key => "subject_id" 
-  has_many :groups, :foreign_key => "item_id"
+  has_many :events, :foreign_key => "subject_id",
+                    :conditions => ["events.status = ?", 2]
+
+  has_many :groups, :foreign_key => "item_id",
+                    :conditions => ["groups.status = ?", 2]
 
   belongs_to :category
   attr_accessor :selected
@@ -26,6 +29,41 @@ class Item < ActiveRecord::Base
        self[:image_url_large]
      end
     (result != nil && result.length > 0) ? result : default_url(size)
+  end
+
+  def self.all_items(categories, myitems, city, user)
+    items = Item.all
+    items_ids = items.map{|i| i.id}
+
+    events_counts = {  }  
+
+    Event.week.joins(:location).select("subject_id, count(*) evesize")
+      .where(:subject_id => items_ids, :locations => {:city_id => city.id}).group(:subject_id).each do |count|
+      events_counts[count.subject_id] = count.evesize
+    end
+
+    if user
+      user.person.interests.order("rand()").limit(5).each do |myitem| 
+          myitems.push({:item => myitem, :count=>events_counts[myitem.id]?events_counts[myitem.id]:0})
+      end
+    end
+
+    items_hash = {  }
+
+    categories.each do |category|
+      items_hash[category.id] = [  ]  
+    end
+
+    items.each do |item|
+      items_hash[item.category_id].push({:item => item, 
+                                          :events_count => events_counts[item.id]?events_counts[item.id]:0})
+    end
+
+    categories.each do |category|
+      items_hash[category.id].sort!{ |x, y| y[:item].fans_count <=> x[:item].fans_count }
+    end
+
+    return items_hash
   end
 
   def self.hot_items(size, city)
@@ -103,7 +141,7 @@ class Item < ActiveRecord::Base
   end
 
   def self.remove_fan(item_id, user)
-    Favorite.delete_all(:item_id => item_id, :person_id => user.person.id)
+    Favorite.destroy_all(:item_id => item_id, :person_id => user.person.id)
   end
 
   def random_people(city, limit_num, except)
@@ -143,6 +181,12 @@ class Item < ActiveRecord::Base
           .where(:events => {:subject_id => self.id}, :items => {:id => self.id}, 
                  :involvements => {:is_pending => false})
           .group("involvements.person_id").order("count(event_id) DESC").limit(limited).includes(:profile)
+  end
+
+  def hot_groups(limited, city)
+    groups = self.groups.where(:city_id => city.id).order("members_count DESC").limit(limited)
+
+    return groups
   end
 
   private

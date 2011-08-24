@@ -18,11 +18,11 @@ class MembershipsController < ApplicationController
   def destroy
     @person = current_user.person
     unless params[:member_ids]
-      @group.delete_member(current_user.person)
+      Membership.destory_all(:group_id => @group.id, :person_id => current_user.person.id)
     else
       if @group.is_admin(@person)
         member_ids = params[:member_ids].split(',');
-        Membership.delete_all(:group_id => @group.id, :person_id => member_ids)
+        Membership.destroy_all(:group_id => @group.id, :person_id => member_ids)
       end
     end
     redirect_to :back

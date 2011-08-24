@@ -255,8 +255,11 @@ span.medium_avatar
   :margin-bottom 20px
 
 #map-big
-  :width 950px
+  :width 944px
   :height 500px 
+  :border 3px solid #ffffff
+  @include box-shadow(0,1px,5px,0,#333)
+  @include border-radius(8px)
 
 .pagination_box
   .pagination
@@ -365,7 +368,8 @@ span.medium_avatar
     :margin
       :top  10px
   .avatar_panel
-    :padding 5px    
+    :padding 5px  
+
   .person_avatar
     :float left
     :width 75px
@@ -446,6 +450,7 @@ input
   .person_avatar_detail
     :height 32px
     :width 32px
+      
   .avatar
     :float left
   .comment_button
@@ -699,5 +704,16 @@ a.app_black_link_button
       :height 45px
       :margin-bottom 20px
     label.in_field
-      :top 4px 
-  
+      :top 4px
+
+
+.radius_small
+  @include border-radius(2px) 
+
+.radius_medium
+  @include border-radius(6px)
+
+.radius_large
+  @include border-radius(8px)
+
+    

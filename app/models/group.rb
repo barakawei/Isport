@@ -3,15 +3,20 @@ class Group < ActiveRecord::Base
   JOIN_AFTER_AUTHENTICATAION = 2 
   JOIN_BY_INVITATION_FROM_ADMIM = 3 
 
+  after_save :update_owner_counter
+  after_destroy :update_owner_counter
+  after_update :update_owner_counter
+
+  belongs_to :item
   BEING_REVIEWED = 0
   DENIED = 1
   PASSED = 2
   CANCELED_BY_EVENT_ADMIN = 3
 
-  belongs_to :item
   belongs_to :city
   belongs_to :district
   belongs_to :person
+  belongs_to :audit_person, :foreign_key => "audit_person_id", :class_name => 'Person'
   attr_accessor :invited_people
 
   validates_presence_of :name, :description, :item_id, :city_id, :district_id,
@@ -23,11 +28,14 @@ class Group < ActiveRecord::Base
 
 
   has_many :memberships, :dependent => :destroy
-  has_many :events, :dependent => :destroy
+
+  has_many :events, :dependent => :destroy, 
+                    :conditions => ["events.status = ?", 2]
   has_many :invitees_plus_members, :through => :memberships, :source => :person
 
   has_many :members, :through => :memberships,  :source => :person,
                         :conditions => ['memberships.pending = ? ', false]
+
   has_many :invitees, :through => :memberships, :source => :person,
                         :conditions => ['memberships.pending = ? and memberships.pending_type = ? ', true, JOIN_BY_INVITATION_FROM_ADMIM] 
   
@@ -143,7 +151,7 @@ class Group < ActiveRecord::Base
 
 
   def delete_member(person)
-    Membership.delete_all(:group_id => id, :person_id => person.id)
+    Membership.destroy_all(:group_id => id, :person_id => person.id)
   end
 
   def is_admin(person)
@@ -173,6 +181,24 @@ class Group < ActiveRecord::Base
     city.name + district.name    
   end
 
+  def need_notice?
+    status == Group::BEING_REVIEWED || status == Group::DENIED
+  end
+  
+  def in_audit_process?
+    status == Group::BEING_REVIEWED || status == Group::DENIED
+  end
+
+  def is_owner(user)
+    if user
+      return user.person.id == person_id
+    else
+      false
+    end
+  end
+
+
+
   private
   def default_url(size)
      case size
@@ -180,5 +206,10 @@ class Group < ActiveRecord::Base
         when :thumb_large   then "/images/group/group_large.jpg"
         when :thumb_small   then "/images/group/group_small.jpg"
      end
+  end
+
+  def update_owner_counter
+    self.item.groups_count = self.item.groups.count
+    self.item.save
   end
 end

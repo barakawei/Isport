@@ -14,6 +14,10 @@ class GroupsController < ApplicationController
 
   def show
     @group = Group.find(params[:id])
+    if @group.in_audit_process? && !@group.is_owner(current_user) && !current_user.try(:admin?)
+      render 'common/in_audit', :locals => {:type => I18n.t('groups_link'), 
+              :link_content => I18n.t('groups.other_groups'), :path => groups_path}
+    end
     @recent_events = @group.events.order('created_at desc').limit(4)
     @members = @group.members.limit(9)
     @current_person = current_user.person if current_user
@@ -38,6 +42,14 @@ class GroupsController < ApplicationController
     @new = true if params[:new] == 'new'
     @group = Group.find(params[:id])
   end
+
+  def apply_reaudit
+    @group = Group.find(params[:id])
+    if @group.status == Group::DENIED && @group.is_owner(current_user)
+      @group.update_attributes(:status => Group::BEING_REVIEWED, :status_msg => "");
+    end
+    redirect_to :back
+  end     
 
   def edit_members
     @current_person = current_user.person
@@ -114,6 +126,10 @@ class GroupsController < ApplicationController
 
   def forum
     @group = Group.find(params[:id])
+    if @group.in_audit_process? && !@group.is_owner(current_user) && !current_user.try(:admin?)
+      render 'common/in_audit', :locals => {:type => I18n.t('groups_link'), 
+              :link_content => I18n.t('groups.other_groups'), :path => groups_path}
+    end
     @forum = @group.forum
     @topics = []
     if @forum.topics.count > 0  

@@ -15,7 +15,7 @@
         - else
           %li=link_to '1.填写活动信息', new_event_path, :class => ("current" if params[:action] == 'new') 
           %li=link_to '2.邀请好友', 'javascript:void(0)',:class => 'inactive' 
-      = render 'common/small_link_button', :content => '取消活动', :path => '#' 
+      = render 'common/small_link_button', :content => '取消活动', :path => '#'  if is_edit
 
     .span-14
       -if is_edit
@@ -48,12 +48,11 @@
             = f.datetime_select :end_at
           = error_on(@event, :end_at)
         .field
-          = f.label t('activerecord.attributes.event.location'), :class => "info"
-          .address
-            = f.fields_for :location do |location_form|
-              = location_form.collection_select :city_id, City.all, :id, :name, {:prompt => true}
-              = location_form.collection_select :district_id, @event.location.city.districts, :id, :name, {:prompt => true}
-              = location_form.text_field :detail
+          = f.label t('activerecord.attributes.event.location'), :class => "info location"
+          = f.fields_for :location do |location_form|
+            = location_form.collection_select :city_id, City.all, :id, :name, {:prompt => true}
+            = location_form.collection_select :district_id, @event.location.city.districts, :id, :name, {:prompt => true}
+            = location_form.text_field :detail
           = error_on(@event, :location)
         .field.module
           = f.label t('activerecord.attributes.event.description'), :class => "info"
@@ -81,16 +80,17 @@
       .span-14.actions
         = f.submit '保存活动信息', :class => "button"
 
-.colorbox_content
-  #cancel_event
-    .span-12.box_content
-      %h3='活动取消后将无法恢复， 确认要取消此活动吗？'
-      %h4='请输入取消理由，理由将发送给所有活动的参加者。'
-      = form_tag cancel_event_path, :id => 'cancel_event_form', do
-        = hidden_field_tag :id, @event.id
-        = text_area_tag :reason
-        .submit
-          = submit_tag '确定', :class => 'glass_button'
+- if is_edit
+  .colorbox_content
+    #cancel_event
+      .span-12.box_content
+        %h3='活动取消后将无法恢复， 确认要取消此活动吗？'
+        %h4='请输入取消理由，理由将发送给所有活动的参加者。'
+        = form_tag cancel_event_path, :id => 'cancel_event_form', do
+          = hidden_field_tag :id, @event.id
+          = text_area_tag :reason
+          .submit
+            = submit_tag '确定', :class => 'glass_button'
       
 :javascript
   $(function() {

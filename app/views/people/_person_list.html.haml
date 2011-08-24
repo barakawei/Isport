@@ -4,7 +4,7 @@
     =@person.name
     .description
       -if current_user.person.id == @person.id && ( @requests_count == 0 || !@requests_count)
-        = "Welcome back!"
+        = "欢迎回来!"
 
   .home_invitation_link
     .link
@@ -59,6 +59,6 @@
           %li
             .group
               .avatar
-                = item_image_link(item,{ :size =>:thumb_small })
+                = item_image_link(item, :size =>:thumb_small)
               .name
                 = object_name_link(item)

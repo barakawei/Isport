@@ -60,6 +60,14 @@ zh:
       your_name: "您的名字"
       name: "名字"
       your_photo: "您的照片"
+  audit_status:
+    to_be_reviewed: '该%{type}正在审核中...'
+    not_passed: '该%{type}没有通过审核...'
+    canceled_by_event_admin: '该%{type}已被活动发起人取消'
+    to_be_reviewed_short: '待审核'
+    denied_short: '不合格'
+    passed_short: '合格'
+    canceled_short: '被取消'
 
   notifications:
     create_event: "%{actor_link} 发起了活动 %{event_link}"
@@ -202,6 +210,7 @@ zh:
     groupflack: "寻找志同道合的朋友"
 
   groups:
+    other_groups: '看看其他小组'
     new_group: '新建小组'
     edit_group: '编辑小组'
     edit:
