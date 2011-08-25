@@ -1,7 +1,3 @@
-#   Copyright (c) 2010, Diaspora Inc.  This file is
-#   licensed under the Affero General Public License version 3 or later.  See
-#   the COPYRIGHT file.
-
 #For Guidance
 #http://github.com/thoughtbot/factory_girl
 # http://railscasts.com/episodes/158-factories-not-fixtures
@@ -128,33 +124,3 @@ Factory.define(:notification) do |n|
   end
 end
 
-Factory.define(:activity_streams_photo, :class => ActivityStreams::Photo) do |p|
-  p.association(:author, :factory => :person)
-  p.image_url "#{AppConfig[:pod_url]}/images/asterisk.png"
-  p.image_height 154
-  p.image_width 154
-  p.object_url "http://example.com/awesome_things.gif"
-  p.objectId "http://example.com/awesome_things.gif"
-  p.actor_url "http://notcubbi.es/cubber"
-  p.provider_display_name "not cubbies"
-  p.public true
-end
-
-Factory.define(:app, :class => OAuth2::Provider.client_class) do |a|
-  a.sequence(:name) { |token| "Chubbies#{token}" }
-  a.sequence(:application_base_url) { |token| "http://chubbi#{token}.es/" }
-
-  a.description "The best way to chub on the net."
-  a.icon_url "/images/chubbies48.png"
-  a.permissions_overview "I will use the permissions this way!"
-  a.sequence(:public_key) {|n| OpenSSL::PKey::RSA.new(2048) }
-end
-
-Factory.define(:oauth_authorization, :class => OAuth2::Provider.authorization_class) do |a|
-  a.association(:client, :factory => :app)
-  a.association(:resource_owner, :factory => :user)
-end
-
-Factory.define(:oauth_access_token, :class => OAuth2::Provider.access_token_class) do |a|
-  a.association(:authorization, :factory => :oauth_authorization)
-end
