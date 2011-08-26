@@ -34,6 +34,7 @@ class SiteAdminController < ApplicationController
   def pass_event
     event = Event.find(params[:event_id])
     event.update_attributes(:status => Event::PASSED)
+    
     render :partial => 'event_audit_block', :locals => {:e => event}
   end
 
