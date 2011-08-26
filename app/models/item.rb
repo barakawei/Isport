@@ -1,6 +1,10 @@
 class Item < ActiveRecord::Base
   validates :name, :presence => true
+  validates_uniqueness_of :name
+  
   validates :description, :presence => true
+  validates_length_of :description, :maximum => 200
+
   validates :category_id, :presence => true
 
   has_many :favorites, :dependent => :destroy
@@ -135,13 +139,13 @@ class Item < ActiveRecord::Base
     return items_array
   end
 
-  def self.add_fan(item_id, user)
-    favorite = Favorite.new(:item_id => item_id, :person_id => user.person.id)
+  def self.add_fan(item_id, person)
+    favorite = Favorite.new(:item_id => item_id, :person_id => person.id)
     favorite.save
   end
 
-  def self.remove_fan(item_id, user)
-    Favorite.destroy_all(:item_id => item_id, :person_id => user.person.id)
+  def self.remove_fan(item_id, person)
+    Favorite.destroy_all(:item_id => item_id, :person_id => person.id)
   end
 
   def random_people(city, limit_num, except)
