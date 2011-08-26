@@ -5,14 +5,14 @@
         = event_image_tag( event,:thumb_small )
       .content
         .title
-          = truncate(event.title,:length => 40)
+          = truncate(event.title,:length => 20)
         .time
           = I18n.l(event.start_at,:format => :normal)
           = "-"
           = I18n.l(event.end_at,:format => :shortest)
 
         .address
-          = truncate("@"+event.location.to_s,:length => 40)
+          = truncate("@"+event.location.to_s,:length => 20)
       .status
         -if event.over?
           .sucess

@@ -147,4 +147,23 @@ production:
   ca_file: '/etc/pki/tls/certs/ca-bundle.crt'
 
 # Do not touch unless you know what you're doing
+test:
+  <<: *defaults
+  host_url: "http://localhost:9887"
+  socket_port: 8081
+  enable_splunk_logging: false
+  open_invitations: false
+
+
+integration_1:
+  <<: *defaults
+  host_url: "http://localhost:45789"
+  enable_splunk_logging: false
+  
+integration_2:
+  <<: *defaults
+  host_url: "http://localhost:34658"
+  enable_splunk_logging: false
+
+  # Automatically enable TLS? Ignored if smtp_authentication is set to none
 

@@ -60,3 +60,42 @@ ul.nav {
     float: right;
     font-size: 15px;
     line-height: 41px; }
+
+.invitation_panel {
+  padding: 10px;
+  margin-bottom: 20px;
+  background-color: white; }
+  .invitation_panel #email_invitation_panel {
+    float: left; }
+  .invitation_panel #user_submit {
+    margin-top: 10px; }
+  .invitation_panel .email label.error {
+    margin-left: 10px;
+    font-size: 14px;
+    color: red; }
+  .invitation_panel .email label.in_field {
+    position: absolute;
+    top: 7px;
+    left: 5px;
+    font-size: 15px; }
+  .invitation_panel .email input {
+    width: 350px;
+    height: 30px; }
+  .invitation_panel .message textarea {
+    width: 350px;
+    height: 70px; }
+  .invitation_panel h4 {
+    margin-bottom: 5px;
+    margin-top: 5px;
+    font-size: 15px; }
+  .invitation_panel .link {
+    font-size: 15px; }
+  .invitation_panel #already_invited_pane {
+    font-size: 14px;
+    float: left;
+    margin-left: 50px; }
+    .invitation_panel #already_invited_pane .has_invitation .email {
+      display: inline-block;
+      width: 200px; }
+    .invitation_panel #already_invited_pane .has_invitation .resend {
+      display: inline-block; }

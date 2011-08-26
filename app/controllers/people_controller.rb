@@ -1,7 +1,7 @@
 class PeopleController < ApplicationController
   before_filter :registrations_closed?
   before_filter :authenticate_user!
-  respond_to :json,:js,:html
+  respond_to :js,:html
 
   def index
     params[:q] ||= params[:term]

@@ -9,8 +9,7 @@ class MessagesController < ApplicationController
       
       if message.save
         ConversationVisibility.connection.execute(" update conversation_visibilities set unread= unread +1 where conversation_id ="+cnv.id.to_s+" and person_id !="+current_user.person.id.to_s  );
-
-        redirect_to conversations_path(:conversation_id => cnv.id)
+        redirect_to conversations_path(:conversation_id => cnv.id,:page => params[:page])
       else
         render :nothing => true, :status => 422
       end

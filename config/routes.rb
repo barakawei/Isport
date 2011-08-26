@@ -112,6 +112,8 @@ Isport::Application.routes.draw do
           :constraints => { :id => /[1-9]\d*/}
     match '/events/:id/map' => :map, :as => 'event_map',
           :constraints => { :id => /[1-9]\d*/}
+    match '/events/:id/home_map' => :home_map, :as => 'event_home_map',
+          :constraints => { :id => /[1-9]\d*/}
     match '/events/:id/participants' => :participants, :as => 'participants',
           :constraints => { :id => /[1-9]\d*/}
     match '/events/:id/invite_friends' => :invite_friends, :as => 'new_event_invite',

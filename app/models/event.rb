@@ -1,8 +1,6 @@
 class Event < ActiveRecord::Base
   COMMENT_PER_PAGE = 5 
-  SORT_BY_STARTTIME = "by_starttime"
-  SORT_BY_POPULARITY= "by_popularity"
-  PARTICIPANTS_LIMIT_MIN = 0
+  PARTICIPANTS_LIMIT_MIN = 0 
   PARTICIPANTS_LIMIT_MAX = 100 
 
   BEING_REVIEWED = 0
@@ -10,58 +8,45 @@ class Event < ActiveRecord::Base
   PASSED = 2
   CANCELED_BY_EVENT_ADMIN = 3
 
-
   attr_accessor :same_day, :current_year,:invited_people
-  validates_presence_of :title, :start_at, :description, :subject_id,
-                        :participants_limit, 
+
+  validates_presence_of :title, :start_at, :description, :subject_id, :participants_limit, :location, 
                         :message => I18n.t('activerecord.errors.messages.blank')
-  
   validates_length_of :title, :maximum => 30
-  validates_length_of :description, :maximum => 800
+  validates_length_of :description, :maximum => 2000
   validates_numericality_of :participants_limit, :only_integer => true,
                             :greater_than => PARTICIPANTS_LIMIT_MIN,
                             :less_than_or_equal_to => PARTICIPANTS_LIMIT_MAX
-
   validates :end_at, :date => { :after => :start_at,
-                                :message => I18n.t('activerecord.errors.event.end_at.after')}
-
+                     :message => I18n.t('activerecord.errors.event.end_at.after')}
   validate :participants_limit_cannot_be_less_than_current_participants, :validate_location_detail
 
   belongs_to :person
   belongs_to :group
-
   belongs_to :location
   accepts_nested_attributes_for :location
+  belongs_to :item, :foreign_key => "subject_id"
+  belongs_to :audit_person, :foreign_key => "audit_person_id", :class_name => 'Person'
 
   has_many :involvements, :dependent => :destroy
-
   has_many :participants, :through => :involvements, :source => :person,
                           :conditions => ['involvements.is_pending = ?', false]
-
-  has_many :invitees, :through => :involvements, :source => :person,
+  has_many :invitees,  :through => :involvements, :source => :person,
                           :conditions => ['involvements.is_pending = ?', true]
-
   has_many :invitees_plus_participants, :through => :involvements, :source => :person
-
   has_many :recommendations, :class_name => "EventRecommendation", 
                              :dependent => :destroy, :foreign_key => "item_id"
   has_many :references, :through => :recommendations, :source => :person
-
-  has_many :comments, :class_name => "EventComment", :as => :commentable,
-           :dependent => :destroy
+  has_many :comments, :class_name => "EventComment", :as => :commentable, :dependent => :destroy
   has_many :commentors, :through => :comments, :source => :person
 
-  belongs_to :item, :foreign_key => "subject_id"
-  belongs_to :audit_person, :foreign_key => "audit_person_id", :class_name => 'Person'
 
 
   scope :not_started, lambda { where("start_at > ?", Time.now) }
   scope :on_going, lambda { where("start_at <= ? and end_at >= ?", Time.now, Time.now) }
   scope :over, lambda {where("end_at < ?", Time.now)}
-
   scope :of_item, lambda {|item_id| where('subject_id = ?', item_id)}
   scope :in_items, lambda {|item_ids| where(:subject_id => item_ids)}
-
   scope :week, lambda { where("start_at > ? and start_at < ?", Time.now.beginning_of_week, Time.now.end_of_week) }
   scope :month, lambda { where("start_at > ? and start_at < ?", Time.now.beginning_of_month, Time.now.end_of_month)}
   scope :today, lambda { where("start_at >= ? and start_at <= ?", Time.now.beginning_of_day, Time.now.end_of_day) }
@@ -71,8 +56,12 @@ class Event < ActiveRecord::Base
   scope :on_date, lambda {|date| where("start_at >= ? and start_at <= ?", date.beginning_of_day, date.end_of_day )}
   scope :alltime, lambda { select("*") }
   scope :at_city, lambda {|city| includes("location").where(:locations => {:city_id => city}) }
-  scope :filter_by_location_and_item, lambda  {|filter| includes("location").where(filter)}
+  scope :at_district, lambda {|district_id| includes("location").where(:locations => {:district_id => district_id}) }
   scope :not_full,  lambda { where("participants_count < participants_limit") }
+  scope :pass_audit, lambda { where("status = ? ", Event::PASSED ) }  
+  scope :to_be_audit, lambda { where("status = ? ", Event::BEING_REVIEWED) }  
+  scope :audit_failed, lambda { where("status = ? ", Event::DENIED) } 
+  scope :canceled, lambda { where("status = ? ", Event::CANCELED_BY_EVENT_ADMIN) } 
 
 
   def self.update_avatar_urls(params,url_params)
@@ -82,9 +71,9 @@ class Event < ActiveRecord::Base
 
   def self.interested_event(city, person)
     item_ids = person.interests.collect {|i| i.id}
-    events = Event.in_items(item_ids).week.at_city(city).not_started.not_full.order('start_at')
-    events = Event.in_items(item_ids).month.at_city(city).not_started.not_full.order('start_at') unless events.size > 0
-    events = Event.in_items(item_ids).next_month.at_city(city).not_started.not_full.order('start_at') unless events.size > 0
+    events = Event.in_items(item_ids).week.at_city(city).not_started.not_full.order('start_at').limit(6)
+    events = Event.in_items(item_ids).month.at_city(city).not_started.not_full.order('start_at').limit(6) unless events.size > 0
+    events = Event.in_items(item_ids).next_month.at_city(city).not_started.not_full.order('start_at').limit(6) unless events.size > 0
     events
   end
 
@@ -100,11 +89,7 @@ class Event < ActiveRecord::Base
   end
   
   def is_owner(user)
-    if user
-      return user.person.id == person_id
-    else
-      false
-    end
+    user && user.person.id == person_id
   end
 
   def participants_full? 
@@ -127,9 +112,6 @@ class Event < ActiveRecord::Base
     self.start_at > Time.now
   end
 
-  def dispatch_event(action,user=self.person.user)
-    Dispatch.new(user, self,action).notify_user
-  end
 
   def self.total_event_count
     total_count = Event.count
@@ -143,6 +125,10 @@ class Event < ActiveRecord::Base
       count_array << 0
     end
     count_array.reverse!
+  end
+
+  def dispatch_event(action,user=self.person.user)
+    Dispatch.new(user, self,action).notify_user
   end
 
   def subscribers(user,action=false)
@@ -197,16 +183,20 @@ class Event < ActiveRecord::Base
   end
 
   def self.filter_event(conditions)
-    filter_hash = {}
-    filter_hash[:subject_id] = conditions[:subject_id] unless conditions[:subject_id].nil?
-    conditions.delete(:subject_id) 
-    time = conditions.delete(:time)
-    filter_hash[:locations] = conditions
-    if time.nil?
-      filter_by_location_and_item(filter_hash)
-    else
-      filter_by_location_and_item(filter_hash).filter_event_by_time(time)
-    end 
+    time = conditions[:time]
+    city = conditions[:city]
+    district = conditions[:district_id]
+    subject = conditions[:suject_id]
+    
+    if district && subject 
+      at_city(city).at_district(district).of_item(subject).filter_event_by_time(time)
+    elsif district.nil? && !subject.nil?
+      at_city(city).of_item(subject).filter_event_by_time(time)
+    elsif !district.nil? && subject.nil?
+      at_city(city).at_district(district).filter_event_by_time(time)
+    else 
+      at_city(city).filter_event_by_time(time)
+    end
   end
 
   def self.filter_event_by_time(time)
@@ -237,12 +227,12 @@ class Event < ActiveRecord::Base
   
   def participants_limit_cannot_be_less_than_current_participants
     if self.participants_limit < self.participants.size
-      errors.add(:participants_limit, I18n.t('activerecord.errors.event.participants_limit.     less_than_current'));
+      errors.add(:participants_limit, I18n.t('activerecord.errors.event.participants_limit.less_than_current'));
     end
   end
 
   def validate_location_detail
-    if location.detail.nil? || location.detail.size == 0
+    if location.nil? || location.detail.nil? || location.detail.size == 0
       errors.add(:location, I18n.t('activerecord.errors.event.location.detail_need'));
     end
   end

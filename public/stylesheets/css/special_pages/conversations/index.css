@@ -1,3 +1,9 @@
+#conversation_inbox .unread {
+  background-color: #e6e6e6;
+  color: #333333 !important; }
+  #conversation_inbox .unread:hover {
+    background-color: white;
+    cursor: pointer; }
 #conversation_inbox .pagination_box {
   width: 326px !important;
   float: left; }
@@ -123,7 +129,7 @@
     .conversation .message_count span {
       position: absolute;
       right: 0px;
-      background-color: #999999;
+      background-color: #8dbc6e;
       color: #eeeeee;
       font-size: 12px;
       font-weight: normal;
