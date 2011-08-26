@@ -24,13 +24,13 @@ class Group < ActiveRecord::Base
                         :message => I18n.t('activerecord.errors.messages.blank')
 
   validates_length_of :name, :maximum => 30
-  validates_length_of :description, :maximum => 1500 
+  validates_length_of :description, :maximum => 3000 
 
 
   has_many :memberships, :dependent => :destroy
 
   has_many :events, :dependent => :destroy, 
-                    :conditions => ["events.status = ?", 2]
+                    :conditions => ["events.status = ?", Event::PASSED]
   has_many :invitees_plus_members, :through => :memberships, :source => :person
 
   has_many :members, :through => :memberships,  :source => :person,
