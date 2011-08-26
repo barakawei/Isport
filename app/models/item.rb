@@ -15,8 +15,8 @@ class Item < ActiveRecord::Base
   belongs_to :category
   attr_accessor :selected
 
-  def initialize
-    super
+  def initialize(hash={})
+    super(hash)
     self.selected = false
   end
 
