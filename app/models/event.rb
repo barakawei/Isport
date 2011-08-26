@@ -56,8 +56,12 @@ class Event < ActiveRecord::Base
   scope :on_date, lambda {|date| where("start_at >= ? and start_at <= ?", date.beginning_of_day, date.end_of_day )}
   scope :alltime, lambda { select("*") }
   scope :at_city, lambda {|city| includes("location").where(:locations => {:city_id => city}) }
-  scope :filter_by_location_and_item, lambda  {|filter| includes("location").where(filter)}
+  scope :at_district, lambda {|district_id| includes("location").where(:locations => {:district_id => district_id}) }
   scope :not_full,  lambda { where("participants_count < participants_limit") }
+  scope :pass_audit, lambda { where("status = ? ", Event::PASSED ) }  
+  scope :to_be_audit, lambda { where("status = ? ", Event::BEING_REVIEWED) }  
+  scope :audit_failed, lambda { where("status = ? ", Event::DENIED) } 
+  scope :canceled, lambda { where("status = ? ", Event::CANCELED_BY_EVENT_ADMIN) } 
 
 
   def self.update_avatar_urls(params,url_params)
@@ -67,9 +71,9 @@ class Event < ActiveRecord::Base
 
   def self.interested_event(city, person)
     item_ids = person.interests.collect {|i| i.id}
-    events = Event.in_items(item_ids).week.at_city(city).not_started.not_full.order('start_at')
-    events = Event.in_items(item_ids).month.at_city(city).not_started.not_full.order('start_at') unless events.size > 0
-    events = Event.in_items(item_ids).next_month.at_city(city).not_started.not_full.order('start_at') unless events.size > 0
+    events = Event.in_items(item_ids).week.at_city(city).not_started.not_full.order('start_at').limit(6)
+    events = Event.in_items(item_ids).month.at_city(city).not_started.not_full.order('start_at').limit(6) unless events.size > 0
+    events = Event.in_items(item_ids).next_month.at_city(city).not_started.not_full.order('start_at').limit(6) unless events.size > 0
     events
   end
 
@@ -108,9 +112,6 @@ class Event < ActiveRecord::Base
     self.start_at > Time.now
   end
 
-  def dispatch_event(action,user=self.person.user)
-    Dispatch.new(user, self,action).notify_user
-  end
 
   def self.total_event_count
     total_count = Event.count
@@ -124,6 +125,10 @@ class Event < ActiveRecord::Base
       count_array << 0
     end
     count_array.reverse!
+  end
+
+  def dispatch_event(action,user=self.person.user)
+    Dispatch.new(user, self,action).notify_user
   end
 
   def subscribers(user,action=false)
@@ -178,16 +183,20 @@ class Event < ActiveRecord::Base
   end
 
   def self.filter_event(conditions)
-    filter_hash = {}
-    filter_hash[:subject_id] = conditions[:subject_id] unless conditions[:subject_id].nil?
-    conditions.delete(:subject_id) 
-    time = conditions.delete(:time)
-    filter_hash[:locations] = conditions
-    if time.nil?
-      filter_by_location_and_item(filter_hash)
-    else
-      filter_by_location_and_item(filter_hash).filter_event_by_time(time)
-    end 
+    time = conditions[:time]
+    city = conditions[:city]
+    district = conditions[:district_id]
+    subject = conditions[:suject_id]
+    
+    if district && subject 
+      at_city(city).at_district(district).of_item(subject).filter_event_by_time(time)
+    elsif district.nil? && !subject.nil?
+      at_city(city).of_item(subject).filter_event_by_time(time)
+    elsif !district.nil? && subject.nil?
+      at_city(city).at_district(district).filter_event_by_time(time)
+    else 
+      at_city(city).filter_event_by_time(time)
+    end
   end
 
   def self.filter_event_by_time(time)
