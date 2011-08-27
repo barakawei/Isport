@@ -23,7 +23,7 @@ module NotificationsHelper
       elsif note.target_type == 'TopicComment'
         topic_comment = note.target.commentable
         comment_link =  "<a href='#{object_path(topic_comment)}'>#{t( 'message' )}</a>"
-        translation(target_type, :actor_link => actor_link,:comment_link => comment_link
+        translation(target_type, :actor_link => actor_link,:comment_link => comment_link)
       end
     else 
       translation(target_type, :actor_link => actor_link)

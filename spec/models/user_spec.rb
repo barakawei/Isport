@@ -129,26 +129,71 @@ describe User do
     end
     it 'can follow person without contact' do
       contact = @user1.share_with( @user2.person )
-      @user1.contacts.count.should == 1
+      @user1.contacts.size.should == 1
       @user1.contacts.first.should == contact
       @user1.contacts.first.person.should == @user2.person
       @user1.contacts.first.receiving.should be_true
       @user1.contacts.first.sharing.should be_false
+      @user1.followed_people.size.should == 1
+      @user1.followed_people.first.should == @user2.person
+      @user1.befollowed_people.size.should == 0
+      @user2.followed_people.size.should == 0 
+      @user2.befollowed_people.size.should == 1
+      @user2.befollowed_people.first.should == @user1.person
     end
 
     it 'can follow person with contact' do
-      contact = Factory.build(:contact,:user=>@user1,:person => @user2.person,:receiving =>false,:sharing=>false)
-      contact.save!
-      contact_updated = @user1.share_with( @user2.person )
-      contact_updated.sharing.should == contact.sharing
-      contact_updated.receiving.should be_true
-      @user1.contacts.count.should == 1
-      @user1.contacts.first.id.should == contact.id
-      @profile1.name.should == @profile2.name
-
+      contact1 = Factory.build(:contact,:user=>@user1,:person => @user2.person,:receiving =>false,:sharing=>true)
+      contact2 = Factory.build(:contact,:user=>@user2,:person => @user1.person,:receiving =>true,:sharing=>false)
+      contact1.save!
+      contact2.save!
+      @user1.share_with( @user2.person )
+      contact1.reload.receiving.should be_true
+      contact2.reload.sharing.should be_true
+      @user1.followed_people.size.should == 1
+      @user1.followed_people.first.should == @user2.person
+      @user1.befollowed_people.size.should == 1
+      @user1.befollowed_people.first.should == @user2.person
+      @user2.followed_people.size.should == 1
+      @user2.followed_people.first.should == @user1.person
+      @user2.befollowed_people.size.should == 1
+      @user2.befollowed_people.first.should == @user1.person
 
     end
   end
 
+  describe '#remove_person' do
+    before do
+      @user1 = Factory.build(:user,:email=>'123@123.com')
+      @user2 = Factory.build(:user,:email=>'234@234.com')
+      @user1.save!
+      @user2.save!
+    end
+    
+    it 'can remove person with single contact' do
+      contact1 = Factory.build(:contact,:user=>@user1,:person => @user2.person,:receiving =>true,:sharing =>false)
+      contact2 = Factory.build(:contact,:user=>@user2,:person => @user1.person,:receiving =>false,:sharing=>true)
+      contact1.save!
+      contact2.save!
+      @user1.remove_person( @user2.person )
+      Contact.where( :id => contact1.id ).should be_empty
+      Contact.where( :id => contact2.id ).should be_empty
+      
+    end
+
+    it 'can remove person with mutual contact' do
+      contact1 = Factory.build(:contact,:user=>@user1,:person => @user2.person,:receiving =>true,:sharing =>true)
+      contact2 = Factory.build(:contact,:user=>@user2,:person => @user1.person,:receiving =>true,:sharing=>true)
+      contact1.save!
+      contact2.save!
+      @user1.remove_person( @user2.person )
+      contact1.reload.should_not be_nil
+      contact2.reload.should_not be_nil
+      @user1.followed_people.should be_empty
+      @user1.befollowed_people.first.should == @user2.person
+      @user2.befollowed_people.should be_empty
+      @user2.followed_people.first.should == @user1.person
+    end
+  end
 
 end

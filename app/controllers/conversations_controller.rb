@@ -35,7 +35,6 @@ class ConversationsController < ApplicationController
     person_ids = params[ :person_ids].split( ',' )
     params[:conversation][:participant_ids] = person_ids | [current_user.person.id]
     params[:conversation][:person] = current_user.person
-    puts params[ :conversation ]
 
     if @conversation = Conversation.create(params[:conversation])
       if params[:profile]
