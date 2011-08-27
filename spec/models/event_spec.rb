@@ -104,7 +104,7 @@ describe Event do
       event.errors[:title][0].should == I18n.t('activerecord.errors.messages.too_long', :count => 30)
     end
     it "event description should less then 800 characters" do
-      event.errors[:description][0].should == I18n.t('activerecord.errors.messages.too_long', :count => 2000)
+      event.errors[:description][0].should == I18n.t('activerecord.errors.messages.too_long', :count => 3000)
     end
   end
 

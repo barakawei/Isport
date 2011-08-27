@@ -17,7 +17,7 @@ class Event < ActiveRecord::Base
   validates_presence_of :title, :start_at, :description, :subject_id, :participants_limit, :location, 
                         :message => I18n.t('activerecord.errors.messages.blank')
   validates_length_of :title, :maximum => 30
-  validates_length_of :description, :maximum => 2000
+  validates_length_of :description, :maximum => 3000
   validates_numericality_of :participants_limit, :only_integer => true,
                             :greater_than => PARTICIPANTS_LIMIT_MIN,
                             :less_than_or_equal_to => PARTICIPANTS_LIMIT_MAX
