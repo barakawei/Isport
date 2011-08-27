@@ -11,12 +11,14 @@ class Person < ActiveRecord::Base
   has_many :topic_comments, :class_name => 'topic_comment'
 
   has_many :involvements, :dependent => :destroy
-  has_many :involved_events, :through => :involvements, :source => :event
+  has_many :involved_events, :through => :involvements, :source => :event,
+                          :conditions => ['involvements.is_pending = ?', false]
 
   has_many :audit_events, :foreign_key => "audit_person_id", :class_name => 'Event' 
   has_many :audit_groups, :foreign_key => "audit_person_id", :class_name => 'Group' 
   has_many :memberships, :dependent => :destroy
-  has_many :joined_groups, :through => :memberships, :source => :group
+  has_many :joined_groups, :through => :memberships, :source => :group,
+                        :conditions => ['memberships.pending = ? ', false]
 
   has_many :favorites, :dependent => :destroy
   has_many :interests, :through => :favorites, :source => :item

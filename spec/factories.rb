@@ -61,3 +61,44 @@ Factory.define(:notification) do |n|
   end
 end
 
+Factory.define(:group) do |g|
+  g.sequence(:name) {|n| "group#{n}#{r_str}"}
+  g.sequence(:description) {|n| "this is a group with name group#{n}#{r_str}"}
+  g.item_id 1
+  g.city_id 1
+  g.district_id 1
+  g.join_mode 1
+end
+
+Factory.define(:item) do |i|
+  i.sequence(:name) {|n| "item#{n}#{r_str}"} 
+  i.sequence(:description) {|n| "this is a group with name group#{n}#{r_str}"}
+  i.category_id 1
+end
+
+Factory.define(:city) do |c|
+  c.sequence(:name) {|n| "city#{n}#{r_str}"} 
+end
+
+
+Factory.define(:location) do |l|
+  l.city_id 1
+  l.district_id 1
+  l.detail "xinjiekou"
+end
+
+Factory.define(:event) do |e|
+  e.sequence(:title) {|n| "event#{n}#{r_str}"} 
+  e.sequence(:description) {|n| "this is a event with name event#{n}#{r_str}"}
+  e.start_at Time.now + 3600
+  e.end_at Time.now + 7200
+  e.subject_id 1
+  e.after_build do |event|
+    event.location = Factory.build(:location)
+  end
+
+  e.after_create do |event|
+    event.location.save
+  end
+end
+
