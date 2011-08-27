@@ -8,6 +8,10 @@ class Event < ActiveRecord::Base
   PASSED = 2
   CANCELED_BY_EVENT_ADMIN = 3
 
+  after_save :update_owner_counter
+  after_destroy :update_owner_counter
+  after_update :update_owner_counter
+
   attr_accessor :same_day, :current_year,:invited_people
 
   validates_presence_of :title, :start_at, :description, :subject_id, :participants_limit, :location, 
@@ -39,8 +43,6 @@ class Event < ActiveRecord::Base
   has_many :references, :through => :recommendations, :source => :person
   has_many :comments, :class_name => "EventComment", :as => :commentable, :dependent => :destroy
   has_many :commentors, :through => :comments, :source => :person
-
-
 
   scope :not_started, lambda { where("start_at > ?", Time.now) }
   scope :on_going, lambda { where("start_at <= ? and end_at >= ?", Time.now, Time.now) }
