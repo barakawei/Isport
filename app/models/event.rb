@@ -240,7 +240,7 @@ class Event < ActiveRecord::Base
   end
 
   def update_owner_counter
-    if self.subject_id_was
+    if self.subject_id_was && self.subject_id_was != self.subject_id
       i = Item.find(self.subject_id_was)
       i.events_count = i.events.count
       i.save
@@ -249,7 +249,7 @@ class Event < ActiveRecord::Base
     self.item.save
   
     if self.group
-      if self.group_id_was 
+      if self.group_id_was && self.group_id_was != self.group_id
         g = Group.find(self.group_id_was)
         g.events_count = g.events.count
         g.group_was.save
