@@ -21,9 +21,17 @@ module NotificationsHelper
         event_link =  "<a href='#{object_path(event)}'>#{event.title}</a>"
         translation(target_type, :actor_link => actor_link,:event_link => event_link)
       elsif note.target_type == 'TopicComment'
-        topic_comment = note.target.commentable
-        comment_link =  "<a href='#{object_path(topic_comment)}'>#{t( 'message' )}</a>"
-        translation(target_type, :actor_link => actor_link,:comment_link => comment_link)
+        topic = note.target.commentable.commentable
+        group = topic.forum.discussable
+        group_link =  "<a href='#{object_path(group)}'>#{group.name}</a>"
+        comment_link =  "<a href='#{group_topic_path(group,topic)}'>#{t( 'comment' )}</a>"
+        translation(target_type, :actor_link => actor_link,:comment_link => comment_link,:group_link =>group_link )
+      elsif note.target_type == 'EventComment'
+        event = note.target.commentable.commentable
+        comment =  note.target.commentable
+        event_link =  "<a href='#{object_path(event)}'>#{event.title}</a>"
+        comment_link =  "<a href='#{object_path(event)}'>#{t( 'comment' )}</a>"
+        translation(target_type, :actor_link => actor_link,:comment_link => comment_link,:event_link =>event_link )
       end
     else 
       translation(target_type, :actor_link => actor_link)
