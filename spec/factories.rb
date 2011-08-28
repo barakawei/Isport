@@ -73,7 +73,7 @@ end
 
 Factory.define(:item) do |i|
   i.sequence(:name) {|n| "item#{n}#{r_str}"} 
-  i.sequence(:description) {|n| "this is a group with name group#{n}#{r_str}"}
+  i.sequence(:description) {|n| "this is a item with item group#{n}#{r_str}"}
   i.category_id 1
 end
 

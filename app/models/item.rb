@@ -74,23 +74,27 @@ class Item < ActiveRecord::Base
     items = [  ]
 
     if city == nil
-      items = self.joins(:events).where(:events => {:start_at => (Time.now.beginning_of_week)..(Time.now.end_of_week)})
+      items = self.joins(:events).
+        where(:events => {:start_at => (Time.now.beginning_of_week)..(Time.now.next_week.end_of_week), :status => 2})
         .group(:subject_id).order("count(subject_id) DESC").limit(size)
 
       if items.length < size
-        items = self.joins(:events).where(:events => {:start_at => (Time.now.beginning_of_month)..(Time.now.end_of_month)})
+        items = self.joins(:events).
+          where(:events => {:start_at => (Time.now.beginning_of_month)..(Time.now.next_month.end_of_month), :status => 2})
           .group(:subject_id).order("count(subject_id) DESC").limit(size)
       end
     else
       items = self.joins(:events, :events => :location)
-        .where(:events => {:start_at => (Time.now.beginning_of_week)..(Time.now.end_of_week),
-                           :locations => {:city_id => city.id}})
+        .where(:events => {:start_at => (Time.now.beginning_of_week)..(Time.now.next_week.end_of_week),
+                           :locations => {:city_id => city.id},
+                           :status => 2})
         .group(:subject_id).order("count(subject_id) DESC").limit(size)
 
       if items.length < size
         items = self.joins(:events, :events => :location)
-         .where(:events => {:start_at => (Time.now.beginning_of_month)..(Time.now.end_of_month), 
-                            :locations => {:city_id => city.id}})
+         .where(:events => {:start_at => (Time.now.beginning_of_month)..(Time.now.next_month.end_of_month), 
+                            :locations => {:city_id => city.id},
+                            :status => 2})
          .group(:subject_id).order("count(subject_id) DESC").limit(size)
       end
     end
