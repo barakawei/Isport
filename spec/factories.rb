@@ -71,6 +71,11 @@ Factory.define(:group) do |g|
   g.join_mode 1
 end
 
+Factory.define(:membership) do |m|
+  m.person_id 1
+  m.group_id 1
+end
+
 Factory.define(:item) do |i|
   i.sequence(:name) {|n| "item#{n}#{r_str}"} 
   i.sequence(:description) {|n| "this is a group with name group#{n}#{r_str}"}
