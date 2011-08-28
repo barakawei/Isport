@@ -8,7 +8,11 @@ class Event < ActiveRecord::Base
   PASSED = 2
   CANCELED_BY_EVENT_ADMIN = 3
 
-  attr_accessor :same_day, :current_year,:invited_people
+  after_save :update_owner_counter
+  after_destroy :update_owner_counter
+  after_update :update_owner_counter
+
+  attr_accessor :same_day, :current_year,:invited_people, :event_id_before_update
 
   validates_presence_of :title, :start_at, :description, :subject_id, :participants_limit, :location, 
                         :message => I18n.t('activerecord.errors.messages.blank')

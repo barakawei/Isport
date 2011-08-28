@@ -5,7 +5,8 @@ class Group < ActiveRecord::Base
 
   after_save :update_owner_counter
   after_destroy :update_owner_counter
-  after_update :update_owner_counter
+  after_update :update_owner_counter_by_item_id
+  before_update :set_item_id_before_update
 
   belongs_to :item
   BEING_REVIEWED = 0
@@ -209,6 +210,20 @@ class Group < ActiveRecord::Base
   end
 
   def update_owner_counter
+    self.item.groups_count = self.item.groups.count
+    self.item.save
+  end
+
+  def set_item_id_before_update
+    @item_id_before_update = self.item_id
+  end
+
+  def update_owner_counter_by_item_id
+    unless @item_id_before_update == self.item_id
+      i = Item.find(@item_id_before_update)
+      i.groups_count = i.groups.count
+      i.save
+    end
     self.item.groups_count = self.item.groups.count
     self.item.save
   end

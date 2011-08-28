@@ -3,7 +3,9 @@ class AddParticipantsCountAndFansCountAndCommentsCount < ActiveRecord::Migration
     add_column :events, :participants_count, :integer, :default => 0
     add_column :events, :comments_count, :integer, :default => 0
     add_column :events, :fans_count, :integer, :default => 0
+    
 
+    Event.reset_column_information
     Event.all.each {|e| e.update_attributes(:participants_count => e.participants.count,
                                              :comments_count => e.comments.count,
                                              :fans_count => e.recommendations.count)}
