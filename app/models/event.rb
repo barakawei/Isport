@@ -12,7 +12,7 @@ class Event < ActiveRecord::Base
   after_destroy :update_owner_counter
   after_update :update_owner_counter
 
-  attr_accessor :same_day, :current_year,:invited_people
+  attr_accessor :same_day, :current_year,:invited_people, :event_id_before_update
 
   validates_presence_of :title, :start_at, :description, :subject_id, :participants_limit, :location, 
                         :message => I18n.t('activerecord.errors.messages.blank')
@@ -240,10 +240,20 @@ class Event < ActiveRecord::Base
   end
 
   def update_owner_counter
+    if self.subject_id_was
+      i = Item.find(self.subject_id_was)
+      i.events_count = i.events.count
+      i.save
+    end
     self.item.events_count = self.item.events.count
     self.item.save
   
     if self.group
+      if self.group_id_was 
+        g = Group.find(self.group_id_was)
+        g.events_count = g.events.count
+        g.group_was.save
+      end
       self.group.events_count = self.group.events.count
       self.group.save
     end
