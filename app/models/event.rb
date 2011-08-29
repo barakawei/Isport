@@ -44,8 +44,6 @@ class Event < ActiveRecord::Base
   has_many :comments, :class_name => "EventComment", :as => :commentable, :dependent => :destroy
   has_many :commentors, :through => :comments, :source => :person
 
-
-
   scope :not_started, lambda { where("start_at > ?", Time.now) }
   scope :on_going, lambda { where("start_at <= ? and end_at >= ?", Time.now, Time.now) }
   scope :over, lambda {where("end_at < ?", Time.now)}
@@ -242,10 +240,20 @@ class Event < ActiveRecord::Base
   end
 
   def update_owner_counter
+    if self.subject_id_was && self.subject_id_was != self.subject_id
+      i = Item.find(self.subject_id_was)
+      i.events_count = i.events.count
+      i.save
+    end
     self.item.events_count = self.item.events.count
     self.item.save
   
     if self.group
+      if self.group_id_was && self.group_id_was != self.group_id
+        g = Group.find(self.group_id_was)
+        g.events_count = g.events.count
+        g.group_was.save
+      end
       self.group.events_count = self.group.events.count
       self.group.save
     end

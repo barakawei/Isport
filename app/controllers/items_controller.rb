@@ -99,7 +99,7 @@ class ItemsController < ApplicationController
   def delete
     @item = Item.find(params[:id])
 
-    if @item.events.size == 0
+    if @item.events.size == 0 && @item.groups.size == 0
       @item.destroy
       redirect_to(items_url)
     else
@@ -108,24 +108,24 @@ class ItemsController < ApplicationController
   end
 
   def add_fan
-    Item.add_fan(params[:id], current_user)
+    Item.add_fan(params[:id], current_user.person)
 
     redirect_to(item_url(@item))
   end
 
   def remove_fan
-    Item.remove_fan(params[:id], current_user)
+    Item.remove_fan(params[:id], current_user.person)
 
     redirect_to(item_url(@item))
   end
 
   def add_fan_ajax
-    Item.add_fan(params[:id], current_user) if params[:id]
+    Item.add_fan(params[:id], current_useri.person) if params[:id]
     render :nothing => true
   end
 
   def remove_fan_ajax
-    Item.remove_fan(params[:id], current_user)if params[:id]
+    Item.remove_fan(params[:id], current_user.person)if params[:id]
     render :nothing => true
   end
 end
