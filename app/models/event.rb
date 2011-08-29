@@ -250,9 +250,12 @@ class Event < ActiveRecord::Base
   
     if self.group
       if self.group_id_was && self.group_id_was != self.group_id
-        g = Group.find(self.group_id_was)
-        g.events_count = g.events.count
-        g.group_was.save
+        begin
+          g = Group.find(self.group_id_was)
+          g.events_count = g.events.count
+          g.group_was.save
+        rescue Exception
+        end
       end
       self.group.events_count = self.group.events.count
       self.group.save
