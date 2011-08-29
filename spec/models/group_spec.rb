@@ -74,18 +74,17 @@ describe Group do
     before do
       @group = Factory.build(:group)
       @city = Factory.build(:city, :id => 1)
-      @item = Factory.create(:item)
     end
     
     it 'test scope at_city' do 
       @group.city_id = @city.id 
-      @group.item_id = @item.id
       @group.save
       Group.at_city(@city).should include(@group)
     end 
 
     it 'test scope of_item' do
-      @group.item_id = @item.id
+      @item = Factory.create(:item)
+      @group.item = @item
       @group.save
       Group.of_item(@item).should include(@group)
     end
@@ -93,11 +92,11 @@ describe Group do
 
   context 'test has_many relationships' do
     before do
-      @item = Factory.create(:item)
-      @group = Factory.create(:group, :item_id => @item.id)
+      @group = Factory.create(:group)
     end
     it '#events' do
-      @events = Factory.create_list(:event, 5, :group_id => @group.id, :item_id => @item.id)
+      @item = Factory.create(:item)
+      @events = FactoryGirl.create_list(:event, 5, :group_id => @group.id, :subject_id => @item.id)
       @group.events.size.should == 0 
       @passed_event = @events[0]
       @passed_event.update_attributes(:status => Event::PASSED)
@@ -106,12 +105,42 @@ describe Group do
     end
 
     it '#members' do
-      @people= Factory.create_list(:person, 5)
-      @people.each do |p|
-        Factory.create(:membership, :person_id => p.id, :group_id => @group.id)
-      end
+      @group.reload
+      @group.members.size.should == @group.members.count 
+    end
+
+    it '#invitees' do
+      p = @group.members.first
+      @group.memberships.first.update_attributes(:pending => 'true', :pending_type => Group::JOIN_BY_INVITATION_FROM_ADMIM)
+      @group.reload
+      p.reload
       @group.members.size.should == 0
-      
+      @group.invitees.should include(p)
+    end
+
+    it '#applicants' do
+      p = @group.members.first
+      @group.memberships.first.update_attributes(:pending => 'true', :pending_type => Group::JOIN_AFTER_AUTHENTICATAION)
+      @group.reload
+      p.reload
+      @group.members.size.should == 0
+      @group.applicants.should include(p)
+    end
+
+    it '#deletable_members' do
+      p = @group.members.first
+      @group.memberships.first.update_attributes(:pending => false, :is_admin=> false)
+      p.reload
+      @group.reload
+      @group.deletable_members.should include(p)
+    end
+
+    it '#admins' do
+      p = @group.members.first
+      @group.memberships.first.update_attributes(:is_admin => true)
+      @group.reload
+      p.reload
+      @group.admins.should include(p)
     end
   end
 end

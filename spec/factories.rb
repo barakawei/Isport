@@ -69,6 +69,14 @@ Factory.define(:group) do |g|
   g.city_id 1
   g.district_id 1
   g.join_mode 1
+
+  g.after_build do  |group|
+    group.item = Factory.build(:item)
+  end
+
+  g.after_create do |group|
+    group.members << Factory.create(:person) 
+  end
 end
 
 Factory.define(:membership) do |m|
