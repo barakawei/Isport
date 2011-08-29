@@ -76,14 +76,13 @@ class Group < ActiveRecord::Base
   def self.interested_groups(city,person)
     groups  = []
     person.interests.each do |item|
-      groups += Group.where(:item_id => item.id, :city_id => city.id).limit(4)
+      groups += Group.where(:item_id => item.id, :city_id => city.id).order('members_count desc').limit(6)
     end
     groups
   end
 
   def self.hot_group_by_item(city, item)
-     groups = Group.includes(:events).joins(:memberships).where('city_id = ? and  item_id = ? and memberships.pending = ?', city.id, item.id, false)
-            .group(:group_id).order('count(group_id) desc').limit(5)
+    Group.of_item(item).at_city(city).order('members_count desc').limit(5)
   end
 
   def need_invitation_from_admin
@@ -135,14 +134,19 @@ class Group < ActiveRecord::Base
   end
 
   def add_member(person)
-    membership =  Membership.where(:person_id => person.id, 
+    mship =  Membership.where(:person_id => person.id, 
                                :group_id => self.id,
                                :pending => true, :pending_type => JOIN_BY_INVITATION_FROM_ADMIM) 
-    if  membership.size > 0
-      membership.first.update_attributes(:pending => false)
-    elsif need_authenticate
-      Membership.create(:person_id => person.id, :group_id => self.id,
-                        :pending => true, :pending_type=>JOIN_AFTER_AUTHENTICATAION ) 
+    if  mship.size > 0
+      mship.first.update_attributes(:pending => false)
+    elsif need_authenticate 
+      m = memberships.where(:person_id => person.id)
+      if m.size > 0
+        m.first.update_attributes(:pending => false) 
+      else
+        Membership.create(:person_id => person.id, :group_id => self.id,
+                          :pending => true, :pending_type=>JOIN_AFTER_AUTHENTICATAION ) 
+      end
     else
       Membership.create(:person_id => person.id, 
                         :group_id => self.id)
@@ -151,12 +155,12 @@ class Group < ActiveRecord::Base
 
 
   def delete_member(person)
-    Membership.destroy_all(:group_id => id, :person_id => person.id)
+    memberships.destroy_all(:person_id => person.id)
   end
 
   def is_admin(person)
-    Membership.where(:person_id => person.id, 
-                     :group_id => self.id, :is_admin => true).count > 0
+    .where(:person_id => person.id, 
+                     :is_admin => true).count > 0
   end
 
   def dispatch_group(action,user=self.person.user)
@@ -191,12 +195,11 @@ class Group < ActiveRecord::Base
 
   def is_owner(user)
     if user
-      return user.person.id == person_id
+      return !user.nil && user.person.id == person_id
     else
       false
     end
   end
-
 
 
   private
