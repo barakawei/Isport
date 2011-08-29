@@ -114,7 +114,6 @@ describe Group do
       @group.memberships.first.update_attributes(:pending => 'true', :pending_type => Group::JOIN_BY_INVITATION_FROM_ADMIM)
       @group.reload
       p.reload
-      @group.members.size.should == 0
       @group.invitees.should include(p)
     end
 
@@ -123,7 +122,6 @@ describe Group do
       @group.memberships.first.update_attributes(:pending => 'true', :pending_type => Group::JOIN_AFTER_AUTHENTICATAION)
       @group.reload
       p.reload
-      @group.members.size.should == 0
       @group.applicants.should include(p)
     end
 
@@ -141,6 +139,113 @@ describe Group do
       @group.reload
       p.reload
       @group.admins.should include(p)
+    end
+  end
+
+  describe '.interested_groups' do
+    before do
+      @city = Factory.create(:city) 
+      @groups = FactoryGirl.create_list(:group, 20, :city_id => @city.id)
+      @items = Item.all
+      @person= Factory.create(:person)
+      @person.interests += @items[0..10]
+    end
+
+    it 'get interested group' do
+      i_groups = Group.interested_groups(@city, @person)
+      i_groups.each_with_index do |g, index|
+        @person.interests.should include(g.item) 
+        if index < i_groups.length - 1
+          g.members.size.should >= i_groups[index+1].members.size
+        end
+        g.city.should == @city
+      end 
+    end
+  end
+
+  describe '.hot_group_by_item' do
+    before do
+      @city = Factory.create(:city) 
+      @items = []
+      [1..4].each do
+        @item = Factory.create(:item)
+        @items << @item
+        FactoryGirl.create_list(:group, 5, :city_id => @city.id, :item_id => @item.id)
+      end
+    end
+
+    it 'find hot group by item' do
+      item = @items.first
+      hot_groups = Group.hot_group_by_item(@city, item) 
+      hot_groups.each_with_index do |g, index|
+        g.item.should == item
+        g.city.should == @city
+        if index < hot_groups.length - 1
+          g.members.size > hot_groups[index+1].members.size
+        end
+      end
+    end
+  end
+
+  describe '.joinable?' do
+    context 'when group join_mode with different valudes' do
+      before do
+        @group = Factory.create(:group)
+        @person  = Factory.create(:person)
+      end
+
+      it 'group join mode is JOIN_FREE' do
+        @group.update_attributes(:join_mode => Group::JOIN_FREE)
+        @group.joinable?(@person).should == true 
+        @group.members << @person
+        @group.joinable?(@person).should == false 
+      end
+
+      it 'group join mode is JOIN_AFTER_AUTHENTICATAION' do
+        @group.update_attributes(:join_mode => Group::JOIN_AFTER_AUTHENTICATAION)
+        @group.joinable?(@person).should == true 
+        @group.members << @person
+        @group.joinable?(@person).should == false 
+        @m_ship = @group.memberships.find_by_person_id(@person.id)
+        @m_ship.update_attributes(:pending => true)
+        @group.joinable?(@person).should == false 
+        @m_ship.update_attributes(:pending_type => Group::JOIN_BY_INVITATION_FROM_ADMIM)
+        @group.joinable?(@person).should == true 
+      end 
+
+      it 'group join mode is JOIN_BY_INVITATION_FROM_ADMIM' do
+        @group.update_attributes(:join_mode => Group::JOIN_BY_INVITATION_FROM_ADMIM)
+        @group.joinable?(@person).should == false
+        @group.members << @person
+        @m_ship = @group.memberships.find_by_person_id(@person.id)
+        @m_ship.update_attributes(:pending => true)
+        @group.joinable?(@person).should == true 
+      end
+    end
+ end
+
+  describe '#add_member' do
+    context 'when group join_mode with different valudes' do
+      before do
+        @group = Factory.create(:group)
+        @person = Factory.create(:person)
+      end
+
+      it 'when join_mode is JOIN_AFTER_AUTHENTICATAION' do
+        @group.update_attributes(:join_mode => Group::JOIN_AFTER_AUTHENTICATAION)
+        @group.add_member(@person)
+        @group.applicants.should include @person
+        @group.add_member(@person)
+        @group.reload
+        @group.members.should include @person
+      end
+
+      it 'when join_mode is JOIN_FREE' do
+        @group.update_attributes(:join_mode => Group::JOIN_FREE)
+        @group.add_member(@person)
+        @group.reload
+        @group.members.should include @person
+      end
     end
   end
 end
