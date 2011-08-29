@@ -214,7 +214,7 @@ class Group < ActiveRecord::Base
         i = Item.find(self.item_id_was)
         i.groups_count = i.groups.count
         i.save
-        rescue Exception
+      rescue Exception
       end
     end 
     self.item.groups_count = self.item.groups.count
