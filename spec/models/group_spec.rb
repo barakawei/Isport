@@ -106,6 +106,12 @@ describe Group do
     end
 
     it '#members' do
+      @people= Factory.create_list(:person, 5)
+      @people.each do |p|
+        Factory.create(:membership, :person_id => p.id, :group_id => @group.id)
+      end
+      @group.members.size.should == 0
+      
     end
   end
 end
