@@ -128,5 +128,5 @@ describe Item do
       items[0].should == @item1
     end      
   end
-
 end
+
