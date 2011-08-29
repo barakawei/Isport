@@ -8,11 +8,9 @@ class ConversationsController < ApplicationController
 
   def index
     @conversations = Conversation.joins(:conversation_visibilities).where(
-      :conversation_visibilities => {:person_id => current_user.person.id}).paginate(
-      :page => params[:page], :per_page => 10, :order => 'updated_at DESC')
+      :conversation_visibilities => {:person_id => current_user.person.id})
 
-    @visibilities = ConversationVisibility.where(:person_id => current_user.person.id).paginate(
-      :page => params[:page], :per_page => 10, :order => 'updated_at DESC')
+    @visibilities = ConversationVisibility.where(:person_id => current_user.person.id)
 
     @unread_counts = {}
     @visibilities.each { |v| @unread_counts[v.conversation_id] = v.unread }
@@ -27,6 +25,9 @@ class ConversationsController < ApplicationController
         @visibility.save
       end
     end 
+    if @conversation
+      @messages = @conversation.messages.paginate(:page => params[:message_page], :per_page => 50)
+    end
     @unread_message_count = ConversationVisibility.sum(:unread, :conditions => "person_id = #{current_user.person.id}")
     @select_tab = 'conversation'
   end
@@ -51,6 +52,7 @@ class ConversationsController < ApplicationController
         @visibility.unread = 0
         @visibility.save
       end
+
       render :layout => false
     else
       redirect_to conversations_path
