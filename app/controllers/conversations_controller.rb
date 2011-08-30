@@ -8,11 +8,9 @@ class ConversationsController < ApplicationController
 
   def index
     @conversations = Conversation.joins(:conversation_visibilities).where(
-      :conversation_visibilities => {:person_id => current_user.person.id}).paginate(
-      :page => params[:page], :per_page => 5, :order => 'created_at DESC')
+      :conversation_visibilities => {:person_id => current_user.person.id}).order('updated_at DESC')
 
-    @visibilities = ConversationVisibility.where(:person_id => current_user.person.id).paginate(
-      :page => params[:page], :per_page => 5, :order => 'updated_at DESC')
+    @visibilities = ConversationVisibility.where(:person_id => current_user.person.id)
 
     @unread_counts = {}
     @visibilities.each { |v| @unread_counts[v.conversation_id] = v.unread }
@@ -27,18 +25,17 @@ class ConversationsController < ApplicationController
         @visibility.save
       end
     end 
+    if @conversation
+      @messages = @conversation.messages.paginate(:page => params[:message_page], :per_page => 50)
+    end
     @unread_message_count = ConversationVisibility.sum(:unread, :conditions => "person_id = #{current_user.person.id}")
     @select_tab = 'conversation'
   end
 
   def create
-    person_ids = Contact.where(:id => params[:contact_ids].split(',')).map! do |contact|
-      contact.person_id
-    end
-
+    person_ids = params[ :person_ids].split( ',' )
     params[:conversation][:participant_ids] = person_ids | [current_user.person.id]
     params[:conversation][:person] = current_user.person
-    puts params[ :conversation ]
 
     if @conversation = Conversation.create(params[:conversation])
       if params[:profile]
@@ -55,6 +52,7 @@ class ConversationsController < ApplicationController
         @visibility.unread = 0
         @visibility.save
       end
+
       render :layout => false
     else
       redirect_to conversations_path
@@ -62,14 +60,26 @@ class ConversationsController < ApplicationController
   end
 
   def new
-    all_contacts_and_ids = Contact.connection.execute(current_user.contacts.joins(:person => :profile).select("contacts.id, profiles.name,profiles.image_url_small").to_sql).map do |r|
-      {:value => r[0],
+    people_hash ={}
+    Contact.connection.execute(current_user.contacts.joins(:person => :profile).select("people.id, profiles.name,profiles.image_url_small").to_sql).each do |r|
+      people_hash[r[0]] = {:value => r[0],
        :name => r[1].gsub(/(")/, "'"),
-       :url => (r[2].nil?) ? '/images/user/default_small.png':r[2]
+       :url => (r[2].nil?) ? '/images/user/default_small.png':r[2],
+       :filled => false
       }
     end
-    @contacts_json = all_contacts_and_ids.to_json.gsub!(/(")/, '\\"')
-    @contact = current_user.contacts.find(params[:contact_id]) if params[:contact_id]
+    person_hash={  }
+    Person.connection.execute(Person.joins(:profile).select("people.id, profiles.name,profiles.image_url_small").where(:id => params[:person_ids]).to_sql).each do |r|
+      person_hash[r[0]]= {:value => r[0],
+       :name => r[1].gsub(/(")/, "'"),
+       :url => (r[2].nil?) ? '/images/user/default_small.png':r[2],
+       :filled => true
+      }
+    end
+    people_hash.merge!( person_hash )
+    people_array = [  ]
+    people_hash.each_value {|value| people_array.push( value )  } 
+    @people_json = people_array.to_json.gsub!(/(")/, '\\"')
     render :layout => false
   end
   

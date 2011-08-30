@@ -3,6 +3,16 @@
 
 = render 'nav'
 .span-23.content_area
+  .span-20
+    .search_line
+      .filter_title
+        %strong=link_to '过滤', 'javascript:void(0)'
+      .filter_items
+        = link_to '未审核', manage_groups_path(:status => 'to_be_audit'), :class => ('current' if @status == 'to_be_audit') 
+        = link_to '已通过', manage_groups_path(:status => 'pass_audit'), :class => ('current' if @status == 'pass_audit')  
+        = link_to '未通过', manage_groups_path(:status => 'audit_failed'), :class => ('current' if @status == 'audit_failed')   
+        = link_to '全部', manage_groups_path(:status => 'all') , :class => ('current' if @status == 'all')  
+    
   - @groups.each do |g|
     .span-21.content_block{:group_id => g.id}
       .avatar
@@ -96,6 +106,8 @@
         deny_group($(this));
         return false;
       });
+      $('.content_block[group_id="' + id +'"]').fadeOut();
+      refresh_count();
     });
   }
 
@@ -122,6 +134,8 @@
         pass_group($(this));
         return false;
       });
+      $('.content_block[group_id="' + id +'"]').fadeOut();
+      refresh_count();
     } else {
       alert('error');
     }
@@ -133,6 +147,7 @@
       $('.content_block[group_id="' + id +'"]').fadeOut('slow', function() {
         $(this).remove();
       });
+      refresh_count();
     }
     return false;
   }
@@ -167,7 +182,8 @@
       $('ul li span.count').fadeIn(3000);
       if (parseInt(data) > 0) {
         sound.Play();
+      } else {
+        sound.Stop();
       }
     });
   }
-

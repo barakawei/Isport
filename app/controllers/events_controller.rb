@@ -48,6 +48,7 @@ class EventsController < ApplicationController
               :link_content => I18n.t('events.other_events'), :path => events_path}
     end
     @participants = @event.participants_top(LIMIT)
+    @par_ids = @event.participants.map{ |p|p.id }
     @references = @event.references_top(LIMIT)
     @current_person = current_user ? current_user.person : nil
     @comments = []
@@ -60,6 +61,10 @@ class EventsController < ApplicationController
   end
 
   def map
+    @event = Event.find(params[:id])
+  end
+
+  def home_map
     @event = Event.find(params[:id])
   end
 
@@ -111,6 +116,7 @@ class EventsController < ApplicationController
     @event.person = @current_person 
     if @event.save
       Involvement.create(:event_id => @event.id, :person_id => @current_person)
+      @event.recommendations.create(:person_id => @current_person)
       redirect_to new_event_invite_path(@event)
     else
       @step = 1

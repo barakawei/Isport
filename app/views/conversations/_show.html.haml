@@ -1,17 +1,20 @@
 -content_for :head do
   = include_stylesheets :special_pages_topic_comments, :media => 'all'
+  :css
+    .header{
+      position: fixed  
+    }
 .last
   .conversation_participants
-    .span-9
+    .title
       %h3
         -if conversation.subject == ""
           = "无主题"
         -else
           = conversation.subject
 
-      .conversation_controls
-        = link_to  '回复', '#new_message'
-        = link_to '删除', conversation_visibility_path(conversation), :method => 'delete',:confirm => "确定删除吗？"
+      .conversation_controls.right
+        = link_to image_tag( '/images/ui/delete_icon.png' ), conversation_visibility_path(conversation), :method => 'delete',:confirm => "确定删除吗？"
 
     .avatars
       - for participant in conversation.participants
@@ -20,14 +23,17 @@
 
   %br
 .span-16.last
-  .stream
-    = render :partial => 'messages/message', :collection => conversation.messages
-
+  .stream.conversation_message
+    = render :partial => 'messages/message', :collection => messages
+    .pagination_box
+      = will_paginate messages,:param_name => 'message_page'
     .new_comment
       = person_image_link(current_user.person,:thumb_small)
 
       .content
         = form_for  [conversation, Message.new] do |message|
+          -if  params[ :page ] && params[:page] != ''
+            = hidden_field_tag :page, params[:page]
           = message.text_area :text, :rows => 5
           .right
             = message.submit '回复', :class => 'post_button'
@@ -48,4 +54,9 @@
     });
   });
 
+  if( "#{@conversation.id}" !="" ){
+      $( "##{@conversation.id}" ).removeClass( "unread" ).addClass( "selected" ); 
+      $( "##{@conversation.id} .unread_message_count" ).addClass( "hide ");
+    }
+    jQuery("abbr.timeago").timeago();
 

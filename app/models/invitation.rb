@@ -19,7 +19,7 @@ class Invitation < ActiveRecord::Base
       # Check whether or not the existing User has already been invited;
       # and if so, start sharing with the Person.
       elsif not existing_user.invited?
-        opts[:from].share_with(existing_user.person, opts[:into])
+        opts[:from].share_with(existing_user.person)
         return
 
       # If the sender has already invited the recipient, raise an error.

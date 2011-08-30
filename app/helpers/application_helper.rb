@@ -28,6 +28,10 @@ module ApplicationHelper
     timeago(obj.created_at)
   end
 
+  def how_long_ago_conversation(obj)
+    timeago(obj.updated_at)
+  end
+
   def object_path( object )
     return "" if object.nil?
     object = object.person if object.instance_of? User

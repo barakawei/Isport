@@ -1,15 +1,18 @@
 class SiteAdminController < ApplicationController
   before_filter :is_admin
   def feedbacks_admin
-    @feedbacks = Feedback.paginate :page => params[:page], :per_page => 15, :order => 'created_at desc' 
+    @status = params[:status].nil? ? 'not_processed' : params[:status]
+    @feedbacks = Feedback.send(@status).paginate :page => params[:page], :per_page => 15, :order => 'created_at desc' 
   end
 
   def events_admin
-    @events =  Event.paginate :page => params[:page], :per_page => 15, :order => 'created_at desc' 
+    @status = params[:status].nil? ? 'to_be_audit' : params[:status]
+    @events =  Event.send(@status).paginate :page => params[:page], :per_page => 15, :order => 'created_at desc' 
   end
 
   def groups_admin
-    @groups=  Group.paginate :page => params[:page], :per_page => 15, :order => 'created_at desc' 
+    @status = params[:status].nil? ? 'to_be_audit' : params[:status]
+    @groups=  Group.send(@status).paginate :page => params[:page], :per_page => 15, :order => 'created_at desc' 
   end
 
   def get_events_count_ajax
@@ -34,6 +37,7 @@ class SiteAdminController < ApplicationController
   def pass_event
     event = Event.find(params[:event_id])
     event.update_attributes(:status => Event::PASSED)
+    
     render :partial => 'event_audit_block', :locals => {:e => event}
   end
 

@@ -11,7 +11,7 @@ $( function(){
     var person_id = img.attr( "data_person_id" );
     var url = img.attr( "src" ).replace("small","medium");
     $.post( "/contacts/show_avatar_panel",{ person_id:person_id },function( result ){
-      person = result.person[ 0 ].person;
+      person = result.person.person;
       myself = result.myself;
       var contact;
       if (result.contact.length > 0){

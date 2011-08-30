@@ -1,5 +1,4 @@
 class Contact < ActiveRecord::Base
-  default_scope where(:pending => false)
   belongs_to :user
   belongs_to :person
   has_many :post_visibilities

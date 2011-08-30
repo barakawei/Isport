@@ -1,5 +1,9 @@
 -content_for :head do
   = include_javascripts :jquery_validation
+  :css
+    .header{
+      position: fixed  
+    }
 #left_pane.span-7
   #left_pane_header
     #new_conversation.right
@@ -11,9 +15,7 @@
   #conversation_inbox
     - if @conversations.count > 0
       .stream.conversations
-        = render :partial => 'conversations/conversation', :collection => @conversations, :locals => {:authors => @authors, :unread_counts => @unread_counts,:selected_id => ((@conversation.id) if @conversation)}
-      .pagination_box
-        = will_paginate @conversations
+        = render :partial => 'conversations/conversation', :collection => @conversations, :locals => {:authors => @authors, :unread_counts => @unread_counts}
     - else
       %br
       %br
@@ -24,10 +26,11 @@
           = '没有信息'
 #conversation_show
   - if @conversation
-    = render 'conversations/show', :conversation => @conversation
+    = render 'conversations/show', :conversation => @conversation,:messages => @messages
   - else
     #no_conversation_text
       = link_to "发送新信息",new_conversation_path,:class=>"new_message_action" 
       
 :javascript 
   $(".new_message_action").colorbox();
+  jQuery("abbr.timeago").timeago();

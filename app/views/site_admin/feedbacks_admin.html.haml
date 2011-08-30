@@ -3,6 +3,13 @@
 
 = render 'nav'
 .span-23.content_area
+  .span-20
+    .search_line
+      .filter_title
+        %strong=link_to '过滤', 'javascript:void(0)'
+      .filter_items
+        = link_to '未处理', manage_feedbacks_path(:status => 'not_processed'), :class => ('current' if @status == 'not_processed') 
+        = link_to '已处理', manage_feedbacks_path(:status => 'processed'), :class => ('current' if @status == 'processed')  
   - @feedbacks.each do |f|
     .span-21.content_block
       .avatar

@@ -1,6 +1,10 @@
 class Item < ActiveRecord::Base
   validates :name, :presence => true
+  validates_uniqueness_of :name
+  
   validates :description, :presence => true
+  validates_length_of :description, :maximum => 200
+
   validates :category_id, :presence => true
 
   has_many :favorites, :dependent => :destroy
@@ -15,8 +19,8 @@ class Item < ActiveRecord::Base
   belongs_to :category
   attr_accessor :selected
 
-  def initialize
-    super
+  def initialize(hash={})
+    super(hash)
     self.selected = false
   end
 
@@ -70,23 +74,27 @@ class Item < ActiveRecord::Base
     items = [  ]
 
     if city == nil
-      items = self.joins(:events).where(:events => {:start_at => (Time.now.beginning_of_week)..(Time.now.end_of_week)})
+      items = self.joins(:events).
+        where(:events => {:start_at => (Time.now.beginning_of_week)..(Time.now.next_week.end_of_week), :status => 2})
         .group(:subject_id).order("count(subject_id) DESC").limit(size)
 
       if items.length < size
-        items = self.joins(:events).where(:events => {:start_at => (Time.now.beginning_of_month)..(Time.now.end_of_month)})
+        items = self.joins(:events).
+          where(:events => {:start_at => (Time.now.beginning_of_month)..(Time.now.next_month.end_of_month), :status => 2})
           .group(:subject_id).order("count(subject_id) DESC").limit(size)
       end
     else
       items = self.joins(:events, :events => :location)
-        .where(:events => {:start_at => (Time.now.beginning_of_week)..(Time.now.end_of_week),
-                           :locations => {:city_id => city.id}})
+        .where(:events => {:start_at => (Time.now.beginning_of_week)..(Time.now.next_week.end_of_week),
+                           :locations => {:city_id => city.id},
+                           :status => 2})
         .group(:subject_id).order("count(subject_id) DESC").limit(size)
 
       if items.length < size
         items = self.joins(:events, :events => :location)
-         .where(:events => {:start_at => (Time.now.beginning_of_month)..(Time.now.end_of_month), 
-                            :locations => {:city_id => city.id}})
+         .where(:events => {:start_at => (Time.now.beginning_of_month)..(Time.now.next_month.end_of_month), 
+                            :locations => {:city_id => city.id},
+                            :status => 2})
          .group(:subject_id).order("count(subject_id) DESC").limit(size)
       end
     end
@@ -135,13 +143,13 @@ class Item < ActiveRecord::Base
     return items_array
   end
 
-  def self.add_fan(item_id, user)
-    favorite = Favorite.new(:item_id => item_id, :person_id => user.person.id)
+  def self.add_fan(item_id, person)
+    favorite = Favorite.new(:item_id => item_id, :person_id => person.id)
     favorite.save
   end
 
-  def self.remove_fan(item_id, user)
-    Favorite.destroy_all(:item_id => item_id, :person_id => user.person.id)
+  def self.remove_fan(item_id, person)
+    Favorite.destroy_all(:item_id => item_id, :person_id => person.id)
   end
 
   def random_people(city, limit_num, except)
@@ -177,17 +185,17 @@ class Item < ActiveRecord::Base
   end
 
   def hot_stars(limited)
-    Person.joins(:involved_events, :interests)
-          .where(:events => {:subject_id => self.id}, :items => {:id => self.id}, 
-                 :involvements => {:is_pending => false})
-          .group("involvements.person_id").order("count(event_id) DESC").limit(limited).includes(:profile)
+    self.fans.joins(:involved_events)
+                 .where(:events => {:subject_id => self.id}, :involvements => {:is_pending => false})
+                 .group("involvements.person_id").order("count(event_id) DESC").limit(limited).includes(:profile)
+
   end
 
   def hot_events(limited, city) 
-    events = Event.week.not_started.at_city(city).of_item(self.id).not_full.order('start_at').limit(limited)
-    events = Event.month.not_started.at_city(city).of_item(self.id).not_full.order('start_at').limit(limited) unless events.size > limited
-    events = Event.week.at_city(city).of_item(self.id).not_full.order('start_at').limit(limited) unless events.size > limited
-    events = Event.month.at_city(city).of_item(self.id).not_full.order('start_at').limit(limited) unless events.size > limited
+    events = self.events.week.not_started.at_city(city.id).not_full.order('start_at').limit(limited)
+    events = self.events.month.not_started.at_city(city.id).not_full.order('start_at').limit(limited) unless events.length == limited
+    events = self.events.week.at_city(city.id).not_full.order('start_at').limit(limited) unless events.length == limited
+    events = self.events.month.at_city(city.id).not_full.order('start_at').limit(limited) unless events.length == limited
 
     return events
   end

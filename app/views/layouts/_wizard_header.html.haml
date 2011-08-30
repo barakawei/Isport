@@ -1,6 +1,6 @@
 .span-24
   %span.logo
-    %h2= t('Isport')
+    = image_tag( '/images/ui/logo.png' )
   .events_count.span-8.last.right
     - if params[:controller] == 'devise/sessions' && params[:action] == 'new' 
       -if !AppConfig[:registrations_closed]

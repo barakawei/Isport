@@ -12,4 +12,5 @@ redis-server-script.sh
 nginx.sh
 nginx.conf
 Isport.sh
+tags
 

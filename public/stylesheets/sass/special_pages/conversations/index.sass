@@ -1,8 +1,24 @@
 @import '../../general/ui/mixins'
 $blue: #5787B3
 #conversation_inbox
+  .unread
+    :background-color #E6E6E6
+    :color #333 !important
+    &:hover
+      :background-color white
+      :cursor pointer
+    
   .pagination_box
     :width 326px !important
+    :float left
+    .pagination
+      :margin 0
+      :padding  5px 
+      :text-align center
+
+.conversation_message
+  :margin-top 150px
+  .pagination_box
     :float left
     .pagination
       :margin 0
@@ -56,12 +72,16 @@ $blue: #5787B3
 #left_pane
   :border 3px solid #d5ddde
   :float left
+  :margin-top 60px
   width: 320px
+  position: fixed  
 
     
 #left_pane_header
-  :background-color #e9eef1
-  padding: 10px
+  :border-bottom 3px solid #d5ddde
+  :background-color white
+  height: 36px
+  padding: 20px
   h3
     line-height: 25px
     font-weight: bold
@@ -70,7 +90,8 @@ $blue: #5787B3
 
 #conversation_inbox
   background-color: #F3F3F3
-  height: 100%
+  height: 450px
+  overflow-y: auto
 
 #no_conversation_text
   color: #CCCCCC
@@ -132,27 +153,30 @@ $blue: #5787B3
     span
       :position absolute
       :right 0px
-      background-color: #999999
+      background-color: #8dbc6e
       color: #EEEEEE
       font-size: 12px
       font-weight: normal
       padding: 0 5px
       @include border-radius( 5px )
     
-.avatars
-  margin-top: 9px
-  text-align: right
 
 .conversation_participants
   background-color: #FCFCFC
   border: 3px solid #D5DDDE
-  margin-top: 0px
-  padding: 20px 20px 10px
+  padding: 20px 20px 2px
+  h3
+    word-break: normal
+    :margin 0
+    :font-size 14px
   :width 554px
   .avatar
+    :margin-top 5px
     width: 30px
     height: 30px
   z-index: 3
+  position: fixed  
+  :margin-top 60px
 #conversation_show
   .new_comment
     textarea

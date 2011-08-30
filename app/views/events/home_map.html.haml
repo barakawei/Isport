@@ -1,0 +1,21 @@
+=content_for :head do
+  = include_javascripts :google_map
+  =javascript_include_tag "http://maps.google.com/maps/api/js?sensor=false"
+:css
+  .header{display:none;} 
+  .span-24{ width: auto }
+  .container{ width: auto }
+.map
+  .absolute{ :style =>"position:absolute;left:20px;top:0;font-size:18px;color:#546266" }
+    = '活动“' + @event.title + '的地图'
+  #map-big{ :style =>"margin-left:20px;width:655px;height:300px" }
+
+:javascript
+  $(function() {
+    var address = "#{@event.location}";
+    codeAddress("map-big", address, 16);
+  });
+
+
+  
+
