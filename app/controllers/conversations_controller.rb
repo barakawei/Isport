@@ -8,7 +8,7 @@ class ConversationsController < ApplicationController
 
   def index
     @conversations = Conversation.joins(:conversation_visibilities).where(
-      :conversation_visibilities => {:person_id => current_user.person.id})
+      :conversation_visibilities => {:person_id => current_user.person.id}).order('updated_at DESC')
 
     @visibilities = ConversationVisibility.where(:person_id => current_user.person.id)
 
