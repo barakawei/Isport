@@ -33,25 +33,13 @@ class User < ActiveRecord::Base
     self
   end
 
-  def send_contact_request_to(desired_contact,message)
-        contact = Contact.new(:person => desired_contact,
-                              :user => self,
-                              :pending => true)
-        if contact.save!
-          request = contact.dispatch_request( message )
-          request
-        else
-          nil
-        end
-  end
-
   def contact_for(person)
         return nil unless person
         contact_for_person_id(person.id)
   end
 
   def contact_for_person_id(person_id)
-        Contact.unscoped.where(:user_id => self.id, :person_id => person_id).first if person_id
+        Contact.where(:user_id => self.id, :person_id => person_id).first if person_id
   end 
 
   def update_profile(params)
@@ -67,16 +55,44 @@ class User < ActiveRecord::Base
       false
     end
   end
-
-  def share_with( person )
-    contact = self.contacts.find_or_initialize_by_person_id(person.id)
-    unless contact.receiving?
-      contact.receiving = true
-    end
-    contact.save
-    contact
-  end
   
+  def share_with( person )
+    begin
+      contact_user = self.contacts.find_or_initialize_by_person_id(person.id)
+      unless contact_user.receiving?
+        contact_user.receiving = true
+      end
+      contact_user.save
+      contact_person = person.user.contacts.find_or_initialize_by_person_id(self.person.id)
+      unless contact_person.sharing?
+        contact_person.sharing= true
+      end
+      contact_person.save
+    end
+    contact_user
+  end
+
+  def remove_person( person ) 
+    begin
+      contact_user = self.contacts.where( :person_id => person.id ).first
+      if contact_user && contact_user.receiving == true
+        if !contact_user.mutual?
+          contact_user.destroy
+        else
+          contact_user.update_attributes(:receiving => false)
+        end
+        contact_person = Contact.where( :user_id =>person.user.id , :person_id => self.person.id).first
+        if contact_person
+          if !contact_person.mutual?
+            contact_person.destroy
+          else
+            contact_person.update_attributes(:sharing => false)
+          end
+        end 
+      end 
+    end
+  end
+
   def joined
     person.involved_events
   end

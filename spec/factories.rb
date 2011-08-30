@@ -53,7 +53,6 @@ Factory.define(:photo) do |p|
   end
 end
 
-
 Factory.define(:notification) do |n|
   n.association :recipient, :factory => :user
   n.association :target, :factory => :comment

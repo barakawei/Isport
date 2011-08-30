@@ -7,9 +7,7 @@ class Conversation < ActiveRecord::Base
   def self.create(opts={})
     opts = opts.dup
     msg_opts = {:person => opts[:person], :text => opts.delete(:text)}
-
     cnv = super(opts)
-    puts opts
     message = Message.new(msg_opts.merge({:conversation_id => cnv.id}))
     message.save
     cnv

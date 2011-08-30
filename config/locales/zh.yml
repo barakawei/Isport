@@ -26,6 +26,7 @@ zh:
   password_confirmation: "密码确认"
   back: "返回"
   message: "信息"
+  comment: "回复"
   follow: "关注"
   following: "已关注"
   pagination:
@@ -77,6 +78,8 @@ zh:
     invite_group: "%{actor_link} 邀请你参加小组 %{group_link}"
     recommendation_event: "%{actor_link} 推荐了活动 %{event_link}"
     status_comment: "%{actor_link} 评论了你的%{post_link}"
+    topic_comment: "%{actor_link} 在%{group_link}小组中评论了你的%{comment_link}"
+    event_comment: "%{actor_link} 在%{event_link}活动中评论了你的%{comment_link}"
 
   status_message:
     show_more_comments: "%{number}条旧的评论"
