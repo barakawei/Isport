@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Person:
+  = @site_post.person_id
+%p
+  %b Title:
+  = @site_post.title
+%p
+  %b Content:
+  = @site_post.content
+
+= link_to 'Edit', edit_site_post_path(@site_post)
+\|
+= link_to 'Back', site_posts_path

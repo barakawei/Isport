@@ -1,0 +1,23 @@
+- content_for :head do
+  = include_stylesheets :sepcial_pages_site_posts_index, :media => 'all'
+
+.span-24.blog_title
+  %h2.name='玩出态度,  活出自我' 
+  %h3.des='爱玩乐，不爱加班，爱运动，也爱和瓷器们轰趴到天亮，我不是工作狂，我是玩客。'
+
+
+.post_list
+  - @site_posts.each do |post|
+    .post_block
+      .date
+        %p
+          %span.day=post.created_at.day
+          =post.created_at.month.to_s + '/' + post.created_at.year.to_s
+      .content
+        %h2=post.title
+        =simple_format post.content
+      .info
+        = link_to '详细', site_post_path(post)
+    
+  = will_paginate @site_posts, {:previous_label => '上一页',
+                               :next_label => '下一页', :page_links => false}
