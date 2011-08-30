@@ -120,7 +120,7 @@ class ItemsController < ApplicationController
   end
 
   def add_fan_ajax
-    Item.add_fan(params[:id], current_useri.person) if params[:id]
+    Item.add_fan(params[:id], current_user.person) if params[:id]
     render :nothing => true
   end
 

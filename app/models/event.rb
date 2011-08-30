@@ -64,6 +64,8 @@ class Event < ActiveRecord::Base
   scope :to_be_audit, lambda { where("status = ? ", Event::BEING_REVIEWED) }  
   scope :audit_failed, lambda { where("status = ? ", Event::DENIED) } 
   scope :canceled, lambda { where("status = ? ", Event::CANCELED_BY_EVENT_ADMIN) } 
+  scope :all, lambda { select("*") }
+  scope :open, lambda { where("is_private = ?", false)}
 
 
   def self.update_avatar_urls(params,url_params)
@@ -73,10 +75,14 @@ class Event < ActiveRecord::Base
 
   def self.interested_event(city, person)
     item_ids = person.interests.collect {|i| i.id}
-    events = Event.in_items(item_ids).week.at_city(city).not_started.not_full.order('start_at').limit(6)
-    events = Event.in_items(item_ids).month.at_city(city).not_started.not_full.order('start_at').limit(6) unless events.size > 0
-    events = Event.in_items(item_ids).next_month.at_city(city).not_started.not_full.order('start_at').limit(6) unless events.size > 0
+    events = Event.in_items(item_ids).week.at_city(city).not_started.not_full.visable.order('start_at').limit(6)
+    events = Event.in_items(item_ids).month.at_city(city).not_started.not_full.visable.order('start_at').limit(6) unless events.size > 0
+    events = Event.in_items(item_ids).next_month.at_city(city).not_started.not_full.visable.order('start_at').limit(6) unless events.size > 0
     events
+  end
+  
+  def self.visable
+    open.pass_audit 
   end
 
   def image_url(size = :thumb_large)
@@ -186,7 +192,7 @@ class Event < ActiveRecord::Base
 
   def self.filter_event(conditions)
     time = conditions[:time]
-    city = conditions[:city]
+    city = conditions[:city_id]
     district = conditions[:district_id]
     subject = conditions[:suject_id]
     

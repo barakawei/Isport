@@ -95,7 +95,8 @@
     .header .events_count strong {
       font-size: 13px;
       width: 82px;
-      display: block; }
+      display: block;
+      margin-left: 6px; }
     .header .events_count span.number {
       display: block;
       float: left;

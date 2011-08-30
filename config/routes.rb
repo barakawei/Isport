@@ -81,9 +81,12 @@ Isport::Application.routes.draw do
     match '/site_admin/deny_group' => :deny_group, :as => 'deny_group', :via => :post
     match '/site_admin/pass_group' => :pass_group, :as => 'pass_group', :via => :post
     match '/site_admin/delete_group' => :delete_group, :as => 'delete_group', :via => :post
-    match '/site_admin/manage_feedbacks' => :feedbacks_admin, :as => 'manage_feedbacks', :via => :get
-    match '/site_admin/manage_events' => :events_admin, :as => 'manage_events', :via => :get
-    match '/site_admin/manage_groups' => :groups_admin, :as => 'manage_groups', :via => :get
+    match '/site_admin/manage_feedbacks(/:status)' => :feedbacks_admin, :as => 'manage_feedbacks', :via => :get,
+          :constraints => { :status=> /processed|not_processed/}
+    match '/site_admin/manage_events(/:status)' => :events_admin, :as => 'manage_events', :via => :get,
+          :constraints => { :status=> /all|to_be_audit|pass_audit|audit_failed/}
+    match '/site_admin/manage_groups(/:status)' => :groups_admin, :as => 'manage_groups', :via => :get,
+          :constraints => { :status=> /all|to_be_audit|pass_audit|audit_failed/}
     match '/site_admin/events_count' => :get_events_count_ajax, :as => 'events_count'
     match '/site_admin/groups_count' => :get_groups_count_ajax, :as => 'groups_count'
   end

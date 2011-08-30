@@ -30,7 +30,7 @@ class Group < ActiveRecord::Base
   has_many :memberships, :dependent => :destroy
 
   has_many :events, :dependent => :destroy, 
-                    :conditions => ["events.status = ?", Event::PASSED]
+                    :conditions => ["events.status = ?", Group::PASSED]
   has_many :invitees_plus_members, :through => :memberships, :source => :person
 
   has_many :members, :through => :memberships,  :source => :person,
@@ -54,6 +54,12 @@ class Group < ActiveRecord::Base
   scope :at_city, lambda {|city| where(:city_id => city.id) }
   scope :filter_group, lambda  {|search_hash| where(search_hash)}
   scope :of_item, lambda  {|item_id| where(:item_id => item_id)}
+  scope :pass_audit, lambda { where("status = ? ", Group::PASSED ) }  
+  scope :to_be_audit, lambda { where("status = ? ", Group::BEING_REVIEWED) }  
+  scope :audit_failed, lambda { where("status = ? ", Group::DENIED) } 
+  scope :canceled, lambda { where("status = ? ", Group::CANCELED_BY_EVENT_ADMIN) } 
+  scope :all, lambda { select("*") }
+
   
 
 
@@ -159,7 +165,7 @@ class Group < ActiveRecord::Base
   end
 
   def is_admin(person)
-    .where(:person_id => person.id, 
+    memberships.where(:person_id => person.id, 
                      :is_admin => true).count > 0
   end
 
