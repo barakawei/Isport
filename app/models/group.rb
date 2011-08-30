@@ -159,7 +159,7 @@ class Group < ActiveRecord::Base
   end
 
   def is_admin(person)
-    .where(:person_id => person.id, 
+    memberships.where(:person_id => person.id, 
                      :is_admin => true).count > 0
   end
 
