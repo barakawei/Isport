@@ -10,7 +10,7 @@
       - if fans.size > 0
         .span-22
           .span-15 
-            = render 'common/header_box', :title => item.name, :blue => true
+            = render 'common/header_box', :title => item.name, :blue => true,:white_angle => true
           .span-7.last
             = link_to '换一换', 'javascript:void(0)', :class => 'refresh', :item_id => item.id
         .item_fans{:item_id => item.id}
