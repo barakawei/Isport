@@ -213,9 +213,12 @@ class Group < ActiveRecord::Base
 
   def update_owner_counter
     if self.item_id_was && self.item_id_was != self.item_id
-      i = Item.find(self.item_id_was)
-      i.groups_count = i.groups.count
-      i.save
+      begin
+        i = Item.find(self.item_id_was)
+        i.groups_count = i.groups.count
+        i.save
+      rescue Exception
+      end
     end 
     self.item.groups_count = self.item.groups.count
     self.item.save
