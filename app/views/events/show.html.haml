@@ -54,7 +54,7 @@
       =render 'common/big_header_box', :number => @event.comments_count, :background_color => '#4ebaff', :text => '评论'
       - if @event.status == Event::PASSED 
         .operations.right
-          - if current_user
+          - if current_user && !@event.is_owner(current_user) 
             - if !is_reference_of(@event)
               =link_to(url_for(:controller => "event_recommendations",:action => "add_reference",:id => @event.id)) do
                 .join_button.glass_button.like
@@ -63,7 +63,7 @@
               =link_to(url_for(:controller => "event_recommendations",:action => "remove_reference",:id => @event.id)) do
                 .join_button.glass_button.quit.like
                   ='取消喜欢'
-          - if @event.is_owner( current_user ) 
+          - if @event.is_owner(current_user) 
             .message_box
               = link_to(new_conversation_path(:person_ids => @par_ids),:class=>"new_message_action") do
                 .glass_button
@@ -126,10 +126,8 @@
       
 :javascript
   $(function() {
-    $.getScript("http://maps.google.com/maps/api/js?sensor=false", function() {
-      var address = "#{@event.location}";
-      codeAddress("map", address, 'map_div');
-    });
+    var address = "#{@event.location}";
+    codeAddress("map", address, 'map_div');
 
     var _w = 32 , _h = 32;
     var param = {

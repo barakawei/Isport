@@ -130,3 +130,30 @@ ul.nav {
     #colorbox .box_content form .submit input {
       width: 60px;
       height: 30px; }
+
+.search_line {
+  float: left;
+  margin-bottom: 20px;
+  border: 1px solid #d5ddde; }
+  .search_line .filter_title {
+    float: left;
+    padding: 5px;
+    background: none repeat scroll 0 0 #d4d4d4;
+    width: 40px;
+    font-size: 13px;
+    text-align: center; }
+    .search_line .filter_title a {
+      color: white; }
+      .search_line .filter_title a:hover {
+        text-decoration: none; }
+  .search_line .filter_items {
+    float: left;
+    padding: 5px;
+    margin-left: 10px; }
+    .search_line .filter_items a {
+      font-size: 13px;
+      color: #56656c;
+      margin-right: 5px;
+      display: inline-block; }
+    .search_line .filter_items a.current {
+      color: #a10000; }

@@ -58,7 +58,6 @@ stylesheets:
     - public/stylesheets/css/plugins/fileuploader.css
     - public/stylesheets/css/general/headings/header.css
     - public/stylesheets/css/general/footer/footer.css
-    - public/stylesheets/css/special_pages/home/index.css
     - public/stylesheets/css/special_pages/devise_sessions/new.css
     - public/javascripts/jquery-ui-1.8.16/css/pepper-grinder/jquery-ui-1.8.16.custom.css
     - public/stylesheets/css/plugins/colorbox.css
@@ -159,4 +158,7 @@ stylesheets:
 
   sepcial_pages_site_admin_common:
     - public/stylesheets/css/special_pages/site_admin/common.css
+
+  sepcial_pages_home_index:
+    - public/stylesheets/css/special_pages/home/index.css
  

@@ -3,6 +3,16 @@
 
 = render 'nav'
 .span-23.content_area
+  .span-20
+    .search_line
+      .filter_title
+        %strong=link_to '过滤', 'javascript:void(0)'
+      .filter_items
+        = link_to '未审核', manage_events_path(:status => 'to_be_audit'), :class => ('current' if @status == 'to_be_audit') 
+        = link_to '已通过', manage_events_path(:status => 'pass_audit'), :class => ('current' if @status == 'pass_audit')  
+        = link_to '未通过', manage_events_path(:status => 'audit_failed'), :class => ('current' if @status == 'audit_failed')   
+        = link_to '全部', manage_events_path(:status => 'all') , :class => ('current' if @status == 'all')  
+
   - @events.each do |e|
     .span-21.content_block{:event_id => e.id}
       .avatar
@@ -97,6 +107,8 @@
         deny_event($(this));
         return false;
       });
+      $('.content_block[event_id="' + id +'"]').fadeOut();
+      refresh_count();
     });
   }
 
@@ -144,6 +156,8 @@
         pass_event($(this));
         return false;
       });
+      $('.content_block[event_id="' + id +'"]').fadeOut();
+      refresh_count();
     } else {
       alert('error');
     }
@@ -158,6 +172,8 @@
       $('ul li span.count').fadeIn(3000);
       if (parseInt(data) > 0) {
         sound.Play();
+      } else {
+        sound.Stop();
       }
     });
   }

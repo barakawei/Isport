@@ -36,8 +36,10 @@
       .hot_events .search_line .filter_items a.current {
         color: #4bc5be; }
 
-.events_panel .event_box_panel .event_box, .events_panel .new_event_panel .event_box {
-  margin: 0px 15px 20px 0px; }
+.events_panel {
+  margin-top: 20px; }
+  .events_panel .event_box_panel .event_box, .events_panel .new_event_panel .event_box {
+    margin: 0px 15px 20px 0px; }
 
 #city_select_box {
   position: absolute;
