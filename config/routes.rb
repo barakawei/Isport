@@ -54,6 +54,8 @@ Isport::Application.routes.draw do
     match 'getting_started' => :getting_started, :as => 'getting_started'
     match 'select_interests' => :select_interests, :as => 'select_interests'
     match 'select_interested_people' => :select_interested_people, :as => 'select_interested_people'
+    match 'change_password'=> :change_password, :as => 'change_password'
+    match 'update_password'=> :update_password, :as => 'update_password', :via => :put
   end
 
   match '/users/sign_in' => 'users#sign_in', :as => 'sign_in' 

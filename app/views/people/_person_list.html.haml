@@ -3,9 +3,7 @@
   %h3.push-2
     =@person.name
     .description
-      -if current_user.person.id == @person.id && ( @requests_count == 0 || !@requests_count)
-        = "欢迎回来!"
-
+      = link_to '个人页面', person_path(@person)
   .home_invitation_link
     .link
       = link_to('/friends/invite') do
