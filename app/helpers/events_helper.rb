@@ -1,4 +1,19 @@
 module EventsHelper
+
+  def event_like_button_tag( event )
+    if !is_reference_of(event)
+      button_html="<div class='join_button glass_button like' event_like_id='#{event.id}'><span>"+t('like')+"</span></div>"
+      link_html=link_to({:controller =>"event_recommendations",:action => "add_reference",:id => event.id},:remote => true) do
+        button_html.html_safe
+      end
+    else
+      button_html="<div class='join_button glass_button quit like' event_like_id='#{event.id}'><span>"+t('unlike')+"</span></div>"
+      link_html=link_to({:controller=>"event_recommendations",:action=>"remove_reference",:id => event.id},:remote => true) do
+        button_html.html_safe
+      end
+    end
+  end
+
   def is_reference_of(event)
     unless current_user
       false
