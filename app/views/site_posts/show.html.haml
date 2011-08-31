@@ -1,0 +1,11 @@
+=include_stylesheets :sepcial_pages_site_posts_index, :media => 'all'
+.span-24.blog_title
+  %h2.name
+    =link_to '我是好享玩', site_blog_path
+  %h3.des='爱玩乐，不爱加班，爱运动，也爱和瓷器们轰趴到天亮，我不是工作狂，我和你一样，我是玩客。'
+
+.post_list
+  = render 'post_block', :post => @site_post
+  = link_to '<上一篇', site_blog_show_path(@previous_post.first), :class => 'previous_post' if @previous_post.size > 0
+  = link_to '下一篇>', site_blog_show_path(@next_post.first), :class => 'next_post' if @next_post.size > 0
+
