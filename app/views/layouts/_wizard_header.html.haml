@@ -1,6 +1,8 @@
 .span-24
   %span.logo
     = image_tag( '/images/ui/logo.png' )
+    .beta
+      = '测试版'
   .events_count.span-8.last.right
     - if params[:controller] == 'devise/sessions' && params[:action] == 'new' 
       -if !AppConfig[:registrations_closed]

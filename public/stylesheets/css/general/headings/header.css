@@ -70,11 +70,17 @@
   .header .logo {
     float: left;
     position: relative;
-    padding-top: 3px;
+    padding-top: 12px;
     display: block;
     width: 200px; }
     .header .logo h2 {
       color: #fe905d; }
+    .header .logo .beta {
+      position: absolute;
+      top: 0;
+      left: 140px;
+      color: #dddddd;
+      font-size: 10px; }
   .header .events_count {
     margin-top: 5px;
     color: white; }
