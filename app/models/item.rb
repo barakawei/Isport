@@ -185,17 +185,17 @@ class Item < ActiveRecord::Base
   end
 
   def hot_stars(limited)
-    Person.joins(:involved_events, :interests)
-          .where(:events => {:subject_id => self.id}, :items => {:id => self.id}, 
-                 :involvements => {:is_pending => false})
-          .group("involvements.person_id").order("count(event_id) DESC").limit(limited).includes(:profile)
+    self.fans.joins(:involved_events)
+                 .where(:events => {:subject_id => self.id}, :involvements => {:is_pending => false})
+                 .group("involvements.person_id").order("count(event_id) DESC").limit(limited).includes(:profile)
+
   end
 
   def hot_events(limited, city) 
-    events = Event.week.not_started.at_city(city).of_item(self.id).not_full.order('start_at').limit(limited)
-    events = Event.month.not_started.at_city(city).of_item(self.id).not_full.order('start_at').limit(limited) unless events.size > limited
-    events = Event.week.at_city(city).of_item(self.id).not_full.order('start_at').limit(limited) unless events.size > limited
-    events = Event.month.at_city(city).of_item(self.id).not_full.order('start_at').limit(limited) unless events.size > limited
+    events = self.events.week.not_started.at_city(city.id).not_full.order('start_at').limit(limited)
+    events = self.events.month.not_started.at_city(city.id).not_full.order('start_at').limit(limited) unless events.length == limited
+    events = self.events.week.at_city(city.id).not_full.order('start_at').limit(limited) unless events.length == limited
+    events = self.events.month.at_city(city.id).not_full.order('start_at').limit(limited) unless events.length == limited
 
     return events
   end
