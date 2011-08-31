@@ -10,6 +10,6 @@ class Membership < ActiveRecord::Base
 
   def update_owner_counter
     self.group.members_count = self.group.members.count
-    self.save
+    self.group.save
   end
 end

@@ -13,6 +13,10 @@
       -if params[:action] == 'groups_admin'
         %span.count= Group.where(:status => Group::BEING_REVIEWED).count
         %span.desc='未审核' 
+      -if params[:action] == 'feedbacks_admin'
+        %span.count= Feedback.not_processed.count
+        %span.desc='未处理' 
+
   %embed{:src=>"/sound/beep.wav",:autostart=>"false", :width=>1, :height=>1, :id=>"sound1", :enablejavascript=>"true"}
   
 

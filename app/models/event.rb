@@ -44,8 +44,6 @@ class Event < ActiveRecord::Base
   has_many :comments, :class_name => "EventComment", :as => :commentable, :dependent => :destroy
   has_many :commentors, :through => :comments, :source => :person
 
-
-
   scope :not_started, lambda { where("start_at > ?", Time.now) }
   scope :on_going, lambda { where("start_at <= ? and end_at >= ?", Time.now, Time.now) }
   scope :over, lambda {where("end_at < ?", Time.now)}
@@ -66,6 +64,8 @@ class Event < ActiveRecord::Base
   scope :to_be_audit, lambda { where("status = ? ", Event::BEING_REVIEWED) }  
   scope :audit_failed, lambda { where("status = ? ", Event::DENIED) } 
   scope :canceled, lambda { where("status = ? ", Event::CANCELED_BY_EVENT_ADMIN) } 
+  scope :all, lambda { select("*") }
+  scope :open, lambda { where("is_private = ?", false)}
 
 
   def self.update_avatar_urls(params,url_params)
@@ -75,10 +75,14 @@ class Event < ActiveRecord::Base
 
   def self.interested_event(city, person)
     item_ids = person.interests.collect {|i| i.id}
-    events = Event.in_items(item_ids).week.at_city(city).not_started.not_full.order('start_at').limit(6)
-    events = Event.in_items(item_ids).month.at_city(city).not_started.not_full.order('start_at').limit(6) unless events.size > 0
-    events = Event.in_items(item_ids).next_month.at_city(city).not_started.not_full.order('start_at').limit(6) unless events.size > 0
+    events = Event.in_items(item_ids).week.at_city(city).not_started.not_full.visable.order('start_at').limit(6)
+    events = Event.in_items(item_ids).month.at_city(city).not_started.not_full.visable.order('start_at').limit(6) unless events.size > 0
+    events = Event.in_items(item_ids).next_month.at_city(city).not_started.not_full.visable.order('start_at').limit(6) unless events.size > 0
     events
+  end
+  
+  def self.visable
+    open.pass_audit 
   end
 
   def image_url(size = :thumb_large)
@@ -188,7 +192,7 @@ class Event < ActiveRecord::Base
 
   def self.filter_event(conditions)
     time = conditions[:time]
-    city = conditions[:city]
+    city = conditions[:city_id]
     district = conditions[:district_id]
     subject = conditions[:suject_id]
     
@@ -242,10 +246,26 @@ class Event < ActiveRecord::Base
   end
 
   def update_owner_counter
+    if self.subject_id_was && self.subject_id_was != self.subject_id
+      begin
+        i = Item.find(self.subject_id_was)
+        i.events_count = i.events.count
+        i.save
+      rescue Exception
+      end
+    end
     self.item.events_count = self.item.events.count
     self.item.save
   
     if self.group
+      if self.group_id_was && self.group_id_was != self.group_id
+        begin
+          g = Group.find(self.group_id_was)
+          g.events_count = g.events.count
+          g.save
+        rescue Exception
+        end
+      end
       self.group.events_count = self.group.events.count
       self.group.save
     end

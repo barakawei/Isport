@@ -64,10 +64,18 @@ end
 Factory.define(:group) do |g|
   g.sequence(:name) {|n| "group#{n}#{r_str}"}
   g.sequence(:description) {|n| "this is a group with name group#{n}#{r_str}"}
-  g.item_id 1
   g.city_id 1
   g.district_id 1
   g.join_mode 1
+  g.item_id 1
+
+  g.after_build do |group|
+    group.item = Factory.build(:item)
+  end
+  g.after_create do |group|
+    group.members  =  FactoryGirl.create_list(:person, 5) 
+    group.item.save
+  end
 end
 
 Factory.define(:membership) do |m|
@@ -77,7 +85,7 @@ end
 
 Factory.define(:item) do |i|
   i.sequence(:name) {|n| "item#{n}#{r_str}"} 
-  i.sequence(:description) {|n| "this is a group with name group#{n}#{r_str}"}
+  i.sequence(:description) {|n| "this is a item with item group#{n}#{r_str}"}
   i.category_id 1
 end
 
