@@ -29,7 +29,6 @@ class Person < ActiveRecord::Base
            :source => :event
    
   has_one :profile
-  scope :searchable, joins(:profile) 
   scope :friends_of, lambda {|user| where("user_id = ?", user.id)} 
   scope :at_city, lambda {|city_id| joins(:profile => :location).where(:locations => {:city_id => city_id})}
 
@@ -41,20 +40,18 @@ class Person < ActiveRecord::Base
     return [] if query.to_s.blank? || query.to_s.length < 1
 
     where_clause = <<-SQL
-      profiles.name LIKE ? OR
-      profiles.name LIKE ?
+      people.id != #{user.person.id} and profiles.name LIKE ?
     SQL
     sql =""
     tokens = []
     query_tokens = query.to_s.strip.split(" ")
     query_tokens.each_with_index do |raw_token,i|
-      token = "#{raw_token}%"
-      up_token ="#{raw_token.titleize}%"
+      token = "%#{raw_token}%"
       sql << " OR " unless i==0
       sql << where_clause
-      tokens.concat([token,up_token])
+      tokens.concat([token])
     end
-    Person.searchable.where(sql,*tokens)
+    Person.joins( :profile ).where(sql,*tokens)
   end
 
   def as_json(opts={})

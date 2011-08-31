@@ -7,7 +7,7 @@
         -if conversation.subject == ""
           = "无主题"
         -else
-          = conversation.subject[0..30]
+          = truncate(conversation.subject,:length => 15)
       .last_author
         = authors[conversation.id].name
         - if conversation.participants.size > 2

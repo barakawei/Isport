@@ -7,6 +7,12 @@
           - if defined?(link_content)
             = link_to link_content, path
           =title
-      .box_right
+      - if defined?(white_angle)
+        .box_right_white
+      -else
+        .box_right
   .clear
-  .bottom_pic{:style => ("background-color:#{background_color}" if defined?(background_color))}
+  - if defined?(white_angle)
+    .bottom_pic_white{:style => ("background-color:#{background_color}" if defined?(background_color))}
+  -else
+    .bottom_pic{:style => ("background-color:#{background_color}" if defined?(background_color))}
