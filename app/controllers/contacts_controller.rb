@@ -1,5 +1,6 @@
 class ContactsController < ApplicationController
   before_filter :registrations_closed?
+  before_filter :authenticate_user!
   respond_to :js,:html
   def create
     @person = Person.find(params[:person_id])

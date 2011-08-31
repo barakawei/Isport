@@ -1,0 +1,4 @@
+event_id = <%= @event.id %>;
+like_button = $(".like[event_like_id='"+event_id+"']" ).parent();
+link_html = "<%= escape_javascript(event_like_button_tag(@event)) %>";
+like_button.replaceWith( link_html );
