@@ -1,0 +1,32 @@
+.field label {
+  display: block;
+  font-size: 16px;
+  margin-bottom: 5px;
+  margin-top: 20px; }
+.field label.error {
+  color: #eb374b;
+  font-size: 15px;
+  margin-top: 0; }
+.field #site_post_title {
+  width: 500px;
+  padding: 10px; }
+.field #site_post_content {
+  width: 500px;
+  padding: 10px; }
+
+#site_post_submit, .back_link {
+  display: block;
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  border-radius: 8px;
+  behavior: url(/javascripts/PIE.htc);
+  -webkit-box-shadow: 0 1px 5px 0 #aaaaaa;
+  -moz-box-shadow: 0 1px 5px 0 #aaaaaa;
+  box-shadow: 0 1px 5px 0 #aaaaaa;
+  behavior: url(/javascripts/PIE.htc);
+  font-size: 20px;
+  color: #444444;
+  background-color: #f8f8f8;
+  padding: 5px 15px;
+  margin: 15px 20px 0 0;
+  float: left; }

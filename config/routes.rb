@@ -153,6 +153,12 @@ Isport::Application.routes.draw do
     match '/friends/find' => :find, :as => 'find_interested_people'
   end
 
+  controller :site_posts do
+    match '/blog' => :index, :as => 'site_blog'
+    match '/blog/:id' => :show, :as => 'site_blog_show',
+          :constraints => { :id => /[1-9]\d*/}
+  end
+
 
   controller :location do
     match '/locations/districts_of_city' => :districts_of_city, :as => 'districts_of_city'

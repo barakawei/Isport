@@ -1,35 +1,21 @@
 class SitePostsController < ApplicationController
-  # GET /site_posts
-  # GET /site_posts.xml
+  before_filter :is_admin, :except => [:index, :show]
+
   def index
     @site_posts = SitePost.order('created_at desc').paginate :page => params[:page], :per_page => 5 
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @site_posts }
-    end
   end
 
-  # GET /site_posts/1
-  # GET /site_posts/1.xml
   def show
     @site_post = SitePost.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @site_post }
-    end
+    @next_post = SitePost.next_post(@site_post)
+    @previous_post = SitePost.previous_post(@site_post)
   end
 
   # GET /site_posts/new
   # GET /site_posts/new.xml
   def new
     @site_post = SitePost.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @site_post }
-    end
   end
 
   # GET /site_posts/1/edit
@@ -43,12 +29,10 @@ class SitePostsController < ApplicationController
     @site_post = SitePost.new(params[:site_post])
 
     respond_to do |format|
-      if @site_post.save
+      if @site_post.save 
         format.html { redirect_to(@site_post, :notice => 'Site post was successfully created.') }
-        format.xml  { render :xml => @site_post, :status => :created, :location => @site_post }
       else
         format.html { render :action => "new" }
-        format.xml  { render :xml => @site_post.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -79,5 +63,11 @@ class SitePostsController < ApplicationController
       format.html { redirect_to(site_posts_url) }
       format.xml  { head :ok }
     end
+  end
+
+   private 
+
+  def is_admin
+    raise ActionController::RoutingError.new("not such route") unless current_user.try(:admin?)
   end
 end

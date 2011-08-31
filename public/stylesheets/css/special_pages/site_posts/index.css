@@ -1,8 +1,11 @@
 .blog_title h2.name {
   text-align: center;
-  font-size: 38px;
-  color: black;
+  font-size: 35px;
   margin-bottom: 0px; }
+  .blog_title h2.name a {
+    color: black; }
+    .blog_title h2.name a:hover {
+      color: #05b2c2; }
 .blog_title h3.des {
   text-align: center;
   color: #817f7f;
@@ -16,51 +19,6 @@
   margin: 0 auto;
   padding-top: 150px;
   width: 690px; }
-  .post_list .post_block {
-    -moz-border-radius: 4px;
-    -webkit-border-radius: 4px;
-    border-radius: 4px;
-    behavior: url(/javascripts/PIE.htc);
-    -webkit-box-shadow: 0 1px 5px 0 #aaaaaa;
-    -moz-box-shadow: 0 1px 5px 0 #aaaaaa;
-    box-shadow: 0 1px 5px 0 #aaaaaa;
-    behavior: url(/javascripts/PIE.htc);
-    margin-bottom: 90px;
-    padding: 25px 90px 22px;
-    background-color: #f8f8f8; }
-    .post_list .post_block .date {
-      background: url("/images/ui/sprite.png") no-repeat scroll left bottom transparent;
-      float: left;
-      margin-left: -120px;
-      padding-bottom: 14px;
-      width: 100px; }
-      .post_list .post_block .date p {
-        background: none repeat scroll 0 0 #eb374b;
-        color: white;
-        font-size: 12px;
-        line-height: 12px;
-        padding: 5px 10px;
-        text-align: right;
-        margin: 0; }
-        .post_list .post_block .date p span.day {
-          clear: both;
-          display: block;
-          font-size: 20px;
-          line-height: 20px;
-          margin: 0; }
-    .post_list .post_block .content {
-      border-bottom: 1px dotted #a9a9a9;
-      margin-bottom: 10px;
-      width: 100%; }
-      .post_list .post_block .content h2 {
-        color: black;
-        font-size: 25px; }
-      .post_list .post_block .content p {
-        font-size: 14px;
-        margin-bottom: 10px; }
-    .post_list .post_block .info a {
-      color: #eb374b;
-      font-size: 13px; }
 
 .pagination a:hover {
   color: #eb374b; }

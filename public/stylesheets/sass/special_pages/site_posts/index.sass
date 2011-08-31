@@ -2,9 +2,14 @@
 .blog_title
   h2.name
     :text-align center
-    :font-size 38px 
-    :color #000000
+    :font-size 35px 
     :margin-bottom 0px
+
+    a
+      :color #000000
+      &:hover
+        :color #05b2c2
+        
 
   h3.des
     :text-align center
@@ -20,55 +25,6 @@
   margin: 0 auto
   padding-top: 150px
   width: 690px
-  
-  .post_block
-    @include border-radius(4px)
-    @include box-shadow(0,1px,5px,0,#aaa)
-    margin-bottom: 90px
-    padding: 25px 90px 22px
-    background-color: #f8f8f8
-
-
-    .date
-      background: url("/images/ui/sprite.png") no-repeat scroll left bottom transparent
-      float: left
-      margin-left: -120px
-      padding-bottom: 14px
-      width: 100px
-
-      p
-        background: none repeat scroll 0 0 #EB374B
-        color: #FFFFFF
-        font-size: 12px
-        line-height: 12px
-        padding: 5px 10px
-        text-align: right
-        margin: 0 
-
-        span.day
-          clear: both
-          display: block
-          font-size: 20px 
-          line-height: 20px
-          margin: 0
-          
-
-    .content
-      border-bottom: 1px dotted #A9A9A9
-      margin-bottom: 10px
-      width: 100%
-
-      h2
-        :color #000000
-        :font-size 25px
-      p
-        :font-size 14px
-        :margin-bottom 10px
-      
-    .info
-      a
-        :color #EB374B     
-        :font-size 13px
 
 .pagination
   a

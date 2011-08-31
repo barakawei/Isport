@@ -1,19 +1,38 @@
+- content_for :head do
+  = include_stylesheets :sepcial_pages_site_posts_form, :media => 'all' 
+  = include_javascripts :jquery_validation
 = form_for @site_post do |f|
-  -if @site_post.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@site_post.errors.count, "error")} prohibited this site_post from being saved:"
-      %ul
-        - @site_post.errors.full_messages.each do |msg|
-          %li= msg
-
   .field
-    = f.label :person_id
-    = f.text_field :person_id
-  .field
-    = f.label :title
+    = f.label '标题'
     = f.text_field :title
   .field
-    = f.label :content
+    = f.label '内容'
     = f.text_area :content
   .actions
-    = f.submit 'Save'
+    = f.submit '保存'
+
+:javascript
+  $(function() {
+    $('#new_site_post').validate({
+      rules: {
+        "site_post[title]": {
+          required: true,
+          maxlength: 40
+        },    
+        "site_post[content]": {
+          required: true,
+          maxlength: 5000 
+        }    
+      },
+      messages: {
+        "site_post[title]": {
+          required: '请输入标题',
+          maxlength: '标题不能超过{0}个字符'
+        },
+        "site_post[content]": {
+          required: '请输入博客内容',
+          maxlength: '博客内容不能超过{0}字符'
+        }
+      }
+    });  
+  });
