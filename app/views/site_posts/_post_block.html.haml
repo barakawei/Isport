@@ -1,0 +1,35 @@
+- content_for :head do
+  = include_stylesheets :sepcial_pages_site_post_block, :media => 'all'
+.post_block{:post_id => post.id}
+  .date
+    %p
+      %span.day=post.created_at.day
+      =post.created_at.month.to_s + ' / ' + post.created_at.year.to_s
+  .author_avatar
+    - if post.person
+      .p_avatar
+        = person_image_link(post.person) 
+  .content
+    %h2=post.title
+    - if params[:action] == 'index'
+      =simple_format truncate(post.content, :length => 100)
+    - else
+      =simple_format post.content, :length => 200
+  .info
+    = link_to '更多..', site_blog_show_path(post) if params[:action] == 'index' 
+    = link_to '', 'javascript:void(0)' 
+    - if current_user.try(:admin?)
+      = link_to '删除', site_post_path(post), :method => :delete, :class => "right delete_link#{post.id}"
+      = link_to '编辑', edit_site_post_path(post),:class => "right"
+
+
+:javascript
+  $(".delete_link#{post.id}").click(function(){
+    var res = confirm('确定删除这篇博文吗？'); 
+    if (res == false) {
+      return false;
+    }
+  });
+      
+      
+
