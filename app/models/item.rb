@@ -54,13 +54,14 @@ class Item < ActiveRecord::Base
 
     items_hash = {  }
 
+    items_hash[0] = [  ] # user from item "others"
     categories.each do |category|
       items_hash[category.id] = [  ]  
     end
 
     items.each do |item|
       items_hash[item.category_id].push({:item => item, 
-                                          :events_count => events_counts[item.id]?events_counts[item.id]:0})
+                                         :events_count => events_counts[item.id]?events_counts[item.id]:0}) 
     end
 
     categories.each do |category|

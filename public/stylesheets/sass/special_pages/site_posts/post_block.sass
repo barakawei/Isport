@@ -1,0 +1,73 @@
+@import '../../general/ui/mixins'
+.post_block
+  @include border-radius(4px)
+  @include box-shadow(0,1px,5px,0,#aaa)
+  margin-bottom: 90px
+  padding: 25px 90px 22px
+  background-color: #f8f8f8
+
+
+  .author_avatar
+    margin-right: -60px
+    .p_avatar
+      :float right
+      .avatar 
+        :width 35px
+        :height 35px
+
+  .date
+    background: url("/images/ui/sprite.png") no-repeat scroll left bottom transparent
+    float: left
+    margin-left: -120px
+    padding-bottom: 14px
+    width: 100px
+
+    p
+      background: none repeat scroll 0 0 #EB374B
+      color: #FFFFFF
+      font-size: 12px
+      line-height: 12px
+      padding: 5px 10px
+      text-align: right
+      margin: 0 
+
+      span.day
+        clear: both
+        display: block
+        font-size: 20px 
+        line-height: 20px
+        margin: 0
+        
+
+  .content
+    border-bottom: 1px dotted #A9A9A9
+    margin-bottom: 10px
+    width: 100%
+
+    h2
+      :color #000000
+      :font-size 25px
+    p
+      :font-size 14px
+      :margin-bottom 10px
+    
+  .info
+    a
+      :color #EB374B     
+      :font-size 13px
+      :margin-right 10px
+
+      &:hover
+        :color #05b2c2
+
+a.previous_post, a.next_post
+  display: block
+  color: #EB374B 
+  font-size: 16px
+
+  &:hover
+    :color #05b2c2
+a.previous_post
+  :float left
+a.next_post
+  :float right

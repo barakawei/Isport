@@ -1,0 +1,50 @@
+@import '../../general/ui/mixins'
+.blog_title
+  h2.name
+    :text-align center
+    :font-size 35px 
+    :margin-bottom 0px
+
+    a
+      :color #000000
+      &:hover
+        :color #05b2c2
+        
+
+  h3.des
+    :text-align center
+    color: #817F7F
+    font-style: italic
+    line-height: normal
+    text-shadow: 0 1px 0 #FFFFFF
+    :width 690px
+    :margin 0 auto
+
+
+.post_list
+  margin: 0 auto
+  padding-top: 150px
+  width: 690px
+
+.pagination
+  a
+    &:hover
+      :color #EB374B     
+  .previous_page, .next_page
+    :margin-bottom 50px
+    @include border-radius(8px)
+    @include box-shadow(0,1px,5px,0,#aaa)
+    :font-size 20px
+    :color #444444
+    :background-color #f8f8f8
+    :padding 15px 50px
+  .previous_page
+    :float left
+  .next_page
+    :float right
+
+  .previous_page.disabled, .next_page.disabled
+    :display none
+      
+    
+    

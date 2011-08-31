@@ -1,4 +1,6 @@
 Isport::Application.routes.draw do
+  resources :site_posts
+
   devise_for :users, :controllers => { :registrations => "registrations",:invitations   => "invitations" } do
     get 'invitations/resend/:id' => 'invitations#resend', :as => 'invitation_resend'
     get 'invitations/email' => 'invitations#email', :as => 'invite_email'
@@ -52,6 +54,8 @@ Isport::Application.routes.draw do
     match 'getting_started' => :getting_started, :as => 'getting_started'
     match 'select_interests' => :select_interests, :as => 'select_interests'
     match 'select_interested_people' => :select_interested_people, :as => 'select_interested_people'
+    match 'change_password'=> :change_password, :as => 'change_password'
+    match 'update_password'=> :update_password, :as => 'update_password', :via => :put
   end
 
   match '/users/sign_in' => 'users#sign_in', :as => 'sign_in' 
@@ -149,6 +153,12 @@ Isport::Application.routes.draw do
   controller :friends do
     match '/friends/invite' => :invite, :as => 'invite_friends_to_site'
     match '/friends/find' => :find, :as => 'find_interested_people'
+  end
+
+  controller :site_posts do
+    match '/blog' => :index, :as => 'site_blog'
+    match '/blog/:id' => :show, :as => 'site_blog_show',
+          :constraints => { :id => /[1-9]\d*/}
   end
 
 
