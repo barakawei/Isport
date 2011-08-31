@@ -136,7 +136,9 @@ image_path = '/images/items/'
   {:name => '摄影', :description => "追逐光和影", :category_id => 2,
     :large => "#{image_path}photographing_large.jpg", :medium => "#{image_path}photographing_medium.jpg",
     :small => "#{image_path}photographing_small.jpg"},
-  {:name => '其他', :description => "以后开放的项目", :category_id => 0}].each do |item|
+  {:name => '其他', :description => "以后开放的项目", :category_id => 0,
+    :large => "#{image_path}others_large.jpg", :medium => "#{image_path}others_medium.jpg",
+    :small => "#{image_path}others_small.jpg"}].each do |item|
     tmp = Item.find_or_create_by_name(:name => item[:name])
     tmp.update_attributes(:description => item[:description],
       :category_id => item[:category_id], :image_url_large => item[:large], 
