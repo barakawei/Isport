@@ -2,13 +2,14 @@
 .home_container
   :width 680px
   margin-top: 22px
-  @include border-radius( 10px )
   .new_event
     :padding-right 10px
   .home_tabs
-    background: #F9F9F9 url('/images/ui/tabs-bg.png')  repeat
+    background: #F9F9F9 url('/images/ui/tabs-bg.png') repeat 
     height: 62px
     border-bottom: solid 1px white
+    -moz-border-radius: 10px 10px 0 0
+    -webkit-border-radius: 10px 10px 0 0
     border-radius: 10px 10px 0 0
     .active
       a
@@ -28,7 +29,7 @@
       text-align: center
       a
         padding: 10px
-        @include border-radius( 6px )
+        @include border-radius-noie( 6px )
         font-weight: bold
         :color #999
         &:hover
