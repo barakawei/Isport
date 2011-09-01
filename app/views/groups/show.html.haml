@@ -160,23 +160,7 @@
      $('#share_to_sina').html('<iframe allowTransparency="true" frameborder="0" scrolling="no" src="http://hits.sinajs.cn/A1/weiboshare.html?' + temp.join('&') + '" width="'+ _w+'" height="'+_h+'"></iframe>')
         
     });
-    $('.events_panel .new_event_link').hover(
-      function() {
-        $('.events_panel .new_event_panel h2').toggle();
-      }, 
-      function() { 
-        $('.events_panel .new_event_panel h2').toggle();
-      }
-    );    
-    $('.no_topics_panel .new_event_link').hover(
-      function() {
-        $('.no_topics_panel .new_event_panel h2').toggle();
-      }, 
-      function() { 
-        $('.no_topics_panel .new_event_panel h2').toggle();
-      }
-    );    
-
+    
   $('li#recent_event a').click(function() {
    $(this).addClass('current'); 
    $('.recent_events_area').show();

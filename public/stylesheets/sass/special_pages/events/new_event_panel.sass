@@ -8,13 +8,12 @@
   a.new_event_link
     :display block
 
-    css3-container
-      :z-index -1 
     &:hover
       h2.ques
         :display none 
       h2.new_event
         :display block
+        :background #fc5173
     
     .event_border
       background: url("/images/ui/event_border.png") no-repeat scroll 0 0 transparent
@@ -42,16 +41,14 @@
 
       .new_event
         :margin-left 50px
-        :background #fc5173
+        :background #ffffff
         :color #ffffff
         :padding 0 10px
         :width 100px
         :border 4px solid #dbe0e3
         :position relative
         :display none
-        -moz-border-radius: 5px 
-        -webkit-border-radius: 5px 
-        border-radius: 5px 
+        @include border-radius-noie(8px)
 
     
 

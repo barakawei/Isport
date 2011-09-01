@@ -5,12 +5,11 @@
   min-height: 100px; }
   .new_event_panel a.new_event_link {
     display: block; }
-    .new_event_panel a.new_event_link css3-container {
-      z-index: -1; }
     .new_event_panel a.new_event_link:hover h2.ques {
       display: none; }
     .new_event_panel a.new_event_link:hover h2.new_event {
-      display: block; }
+      display: block;
+      background: #fc5173; }
     .new_event_panel a.new_event_link .event_border {
       background: url("/images/ui/event_border.png") no-repeat scroll 0 0 transparent;
       color: #fc4469;
@@ -34,13 +33,13 @@
         margin-top: 20px; }
       .new_event_panel a.new_event_link .content .new_event {
         margin-left: 50px;
-        background: #fc5173;
+        background: white;
         color: white;
         padding: 0 10px;
         width: 100px;
         border: 4px solid #dbe0e3;
         position: relative;
         display: none;
-        -moz-border-radius: 5px;
-        -webkit-border-radius: 5px;
-        border-radius: 5px; }
+        -moz-border-radius: 8px;
+        -webkit-border-radius: 8px;
+        border-radius: 8px; }

@@ -104,10 +104,11 @@
   }
 
   function friend_selected_callback(data) {
-    $.post("#{event_invite_path(@event.id)}", { selectedIds: ""+data });     
-    $.colorbox.close();
+    $.post("#{event_invite_path(@event.id)}", { selectedIds: ""+data }, function(){
+      location.reload();
+    });     
     $('.friend_select_input').unbind('click');
-    location.reload();
+    $.colorbox.close();
     return false;
   }
 
