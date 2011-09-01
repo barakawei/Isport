@@ -366,6 +366,9 @@ span.medium_avatar {
 .avatar {
   position: relative; }
 
+input, textarea, select, .box_element {
+  position: relative; }
+
 .unfollow span {
   background-image: url(/images/ui/icon-x.png); }
 
