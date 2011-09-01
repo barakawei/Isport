@@ -12,10 +12,12 @@ var Search = {
      return row['name'];
    },
   parse : function(data) {
-    results =  data.map(function(person){
-      person = person.person;
-      return {data : person, value : person['name']}
-    });
+    var results=new Array();
+    for( var i in data ){
+      person_element = data[ i ].person;
+      person_json = {data : person_element, value : person_element['name']};
+      results.push( person_json );
+    }
     results.push(Search.searchLinkli.apply(this));
     return results;
   },

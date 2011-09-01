@@ -379,10 +379,12 @@ span.medium_avatar
   :position relative
 .person_avatar
   :display inline-block
+  :position relative
+.avatar
+  :position relative
+input,textarea,select,.box_element
+  :position relative
 
-
-    
-    
 .unfollow
   span
     background-image: url(/images/ui/icon-x.png)
@@ -422,6 +424,7 @@ a.button
   @include border-radius-feed(5px)
 
 .glass_button
+  position: relative
   background:  url(/images/ui/glass-light.png) repeat-x 0 50%
   background-color: #8dbc6e
   @include border-radius(6px)
