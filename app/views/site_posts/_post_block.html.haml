@@ -10,7 +10,7 @@
       .p_avatar
         = person_image_link(post.person) 
   .content
-    %h2=post.title
+    %h2{:class => ('green' if post.id % 2 == 0)}=post.title
     - if params[:action] == 'index'
       =simple_format truncate(post.content, :length => 100)
     - else

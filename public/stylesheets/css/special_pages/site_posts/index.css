@@ -1,11 +1,24 @@
-.blog_title h2.name {
+.blog_title a.blog_name {
+  display: block;
   text-align: center;
-  font-size: 35px;
-  margin-bottom: 0px; }
-  .blog_title h2.name a {
-    color: black; }
-    .blog_title h2.name a:hover {
+  color: black; }
+  .blog_title a.blog_name:hover {
+    color: #05b2c2; }
+    .blog_title a.blog_name:hover h1, .blog_title a.blog_name:hover h2 {
       color: #05b2c2; }
+      .blog_title a.blog_name:hover h1 span.wan, .blog_title a.blog_name:hover h1 span.xiang, .blog_title a.blog_name:hover h2 span.wan, .blog_title a.blog_name:hover h2 span.xiang {
+        color: #05b2c2; }
+  .blog_title a.blog_name h1, .blog_title a.blog_name h2 {
+    display: inline;
+    text-align: center;
+    font-size: 27px;
+    margin-bottom: 0px; }
+    .blog_title a.blog_name h1 span.wan, .blog_title a.blog_name h2 span.wan {
+      color: #33cff8; }
+    .blog_title a.blog_name h1 span.xiang, .blog_title a.blog_name h2 span.xiang {
+      color: #f96a1c; }
+  .blog_title a.blog_name h1 {
+    font-size: 40px; }
 .blog_title h3.des {
   text-align: center;
   color: #817f7f;
@@ -13,7 +26,7 @@
   line-height: normal;
   text-shadow: 0 1px 0 white;
   width: 690px;
-  margin: 0 auto; }
+  margin: 10px auto; }
 
 .post_list {
   margin: 0 auto;
