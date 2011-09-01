@@ -6,6 +6,12 @@
   border-radius: 15px;
 }
 
+@mixin border-radius-noie($radius){
+  -moz-border-radius: $radius;
+  -webkit-border-radius: $radius;
+  border-radius: $radius;
+}
+
 @mixin border-radius($radius){
   -moz-border-radius: $radius;
   -webkit-border-radius: $radius;

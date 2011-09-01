@@ -1,16 +1,14 @@
 .home_container {
   width: 680px;
-  margin-top: 22px;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
-  border-radius: 10px;
-  behavior: url(/javascripts/PIE.htc); }
+  margin-top: 22px; }
   .home_container .new_event {
     padding-right: 10px; }
   .home_container .home_tabs {
     background: #f9f9f9 url("/images/ui/tabs-bg.png") repeat;
     height: 62px;
     border-bottom: solid 1px white;
+    -moz-border-radius: 10px 10px 0 0;
+    -webkit-border-radius: 10px 10px 0 0;
     border-radius: 10px 10px 0 0; }
     .home_container .home_tabs .active a {
       background-color: #697d84;
@@ -31,7 +29,6 @@
         -moz-border-radius: 6px;
         -webkit-border-radius: 6px;
         border-radius: 6px;
-        behavior: url(/javascripts/PIE.htc);
         font-weight: bold;
         color: #999999; }
         .home_container .home_tabs li a:hover {
