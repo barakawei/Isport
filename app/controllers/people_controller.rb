@@ -81,15 +81,14 @@ class PeopleController < ApplicationController
   end
 
   def show
-    @person = Person.where(:id => params[:id]).first
-    if @person
-      @contact =  Contact.unscoped.where( :user_id => current_user.id ,:person_id => @person.id).first
-      @friends = @person.user.friends
-      @followed_people = @person.user.followed_people
-      @befollowed_people = @person.user.befollowed_people
-      @favorite_items = Item.joins( :favorites ).where( :favorites => {:person_id => @person.id })
-      @events_inv = Event.joins(:involvements).where(:involvements => { :person_id => @person.id }  )
-    end
+    @person = Person.find(params[:id])
+
+    @contact =  Contact.unscoped.where( :user_id => current_user.id ,:person_id => @person.id).first
+    @friends = @person.user.friends
+    @followed_people = @person.user.followed_people
+    @befollowed_people = @person.user.befollowed_people
+    @favorite_items = Item.joins( :favorites ).where( :favorites => {:person_id => @person.id })
+    @events_inv = Event.joins(:involvements).where(:involvements => { :person_id => @person.id }  )
   end
 
 

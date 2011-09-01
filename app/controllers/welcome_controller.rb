@@ -17,7 +17,7 @@ class WelcomeController < ApplicationController
       @photos = [ ]
       numbers = Array.new(40).fill{|i| i+1}
       numbers.each do |n|
-        @photos.push("/welcome/#{n}.jpg")
+        @photos.push("/images/welcome/#{n}.jpg")
       end
       
       @photos.sort_by!{rand}
