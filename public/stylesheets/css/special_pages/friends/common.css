@@ -18,6 +18,7 @@ ul.nav {
       -webkit-border-top-right-radius: 5px;
       border-top-left-radius: 5px;
       border-top-right-radius: 5px;
+      border-radius: 5px 5px 0 0;
       behavior: url(/javascripts/PIE.htc); }
     ul.nav li a.current {
       background-color: white; }
