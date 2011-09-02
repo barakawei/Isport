@@ -26,6 +26,7 @@ class PhotosController < ApplicationController
 
       if @photo.save
         @photo.process
+        rounder_corner
         if params[:photo][:is_avatar]
           updateUrls(params, @photo)
         end
@@ -65,6 +66,19 @@ class PhotosController < ApplicationController
   end
 
   private
+
+  def rounder_corner_shell(photo_path,mask_path)
+    `convert #{photo_path} #{mask_path} -alpha off -compose CopyOpacity -composite #{photo_path}`
+  end
+
+  def rounder_corner
+    photo_path = {:image_url_large => 'public'+@photo.url(:thumb_large),
+                  :image_url_medium =>'public'+ @photo.url(:thumb_medium),
+                  :image_url_small => 'public'+@photo.url(:thumb_small)}
+    rounder_corner_shell(photo_path[ :image_url_large ],'public/images/mask/large_mask.jpg')
+    rounder_corner_shell(photo_path[ :image_url_medium ],'public/images/mask/medium_mask.jpg')
+    rounder_corner_shell(photo_path[ :image_url_small ],'public/images/mask/small_mask.jpg')
+  end
 
   def file_handler(params)
       ######################## dealing with local files #############
