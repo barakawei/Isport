@@ -671,6 +671,24 @@ a.app_black_link_button {
   top: 40%;
   width: 28px; }
 
+.brower_notice {
+  position: fixed;
+  left: 0;
+  top: 40%;
+  width: 110px;
+  font-size: 14px;
+  background-color: #fad66d;
+  padding: 10px; }
+
+#site_blog_link {
+  position: absolute;
+  right: 20px;
+  top: 10px;
+  font-size: 14px;
+  color: #dddddd; }
+  #site_blog_link:hover {
+    color: #f74367; }
+
 .change_password .login form input#password {
   line-height: 45px;
   margin: 0;

@@ -11,9 +11,9 @@
       %li#recent_event
         =link_to "近期活动","/home/show_event",:remote => true
       %li#my_event
-        =link_to "我的活动","/home/show_my_event",:remote => true
+        =link_to "我参加的活动","/home/show_my_event",:remote => true
       %li#following_event
-        =link_to "朋友活动","/home/show_following_event",:remote => true
+        =link_to "好友参加的活动","/home/show_following_event",:remote => true
       .new_event
         = render 'common/big_link_button', :content => '发起活动', :path => new_event_path 
 

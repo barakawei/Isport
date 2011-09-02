@@ -5,10 +5,9 @@
     .description
       = link_to '个人页面', person_path(@person)
   .home_invitation_link
-    .link
-      = link_to('/friends/invite') do
-        .title
-          ="邀请好友"
+    = link_to "发现玩伴", find_interested_people_path,  :class => 'left_one'
+      
+    = link_to "邀请好友", invite_friends_to_site_path
 
   .avatar_panel_container
     #followed_people

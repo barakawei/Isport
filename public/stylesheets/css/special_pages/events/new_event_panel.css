@@ -3,34 +3,43 @@
   margin: 0 10px 14px 0px;
   width: 300px;
   min-height: 100px; }
-  .new_event_panel .event_border {
-    background: url("/images/ui/event_border.png") no-repeat scroll 0 0 transparent;
-    color: #fc4469;
-    font-size: 15px;
-    font-weight: normal;
-    height: 26px;
-    margin: 0;
-    padding-left: 40px; }
-  .new_event_panel .content {
-    background: url("/images/ui/event-box.png") no-repeat scroll 0 100% transparent;
-    color: #11bacd;
-    min-height: 100px;
-    padding: 10px;
-    padding-left: 30px; }
-    .new_event_panel .content h2 {
-      height: 40px;
-      line-height: 40px;
-      font-size: 23px;
+  .new_event_panel a.new_event_link {
+    display: block; }
+    .new_event_panel a.new_event_link:hover h2.ques {
+      display: none; }
+    .new_event_panel a.new_event_link:hover h2.new_event {
+      display: block;
+      background: #fc5173; }
+    .new_event_panel a.new_event_link .event_border {
+      background: url("/images/ui/event_border.png") no-repeat scroll 0 0 transparent;
+      color: #fc4469;
+      font-size: 15px;
+      font-weight: normal;
+      height: 26px;
+      margin: 0;
+      padding-left: 40px; }
+    .new_event_panel a.new_event_link .content {
+      position: relative;
+      background: url("/images/ui/event-box.png") no-repeat scroll 0 100% transparent;
       color: #11bacd;
-      margin-top: 20px; }
-    .new_event_panel .content .new_event {
-      -moz-border-radius: 7px;
-      -webkit-border-radius: 7px;
-      border-radius: 7px;
-      behavior: url(/javascripts/PIE.htc);
-      margin-left: 50px;
-      background: #fc5173;
-      color: white;
-      padding: 0 10px;
-      width: 100px;
-      border: 4px solid #dbe0e3; }
+      min-height: 100px;
+      padding: 10px;
+      padding-left: 30px; }
+      .new_event_panel a.new_event_link .content h2 {
+        height: 40px;
+        line-height: 40px;
+        font-size: 23px;
+        color: #11bacd;
+        margin-top: 20px; }
+      .new_event_panel a.new_event_link .content .new_event {
+        margin-left: 50px;
+        background: white;
+        color: white;
+        padding: 0 10px;
+        width: 100px;
+        border: 4px solid #dbe0e3;
+        position: relative;
+        display: none;
+        -moz-border-radius: 8px;
+        -webkit-border-radius: 8px;
+        border-radius: 8px; }

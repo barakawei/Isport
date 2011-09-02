@@ -1,7 +1,14 @@
 =include_stylesheets :sepcial_pages_site_posts_index, :media => 'all'
 .span-24.blog_title
-  %h2.name
-    =link_to '我是好享玩', site_blog_path
+  =link_to(site_blog_path, :class => 'blog_name') do
+    %h1.name
+      %span.wan="玩"
+    %h2.name
+      %span="出自我,  乐"
+    %h1.name
+      %span.xiang="享"
+    %h2.name
+      %span="青春"
   %h3.des='爱玩乐，不爱加班，爱运动，也爱和瓷器们轰趴到天亮，我不是工作狂，我和你一样，我是玩客。'
 
 .post_list
