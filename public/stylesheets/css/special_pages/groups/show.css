@@ -1,10 +1,6 @@
 .left_column {
   color: #666666; }
   .left_column .avatar img {
-    -moz-border-radius: 8px;
-    -webkit-border-radius: 8px;
-    border-radius: 8px;
-    behavior: url(/javascripts/PIE.htc);
     width: 198px;
     height: 198px;
     border: 1px solid #f2f2f2;
@@ -87,11 +83,7 @@
       margin-right: 2px; }
       .left_column .person_array .avatar_container .avatar {
         width: 43px;
-        height: 43px;
-        -moz-border-radius: 5px;
-        -webkit-border-radius: 5px;
-        border-radius: 5px;
-        behavior: url(/javascripts/PIE.htc); }
+        height: 43px; }
 
 .right_column .app_header_box {
   margin-top: 50px; }
