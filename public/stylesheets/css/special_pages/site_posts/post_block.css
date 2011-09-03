@@ -42,8 +42,10 @@
     margin-bottom: 10px;
     width: 100%; }
     .post_block .content h2 {
-      color: black;
+      color: #73b0ef;
       font-size: 25px; }
+    .post_block .content h2.green {
+      color: #8ab81a; }
     .post_block .content p {
       font-size: 14px;
       margin-bottom: 10px; }

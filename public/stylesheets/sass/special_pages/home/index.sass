@@ -287,12 +287,18 @@
     :height 220px
     :margin-left 20px
 .home_invitation_link 
-  .title
-    :padding 10px
-    :background-color white
-    :margin-top 10px
-    :font-size 18px
+  :margin-top 10px
+  :font-size 17px
+  
+  a
+    @include border-radius(8px)
+    @include box-shadow(0,1px,5px,0,#ddd)
+    :color #888888
+    :background-color #f8f8f8
+    :padding 5px 15px
 
+    &:hover
+      :color #00bed4    
 
 .home_event_box_panel
   margin: 0 0px 2px 0px

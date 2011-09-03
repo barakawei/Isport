@@ -201,7 +201,7 @@ class Group < ActiveRecord::Base
 
   def is_owner(user)
     if user
-      return !user.nil && user.person.id == person_id
+      return user.person.id == person_id
     else
       false
     end

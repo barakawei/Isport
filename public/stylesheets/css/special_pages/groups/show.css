@@ -199,13 +199,13 @@
       height: 62px;
       line-height: 62px;
       width: 110px;
-      text-align: center; }
+      text-align: center;
+      position: relative; }
       .right_column .group_tabs .home_tabs li a {
         padding: 10px;
         -moz-border-radius: 6px;
         -webkit-border-radius: 6px;
         border-radius: 6px;
-        behavior: url(/javascripts/PIE.htc);
         font-weight: bold;
         color: #999999; }
         .right_column .group_tabs .home_tabs li a:hover {

@@ -282,11 +282,23 @@
     height: 220px;
     margin-left: 20px; }
 
-.home_invitation_link .title {
-  padding: 10px;
-  background-color: white;
+.home_invitation_link {
   margin-top: 10px;
-  font-size: 18px; }
+  font-size: 17px; }
+  .home_invitation_link a {
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+    behavior: url(/javascripts/PIE.htc);
+    -webkit-box-shadow: 0 1px 5px 0 #dddddd;
+    -moz-box-shadow: 0 1px 5px 0 #dddddd;
+    box-shadow: 0 1px 5px 0 #dddddd;
+    behavior: url(/javascripts/PIE.htc);
+    color: #888888;
+    background-color: #f8f8f8;
+    padding: 5px 15px; }
+    .home_invitation_link a:hover {
+      color: #00bed4; }
 
 .home_event_box_panel {
   margin: 0 0px 2px 0px; }

@@ -72,15 +72,7 @@
     $("#date").val("#{@time_filter_str}"); 
   });
 
-  $('.new_event_panel .new_event_link').hover(
-    function() {
-      $('.new_event_panel .new_event_link h2').toggle();
-    }, 
-    function() { 
-      $('.new_event_panel .new_event_link h2').toggle();
-    }
-  );    
-
+ 
   $("#switch_city").click(function(e) {
     $('#city_select_box').toggleClass('hide'); 
     e.stopPropagation();
