@@ -34,7 +34,7 @@ class HomeController < ApplicationController
 
   def show_following_event
     following_people = current_user.followed_people
-    @events = Event.joins( :involvements).where( :person_id => following_people ).order( "events.start_at DESC" ).paginate(:page => params[:page], :per_page => 10)
+    @events = Event.select( 'DISTINCT events.id,events.*' ).joins( :involvements).where( :person_id => following_people ).order( "events.start_at DESC" ).paginate(:page => params[:page], :per_page => 10)
     @event_tab = 'following_event'
     render 'show_event'
   end

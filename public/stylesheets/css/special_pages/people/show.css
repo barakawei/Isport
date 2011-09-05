@@ -144,6 +144,9 @@
   float: left;
   width: 200px;
   padding-right: 20px; }
+  .person_left_bar #profile_photo img {
+    width: 200px;
+    height: 200px; }
   .person_left_bar #profile_photo h2 {
     line-height: 15px;
     margin-bottom: 38px; }
