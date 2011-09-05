@@ -118,12 +118,20 @@
       .span-16.event_desc
         =simple_format(@event.description)
 
-
+    .span-13
+      = render 'common/header_box', :title => '活动照片'
+    .span-17
+      = link_to '上传图片', 'javascript:void(0)', :class => 'glass_button right upload_link_button'
+      
      
     = render 'common/header_box', :title => '评论'
     = render 'event_comments', :comments => @comments, :event => @event, 
                                :current_person => @current_person, :comment => @comment 
-      
+
+.colorbox_content
+  #upload_event_pic
+    .span-12
+      %h3='上传活动图片:' 
 :javascript
   $(function() {
     var address = "#{@event.location}";
@@ -145,6 +153,9 @@
       temp.push(p + '=' + encodeURIComponent( param[p] || '' ) )
     }
    $('#share_to_sina').html('<iframe allowTransparency="true" frameborder="0" scrolling="no" src="http://hits.sinajs.cn/A1/weiboshare.html?' + temp.join('&') + '" width="'+ _w+'" height="'+_h+'"></iframe>')
+   $('.upload_link_button').click(function() {
+      $.colorbox({ inline:true, href:"#upload_event_pic", opacity:0.2, width:"600", height:"370"}) 
+   });
   
   });
   

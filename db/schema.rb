@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110830150837) do
+ActiveRecord::Schema.define(:version => 20110905084423) do
 
   create_table "administrators", :force => true do |t|
     t.integer  "user_id"
@@ -242,6 +242,19 @@ ActiveRecord::Schema.define(:version => 20110830150837) do
   end
 
   add_index "people", ["user_id"], :name => "index_people_on_user_id", :unique => true
+
+  create_table "pics", :force => true do |t|
+    t.integer  "author_id"
+    t.integer  "event_id"
+    t.text     "description"
+    t.text     "remote_photo_path"
+    t.string   "remote_photo_name"
+    t.string   "processed_image"
+    t.string   "unprocessed_image"
+    t.string   "random_string"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "post_visibilities", :force => true do |t|
     t.integer  "contact_id"
