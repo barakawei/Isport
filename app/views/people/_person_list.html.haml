@@ -20,7 +20,7 @@
               .right_arrow
           .clear
         .contacts
-          - for person in @followed_people[ 0...20]
+          - for person in @followed_people[ 0...30]
             .person_avatar
               = person_image_link(person)
   -if current_user.person.joined_groups.size > 0

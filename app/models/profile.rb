@@ -21,6 +21,16 @@ class Profile < ActiveRecord::Base
              else
                self[:image_url]
              end
-    result || '/images/user/default_small.png'
+    if !result
+      if size == :thumb_medium
+        '/images/user/default_medium.png'
+      elsif size == :thumb_small
+        '/images/user/default_small.png'
+      elsif size == :thumb_large
+        '/images/user/default_large.png'
+      end
+    else
+      result
+    end
   end
 end

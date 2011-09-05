@@ -26,6 +26,7 @@ group :development, :test do
   gem 'rspec-rails', '~>2.6'
   gem 'haml-rails'
   gem 'factory_girl_rails'
+  gem 'seedbed'
 end
 
 # Use unicorn as the web server

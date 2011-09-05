@@ -85,19 +85,19 @@
       .history_bar
         =render 'common/big_header_box', :number => @person.involved_events.size, :text => '活动', :background_color => '#ff8a3c'
         =render 'common/big_header_box', :number => @person.joined_groups.size, :text => '小组', :background_color => '#aad450'
-        =render 'common/big_header_box', :number => @person.joined_groups.size, :background_color => '#4ebaff', :text => '评论'
+        =render 'common/big_header_box', :number => @person.event_comments.size+@person.topic_comments.size, :background_color => '#4ebaff', :text => '评论'
 
     .following_people_panel
       - if @followed_people.length > 0
         =render 'common/header_box',:title => "关注"
-        - for person in @followed_people[ 0...20 ]
+        - for person in @followed_people[ 0...24 ]
           .person_avatar
             = person_image_link(person)
     .following_people_panel
       - if @befollowed_people.length > 0
         .titile
           =render 'common/header_box',:title => "被关注"
-        - for person in @befollowed_people[ 0...20 ]
+        - for person in @befollowed_people[ 0...24 ]
           .person_avatar
             = person_image_link(person)
     .stream

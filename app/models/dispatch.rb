@@ -13,12 +13,12 @@ class Dispatch
   end 
   
   def notify_user
-    Resque.enqueue(Job::NotifyUserJob, @subscribers.map{|u| u.id}, @object.class.to_s, @object.id, @sender.id,@action)
+    Resque.enqueue(Job::NotifyUserJob, @subscribers.map{|u| u.user.id}, @object.class.to_s, @object.id, @sender.id,@action)
   end
 
   def started_sharing
-    Resque.enqueue(Job::StartedSharingJob,@sender.id,@object.recipient.user.id) 
-    Notification.notify(@object.recipient, @object,@sender,@action )
+    #Resque.enqueue(Job::StartedSharingJob,@sender_person.id,@object.recipient.user.id) 
+    Notification.notify(@object.recipient.user, @object,@sender_person,@action )
   end
 
   def dispatch_status_message

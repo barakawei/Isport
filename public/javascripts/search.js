@@ -33,7 +33,7 @@ var Search = {
       element: element,
       minChars : 1,
       onSelect: Search.selectItemCallback,
-      max : 5,
+      max : 6,
       scroll : false,
       delay : 100,
       cacheLength : 15,
