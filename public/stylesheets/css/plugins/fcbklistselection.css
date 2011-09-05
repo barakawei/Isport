@@ -19,11 +19,15 @@ body
 #fcbklist .content{
   color: #546266;
 }
+.filter{
+  padding: 10px;
+}
 #filters {
     position:absolute;
     left:200px;
-    top:0px;
+    top:-1px;
 	zoom:1;
+    padding: 10px;
 }
 #filters .selections {
 	float:left;
@@ -43,7 +47,6 @@ body
     -moz-border-radius: 6px;
     -webkit-border-radius: 6px;
     border-radius: 6px;
-    behavior: url(/javascripts/PIE.htc);
 	float:left;
 	padding:4px 5px;
     width:80px;

@@ -7,6 +7,6 @@ $(' .events_panel').html(content);
 }
 event_tab = '<%=@event_tab%>';
 if(event_tab != ''  ){
-  $( '.active' ).removeClass( 'active' );
-  $( '#'+event_tab).addClass( 'active' );
+  $( '.current' ).removeClass( 'current' );
+  $( '#'+event_tab).addClass( 'current' );
 }

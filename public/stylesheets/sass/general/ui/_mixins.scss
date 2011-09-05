@@ -26,6 +26,7 @@
   -webkit-border-top-right-radius: $radius;
   border-top-left-radius: $radius;
   border-top-right-radius: $radius;
+  border-radius: $radius $radius 0 0;
   behavior: url(/javascripts/PIE.htc);
 }
 

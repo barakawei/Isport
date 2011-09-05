@@ -40,27 +40,28 @@
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     border-radius: 5px;
-    behavior: url(/javascripts/PIE.htc);
     background-color: white;
     border: 1px solid #bbbbbb;
     margin-top: 20px;
     color: #576b72;
-    width: 400px; }
+    width: 400px;
+    width: 393px \0  !important;
+    height: 29px; }
     .new_message_pane .as-selections #contact_ids {
       border: none !important; }
   .new_message_pane .subject {
     margin-top: 20px; }
     .new_message_pane .subject input {
       width: 391px;
+      height: 29px \0  !important;
       height: 20px; }
   .new_message_pane .content {
-    margin-top: 20px; }
+    margin-top: 20px;
+    margin-bottom: 10px; }
     .new_message_pane .content textarea {
       width: 391px; }
   .new_message_pane .submit {
-    margin-left: 400px;
-    height: 40px;
-    display: inline; }
+    margin-left: 400px; }
 
 #conversation_show {
   width: 610px;
