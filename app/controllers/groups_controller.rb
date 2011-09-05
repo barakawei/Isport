@@ -76,7 +76,7 @@ class GroupsController < ApplicationController
     @group.forum = Forum.create
 
     if @group.save
-      Membership.create(:group_id => @group.id, :person_id => current_person.id, :is_admin => true)
+      @group.memberships.create(:person_id => current_person.id, :is_admin => true)
       redirect_to new_group_invite_path(@group)
     else
       @step = 1
@@ -160,7 +160,7 @@ class GroupsController < ApplicationController
 
   def authenticate_admin!  
     @group = Group.find(params[:id])
-    unless @group.is_admin(@current_user) 
+    unless @group.is_admin(@current_user.person) 
       redirect_to group_path(@group) 
     end
   end
