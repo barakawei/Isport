@@ -8,7 +8,8 @@ class Person < ActiveRecord::Base
   has_many :feedbacks
   has_many :groups
   has_many :topics
-  has_many :topic_comments, :class_name => 'topic_comment'
+  has_many :topic_comments, :class_name => 'TopicComment'
+  has_many :event_comments, :class_name => 'EventComment'
   has_many :site_posts
 
   has_many :involvements, :dependent => :destroy

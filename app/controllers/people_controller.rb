@@ -17,7 +17,7 @@ class PeopleController < ApplicationController
       end
 
       format.html do
-        @people = Person.search(params[:q],current_user).paginate(:page => params[:page], :per_page => 20)
+        @people = Person.search(params[:q],current_user).paginate(:page => params[:page], :per_page => 35)
         @hashes = hashes_for_people(@people)
       end 
     end
@@ -32,7 +32,7 @@ class PeopleController < ApplicationController
 
   def show_items
     @person = Person.find( params[ :person_id ] )
-    @items= @person.interests.paginate(:page => params[:page], :per_page => 20)
+    @items= @person.interests.paginate(:page => params[:page], :per_page => 35)
     @select_tab = 'items_tab'  
     render "people/show_person_details"
   end
@@ -41,11 +41,11 @@ class PeopleController < ApplicationController
     @type = params[ :type ]
     @person = Person.find( params[ :person_id ] )
     if @type == 'followed'
-      @people = @person.user.followed_people.paginate(:page => params[:page], :per_page => 20)
+      @people = @person.user.followed_people.paginate(:page => params[:page], :per_page => 35)
 
       @select_tab = 'following_tab'  
     else
-      @people = @person.user.befollowed_people.paginate(:page => params[:page], :per_page => 20)
+      @people = @person.user.befollowed_people.paginate(:page => params[:page], :per_page => 35)
 
       @select_tab = 'followers_tab'  
     end

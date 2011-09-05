@@ -6,7 +6,7 @@ zh:
   home: "主页"
   upload_photo: "上传图片"
   events_link: "活动"
-  items_link: "项目"
+  items_link: "兴趣"
   groups_link: "小组"
   more: "更多"
   friends: "好友"
@@ -96,7 +96,7 @@ zh:
       event_title: '活动名称'
       event_description: '活动描述'
       event_comments: '活动评论'
-      event_subject: '所属项目'
+      event_subject: '活动类型'
       event_owner: '发起人'
       location: '活动地点'
       show: '去看看'
@@ -183,25 +183,25 @@ zh:
         passed_short: '合格'
 
   items:
-      items_list: "所有项目"
-      new_item: "添加项目"
+      items_list: "所有兴趣"
+      new_item: "添加兴趣"
       save: "确定"
-      name: "项目名称"
-      description: "项目描述"
-      edit: "编辑项目"
+      name: "兴趣名称"
+      description: "兴趣描述"
+      edit: "编辑兴趣"
       back: "返回列表"
       like: "喜欢"
-      likeinfo: "选择喜欢，我们将更多的向您推荐属于此项目的活动"
+      likeinfo: "选择喜欢，我们将根据您的兴趣的推荐活动"
       unlike: "不再喜欢"
       unlikeinfo: "你已经是%{name}粉丝!"
       events: "近期活动"
       mavin: "达人"
-      mavinfo: "想成为项目达人吗？更多的组织活动，更多的参加活动，你也可以！"
+      mavinfo: "想成为达人吗？更多的组织活动，更多的参加活动，你也可以！"
       all: "共有"
       fans: "位粉丝"
-      myitems: "我的项目"
+      myitems: "我的兴趣"
       eventsthisweek: "本周%{count}个活动"
-      my_favorite_item: "我喜欢的项目"
+      my_favorite_item: "我的兴趣"
       citygroups: "同城小组"
       findgroups: "寻找你喜欢的小组吧，认识志同道合的人"
       groupsthiscity: "%{count}个同城小组"
@@ -222,7 +222,7 @@ zh:
       group_info: '小组信息'
       group_members: '小组成员'
     name: '小组名称'
-    item: '所属项目'
+    item: '小组类型'
     description: '小组描述'
     city: '所在城市'
     is_private: '私密小组'

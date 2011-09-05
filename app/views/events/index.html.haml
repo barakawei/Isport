@@ -60,12 +60,13 @@
 
 - if @hot_items.size > 0
   .span-24.prepend-top
-    = render 'common/header_box',  :title => '热门项目活动'
+    = render 'common/header_box',  :title => '热门活动'
     .hot_events
       -@hot_items.each_with_index do |i, index|
         .hot_items_events{:class => ('last_item' if index == @hot_items.length - 1)}
           .item_avatar
             = item_image_link(i, :size => :thumb_large)
+            %span.item_des=i.name
           = link_to '更多', event_filter_path(:city => @city.pinyin, :item_id => i.id), :class => 'right more'
           - i.hot_events(6, current_user.person.location.city).each do |e|
             .item_event

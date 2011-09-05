@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110830150837) do
+ActiveRecord::Schema.define(:version => 20110905133450) do
 
   create_table "administrators", :force => true do |t|
     t.integer  "user_id"
@@ -171,6 +171,10 @@ ActiveRecord::Schema.define(:version => 20110830150837) do
     t.boolean  "is_pending", :default => false
   end
 
+  add_index "involvements", ["event_id"], :name => "index_involvements_on_event_id"
+  add_index "involvements", ["person_id", "event_id"], :name => "index_involvements_on_person_id_and_event_id", :unique => true
+  add_index "involvements", ["person_id"], :name => "index_involvements_on_person_id"
+
   create_table "items", :force => true do |t|
     t.string   "name"
     t.text     "description"
@@ -292,6 +296,10 @@ ActiveRecord::Schema.define(:version => 20110830150837) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "recommendations", ["item_id"], :name => "index_recommendations_on_item_id"
+  add_index "recommendations", ["person_id", "item_id"], :name => "index_recommendations_on_person_id_and_item_id", :unique => true
+  add_index "recommendations", ["person_id"], :name => "index_recommendations_on_person_id"
 
   create_table "requests", :force => true do |t|
     t.integer  "sender_id"
