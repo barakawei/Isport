@@ -2,12 +2,17 @@ class NotificationsController < ApplicationController
   include NotificationsHelper
   before_filter :registrations_closed?
   def index
-    @notifications = Notification.includes( :actor ).where( :recipient_id => current_user).order( "created_at DESC" ).paginate(:page => params[:page], :per_page => 20)
+    notifications_temp = Notification.includes( :actor ).where( :recipient_id => current_user).order( "created_at DESC" ).paginate(:page => params[:page], :per_page => 20)
 
     @unread_notify_count = Notification.sum(:unread, :conditions => "recipient_id = #{current_user.id}")
+    @notifications = Array.new( notifications_temp ).paginate(:page => params[:page], :per_page => 20)
 
     unpassed = 0
-    @notifications.each do |n|
+    notifications_temp.each do |n|
+      n[:actor] = n.actor
+      n[:translation] = object_link(n)
+      n[:translation_key] = n.translation_key
+      n[:target] = n.target
       if n.target_type == 'Event' || n.target_type == 'Group'
         if n.target.status != Event::PASSED || n.target.status != Group::PASSED
           if n.unread == 1
@@ -16,10 +21,6 @@ class NotificationsController < ApplicationController
           @notifications.delete( n )
         end
       end
-      n[:actor] = n.actor
-      n[:translation] = object_link(n)
-      n[:translation_key] = n.translation_key
-      n[:target] = n.target
     end
     @unread_notify_count = @unread_notify_count - unpassed
     respond_to do |format|  

@@ -13,7 +13,7 @@ class Dispatch
   end 
   
   def notify_user
-    Resque.enqueue(Job::NotifyUserJob, @subscribers.map{|u| u.user.id}, @object.class.to_s, @object.id, @sender.id,@action)
+    Resque.enqueue(Job::NotifyUserJob, @subscribers.map{|u| u.user.id}, @object.class.to_s, @object.id, @sender_person.id,@action)
   end
 
   def started_sharing
