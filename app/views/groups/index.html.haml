@@ -34,7 +34,7 @@
   .hot_groups
     .search_line
       .filter_title
-        =link_to '项目', 'javascript:void(0);' 
+        =link_to '兴趣', 'javascript:void(0);' 
       .filter_items
         = link_to '全部', group_filter_path(@city.pinyin)
         - Item.all.each do |i|
@@ -48,7 +48,7 @@
           = link_to d.name, group_filter_path(:city => @city.pinyin, @district_id => d.id)
 
 .span-24.prepend-top
-  = render 'common/header_box',  :title => '热门项目小组', :dark => false
+  = render 'common/header_box',  :title => '热门小组', :dark => false
   .hot_groups
     - @hot_items.each do |i|
       - hot_groups = Group.hot_group_by_item(@city, i).all 

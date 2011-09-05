@@ -59,7 +59,7 @@
     .hot_area.groups_panel
       = render :partial => 'groups/group_box',:collection => @groups,:as => :group
       - if @groups.size == 0
-        =render :partial => 'events/new_event_link', :locals => { :question => '该项目还没有小组?',
+        =render :partial => 'events/new_event_link', :locals => { :question => '还没有围绕此兴趣的小组',
                                                                 :link => new_group_path,
                                                                 :action => '创建小组'}
       

@@ -60,7 +60,7 @@
 
 - if @hot_items.size > 0
   .span-24.prepend-top
-    = render 'common/header_box',  :title => '热门项目活动'
+    = render 'common/header_box',  :title => '热门活动'
     .hot_events
       -@hot_items.each_with_index do |i, index|
         .hot_items_events{:class => ('last_item' if index == @hot_items.length - 1)}

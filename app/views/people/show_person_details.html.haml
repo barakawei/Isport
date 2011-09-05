@@ -25,7 +25,7 @@
             =@person.joined_groups.size
       %li.items_tab
         = link_to( {:controller => 'people',:action => 'show_items',:person_id=>@person.id}) do
-          = "项目"
+          = "兴趣"
           %span
             = @person.interests.size
     .clear
