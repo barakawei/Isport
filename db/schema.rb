@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110830150837) do
+ActiveRecord::Schema.define(:version => 20110905133450) do
 
   create_table "administrators", :force => true do |t|
     t.integer  "user_id"
@@ -105,10 +105,10 @@ ActiveRecord::Schema.define(:version => 20110830150837) do
     t.integer  "group_id",           :default => 0
     t.integer  "status",             :default => 0
     t.string   "status_msg"
-    t.integer  "audit_person_id"
     t.integer  "participants_count", :default => 0
     t.integer  "comments_count",     :default => 0
     t.integer  "fans_count",         :default => 0
+    t.integer  "audit_person_id"
   end
 
   create_table "favorites", :force => true do |t|
@@ -170,6 +170,10 @@ ActiveRecord::Schema.define(:version => 20110830150837) do
     t.datetime "updated_at"
     t.boolean  "is_pending", :default => false
   end
+
+  add_index "involvements", ["event_id"], :name => "index_involvements_on_event_id"
+  add_index "involvements", ["person_id", "event_id"], :name => "index_involvements_on_person_id_and_event_id", :unique => true
+  add_index "involvements", ["person_id"], :name => "index_involvements_on_person_id"
 
   create_table "items", :force => true do |t|
     t.string   "name"
@@ -243,6 +247,19 @@ ActiveRecord::Schema.define(:version => 20110830150837) do
 
   add_index "people", ["user_id"], :name => "index_people_on_user_id", :unique => true
 
+  create_table "pics", :force => true do |t|
+    t.integer  "author_id"
+    t.integer  "event_id"
+    t.text     "description"
+    t.text     "remote_photo_path"
+    t.string   "remote_photo_name"
+    t.string   "processed_image"
+    t.string   "unprocessed_image"
+    t.string   "random_string"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "post_visibilities", :force => true do |t|
     t.integer  "contact_id"
     t.integer  "post_id"
@@ -292,6 +309,10 @@ ActiveRecord::Schema.define(:version => 20110830150837) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "recommendations", ["item_id"], :name => "index_recommendations_on_item_id"
+  add_index "recommendations", ["person_id", "item_id"], :name => "index_recommendations_on_person_id_and_item_id", :unique => true
+  add_index "recommendations", ["person_id"], :name => "index_recommendations_on_person_id"
 
   create_table "requests", :force => true do |t|
     t.integer  "sender_id"
