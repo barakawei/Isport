@@ -167,6 +167,10 @@ class EventsController < ApplicationController
     @events = Event.filter_event(conditions).paginate :page => params[:page], :per_page => 15
     @select_tab = 'event'
   end
+
+  def upload_event_pics
+    @event = Event.find(params[:id])
+  end
   
   private
 

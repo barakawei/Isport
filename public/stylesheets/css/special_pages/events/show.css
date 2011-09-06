@@ -191,3 +191,8 @@
   behavior: url(/javascripts/PIE.htc);
   padding: 20px;
   margin-bottom: 50px; }
+.right_column .event_pic_bar {
+  position: relative; }
+  .right_column .event_pic_bar a {
+    position: absolute;
+    bottom: 20px; }

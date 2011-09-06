@@ -95,6 +95,8 @@ stylesheets:
     - public/stylesheets/css/special_pages/events/new_event_panel.css
   sepcial_pages_events_in_audit:
     - public/stylesheets/css/special_pages/events/in_audit.css
+  sepcial_pages_events_upload_pic:
+    - public/stylesheets/css/special_pages/events/upload_pic.css
 
   special_pages_items_show:
     - public/stylesheets/css/special_pages/item/show.css

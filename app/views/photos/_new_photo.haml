@@ -5,7 +5,7 @@
        element: document.getElementById('file-upload'),
        params: {'photo' : {'is_avatar':false}},
        allowedExtensions: ['jpg', 'jpeg', 'png', 'gif'],
-       action: "#{photos_path}",
+       action: "#{controller_path}",
        debug: true,
        button: document.getElementById('file-upload'),
        sizeLimit: 4194304,
@@ -17,37 +17,41 @@
         $('#file-upload').addClass("loading");
         $('.photo_form').closest( "form" ).find("input[type='submit']").attr('disabled','disabled');
         $(".photo_form").closest( "form" ).addClass("with_photos");
-        $('#photozone').css( "height","60px" );
         $('#photozone').append(
           "<li class='photo loading' style='position:relative;'>" +
+            "<div class='ajax_load'>" + 
             "<img src='/images/ui/loading.gif' />" +
+            "</div>" +
+            "<textarea name='content'></textarea>" +
+            "<a class='remove_link'>close</a>" +
           "</li>"
           );
        },
 
        onComplete: function(id, fileName, responseJSON) {
         var id = responseJSON.data.photo.id,
-            url = responseJSON.data.photo.thumb_small,
+            url = responseJSON.data.photo.thumb_medium,
             currentPlaceholder = $('li.loading').first();
 
         $(".photo_form").closest( "form" ).addClass("with_photos");
         $('.photo_form').append("<input type='hidden' value='" + id + "' name='photos[]' />");
 
         var img = currentPlaceholder.find('img');
+        var textarea = currentPlaceholder.find('textarea');
         img.attr('src', url);
         img.attr('data-id', id);
+        textarea.attr('data-id', id);
         currentPlaceholder.removeClass('loading');
-        currentPlaceholder.append("<div class='x'>X</div>" +"<div class='circle'></div>");
         
         var form = $('.photo_form').closest( "form" );
 
         form.find("input[type='submit']").removeAttr('disabled');
 
-        $('.x',currentPlaceholder).bind('click', function(){
-
+        $('a.remove_link',currentPlaceholder).bind('click', function(){
+          
           var photo = $(this).closest('.photo');
           photo.addClass("dim");
-          $.ajax({url: "photos/" + photo.children('img').attr('data-id'),
+          $.ajax({url: "/pics/" + photo.find('img').attr('data-id'),
                   type: 'DELETE',
                   success: function() {
                       photo.fadeOut(400, function(){
