@@ -107,7 +107,11 @@ class PeopleController < ApplicationController
 
   def show_person_events
     person = Person.find( params[ :person_id ] )
-    @events = person.involved_events.order( "events.start_at DESC" ).paginate(:page => params[:page], :per_page => 10)
+    if current_user.person.id == person.id
+      @events = person.involved_events.order( "events.start_at DESC" ).paginate(:page => params[:page], :per_page => 10)
+    else
+      @events = person.involved_events.where("status = ? ",Event::PASSED).order( "events.start_at DESC" ).paginate(:page => params[:page], :per_page => 10)
+    end
     respond_with @events
   end
 
