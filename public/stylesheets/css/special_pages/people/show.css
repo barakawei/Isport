@@ -148,8 +148,9 @@
     width: 200px;
     height: 200px; }
   .person_left_bar #profile_photo h2 {
-    line-height: 15px;
-    margin-bottom: 38px; }
+    font-size: 20px;
+    line-height: 20px;
+    margin-bottom: 35px; }
   .person_left_bar .information {
     width: 100%; }
 
