@@ -1,6 +1,6 @@
 #home_user
   = person_image_link(@person)
-  %h3.push-2
+  %h3.person_name
     =@person.name
     .description
       = link_to '个人页面', person_path(@person)
