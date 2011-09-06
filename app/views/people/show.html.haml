@@ -37,8 +37,9 @@
         .title
           .name
             = "小组"
-          .link
-            = link_to '>>',{:controller => 'people',:action => 'show_groups',:person_id=>@person.id}
+          -if @person.joined_groups.size > 5  
+            .link
+              = element_more_tag(@person,:show_groups)
           .clear
 
 
@@ -55,8 +56,9 @@
         .title
           .name
             = '兴趣'
-          .link
-            = link_to '>>',{:controller => 'people',:action => 'show_items',:person_id=>@person.id}
+          -if @person.interests.size > 5
+            .link
+              = element_more_tag(@person,:show_items)
           .clear
 
 
@@ -93,6 +95,11 @@
         - for person in @followed_people[ 0...24 ]
           .person_avatar
             = person_image_link(person)
+      - if @followed_people.length > 24
+        .people_more
+          = element_more_tag(@person,:show_friends,:followed)
+            
+
     .following_people_panel
       - if @befollowed_people.length > 0
         .titile
@@ -100,6 +107,10 @@
         - for person in @befollowed_people[ 0...24 ]
           .person_avatar
             = person_image_link(person)
+      - if @befollowed_people.length > 24
+        .people_more
+          = element_more_tag(@person,:show_friends,:befollowed)
+            
     .stream
       .events_panel
         .current_events

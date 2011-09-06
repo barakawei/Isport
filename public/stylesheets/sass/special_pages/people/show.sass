@@ -314,6 +314,9 @@ dd
     :margin
       :left 30px
       :bottom 30px
+  .gender
+    span
+      :margin-top 7px
   span
     :vertical-align top
     :text-align right
@@ -371,6 +374,7 @@ dd
 .person_event_container
   :position relative
   .pagination
+    :text-align center
     :bottom -50px
 
 .person_event_box_panel
@@ -383,12 +387,15 @@ dd
       :padding 10px
     .content
       :float left
-      width: 295px
+      width: 350px
       line-height: 16px
-      color: #22AEC1
+      color: #546266
+      font-size: 11px
       padding: 10px
       .title
-        :color #E9727E
+        :margin-bottom 5px
+        :color #22aec1
+        :font-size 18px
     .calendar_panel
       width: 74px
       height: 74px
@@ -453,3 +460,19 @@ dd
   p
     color: #546266
     :display inline
+
+.element_more
+  height: 20px
+  font-weight: bold
+  color: #22AEC1
+  font-size: 11px
+  cursor: pointer
+  background-color: white
+  padding: 2px 4px 0 6px
+  border: 1px solid #dce4e6
+  @include border-radius( 3px )
+.people_more
+  float: right
+  margin-top: 5px
+  margin-right: 15px
+  
