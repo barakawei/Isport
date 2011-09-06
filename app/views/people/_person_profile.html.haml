@@ -3,10 +3,6 @@
     %span="介绍"
     .content#bio
       =  @profile.bio
-  .hobby.info_text{ :class =>( "hide" if @profile.hobby.nil? )}
-    %span="爱好"
-    .content#hobby
-      = @profile.hobby
   .gender.info_text{ :class =>( "hide" if @profile.gender.nil? )}
     %span="性别"
     .content#gender

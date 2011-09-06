@@ -1,4 +1,19 @@
 @charset "UTF-8";
+.calendar_panel {
+  height: 50px;
+  width: 50px;
+  float: left;
+  color: #546266; }
+
+.calendar {
+  background: url("/images/ui/calendar_small.png") no-repeat;
+  width: 50px;
+  height: 50px;
+  text-align: center; }
+  .calendar .day {
+    font-weight: normal;
+    font-size: 18px; }
+
 input[type=text], textarea {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -345,7 +360,8 @@ span.medium_avatar {
     width: 100px;
     height: 75px; }
     .avatar_show .person_content .name {
-      font-size: 18px;
+      font-size: 15px;
+      line-height: 15px;
       color: #0bb6e5; }
   .avatar_show .action {
     margin-top: 10px; }
@@ -408,6 +424,7 @@ a.button {
   -webkit-border-top-right-radius: 5px;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
+  border-radius: 5px 5px 0 0;
   behavior: url(/javascripts/PIE.htc); }
 
 .glass_button {
@@ -703,20 +720,12 @@ a.app_black_link_button {
 .change_password .login form label.in_field {
   top: 4px; }
 
-.radius_small {
-  -moz-border-radius: 2px;
-  -webkit-border-radius: 2px;
-  border-radius: 2px;
-  behavior: url(/javascripts/PIE.htc); }
-
-.radius_medium {
-  -moz-border-radius: 6px;
-  -webkit-border-radius: 6px;
-  border-radius: 6px;
-  behavior: url(/javascripts/PIE.htc); }
+.search_result .pagination_box {
+  text-align: center; }
+.search_result .friends_set li {
+  width: 135px !important; }
 
 .radius_large {
   -moz-border-radius: 8px;
   -webkit-border-radius: 8px;
-  border-radius: 8px;
-  behavior: url(/javascripts/PIE.htc); }
+  border-radius: 8px; }

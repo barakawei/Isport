@@ -24,10 +24,6 @@
         .content#bio
           = f.text_area  :bio
 
-      .hobby.info_text
-        %span="爱好"
-        .content#hobby
-          = f.text_field :hobby
       .location.info_text
         %span="城市"
         .content#location
@@ -43,7 +39,8 @@
     $('.edit_profile').validate({  
       rules: {
         'profile[name]': {
-          required: true
+          required: true,
+          maxlength: 12
         },
         'profile[gender]': {
           required: true
@@ -51,7 +48,8 @@
       },
       messages: {
         'profile[name]': {
-          required: '请输入名字'
+          required: '请输入名字',
+          maxlength: '名字不能超过12个字符'
         },
         'profile[gender]': {
           required: '请选择性别'

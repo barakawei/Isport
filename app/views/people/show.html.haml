@@ -37,8 +37,9 @@
         .title
           .name
             = "小组"
-          .link
-            = link_to '>>',{:controller => 'people',:action => 'show_groups',:person_id=>@person.id}
+          -if @person.joined_groups.size > 5  
+            .link
+              = element_more_tag(@person,:show_groups)
           .clear
 
 
@@ -54,9 +55,10 @@
       .groups
         .title
           .name
-            = '项目'
-          .link
-            = link_to '>>',{:controller => 'people',:action => 'show_items',:person_id=>@person.id}
+            = '兴趣'
+          -if @person.interests.size > 5
+            .link
+              = element_more_tag(@person,:show_items)
           .clear
 
 
@@ -85,21 +87,30 @@
       .history_bar
         =render 'common/big_header_box', :number => @person.involved_events.size, :text => '活动', :background_color => '#ff8a3c'
         =render 'common/big_header_box', :number => @person.joined_groups.size, :text => '小组', :background_color => '#aad450'
-        =render 'common/big_header_box', :number => @person.joined_groups.size, :background_color => '#4ebaff', :text => '评论'
+        =render 'common/big_header_box', :number => @person.event_comments.size+@person.topic_comments.size, :background_color => '#4ebaff', :text => '评论'
 
     .following_people_panel
       - if @followed_people.length > 0
         =render 'common/header_box',:title => "关注"
-        - for person in @followed_people[ 0...20 ]
+        - for person in @followed_people[ 0...24 ]
           .person_avatar
             = person_image_link(person)
+      - if @followed_people.length > 24
+        .people_more
+          = element_more_tag(@person,:show_friends,:followed)
+            
+
     .following_people_panel
       - if @befollowed_people.length > 0
         .titile
           =render 'common/header_box',:title => "被关注"
-        - for person in @befollowed_people[ 0...20 ]
+        - for person in @befollowed_people[ 0...24 ]
           .person_avatar
             = person_image_link(person)
+      - if @befollowed_people.length > 24
+        .people_more
+          = element_more_tag(@person,:show_friends,:befollowed)
+            
     .stream
       .events_panel
         .current_events

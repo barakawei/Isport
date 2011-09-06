@@ -17,6 +17,14 @@ module ApplicationHelper
     link_html.html_safe
   end
 
+  def element_more_tag(person,action,type=nil)
+    button_html = "<div class='element_more'>"+t('more')+"</div>"
+    link_html = link_to({:controller => 'people',:action => "#{action}",:type=>"#{type}",:person_id =>person.id}) do
+      button_html.html_safe
+    end
+
+  end
+
   def next_page_path
     if controller.instance_of?(PeopleController)
       person_path(@person, :max_time => @posts.last.created_at.to_i)
@@ -64,14 +72,7 @@ module ApplicationHelper
   end
 
   def person_image_tag(person, size=:thumb_small)
-    if size == :thumb_small
-      avatar_html = "<img  class=\"avatar person_avatar_detail radius_small\" data_person_id=\"#{person.id}\" src=\"#{person.profile.image_url(size)}\">"
-    elsif size == :thumb_medium
-      avatar_html = "<img  class=\"avatar person_avatar_detail radius_medium\" data_person_id=\"#{person.id}\" src=\"#{person.profile.image_url(size)}\">"
-    elsif size == :thumb_large
-      avatar_html = "<img  class=\"avatar person_avatar_detail radius_large\" data_person_id=\"#{person.id}\" src=\"#{person.profile.image_url(size)}\">"
-    end
-
+    avatar_html = "<img  class=\"avatar person_avatar_detail \" data_person_id=\"#{person.id}\" src=\"#{person.profile.image_url(size)}\">"
     avatar_html.html_safe
   end
   
@@ -115,25 +116,11 @@ module ApplicationHelper
   end
 
   def event_image_tag(event,size)
-    if size == :thumb_small
-      "<img title=\"#{h(event.title)}\" class=\"avatar radius_small\"  src=\"#{event.image_url(size)}\" >".html_safe
-    elsif size == :thumb_medium
-      "<img title=\"#{h(event.title)}\" class=\"avatar radius_medium\"  src=\"#{event.image_url(size)}\" >".html_safe
-    elsif size == :thumb_large
-      "<img title=\"#{h(event.title)}\" class=\"avatar radius_large\"  src=\"#{event.image_url(size)}\" >".html_safe
-    else
-      "<img title=\"#{h(event.title)}\" class=\"avatar radius_little\"  src=\"#{event.image_url(size)}\" >".html_safe
-    end
+    "<img title=\"#{h(event.title)}\" class=\"avatar \"  src=\"#{event.image_url(size)}\" >".html_safe
   end
 
   def group_image_tag(group, size=:thumb_small)
-    if size == :thumb_small
-      "<img title=\"#{h(group.name)}\" class=\"avatar radius_small\"  src=\"#{group.image_url(size)}\" >".html_safe
-    elsif size == :thumb_medium
-      "<img title=\"#{h(group.name)}\" class=\"avatar radius_medium\"  src=\"#{group.image_url(size)}\" >".html_safe
-    elsif size == :thumb_large
-      "<img title=\"#{h(group.name)}\" class=\"avatar radius_large\"  src=\"#{group.image_url(size)}\" >".html_safe
-    end
+    "<img title=\"#{h(group.name)}\" class=\"avatar \"  src=\"#{group.image_url(size)}\" >".html_safe
   end
 
   def group_image_link(group, size=nil)
@@ -141,12 +128,10 @@ module ApplicationHelper
   end
 
   def item_image_tag(item, size=:thumb_small)
-    if size == :thumb_small
-      "<img title=\"#{h(item.name)}\" class=\"avatar radius_small\"  src=\"#{item.image_url(size)}\" >".html_safe
-    elsif size == :thumb_medium
-      "<img title=\"#{h(item.name)}\" class=\"avatar radius_medium\"  src=\"#{item.image_url(size)}\" >".html_safe
-    elsif size == :thumb_large
-      "<img title=\"#{h(item.name)}\" class=\"avatar radius_large\"  src=\"#{item.image_url(size)}\" >".html_safe
+    if size == :thumb_large
+      "<img title=\"#{h(item.name)}\" class=\"avatar radius_large \"  src=\"#{item.image_url(size)}\" >".html_safe
+    else
+      "<img title=\"#{h(item.name)}\" class=\"avatar \"  src=\"#{item.image_url(size)}\" >".html_safe
     end
   end
 

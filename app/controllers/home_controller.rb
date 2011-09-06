@@ -27,20 +27,20 @@ class HomeController < ApplicationController
   end
 
   def show_event
-    @events = Event.at_city( current_user.city ).order( "events.start_at DESC" ).paginate(:page => params[:page], :per_page => 10)
+    @events = Event.at_city( current_user.city ).where("status = ? or (status != ? and events.person_id = ?) ",Event::PASSED,Event::PASSED,current_user.person.id).order( "events.start_at DESC" ).paginate(:page => params[:page], :per_page => 10)
     @event_tab = 'recent_event'
     respond_with @events
   end
 
   def show_following_event
     following_people = current_user.followed_people
-    @events = Event.joins( :involvements).where( :person_id => following_people ).order( "events.start_at DESC" ).paginate(:page => params[:page], :per_page => 10)
+    @events = Event.select( 'DISTINCT events.id,events.*' ).joins( :involvements).where( :person_id => following_people ).where("status = ? or (status != ? and events.person_id = ?) ",Event::PASSED,Event::PASSED,current_user.person.id).order( "events.start_at DESC" ).paginate(:page => params[:page], :per_page => 10)
     @event_tab = 'following_event'
     render 'show_event'
   end
 
   def show_my_event
-    @events = current_user.person.involved_events.order( "events.start_at DESC" ).paginate(:page => params[:page], :per_page => 10)
+    @events = current_user.person.involved_events.order( "events.start_at DESC" ).where("status = ? or (status != ? and events.person_id = ?) ",Event::PASSED,Event::PASSED,current_user.person.id).paginate(:page => params[:page], :per_page => 10)
     @event_tab = 'my_event'
     render 'show_event'
   end

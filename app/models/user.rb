@@ -28,7 +28,7 @@ class User < ActiveRecord::Base
 
   def setup( opts )
     opts[ :person ] = {  }
-    opts[ :person ][ :profile ] = Profile.new({ :name => 'no name' })
+    opts[ :person ][ :profile ] = Profile.new
     self.person = Person.new( opts[ :person ] )
     self
   end

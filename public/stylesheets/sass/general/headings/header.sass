@@ -130,6 +130,7 @@
     :list-style none
   .sections,.setting 
     li
+      :position relative
       @include border-radius-feed(5px)
       float: left
       margin-right: 3px
@@ -143,6 +144,7 @@
           :top 10px
     a
       :text-align center
+      :position relative
       @include border-radius-feed(5px)
       :width 40px
       display: block
@@ -157,19 +159,20 @@
     
     :background-color #414141
     :padding 
-      :top 5px
+      :top 0px
       :left 5px
       :right 5px
       :bottom 3px
     
     input
-      font-size: 10px
+      font-size: 13px
       width: 200px
       border: 1px solid #BEBEBE
       color: #555
       border-top-color: #D4D4D4
       border-left-color: #D4D4D4
       @include border-radius( 4px )
+      :height 20px
 
     
   .setting

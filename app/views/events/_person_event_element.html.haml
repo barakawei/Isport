@@ -10,9 +10,7 @@
           = I18n.l(event.start_at,:format => :normal)
           = "-"
           = I18n.l(event.end_at,:format => :shortest)
-
-        .address
-          = truncate("@"+event.location.to_s,:length => 20)
+          = truncate("@"+event.location.to_s,:length => 40)
       .status
         -if event.over?
           .sucess

@@ -67,11 +67,7 @@
   .left_column .person_array .avatar {
     margin-right: 2px;
     width: 43px;
-    height: 43px;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
-    behavior: url(/javascripts/PIE.htc); }
+    height: 43px; }
 
 .right_column .app_header_box {
   margin-top: 50px; }
