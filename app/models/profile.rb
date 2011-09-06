@@ -3,7 +3,7 @@ class Profile < ActiveRecord::Base
   belongs_to :location
   accepts_nested_attributes_for :location
   before_validation :strip_and_downcase_name
-  validates_presence_of :name
+  validates_presence_of :name,:on => :edit
   validates_length_of :name, :maximum => 20
 
   def strip_and_downcase_name

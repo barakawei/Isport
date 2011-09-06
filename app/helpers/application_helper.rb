@@ -17,6 +17,14 @@ module ApplicationHelper
     link_html.html_safe
   end
 
+  def element_more_tag(person,action,type=nil)
+    button_html = "<div class='element_more'>"+t('more')+"</div>"
+    link_html = link_to({:controller => 'people',:action => "#{action}",:type=>"#{type}",:person_id =>person.id}) do
+      button_html.html_safe
+    end
+
+  end
+
   def next_page_path
     if controller.instance_of?(PeopleController)
       person_path(@person, :max_time => @posts.last.created_at.to_i)
@@ -120,7 +128,11 @@ module ApplicationHelper
   end
 
   def item_image_tag(item, size=:thumb_small)
-    "<img title=\"#{h(item.name)}\" class=\"avatar \"  src=\"#{item.image_url(size)}\" >".html_safe
+    if size == :thumb_large
+      "<img title=\"#{h(item.name)}\" class=\"avatar radius_large \"  src=\"#{item.image_url(size)}\" >".html_safe
+    else
+      "<img title=\"#{h(item.name)}\" class=\"avatar \"  src=\"#{item.image_url(size)}\" >".html_safe
+    end
   end
 
   def item_events_notify

@@ -6,8 +6,8 @@ zh:
         end_at: '结束时间'
         title: '活动名称'
         description: '活动描述'
-        subject: '所属项目'
-        subject_id: '所属项目'
+        subject: '活动类型'
+        subject_id: '活动类型'
         person: '发起人'
         location: '地点'
         is_private: '私密活动'
@@ -15,7 +15,7 @@ zh:
       group:
         name: '小组名称'
         description: '小组描述'
-        item_id: '小组所属项目'
+        item_id: '小组类型'
         join_mode: '小组加入方式'
       user:
         email: '该电子邮箱'

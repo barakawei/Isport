@@ -1,4 +1,19 @@
 @charset "UTF-8";
+.calendar_panel {
+  height: 50px;
+  width: 50px;
+  float: left;
+  color: #546266; }
+
+.calendar {
+  background: url("/images/ui/calendar_small.png") no-repeat;
+  width: 50px;
+  height: 50px;
+  text-align: center; }
+  .calendar .day {
+    font-weight: normal;
+    font-size: 18px; }
+
 input[type=text], textarea {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -708,3 +723,8 @@ a.app_black_link_button {
   text-align: center; }
 .search_result .friends_set li {
   width: 135px !important; }
+
+.radius_large {
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  border-radius: 8px; }

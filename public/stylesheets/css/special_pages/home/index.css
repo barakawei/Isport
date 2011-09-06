@@ -182,20 +182,6 @@
 #profile_edit h4 {
   border-bottom: 1px solid #cccccc; }
 
-.calendar_panel {
-  height: 50px;
-  width: 50px;
-  float: left; }
-
-.calendar {
-  background: url("/images/ui/calendar_small.png") no-repeat;
-  width: 50px;
-  height: 50px;
-  text-align: center; }
-  .calendar .day {
-    font-weight: normal;
-    font-size: 18px; }
-
 .event_container .event_element {
   height: 180px;
   position: relative;
