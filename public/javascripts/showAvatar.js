@@ -53,9 +53,12 @@ $( function(){
     var img = $( this );
     var link = $( this ).closest( "a" ).attr( "href" );
     var avatar_container = img.closest( ".avatar_container" );
-    ajax_handle = setTimeout(function(  ){ show_avatar(img,link,avatar_container); },100);
+    ajax_handle = setTimeout(function(  ){ 
+      show_avatar(img,link,avatar_container);
+      show_handle = setTimeout(function(){  $(".avatar_show",avatar_container).fadeIn( 500 ); },700);    
+    
+    },100);
     $( ".avatar_show" ).fadeOut( 200 );
-    show_handle = setTimeout(function(){  $(".avatar_show",avatar_container).fadeIn( 500 ); },700);    
 
   },
     mouseleave:function(){
