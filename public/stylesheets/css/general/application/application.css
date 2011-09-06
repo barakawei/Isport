@@ -723,3 +723,8 @@ a.app_black_link_button {
   text-align: center; }
 .search_result .friends_set li {
   width: 135px !important; }
+
+.radius_large {
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  border-radius: 8px; }

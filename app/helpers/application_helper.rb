@@ -128,7 +128,11 @@ module ApplicationHelper
   end
 
   def item_image_tag(item, size=:thumb_small)
-    "<img title=\"#{h(item.name)}\" class=\"avatar \"  src=\"#{item.image_url(size)}\" >".html_safe
+    if size == :thumb_large
+      "<img title=\"#{h(item.name)}\" class=\"avatar radius_large \"  src=\"#{item.image_url(size)}\" >".html_safe
+    else
+      "<img title=\"#{h(item.name)}\" class=\"avatar \"  src=\"#{item.image_url(size)}\" >".html_safe
+    end
   end
 
   def item_events_notify
