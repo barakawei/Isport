@@ -144,9 +144,13 @@
   float: left;
   width: 200px;
   padding-right: 20px; }
+  .person_left_bar #profile_photo img {
+    width: 200px;
+    height: 200px; }
   .person_left_bar #profile_photo h2 {
-    line-height: 15px;
-    margin-bottom: 38px; }
+    font-size: 20px;
+    line-height: 20px;
+    margin-bottom: 35px; }
   .person_left_bar .information {
     width: 100%; }
 
@@ -303,6 +307,8 @@ dd {
   .person_profile .info_text {
     margin-left: 30px;
     margin-bottom: 30px; }
+  .person_profile .gender span {
+    margin-top: 7px; }
   .person_profile span {
     vertical-align: top;
     text-align: right;
@@ -367,6 +373,7 @@ dd {
 .person_event_container {
   position: relative; }
   .person_event_container .pagination {
+    text-align: center;
     bottom: -50px; }
 
 .person_event_box_panel {
@@ -378,12 +385,15 @@ dd {
     padding: 10px; }
   .person_event_box_panel .person_event_box .content {
     float: left;
-    width: 295px;
+    width: 350px;
     line-height: 16px;
-    color: #22aec1;
+    color: #546266;
+    font-size: 11px;
     padding: 10px; }
     .person_event_box_panel .person_event_box .content .title {
-      color: #e9727e; }
+      margin-bottom: 5px;
+      color: #22aec1;
+      font-size: 18px; }
   .person_event_box_panel .person_event_box .calendar_panel {
     width: 74px;
     height: 74px;
@@ -447,3 +457,22 @@ dd {
   #person_profile_box p {
     color: #546266;
     display: inline; }
+
+.element_more {
+  height: 20px;
+  font-weight: bold;
+  color: #22aec1;
+  font-size: 11px;
+  cursor: pointer;
+  background-color: white;
+  padding: 2px 4px 0 6px;
+  border: 1px solid #dce4e6;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  behavior: url(/javascripts/PIE.htc); }
+
+.people_more {
+  float: right;
+  margin-top: 5px;
+  margin-right: 15px; }

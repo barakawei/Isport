@@ -40,7 +40,7 @@
             =event_image_tag(event, :thumb_medium)
           .item_info
             %span.title=event.title
-            %span.desc=event.description
+            %span.desc= truncate(event.description, :length => 35)
             %span.like
               =event.participants.count.to_s + '人参加'
        
@@ -54,7 +54,7 @@
             =group_image_tag(group, :thumb_medium)
           .item_info
             %span.title= group.name
-            %span.desc= group.description
+            %span.desc= truncate(group.description, :length => 30)
             %span.like
               =group.members.count.to_s + '位成员' 
         

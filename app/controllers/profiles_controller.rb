@@ -3,12 +3,17 @@ class ProfilesController < ApplicationController
   before_filter :authenticate_user!
   def update
     params[:profile] ||= {}
-    if current_user.profile.update_attributes params[:profile]
+    @profile = current_user.profile
+    if @profile.update_attributes params[:profile]
       if params[ :profile_edit ] 
         redirect_to :back
       else
         redirect_to select_interests_path
       end
+    else
+      puts '8******&&&&&&&&'
+      puts @profile.errors
+      redirect_to :back
     end
   end   
 

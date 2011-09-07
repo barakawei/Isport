@@ -2,21 +2,13 @@
 .home_container
   :width 680px
   margin-top: 22px
-  @include border-radius( 10px )
   .new_event
     :padding-right 10px
   .home_tabs
-    background: #F9F9F9 url('/images/ui/tabs-bg.png')  repeat
+    background: #F9F9F9 url('/images/ui/tabs-bg.png') repeat 
     height: 62px
     border-bottom: solid 1px white
-    border-radius: 10px 10px 0 0
-    .active
-      a
-        :background-color  #697d84
-        :color #ffffff
-        &:hover
-          :background-color  #697d84
-          :color #ffffff
+    @include border-radius-feed( 10px )
         
     li
       font-size: 16px
@@ -27,13 +19,17 @@
       width: 137px
       text-align: center
       a
-        padding: 10px
         @include border-radius( 6px )
+        :background-color #e1e1e1 
+        padding: 10px
         font-weight: bold
         :color #999
         &:hover
-          :background-color #e1e1e1 
-          :color #697d84
+          :background-color #697d84 
+          :color white
+      a.current
+        :background-color #697d84 
+        :color white
     
   
 .events_panel
@@ -65,7 +61,8 @@
   h3
     :position absolute
     :top 4px
-    :left 0px
+    :left 60px
+    :font-size 15px
   h4
     :margin 0
   .groups
@@ -191,19 +188,6 @@
   h4
     :border-bottom 1px solid #ccc
 
-.calendar_panel
-  :height 50px
-  :width 50px
-  :float left
-.calendar
-  :background url("/images/ui/calendar_small.png") no-repeat 
-  :width 50px
-  :height 50px
-  :text-align center
-  .day
-    :font-weight normal
-    :font-size 18px
-
 .event_container
   .event_element
     &:hover
@@ -291,12 +275,18 @@
     :height 220px
     :margin-left 20px
 .home_invitation_link 
-  .title
-    :padding 10px
-    :background-color white
-    :margin-top 10px
-    :font-size 18px
+  :margin-top 10px
+  :font-size 17px
+  
+  a
+    @include border-radius(8px)
+    @include box-shadow(0,1px,5px,0,#ddd)
+    :color #888888
+    :background-color #f8f8f8
+    :padding 5px 15px
 
+    &:hover
+      :color #00bed4    
 
 .home_event_box_panel
   margin: 0 0px 2px 0px

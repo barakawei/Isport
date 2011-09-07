@@ -11,7 +11,6 @@
 # It's strongly recommended to check this file into your version control system.
 
 ActiveRecord::Schema.define(:version => 20110907060906) do
-
   create_table "administrators", :force => true do |t|
     t.integer  "user_id"
     t.datetime "created_at"
@@ -113,10 +112,10 @@ ActiveRecord::Schema.define(:version => 20110907060906) do
     t.integer  "group_id",           :default => 0
     t.integer  "status",             :default => 0
     t.string   "status_msg"
+    t.integer  "audit_person_id"
     t.integer  "participants_count", :default => 0
     t.integer  "comments_count",     :default => 0
     t.integer  "fans_count",         :default => 0
-    t.integer  "audit_person_id"
   end
 
   create_table "favorites", :force => true do |t|

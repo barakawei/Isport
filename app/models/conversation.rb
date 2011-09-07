@@ -7,11 +7,11 @@ class Conversation < ActiveRecord::Base
   def self.create(opts={})
     opts = opts.dup
     msg_opts = {:person => opts[:person], :text => opts.delete(:text)}
-
     cnv = super(opts)
-    puts opts
     message = Message.new(msg_opts.merge({:conversation_id => cnv.id}))
-    message.save
+    if message.save
+      ConversationVisibility.connection.execute(" update conversation_visibilities set unread= unread +1 where conversation_id ="+cnv.id.to_s+" and person_id !="+opts[:person].id.to_s  );
+    end
     cnv
   end
   

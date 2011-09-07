@@ -4,21 +4,23 @@ describe Item do
   before(:all) do 
     @item1 = Item.create(:name => "ItemOne", :description => "no desc", :category_id => 1) 
     @item2 = Item.create(:name => "ItemTwo", :description => "no desc", :category_id => 1)
-    @location = Location.create(:city_id => 1, :district_id => 1, :detail => 'zhujianglu')
+    @city = City.create(:name => "nanjing")
+
+    @location = Location.create(:city_id => @city.id, :district_id => 1, :detail => 'zhujianglu')
     @numbers = Array.new(10).fill{|i| i+1}
     @people = Array.new(10).fill{|i| Person.create(:user_id => (i+1))}
     
     @events = [  ]
     @numbers.each_with_index do |n, index|
       @events.push(Event.create(:title => 'Test event model', :description => 'Test event model',
-                            :start_at => Time.now.next_week + index, :end_at => Time.now.next_month + index,
-                            :subject_id => @item1.id, :location=> @location, :status => 2))
+                            :start_at => Time.now.tomorrow + n.hour, :end_at => Time.now.next_month,
+                            :subject_id => @item1.id, :location => @location, :status => 2))
     end
 
     @groups = [  ]
     @numbers.each do |i|
       @groups.push(Group.create(:name => 'Test group model', :description => 'Test Group',
-                            :item_id => @item1.id, :city_id => 1, :district_id => 1, :join_mode => 1, :status => 2))
+                            :item_id => @item1.id, :city_id => @city.id, :district_id => 1, :join_mode => 1, :status => 2))
 
     end
 
@@ -124,9 +126,35 @@ describe Item do
 
   context "test functions" do 
     it "hot item should be item1" do 
-      items = Item.hot_items(2, nil)
+      items = Item.hot_items(2, @city)
       items[0].should == @item1
-    end      
+    end     
+
+    it "hot groups should be group1" do 
+      group = Group.find(@groups.first.id)
+      @people[0...6].each do |person|
+        group.members << person
+      end
+
+      groups = @item1.hot_groups(10, @city)
+      groups.first.should == group
+      groups.length.should == 10
+    end
+
+    it "hot events should be events" do 
+      events = @item1.hot_events(10, @city)    
+      events.length.should == 10
+      events.first.should == @events.first
+    end
+
+    it "hot stars first should be people who participants most" do 
+      event = Event.find(@events.first.id) 
+      event.participants << @people.first
+
+      stars = @item1.hot_stars(10)
+      stars.first.should == @people.first
+      stars.length.should == 1
+    end
   end
 end
 

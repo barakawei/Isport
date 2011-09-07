@@ -1,4 +1,19 @@
 @charset "UTF-8";
+.calendar_panel {
+  height: 50px;
+  width: 50px;
+  float: left;
+  color: #546266; }
+
+.calendar {
+  background: url("/images/ui/calendar_small.png") no-repeat;
+  width: 50px;
+  height: 50px;
+  text-align: center; }
+  .calendar .day {
+    font-weight: normal;
+    font-size: 18px; }
+
 input[type=text], textarea {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -345,7 +360,8 @@ span.medium_avatar {
     width: 100px;
     height: 75px; }
     .avatar_show .person_content .name {
-      font-size: 18px;
+      font-size: 15px;
+      line-height: 15px;
       color: #0bb6e5; }
   .avatar_show .action {
     margin-top: 10px; }
@@ -360,7 +376,14 @@ span.medium_avatar {
   position: relative; }
 
 .person_avatar {
-  display: inline-block; }
+  display: inline-block;
+  position: relative; }
+
+.avatar {
+  position: relative; }
+
+input, textarea, select, .box_element {
+  position: relative; }
 
 .unfollow span {
   background-image: url(/images/ui/icon-x.png); }
@@ -401,9 +424,11 @@ a.button {
   -webkit-border-top-right-radius: 5px;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
+  border-radius: 5px 5px 0 0;
   behavior: url(/javascripts/PIE.htc); }
 
 .glass_button {
+  position: relative;
   background: url(/images/ui/glass-light.png) repeat-x 0 50%;
   background-color: #8dbc6e;
   -moz-border-radius: 6px;
@@ -486,8 +511,19 @@ input {
       float: left;
       height: 41px;
       width: 15px; }
+    .app_title_bar .app_header_box .box_all .box_right_white {
+      background: url("/images/ui/border_hdrs_white.png") no-repeat scroll -15px 0 transparent;
+      float: left;
+      height: 41px;
+      width: 15px; }
 .app_title_bar .bottom_pic {
   background: url("/images/ui/border_bubble_point.gif") no-repeat scroll 0 0 transparent;
+  background-color: #697d84;
+  height: 10px;
+  margin: 0 0 10px 20px;
+  width: 10px; }
+.app_title_bar .bottom_pic_white {
+  background: url("/images/ui/border_bubble_point_white.png") no-repeat scroll 0 0 transparent;
   background-color: #697d84;
   height: 10px;
   margin: 0 0 10px 20px;
@@ -497,6 +533,8 @@ input {
   background-color: #00bed4; }
 .app_title_bar.blue .bottom_pic {
   background: url("/images/ui/border_bubble_point.gif") no-repeat scroll 0 0 #00bed4; }
+.app_title_bar.blue .bottom_pic_white {
+  background: url("/images/ui/border_bubble_point_white.png") no-repeat scroll 0 0 #00bed4; }
 
 .app_big_title_bar {
   float: left;
@@ -650,6 +688,24 @@ a.app_black_link_button {
   top: 40%;
   width: 28px; }
 
+.brower_notice {
+  position: fixed;
+  left: 0;
+  top: 40%;
+  width: 110px;
+  font-size: 14px;
+  background-color: #fad66d;
+  padding: 10px; }
+
+#site_blog_link {
+  position: absolute;
+  right: 20px;
+  top: 10px;
+  font-size: 14px;
+  color: #dddddd; }
+  #site_blog_link:hover {
+    color: #f74367; }
+
 .change_password .login form input#password {
   line-height: 45px;
   margin: 0;
@@ -664,20 +720,12 @@ a.app_black_link_button {
 .change_password .login form label.in_field {
   top: 4px; }
 
-.radius_small {
-  -moz-border-radius: 2px;
-  -webkit-border-radius: 2px;
-  border-radius: 2px;
-  behavior: url(/javascripts/PIE.htc); }
-
-.radius_medium {
-  -moz-border-radius: 6px;
-  -webkit-border-radius: 6px;
-  border-radius: 6px;
-  behavior: url(/javascripts/PIE.htc); }
+.search_result .pagination_box {
+  text-align: center; }
+.search_result .friends_set li {
+  width: 135px !important; }
 
 .radius_large {
   -moz-border-radius: 8px;
   -webkit-border-radius: 8px;
-  border-radius: 8px;
-  behavior: url(/javascripts/PIE.htc); }
+  border-radius: 8px; }

@@ -1,7 +1,5 @@
-%h1 Editing site_post
+%h1='编辑日志' 
 
 = render 'form'
+= link_to '返回', site_posts_path, :class => 'back_link'
 
-= link_to 'Show', @site_post
-\|
-= link_to 'Back', site_posts_path

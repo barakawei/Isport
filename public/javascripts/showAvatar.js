@@ -1,17 +1,15 @@
 $( function(){  
   var show_handle = null;
   var remove_handle = null;
+  var ajax_handle = null;
 
-  $( ".avatar_container .person_avatar_detail" ).live({
-    mouseenter:function(){
-    var img = $( this );
-    var link = $( this ).closest( "a" ).attr( "href" );
-    var avatar_container = img.closest( ".avatar_container" );
-  if ($( ".avatar_show",avatar_container ).length == 0){
+
+  var show_avatar = function(img,link,avatar_container) { 
+    if ($( ".avatar_show",avatar_container ).length == 0){
     var person_id = img.attr( "data_person_id" );
     var url = img.attr( "src" ).replace("small","medium");
     $.post( "/contacts/show_avatar_panel",{ person_id:person_id },function( result ){
-      person = result.person[ 0 ].person;
+      person = result.person.person;
       myself = result.myself;
       var contact;
       if (result.contact.length > 0){
@@ -45,15 +43,26 @@ $( function(){
       } ).mouseleave( function(  ){  
          remove_handle = setTimeout(function(){  $(".avatar_show",avatar_container).fadeOut(200); },500);
       } );
-
-
     });
     }
+  }
+
+
+  $( ".avatar_container .person_avatar_detail" ).live({
+    mouseenter:function(){
+    var img = $( this );
+    var link = $( this ).closest( "a" ).attr( "href" );
+    var avatar_container = img.closest( ".avatar_container" );
+    ajax_handle = setTimeout(function(  ){ 
+      show_avatar(img,link,avatar_container);
+      show_handle = setTimeout(function(){  $(".avatar_show",avatar_container).fadeIn( 500 ); },700);    
+    
+    },100);
     $( ".avatar_show" ).fadeOut( 200 );
-    show_handle = setTimeout(function(){  $(".avatar_show",avatar_container).fadeIn( 500 ); },700);    
 
   },
     mouseleave:function(){
+      clearTimeout(ajax_handle);
       clearTimeout(show_handle);
       var img = $( this );
       avatar_container = img.closest( ".avatar_container" );

@@ -10,18 +10,26 @@
     = include_javascripts :jqueryui
     = include_javascripts :jquery_form
     = include_javascripts :show_avatar
-
+    = include_javascripts :google_analytics
     = csrf_meta_tag
     = yield :head
      
   %body{:class => "#{yield(:body_class)}"}
-    .header{:class => ( current_user ? 'landing  ' : '' ) + ((defined?(@registe_wizard) && @registe_wizard || current_user.nil?) ? 'wizard' : '')}
+    .header{:class => ( current_user && params[:controller]  != 'site_posts' ? 'landing  ' : '' ) + ((defined?(@registe_wizard) && @registe_wizard || current_user.nil? || params[:controller]  == 'site_posts') ? 'wizard' : '')}
       .container{ :style=>"position: relative" }
-        - if (defined? @registe_wizard) && @registe_wizard || current_user.nil? 
-          = render 'layouts/wizard_header' 
+        - if params[:controller]  == 'site_posts'
+          = render 'layouts/blog_header'
         - else
-          = render 'layouts/header' 
+          - if (defined? @registe_wizard) && @registe_wizard || current_user.nil? 
+            = render 'layouts/wizard_header' 
+          - else
+            = render 'layouts/header' 
     .container.body
+      - if params[:controller] != 'site_posts'
+        = link_to '官方博客', site_blog_path, :id => 'site_blog_link'
+      .brower_notice.hide
+        %p='温馨提示:'
+        %p='本网站当前只支持IE8及以上版本浏览器，为了更好的用户体验，推荐使用Firefox, Chrome, 或者Safari浏览器' 
       - if params[:controller] == 'home' && params[:action] == 'index'
         =link_to 'suggestion', new_feedback_path, :class => 'new_user_feedback'
       .span-24.last
@@ -31,7 +39,10 @@
 
 :javascript
   $(function() {
-      select_tab = '#{@select_tab}';
+    if ($.browser.msie && $.browser.version < 8) {
+      $('.brower_notice').show();
+    }
+    var select_tab = '#{@select_tab}';
     if(select_tab != ''  ){
       $( '#'+select_tab ).removeClass( 'red_tab' ).addClass( 'gray_tab' ); 
     }

@@ -19,7 +19,7 @@
   .hot_groups
     .search_line
       .filter_title
-        %strong=link_to '项目', 'javascript:void(0);' 
+        %strong=link_to '兴趣', 'javascript:void(0);' 
       .filter_items
         = link_to '全部', group_filter_path(@city.pinyin, @district_id), :class => "#{'current' if nil == @item_id}"
         - Item.all.each do |i|

@@ -32,13 +32,13 @@ class Photo < Post
 
   
   def url(name = nil)
-    if remote_photo_path
-      name = name.to_s + '_' if name
-      remote_photo_path + name.to_s + remote_photo_name
+    if processed?
+      processed_image.url(name)
     elsif not_processed?
       unprocessed_image.url(name)
-    else
-      processed_image.url(name)
+    elsif remote_photo_path
+      name = name.to_s + '_' if name
+      remote_photo_path + name.to_s + remote_photo_name
     end
   end
 

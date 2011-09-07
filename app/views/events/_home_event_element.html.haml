@@ -1,4 +1,4 @@
-.home_event_box_panel{ :class => 'event_status_open' }
+.home_event_box_panel{ :class => 'event_status_open',:event_id =>event.id}
   %div
     .person_event_box
       .event_avatar
@@ -10,7 +10,7 @@
           = I18n.l(event.start_at,:format => :normal)
           = "-"
           = I18n.l(event.end_at,:format => :shortest)
-          = link_to truncate("@"+event.location.to_s,:length => 20),event_home_map_path(event),:class =>'map_link'
+          = link_to truncate("@"+event.location.to_s,:length => 40),event_home_map_path(event),:class =>'map_link'
       .action
         - if event.is_owner(current_user) && event.status != Event::CANCELED_BY_EVENT_ADMIN 
           .event_edit
@@ -19,15 +19,7 @@
                 ='编辑'
         - if event.status == Event::PASSED && !event.is_owner(current_user) 
           .event_like
-            - if !is_reference_of(event)
-              =link_to(url_for(:controller => "event_recommendations",:action => "add_reference",:id => event.id)) do
-                .join_button.glass_button.like
-                  ='喜欢'
-            - if is_reference_of(event)
-              =link_to(url_for(:controller => "event_recommendations",:action => "remove_reference",:id => event.id)) do
-                .join_button.glass_button.quit.like
-                  ='取消喜欢'
- 
+            = event_like_button_tag( event )
 
 
       .calendar_panel

@@ -1,4 +1,4 @@
-.span-18
+.search_result.span-24
   .person_card
     = person_image_link2( @person,:thumb_medium )
     %h2
@@ -25,7 +25,7 @@
             =@person.joined_groups.size
       %li.items_tab
         = link_to( {:controller => 'people',:action => 'show_items',:person_id=>@person.id}) do
-          = "项目"
+          = "兴趣"
           %span
             = @person.interests.size
     .clear

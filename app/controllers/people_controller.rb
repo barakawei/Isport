@@ -17,7 +17,7 @@ class PeopleController < ApplicationController
       end
 
       format.html do
-        @people = Person.search(params[:q],current_user).paginate(:page => params[:page], :per_page => 20)
+        @people = Person.search(params[:q],current_user).paginate(:page => params[:page], :per_page => 35)
         @hashes = hashes_for_people(@people)
       end 
     end
@@ -32,7 +32,7 @@ class PeopleController < ApplicationController
 
   def show_items
     @person = Person.find( params[ :person_id ] )
-    @items= @person.interests.paginate(:page => params[:page], :per_page => 20)
+    @items= @person.interests.paginate(:page => params[:page], :per_page => 35)
     @select_tab = 'items_tab'  
     render "people/show_person_details"
   end
@@ -41,11 +41,11 @@ class PeopleController < ApplicationController
     @type = params[ :type ]
     @person = Person.find( params[ :person_id ] )
     if @type == 'followed'
-      @people = @person.user.followed_people.paginate(:page => params[:page], :per_page => 20)
+      @people = @person.user.followed_people.paginate(:page => params[:page], :per_page => 35)
 
       @select_tab = 'following_tab'  
     else
-      @people = @person.user.befollowed_people.paginate(:page => params[:page], :per_page => 20)
+      @people = @person.user.befollowed_people.paginate(:page => params[:page], :per_page => 35)
 
       @select_tab = 'followers_tab'  
     end
@@ -81,15 +81,14 @@ class PeopleController < ApplicationController
   end
 
   def show
-    @person = Person.where(:id => params[:id]).first
-    if @person
-      @contact =  Contact.unscoped.where( :user_id => current_user.id ,:person_id => @person.id).first
-      @friends = @person.user.friends
-      @followed_people = @person.user.followed_people
-      @befollowed_people = @person.user.befollowed_people
-      @favorite_items = Item.joins( :favorites ).where( :favorites => {:person_id => @person.id })
-      @events_inv = Event.joins(:involvements).where(:involvements => { :person_id => @person.id }  )
-    end
+    @person = Person.find(params[:id])
+
+    @contact =  Contact.unscoped.where( :user_id => current_user.id ,:person_id => @person.id).first
+    @friends = @person.user.friends
+    @followed_people = @person.user.followed_people
+    @befollowed_people = @person.user.befollowed_people
+    @favorite_items = Item.joins( :favorites ).where( :favorites => {:person_id => @person.id })
+    @events_inv = Event.joins(:involvements).where(:involvements => { :person_id => @person.id }  )
   end
 
 
@@ -108,7 +107,11 @@ class PeopleController < ApplicationController
 
   def show_person_events
     person = Person.find( params[ :person_id ] )
-    @events = person.involved_events.order( "events.start_at DESC" ).paginate(:page => params[:page], :per_page => 10)
+    if current_user.person.id == person.id
+      @events = person.involved_events.order( "events.start_at DESC" ).paginate(:page => params[:page], :per_page => 10)
+    else
+      @events = person.involved_events.where("status = ? ",Event::PASSED).order( "events.start_at DESC" ).paginate(:page => params[:page], :per_page => 10)
+    end
     respond_with @events
   end
 

@@ -11,13 +11,13 @@ class WelcomeController < ApplicationController
       @groupcount = Group.count
       @eventcount = Event.count
       @items = Item.order('rand()').limit(3)
-      @events = Event.where(:id => 1...10).order('rand()').limit(3)
-      @groups = Group.where(:id => 1...10).order('rand()').limit(3)
+      @events = Event.pass_audit.order('rand()').limit(3)
+      @groups = Group.where(:id => 1...100).order('rand()').limit(3)
 
       @photos = [ ]
       numbers = Array.new(40).fill{|i| i+1}
       numbers.each do |n|
-        @photos.push("/welcome/#{n}.jpg")
+        @photos.push("/images/welcome/#{n}.jpg")
       end
       
       @photos.sort_by!{rand}

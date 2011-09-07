@@ -1,23 +1,20 @@
 .home_container {
   width: 680px;
-  margin-top: 22px;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
-  border-radius: 10px;
-  behavior: url(/javascripts/PIE.htc); }
+  margin-top: 22px; }
   .home_container .new_event {
     padding-right: 10px; }
   .home_container .home_tabs {
     background: #f9f9f9 url("/images/ui/tabs-bg.png") repeat;
     height: 62px;
     border-bottom: solid 1px white;
-    border-radius: 10px 10px 0 0; }
-    .home_container .home_tabs .active a {
-      background-color: #697d84;
-      color: white; }
-      .home_container .home_tabs .active a:hover {
-        background-color: #697d84;
-        color: white; }
+    -moz-border-radius-topleft: 10px;
+    -moz-border-radius-topright: 10px;
+    -webkit-border-top-left-radius: 10px;
+    -webkit-border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-radius: 10px 10px 0 0;
+    behavior: url(/javascripts/PIE.htc); }
     .home_container .home_tabs li {
       font-size: 16px;
       display: inline-block;
@@ -27,16 +24,20 @@
       width: 137px;
       text-align: center; }
       .home_container .home_tabs li a {
-        padding: 10px;
         -moz-border-radius: 6px;
         -webkit-border-radius: 6px;
         border-radius: 6px;
         behavior: url(/javascripts/PIE.htc);
+        background-color: #e1e1e1;
+        padding: 10px;
         font-weight: bold;
         color: #999999; }
         .home_container .home_tabs li a:hover {
-          background-color: #e1e1e1;
-          color: #697d84; }
+          background-color: #697d84;
+          color: white; }
+      .home_container .home_tabs li a.current {
+        background-color: #697d84;
+        color: white; }
 
 .events_panel {
   margin-top: 0 !important; }
@@ -69,7 +70,8 @@
   #home_user h3 {
     position: absolute;
     top: 4px;
-    left: 0px; }
+    left: 60px;
+    font-size: 15px; }
   #home_user h4 {
     margin: 0; }
   #home_user .groups {
@@ -181,20 +183,6 @@
 #profile_edit h4 {
   border-bottom: 1px solid #cccccc; }
 
-.calendar_panel {
-  height: 50px;
-  width: 50px;
-  float: left; }
-
-.calendar {
-  background: url("/images/ui/calendar_small.png") no-repeat;
-  width: 50px;
-  height: 50px;
-  text-align: center; }
-  .calendar .day {
-    font-weight: normal;
-    font-size: 18px; }
-
 .event_container .event_element {
   height: 180px;
   position: relative;
@@ -281,11 +269,23 @@
     height: 220px;
     margin-left: 20px; }
 
-.home_invitation_link .title {
-  padding: 10px;
-  background-color: white;
+.home_invitation_link {
   margin-top: 10px;
-  font-size: 18px; }
+  font-size: 17px; }
+  .home_invitation_link a {
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+    behavior: url(/javascripts/PIE.htc);
+    -webkit-box-shadow: 0 1px 5px 0 #dddddd;
+    -moz-box-shadow: 0 1px 5px 0 #dddddd;
+    box-shadow: 0 1px 5px 0 #dddddd;
+    behavior: url(/javascripts/PIE.htc);
+    color: #888888;
+    background-color: #f8f8f8;
+    padding: 5px 15px; }
+    .home_invitation_link a:hover {
+      color: #00bed4; }
 
 .home_event_box_panel {
   margin: 0 0px 2px 0px; }

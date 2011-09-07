@@ -12,17 +12,23 @@ class ProcessedImageUploader < CarrierWave::Uploader::Base
   end
 
   def filename
-    model.random_string + File.extname(@filename) if @filename
+    if @filename
+      filename = @filename.split('.')[ 0 ]+'.png'
+    end
+    model.random_string + File.extname(filename) if filename
   end
 
   version :thumb_small do
     process :resize_to_fill => [50,50] 
+    process :convert => 'png'
   end
   version :thumb_medium do
     process :resize_to_fill => [100,100]
+    process :convert => 'png'
   end
   version :thumb_large do
     process :resize_to_fill => [200,200]
+    process :convert => 'png'
   end
-
+  
 end

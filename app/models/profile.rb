@@ -3,8 +3,7 @@ class Profile < ActiveRecord::Base
   belongs_to :location
   accepts_nested_attributes_for :location
   before_validation :strip_and_downcase_name
-  validates_presence_of :name
-  validates_format_of :name, :with => /[\w\s]+/
+  validates_presence_of :name,:on => :edit
   validates_length_of :name, :maximum => 20
 
   def strip_and_downcase_name
@@ -22,6 +21,16 @@ class Profile < ActiveRecord::Base
              else
                self[:image_url]
              end
-    result || '/images/user/default_small.png'
+    if !result
+      if size == :thumb_medium
+        '/images/user/default_medium.png'
+      elsif size == :thumb_small
+        '/images/user/default_small.png'
+      elsif size == :thumb_large
+        '/images/user/default_large.png'
+      end
+    else
+      result
+    end
   end
 end

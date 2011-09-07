@@ -1,16 +1,13 @@
 #home_user
   = person_image_link(@person)
-  %h3.push-2
+  %h3.person_name
     =@person.name
     .description
-      -if current_user.person.id == @person.id && ( @requests_count == 0 || !@requests_count)
-        = "欢迎回来!"
-
+      = link_to '个人页面', person_path(@person)
   .home_invitation_link
-    .link
-      = link_to('/friends/invite') do
-        .title
-          ="邀请好友"
+    = link_to "发现玩伴", find_interested_people_path,  :class => 'left_one'
+      
+    = link_to "邀请好友", invite_friends_to_site_path
 
   .avatar_panel_container
     #followed_people
@@ -18,12 +15,12 @@
         .title
           .name
             = '关注'
-          .link
-            = link_to({:controller => 'people',:action => 'show_friends',:type=>'followed',:person_id =>@person.id}) do
-              .right_arrow
+          - if @followed_people.length > 30
+            .link
+              = element_more_tag(@person,:show_friends,:followed)
           .clear
         .contacts
-          - for person in @followed_people[ 0...20]
+          - for person in @followed_people[ 0...30]
             .person_avatar
               = person_image_link(person)
   -if current_user.person.joined_groups.size > 0
@@ -31,11 +28,10 @@
       .title
         .name
           = '小组'
-        .link
-          - link_to({:controller => 'people',:action => 'show_groups',:person_id =>@person.id}) do
-            .right_arrow 
+        -if current_user.person.joined_groups.size > 5
+          .link
+            = element_more_tag(@person,:show_groups)
         .clear
-
       %ul
         -for group in current_user.person.joined_groups[ 0...5 ]
           %li
@@ -48,10 +44,10 @@
     .groups
       .title
         .name
-          = '项目'
-        .link
-          = link_to({:controller => 'people',:action => 'show_items',:person_id =>@person.id}) do
-            .right_arrow
+          = '兴趣'
+        -if current_user.person.interests.size > 5 
+          .link
+            = element_more_tag(@person,:show_items)
         .clear
 
       %ul

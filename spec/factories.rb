@@ -15,7 +15,7 @@ Factory.define :contact do |c|
 end
 
 Factory.define :profile do |p|
-  p.sequence(:name) { |n| "messi#{n}#{r_str}" }
+  p.sequence(:name) { |n| "sun#{n}" }
   p.birthday Date.today
   p.gender 1
 end
@@ -31,11 +31,11 @@ end
 
 Factory.define :user do |u|
   u.getting_started false
-  u.sequence(:email) { |n| "sun#{n}#{r_str}@alyosha.com" }
+  u.sequence(:email) { |n| "sun#{n}@163.com" }
   u.password "123456"
   u.password_confirmation { |u| u.password }
   u.after_build do |user|
-    user.person = Factory.build(:person, :profile => Factory.build(:profile,:name => 'sun'),
+    user.person = Factory.build(:person, :profile => Factory.build(:profile),
                                 :user_id => user.id)
   end
   u.after_create do |user|
@@ -52,7 +52,6 @@ Factory.define(:photo) do |p|
     p.update_remote_path
   end
 end
-
 
 Factory.define(:notification) do |n|
   n.association :recipient, :factory => :user

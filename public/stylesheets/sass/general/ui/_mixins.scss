@@ -6,6 +6,12 @@
   border-radius: 15px;
 }
 
+@mixin border-radius-noie($radius){
+  -moz-border-radius: $radius;
+  -webkit-border-radius: $radius;
+  border-radius: $radius;
+}
+
 @mixin border-radius($radius){
   -moz-border-radius: $radius;
   -webkit-border-radius: $radius;
@@ -20,6 +26,7 @@
   -webkit-border-top-right-radius: $radius;
   border-top-left-radius: $radius;
   border-top-right-radius: $radius;
+  border-radius: $radius $radius 0 0;
   behavior: url(/javascripts/PIE.htc);
 }
 

@@ -38,8 +38,9 @@
   :height 100px
   :z-index 50
   :width 100%
-  :top 0
   :left 0
+  :top 0
+  :margin-top -1px
 
   .container
     :height 100px
@@ -70,16 +71,22 @@
   .logo
     :float left
     :position relative
-    :padding-top 3px
+    :padding-top 12px
     :display block
     :width 200px
     h2
       :color #fe905d  
+    .beta
+      position: absolute
+      top: 0
+      left: 140px
+      color: #DDD
+      font-size: 10px
+    
 
   .events_count
     a
       :color #F74367
-      :margin-left 30px
       :font-size 20px
       :height 26px
       :line-height 26px
@@ -123,6 +130,7 @@
     :list-style none
   .sections,.setting 
     li
+      :position relative
       @include border-radius-feed(5px)
       float: left
       margin-right: 3px
@@ -136,6 +144,7 @@
           :top 10px
     a
       :text-align center
+      :position relative
       @include border-radius-feed(5px)
       :width 40px
       display: block
@@ -150,19 +159,20 @@
     
     :background-color #414141
     :padding 
-      :top 5px
+      :top 0px
       :left 5px
       :right 5px
       :bottom 3px
     
     input
-      font-size: 10px
+      font-size: 13px
       width: 200px
       border: 1px solid #BEBEBE
       color: #555
       border-top-color: #D4D4D4
       border-left-color: #D4D4D4
       @include border-radius( 4px )
+      :height 20px
 
     
   .setting
