@@ -3,7 +3,6 @@ class SitePostsController < ApplicationController
 
   def index
     @site_posts = SitePost.order('created_at desc').paginate :page => params[:page], :per_page => 5 
-
   end
 
   def show
@@ -12,21 +11,17 @@ class SitePostsController < ApplicationController
     @previous_post = SitePost.previous_post(@site_post)
   end
 
-  # GET /site_posts/new
-  # GET /site_posts/new.xml
   def new
     @site_post = SitePost.new
   end
 
-  # GET /site_posts/1/edit
   def edit
     @site_post = SitePost.find(params[:id])
   end
 
-  # POST /site_posts
-  # POST /site_posts.xml
   def create
     @site_post = SitePost.new(params[:site_post])
+    @site_post.person = current_user.person
 
     respond_to do |format|
       if @site_post.save 
@@ -37,8 +32,6 @@ class SitePostsController < ApplicationController
     end
   end
 
-  # PUT /site_posts/1
-  # PUT /site_posts/1.xml
   def update
     @site_post = SitePost.find(params[:id])
 

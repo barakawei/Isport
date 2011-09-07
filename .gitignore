@@ -13,4 +13,5 @@ nginx.sh
 nginx.conf
 Isport.sh
 tags
+dump.rdb
 
