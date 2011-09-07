@@ -12,6 +12,7 @@ class PicsController < ApplicationController
   end
 
   def create
+    @event = Event.find(params[:id])
     begin
       if params[:authenticity_token] #upload with iframe
         params[:photo][:user_file] =  params[ :qqfile ] 
@@ -21,6 +22,7 @@ class PicsController < ApplicationController
       @photo = Pic.initialize(params[ :photo ], self.request.host, self.request.port,current_user.person)
 
       if @photo.save
+        @event.albums.first.pics << @photo
         @photo.process
         if params[:photo][:is_avatar]
           updateUrls(params, @photo)
@@ -37,6 +39,16 @@ class PicsController < ApplicationController
         respond_with @photo, :location => pics_path, :error => message
       end
     end
+  end
+
+  def update_description
+    pids = params[:photos]
+    if pids.size > 0
+      pids.each do |id|
+        Pic.find(id).update_attributes(:description => params[:content][id])
+      end 
+    end
+    redirect_to events_path
   end
   
   def updateUrls(params,photo)
@@ -59,6 +71,7 @@ class PicsController < ApplicationController
       end
     end
   end
+
 
   private
 

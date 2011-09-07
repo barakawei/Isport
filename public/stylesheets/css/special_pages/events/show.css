@@ -129,6 +129,35 @@
     line-height: 1.7em;
     border-top: 1px dashed #d5ddde;
     padding-top: 10px; }
+.right_column .albums_area {
+  width: 630px;
+  float: left;
+  background-color: white;
+  padding: 0 0 10px 5px; }
+  .right_column .albums_area .pic_link {
+    height: 140px;
+    width: 140px;
+    position: relative;
+    display: inline-block;
+    margin: 10px 0 0px 10px; }
+    .right_column .albums_area .pic_link img {
+      width: 140px;
+      height: 140px; }
+    .right_column .albums_area .pic_link:hover p.desc {
+      display: block; }
+    .right_column .albums_area .pic_link p.desc {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 110px;
+      background-color: white;
+      height: 35px;
+      overflow: hidden;
+      display: none;
+      opacity: 0.8;
+      padding: 5px 15px;
+      font-size: 12px;
+      color: #666666; }
 .right_column .event_title .status {
   color: #f78ca1; }
 .right_column .operations {
@@ -142,7 +171,6 @@
       height: 22px;
       line-height: 22px; }
   .right_column .operations .share_operations {
-    float: right;
     padding: 5px;
     background-color: white;
     border: 3px solid #d5ddde;

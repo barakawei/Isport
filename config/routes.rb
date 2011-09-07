@@ -135,6 +135,10 @@ Isport::Application.routes.draw do
           :constraints => { :id => /[1-9]\d*/ } 
   end
 
+  controller :pics do
+    match 'submit_pics' => :update_description, :as => 'update_description', :via => :post
+  end
+
   controller :involvements do
     match '/involvments/:id/invite' => :invite, :as => 'event_invite', 
           :constraints => { :id => /[1-9]\d*/}

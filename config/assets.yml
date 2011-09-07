@@ -33,7 +33,8 @@ javascripts:
     - public/javascripts/jquery.form.js
   jquery_validation:
     - public/javascripts/jquery.validate.js
-
+  jquery_fancybox:
+    - public/javascripts/fancybox/jquery.fancybox-1.3.4.pack.js
   friend_select:
     - public/javascripts/fcbk/fcbklistselection.js
     - public/javascripts/fcbk/friend_select.js
@@ -41,6 +42,8 @@ javascripts:
     - public/javascripts/mark_on_google_map.js
 
 stylesheets:
+  jquery_fancybox_css:
+    - public/javascripts/fancybox/jquery.fancybox-1.3.4.css
   blueprint:
     - public/stylesheets/css/plugins/blueprint/screen.css
   wizard_steps:

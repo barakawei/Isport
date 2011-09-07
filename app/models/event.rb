@@ -43,6 +43,7 @@ class Event < ActiveRecord::Base
   has_many :references, :through => :recommendations, :source => :person
   has_many :comments, :class_name => "EventComment", :as => :commentable, :dependent => :destroy
   has_many :commentors, :through => :comments, :source => :person
+  has_many :albums, :as => :imageable
 
   scope :not_started, lambda { where("start_at > ?", Time.now) }
   scope :on_going, lambda { where("start_at <= ? and end_at >= ?", Time.now, Time.now) }

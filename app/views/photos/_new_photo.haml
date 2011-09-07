@@ -40,7 +40,7 @@
         var textarea = currentPlaceholder.find('textarea');
         img.attr('src', url);
         img.attr('data-id', id);
-        textarea.attr('data-id', id);
+        textarea.attr('name', "content["+ id +"]");
         currentPlaceholder.removeClass('loading');
         
         var form = $('.photo_form').closest( "form" );

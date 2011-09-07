@@ -3,6 +3,7 @@ class Pic < ActiveRecord::Base
   mount_uploader :processed_image,ProcessedImageUploader
   mount_uploader :unprocessed_image,UnprocessedImageUploader
 
+  belongs_to :album
   belongs_to :author, :class_name => 'Person'
   
   def not_processed?
@@ -40,6 +41,10 @@ class Pic < ActiveRecord::Base
     else
       processed_image.url(name)
     end
+  end
+
+  def origin_url
+    unprocessed_image.url
   end
 
 

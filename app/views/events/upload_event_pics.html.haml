@@ -5,12 +5,12 @@
   #upload_event_pic
     %h2='上传活动图片:'
     .span-18
-      = form_tag '' do
+      = form_tag update_description_path, do
         .photo_form
           %ul#photozone
           #file-upload.glass_button
             ='+ 上传图片'
           =submit_tag "确认", :class => 'upload_confirm_button'
           =link_to '取消', 'javascript:void(0)', :class => 'cancel_button'
-      =render 'photos/new_photo', :controller_path => pics_path
+      =render 'photos/new_photo', :controller_path => pics_path(:id => @event.id)
 
