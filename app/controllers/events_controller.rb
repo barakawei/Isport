@@ -109,10 +109,7 @@ class EventsController < ApplicationController
     @current_person = current_user.person 
     event_attrs = params[:event]
     location = Location.create(event_attrs[:location_attributes])
-    l_info = GoogleGeoCoder.getLocation(location.to_s)
-    event_attrs[:location_attributes].merge!(l_info) unless l_info.nil?
     @event = Event.new(event_attrs)
-    @event.status_msg = 
     @event.person = @current_person 
     if @event.save
       @event.involvements.create(:person_id => @current_person.id)
@@ -164,6 +161,7 @@ class EventsController < ApplicationController
     conditions = {:city_id => @city.id, :time => @time}
     conditions[:district_id] = @district_id unless @district_id.nil?
     conditions[:subject_id] = @item_id unless @item_id.nil?
+    puts conditions
     @events = Event.filter_event(conditions).paginate :page => params[:page], :per_page => 15
     @select_tab = 'event'
   end

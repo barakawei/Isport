@@ -5,7 +5,7 @@ class EventRecommendationsController < ApplicationController
 
   def add_reference
     @event.references << current_user.person
-    @event.dispatch_event(:recommendation,current_user)
+    #@event.dispatch_event(:recommendation,current_user)
     respond_with @event
   end
 

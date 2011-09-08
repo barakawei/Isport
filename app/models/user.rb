@@ -57,18 +57,11 @@ class User < ActiveRecord::Base
   end
   
   def share_with( person )
-    begin
-      contact_user = self.contacts.find_or_initialize_by_person_id(person.id)
-      unless contact_user.receiving?
-        contact_user.receiving = true
-      end
-      contact_user.save
-      contact_person = person.user.contacts.find_or_initialize_by_person_id(self.person.id)
-      unless contact_person.sharing?
-        contact_person.sharing= true
-      end
-      contact_person.save
+    contact_user = self.contacts.find_or_initialize_by_person_id(person.id)
+    unless contact_user.receiving?
+      contact_user.receiving = true
     end
+    contact_user.save
     contact_user
   end
 
@@ -90,7 +83,16 @@ class User < ActiveRecord::Base
           end
         end 
       end 
+      remove_unread_notify(self.person,person.user.id)
     end
+  end
+
+  def remove_unread_notify(target,recipient_id)  
+    note_type = target.notification_type
+    notify = note_type.where( :target_id => target.id,:recipient_id => recipient_id ).first 
+    if notify && notify.unread == 1 
+      notify.destroy
+    end 
   end
 
   def joined
