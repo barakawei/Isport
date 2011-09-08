@@ -68,7 +68,7 @@
             = item_image_link(i, :size => :thumb_large)
             %span.item_des=i.name
           = link_to '更多', event_filter_path(:city => @city.pinyin, :item_id => i.id), :class => 'right more'
-          - i.hot_events(6, current_user.person.location.city).each do |e|
+          - i.hot_events(6, @city).each do |e|
             .item_event
               = event_image_link(e, :thumb_medium)
               .event_info

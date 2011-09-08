@@ -59,8 +59,9 @@
       $('.friends a.person_block.selected').each(function(index) {
         data = data + $(this).attr('person_id') + ',';
       });
-      $.post("#{group_invite_path(group.id)}", {selectedIds: data}); 
-      location.reload();
+      $.post("#{group_invite_path(group.id)}", {selectedIds: data}, function() {
+        location.reload();
+      }); 
     }
     return false;
   });
