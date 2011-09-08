@@ -66,6 +66,10 @@ class Person < ActiveRecord::Base
     }
   end 
 
+  def notification_type( action=false )
+    Notifications::StartedSharing
+  end
+
   def add_interests(item_ids)
     item_ids.each do |item_id|
       Favorite.create(:item_id => item_id, :person_id => self.id)

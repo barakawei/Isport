@@ -17,15 +17,18 @@ class Contact < ActiveRecord::Base
   def mutual?
     self.sharing && self.receiving
   end
-  
-  def dispatch_request( action=false )
-    request = self.generate_request
-    Dispatch.new(self.user, request,action).started_sharing
+
+  def notification_type( action=false )
+    Notifications::StartedSharing
   end
 
-  def generate_request
-    Request.new(:sender => self.user.person,:recipient => self.person)
-  end 
+  def subscribers(user,action)
+    [self.person]
+  end
+  
+  def dispatch_request( action=false )
+    Dispatch.new(self.user,self,action).started_sharing
+  end
 
   def as_json(opts={})
     {

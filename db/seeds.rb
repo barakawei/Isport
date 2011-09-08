@@ -33,7 +33,7 @@ guangzhou.save
 shenzhen.save
 hangzhou.save
 
-['宣武区', '鼓楼区', '建邺区', '白下区', '秦淮区', 
+['玄武区', '鼓楼区', '建邺区', '白下区', '秦淮区', 
  '下关区', '雨花台区', '栖霞区', '浦口区', '江宁区', '六合区', '溧水县', '高淳县'].each do |name|
   District.find_or_create_by_name(:name => name, :city_id => nanjing.id) 
 end
