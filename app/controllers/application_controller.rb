@@ -21,11 +21,17 @@ class ApplicationController < ActionController::Base
       @unread_notify_count = Notification.sum(:unread, :conditions => "recipient_id = #{current_user.id} ")
       unpassed = 0
       notifications.each do |n|
-        if n.target_type == 'Event' || n.target_type == 'Group'
-          if n.target && (n.target.status != Event::PASSED || n.target.status != Group::PASSED)
-            if n.unread == 1
-              unpassed = unpassed + 1
+        if n.target
+          if n.target_type == 'Event' || n.target_type == 'Group'
+            if n.target.status != Event::PASSED || n.target.status != Group::PASSED
+              if n.unread == 1
+                unpassed = unpassed + 1
+              end
             end
+          end
+        else
+          if n.unread == 1
+            unpassed = unpassed + 1
           end
         end
       end

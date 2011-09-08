@@ -22,6 +22,11 @@ class NotificationsController < ApplicationController
             @notifications.delete( n )
           end
         end
+      else
+        @notifications.delete( n )
+        if n.unread == 1
+          unpassed = unpassed + 1
+        end
       end
     end
     @unread_notify_count = @unread_notify_count - unpassed
