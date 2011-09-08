@@ -1,32 +1,32 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.7'
+gem 'rails', '3.0.10'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'resque','1.17.1'
+gem 'resque','1.19.0'
 gem 'json'
 gem 'mysql2', '< 0.3'
-gem 'jammit'
-gem 'will_paginate', '3.0.pre2'
-gem 'devise'
-gem 'haml'
-gem 'sass'
-gem 'devise_invitable'
-gem "jquery-rails","1.0.2"
-gem "hpricot"
+gem 'jammit','0.6.3'
+gem 'will_paginate', '3.0.pre4'
+gem 'devise','1.4.4'
+gem 'haml','3.1.2'
+gem 'sass','3.1.7'
+gem 'devise_invitable','0.5.4'
+gem "jquery-rails","1.0.13"
+gem "hpricot",'0.8.4'
 gem "ruby_parser"
 gem 'mini_magick',"3.3"
-gem 'carrierwave',"0.5.6"
-gem 'date_validator'
-gem 'settingslogic'
+gem 'carrierwave',"0.5.7"
+gem 'date_validator','0.6.2'
+gem 'settingslogic','2.0.6'
 
 group :development, :test do
-  gem 'rspec-rails', '~>2.6'
-  gem 'haml-rails'
-  gem 'factory_girl_rails'
-  gem 'seedbed'
+  gem 'rspec-rails', '2.6.1'
+  gem 'haml-rails','0.3.4'
+  gem 'factory_girl_rails','1.2.0'
+  gem 'seedbed','1.1.1'
 end
 
 # Use unicorn as the web server
