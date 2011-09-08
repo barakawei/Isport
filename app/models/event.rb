@@ -194,7 +194,7 @@ class Event < ActiveRecord::Base
     time = conditions[:time]
     city = conditions[:city_id]
     district = conditions[:district_id]
-    subject = conditions[:suject_id]
+    subject = conditions[:subject_id]
     
     if district && subject 
       at_city(city).at_district(district).of_item(subject).filter_event_by_time(time)

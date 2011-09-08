@@ -3,8 +3,6 @@ class RegistrationsController < Devise::RegistrationsController
   def create
     @user = User.build( params[:user] )
     if @user.save
-      group = Group.where(:id => 2)
-      group.first.members << @user.person if group.size > 0
       sign_in_and_redirect(:user,@user)
     else
       render :action => :new

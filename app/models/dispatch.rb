@@ -17,16 +17,14 @@ class Dispatch
   end
 
   def started_sharing
-    #Resque.enqueue(Job::StartedSharingJob,@sender_person.id,@object.recipient.user.id) 
-    Notification.notify(@object.recipient.user, @object,@sender_person,@action )
+    Resque.enqueue(Job::StartedSharingJob,@object.person.user.id,@sender_person.id) 
   end
 
   def dispatch_status_message
     contact_ids =  @subscribers.map{ |p| p.user_id }
     Resque.enqueue(Job::DispatchStatusMessageJob,@object.id,contact_ids)
   end
-
-
 end
+
   
 

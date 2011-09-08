@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110905133450) do
+ActiveRecord::Schema.define(:version => 20110908090413) do
 
   create_table "administrators", :force => true do |t|
     t.integer  "user_id"
@@ -271,7 +271,7 @@ ActiveRecord::Schema.define(:version => 20110905133450) do
   end
 
   create_table "profiles", :force => true do |t|
-    t.string   "name",             :limit => 127
+    t.string   "name",             :limit => 127, :default => ""
     t.string   "image_url"
     t.string   "image_url_small"
     t.date     "birthday"
@@ -358,6 +358,7 @@ ActiveRecord::Schema.define(:version => 20110905133450) do
     t.string   "invitation_service"
     t.string   "invitation_identifier"
     t.boolean  "admin",                                 :default => false
+    t.datetime "last_request_at"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

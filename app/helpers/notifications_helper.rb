@@ -4,6 +4,9 @@ module NotificationsHelper
   include ActionView
   include ApplicationHelper
   def object_link(note)
+    if !note.target
+      return
+    end
     target_type = note.translation_key
     actor = note.actor
     actor_link = "<a href='#{object_path(actor)}'>#{actor.name}</a>"

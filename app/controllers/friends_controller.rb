@@ -4,7 +4,7 @@ class FriendsController < ApplicationController
   end
 
   def find
-    @current_person = current_user.person
-    @interests = @current_person.interests
+    @except_person = current_user.followed_people + [ current_user.person ]
+    @interests =  current_user.person.interests
   end
 end
