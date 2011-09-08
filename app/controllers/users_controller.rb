@@ -42,6 +42,8 @@ class UsersController < ApplicationController
     end
     @registe_wizard = true
     current_user.update_attributes(:getting_started => false)
+    group = Group.where(:id => 2)
+    group.first.members << current_user.person if group.size > 0
   end
 
   def change_password
