@@ -271,7 +271,7 @@ ActiveRecord::Schema.define(:version => 20110908090413) do
   end
 
   create_table "profiles", :force => true do |t|
-    t.string   "name",             :limit => 127
+    t.string   "name",             :limit => 127, :default => ""
     t.string   "image_url"
     t.string   "image_url_small"
     t.date     "birthday"
