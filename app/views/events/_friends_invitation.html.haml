@@ -58,8 +58,9 @@
         data = data + $(this).attr('person_id') + ',';
       });
       
-      $.post("#{event_invite_path(event.id)}", {selectedIds: data}); 
-      location.reload();
+      $.post("#{event_invite_path(event.id)}", {selectedIds: data}, function() {
+        location.reload();
+      }); 
     }
     return false;
   });
