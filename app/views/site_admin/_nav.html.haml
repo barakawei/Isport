@@ -7,6 +7,8 @@
     %li
       = link_to '用户反馈管理', manage_feedbacks_path, :class => ('current' if params[:action] == 'feedbacks_admin')
     %li.right
+      %span= User.where(["last_request_at > ?", 5.minutes.ago]).all.size
+      =link_to '在线',online_user_path 
       -if params[:action] == 'events_admin'
         %span.count= Event.where(:status => Event::BEING_REVIEWED).count 
         %span.desc='未审核' 
@@ -16,6 +18,8 @@
       -if params[:action] == 'feedbacks_admin'
         %span.count= Feedback.not_processed.count
         %span.desc='未处理' 
+
+        
 
   %embed{:src=>"/sound/beep.wav",:autostart=>"false", :width=>1, :height=>1, :id=>"sound1", :enablejavascript=>"true"}
   
