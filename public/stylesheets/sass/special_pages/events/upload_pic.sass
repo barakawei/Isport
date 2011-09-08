@@ -5,9 +5,29 @@
   :padding 15px
 
   #upload_event_pic
+    .title_bar
+      :display block
+      :float left
+      h2
+        :display inline-block
+        :font-size 20px
+        :line-height 50px
+        :height 50px
+        :float left
+        :margin-left 10px
+      img
+        :border 1px solid #d5ddde
+        :display block
+        :float left
     .photo_form
       :width 600px
+
+      .glass_button
+        &:hover
+          :height 23px
+          :margin-top 2px
       .upload_confirm_button, .cancel_button
+        :float left
         :position absolute
         :bottom 0px
         :right 60px
@@ -27,6 +47,7 @@
       .cancel_button
         :right 0
         :color #D12F19
+        :height 28px
 
         &:hover
           :background-color #fbe3e4
@@ -73,3 +94,8 @@
           &:hover
             :background-position 0 0 
 
+#cancel_upload_request
+  .box_content
+    :padding 10px
+  .submit
+    :height 25px

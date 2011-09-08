@@ -5,9 +5,27 @@
   border-radius: 12px;
   behavior: url(/javascripts/PIE.htc);
   padding: 15px; }
+  .upload_area #upload_event_pic .title_bar {
+    display: block;
+    float: left; }
+    .upload_area #upload_event_pic .title_bar h2 {
+      display: inline-block;
+      font-size: 20px;
+      line-height: 50px;
+      height: 50px;
+      float: left;
+      margin-left: 10px; }
+    .upload_area #upload_event_pic .title_bar img {
+      border: 1px solid #d5ddde;
+      display: block;
+      float: left; }
   .upload_area #upload_event_pic .photo_form {
     width: 600px; }
+    .upload_area #upload_event_pic .photo_form .glass_button:hover {
+      height: 23px;
+      margin-top: 2px; }
     .upload_area #upload_event_pic .photo_form .upload_confirm_button, .upload_area #upload_event_pic .photo_form .cancel_button {
+      float: left;
       position: absolute;
       bottom: 0px;
       right: 60px;
@@ -27,7 +45,8 @@
         border: 1px solid #c6d880; }
     .upload_area #upload_event_pic .photo_form .cancel_button {
       right: 0;
-      color: #d12f19; }
+      color: #d12f19;
+      height: 28px; }
       .upload_area #upload_event_pic .photo_form .cancel_button:hover {
         background-color: #fbe3e4;
         border: 1px solid #fbc2c4; }
@@ -69,3 +88,8 @@
         text-indent: -9999px; }
         .upload_area #upload_event_pic #photozone li a.remove_link:hover {
           background-position: 0 0; }
+
+#cancel_upload_request .box_content {
+  padding: 10px; }
+#cancel_upload_request .submit {
+  height: 25px; }

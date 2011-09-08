@@ -11,6 +11,14 @@ class PicsController < ApplicationController
     end
   end
 
+  def batch_destroy
+     pids = params[:pids].split(',')
+     @event = Event.find(params[:event_id])
+     @person = current_user.person
+     Pic.destroy_all(:id => pids, :author_id => @person.id)
+     redirect_to event_path(@event)
+  end
+
   def create
     @event = Event.find(params[:id])
     begin
@@ -24,9 +32,6 @@ class PicsController < ApplicationController
       if @photo.save
         @event.albums.first.pics << @photo
         @photo.process
-        if params[:photo][:is_avatar]
-          updateUrls(params, @photo)
-        end
 
         respond_to do |format|
           if params[:authenticity_token] #upload with iframe
@@ -51,28 +56,6 @@ class PicsController < ApplicationController
     redirect_to events_path
   end
   
-  def updateUrls(params,photo)
-    url_params = {:image_url => @photo.url(:thumb_large),
-                  :image_url_medium => @photo.url(:thumb_medium),
-                  :image_url_small => @photo.url(:thumb_small)}
-    if "event" == params[:photo][:model_name]
-        if params[:photo][:is_edit] == "true" 
-          Event.update_avatar_urls(params, url_params)
-        end
-    end 
-    
-    if "profile" == params[:photo][:model_name]
-      current_user.profile.update_attributes(url_params)
-    end
-
-    if "group" == params[:photo][:model_name]
-      if params[:photo][:is_edit] == "true"
-        Group.update_avatar_urls(params, url_params)
-      end
-    end
-  end
-
-
   private
 
   def file_handler(params)

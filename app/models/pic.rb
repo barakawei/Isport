@@ -1,6 +1,6 @@
 class Pic < ActiveRecord::Base
   require 'carrierwave/orm/activerecord'
-  mount_uploader :processed_image,ProcessedImageUploader
+  mount_uploader :processed_image,ProcessedAlbumpicUploader
   mount_uploader :unprocessed_image,UnprocessedImageUploader
 
   belongs_to :album
@@ -32,14 +32,15 @@ class Pic < ActiveRecord::Base
   end
 
 
-  def url(name = nil)
-    if remote_photo_path
+  def url
+    name = 'thumb_small'
+    if processed?
+      processed_image.url(:thumb_small)
+    elsif not_processed?
+      unprocessed_image.url
+    elsif remote_photo_path
       name = name.to_s + '_' if name
       remote_photo_path + name.to_s + remote_photo_name
-    elsif not_processed?
-      unprocessed_image.url(name)
-    else
-      processed_image.url(name)
     end
   end
 
@@ -59,9 +60,7 @@ class Pic < ActiveRecord::Base
       :photo => {
         :id => self.id,
         :url => self.url,
-        :thumb_small => self.url(:thumb_small),
-        :thumb_medium => self.url( :thumb_medium ),
-        :thumb_large => self.url( :thumb_large ),
+        :thumb_small => self.url,
         :content => self.description
       }
     }

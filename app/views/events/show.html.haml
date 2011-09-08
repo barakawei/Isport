@@ -120,11 +120,8 @@
         = link_to '上传图片', upload_event_pic_path(@event), :class => 'glass_button right upload_link_button'
     .albums_area
       -@pics.each do |p|
-        %a{:class => 'pic_link', :href => p.origin_url, :rel => 'gallery', :title => truncate(p.description, :length => 20)}
-          %img{:src => p.url(:thumb_large)} 
-          %p.desc 
-            =truncate(p.description, :length => 20) 
-        
+        %a{:class => 'pic_link', :href => p.origin_url, :rel => 'gallery', :title => truncate(p.description, :length => 40)}
+          %img{:src => p.url} 
       
      
     = render 'common/header_box', :title => '评论'
@@ -151,7 +148,7 @@
       'speedIn' : 600, 
       'speedOut' : 200,
       'overlayColor' : '#000000',
-      'overlayOpacity': 0.6,
+      'overlayOpacity': 0.8,
       'titlePosition': 'inside'
     });
     

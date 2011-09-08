@@ -139,6 +139,7 @@ Isport::Application.routes.draw do
 
   controller :pics do
     match 'submit_pics' => :update_description, :as => 'update_description', :via => :post
+    match 'cancel_upload' => :batch_destroy, :as => 'batch_destroy', :via => :delete
   end
 
   controller :involvements do

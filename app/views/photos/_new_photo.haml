@@ -20,7 +20,9 @@
         $('#photozone').append(
           "<li class='photo loading' style='position:relative;'>" +
             "<div class='ajax_load'>" + 
-            "<img src='/images/ui/loading.gif' />" +
+            "<a class='upload_img_link'>" + 
+            "<img src='/images/ui/loading.gif' class='upload_image' />" +
+            "</a>" +
             "</div>" +
             "<textarea name='content'></textarea>" +
             "<a class='remove_link'>close</a>" +
@@ -30,7 +32,7 @@
 
        onComplete: function(id, fileName, responseJSON) {
         var id = responseJSON.data.photo.id,
-            url = responseJSON.data.photo.thumb_medium,
+            url = responseJSON.data.photo.thumb_small,
             currentPlaceholder = $('li.loading').first();
 
         $(".photo_form").closest( "form" ).addClass("with_photos");

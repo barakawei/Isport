@@ -133,27 +133,9 @@
   .right_column .albums_area .pic_link {
     height: 140px;
     width: 140px;
-    position: relative;
-    display: inline-block;
+    display: block;
+    float: left;
     margin: 10px 0 0px 10px; }
-    .right_column .albums_area .pic_link img {
-      width: 140px;
-      height: 140px; }
-    .right_column .albums_area .pic_link:hover p.desc {
-      display: block; }
-    .right_column .albums_area .pic_link p.desc {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 110px;
-      background-color: white;
-      height: 35px;
-      overflow: hidden;
-      display: none;
-      opacity: 0.8;
-      padding: 5px 15px;
-      font-size: 12px;
-      color: #666666; }
 .right_column .event_title .status {
   color: #f78ca1; }
 .right_column .operations {
@@ -220,3 +202,7 @@
   .right_column .event_pic_bar a {
     position: absolute;
     bottom: 20px; }
+
+#fancybox-outer #fancybox-title-inside {
+  font-size: 13px;
+  color: #333333; }
