@@ -197,13 +197,13 @@ class Event < ActiveRecord::Base
     subject = conditions[:subject_id]
     
     if district && subject 
-      at_city(city).at_district(district).of_item(subject).filter_event_by_time(time)
+      at_city(city).at_district(district).of_item(subject).filter_event_by_time(time).pass_audit
     elsif district.nil? && !subject.nil?
-      at_city(city).of_item(subject).filter_event_by_time(time)
+      at_city(city).of_item(subject).filter_event_by_time(time).pass_audit
     elsif !district.nil? && subject.nil?
-      at_city(city).at_district(district).filter_event_by_time(time)
+      at_city(city).at_district(district).filter_event_by_time(time).pass_audit
     else 
-      at_city(city).filter_event_by_time(time)
+      at_city(city).filter_event_by_time(time).pass_audit
     end
   end
 

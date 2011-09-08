@@ -147,7 +147,7 @@ class GroupsController < ApplicationController
     search_hash = {:city_id => @city.id}
     search_hash[:item_id] = @item_id unless @item_id.nil?
     search_hash[:district_id] = @district_id unless @district_id.nil?
-    @groups = Group.filter_group(search_hash).paginate :page => params[:page], 
+    @groups = Group.filter_group(search_hash).pass_audit.paginate :page => params[:page], 
                                                        :per_page => 16
     @select_tab = 'group'
   end
