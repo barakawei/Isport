@@ -167,4 +167,3 @@ integration_2:
 
   # Automatically enable TLS? Ignored if smtp_authentication is set to none
 
-
