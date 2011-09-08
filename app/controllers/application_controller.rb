@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
       unpassed = 0
       notifications.each do |n|
         if n.target_type == 'Event' || n.target_type == 'Group'
-          if n.target.status != Event::PASSED || n.target.status != Group::PASSED
+          if n.target && (n.target.status != Event::PASSED || n.target.status != Group::PASSED)
             if n.unread == 1
               unpassed = unpassed + 1
             end

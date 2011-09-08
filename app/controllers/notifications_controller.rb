@@ -9,16 +9,18 @@ class NotificationsController < ApplicationController
 
     unpassed = 0
     notifications_temp.each do |n|
-      n[:actor] = n.actor
-      n[:translation] = object_link(n)
-      n[:translation_key] = n.translation_key
-      n[:target] = n.target
-      if n.target_type == 'Event' || n.target_type == 'Group'
-        if n.target.status != Event::PASSED || n.target.status != Group::PASSED
-          if n.unread == 1
-            unpassed = unpassed + 1
+      if n.target
+        n[:actor] = n.actor
+        n[:translation] = object_link(n)
+        n[:translation_key] = n.translation_key
+        n[:target] = n.target
+        if n.target_type == 'Event' || n.target_type == 'Group'
+          if n.target.status != Event::PASSED || n.target.status != Group::PASSED
+            if n.unread == 1
+              unpassed = unpassed + 1
+            end
+            @notifications.delete( n )
           end
-          @notifications.delete( n )
         end
       end
     end
