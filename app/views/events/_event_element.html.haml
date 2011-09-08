@@ -19,7 +19,7 @@
               = event.end_at.strftime('%H:%M').to_s
             
             .address
-              = truncate("@"+event.location.to_s,:length => 15)
+              = truncate("@"+event.location.to_s,:length => 12)
           .info_right
             .calendar_panel
               .calendar

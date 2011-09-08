@@ -162,7 +162,7 @@ class EventsController < ApplicationController
     conditions[:district_id] = @district_id unless @district_id.nil?
     conditions[:subject_id] = @item_id unless @item_id.nil?
     puts conditions
-    @events = Event.filter_event(conditions).paginate :page => params[:page], :per_page => 15
+    @events = Event.filter_event(conditions).paginate :page => params[:page], :per_page => 14
     @select_tab = 'event'
   end
   
