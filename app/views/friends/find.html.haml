@@ -6,7 +6,7 @@
   .span-22.content_area
     %h1='发现志趣相投的玩伴'
     - @interests.each do |item|
-      - fans= item.random_people(current_user.person.location.city, 6, @current_person) 
+      - fans= item.random_people(current_user.person.location.city, 6, @except_person) 
       - if fans.size > 0
         .span-22
           .span-15 
