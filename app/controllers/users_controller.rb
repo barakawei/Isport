@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_filter :registrations_closed?
   before_filter :authenticate_user!, :except => [:new, :create, :public]
+  before_filter :is_admin,:only => :online_user
   
   def getting_started
     if (current_user.getting_started == false)
@@ -58,6 +59,10 @@ class UsersController < ApplicationController
     else
       render 'devise/passwords/change_password.html.haml' 
     end
+  end
+
+  def online_user
+   @online_user = Person.joins(:user).where(["last_request_at > ?", 5.minutes.ago]).paginate(:page => params[:page], :per_page => 100)
   end
   
 end
