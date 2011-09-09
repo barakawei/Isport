@@ -1,12 +1,18 @@
 - content_for :head do
   = include_stylesheets :sepcial_pages_friends_common, :media => 'all'
 
+#city_select_box.hide    
+  - City.all.each do |city|
+    %h4.inline= link_to city.name, "/friends/find/?city=#{city.pinyin}", :class => 'event_color'
+    
 .span-24
   = render 'nav'
   .span-22.content_area
     %h1='发现志趣相投的玩伴'
+    %h3.inline= link_to @city.name , 'javascript:void(0);', :id => 'switch_city', :class => 'dark_gray'
+
     - @interests.each do |item|
-      - fans= item.random_people(current_user.person.location.city, 6, @except_person) 
+      - fans= item.random_people(@city, 6, @except_person) 
       - if fans.size > 0
         .span-22
           .span-15 
@@ -25,3 +31,20 @@
       return false;
     });
   });
+
+  $(function() {
+    var left = $('#switch_city').offset().left;
+    var t =$('#switch_city').offset().top + $('#switch_city').innerHeight();
+    $('#city_select_box').css("left", left+"px");
+    $('#city_select_box').css("top", t+"px");
+
+    $("#date").datepicker(); 
+    $("#date").val("#{I18n.t('filter.time.select_time')}"); 
+  });
+
+  $("#switch_city").click(function(e) {
+    $('#city_select_box').toggleClass('hide'); 
+    e.stopPropagation();
+    return false;
+  });
+

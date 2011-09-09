@@ -156,7 +156,8 @@ Isport::Application.routes.draw do
 
   controller :friends do
     match '/friends/invite' => :invite, :as => 'invite_friends_to_site'
-    match '/friends/find' => :find, :as => 'find_interested_people'
+    match '/friends/find(/:city)' => :find, :as => 'find_interested_people',
+          :constraints => { :city => /nanjing|shanghai|beijing|suzhou|guangzhou|shenzhen|hangzhou/}
   end
 
   controller :site_posts do
