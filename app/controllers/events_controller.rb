@@ -51,6 +51,8 @@ class EventsController < ApplicationController
     @par_ids = @event.participants.map{ |p|p.id }
     @references = @event.references_top(LIMIT)
     @current_person = current_user ? current_user.person : nil
+    @album = @event.albums.first
+    @pics = @album.pics
     @comments = []
     if @event.comments_count> 0
       @comments = @event.comments.paginate :page => params[:page],
@@ -162,6 +164,10 @@ class EventsController < ApplicationController
     puts conditions
     @events = Event.filter_event(conditions).paginate :page => params[:page], :per_page => 14
     @select_tab = 'event'
+  end
+
+  def upload_event_pics
+    @event = Event.find(params[:id])
   end
   
   private

@@ -137,6 +137,14 @@ Isport::Application.routes.draw do
           :constraints => { :id => /[1-9]\d*/, :new => /new/}, :via => :post
     match '/events/:id/reaudit' => :apply_reaudit, :as => 'event_reaudit',
           :constraints => { :id => /[1-9]\d*/ } 
+    match 'upload_photos/:id' => :upload_event_pics, :as => 'upload_event_pic',
+          :constraints => { :id => /[1-9]\d*/ } 
+  end
+
+  controller :pics do
+    match 'submit_pics/:id' => :update_description, :as => 'update_description', :via => :post,
+          :constraints => { :id => /[1-9]\d*/ } 
+    match 'cancel_upload' => :batch_destroy, :as => 'batch_destroy', :via => :delete
   end
 
   controller :involvements do
@@ -203,6 +211,7 @@ Isport::Application.routes.draw do
   resources :profiles
   resources :posts
   resources :photos
+  resources :pics
   resources :requests
   resources :items
   resources :involvements
@@ -211,6 +220,10 @@ Isport::Application.routes.draw do
 
   resources :topics do
     resources :topic_comments, :controller => 'topic_comments'
+  end
+
+  resources :albums do
+    resources :pics 
   end
 
 

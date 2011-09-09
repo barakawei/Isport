@@ -4,7 +4,8 @@
   margin-bottom: 10px;
   padding: 16px 11px 5px 17px;
   width: 606px;
-  float: left; }
+  float: left;
+  position: relative; }
   .comment_block .comment_top {
     height: 50px;
     margin-bottom: 9px;
@@ -17,32 +18,28 @@
       display: block;
       font-weight: bold;
       vertical-align: middle;
-      width: 200px;
-      margin-top: 10px; }
+      width: 200px; }
       .comment_block .comment_top .author_text a {
         color: #00a2b8;
-        font-size: 18px;
-        line-height: 22px; }
-    .comment_block .comment_top .editIconWrapper {
-      background: url("/images/ui/edit.png") no-repeat scroll 3px 3px transparent;
-      border-radius: 2px 2px 2px 2px;
-      cursor: pointer;
-      color: #b4c0c1;
-      font-size: 11px;
-      font-weight: bold;
-      letter-spacing: 0;
-      margin: 10px 0 0 3px;
-      padding: 6px 6px 3px 22px;
-      display: block;
-      width: 30px; }
-      .comment_block .comment_top .editIconWrapper:hover {
-        background-color: #d1e1ad;
+        font-size: 13px; }
+    .comment_block .comment_top .comment_text {
+      float: left;
+      width: 500px;
+      margin-top: 5px; }
+      .comment_block .comment_top .comment_text span.content {
+        font-size: 15px;
         color: #546266;
-        text-decoration: none; }
-  .comment_block .comment_text span.content {
-    font-size: 14px;
-    color: #546266;
-    display: block; }
+        display: block; }
+    .comment_block .comment_top .editIconWrapper {
+      background: url("/images/ui/cross_close_icon.png") no-repeat scroll -26px 0 transparent;
+      width: 16px;
+      cursor: pointer;
+      text-indent: -99999px;
+      position: absolute;
+      top: 10px;
+      right: 10px; }
+      .comment_block .comment_top .editIconWrapper:hover {
+        background-position: 0 0; }
   .comment_block .comment_bottom {
     background: url("/images/ui/border-comment-bar.gif") repeat-x scroll 0 8px transparent;
     margin: 0 -11px 0 -17px;

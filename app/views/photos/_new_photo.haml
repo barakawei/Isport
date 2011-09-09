@@ -5,7 +5,7 @@
        element: document.getElementById('file-upload'),
        params: {'photo' : {'is_avatar':false}},
        allowedExtensions: ['jpg', 'jpeg', 'png', 'gif'],
-       action: "#{photos_path}",
+       action: "#{controller_path}",
        debug: true,
        button: document.getElementById('file-upload'),
        sizeLimit: 8294304,
@@ -17,10 +17,15 @@
         $('#file-upload').addClass("loading");
         $('.photo_form').closest( "form" ).find("input[type='submit']").attr('disabled','disabled');
         $(".photo_form").closest( "form" ).addClass("with_photos");
-        $('#photozone').css( "height","60px" );
         $('#photozone').append(
           "<li class='photo loading' style='position:relative;'>" +
-            "<img src='/images/ui/loading.gif' />" +
+            "<div class='ajax_load'>" + 
+            "<a class='upload_img_link'>" + 
+            "<img src='/images/ui/loading.gif' class='upload_image' />" +
+            "</a>" +
+            "</div>" +
+            "<textarea name='content'></textarea>" +
+            "<a class='remove_link'>close</a>" +
           "</li>"
           );
        },
@@ -28,26 +33,40 @@
        onComplete: function(id, fileName, responseJSON) {
         var id = responseJSON.data.photo.id,
             url = responseJSON.data.photo.thumb_small,
+            origin_url = responseJSON.data.photo.url, 
             currentPlaceholder = $('li.loading').first();
 
         $(".photo_form").closest( "form" ).addClass("with_photos");
         $('.photo_form').append("<input type='hidden' value='" + id + "' name='photos[]' />");
 
         var img = currentPlaceholder.find('img');
+        var textarea = currentPlaceholder.find('textarea');
+        var link = currentPlaceholder.find('a.upload_img_link');
         img.attr('src', url);
         img.attr('data-id', id);
+        link.attr('href', origin_url);
+        $(link).fancybox({
+          'transitionIn' : 'elastic',
+          'transitionOut' : 'elastic',
+          'speedIn' : 600, 
+          'speedOut' : 200,
+          'overlayColor' : '#000000',
+          'overlayOpacity': 0.8,
+          'titlePosition': 'inside'
+        });
+ 
+        textarea.attr('name', "content["+ id +"]");
         currentPlaceholder.removeClass('loading');
-        currentPlaceholder.append("<div class='x'>X</div>" +"<div class='circle'></div>");
         
         var form = $('.photo_form').closest( "form" );
 
         form.find("input[type='submit']").removeAttr('disabled');
 
-        $('.x',currentPlaceholder).bind('click', function(){
-
+        $('a.remove_link',currentPlaceholder).bind('click', function(){
+          
           var photo = $(this).closest('.photo');
           photo.addClass("dim");
-          $.ajax({url: "photos/" + photo.children('img').attr('data-id'),
+          $.ajax({url: "/pics/" + photo.find('img').attr('data-id'),
                   type: 'DELETE',
                   success: function() {
                       photo.fadeOut(400, function(){

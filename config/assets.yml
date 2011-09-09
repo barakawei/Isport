@@ -35,7 +35,8 @@ javascripts:
     - public/javascripts/jquery.form.js
   jquery_validation:
     - public/javascripts/jquery.validate.js
-
+  jquery_fancybox:
+    - public/javascripts/fancybox/jquery.fancybox-1.3.4.pack.js
   friend_select:
     - public/javascripts/fcbk/fcbklistselection.js
     - public/javascripts/fcbk/friend_select.js
@@ -43,6 +44,8 @@ javascripts:
     - public/javascripts/mark_on_google_map.js
 
 stylesheets:
+  jquery_fancybox_css:
+    - public/javascripts/fancybox/jquery.fancybox-1.3.4.css
   blueprint:
     - public/stylesheets/css/plugins/blueprint/screen.css
   wizard_steps:
@@ -97,6 +100,8 @@ stylesheets:
     - public/stylesheets/css/special_pages/events/new_event_panel.css
   sepcial_pages_events_in_audit:
     - public/stylesheets/css/special_pages/events/in_audit.css
+  sepcial_pages_events_upload_pic:
+    - public/stylesheets/css/special_pages/events/upload_pic.css
 
   special_pages_items_show:
     - public/stylesheets/css/special_pages/item/show.css
@@ -171,3 +176,5 @@ stylesheets:
   sepcial_pages_site_post_block:
     - public/stylesheets/css/special_pages/site_posts/post_block.css
 
+  sepcial_pages_pics_index:
+    - public/stylesheets/css/special_pages/pics/index.css

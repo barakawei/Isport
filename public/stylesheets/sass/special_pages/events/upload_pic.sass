@@ -1,0 +1,109 @@
+@import '../../general/ui/mixins'
+.upload_area
+  :background-color #ffffff
+  @include border-radius(12px)
+  :padding 15px
+
+  #upload_event_pic
+    .title_bar
+      :display block
+      :float left
+      h2
+        :display inline-block
+        :font-size 20px
+        :line-height 50px
+        :height 50px
+        :float left
+        :margin-left 10px
+      img
+        :border 1px solid #d5ddde
+        :display block
+        :float left
+    .photo_form
+      :width 600px
+
+      
+      a.upload_img_link
+        :width 100px
+        :height 100px
+        :display inline-block
+        :overflow hidden
+        :margin-right 5px
+
+      .glass_button
+        &:hover
+          :height 23px
+          :margin-top 2px
+      .upload_confirm_button, .cancel_button
+        :float left
+        :position absolute
+        :bottom 0px
+        :right 60px
+        :padding 0 10px
+        :line-height 30px
+        :height 30px
+        :font-size 15px
+        :background-color #f5f5f5
+        :border 1px solid #dddddd
+        :color #529214
+        @include border-radius(5px)
+
+        &:hover
+          :background-color #e6efc2
+          :border 1px solid #c6d880
+
+      .cancel_button
+        :right 0
+        :color #D12F19
+        :height 28px
+
+        &:hover
+          :background-color #fbe3e4
+          :border 1px solid #fbc2c4
+          
+        
+    #photozone
+      :position static
+      :width 610px
+      :height auto
+      li.loading
+        .ajax_load
+          :width 100px
+          :display inline-block
+          img
+            :padding-right 5px
+            :width 50px
+      li 
+        .ajax_load
+          :width 100px
+          :display inline
+
+        :margin-bottom 10px
+        :display block
+        :position relative
+        :background-color #eeeeee
+        @include border-radius(5px)
+        :padding 15px 30px
+        img
+          :padding-right 5px
+          :width 100px
+        
+        textarea
+          :width 380px
+          :padding 10px
+          :height 80px
+        a.remove_link
+          :background url('/images/ui/cross_close_icon.png') no-repeat scroll -26px 0 transparent
+          float: right
+          margin: 0 0 0 10px
+          width: 16px
+          text-indent: -9999px
+
+          &:hover
+            :background-position 0 0 
+
+#cancel_upload_request
+  .box_content
+    :padding 10px
+  .submit
+    :height 25px

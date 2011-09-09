@@ -1,0 +1,34 @@
+-content_for :head do
+  = include_stylesheets :sepcial_pages_pics_index, :media => 'all'
+  = include_stylesheets :jquery_fancybox_css, :media => 'all'
+  = include_javascripts :jquery_fancybox
+
+.span-22.album
+  .title_bar
+    %h2
+      = get_imageable_des(@album)
+      = link_to @album.imageable.name, '#'
+    =link_to '浏览大图', 'javascript:void(0)', :id => 'browse', :class => 'glass_button'
+  -@pics.each do |p|
+    %a{:class => 'gallery_link', :href => p.url(:origin), :rel => 'gallery', :title => truncate(p.description, :length => 40)}
+    %a{:class => 'pic_link', :href => album_pic_path(@album, p) }
+      %img{:src => p.url(:thumb_medium)} 
+
+
+:javascript
+  $(function() {
+    $("a.gallery_link").fancybox({
+      'transitionIn' : 'elastic',
+      'transitionOut' : 'elastic',
+      'speedIn' : 600, 
+      'speedOut' : 200,
+      'overlayColor' : '#000000',
+      'overlayOpacity': 0.8,
+      'titlePosition': 'inside'
+    });
+  });
+  
+  $('#browse').click(function(){
+    $('a.gallery_link:first').trigger('click');
+  });
+

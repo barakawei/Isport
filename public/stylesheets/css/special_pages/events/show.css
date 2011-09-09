@@ -128,6 +128,66 @@
     line-height: 1.7em;
     border-top: 1px dashed #d5ddde;
     padding-top: 10px; }
+.right_column .event_tabs {
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  border-radius: 8px;
+  behavior: url(/javascripts/PIE.htc);
+  position: relative; }
+  .right_column .event_tabs .home_tabs {
+    background: #f9f9f9 url("/images/ui/tabs-bg.png") repeat;
+    height: 62px; }
+    .right_column .event_tabs .home_tabs li {
+      font-size: 16px;
+      display: inline-block;
+      float: left;
+      height: 62px;
+      width: 110px;
+      line-height: 62px;
+      text-align: center;
+      position: relative; }
+      .right_column .event_tabs .home_tabs li a {
+        padding: 10px;
+        -moz-border-radius: 6px;
+        -webkit-border-radius: 6px;
+        border-radius: 6px;
+        font-weight: bold;
+        color: #999999; }
+        .right_column .event_tabs .home_tabs li a:hover {
+          background-color: #e1e1e1;
+          color: #697d84; }
+      .right_column .event_tabs .home_tabs li a.current {
+        background-color: #697d84;
+        color: white; }
+  .right_column .event_tabs .link_to_all_pic {
+    border: 1px solid #dce4e6;
+    color: #22aec1;
+    font-size: 14px;
+    font-weight: bold;
+    height: 20px;
+    padding: 2px 4px;
+    bottom: 20px;
+    right: 30px;
+    position: absolute;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    behavior: url(/javascripts/PIE.htc); }
+.right_column .comments_area {
+  width: 650px;
+  padding: 10px;
+  background-color: white; }
+.right_column .albums_area {
+  width: 665px;
+  float: left;
+  background-color: white;
+  padding: 0 0 10px 5px; }
+  .right_column .albums_area .pic_link {
+    height: 140px;
+    width: 140px;
+    display: block;
+    float: left;
+    margin: 10px 0 0px 10px; }
 .right_column .event_title .status {
   color: #f78ca1; }
 .right_column .operations {
@@ -141,7 +201,6 @@
       height: 22px;
       line-height: 22px; }
   .right_column .operations .share_operations {
-    float: right;
     padding: 5px;
     background-color: white;
     border: 3px solid #d5ddde;
@@ -190,3 +249,15 @@
   behavior: url(/javascripts/PIE.htc);
   padding: 20px;
   margin-bottom: 50px; }
+.right_column .event_pic_bar {
+  position: relative; }
+  .right_column .event_pic_bar a {
+    position: absolute;
+    bottom: 10px;
+    right: 0px; }
+    .right_column .event_pic_bar a:hover {
+      color: white; }
+
+#fancybox-outer #fancybox-title-inside {
+  font-size: 13px;
+  color: #333333; }

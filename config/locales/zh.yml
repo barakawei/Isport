@@ -89,6 +89,7 @@ zh:
     hide_comments:  "隐藏评论"
 
   events:
+      pics: '活动照片-'
       other_events: '看看其他活动'
       index: '活动首页'
       start_at: '开始时间'
@@ -207,6 +208,8 @@ zh:
       findgroups: "寻找你喜欢的小组吧，认识志同道合的人"
       groupsthiscity: "%{count}个同城小组"
 
+  album:
+    default: '默认相册'
   welcome:
     globalinfo: "已有来自%{citycount}个城市的%{usercount}位朋友创建了%{groupcount}个小组并发起了%{eventcount}个活动！
                   如果您还没加入，那么"
@@ -273,6 +276,7 @@ zh:
   time:
     formats:
       default: "%Y年%b%d日 %A %H:%M:%S %Z"
+      standard: "%m月%d日 %H:%M"
       short: "%b%d日 %H:%M"
       long: "%Y年%b%d日 %H:%M"
       normal: "%A %H:%M"
