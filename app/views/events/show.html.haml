@@ -115,18 +115,26 @@
 
     .span-16.event_pic_bar
       .span-13
-        = render 'common/header_box', :title => '活动照片'
+        = render 'common/header_box', :title => '活动相关', :blue => true
       .span-3.last
         = link_to '上传图片', upload_event_pic_path(@event), :class => 'glass_button right upload_link_button'
-    .albums_area
+    
+    .span-17.event_tabs
+      %ul.home_tabs
+        %li#recent_comments
+          =link_to "活动评论","javascript:void(0)", :class => 'current'
+        %li#recent_pics
+          =link_to "活动图片","javascript:void(0)"
+
+
+    .albums_area.hide
       -@pics.each do |p|
         %a{:class => 'pic_link', :href => p.origin_url, :rel => 'gallery', :title => truncate(p.description, :length => 40)}
           %img{:src => p.url} 
-      
-     
-    = render 'common/header_box', :title => '评论'
-    = render 'event_comments', :comments => @comments, :event => @event, 
-                               :current_person => @current_person, :comment => @comment 
+
+    .span-17.comments_area 
+      = render 'event_comments', :comments => @comments, :event => @event, 
+                                 :current_person => @current_person, :comment => @comment 
 
 .colorbox_content
   #upload_event_pic
@@ -189,3 +197,18 @@
     window.open( _u,'', 'width=700, height=680, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, location=yes, resizable=no, status=no' );
   }
   $( '.new_message_action' ).colorbox();
+
+  $('li#recent_comments a').click(function() {
+    $(this).addClass('current'); 
+    $('.comments_area').show();
+    $('.albums_area').hide();
+    $('li#recent_pics a').removeClass('current');
+  });
+
+  $('li#recent_pics a').click(function() {
+    $(this).addClass('current'); 
+    $('.comments_area').hide();
+    $('.albums_area').show();
+    $('li#recent_comments a').removeClass('current');
+  });
+

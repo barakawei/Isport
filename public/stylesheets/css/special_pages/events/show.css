@@ -125,8 +125,42 @@
     line-height: 1.7em;
     border-top: 1px dashed #d5ddde;
     padding-top: 10px; }
+.right_column .event_tabs {
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  border-radius: 8px;
+  behavior: url(/javascripts/PIE.htc); }
+  .right_column .event_tabs .home_tabs {
+    background: #f9f9f9 url("/images/ui/tabs-bg.png") repeat;
+    height: 62px; }
+    .right_column .event_tabs .home_tabs li {
+      font-size: 16px;
+      display: inline-block;
+      float: left;
+      height: 62px;
+      width: 110px;
+      line-height: 62px;
+      text-align: center;
+      position: relative; }
+      .right_column .event_tabs .home_tabs li a {
+        padding: 10px;
+        -moz-border-radius: 6px;
+        -webkit-border-radius: 6px;
+        border-radius: 6px;
+        font-weight: bold;
+        color: #999999; }
+        .right_column .event_tabs .home_tabs li a:hover {
+          background-color: #e1e1e1;
+          color: #697d84; }
+      .right_column .event_tabs .home_tabs li a.current {
+        background-color: #697d84;
+        color: white; }
+.right_column .comments_area {
+  width: 650px;
+  padding: 10px;
+  background-color: white; }
 .right_column .albums_area {
-  width: 630px;
+  width: 665px;
   float: left;
   background-color: white;
   padding: 0 0 10px 5px; }

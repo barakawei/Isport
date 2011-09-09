@@ -140,8 +140,41 @@
       border-top: 1px dashed #d5ddde
       padding-top: 10px
 
+  .event_tabs
+    @include border-radius(8px)
+    .home_tabs
+      background: #F9F9F9 url('/images/ui/tabs-bg.png')  repeat
+      height: 62px
+            
+          
+      li
+        font-size: 16px
+        display: inline-block
+        float: left
+        height: 62px
+        width: 110px
+        line-height: 62px
+        text-align: center
+        position: relative
+        a
+          padding: 10px
+          @include border-radius-noie( 6px )
+          font-weight: bold
+          :color #999
+          &:hover
+            :background-color #e1e1e1 
+            :color #697d84
+        a.current
+          :background-color  #697d84
+          :color #ffffff
+
+  .comments_area
+    :width 650px
+    :padding 10px
+    :background-color #ffffff
+
   .albums_area
-    :width 630px
+    :width 665px
     :float left
     :background-color #ffffff
     :padding 0 0 10px 5px 
