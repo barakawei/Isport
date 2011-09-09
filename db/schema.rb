@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -271,7 +272,7 @@ ActiveRecord::Schema.define(:version => 20110908090413) do
   end
 
   create_table "profiles", :force => true do |t|
-    t.string   "name",             :limit => 127, :default => ""
+    t.string   "name",             :limit => 127
     t.string   "image_url"
     t.string   "image_url_small"
     t.date     "birthday"
