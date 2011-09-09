@@ -54,8 +54,7 @@
       $( '#'+select_tab ).removeClass( 'red_tab' ).addClass( 'gray_tab' ); 
     }
     $.datepicker.setDefaults($.datepicker.regional["zh-CN"]); 
-    $("textarea").autoResize();
-      
+    $("textarea").live( 'focus',function(){ $(this).autoResize();} );
     $('.button').button();  
     if (!$.isEmptyObject($('.setting')[0])) {  
       var left = $('.setting .set').offset().left-154;

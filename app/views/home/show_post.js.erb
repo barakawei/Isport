@@ -1,9 +1,18 @@
 content = "<%= escape_javascript(render('status_messages/status_messages_container')) %>"; 
-if( "<%= @tab %>" !="" ){
- $('.feed_container').html(content);
- 
+number = '<%=params[:page]%>' ;
+if( number !='' ){
+$(' .events_panel').append(content);
 }else{
-  $('.feed_container').append(content);
+$(' .events_panel').html(content);
 }
+event_tab = '<%=@event_tab%>';
+if(event_tab != ''  ){
+  $( '.current' ).removeClass( 'current' );
+  $( '#'+event_tab).addClass( 'current' );
+}
+$( ".new_event" ).hide();
+$( ".event" ).hide();
+$( ".new_post" ).show();
+ 
 
 

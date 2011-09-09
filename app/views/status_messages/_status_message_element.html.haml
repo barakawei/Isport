@@ -21,8 +21,8 @@
       = form_for([post,Comment.new], :remote => true) do |f|
         = f.text_area :content, :rows => 2
         .comment_button.hide
-          = f.submit "回复", :class => 'button'
-          .cancle.button
+          = f.submit "回复", :class => 'glass_button inline'
+          .cancle.inline.glass_button
             = "取消"
 :javascript
   $( ".button" ).button(  );
