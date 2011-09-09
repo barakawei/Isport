@@ -18,14 +18,14 @@
           .span-15 
             = render 'common/header_box', :title => item.name, :blue => true,:white_angle => true
           .span-7.last
-            = link_to '换一换', 'javascript:void(0)', :class => 'refresh', :item_id => item.id
-        .item_fans{:item_id => item.id}
+            = link_to '换一换', 'javascript:void(0)', :class => 'refresh', :item_id => item.id, :city => @city.pinyin
+        .item_fans{:item_id => item.id, :city => @city.pinyin}
           =render 'people/show_contacts',:people => fans, :groups => nil, :items => nil
       
 :javascript  
   $('a.refresh').click(function(){
     var $target = $('.item_fans[item_id="'+ $(this).attr("item_id") + '"]');
-    $.post("#{random_item_fans_path}/?item_id="+ $(this).attr("item_id"), function(data){
+    $.post("#{random_item_fans_path}/?item_id="+ $(this).attr("item_id")+"&city="+ $(this).attr("city"), function(data){
       $target.html(data).hide();
       $target.fadeIn('slow');
       return false;
