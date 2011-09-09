@@ -154,7 +154,7 @@ class Item < ActiveRecord::Base
   end
 
   def random_people(city, limit_num, except)
-    fans.at_city(city.id).order('rand()').limit(limit_num) - [except]
+    fans.at_city(city.id).order('rand()').limit(limit_num) - except
   end
 
   def active_fans(city, limited)

@@ -6,14 +6,6 @@
   width: 178px;
   border: 1px solid #d5ddde;
   margin-bottom: 0px; }
-  .left_column #map img {
-    -moz-border-radius: 8px;
-    -webkit-border-radius: 8px;
-    border-radius: 8px;
-    behavior: url(/javascripts/PIE.htc);
-    width: 198px;
-    height: 198px;
-    border: 1px solid #f2f2f2; }
 .left_column .other_info {
   margin: 0px 0 5px 0; }
   .left_column .other_info .info_block {
@@ -235,7 +227,10 @@
   position: relative; }
   .right_column .event_pic_bar a {
     position: absolute;
-    bottom: 20px; }
+    bottom: 10px;
+    right: 0px; }
+    .right_column .event_pic_bar a:hover {
+      color: white; }
 
 #fancybox-outer #fancybox-title-inside {
   font-size: 13px;

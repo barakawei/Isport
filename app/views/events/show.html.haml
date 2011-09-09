@@ -113,11 +113,11 @@
       .span-16.event_desc
         =simple_format(@event.description)
 
-    .span-16.event_pic_bar
+    .span-17.event_pic_bar
       .span-13
         = render 'common/header_box', :title => '活动相关', :blue => true
-      .span-3.last
-        = link_to '上传图片', upload_event_pic_path(@event), :class => 'glass_button right upload_link_button'
+      .span-4.last
+        = link_to '上传活动图片', upload_event_pic_path(@event), :class => 'glass_button right upload_link_button'
     
     .span-17.event_tabs
       %ul.home_tabs

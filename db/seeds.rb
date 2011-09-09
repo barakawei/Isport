@@ -33,7 +33,7 @@ guangzhou.save
 shenzhen.save
 hangzhou.save
 
-['宣武区', '鼓楼区', '建邺区', '白下区', '秦淮区', 
+['玄武区', '鼓楼区', '建邺区', '白下区', '秦淮区', 
  '下关区', '雨花台区', '栖霞区', '浦口区', '江宁区', '六合区', '溧水县', '高淳县'].each do |name|
   District.find_or_create_by_name(:name => name, :city_id => nanjing.id) 
 end
@@ -136,6 +136,9 @@ image_path = '/images/items/'
   {:name => '摄影', :description => "追逐光和影", :category_id => 2,
     :large => "#{image_path}photographing_large.jpg", :medium => "#{image_path}photographing_medium.png",
     :small => "#{image_path}photographing_small.png"},
+  {:name => '聚餐', :description => "大胃王们你们还在闲着吗？", :category_id => 2,
+    :large => "#{image_path}dinner_large.jpg", :medium => "#{image_path}dinner_medium.png",
+    :small => "#{image_path}dinner_small.png"},
   {:name => '其他', :description => "以后开放的项目", :category_id => 0,
     :large => "#{image_path}others_large.jpg", :medium => "#{image_path}others_medium.png",
     :small => "#{image_path}others_small.png"}].each do |item|

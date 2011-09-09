@@ -18,7 +18,7 @@ module ApplicationHelper
   end
 
   def element_more_tag(person,action,type=nil)
-    button_html = "<div class='element_more'>"+t('more')+"</div>"
+    button_html = "<div class='element_more'>"+t('all')+"</div>"
     link_html = link_to({:controller => 'people',:action => "#{action}",:type=>"#{type}",:person_id =>person.id}) do
       button_html.html_safe
     end

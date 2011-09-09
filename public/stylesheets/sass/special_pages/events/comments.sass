@@ -5,6 +5,7 @@
   padding: 16px 11px 5px 17px
   width: 606px
   float: left
+  :position relative
 
   .comment_top
     :height 50px
@@ -21,36 +22,32 @@
       font-weight: bold
       vertical-align: middle
       width: 200px
-      margin-top: 10px
       
       a
         color: #00A2B8
-        font-size: 18px
-        line-height: 22px
+        font-size: 13px
+
+    .comment_text
+      :float left
+      :width 500px
+      :margin-top 5px
+      span.content
+        :font-size 15px
+        :color #546266
+        :display block
 
     .editIconWrapper
-      background: url("/images/ui/edit.png") no-repeat scroll 3px 3px transparent
-      border-radius: 2px 2px 2px 2px
+      background: url("/images/ui/cross_close_icon.png") no-repeat scroll -26px 0 transparent
+      width: 16px
       cursor: pointer
-      color: #B4C0C1
-      font-size: 11px
-      font-weight: bold
-      letter-spacing: 0
-      margin: 10px 0 0 3px
-      padding: 6px 6px 3px 22px
-      display: block
-      width: 30px 
+      :text-indent -99999px
+      :position absolute
+      :top 10px
+      :right 10px
 
       &:hover
-        background-color: #d1e1ad
-        color: #546266
-        text-decoration: none
+        :background-position 0 0
 
-  .comment_text
-    span.content
-      :font-size 14px
-      :color #546266
-      :display block
 
 
   .comment_bottom

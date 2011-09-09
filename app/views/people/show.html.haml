@@ -37,9 +37,8 @@
         .title
           .name
             = "小组"
-          -if @person.joined_groups.size > 5  
-            .link
-              = element_more_tag(@person,:show_groups)
+          .link
+            = element_more_tag(@person,:show_groups)
           .clear
 
 
@@ -56,9 +55,8 @@
         .title
           .name
             = '兴趣'
-          -if @person.interests.size > 5
-            .link
-              = element_more_tag(@person,:show_items)
+          .link
+            = element_more_tag(@person,:show_items)
           .clear
 
 

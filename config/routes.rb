@@ -56,6 +56,7 @@ Isport::Application.routes.draw do
     match 'select_interested_people' => :select_interested_people, :as => 'select_interested_people'
     match 'change_password'=> :change_password, :as => 'change_password'
     match 'update_password'=> :update_password, :as => 'update_password', :via => :put
+    match 'online_user' => :online_user,:as => 'online_user'
   end
 
   match '/users/sign_in' => 'users#sign_in', :as => 'sign_in' 
@@ -138,7 +139,8 @@ Isport::Application.routes.draw do
   end
 
   controller :pics do
-    match 'submit_pics' => :update_description, :as => 'update_description', :via => :post
+    match 'submit_pics/:id' => :update_description, :as => 'update_description', :via => :post,
+          :constraints => { :id => /[1-9]\d*/ } 
     match 'cancel_upload' => :batch_destroy, :as => 'batch_destroy', :via => :delete
   end
 

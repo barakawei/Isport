@@ -10,7 +10,7 @@
     = include_javascripts :jqueryui
     = include_javascripts :jquery_form
     = include_javascripts :show_avatar
-    = include_javascripts :google_analytics
+    //= include_javascripts :google_analytics
     = csrf_meta_tag
     = yield :head
      
@@ -35,6 +35,8 @@
       .span-24.last
         =yield 
       .span-24
+        %br
+        %br
         %br
 
 :javascript

@@ -47,13 +47,14 @@ class PicsController < ApplicationController
   end
 
   def update_description
+    @event = Event.find(params[:id])
     pids = params[:photos]
-    if pids.size > 0
+    if pids && pids.size > 0
       pids.each do |id|
         Pic.find(id).update_attributes(:description => params[:content][id])
       end 
     end
-    redirect_to events_path
+    redirect_to event_path(@event)
   end
   
   private

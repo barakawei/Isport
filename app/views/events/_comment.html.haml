@@ -4,10 +4,10 @@
       = person_image_link(person)
     .author_text
       = link_to person.name, person_path(person)
+    .comment_text
+      %span.content=simple_format comment.content
     %a{:class => 'editIconWrapper right delete_comment', :href => event_event_comment_path(event.id, comment.id)}
-      %span.editIcon='删除'
-  .comment_text
-    %span.content=simple_format comment.content
+      ='删除'
   .comment_bottom
     %span.right.comment_time
       %em=l(comment.created_at, :format => :long)

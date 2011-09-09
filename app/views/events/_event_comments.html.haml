@@ -10,12 +10,12 @@
         .author_box
           = person_image_link(author)
         .author_text
-          = link_to author.name, person_path(author), :class => 'author_name'
+          = link_to author.name, person_path(author) 
+        .comment_text
+          %span.content=simple_format comment.content
         - if current_person == author
           %a{:class => 'editIconWrapper right delete_comment', :href => event_event_comment_path(event.id, comment.id)}
-            %span.editIcon='删除'
-      .comment_text
-        %span.content=simple_format comment.content
+            ='删除'
       .comment_bottom
         = link_to '回复', '#', :class => 'response_link' if current_person && current_person !=author
         %span.right.comment_time

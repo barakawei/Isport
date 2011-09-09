@@ -33,6 +33,7 @@
        onComplete: function(id, fileName, responseJSON) {
         var id = responseJSON.data.photo.id,
             url = responseJSON.data.photo.thumb_small,
+            origin_url = responseJSON.data.photo.url, 
             currentPlaceholder = $('li.loading').first();
 
         $(".photo_form").closest( "form" ).addClass("with_photos");
@@ -40,8 +41,20 @@
 
         var img = currentPlaceholder.find('img');
         var textarea = currentPlaceholder.find('textarea');
+        var link = currentPlaceholder.find('a.upload_img_link');
         img.attr('src', url);
         img.attr('data-id', id);
+        link.attr('href', origin_url);
+        $(link).fancybox({
+          'transitionIn' : 'elastic',
+          'transitionOut' : 'elastic',
+          'speedIn' : 600, 
+          'speedOut' : 200,
+          'overlayColor' : '#000000',
+          'overlayOpacity': 0.8,
+          'titlePosition': 'inside'
+        });
+ 
         textarea.attr('name', "content["+ id +"]");
         currentPlaceholder.removeClass('loading');
         

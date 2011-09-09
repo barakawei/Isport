@@ -11,7 +11,7 @@
         ='上传活动图片-'
         = link_to @event.title, event_path(@event)
     .prepend-1.span-17
-      = form_tag update_description_path, do
+      = form_tag update_description_path(@event.id), do
         .photo_form
           %ul#photozone
           #file-upload.glass_button

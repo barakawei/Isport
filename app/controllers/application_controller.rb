@@ -1,12 +1,18 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :set_header_data
+  before_filter :set_last_request_at 
 
   def registrations_closed?
     if AppConfig[ :registrations_closed ] && !user_signed_in?
       redirect_to sign_in_path
     end
   end
+
+  def set_last_request_at 
+    current_user.update_attribute(:last_request_at, Time.now) if user_signed_in? 
+  end 
+  
 
   def set_header_data
     if user_signed_in?
@@ -15,11 +21,17 @@ class ApplicationController < ActionController::Base
       @unread_notify_count = Notification.sum(:unread, :conditions => "recipient_id = #{current_user.id} ")
       unpassed = 0
       notifications.each do |n|
-        if n.target_type == 'Event' || n.target_type == 'Group'
-          if n.target.status != Event::PASSED || n.target.status != Group::PASSED
-            if n.unread == 1
-              unpassed = unpassed + 1
+        if n.target
+          if n.target_type == 'Event' || n.target_type == 'Group'
+            if n.target.status != Event::PASSED || n.target.status != Group::PASSED
+              if n.unread == 1
+                unpassed = unpassed + 1
+              end
             end
+          end
+        else
+          if n.unread == 1
+            unpassed = unpassed + 1
           end
         end
       end

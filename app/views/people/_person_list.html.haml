@@ -15,9 +15,8 @@
         .title
           .name
             = '关注'
-          - if @followed_people.length > 30
-            .link
-              = element_more_tag(@person,:show_friends,:followed)
+          .link
+            = element_more_tag(@person,:show_friends,:followed)
           .clear
         .contacts
           - for person in @followed_people[ 0...30]
@@ -28,9 +27,8 @@
       .title
         .name
           = '小组'
-        -if current_user.person.joined_groups.size > 5
-          .link
-            = element_more_tag(@person,:show_groups)
+        .link
+          = element_more_tag(@person,:show_groups)
         .clear
       %ul
         -for group in current_user.person.joined_groups[ 0...5 ]
@@ -45,9 +43,8 @@
       .title
         .name
           = '兴趣'
-        -if current_user.person.interests.size > 5 
-          .link
-            = element_more_tag(@person,:show_items)
+        .link
+          = element_more_tag(@person,:show_items)
         .clear
 
       %ul

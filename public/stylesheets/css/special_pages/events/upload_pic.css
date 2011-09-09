@@ -21,6 +21,12 @@
       float: left; }
   .upload_area #upload_event_pic .photo_form {
     width: 600px; }
+    .upload_area #upload_event_pic .photo_form a.upload_img_link {
+      width: 100px;
+      height: 100px;
+      display: inline-block;
+      overflow: hidden;
+      margin-right: 5px; }
     .upload_area #upload_event_pic .photo_form .glass_button:hover {
       height: 23px;
       margin-top: 2px; }

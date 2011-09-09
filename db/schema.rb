@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,7 +11,8 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110907060906) do
+ActiveRecord::Schema.define(:version => 20110908090413) do
+
   create_table "administrators", :force => true do |t|
     t.integer  "user_id"
     t.datetime "created_at"
@@ -112,10 +114,10 @@ ActiveRecord::Schema.define(:version => 20110907060906) do
     t.integer  "group_id",           :default => 0
     t.integer  "status",             :default => 0
     t.string   "status_msg"
-    t.integer  "audit_person_id"
     t.integer  "participants_count", :default => 0
     t.integer  "comments_count",     :default => 0
     t.integer  "fans_count",         :default => 0
+    t.integer  "audit_person_id"
   end
 
   create_table "favorites", :force => true do |t|
@@ -378,6 +380,7 @@ ActiveRecord::Schema.define(:version => 20110907060906) do
     t.string   "invitation_service"
     t.string   "invitation_identifier"
     t.boolean  "admin",                                 :default => false
+    t.datetime "last_request_at"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

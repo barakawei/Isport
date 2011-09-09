@@ -59,7 +59,7 @@ class Pic < ActiveRecord::Base
     {
       :photo => {
         :id => self.id,
-        :url => self.url,
+        :url => self.origin_url,
         :thumb_small => self.url,
         :content => self.description
       }
