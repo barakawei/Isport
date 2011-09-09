@@ -132,7 +132,8 @@
   -moz-border-radius: 8px;
   -webkit-border-radius: 8px;
   border-radius: 8px;
-  behavior: url(/javascripts/PIE.htc); }
+  behavior: url(/javascripts/PIE.htc);
+  position: relative; }
   .right_column .event_tabs .home_tabs {
     background: #f9f9f9 url("/images/ui/tabs-bg.png") repeat;
     height: 62px; }
@@ -158,6 +159,20 @@
       .right_column .event_tabs .home_tabs li a.current {
         background-color: #697d84;
         color: white; }
+  .right_column .event_tabs .link_to_all_pic {
+    border: 1px solid #dce4e6;
+    color: #22aec1;
+    font-size: 14px;
+    font-weight: bold;
+    height: 20px;
+    padding: 2px 4px;
+    bottom: 20px;
+    right: 30px;
+    position: absolute;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    behavior: url(/javascripts/PIE.htc); }
 .right_column .comments_area {
   width: 650px;
   padding: 10px;

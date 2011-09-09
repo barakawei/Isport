@@ -32,10 +32,10 @@ class Pic < ActiveRecord::Base
   end
 
 
-  def url
-    name = 'thumb_small'
+  def url(size=:thumb_small)
+    name = size.to_s 
     if processed?
-      processed_image.url(:thumb_small)
+      processed_image.url(size)
     elsif not_processed?
       unprocessed_image.url
     elsif remote_photo_path
@@ -61,6 +61,7 @@ class Pic < ActiveRecord::Base
         :id => self.id,
         :url => self.origin_url,
         :thumb_small => self.url,
+        :thumb_medium => self.url(:thumb_medium),
         :content => self.description
       }
     }

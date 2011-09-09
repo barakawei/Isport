@@ -2,6 +2,16 @@ class PicsController < ApplicationController
   before_filter :authenticate_user!
   respond_to :html, :json
 
+  def index
+    @album = Album.find(params[:album_id])
+    @pics = @album.pics 
+  end
+
+  def show
+    @album = Album.find(params[:album_id])
+    @pic = @album.pics.find(params[:id])
+  end
+
   def destroy
     photo = Pic.where(:id => params[:id]).first
 

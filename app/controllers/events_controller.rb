@@ -51,7 +51,8 @@ class EventsController < ApplicationController
     @par_ids = @event.participants.map{ |p|p.id }
     @references = @event.references_top(LIMIT)
     @current_person = current_user ? current_user.person : nil
-    @pics = @event.albums.first.pics
+    @album = @event.albums.first
+    @pics = @album.pics
     @comments = []
     if @event.comments_count> 0
       @comments = @event.comments.paginate :page => params[:page],

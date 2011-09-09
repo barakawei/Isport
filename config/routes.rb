@@ -222,6 +222,10 @@ Isport::Application.routes.draw do
     resources :topic_comments, :controller => 'topic_comments'
   end
 
+  resources :albums do
+    resources :pics 
+  end
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

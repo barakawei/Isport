@@ -145,6 +145,7 @@
 
   .event_tabs
     @include border-radius(8px)
+    :position relative
     .home_tabs
       background: #F9F9F9 url('/images/ui/tabs-bg.png')  repeat
       height: 62px
@@ -170,6 +171,20 @@
         a.current
           :background-color  #697d84
           :color #ffffff
+
+    .link_to_all_pic
+      border: 1px solid #DCE4E6
+      color: #22AEC1
+      font-size: 14px
+      font-weight: bold
+      height: 20px
+      padding: 2px 4px
+      bottom: 20px 
+      right: 30px
+      position: absolute
+      @include border-radius(5px)
+      
+      
 
   .comments_area
     :width 650px

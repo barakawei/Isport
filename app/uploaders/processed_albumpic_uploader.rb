@@ -4,10 +4,23 @@ class ProcessedAlbumpicUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
 
   version :thumb_small do
-    process :shrink
-    process :convert => 'png'
+    process :convert => 'jpg'
+    process :shrink => 140
   end
 
+  version :thumb_medium do
+    process :convert => 'jpg'
+    process :shrink => 180 
+  end
+
+  version :thumb_large do
+    process :convert => 'jpg'
+    process :shrink => 640 
+  end
+
+  version :origin do
+    process :convert => 'jpg'
+  end
 
   def store_dir
     "uploads/albums"
@@ -19,7 +32,7 @@ class ProcessedAlbumpicUploader < CarrierWave::Uploader::Base
 
   def filename
     if @filename
-      filename = @filename.split('.')[ 0 ]+'.png'
+      filename = @filename.split('.')[ 0 ]+'.jpg'
     end
     model.random_string + File.extname(filename) if filename
   end
@@ -27,20 +40,19 @@ class ProcessedAlbumpicUploader < CarrierWave::Uploader::Base
 
   private
 
-  def shrink
+  def shrink(size)
     manipulate! do |img|
       w,h = img['%w %h'].split
       w = w.to_f
       h = w.to_f
-      @@max_size = 140
 
-     if (w > @@max_size || h > @@max_size)
+     if (w > size || h > size)
         if (w > h)
-          h = (h*(@@max_size/w)).to_i
-          w = @@max_size
+          h = (h*(size/w)).to_i
+          w = size
         else
-          w = (w*(@@max_size/h)).to_i
-          h = @@max_size
+          w = (w*(size/h)).to_i
+          h = size
         end
         img.resize "#{w}x#{h}"
         img

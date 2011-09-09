@@ -68,6 +68,10 @@ class Event < ActiveRecord::Base
   scope :all, lambda { select("*") }
   scope :open, lambda { where("is_private = ?", false)}
 
+  
+  def name
+    title
+  end
 
   def self.update_avatar_urls(params,url_params)
       event = find(params[:photo][:model_id])

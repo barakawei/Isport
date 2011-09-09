@@ -1,0 +1,9 @@
+-content_for :head do
+  = include_stylesheets :sepcial_pages_pics_index, :media => 'all'
+
+.span-22.album
+  .title_bar
+    %h2
+      = get_imageable_des(@album)
+      = link_to @album.imageable.name, get_imageable_path(@album)
+  %img{:src => @pic.url(:thumb_large)}

@@ -176,3 +176,5 @@ stylesheets:
   sepcial_pages_site_post_block:
     - public/stylesheets/css/special_pages/site_posts/post_block.css
 
+  sepcial_pages_pics_index:
+    - public/stylesheets/css/special_pages/pics/index.css
