@@ -102,6 +102,7 @@ Isport::Application.routes.draw do
 
   controller :welcome do
     match 'welcome' => :index, :as => 'welcome'
+    match 'notice' => :notice, :as => 'notice'
   end
  
   controller :events do

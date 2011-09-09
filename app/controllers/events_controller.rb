@@ -125,8 +125,6 @@ class EventsController < ApplicationController
   def update
     event_attrs = params[:event]
     location = Location.new(event_attrs[:location_attributes])
-    l_info = GoogleGeoCoder.getLocation(location.to_s)
-    event_attrs[:location_attributes].merge!(l_info) unless l_info.nil?
     if @event.update_attributes(event_attrs)
       redirect_to event_path(@event)
     else

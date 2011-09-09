@@ -62,7 +62,7 @@ class UsersController < ApplicationController
   end
 
   def online_user
-   @online_user = Person.joins(:user).where(["last_request_at > ?", 5.minutes.ago]).paginate(:page => params[:page], :per_page => 100)
+   @online_user = Person.joins(:user).joins( :profile ).where(["last_request_at > ?", 5.minutes.ago]).where("location_id is not null").paginate(:page => params[:page], :per_page => 100)
   end
   
 end

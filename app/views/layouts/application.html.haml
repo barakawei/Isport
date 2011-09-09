@@ -41,6 +41,11 @@
 
 :javascript
   $(function() {
+
+    if ($.browser.msie && $.browser.version == 7) {
+      window.location.href = '/notice';
+    }
+
     if ($.browser.msie && $.browser.version < 8) {
       $('.brower_notice').show();
     }
