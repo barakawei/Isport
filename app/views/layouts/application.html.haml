@@ -42,7 +42,7 @@
 :javascript
   $(function() {
 
-    if ($.browser.msie && $.browser.version == 7) {
+    if ($.browser.msie && $.browser.version < 8) {
       window.location.href = '/notice';
     }
 
