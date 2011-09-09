@@ -34,6 +34,7 @@
     - if @participants.size > 0
       .span-6.members
         %h4.app_module_title.inline='活动成员'
+        = link_to '全部', participants_path, :class => 'right link_to_all' 
         .person_array
           - @participants.each do |member|
             .member
@@ -42,6 +43,7 @@
     - if @references.size > 0
       .span-6.members
         %h4.app_module_title.inline='喜欢该活动的人'
+        = link_to '全部', references_path, :class => 'right link_to_all' 
         .person_array
           - @references.each do |member|
             .member

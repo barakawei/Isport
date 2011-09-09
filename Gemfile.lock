@@ -104,6 +104,8 @@ GEM
     redis (2.2.2)
     redis-namespace (1.0.3)
       redis (< 3.0.0)
+    redis-store (1.0.0.1)
+      redis (~> 2.2.1)
     resque (1.19.0)
       multi_json (~> 1.0)
       redis-namespace (~> 1.0.2)
@@ -164,6 +166,7 @@ DEPENDENCIES
   mini_magick (= 3.3)
   mysql2 (< 0.3)
   rails (= 3.0.10)
+  redis-store (= 1.0.0.1)
   resque (= 1.19.0)
   rspec-rails (= 2.6.1)
   ruby_parser

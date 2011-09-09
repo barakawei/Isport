@@ -102,6 +102,7 @@ Isport::Application.routes.draw do
 
   controller :welcome do
     match 'welcome' => :index, :as => 'welcome'
+    match 'notice' => :notice, :as => 'notice'
   end
  
   controller :events do
@@ -123,6 +124,8 @@ Isport::Application.routes.draw do
     match '/events/:id/home_map' => :home_map, :as => 'event_home_map',
           :constraints => { :id => /[1-9]\d*/}
     match '/events/:id/participants' => :participants, :as => 'participants',
+          :constraints => { :id => /[1-9]\d*/}
+    match '/events/:id/fans' => :references, :as => 'references',
           :constraints => { :id => /[1-9]\d*/}
     match '/events/:id/invite_friends' => :invite_friends, :as => 'new_event_invite',
           :constraints => { :id => /[1-9]\d*/}

@@ -25,4 +25,8 @@ class WelcomeController < ApplicationController
     end
   end
 
+  def notice
+    render :layout => false
+  end
+
 end

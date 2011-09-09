@@ -2,7 +2,7 @@
   = include_stylesheets :sepcial_pages_events_common, :media => 'all'
 .span-24
   .span-18
-    = render 'common/header_box',  :title => '活动"' + @event.title + '"成员'
+    = render 'common/header_box',  :title => '活动"' + @event.title + '"的成员', :blue => true
   .span-6.last
     %h4= link_to '<返回本活动主页', event_path(@event)
 .span-18

@@ -1,22 +1,15 @@
+- content_for :head do
+  = include_stylesheets :sepcial_pages_events_common, :media => 'all'
 .span-24
-  %h2=@event.title
-.span-16
-  - if @friend_references.size > 0
-    %h4.append-bottom= t("events.friend_references", :count => @friend_references.size)
-    .span-16
-      = render :partial => "event_references", :locals => { :references => @friend_references, 
-                                                              :perline => 8, 
-                                                              :no_pagination => true }
-  - else
-    %h4='还没有好友参加你的活动'
-  
-  - if @other_references.size > 0
-    .span-16
-      %h4= t("events.other_references", :count => @other_references.size)
-    .span-16
-      = render :partial => "event_references", :locals => { :references => @other_references,
-                                                              :perline => 8, 
-                                                              :no_pagination => true }
-.span-6.prepend-1.last
-  %h4= link_to '<返回"'+@event.title + '"', event_path(@event)
+  .span-18
+    = render 'common/header_box',  :title => '活动"' + @event.title + '"的粉丝', :blue => true
+  .span-6.last
+    %h4= link_to '<返回本活动主页', event_path(@event)
+.span-18
+  .span-18.people_array
+    = render :partial => 'people/person_element', :collection => @references, :as => :person
+  .span-18
+    = will_paginate @references, {:previous_label => t("pagination.previous"), 
+                                    :next_label => t("pagination.next")}
+
 
