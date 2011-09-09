@@ -124,6 +124,8 @@ Isport::Application.routes.draw do
           :constraints => { :id => /[1-9]\d*/}
     match '/events/:id/participants' => :participants, :as => 'participants',
           :constraints => { :id => /[1-9]\d*/}
+    match '/events/:id/fans' => :references, :as => 'references',
+          :constraints => { :id => /[1-9]\d*/}
     match '/events/:id/invite_friends' => :invite_friends, :as => 'new_event_invite',
           :constraints => { :id => /[1-9]\d*/}
     match '/events/new/of_group/:group_id' => :new, :as => 'new_group_event',

@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -14,6 +15,14 @@ ActiveRecord::Schema.define(:version => 20110908090413) do
 
   create_table "administrators", :force => true do |t|
     t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "albums", :force => true do |t|
+    t.string   "name"
+    t.integer  "imageable_id"
+    t.string   "imageable_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -105,10 +114,10 @@ ActiveRecord::Schema.define(:version => 20110908090413) do
     t.integer  "group_id",           :default => 0
     t.integer  "status",             :default => 0
     t.string   "status_msg"
-    t.integer  "audit_person_id"
     t.integer  "participants_count", :default => 0
     t.integer  "comments_count",     :default => 0
     t.integer  "fans_count",         :default => 0
+    t.integer  "audit_person_id"
   end
 
   create_table "favorites", :force => true do |t|
@@ -247,6 +256,19 @@ ActiveRecord::Schema.define(:version => 20110908090413) do
 
   add_index "people", ["user_id"], :name => "index_people_on_user_id", :unique => true
 
+  create_table "pics", :force => true do |t|
+    t.integer  "author_id"
+    t.integer  "album_id"
+    t.text     "description"
+    t.text     "remote_photo_path"
+    t.string   "remote_photo_name"
+    t.string   "processed_image"
+    t.string   "unprocessed_image"
+    t.string   "random_string"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "post_visibilities", :force => true do |t|
     t.integer  "contact_id"
     t.integer  "post_id"
@@ -271,7 +293,7 @@ ActiveRecord::Schema.define(:version => 20110908090413) do
   end
 
   create_table "profiles", :force => true do |t|
-    t.string   "name",             :limit => 127, :default => ""
+    t.string   "name",             :limit => 127
     t.string   "image_url"
     t.string   "image_url_small"
     t.date     "birthday"
