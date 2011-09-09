@@ -82,13 +82,13 @@ class Group < ActiveRecord::Base
   def self.interested_groups(city,person)
     groups  = []
     person.interests.each do |item|
-      groups += Group.where(:item_id => item.id, :city_id => city.id).order('members_count desc').limit(6)
+      groups += Group.where(:item_id => item.id, :city_id => city.id).order('members_count desc').pass_audit.limit(6)
     end
     groups
   end
 
   def self.hot_group_by_item(city, item)
-    Group.of_item(item).at_city(city).order('members_count desc').limit(5)
+    Group.of_item(item).at_city(city).order('members_count desc').pass_audit.limit(5)
   end
 
   def need_invitation_from_admin
