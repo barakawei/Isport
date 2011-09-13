@@ -126,7 +126,7 @@ jQuery.fn.center = (function() {
       evt.preventDefault();
       var selectedImage = $(this).find("img.stream-photo"),
         imageUrl = selectedImage.attr("data-full-photo"),
-        images = selectedImage.parents('.stream_element').find('img.stream-photo'),
+        images = selectedImage.closest( ".pic_container" ).find('img.stream-photo'),
         imageThumb;
 
       self.imageset.html("");

@@ -729,3 +729,58 @@ a.app_black_link_button {
   -moz-border-radius: 8px;
   -webkit-border-radius: 8px;
   border-radius: 8px; }
+
+#lightbox-comment-panel {
+  margin-bottom: 10px; }
+  #lightbox-comment-panel .pic_author {
+    padding: 8px;
+    height: 30px;
+    border-bottom: 1px solid #323232; }
+    #lightbox-comment-panel .pic_author .content {
+      text-align: left;
+      padding-left: 10px;
+      height: 30px;
+      float: left;
+      font-size: 14px; }
+      #lightbox-comment-panel .pic_author .content .name, #lightbox-comment-panel .pic_author .content .info {
+        line-height: 14px; }
+      #lightbox-comment-panel .pic_author .content a {
+        color: #cccccc !important; }
+  #lightbox-comment-panel a {
+    color: #666666 !important; }
+  #lightbox-comment-panel .pic_comment_container {
+    overflow-y: auto;
+    min-height: 400px; }
+  #lightbox-comment-panel .comments {
+    border-top: none !important; }
+  #lightbox-comment-panel .comment_body {
+    word-wrap: break-word;
+    line-height: 1.4;
+    color: #cccccc; }
+  #lightbox-comment-panel .details {
+    color: #aaaaaa; }
+  #lightbox-comment-panel .comment {
+    border: none !important;
+    padding: 8px; }
+  #lightbox-comment-panel .comment_content {
+    text-align: left;
+    margin-left: 36px; }
+  #lightbox-comment-panel .timeago {
+    color: #999999;
+    text-decoration: none;
+    border: none; }
+  #lightbox-comment-panel .author_avatar {
+    float: left;
+    padding: 0; }
+  #lightbox-comment-panel .person_avatar_detail {
+    height: 32px;
+    width: 32px; }
+  #lightbox-comment-panel .comment_form {
+    text-align: left;
+    margin-bottom: 50px; }
+    #lightbox-comment-panel .comment_form textarea {
+      width: 170px;
+      height: 50px; }
+  #lightbox-comment-panel .comment_button {
+    text-align: left;
+    margin-left: 50px; }
