@@ -5,21 +5,13 @@ function processComment(postId,commentId,html){
     if( $(".comment[id='"+commentId+"']").length === 0 ) {
 
       var post = $(".comments[id='"+postId+"']");
-      prevComments = $('.comment.posted', post);
-
-        post.append(
-          $(html).fadeIn("fast", function(){})
-        );
-        post.removeClass( "hide" );
-
-      $("abbr.timeago").timeago();
-      stream_element = post.closest( ".stream_element" );
-      replay = stream_element.find( ".replay" );
+      stream_element = post.parent();
       comment = stream_element.find( ".comment_form" );
-      comment.find( "textarea" ).val("");
-      replay.html(
-        replay.html().replace(/\d+/,$('.comments', stream_element).find('li').length)
-      );
+      post.append($(html).fadeIn( 100 ));
+      $(".comment[id='"+commentId+"']").css("opacity","100" );
+      post.removeClass( "hide" );
+      $("abbr.timeago").timeago();
+      comment.find( "#comment_content" ).val("");
       }
 }
 

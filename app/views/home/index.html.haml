@@ -7,15 +7,24 @@
   =javascript_include_tag "http://maps.google.com/maps/api/js?sensor=false"
 .span-18.last.content_panel
   .home_container
-    %ul.home_tabs
-      %li
-        =link_to "近期活动","/home/show_event",:remote => true,:id=>'recent_event'
-      %li
-        =link_to "我的活动","/home/show_my_event",:remote => true,:id => 'my_event'
-      %li
-        =link_to "朋友活动","/home/show_following_event",:remote => true,:id => 'following_event'
-      .new_event
+    .nav_tab
+      %ul
+        %li
+          =link_to "动态信息","/home/show_post",:remote => true,:id => 'post'
+        %li
+          =link_to "活动信息","/home/show_event",:remote => true,:id=>'recent_event'
+    .feed_toolbar
+      %ul.event.hide
+        %li
+          =link_to "近期活动","/home/show_event",:remote => true,:id=>'recent_event'
+        %li
+          =link_to "我的活动","/home/show_my_event",:remote => true,:id => 'my_event'
+        %li
+          =link_to "朋友活动","/home/show_following_event",:remote => true,:id => 'following_event'
+      .new_event.hide
         = render 'common/big_link_button', :content => '发起活动', :path => new_event_path 
+      .new_post
+        = render 'common/big_link_button', :content => '分享', :path => new_status_message_path 
 
 
     .events_panel
@@ -24,6 +33,6 @@
 .span-6.last.right_bar
   = render 'people/person_list', :person => @person
 :javascript
-  $.get("/home/show_event");
+  $.get("/home/show_post");
   $("abbr.timeago").timeago();
 

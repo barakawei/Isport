@@ -29,8 +29,9 @@ class Person < ActiveRecord::Base
   has_many :event_recommendations, :dependent => :destroy
   has_many :recommended_events, :through => :event_recommendations,
            :source => :event
-   
   has_one :profile
+  has_many :albums, :as => :imageable
+
   scope :friends_of, lambda {|user| where("user_id = ?", user.id)} 
   scope :at_city, lambda {|city_id| joins(:profile => :location).where(:locations => {:city_id => city_id})}
 

@@ -152,6 +152,14 @@ image_path = '/images/items/'
   Category.find_or_create_by_name(:name => name)
 end
 
+Event.all.each do |e|
+  Album.find_or_create_by_imageable_id_and_name(:imageable_id => e.id,:name => I18n.t('album.default'),:imageable_type => 'Event')
+end
+
+Person.all.each do |p|
+  Album.find_or_create_by_imageable_id_and_name(:imageable_id =>p.id,:name => 'status_message',:imageable_type =>'Person')
+  Album.find_or_create_by_imageable_id_and_name(:imageable_id =>p.id,:name => 'avatar',:imageable_type =>'Person')
+end
 
 
 

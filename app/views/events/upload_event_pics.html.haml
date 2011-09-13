@@ -18,7 +18,7 @@
             ='+ 上传图片'
           =submit_tag "确认", :class => 'upload_confirm_button'
           =link_to '取消', 'javascript:void(0)', :class => 'cancel_button'
-      =render 'photos/new_photo', :controller_path => pics_path(:id => @event.id)
+      =render 'photos/new_photo', :controller_path => pics_path(:id => @event.id),:pic_type => 'event'
     .span-5.last
 
 .colorbox_content

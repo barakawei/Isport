@@ -22,7 +22,7 @@ javascripts:
   scroll_page:
     - public/javascripts/scrollPage.js
   show_photo:
-    - public/javascripts/showPhoto.js
+    - public/javascripts/lightbox.js
   show_avatar:
     - public/javascripts/showAvatar.js
   jqueryui:
@@ -73,6 +73,7 @@ stylesheets:
     - public/stylesheets/css/special_pages/people/show.css
     - public/stylesheets/css/special_pages/people/show_person_details.css
     - public/stylesheets/css/general/common/autocomplete.css
+    - public/stylesheets/css/general/common/lightbox.css
 
   forms:
     - public/stylesheets/css/general/forms/events_form.css

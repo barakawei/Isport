@@ -4,8 +4,10 @@ class Pic < ActiveRecord::Base
   mount_uploader :unprocessed_image,UnprocessedImageUploader
 
   belongs_to :album
+  belongs_to :status_message
   belongs_to :author, :class_name => 'Person'
   acts_as_list :scope => :album_id
+  has_many :pic_comments
   
   def not_processed?
     processed_image.path.nil?
@@ -32,11 +34,20 @@ class Pic < ActiveRecord::Base
     self.remote_photo_name = remote_path.slice(name_start + 1, remote_path.length)
   end
 
+  def update_albums(user,params = {})
+    pic_type = params[ :pic_type ]
+    if pic_type === 'event'
+      event = Event.find(params[:id])
+      event.albums.first.pics << self
+    else
+      user.person.albums.where( :name => pic_type ).first.pics << self
+    end
+  end
 
   def url(size=:thumb_small)
     name = size.to_s 
     if processed?
-      processed_image.url(size)
+      processed_image.url(name)
     elsif not_processed?
       unprocessed_image.url
     elsif remote_photo_path

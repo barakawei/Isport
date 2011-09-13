@@ -1,0 +1,15 @@
+processComment(<%= @pic_comment.pic_id %>, <%= @pic_comment.id %>,"<%= escape_javascript(render(:partial => 'comments/comment', :locals => { :comment => @pic_comment}))%>");
+
+function processComment(picId,commentId,html){  
+
+    if( $(".comment[id='"+commentId+"']").length === 0 ) {
+      var pic_comments = $(".pic_comments[id='"+picId+"']");
+      pic_comments.append($(html).fadeIn( 100 ));
+      $(".comment[id='"+commentId+"']").css("opacity","100" );
+      post.removeClass( "hide" );
+      $("abbr.timeago").timeago();
+      comment_form = pic_comments.parent().find( ".comment_form" );
+      comment_form.find( "#pic_comment_content" ).val("");
+      }
+}
+

@@ -1,0 +1,17 @@
+.pic_author
+  .author_avatar
+    = person_image_link(@pic.author,:thumb_small)
+  .content
+    .name
+      = person_link(@pic.author)
+.pic_comment_container
+  .pic_comments.comments{ :id => @pic.id }
+    = render :partial => 'comments/comment', :collection => @pic_comments, :as =>:comment
+  .comment_form
+    .author_avatar
+      = person_image_link(current_user,:thumb_small)
+    = form_for([@pic,PicComment.new], :remote => true) do |f|
+      = f.text_area :content, :rows => 2
+      .comment_button.hide
+        = f.submit "回复", :class => 'glass_button inline'
+

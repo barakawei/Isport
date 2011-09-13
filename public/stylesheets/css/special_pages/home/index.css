@@ -1,7 +1,9 @@
 .home_container {
   width: 680px;
-  margin-top: 22px; }
+  margin-top: 30px; }
   .home_container .new_event {
+    padding-right: 10px; }
+  .home_container .new_post {
     padding-right: 10px; }
   .home_container .home_tabs {
     background: #f9f9f9 url("/images/ui/tabs-bg.png") repeat;
@@ -41,6 +43,10 @@
 
 .events_panel {
   margin-top: 0 !important; }
+  .events_panel .stream_element {
+    background-color: white;
+    border: none;
+    margin-bottom: 2px; }
   .events_panel .pagination {
     position: absolute;
     bottom: -40px;
@@ -132,6 +138,61 @@
   background-position: 0 -1720px;
   padding-left: 14px; }
 
+#lightbox-comment-panel {
+  margin-bottom: 10px; }
+  #lightbox-comment-panel .pic_author {
+    padding: 8px;
+    height: 30px;
+    border-bottom: 1px solid #323232; }
+    #lightbox-comment-panel .pic_author .content {
+      text-align: left;
+      padding-left: 10px;
+      height: 30px;
+      float: left;
+      font-size: 14px; }
+      #lightbox-comment-panel .pic_author .content .name, #lightbox-comment-panel .pic_author .content .info {
+        line-height: 14px; }
+      #lightbox-comment-panel .pic_author .content a {
+        color: #cccccc !important; }
+  #lightbox-comment-panel a {
+    color: #666666 !important; }
+  #lightbox-comment-panel .pic_comment_container {
+    overflow-y: auto;
+    min-height: 400px; }
+  #lightbox-comment-panel .comments {
+    border-top: none !important; }
+  #lightbox-comment-panel .comment_body {
+    word-wrap: break-word;
+    line-height: 1.4;
+    color: #cccccc; }
+  #lightbox-comment-panel .details {
+    color: #aaaaaa; }
+  #lightbox-comment-panel .comment {
+    border: none !important;
+    padding: 8px; }
+  #lightbox-comment-panel .comment_content {
+    text-align: left;
+    margin-left: 36px; }
+  #lightbox-comment-panel .timeago {
+    color: #999999;
+    text-decoration: none;
+    border: none; }
+  #lightbox-comment-panel .author_avatar {
+    float: left;
+    padding: 0; }
+  #lightbox-comment-panel .person_avatar_detail {
+    height: 32px;
+    width: 32px; }
+  #lightbox-comment-panel .comment_form {
+    text-align: left;
+    margin-bottom: 50px; }
+    #lightbox-comment-panel .comment_form textarea {
+      width: 170px;
+      height: 50px; }
+  #lightbox-comment-panel .comment_button {
+    text-align: left;
+    margin-left: 50px; }
+
 .comments {
   border-top: 1px solid #ebebeb;
   font-size: 13px;
@@ -150,7 +211,7 @@
     color: #999999;
     text-decoration: none;
     border: none; }
-  .comments .avatar {
+  .comments .author_avatar {
     float: left;
     padding: 0; }
   .comments .person_avatar_detail {
@@ -342,3 +403,63 @@
     .home_event_box_panel .member .person_avatar .person_avatar_detail {
       height: 30px;
       width: 30px; }
+
+.nav_tab ul li {
+  font-weight: bold;
+  display: inline-block;
+  padding-right: 10px; }
+  .nav_tab ul li a {
+    font-size: 18px;
+    -moz-border-radius-topleft: 6px;
+    -moz-border-radius-topright: 6px;
+    -webkit-border-top-left-radius: 6px;
+    -webkit-border-top-right-radius: 6px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    border-radius: 6px 6px 0 0;
+    behavior: url(/javascripts/PIE.htc);
+    background-color: #e1e1e1;
+    padding: 10px;
+    font-weight: bold;
+    color: #999999; }
+    .nav_tab ul li a:hover {
+      background-color: #c6c6c3;
+      color: #646464; }
+  .nav_tab ul li a.current {
+    background-color: white;
+    color: #546266; }
+
+.feed_toolbar {
+  margin-top: 7px;
+  background: white;
+  width: 680px;
+  height: 62px;
+  border-bottom: 1px solid #eceae8; }
+  .feed_toolbar ul li {
+    float: left;
+    font-weight: bold;
+    display: inline-block;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 10px; }
+    .feed_toolbar ul li a {
+      color: #505050;
+      background: #f3f3f2;
+      border: 1px solid #dededd;
+      font-size: 15px;
+      -moz-border-radius: 6px;
+      -webkit-border-radius: 6px;
+      border-radius: 6px;
+      behavior: url(/javascripts/PIE.htc);
+      padding: 5px;
+      font-weight: bold; }
+      .feed_toolbar ul li a:hover {
+        background-color: #c6c6c3;
+        color: #646464; }
+    .feed_toolbar ul li a.current {
+      background-color: white;
+      color: #546266; }
+
+.comment_form .comment_button .glass_button {
+  margin-top: 0;
+  margin-right: 10px; }

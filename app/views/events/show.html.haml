@@ -1,5 +1,6 @@
 -content_for :head do
   = include_stylesheets :sepcial_pages_events_show, :media => 'all'
+  = include_javascripts :show_photo
   = include_javascripts :google_map
   =javascript_include_tag "http://maps.google.com/maps/api/js?sensor=false"
   = include_stylesheets :jquery_fancybox_css, :media => 'all'
@@ -132,37 +133,16 @@
 
     .albums_area.hide
       -@pics.each do |p|
-        %a{:class => 'pic_link', :href => p.url(:origin), :rel => 'gallery', :title => truncate(p.description, :length => 40)}
-          %img{:src => p.url} 
+        =pic_image_link(p)
 
     .span-17.comments_area 
       = render 'event_comments', :comments => @comments, :event => @event, 
                                  :current_person => @current_person, :comment => @comment 
 
-.colorbox_content
-  #upload_event_pic
-    .span-12
-      %h3='上传活动图片:' 
-      = form_tag '' do
-        .photo_form
-          = text_area_tag 'content'
-          %ul#photozone
-          #file-upload
-            = image_tag '/images/ui/camera.svg', :height => 14
-        =submit_tag "上传", :class => 'button'
-      =render 'photos/new_photo', :controller_path => pics_path
+
 :javascript
   $(function() {
-    $(".albums_area a").fancybox({
-      'transitionIn' : 'elastic',
-      'transitionOut' : 'elastic',
-      'speedIn' : 600, 
-      'speedOut' : 200,
-      'overlayColor' : '#000000',
-      'overlayOpacity': 0.8,
-      'titlePosition': 'inside'
-    });
-    
+        
     var address = "#{@event.location}";
     codeAddress("map", address, 'map_div');
 

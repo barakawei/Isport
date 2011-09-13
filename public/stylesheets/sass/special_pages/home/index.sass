@@ -1,8 +1,10 @@
 @import '../../general/ui/mixins'
 .home_container
   :width 680px
-  margin-top: 22px
+  margin-top: 30px
   .new_event
+    :padding-right 10px
+  .new_post
     :padding-right 10px
   .home_tabs
     background: #F9F9F9 url('/images/ui/tabs-bg.png') repeat 
@@ -34,6 +36,10 @@
   
 .events_panel
   :margin-top 0 !important
+  .stream_element
+    :background-color white
+    :border none
+    :margin-bottom 2px
   .pagination
     :position absolute
     :bottom -40px
@@ -128,10 +134,63 @@
   :background-position 0 -1720px
   :padding-left 14px
 
-.feed_container
-  .stream
-    .stream_element
-      .avatar
+#lightbox-comment-panel
+  .pic_author
+    :padding 8px
+    :height 30px
+    :border-bottom 1px solid #323232
+    .content
+      :text-align left
+      :padding-left 10px
+      :height 30px
+      :float left
+      :font-size 14px
+      .name,.info
+        :line-height 14px
+      a
+        :color #ccc !important
+
+  a
+    :color #666 !important
+  .pic_comment_container
+    overflow-y: auto
+    min-height: 400px
+  .comments
+    :border-top none !important
+  .comment_body
+    :word-wrap break-word
+    :line-height 1.4
+    :color #ccc
+  .details
+    :color #AAA
+  .comment
+    :border none !important
+    :padding 8px
+  :margin-bottom 10px
+  .comment_content
+    text-align: left
+    :margin-left 36px
+  .timeago
+    color: #999
+    text-decoration: none
+    border: none
+  .author_avatar
+    :float left
+    :padding 0
+  .person_avatar_detail
+    :height 32px
+    :width 32px
+  .comment_form
+    :text-align left
+    :margin-bottom 50px
+    textarea
+      :width 170px
+      :height 50px
+  .comment_button
+    :text-align left
+    :margin-left 50px
+
+    
 
 .comments
   :border-top 1px solid #EBEBEB
@@ -151,7 +210,7 @@
     color: #999
     text-decoration: none
     border: none
-  .avatar
+  .author_avatar
     :float left
     :padding 0
   .person_avatar_detail
@@ -347,3 +406,65 @@
       .person_avatar_detail
         :height 30px
         :width 30px
+
+.nav_tab
+  ul
+    li
+      font-weight: bold
+      display: inline-block
+      :padding-right 10px
+      a
+        :font-size 18px
+        @include border-radius-feed( 6px )
+        :background-color #e1e1e1 
+        padding: 10px
+        font-weight: bold
+        :color #999
+        &:hover
+          :background-color #c6c6c3
+          :color #646464
+      a.current
+        :background-color white
+        :color #546266 
+
+        
+.feed_toolbar
+  :margin-top 7px
+  :background white
+  :width 680px
+  :height 62px
+  :border-bottom 1px solid #ECEAE8
+  ul
+    li
+      float: left
+      font-weight: bold
+      display: inline-block
+      :margin
+        :top 20px
+        :bottom 20px
+        :left 10px
+      a
+        color: #505050
+        background: #F3F3F2
+        border: 1px solid #DEDEDD
+        :font-size 15px
+        @include border-radius( 6px )
+        padding: 5px
+        font-weight: bold
+        &:hover
+          :background-color #c6c6c3
+          :color #646464
+      a.current
+        :background-color white
+        :color #546266 
+.comment_form
+  .comment_button
+    .glass_button
+      :margin-top 0
+      :margin-right 10px
+
+
+
+
+
+
