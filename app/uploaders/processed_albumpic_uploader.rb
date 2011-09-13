@@ -15,11 +15,16 @@ class ProcessedAlbumpicUploader < CarrierWave::Uploader::Base
 
   version :thumb_large do
     process :convert => 'jpg'
-    process :shrink => 640 
+    process :shrink => 600
   end
 
   version :origin do
     process :convert => 'jpg'
+  end
+
+  version :shortcut do
+    process :convert => 'jpg'
+    process :resize_to_fill => [55,55] 
   end
 
   def store_dir

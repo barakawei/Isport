@@ -178,3 +178,5 @@ stylesheets:
 
   sepcial_pages_pics_index:
     - public/stylesheets/css/special_pages/pics/index.css
+  sepcial_pages_pics_show:
+    - public/stylesheets/css/special_pages/pics/show.css

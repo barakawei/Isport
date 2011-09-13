@@ -1,0 +1,19 @@
+!!!
+%html
+  %head
+    %title
+      好享玩
+    = include_stylesheets :default, :media => 'all'
+    = include_stylesheets :blueprint, :media => 'screen'
+    = include_javascripts :jquery
+    = include_javascripts :main
+    = include_javascripts :jqueryui
+    = include_javascripts :jquery_form
+    = include_javascripts :show_avatar
+    //= include_javascripts :google_analytics
+    = csrf_meta_tag
+    = yield :head
+     
+  %body{:class => "#{yield(:body_class)}"}
+    .simple_container{:style => 'width:100%'}
+      =yield 

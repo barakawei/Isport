@@ -10,6 +10,14 @@ class PicsController < ApplicationController
   def show
     @album = Album.find(params[:album_id])
     @pic = @album.pics.find(params[:id])
+    @author = @pic.author
+    @next_pics= @album.pics.where("created_at > ?", @pic.created_at).order('created_at').limit(3)
+    @previous_pics = Pic.where("position < ? && album_id = ?", @pic.position, @album.id).order('created_at desc').limit(3)
+    @previous =  @previous_pics.size > 0 ? @previous_pics.first : nil 
+    @next= @next_pics.size > 0 ? @next_pics.first : nil 
+    @size= @album.pics.size
+    @album_shortcut = @album.pics.all
+    render :layout => 'simple_layout'
   end
 
   def destroy
@@ -37,10 +45,9 @@ class PicsController < ApplicationController
       else
         params[:photo][:user_file] = file_handler(params)
       end
-      @photo = Pic.initialize(params[ :photo ], self.request.host, self.request.port,current_user.person)
-
-      if @photo.save
-        @event.albums.first.pics << @photo
+      @photo = Pic.initialize(params[:photo], self.request.host, self.request.port,current_user.person)
+      @photo.album = @event.albums.first
+      if @photo.save 
         @photo.process
 
         respond_to do |format|

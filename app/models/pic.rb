@@ -5,6 +5,7 @@ class Pic < ActiveRecord::Base
 
   belongs_to :album
   belongs_to :author, :class_name => 'Person'
+  acts_as_list :scope => :album_id
   
   def not_processed?
     processed_image.path.nil?

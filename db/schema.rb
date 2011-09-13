@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110908090413) do
+ActiveRecord::Schema.define(:version => 20110910055250) do
 
   create_table "administrators", :force => true do |t|
     t.integer  "user_id"
@@ -267,6 +267,7 @@ ActiveRecord::Schema.define(:version => 20110908090413) do
     t.string   "random_string"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "position"
   end
 
   create_table "post_visibilities", :force => true do |t|

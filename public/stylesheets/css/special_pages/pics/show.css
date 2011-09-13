@@ -1,0 +1,109 @@
+.album {
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  behavior: url(/javascripts/PIE.htc);
+  background-color: white;
+  width: 100%;
+  float: left; }
+  .album .title_bar {
+    float: left;
+    width: 600px;
+    border-bottom: 1px solid #dddddd;
+    margin-bottom: 5px;
+    padding-bottom: 5px; }
+    .album .title_bar .position {
+      font-size: 13px;
+      color: #666666; }
+    .album .title_bar .nav {
+      float: right; }
+    .album .title_bar .glass_button {
+      color: white;
+      padding: 3px 10px; }
+    .album .title_bar .glass_button.first {
+      margin-right: 5px; }
+    .album .title_bar .glass_button.disabled {
+      background-color: #f1f1f1;
+      color: #aaaaaa;
+      font-weight: normal; }
+  .album .display_area {
+    width: 600px;
+    float: left; }
+    .album .display_area .img_area {
+      width: 600px;
+      float: left;
+      text-align: center; }
+      .album .display_area .img_area p {
+        font-size: 13px;
+        color: #555555; }
+  .album .desc_area {
+    float: left;
+    width: 300px;
+    padding-left: 20px; }
+    .album .desc_area .author_info {
+      margin-left: 20px;
+      float: left; }
+      .album .desc_area .author_info .avatar_container {
+        float: left; }
+      .album .desc_area .author_info .person_link {
+        display: block;
+        float: left; }
+      .album .desc_area .author_info span {
+        display: block;
+        float: left;
+        width: 180px;
+        margin-left: 5px;
+        color: black; }
+      .album .desc_area .author_info span.desc {
+        font-size: 15px; }
+      .album .desc_area .author_info span.pic_size {
+        font-size: 12px;
+        margin-top: 5px;
+        color: #888888; }
+    .album .desc_area .album_info {
+      float: left;
+      margin-top: 30px; }
+      .album .desc_area .album_info span.desc {
+        margin-left: 20px;
+        font-size: 15px;
+        color: black;
+        font-weight: bold; }
+      .album .desc_area .album_info .album_shortcut {
+        float: left;
+        margin-top: 10px; }
+        .album .desc_area .album_info .album_shortcut .gallery {
+          float: left;
+          width: 236px;
+          overflow: hidden;
+          margin: 0 3px; }
+          .album .desc_area .album_info .album_shortcut .gallery ul {
+            width: 99999px;
+            float: left; }
+            .album .desc_area .album_info .album_shortcut .gallery ul li {
+              float: left; }
+              .album .desc_area .album_info .album_shortcut .gallery ul li a {
+                float: left;
+                display: block;
+                padding: 1px;
+                border: 1px solid white; }
+              .album .desc_area .album_info .album_shortcut .gallery ul li a.current {
+                border: 1px solid black;
+                height: 55px; }
+        .album .desc_area .album_info .album_shortcut .nav_link {
+          margin-right: 3px;
+          width: 17px;
+          height: 55px;
+          float: left; }
+          .album .desc_area .album_info .album_shortcut .nav_link a.prev, .album .desc_area .album_info .album_shortcut .nav_link a.next {
+            float: left;
+            border: 1px solid #d5ddde;
+            display: none;
+            height: 55px;
+            width: 17px;
+            font-size: 17px;
+            line-height: 55px;
+            color: #8dbc6e;
+            text-align: center; }
+            .album .desc_area .album_info .album_shortcut .nav_link a.prev:hover, .album .desc_area .album_info .album_shortcut .nav_link a.next:hover {
+              background-color: #8dbc6e;
+              color: white; }
