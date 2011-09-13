@@ -65,3 +65,7 @@
     border-top-right-radius: 4px;
     border-radius: 4px 4px 0 0;
     behavior: url(/javascripts/PIE.htc); }
+
+.status_message_pic .content {
+  height: 70px;
+  width: 600px; }

@@ -153,7 +153,7 @@ h1 .description, h2 .description, h3 .description, h4 .description {
   .stream_element .show_comments {
     border-top: 1px solid #ebebeb;
     padding: 8px; }
-  .stream_element .avatar {
+  .stream_element .author_avatar {
     float: left; }
   .stream_element .right {
     padding: 20px 20px; }
@@ -463,8 +463,6 @@ input {
   .comment_form .person_avatar_detail {
     height: 32px;
     width: 32px; }
-  .comment_form .avatar {
-    float: left; }
   .comment_form .comment_button {
     margin-left: 40px; }
   .comment_form textarea {

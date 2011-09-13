@@ -6,10 +6,6 @@ class CreateAlbums < ActiveRecord::Migration
       t.timestamps
     end
     
-    Album.reset_column_information
-    Event.all.each do |e|
-      e.albums.create(:name => I18n.t('album.default'))
-    end
   end
 
   def self.down

@@ -3,7 +3,7 @@
 
    var uploader = new qq.FileUploaderBasic({
        element: document.getElementById('file-upload'),
-       params: {'photo' : {'is_avatar':false}},
+       params: {'photo' : {'is_avatar':false},'pic_type':'#{pic_type}'},
        allowedExtensions: ['jpg', 'jpeg', 'png', 'gif'],
        action: "#{controller_path}",
        debug: true,
@@ -19,12 +19,12 @@
         $(".photo_form").closest( "form" ).addClass("with_photos");
         $('#photozone').append(
           "<li class='photo loading' style='position:relative;'>" +
-            "<div class='ajax_load'>" + 
+            "<div class='ajax_load left' style='margin-right:5px;'>" + 
             "<a class='upload_img_link'>" + 
             "<img src='/images/ui/loading.gif' class='upload_image' />" +
             "</a>" +
             "</div>" +
-            "<textarea name='content'></textarea>" +
+            "<textarea name='desc'></textarea>" +
             "<a class='remove_link'>close</a>" +
           "</li>"
           );
@@ -55,7 +55,7 @@
           'titlePosition': 'inside'
         });
  
-        textarea.attr('name', "content["+ id +"]");
+        textarea.attr('name', "desc["+ id +"]");
         currentPlaceholder.removeClass('loading');
         
         var form = $('.photo_form').closest( "form" );

@@ -139,18 +139,7 @@
       = render 'event_comments', :comments => @comments, :event => @event, 
                                  :current_person => @current_person, :comment => @comment 
 
-.colorbox_content
-  #upload_event_pic
-    .span-12
-      %h3='上传活动图片:' 
-      = form_tag '' do
-        .photo_form
-          = text_area_tag 'content'
-          %ul#photozone
-          #file-upload
-            = image_tag '/images/ui/camera.svg', :height => 14
-        =submit_tag "上传", :class => 'button'
-      =render 'photos/new_photo', :controller_path => pics_path
+
 :javascript
   $(function() {
     $(".albums_area a").fancybox({

@@ -1,19 +1,22 @@
 class StatusMessagesController < ApplicationController
   before_filter :registrations_closed?
   before_filter :authenticate_user!
-
   respond_to :js
   def create
-    photos = Photo.where(:id => [*params[:photos]])
+    pics = Pic.where(:id => [*params[:photos]])
     @status_message =StatusMessage.initialize(current_user,params[:status_message])
-    if !photos.empty?
-      @status_message.photos << photos
+
+    if !pics.empty?
+      pics.each do |p|
+        p.update_attributes(:description => params[:desc][p.id.to_s])
+      end
+      @status_message.pics << pics
     end
     
     if @status_message.save
       @status_message.dispatch_post 
     end
-    respond_with  @status_message
+    redirect_to home_path
   end
 
   def show
@@ -21,5 +24,6 @@ class StatusMessagesController < ApplicationController
   end
 
   def new
+    @status_message = StatusMessage.new
   end
 end

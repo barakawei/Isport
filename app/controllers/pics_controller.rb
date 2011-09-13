@@ -22,15 +22,19 @@ class PicsController < ApplicationController
   end
 
   def batch_destroy
-     pids = params[:pids].split(',')
-     @event = Event.find(params[:event_id])
-     @person = current_user.person
-     Pic.destroy_all(:id => pids, :author_id => @person.id)
-     redirect_to event_path(@event)
+    pids = params[:pids].split(',')
+
+    @person = current_user.person
+    Pic.destroy_all(:id => pids, :author_id => @person.id)
+    if params[ :event_id ]
+      @event = Event.find(params[:event_id])
+      redirect_to event_path(@event)
+    else
+      redirect_to home_path
+    end
   end
 
   def create
-    @event = Event.find(params[:id])
     begin
       if params[:authenticity_token] #upload with iframe
         params[:photo][:user_file] =  params[ :qqfile ] 
@@ -40,7 +44,7 @@ class PicsController < ApplicationController
       @photo = Pic.initialize(params[ :photo ], self.request.host, self.request.port,current_user.person)
 
       if @photo.save
-        @event.albums.first.pics << @photo
+        @photo.update_albums(current_user,params)
         @photo.process
 
         respond_to do |format|
@@ -61,7 +65,7 @@ class PicsController < ApplicationController
     pids = params[:photos]
     if pids && pids.size > 0
       pids.each do |id|
-        Pic.find(id).update_attributes(:description => params[:content][id])
+        Pic.find(id).update_attributes(:description => params[:desc][id])
       end 
     end
     redirect_to event_path(@event)

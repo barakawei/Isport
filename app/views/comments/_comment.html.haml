@@ -1,13 +1,12 @@
 %li.comment.posted{ :id => comment.id }
-  = person_image_link(comment.author,:thumb_small)
+  .author_avatar
+    = person_image_link(comment.author,:thumb_small)
   .comment_content
     .from
       = person_link(comment.author)
       %span.details
-        – 
+        =":" 
       %span.comment_body
         = comment.content
 
     = how_long_ago( comment )
-    
-

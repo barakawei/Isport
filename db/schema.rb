@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110908090413) do
+ActiveRecord::Schema.define(:version => 20110913025038) do
 
   create_table "administrators", :force => true do |t|
     t.integer  "user_id"
@@ -114,10 +114,10 @@ ActiveRecord::Schema.define(:version => 20110908090413) do
     t.integer  "group_id",           :default => 0
     t.integer  "status",             :default => 0
     t.string   "status_msg"
+    t.integer  "audit_person_id"
     t.integer  "participants_count", :default => 0
     t.integer  "comments_count",     :default => 0
     t.integer  "fans_count",         :default => 0
-    t.integer  "audit_person_id"
   end
 
   create_table "favorites", :force => true do |t|
@@ -256,6 +256,14 @@ ActiveRecord::Schema.define(:version => 20110908090413) do
 
   add_index "people", ["user_id"], :name => "index_people_on_user_id", :unique => true
 
+  create_table "pic_comments", :force => true do |t|
+    t.integer  "pic_id"
+    t.integer  "person_id"
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "pics", :force => true do |t|
     t.integer  "author_id"
     t.integer  "album_id"
@@ -267,6 +275,7 @@ ActiveRecord::Schema.define(:version => 20110908090413) do
     t.string   "random_string"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "status_message_id"
   end
 
   create_table "post_visibilities", :force => true do |t|
@@ -289,7 +298,7 @@ ActiveRecord::Schema.define(:version => 20110908090413) do
     t.boolean  "pending",           :default => false
     t.string   "random_string"
     t.integer  "item_id"
-    t.integer  "post_id"
+    t.integer  "post_d"
   end
 
   create_table "profiles", :force => true do |t|

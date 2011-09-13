@@ -11,10 +11,11 @@ Isport::Application.routes.draw do
   resources :posts do
     resources :comments, :only => [:create, :destroy, :index]
   end
-  resources :photos
+  resources :pics do
+    resources :pic_comments,:only => [ :create,:show ]
+  end
   resources :requests
   resources :status_messages
-  resources :comments
   resources :status_messages do
     resources :comments,:only => [ :create,:show ]
   end
@@ -25,6 +26,11 @@ Isport::Application.routes.draw do
   end
   
   resources :conversation_visibilities
+  controller :comments do
+    match '/comments/show_pic_comment' => :show_pic_comment
+  end
+
+  resources :comments
 
   root :to => "welcome#index"
 

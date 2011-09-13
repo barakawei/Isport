@@ -1,11 +1,12 @@
 .stream_element{ :id => post.id }
-  = person_image_link(post.author,:thumb_small) 
+  .author_avatar
+    = person_image_link(post.author,:thumb_small) 
   .element_body
     .content
       .from
         = person_link(post.author, :class => 'author')
       .photos
-        = render 'photos/photos_container',:photos => post.photos
+        = render 'photos/photos_container',:photos => post.pics
       %p
         = post.content
       .content_info
@@ -16,7 +17,7 @@
   
     = render "comments/comments", :post => post, :comments => post.comments
     .comment_form{:class => ('hide' if post.comments.size == 0)}
-      .avatar
+      .author_avatar
         = person_image_link(current_user,:thumb_small)
       = form_for([post,Comment.new], :remote => true) do |f|
         = f.text_area :content, :rows => 2
@@ -24,8 +25,6 @@
           = f.submit "回复", :class => 'glass_button inline'
           .cancle.inline.glass_button
             = "取消"
-:javascript
-  $( ".button" ).button(  );
 
 
 

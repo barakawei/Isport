@@ -3,8 +3,6 @@ class Photo < Post
   mount_uploader :processed_image,ProcessedImageUploader
   mount_uploader :unprocessed_image,UnprocessedImageUploader
 
-  belongs_to :status_message, :foreign_key => :post_id
-
   def not_processed?
     processed_image.path.nil?
   end

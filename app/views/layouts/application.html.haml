@@ -32,7 +32,24 @@
         %p='本网站当前只支持IE8及以上版本浏览器，为了更好的用户体验，推荐使用Firefox, Chrome, 或者Safari浏览器' 
       - if params[:controller] == 'home' && params[:action] == 'index'
         =link_to 'suggestion', new_feedback_path, :class => 'new_user_feedback'
-      .span-24.last
+      #lightbox
+        #lightbox-panel
+          #lightbox-leftside
+            #lightbox-content
+              %img#lightbox-image
+              #image-desc
+              #lightbox-imageset
+          #lightbox-rightside
+            .lightbox-rightpanel
+              .left_sidebar.sidebar
+                .left_arrow
+              .right_sidebar.sidebar.hide
+                .right_arrow
+              #lightbox-comment-panel
+                %ul#lightbox-comment
+          .clear
+      #lightbox-backdrop 
+      .content_area.span-24.last
         =yield 
       .span-24
         %br

@@ -1,1 +1,56 @@
+-content_for :head do
+  = include_stylesheets :sepcial_pages_events_upload_pic, :media => 'all'
+  = include_stylesheets :jquery_fancybox_css, :media => 'all'
+  = include_javascripts :jquery_fancybox
+  
+.container.upload_area
+  #upload_event_pic.status_message_pic
+    .title_bar
+      %h2.title
+        ='内容'
+    .prepend-1.span-17
+      = form_for(@status_message) do |status|
+        .photo_form
+          = status.text_area :content,:class => 'content'
+          %ul#photozone
+          #file-upload.glass_button
+            ='+ 上传图片'
+          =status.submit "确认", :class => 'upload_confirm_button'
+          =link_to '取消', 'javascript:void(0)', :class => 'cancel_button'
+      =render 'photos/new_photo',:controller_path => pics_path,:pic_type => 'status_message'
+
+    .span-5.last
+
+.colorbox_content
+  #cancel_upload_request
+    .span-10.box_content
+      %h3='未提交的照片将会丢失，确定取消？'
+      = form_tag batch_destroy_path, :method => 'delete' do
+        = hidden_field_tag :pids
+        .submit
+          = submit_tag t('activerecord.operations.event.save'), :class => 'glass_button'
+
+
+:javascript
+  $(function() {
+    $(".albums_area a").fancybox({
+      'transitionIn' : 'elastic',
+      'transitionOut' : 'elastic',
+      'speedIn' : 600, 
+      'speedOut' : 200,
+      'overlayColor' : '#000000',
+      'overlayOpacity': 0.8,
+      'titlePosition': 'inside'
+    });
+  });
+  $('.cancel_button').click(function() {
+    var $imgs = $('img.upload_image')
+    var pids = new Array($imgs.size);
+    $imgs.each(function(index) {
+      pids[index] = $(this).attr('data-id'); 
+    });
+    $('#cancel_upload_request #pids').val(pids);
+    $.colorbox({ inline:true, href: "#cancel_upload_request", opacity:0.3});
+    return false;
+  });
 
