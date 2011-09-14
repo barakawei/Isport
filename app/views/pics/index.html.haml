@@ -1,51 +1,24 @@
 -content_for :head do
   = include_stylesheets :sepcial_pages_pics_index, :media => 'all'
-  = include_stylesheets :jquery_fancybox_css, :media => 'all'
-  = include_javascripts :jquery_fancybox
+  = include_javascripts :show_photo
 
 .span-22.album
   .title_bar
     %h2
       = get_imageable_des(@album)
-      = link_to @album.imageable.name, '#'
-    =link_to '浏览大图', 'javascript:void(0)', :id => 'browse', :class => 'glass_button'
-  -@pics.each do |p|
-    %a{:class => 'gallery_link', :href => p.url(:origin), :rel => 'gallery', :title => truncate(p.description, :length => 40)}
-    %a{:class => 'pic_link', :href => album_pic_path(@album, p) }
-      %img{:src => p.url(:thumb_medium)} 
+      = link_to @album.imageable.name, get_imageable_path(@album)
+      = '的相册'
+  .albums.pic_container
+    -@pics.each do |p|
+      .event_pic
+        =pic_image_link(p, :thumb_medium)
+        %span.desc
+          = '来自'
+          = link_to p.author.name, person_path(p.author_id)
 
 
 :javascript
   $(function() {
     var size = $(window).width(); 
-    $("a.gallery_link").fancybox({
-      'transitionIn' : 'elastic',
-      'transitionOut' : 'elastic',
-      'speedIn' : 10, 
-      'speedOut' : 10,
-      'overlayColor' : '#000000',
-      'overlayOpacity': 0.8,
-      'titlePosition': 'inside'
-    });
-    $("a.pic_link").fancybox({
-      'padding': 0,
-      'margin': 0,
-      'scrolling': 'no',
-      'transitionIn' : 'elastic',
-      'transitionOut' : 'elastic',
-      'speedIn' : 600, 
-      'speedOut' : 200,
-      'overlayColor' : '#000000',
-      'overlayOpacity': 0.8,
-      'titlePosition': 'inside',
-      'autoDimensions': 'false',
-      'autoScale': 'false',
-      'centerOnScroll': 'true'
-    });
-
   });
-  
-  $('#browse').click(function(){
-    $('a.gallery_link:first').trigger('click');
-  });
-
+ 

@@ -7,19 +7,6 @@ class PicsController < ApplicationController
     @pics = @album.pics 
   end
 
-  def show
-    @album = Album.find(params[:album_id])
-    @pic = @album.pics.find(params[:id])
-    @author = @pic.author
-    @next_pics= @album.pics.where("created_at > ?", @pic.created_at).order('created_at').limit(3)
-    @previous_pics = Pic.where("position < ? && album_id = ?", @pic.position, @album.id).order('created_at desc').limit(3)
-    @previous =  @previous_pics.size > 0 ? @previous_pics.first : nil 
-    @next= @next_pics.size > 0 ? @next_pics.first : nil 
-    @size= @album.pics.size
-    @album_shortcut = @album.pics.all
-    render :layout => 'simple_layout'
-  end
-
   def destroy
     photo = Pic.where(:id => params[:id]).first
 

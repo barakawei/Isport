@@ -78,4 +78,9 @@ class Pic < ActiveRecord::Base
       }
     }
   end 
+
+  def update_owner_counter
+    self.album.pics_count = self.albums.pics.count
+    self.album.save
+  end
 end

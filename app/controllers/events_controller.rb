@@ -53,12 +53,9 @@ class EventsController < ApplicationController
     @current_person = current_user ? current_user.person : nil
     @album = @event.albums.first
     @pics = @album.pics
-    @comments = []
-    if @event.comments_count> 0
-      @comments = @event.comments.paginate :page => params[:page],
-                                           :per_page => 8, :order => 'created_at'
+    @comments = @event.comments.paginate :page => params[:page],
+                                         :per_page => 8
 
-    end
     new_comment
   end
 

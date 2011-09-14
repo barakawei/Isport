@@ -5,12 +5,12 @@ class ProcessedAlbumpicUploader < CarrierWave::Uploader::Base
 
   version :thumb_small do
     process :convert => 'jpg'
-    process :shrink => 140
+    process :shrink => 145
   end
 
   version :thumb_medium do
     process :convert => 'jpg'
-    process :shrink => 180 
+    process :shrink => 200 
   end
 
   version :thumb_large do

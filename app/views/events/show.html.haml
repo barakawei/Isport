@@ -3,8 +3,6 @@
   = include_javascripts :show_photo
   = include_javascripts :google_map
   =javascript_include_tag "http://maps.google.com/maps/api/js?sensor=false"
-  = include_stylesheets :jquery_fancybox_css, :media => 'all'
-  = include_javascripts :jquery_fancybox
 .span-24
   .span-6.left_column
     .avatar=event_image_tag(@event, :thumb_large)
@@ -131,10 +129,13 @@
       = link_to '查看全部', album_pics_path(@album), :class => 'right link_to_all_pic hide' 
 
 
-    .albums_area.hide
+    .albums_area.pic_container.hide
       -@pics.each do |p|
-        =pic_image_link(p)
-
+        .event_pic
+          =pic_image_link(p, :thumb_small)
+          %span.desc
+            = '来自'
+            = link_to p.author.name, person_path(p.author_id)
     .span-17.comments_area 
       = render 'event_comments', :comments => @comments, :event => @event, 
                                  :current_person => @current_person, :comment => @comment 
@@ -142,7 +143,6 @@
 
 :javascript
   $(function() {
-        
     var address = "#{@event.location}";
     codeAddress("map", address, 'map_div');
 

@@ -15,3 +15,9 @@
       .comment_button.hide
         = f.submit "回复", :class => 'glass_button inline'
 
+:javascript
+  $( ".comment_form textarea" ).live("focus", function(){ 
+    comment_button = $( this ).closest( ".comment_form" ).find( ".comment_button" ); 
+    comment_button.removeClass( "hide" );
+  });
+
