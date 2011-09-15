@@ -23,6 +23,7 @@ jQuery.fn.center = (function() {
         this.comment= $( "#lightbox-comment" );
         this.comment_panel= $( "#lightbox-comment-panel" );
         this.lightbox_leftside = $( "#lightbox-leftside" );
+        this.lightbox_content = $( "#lightbox-content" );
         this.lightbox_rightside = $( "#lightbox-rightside" );
         this.closelink= $("#lightbox-close-link");
         this.image= $("#lightbox-image");
@@ -31,21 +32,17 @@ jQuery.fn.center = (function() {
         this.right_sidebar = $(".right_sidebar");
         this.body= $(document.body);
         this.window= $(window);
+        this.is_full = false;
       
       self.pic.delegate("a.stream-photo-link", "click", self.lightboxImageClicked);
       self.imageset.delegate("img", "click", self.imagesetImageClicked);
 
       self.window.resize(function() {
-        height =  (self.window.height()) + "px";
-        width = (self.window.width()) + "px";
-        left_width =  (self.window.width()-260)+ "px";
-        self.lightbox.css("max-height",height);
-        self.lightbox.css("max-width", width);
-        self.lightbox_rightside.find( ".sidebar" ).css("height", height);
-        self.comment.find( ".pic_comment_container" ).css("height", height);
-        self.set_width( left_width );
+        self.auto_resize_window(); 
+        self.auto_resize_pic( false );
       }).trigger("resize");
 
+      
       self.closelink.click(function(evt){
         evt.preventDefault();
         self.resetLightbox();
@@ -58,6 +55,7 @@ jQuery.fn.center = (function() {
         left_width =  (self.window.width())+ "px";
         self.lightbox_rightside.css( "width","10px" );
         self.set_width( left_width );
+        self.is_full = true;
       });
       self.right_sidebar.click(function(evt){
         self.right_sidebar.addClass( "hide" );
@@ -66,6 +64,7 @@ jQuery.fn.center = (function() {
         left_width =  (self.window.width()-260)+ "px";
         self.lightbox_rightside.css( "width","280px" );
         self.set_width( left_width );
+        self.is_full = false;
       });
 
       self.lightbox_leftside.click(self.resetLightbox);
@@ -88,6 +87,41 @@ jQuery.fn.center = (function() {
         }
       });
     };
+
+    this.auto_resize_window = function(){
+        height =  (self.window.height()) + "px";
+        comment_height =  (self.window.height()-30) + "px";
+        width = (self.window.width()) + "px";
+        self.lightbox_rightside.find( ".sidebar" ).css("height", height);
+        self.comment.find( ".pic_comment_container" ).css("height", comment_height);
+        if(self.is_full ){
+          left_width =  (self.window.width())+ "px";
+        }else{
+          left_width =  (self.window.width()-260)+ "px";
+        }
+        self.set_width( left_width );
+      };
+
+    this.auto_resize_pic = function(init){
+      origin_width = self.image.width();
+      origin_height = self.image.height();
+      content_width = self.lightbox_content.width();
+      content_height = self.lightbox_content.height();
+      margin_width = (content_width-origin_width)/2 ;
+      margin_height = (content_height-origin_height-110)/2 ;
+      new_width = content_width-20+"px";
+      new_height = content_height-20+"px";
+      if( init ){
+        if(margin_width >= 10){
+          return;
+        } 
+      }
+      if( margin_width < 10 ){
+        self.image.css( "width",new_width);
+      }else if( margin_width > 10 && origin_width < content_width ){
+        self.image.css( "width",new_width);
+      }
+    }
 
     this.nextImage = function(thumb){
       var next = thumb.next();
@@ -118,6 +152,8 @@ jQuery.fn.center = (function() {
         success: function(data){
           self.comment.html(data);
           $("abbr.timeago").timeago();
+          self.auto_resize_window(); 
+          self.auto_resize_pic(true);
         }
       });
     };
@@ -128,7 +164,6 @@ jQuery.fn.center = (function() {
         imageUrl = selectedImage.attr("data-full-photo"),
         images = selectedImage.closest( ".pic_container" ).find('img.stream-photo'),
         imageThumb;
-
       self.imageset.html("");
       images.each(function(index, image) {
         image = $(image);

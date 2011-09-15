@@ -15,7 +15,6 @@
     position: absolute;
     display: block; }
   #lightbox-leftside{
-    padding-top: 60px;
     position:fixed;
     min-width: 550px;
     min-height: 430px;
@@ -73,6 +72,7 @@
     background-color: #444;
   }
   .sidebar{
+    z-index: 30;
     min-height: 430px;
     width: 10px; 
     background-color: #323232;
