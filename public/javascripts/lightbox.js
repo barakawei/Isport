@@ -33,13 +33,18 @@ jQuery.fn.center = (function() {
         this.body= $(document.body);
         this.window= $(window);
         this.is_full = false;
+        this.reday = false;
+        this.image_width;
+        this.image_height;
       
       self.pic.delegate("a.stream-photo-link", "click", self.lightboxImageClicked);
       self.imageset.delegate("img", "click", self.imagesetImageClicked);
 
       self.window.resize(function() {
         self.auto_resize_window(); 
-        self.auto_resize_pic( false );
+        if( self.reday ){
+          self.auto_resize_pic();
+        }
       }).trigger("resize");
 
       
@@ -61,7 +66,7 @@ jQuery.fn.center = (function() {
         self.right_sidebar.addClass( "hide" );
         self.left_sidebar.show();
         self.comment_panel.show();
-        left_width =  (self.window.width()-260)+ "px";
+        left_width =  (self.window.width()-280)+ "px";
         self.lightbox_rightside.css( "width","280px" );
         self.set_width( left_width );
         self.is_full = false;
@@ -97,30 +102,28 @@ jQuery.fn.center = (function() {
         if(self.is_full ){
           left_width =  (self.window.width())+ "px";
         }else{
-          left_width =  (self.window.width()-260)+ "px";
+          left_width =  (self.window.width()-280)+ "px";
         }
         self.set_width( left_width );
       };
 
-    this.auto_resize_pic = function(init){
+    this.auto_resize_pic = function(){
       origin_width = self.image.width();
       origin_height = self.image.height();
       content_width = self.lightbox_content.width();
       content_height = self.lightbox_content.height();
       margin_width = (content_width-origin_width)/2 ;
-      margin_height = (content_height-origin_height-110)/2 ;
-      new_width = content_width-20+"px";
-      new_height = content_height-20+"px";
-      if( init ){
-        if(margin_width >= 10){
-          return;
-        } 
+      new_width = content_width-80;
+      if(self.image_width <= new_width ){
+        new_width = self.image_width;
       }
-      if( margin_width < 10 ){
-        self.image.css( "width",new_width);
-      }else if( margin_width > 10 && origin_width < content_width ){
-        self.image.css( "width",new_width);
-      }
+      self.image.css( "width",new_width+"px");
+
+      //window_height = self.window.height();
+      //if (window_height-85 <= content_height){
+        //margin_height = content_height -85-window_height;
+        //self.image.css( "width",new_width-margin_height+"px");
+      //}
     }
 
     this.nextImage = function(thumb){
@@ -151,9 +154,12 @@ jQuery.fn.center = (function() {
         data: "pic_id="+pic_id,
         success: function(data){
           self.comment.html(data);
+          self.image_width = self.image.width();
+          self.image_height = self.image.height();
           $("abbr.timeago").timeago();
           self.auto_resize_window(); 
-          self.auto_resize_pic(true);
+          self.auto_resize_pic();
+          self.reday = true;
         }
       });
     };
@@ -193,10 +199,12 @@ jQuery.fn.center = (function() {
     };
 
     this.selectImage = function(imageThumb) {
+      self.reday = false;
       var pic_id =  imageThumb.attr( "id" );
       self.loadComments(pic_id);
       $(".selected", self.imageset).removeClass("selected");
       imageThumb.addClass("selected");
+      self.image.css( "width","auto" );
       self.image.attr("src", imageThumb.attr("data-full-photo"));
       self.image_desc.html( imageThumb.attr( "desc" ) );
       return self;

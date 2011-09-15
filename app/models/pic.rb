@@ -10,7 +10,6 @@ class Pic < ActiveRecord::Base
   belongs_to :album
   belongs_to :status_message
   belongs_to :author, :class_name => 'Person'
-  acts_as_list :scope => :album_id
   has_many :pic_comments
   has_many :comments, :class_name => 'PicComment'
   
