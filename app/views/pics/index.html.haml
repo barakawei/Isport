@@ -1,20 +1,26 @@
 -content_for :head do
   = include_stylesheets :sepcial_pages_pics_index, :media => 'all'
   = include_javascripts :show_photo
+  =include_javascripts :scroll_page
 
 .span-22.album
   .title_bar
-    %h2
+    %h3
       = get_imageable_des(@album)
       = link_to @album.imageable.name, get_imageable_path(@album)
       = '的相册'
+      = "(共#{@album.pics.size}张)" 
   .albums.pic_container
     -@pics.each do |p|
       .event_pic
         =pic_image_link(p, :thumb_medium)
         %span.desc
-          = '来自'
+          %span= '来自'
           = link_to p.author.name, person_path(p.author_id)
+          - if p.pic_comments.size > 0
+            %span.c_count="#{p.pic_comments.size}评论"
+    = will_paginate @pics,:page_links => false,:next_label=> '',:previous_label=>''
+
 
 
 :javascript

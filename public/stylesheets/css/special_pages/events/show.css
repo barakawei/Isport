@@ -10,7 +10,6 @@
   border-radius: 5px;
   behavior: url(/javascripts/PIE.htc); }
 .left_column #map_div {
-  background-color: white;
   padding: 10px;
   width: 180px; }
 .left_column #map {
@@ -197,6 +196,8 @@
       margin-top: 2px;
       font-size: 13px;
       color: #aaaaaa; }
+      .right_column .albums_area .event_pic span.desc .c_count {
+        margin-left: 10px; }
 .right_column .event_title .status {
   color: #f78ca1; }
 .right_column .operations {

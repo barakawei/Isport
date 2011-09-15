@@ -49,7 +49,7 @@ class ProcessedAlbumpicUploader < CarrierWave::Uploader::Base
     manipulate! do |img|
       w,h = img['%w %h'].split
       w = w.to_f
-      h = w.to_f
+      h = h.to_f
 
      if (w > size || h > size)
         if (w > h)

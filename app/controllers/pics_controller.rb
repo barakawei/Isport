@@ -4,7 +4,8 @@ class PicsController < ApplicationController
 
   def index
     @album = Album.find(params[:album_id])
-    @pics = @album.pics 
+    @pics = @album.pics.paginate :page => params[:page], 
+                                 :per_page => 16 
   end
 
   def destroy

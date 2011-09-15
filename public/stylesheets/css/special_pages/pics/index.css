@@ -10,10 +10,10 @@
     width: 850px;
     border-bottom: 1px solid #d5ddde;
     margin-bottom: 15px; }
-    .album .title_bar h2 {
+    .album .title_bar h3 {
       width: 700px;
       float: left;
-      margin-bottom: 0; }
+      margin-bottom: 10px; }
   .album .event_pic {
     display: block;
     float: left;
@@ -28,3 +28,5 @@
       margin-top: 2px;
       font-size: 13px;
       color: #aaaaaa; }
+      .album .event_pic span.desc .c_count {
+        margin-left: 10px; }

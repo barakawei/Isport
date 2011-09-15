@@ -12,7 +12,7 @@
         if( next_page != null ){
           loading = true;
           next_obj.html('<img class="loading" src="/images/ui/loading.gif" alt="Loading">');
-          $.getScript(next_page,function(){  next_obj.html('');loading = false; });  
+          $.getScript(next_page,function(){  alert(123); next_obj.html('');loading = false; });  
           return false;
         }
       }
