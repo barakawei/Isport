@@ -1,4 +1,7 @@
 #lightbox {
+  -moz-user-focus: ignore;     
+  -moz-user-input: disabled;     
+  -moz-user-select: none;
   z-index: 30;
   position: fixed;
   top: 0;
@@ -11,14 +14,61 @@
   min-width: 830px;
   text-shadow: none;
   font-size: 12px; }
+  #pic-left-arrow:hover {
+    opacity: 1;
+  }
+  #pic-right-arrow:hover {
+    opacity: 1;
+  }
+
+  #lightbox-close-link{
+    width: 20px;
+    height: 20px;
+    position:absolute;
+    right: 20px;
+    top: 20px;
+    cursor:pointer;
+    background: url( /images/ui/cross_close_icon.png ) no-repeat scroll 0 0 transparent;
+  }
+  #lightbox-close-link:hover{
+    background-position: -26px 0;
+  }
+  #pic-left-arrow {
+    cursor: pointer;
+    height: 93px;
+    width: 45px;
+    padding-bottom: 50px;
+    padding-left: 10px;
+    padding-right: 50px;
+    padding-top: 50px;
+    left:0;
+    position: absolute;
+    display: block;
+    padding-left: 20px;
+    opacity: .50;
+    background: url( /images/ui/pic-left-arrow.png ) no-repeat 10px 50px 
+  }
+  #pic-right-arrow {
+    cursor: pointer;
+    padding-bottom: 50px;
+    padding-left: 10px;
+    padding-right: 50px;
+    padding-top: 50px;
+    height: 93px;
+    width: 45px;
+    right:0;
+    position: absolute;
+    display: block;
+    opacity: .50;
+    background: url( /images/ui/pic-right-arrow.png ) no-repeat 50px 50px
+  }
   #lightbox.show {
     position: absolute;
     display: block; }
   #lightbox-leftside{
-    padding-top: 60px;
     position:fixed;
-    min-width: 550px;
     min-height: 430px;
+    height: 100%;
   }
   #lightbox-rightside{
     position:fixed;
@@ -73,6 +123,7 @@
     background-color: #444;
   }
   .sidebar{
+    z-index: 30;
     min-height: 430px;
     width: 10px; 
     background-color: #323232;
@@ -89,6 +140,7 @@
     max-width: 800px;
     max-height: 800px;
     margin-bottom: 20px;
+    cursor:pointer;
   }
   #lightbox #lightbox-content {
     height: 100%;
@@ -128,14 +180,16 @@
   width: 100%;
   top: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.9);
+  background-color: rgba(0, 0, 0, 1);
   display: none; }
 
 #lightbox-imageset {
   position: fixed;
   bottom: 0;
   display: none;
-  text-align: center;
+  text-align: left;
+  width:1000px;
+  left:0;
   background-color: rgba(0, 0, 0, 0.4);
   padding: 5px 0; }
   #lightbox-imageset img {

@@ -23,6 +23,7 @@ javascripts:
     - public/javascripts/scrollPage.js
   show_photo:
     - public/javascripts/lightbox.js
+    - public/javascripts/jquery.image.resize.min.js
   show_avatar:
     - public/javascripts/showAvatar.js
   jqueryui:

@@ -32,10 +32,13 @@
         %p='本网站当前只支持IE8及以上版本浏览器，为了更好的用户体验，推荐使用Firefox, Chrome, 或者Safari浏览器' 
       - if params[:controller] == 'home' && params[:action] == 'index'
         =link_to 'suggestion', new_feedback_path, :class => 'new_user_feedback'
-      #lightbox
+      #lightbox{:onselectstart => "return false;"}
         #lightbox-panel
           #lightbox-leftside
             #lightbox-content
+              #lightbox-close-link
+              #pic-left-arrow
+              #pic-right-arrow
               %img#lightbox-image
               #image-desc
               #lightbox-imageset
