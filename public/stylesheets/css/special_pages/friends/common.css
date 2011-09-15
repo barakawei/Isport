@@ -37,7 +37,13 @@ ul.nav {
   border-top-right-radius: 10px;
   behavior: url(/javascripts/PIE.htc); }
   .content_area h1 {
-    margin-bottom: 30px; }
+    margin-bottom: 30px;
+    float: left; }
+  .content_area h3 {
+    margin-bottom: 30px;
+    margin-top: 12px;
+    padding-left: 5px;
+    float: left; }
   .content_area .share_button {
     padding: 8px;
     display: block;
@@ -100,3 +106,26 @@ ul.nav {
       width: 200px; }
     .invitation_panel #already_invited_pane .has_invitation .resend {
       display: inline-block; }
+
+#city_select_box {
+  position: absolute;
+  width: 100px;
+  border: 3px solid #d5ddde;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  behavior: url(/javascripts/PIE.htc);
+  padding: 10px;
+  background-color: white; }
+
+#switch_city {
+  text-decoration: none;
+  border: 3px solid #e9eef1;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  behavior: url(/javascripts/PIE.htc);
+  padding: 3px; }
+  #switch_city:hover {
+    border: 3px solid #d5ddde;
+    color: #666666; }
