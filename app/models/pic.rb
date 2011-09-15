@@ -3,10 +3,16 @@ class Pic < ActiveRecord::Base
   mount_uploader :processed_image,ProcessedAlbumpicUploader
   mount_uploader :unprocessed_image,UnprocessedImageUploader
 
+
+  after_destroy :update_owner_counter
+  after_update :update_owner_counter
+
   belongs_to :album
   belongs_to :status_message
   belongs_to :author, :class_name => 'Person'
+  acts_as_list :scope => :album_id
   has_many :pic_comments
+  has_many :comments, :class_name => 'PicComment'
   
   def not_processed?
     processed_image.path.nil?
@@ -77,4 +83,9 @@ class Pic < ActiveRecord::Base
       }
     }
   end 
+
+  def update_owner_counter
+    self.album.pics_count = self.album.pics.count
+    self.album.save
+  end
 end

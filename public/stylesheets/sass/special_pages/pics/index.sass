@@ -1,34 +1,47 @@
 @import '../../general/ui/mixins'
 .album
-  @include border-radius(8px)
+  @include border-radius(5px)
   :background-color #ffffff
-  @include box-shadow(0,1px,5px,0,#888)
   :padding 20px 20px 20px 40px
   .title_bar
     :float left
     :width 850px
     :border-bottom 1px solid #d5ddde
     :margin-bottom 15px
+    :height 30px
 
-    h2
+    .glass_button 
+      :color #ffffff
+
+    h3
       :width 700px
       :float left
-      :margin-bottom 0
-    
-    #browse
-      :display block
-      :float right
-      :padding 3px 10px
-      :color #ffffff
-  a.pic_link
-    :float left
-    :width 180px
-    :height 180px
+      :margin-bottom 10px 
+  
+  .event_pic
     :display block
-    :margin 0 10px 20px 0
-  a.gallery_link
-    :position fixed
-    right: 50% 
-    top: 50%
-    width: 1px
+    :float left 
+    :padding 6px
+    :height 215px
+    :width 200px
+    :margin-bottom 15px
     
+    img
+      :display block
+
+    span.desc
+      :float left 
+      :margin-top 2px
+      :font-size 13px
+      :color #aaa
+      
+      .c_count
+        :margin-left 10px
+  
+  .pagination
+    :display block 
+    :margin 0 auto
+    :float left
+    :margin-left 410px
+
+

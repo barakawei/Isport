@@ -4,12 +4,13 @@ class PicsController < ApplicationController
 
   def index
     @album = Album.find(params[:album_id])
-    @pics = @album.pics 
   end
 
-  def show
+  def paginate_pics
     @album = Album.find(params[:album_id])
-    @pic = @album.pics.find(params[:id])
+    @pics = @album.pics.paginate :page => params[:page], 
+                                 :per_page => 12 
+    render :layout => false
   end
 
   def destroy
@@ -41,8 +42,7 @@ class PicsController < ApplicationController
       else
         params[:photo][:user_file] = file_handler(params)
       end
-      @photo = Pic.initialize(params[ :photo ], self.request.host, self.request.port,current_user.person)
-
+      @photo = Pic.initialize(params[:photo], self.request.host, self.request.port,current_user.person)
       if @photo.save
         @photo.update_albums(current_user,params)
         @photo.process
@@ -68,7 +68,7 @@ class PicsController < ApplicationController
         Pic.find(id).update_attributes(:description => params[:desc][id])
       end 
     end
-    redirect_to event_path(@event)
+    redirect_to album_pics_path(@event.albums.first)
   end
   
   private

@@ -89,7 +89,8 @@ zh:
     hide_comments:  "隐藏评论"
 
   events:
-      pics: '活动照片-'
+      pics: '活动'
+      pics_album: '活动%{name}的相册'
       other_events: '看看其他活动'
       index: '活动首页'
       start_at: '开始时间'

@@ -5,21 +5,26 @@ class ProcessedAlbumpicUploader < CarrierWave::Uploader::Base
 
   version :thumb_small do
     process :convert => 'jpg'
-    process :shrink => 140
+    process :shrink => 145
   end
 
   version :thumb_medium do
     process :convert => 'jpg'
-    process :shrink => 180 
+    process :shrink => 200 
   end
 
   version :thumb_large do
     process :convert => 'jpg'
-    process :shrink => 640 
+    process :shrink => 600
   end
 
   version :origin do
     process :convert => 'jpg'
+  end
+
+  version :shortcut do
+    process :convert => 'jpg'
+    process :resize_to_fill => [55,55] 
   end
 
   def store_dir
@@ -44,7 +49,7 @@ class ProcessedAlbumpicUploader < CarrierWave::Uploader::Base
     manipulate! do |img|
       w,h = img['%w %h'].split
       w = w.to_f
-      h = w.to_f
+      h = h.to_f
 
      if (w > size || h > size)
         if (w > h)

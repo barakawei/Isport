@@ -1,36 +1,40 @@
 .album {
-  -moz-border-radius: 8px;
-  -webkit-border-radius: 8px;
-  border-radius: 8px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
   behavior: url(/javascripts/PIE.htc);
   background-color: white;
-  -webkit-box-shadow: 0 1px 5px 0 #888888;
-  -moz-box-shadow: 0 1px 5px 0 #888888;
-  box-shadow: 0 1px 5px 0 #888888;
-  behavior: url(/javascripts/PIE.htc);
   padding: 20px 20px 20px 40px; }
   .album .title_bar {
     float: left;
     width: 850px;
     border-bottom: 1px solid #d5ddde;
-    margin-bottom: 15px; }
-    .album .title_bar h2 {
+    margin-bottom: 15px;
+    height: 30px; }
+    .album .title_bar .glass_button {
+      color: white; }
+    .album .title_bar h3 {
       width: 700px;
       float: left;
-      margin-bottom: 0; }
-    .album .title_bar #browse {
-      display: block;
-      float: right;
-      padding: 3px 10px;
-      color: white; }
-  .album a.pic_link {
-    float: left;
-    width: 180px;
-    height: 180px;
+      margin-bottom: 10px; }
+  .album .event_pic {
     display: block;
-    margin: 0 10px 20px 0; }
-  .album a.gallery_link {
-    position: fixed;
-    right: 50%;
-    top: 50%;
-    width: 1px; }
+    float: left;
+    padding: 6px;
+    height: 215px;
+    width: 200px;
+    margin-bottom: 15px; }
+    .album .event_pic img {
+      display: block; }
+    .album .event_pic span.desc {
+      float: left;
+      margin-top: 2px;
+      font-size: 13px;
+      color: #aaaaaa; }
+      .album .event_pic span.desc .c_count {
+        margin-left: 10px; }
+  .album .pagination {
+    display: block;
+    margin: 0 auto;
+    float: left;
+    margin-left: 410px; }
