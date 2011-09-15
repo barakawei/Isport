@@ -114,6 +114,7 @@ class EventsController < ApplicationController
     if @event.save
       @event.involvements.create(:person_id => @current_person.id)
       @event.recommendations.create(:person_id => @current_person.id)
+      @event.albums.create
       redirect_to new_event_invite_path(@event)
     else
       @step = 1

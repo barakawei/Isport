@@ -88,4 +88,5 @@ class Pic < ActiveRecord::Base
     self.album.pics_count = self.album.pics.count
     self.album.save
   end
+
 end
