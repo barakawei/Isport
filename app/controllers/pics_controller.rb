@@ -4,8 +4,13 @@ class PicsController < ApplicationController
 
   def index
     @album = Album.find(params[:album_id])
+  end
+
+  def paginate_pics
+    @album = Album.find(params[:album_id])
     @pics = @album.pics.paginate :page => params[:page], 
-                                 :per_page => 16 
+                                 :per_page => 12 
+    render :layout => false
   end
 
   def destroy
@@ -63,7 +68,7 @@ class PicsController < ApplicationController
         Pic.find(id).update_attributes(:description => params[:desc][id])
       end 
     end
-    redirect_to event_path(@event)
+    redirect_to album_pics_path(@event.albums.first)
   end
   
   private

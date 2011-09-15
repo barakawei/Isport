@@ -151,6 +151,8 @@ Isport::Application.routes.draw do
     match 'submit_pics/:id' => :update_description, :as => 'update_description', :via => :post,
           :constraints => { :id => /[1-9]\d*/ } 
     match 'cancel_upload' => :batch_destroy, :as => 'batch_destroy', :via => :delete
+    match 'paginate_pics/:album_id' => :paginate_pics, :as => 'paginate_pics',
+          :constraints => { :id => /[1-9]\d*/ } 
   end
 
   controller :involvements do

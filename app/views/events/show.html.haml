@@ -127,7 +127,7 @@
           =link_to "活动评论","javascript:void(0)", :class => 'current'
         %li#recent_pics
           =link_to "活动图片","javascript:void(0)"
-      = link_to '查看全部', album_pics_path(@album), :class => 'right link_to_all_pic hide' 
+      = link_to "全部(#{@album.pics.size}张)", album_pics_path(@album), :class => 'right link_to_all_pic hide' 
 
 
     .albums_area.pic_container.hide

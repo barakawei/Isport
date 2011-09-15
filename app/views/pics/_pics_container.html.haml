@@ -1,0 +1,11 @@
+-@pics.each do |p|
+  .event_pic
+    =pic_image_link(p, :thumb_medium)
+    %span.desc
+      %span= '来自'
+      = link_to p.author.name, person_path(p.author_id)
+      - if p.pic_comments.size > 0
+        %span.c_count="#{p.pic_comments.size}评论"
+= will_paginate @pics,:page_links => false,:next_label=> '',:previous_label=>''
+
+

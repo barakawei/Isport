@@ -9,7 +9,10 @@
     float: left;
     width: 850px;
     border-bottom: 1px solid #d5ddde;
-    margin-bottom: 15px; }
+    margin-bottom: 15px;
+    height: 30px; }
+    .album .title_bar .glass_button {
+      color: white; }
     .album .title_bar h3 {
       width: 700px;
       float: left;
@@ -30,3 +33,8 @@
       color: #aaaaaa; }
       .album .event_pic span.desc .c_count {
         margin-left: 10px; }
+  .album .pagination {
+    display: block;
+    margin: 0 auto;
+    float: left;
+    margin-left: 410px; }

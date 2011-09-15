@@ -10,6 +10,7 @@ class EventsController < ApplicationController
                 :only => [:edit, :edit_members, :update]                 
 
   LIMIT = 9 
+  PICS_PER_PAGE  = 12
 
 
   def index
@@ -52,7 +53,7 @@ class EventsController < ApplicationController
     @references = @event.references_top(LIMIT)
     @current_person = current_user ? current_user.person : nil
     @album = @event.albums.first
-    @pics = @album.pics
+    @pics = @album.pics.limit(12)
     @comments = @event.comments.paginate :page => params[:page],
                                          :per_page => 8
 

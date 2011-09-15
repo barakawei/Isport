@@ -1,0 +1,7 @@
+content = "<%= escape_javascript(render('pics/pics_container')) %>";
+number = '<%=params[:page]%>';
+if( number !='' ){
+$(' .albums').append(content);
+}else{
+$(' .albums').html(content);
+}
