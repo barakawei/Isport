@@ -46,6 +46,7 @@ jQuery.fn.center = (function() {
         self.auto_resize_window(); 
         if( self.reday ){
           self.auto_resize_pic();
+          self.auto_image_height();
         }
       }).trigger("resize");
 
