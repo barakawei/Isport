@@ -24,9 +24,9 @@ $link_red: #FC4469
   .day
     :font-weight normal
     :font-size 18px
-
-input[ type=text ],textarea
-  @include border-radius( 5px )
+.field
+  input[ type=text ],textarea,select
+    @include border-radius( 5px )
 
 .relative
   :position relative
@@ -470,12 +470,14 @@ input
     :height 32px
     :width 32px
   .comment_button
+    :margin-top 5px
     :margin-left 40px
   textarea
     :resize none
     :margin-left 4px
     :width 345px
     :height 23px
+    :overflow-y hidden
 .content_panel
   :position relative
   :z-index 4

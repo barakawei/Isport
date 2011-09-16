@@ -14,7 +14,7 @@
     font-weight: normal;
     font-size: 18px; }
 
-input[type=text], textarea {
+.field input[type=text], .field textarea, .field select {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   border-radius: 5px;
@@ -464,12 +464,14 @@ input {
     height: 32px;
     width: 32px; }
   .comment_form .comment_button {
+    margin-top: 5px;
     margin-left: 40px; }
   .comment_form textarea {
     resize: none;
     margin-left: 4px;
     width: 345px;
-    height: 23px; }
+    height: 23px;
+    overflow-y: hidden; }
 
 .content_panel {
   position: relative;

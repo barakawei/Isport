@@ -34,7 +34,7 @@
         =link_to 'suggestion', new_feedback_path, :class => 'new_user_feedback'
       #lightbox{:onselectstart => "return false;"}
         #lightbox-panel
-          #lightbox-leftside
+          #lightbox-leftside{ :tabindex => 0 }
             #lightbox-content
               #lightbox-close-link
               #pic-left-arrow
@@ -42,7 +42,7 @@
               %img#lightbox-image
               #image-desc
               #lightbox-imageset
-          #lightbox-rightside
+          #lightbox-rightside{ :tabindex => 0 }
             .lightbox-rightpanel
               .left_sidebar.sidebar
                 .left_arrow

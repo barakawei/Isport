@@ -11,7 +11,7 @@
       .span-2
         %h4
           = "主题"
-      .span-10.subject.relative
+      .span-10.subject.relative.field
         = c.text_field :subject
 
       .clearfix
@@ -19,7 +19,7 @@
         %h4
           = "内容"
 
-      .span-11.content.relative
+      .span-11.content.relative.field
         = text_area_tag "conversation[text]", '', :rows => 5
       .clearfix
       .submit
