@@ -10,7 +10,7 @@
         ='内容'
     .prepend-1.span-17
       = form_for(@status_message) do |status|
-        .photo_form
+        .photo_form.field
           = status.text_area :content,:class => 'content'
           %ul#photozone
           #file-upload.glass_button

@@ -36,8 +36,6 @@ jQuery.fn.center = (function() {
         this.window= $(window);
         this.is_full = false;
         this.reday = false;
-        this.image_width;
-        this.image_height;
       
       self.pic.delegate("a.stream-photo-link", "click", self.lightboxImageClicked);
       self.imageset.delegate("img", "click", self.imagesetImageClicked);
@@ -46,7 +44,7 @@ jQuery.fn.center = (function() {
         self.auto_resize_window(); 
         if( self.reday ){
           self.auto_resize_pic();
-          self.auto_image_height();
+          self.auto_image_height_2();
         }
       }).trigger("resize");
 
@@ -93,8 +91,10 @@ jQuery.fn.center = (function() {
 
       self.body.keydown(function(evt) {
         var imageThumb = self.imageset.find("img.selected");
+        
+        var keyCode = evt.which ? evt.which : evt.keyCode;
 
-        switch(evt.keyCode) {
+        switch(keyCode) {
         case 27:
           self.resetLightbox();
           break;
@@ -179,8 +179,6 @@ jQuery.fn.center = (function() {
         data: "pic_id="+pic_id,
         success: function(data){
           self.comment.html(data);
-          self.image_width = self.image.width();
-          self.image_height = self.image.height();
           $("abbr.timeago").timeago();
           self.auto_resize_window(); 
           self.reday = true;
@@ -216,8 +214,7 @@ jQuery.fn.center = (function() {
       self.imageset.css( "width",imageset_width);
       self.selectImage(imageThumb).revealLightbox();
       self.auto_resize_pic();
-      self.auto_image_height();
-
+      self.auto_image_height_2();
     };
 
     this.imagesetImageClicked = function(evt) { 
@@ -232,26 +229,36 @@ jQuery.fn.center = (function() {
       self.loadComments(pic_id);
       $(".selected", self.imageset).removeClass("selected");
       imageThumb.addClass("selected");
-      self.image.css( "width","auto" );
       self.image.attr("src", imageThumb.attr("data-full-photo"));
       self.image_desc.html( imageThumb.attr( "desc" ) );
       var width = Number(self.lightbox_content.css( "width" ).split("px")[0]);
       var left = (width/2-35)-(imageThumb.attr("index") * 70);
       self.imageset.css("left", left+"px");
       self.auto_resize_pic();
-      self.auto_image_height();
-      return self;
-    };
-
-    this.auto_image_height = function(){
-      self.image.one( "load", function() {
-      var window_height = self.window.height();
-      var margin_height_img = (window_height - 100 - self.image.height())/2;
-      var margin_height_arrow = (window_height - 175 - self.pic_left_arrow.height())/2;
-      self.image.css( "margin-top",margin_height_img+"px" );
-      self.pic_left_arrow.css( "top",margin_height_arrow+"px" );
-      self.pic_right_arrow.css( "top",margin_height_arrow+"px" );
+      imgReady(imageThumb.attr( "data-full-photo" ),function(){
+        self.auto_image_height(this.height);
       });
+      return self;
+    };  
+    
+    this.auto_image_height_2 = function(){
+      self.image.load(function(){  
+        var window_height = self.window.height();
+        var margin_height_img = (window_height - 100 - self.image.height())/2;
+        var margin_height_arrow = (window_height - 175 - self.pic_left_arrow.height())/2;
+        self.image.css( "margin-top",margin_height_img+"px" );
+        self.pic_left_arrow.css( "top",margin_height_arrow+"px" );
+        self.pic_right_arrow.css( "top",margin_height_arrow+"px" );
+      });
+    }
+
+    this.auto_image_height = function(img_height){
+        var window_height = self.window.height();
+        var margin_height_img = (window_height - 100 - img_height)/2;
+        var margin_height_arrow = (window_height - 175 - self.pic_left_arrow.height())/2;
+        self.image.css( "margin-top",margin_height_img+"px" );
+        self.pic_left_arrow.css( "top",margin_height_arrow+"px" );
+        self.pic_right_arrow.css( "top",margin_height_arrow+"px" );
     }
 
     this.revealLightbox = function() {
