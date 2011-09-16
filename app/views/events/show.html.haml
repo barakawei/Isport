@@ -119,28 +119,35 @@
       .span-13
         = render 'common/header_box', :title => '活动相关', :blue => true
       .span-4.last
-        = link_to '上传活动图片', upload_event_pic_path(@event), :class => 'glass_button right upload_link_button'
+        = link_to '上传活动照片', upload_event_pic_path(@event), :class => 'glass_button right upload_link_button'
     
     .span-17.event_tabs
       %ul.home_tabs
-        %li#recent_comments
-          =link_to "活动评论","javascript:void(0)", :class => 'current'
         %li#recent_pics
-          =link_to "活动图片","javascript:void(0)"
-      = link_to "全部(#{@album.pics.size}张)", album_pics_path(@album), :class => 'right link_to_all_pic hide' 
+          =link_to "活动照片","javascript:void(0)", :class => 'current'
+        %li#recent_comments
+          =link_to "活动评论","javascript:void(0)"
+      - if @pics.size > 0
+        = link_to "全部(#{@album.pics.size}张)", album_pics_path(@album), :class => 'right link_to_all_pic' 
 
 
-    .albums_area.pic_container.hide
-      -@pics.each do |p|
-        .event_pic
-          =pic_image_link(p, :thumb_small)
-          %span.desc
-            = '来自'
-            = link_to p.author.name, person_path(p.author_id)
-            - if p.pic_comments.size > 0
-              %span.c_count="#{p.pic_comments.size}评论"
+    .albums_area.pic_container
+      - if @pics.size > 0
+        -@pics.each do |p|
+          .event_pic
+            =pic_image_link(p, :thumb_small)
+            %span.desc
+              = '来自'
+              = link_to p.author.name, person_path(p.author_id)
+              - if p.pic_comments.size > 0
+                %span.c_count="#{p.pic_comments.size}评论"
+      - else
+        %span.link_to_upload
+          %span.desc= '当前还没有照片'
+          = link_to '上传', upload_event_pic_path(@event), :class => 'glass_button upload_link_button'
+        
             
-    .span-17.comments_area 
+    .span-17.comments_area.hide
       = render 'event_comments', :comments => @comments, :event => @event, 
                                  :current_person => @current_person, :comment => @comment 
 

@@ -180,7 +180,14 @@
   width: 630px;
   float: left;
   background-color: white;
-  padding: 10px 20px; }
+  padding: 10px 20px;
+  text-align: center; }
+  .right_column .albums_area .link_to_upload {
+    display: block;
+    padding: 20px;
+    font-size: 14px; }
+    .right_column .albums_area .link_to_upload a {
+      color: white; }
   .right_column .albums_area .event_pic {
     width: 145px;
     display: block;
@@ -211,6 +218,7 @@
       height: 22px;
       line-height: 22px; }
   .right_column .operations .share_operations {
+    float: left;
     padding: 5px;
     background-color: white;
     border: 3px solid #d5ddde;

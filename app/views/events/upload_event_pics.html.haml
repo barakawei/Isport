@@ -8,14 +8,15 @@
     .title_bar.span-18
       =event_image_tag(@event, :thumb_small) 
       %h2.title
-        ='上传活动图片-'
+        ='上传活动照片-'
         = link_to @event.title, event_path(@event)
-    .prepend-1.span-17
+      %hr
+    .span-17
       = form_tag update_description_path(@event.id), do
         .photo_form
           %ul#photozone
           #file-upload.glass_button
-            ='+ 上传图片'
+            ='+ 上传照片'
           =submit_tag "确认", :class => 'upload_confirm_button'
           =link_to '取消', 'javascript:void(0)', :class => 'cancel_button'
       =render 'photos/new_photo', :controller_path => pics_path(:id => @event.id),:pic_type => 'event'

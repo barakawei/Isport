@@ -43,7 +43,8 @@ Isport::Application.routes.draw do
           :constraints => { :id => /[1-9]\d*/}
     match 'choose_interests' => :choose_interests, :as => "choose_interests", :via => :post
     match '/people/edit_interests' => :edit_interests, :as => "edit_interests"
-    match '/people/item_fans' => :random_item_fans, :as => "random_item_fans", :via => :post
+    match '/people/item_fans(/:city)' => :random_item_fans, :as => "random_item_fans", :via => :post,
+          :constraints => { :city => /nanjing|shanghai|beijing|suzhou|guangzhou|shenzhen|hangzhou/}
   end
 
   match '/people/show_posts' => 'people#show_posts'
@@ -172,7 +173,8 @@ Isport::Application.routes.draw do
 
   controller :friends do
     match '/friends/invite' => :invite, :as => 'invite_friends_to_site'
-    match '/friends/find' => :find, :as => 'find_interested_people'
+    match '/friends/find(/:city)' => :find, :as => 'find_interested_people',
+          :constraints => { :city => /nanjing|shanghai|beijing|suzhou|guangzhou|shenzhen|hangzhou/}
   end
 
   controller :site_posts do
