@@ -1,7 +1,4 @@
 #lightbox {
-  -moz-user-focus: ignore;     
-  -moz-user-input: disabled;     
-  -moz-user-select: none;
   z-index: 30;
   position: fixed;
   top: 0;
@@ -35,7 +32,7 @@
   }
   #pic-left-arrow {
     cursor: pointer;
-    height: 93px;
+    height: 90px;
     width: 45px;
     padding-bottom: 50px;
     padding-left: 10px;
@@ -54,7 +51,7 @@
     padding-left: 10px;
     padding-right: 50px;
     padding-top: 50px;
-    height: 93px;
+    height: 90px;
     width: 45px;
     right:0;
     position: absolute;
@@ -180,7 +177,7 @@
   width: 100%;
   top: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 1);
+  background-color: #151515;
   display: none; }
 
 #lightbox-imageset {
