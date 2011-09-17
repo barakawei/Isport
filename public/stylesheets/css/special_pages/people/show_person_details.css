@@ -26,19 +26,21 @@
       line-height: 62px;
       text-align: center;
       position: relative; }
-    .person_details_tab .home_tabs li.hoverable a {
-      padding: 10px;
-      -moz-border-radius: 6px;
-      -webkit-border-radius: 6px;
-      border-radius: 6px;
-      font-weight: bold;
-      color: #999999; }
-      .person_details_tab .home_tabs li.hoverable a:hover {
-        background-color: #e1e1e1;
-        color: #697d84; }
-    .person_details_tab .home_tabs li.hoverable a.current {
-      background-color: #697d84;
-      color: white; }
+    .person_details_tab .home_tabs li.hoverable {
+      width: 165px; }
+      .person_details_tab .home_tabs li.hoverable a {
+        padding: 10px;
+        -moz-border-radius: 6px;
+        -webkit-border-radius: 6px;
+        border-radius: 6px;
+        font-weight: bold;
+        color: #999999; }
+        .person_details_tab .home_tabs li.hoverable a:hover {
+          background-color: #e1e1e1;
+          color: #697d84; }
+      .person_details_tab .home_tabs li.hoverable a.current {
+        background-color: #697d84;
+        color: white; }
 
 .person_card {
   float: left;

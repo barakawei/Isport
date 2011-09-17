@@ -20,6 +20,10 @@
   border-radius: 5px;
   behavior: url(/javascripts/PIE.htc); }
 
+textarea {
+  overflow-y: hidden;
+  resize: none; }
+
 .relative {
   position: relative; }
 

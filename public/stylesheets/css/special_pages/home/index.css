@@ -389,13 +389,9 @@
     margin-left: 10px; }
     .feed_toolbar ul li a {
       color: #505050;
-      background: #f3f3f2;
+      background: #e1e1e1;
       border: 1px solid #dededd;
       font-size: 15px;
-      -moz-border-radius: 6px;
-      -webkit-border-radius: 6px;
-      border-radius: 6px;
-      behavior: url(/javascripts/PIE.htc);
       padding: 5px;
       font-weight: bold; }
       .feed_toolbar ul li a:hover {
