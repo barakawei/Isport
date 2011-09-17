@@ -5,12 +5,12 @@
     = form_for User.new, :url => invitation_path(User) do |invite|
       %h4
         = t('email')
-      .email.relative
+      .email.relative.field
         =invite.label :email,"多个邮箱请用逗号分隔",:class =>'in_field'
         =invite.text_field :email
       %h4
         = "说点什么"
-      .message
+      .message.field
         = invite.text_area :invite_messages, :rows => 3, :value => ""
 
       %p

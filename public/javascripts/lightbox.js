@@ -16,7 +16,7 @@ jQuery.fn.center = (function() {
     var self = this;
 
     this.start = function() {
-        this.pic = $( ".content_area" );
+        this.pic = $( ".lightbox_content_area" );
         this.lightbox= $("#lightbox");
         this.imageset= $("#lightbox-imageset");
         this.backdrop= $("#lightbox-backdrop");
