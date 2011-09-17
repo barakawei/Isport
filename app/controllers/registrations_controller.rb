@@ -13,6 +13,9 @@ class RegistrationsController < Devise::RegistrationsController
     super
   end
 
+  def oauth_new
+  end
+
   private
   def check_registrations_open!
     if AppConfig[:registrations_closed]
