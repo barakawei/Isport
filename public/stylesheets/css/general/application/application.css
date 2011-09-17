@@ -471,7 +471,10 @@ input {
     margin-left: 4px;
     width: 345px;
     height: 23px;
-    overflow-y: hidden; }
+    overflow-y: hidden;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px; }
 
 .content_panel {
   position: relative;
