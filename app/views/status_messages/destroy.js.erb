@@ -1,0 +1,6 @@
+status_messageId = <%=@status_message.id%>;
+status_message = $(".stream_element[id='"+status_messageId+"']");
+if( status_message.length === 1 ){
+  status_message.fadeOut( 100 ); 
+}
+

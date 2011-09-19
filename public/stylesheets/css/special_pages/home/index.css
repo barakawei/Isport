@@ -148,6 +148,7 @@
   .comments .details {
     color: #aaaaaa; }
   .comments .comment {
+    position: relative;
     padding: 8px;
     border-bottom: 1px dotted #cccccc; }
   .comments .comment_content {
