@@ -2,10 +2,7 @@
   color: black; }
 
 .person_details_tab {
-  -moz-border-radius: 8px;
-  -webkit-border-radius: 8px;
-  border-radius: 8px;
-  behavior: url(/javascripts/PIE.htc);
+  position: relative;
   padding: 0; }
   .person_details_tab .home_tabs {
     -moz-border-radius: 5px;
@@ -14,8 +11,9 @@
     behavior: url(/javascripts/PIE.htc);
     background: #f9f9f9 url("/images/ui/tabs-bg.png") repeat;
     height: 62px;
-    width: 950px;
-    float: left; }
+    width: 950px; }
+    .person_details_tab .home_tabs .following_tab {
+      margin-left: 70px; }
     .person_details_tab .home_tabs li {
       font-size: 16px;
       display: inline-block;
@@ -27,7 +25,7 @@
       text-align: center;
       position: relative; }
     .person_details_tab .home_tabs li.hoverable {
-      width: 165px; }
+      width: 120px; }
       .person_details_tab .home_tabs li.hoverable a {
         padding: 10px;
         -moz-border-radius: 6px;
@@ -43,26 +41,9 @@
         color: white; }
 
 .person_card {
-  float: left;
-  height: 64px;
-  width: 60px; }
-  .person_card .avatar {
-    -moz-border-radius: 8px;
-    -webkit-border-radius: 8px;
-    border-radius: 8px;
-    behavior: url(/javascripts/PIE.htc);
-    float: left;
-    margin-top: 7px;
-    margin-left: 8px;
-    height: 50px;
-    width: 50px;
-    float: left; }
-  .person_card h2 {
-    float: left;
-    font-size: 16px;
-    margin-left: 10px; }
-  .person_card .follow_prompt {
-    margin-left: 95px; }
+  position: absolute;
+  top: 5px;
+  left: 13px; }
 
 .box_element {
   -moz-border-radius: 10px;

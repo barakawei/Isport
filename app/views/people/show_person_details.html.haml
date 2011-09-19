@@ -1,30 +1,27 @@
 .search_result.span-24
   
   .person_details_tab
+    .person_card
+      = person_image_link( @person,:thumb_small )
     %ul.home_tabs
-      %li
-        .person_card
-          = person_image_link2( @person,:thumb_medium )
-          .follow_prompt.follow_button
-            = follow_button_tag( @person )
       %li.following_tab.hoverable 
         = link_to({:controller => 'people',:action => 'show_friends',:type=>'followed',:person_id =>@person.id}, :class => ('current' if @select_tab == 'following_tab')) do
-          = "我关注的人"
+          = "关注"
           %span
             = "(#{@person.user.followed_people.size} 个)"
       %li.followers_tab.hoverable 
         = link_to({:controller => 'people',:action => 'show_friends',:type=>'befollowed',:person_id=>@person.id}, :class => ('current' if @select_tab == 'followers_tab')) do
-          ="我的粉丝"
+          ="粉丝"
           %span
             = "(#{@person.user.befollowed_people.size} 个)" 
       %li.groups_tab.hoverable 
         = link_to({:controller => 'people',:action => 'show_groups',:person_id=>@person.id}, :class => ('current' if @select_tab == 'groups_tab')) do 
-          ="我的小组"
+          ="小组"
           %span
             ="(#{@person.joined_groups.size} 个)"
       %li.items_tab.hoverable 
         = link_to( {:controller => 'people',:action => 'show_items',:person_id=>@person.id}, :class => ('current' if @select_tab == 'items_tab')) do
-          = "我的兴趣"
+          = "兴趣"
           %span
             = "(#{@person.interests.size} 个)" 
     .clear
