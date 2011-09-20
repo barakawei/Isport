@@ -2,10 +2,10 @@ class NotificationsController < ApplicationController
   include NotificationsHelper
   before_filter :registrations_closed?
   def index
-    notifications_temp = Notification.includes( :actor ).where( :recipient_id => current_user).order( "created_at DESC" ).paginate(:page => params[:page], :per_page => 20)
+    notifications_temp = Notification.includes( :actor ).where( :recipient_id => current_user).order( "created_at DESC" )
 
     @unread_notify_count = Notification.sum(:unread, :conditions => "recipient_id = #{current_user.id}")
-    @notifications = Array.new( notifications_temp ).paginate(:page => params[:page], :per_page => 20)
+    notifications_t = Array.new( notifications_temp )
 
     unpassed = 0
     notifications_temp.each do |n|
@@ -19,17 +19,18 @@ class NotificationsController < ApplicationController
             if n.unread == 1
               unpassed = unpassed + 1
             end
-            @notifications.delete( n )
+            notifications_t.delete( n )
           end
         end
       else
-        @notifications.delete( n )
+        notifications_t.delete( n )
         if n.unread == 1
           unpassed = unpassed + 1
         end
       end
     end
     @unread_notify_count = @unread_notify_count - unpassed
+    @notifications = Array.new( notifications_t ).paginate(:page => params[:page], :per_page => 20)
     respond_to do |format|  
       format.json { render :json => { :notifications => @notifications}}    
       format.html { render 'index.html.haml' }

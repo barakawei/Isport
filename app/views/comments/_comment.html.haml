@@ -8,5 +8,11 @@
         =":" 
       %span.comment_body
         = comment.content
-
     = how_long_ago( comment )
+  .action
+    - if comment.author.id == current_user.person.id
+      .delete
+        -if comment.instance_of?(PicComment)
+          = link_to image_tag("/images/ui/delete_white.png" ),comment,:method => "delete",:remote => true
+        -else
+          = link_to image_tag("/images/ui/delete.png" ),comment,:method => "delete",:remote => true

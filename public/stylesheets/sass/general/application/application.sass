@@ -27,7 +27,9 @@ $link_red: #FC4469
 .field
   input[ type=text ],textarea,select
     @include border-radius( 5px )
-
+textarea
+  :overflow-y hidden
+  :resize none
 .relative
   :position relative
 
@@ -478,6 +480,7 @@ input
     :width 345px
     :height 23px
     :overflow-y hidden
+    @include border-radius-noie( 5px )
 .content_panel
   :position relative
   :z-index 4
@@ -824,3 +827,17 @@ a.app_black_link_button
   .comment_button
     :text-align left
     :margin-left 50px
+
+.stream_element,.pic_comments
+  :position relative
+  .comment
+    :position relative
+  .action
+    .delete
+      :cursor pointer
+      :position absolute
+      :top 0
+      :right 10px 
+      @include opacity(0.4)
+      &:hover
+        @include opacity(1)

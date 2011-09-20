@@ -23,7 +23,7 @@ Isport::Application.routes.draw do
   resources :requests
   resources :status_messages
   resources :status_messages do
-    resources :comments,:only => [ :create,:show ]
+    resources :comments,:only => [ :create,:show,:destroy ]
   end
   resources :notifications
   resources :conversations do
@@ -37,6 +37,7 @@ Isport::Application.routes.draw do
   end
 
   resources :comments
+  resources :pic_comments
 
   root :to => "welcome#index"
 
