@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     @user = current_user
     @person = @user.person
     @profile = @user.profile
-    @profile.location = Location.new
+    @profile.location = Location.new if @profile.location.nil?
     render "users/getting_started"
   end
 

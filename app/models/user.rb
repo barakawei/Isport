@@ -19,6 +19,15 @@ class User < ActiveRecord::Base
   delegate :name,:to => :person
   delegate :location,:to => :profile
 
+  has_many :authorizations do
+    def find_or_create_by_params(params)
+      provider, uid = params[:provider], params[:uid] 
+      access_token, access_token_secret = params[:access_token], params[:access_token_secret]
+      authorization = find_or_create_by_provider_and_uid(provider, uid) 
+      authorization.update_attributes(params.except(:provider,:uid))
+    end
+  end
+
 
   def self.build( opts={} )
     u = User.new( opts )

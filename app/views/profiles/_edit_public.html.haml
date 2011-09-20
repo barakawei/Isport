@@ -11,10 +11,10 @@
   .relative
     %h4
       = "性别"
-    = radio_button_tag 'profile[gender]',1
+    = radio_button_tag 'profile[gender]',1, profile.gender == '1' ? true : false 
     %span
       =  "男"
-    = radio_button_tag 'profile[gender]',0
+    = radio_button_tag 'profile[gender]',0, (profile.gender == '0' ? true : false)
     %span
       =  "女"
   .relative

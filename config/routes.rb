@@ -1,4 +1,10 @@
 Isport::Application.routes.draw do
+
+  get "authorization/oauth_create"
+  get "authorization/oauth_destroy"
+  match "/auth/:provider/callback" => "authorization#oauth_create"
+  match "/users/connect" => 'registration#oauth_new', :as => 'connect_to_weibo', :method => :post
+
   resources :site_posts
 
   devise_for :users, :controllers => { :registrations => "registrations",:invitations   => "invitations" } do

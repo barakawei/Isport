@@ -103,3 +103,25 @@
     overflow: hidden;
     text-indent: -9999px;
     width: 45px; }
+
+a.xinlang_btn {
+  display: block;
+  float: left;
+  background-color: white;
+  border: 1px solid #d5ddde;
+  padding: 5px 10px;
+  margin-left: 240px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  behavior: url(/javascripts/PIE.htc);
+  font-size: 13px; }
+  a.xinlang_btn:hover {
+    background-color: #dcefff; }
+  a.xinlang_btn img, a.xinlang_btn span {
+    display: block;
+    float: left; }
+  a.xinlang_btn span {
+    height: 24px;
+    line-height: 24px;
+    margin-left: 5px; }
