@@ -1,2 +1,6 @@
 = render :partial => 'comments/comment', :collection => @comments, :locals => {:post => @post}
 
+:javascript
+  $("abbr.timeago").timeago();
+
+

@@ -27,6 +27,11 @@ class ProcessedAlbumpicUploader < CarrierWave::Uploader::Base
     process :resize_to_fill => [55,55] 
   end
 
+  version :shortcut_medium do
+    process :convert => 'jpg'
+    process :resize_to_fill => [100,100] 
+  end
+
   def store_dir
     "uploads/albums"
   end

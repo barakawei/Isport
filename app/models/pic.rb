@@ -10,8 +10,9 @@ class Pic < ActiveRecord::Base
   belongs_to :album
   belongs_to :status_message
   belongs_to :author, :class_name => 'Person'
-  has_many :pic_comments
-  has_many :comments, :class_name => 'PicComment'
+  has_many :pic_comments, :dependent => :destroy
+  has_many :comments, :class_name => 'PicComment',:dependent => :destroy
+
   
   def not_processed?
     processed_image.path.nil?

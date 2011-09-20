@@ -125,10 +125,10 @@ ActiveRecord::Schema.define(:version => 20110916143937) do
     t.integer  "group_id",           :default => 0
     t.integer  "status",             :default => 0
     t.string   "status_msg"
+    t.integer  "audit_person_id"
     t.integer  "participants_count", :default => 0
     t.integer  "comments_count",     :default => 0
     t.integer  "fans_count",         :default => 0
-    t.integer  "audit_person_id"
   end
 
   create_table "favorites", :force => true do |t|
@@ -286,8 +286,8 @@ ActiveRecord::Schema.define(:version => 20110916143937) do
     t.string   "random_string"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "position"
     t.integer  "status_message_id"
+    t.integer  "position"
     t.integer  "comments_count",    :default => 0
   end
 
@@ -311,7 +311,7 @@ ActiveRecord::Schema.define(:version => 20110916143937) do
     t.boolean  "pending",           :default => false
     t.string   "random_string"
     t.integer  "item_id"
-    t.integer  "post_id"
+    t.integer  "post_d"
   end
 
   create_table "profiles", :force => true do |t|
