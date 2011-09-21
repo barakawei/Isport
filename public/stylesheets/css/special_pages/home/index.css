@@ -355,7 +355,7 @@
   display: inline-block;
   padding-right: 10px; }
   .nav_tab ul li a {
-    font-size: 18px;
+    font-size: 17px;
     -moz-border-radius-topleft: 6px;
     -moz-border-radius-topright: 6px;
     -webkit-border-top-left-radius: 6px;
@@ -394,7 +394,11 @@
       border: 1px solid #dededd;
       font-size: 15px;
       padding: 5px;
-      font-weight: bold; }
+      font-weight: bold;
+      -moz-border-radius: 4px;
+      -webkit-border-radius: 4px;
+      border-radius: 4px;
+      behavior: url(/javascripts/PIE.htc); }
       .feed_toolbar ul li a:hover {
         background-color: #c6c6c3;
         color: #646464; }
