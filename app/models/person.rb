@@ -32,6 +32,14 @@ class Person < ActiveRecord::Base
   has_one :profile
   has_many :albums, :as => :imageable
 
+  has_many :themefollowships, :dependent => :destroy
+  has_many :concern_themes, :through => :themefollowships, :source => :theme
+
+  has_many :itemtopicfollowships, :dependent => :destroy
+  has_many :concern_itemtopics, :through => :itemtopicfollowships, :source => :itemtopic
+
+  has_many :itemtopic_comments
+
   scope :friends_of, lambda {|user| where("user_id = ?", user.id)} 
   scope :at_city, lambda {|city_id| joins(:profile => :location).where(:locations => {:city_id => city_id})}
 
