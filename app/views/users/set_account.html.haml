@@ -36,7 +36,7 @@
           %span="新浪微博"
           %span="(已绑定:#{@weibo_name})" if @weibo_name
           %span="(未绑定)" unless @weibo_name
-        = link_to '绑定', '/auth/tsina', :class => (@weibo_name.nil?) ? 'bind_btn' : 'bind_btn hide'
+        = link_to '绑定', '/auth/connect', :class => (@weibo_name.nil?) ? 'bind_btn' : 'bind_btn hide'
         = link_to '取消', delete_auth_path, :class => (@weibo_name) ? 'cancel_bind_btn' : 'cancel_bind_btn hide'
       -if @error
         = label_tag :bind_error, @error, :class => 'bind_error' 

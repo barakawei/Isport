@@ -117,7 +117,7 @@ class EventsController < ApplicationController
       @event.recommendations.create(:person_id => @current_person.id)
       @event.albums.create
       if params['sina_weibo'] == 'yes' && auth
-        auth.create_weibo_with_photo(@event.weibo_status(event_path(@event)), @event.weibo_image_file)
+        auth.create_weibo_with_photo(@event.weibo_status("http://#{request.host}:#{request.port}#{event_path(@event)}"), @event.weibo_image_file)
       end
       redirect_to new_event_invite_path(@event)
     else

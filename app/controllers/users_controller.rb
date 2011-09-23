@@ -57,7 +57,7 @@ class UsersController < ApplicationController
     @skip_binding = @auth && @auth.bind_status == Authorization::SKIP_BINDING
     @current_pass = @skip_binding ? '...' : '' 
     @weibo_user = @auth.get_details if @auth
-    @weibo_name = @weibo_user['screen_name'] if @weibo_user
+    @weibo_name = @weibo_user.name if @weibo_user
   end
 
   

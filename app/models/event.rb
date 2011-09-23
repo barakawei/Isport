@@ -237,7 +237,7 @@ class Event < ActiveRecord::Base
   def weibo_status(url)
     str = I18n.t('events.weibo_status', {:type => self.item.name,
                  :name => self.name, :time => I18n.l(self.start_at, :format => :long),
-                 :location => self.location.to_s, :url => "http://www.haoxiangwan.net#{url}"})
+                 :location => self.location.to_s, :url => url})
   end
 
   private

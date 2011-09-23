@@ -1,9 +1,12 @@
 class AuthorizationController < ApplicationController
   def oauth_create
-    auth = request.env["omniauth.auth"]
-    access_token = auth['credentials']['token']
-    access_token_secret = auth['credentials']['secret']
-    user_auth  = Authorization.where(:uid => auth['uid'], :provider => auth['provider']).first
+    oauth = Weibo::OAuth.new(Weibo::Config.api_key, Weibo::Config.api_secret)
+    request_token = oauth.authorize_from_request(session[:rtoken], session[:rsecret], params[:oauth_verifier])
+    session[:rtoken], session[:rsecret] = nil, nil
+    oauth.authorize_from_access(oauth.access_token.token, oauth.access_token.secret)
+    auth_info = Weibo::Base.new(oauth).verify_credentials
+    provider = 'sina' 
+    user_auth  = Authorization.where(:uid => auth_info.id, :provider => provider).first
     if current_user
       @user = current_user
       if user_auth
@@ -11,10 +14,10 @@ class AuthorizationController < ApplicationController
         return
       else
         @auth =  @user.authorizations.find_or_create_by_params({
-            :provider => auth['provider'], 
-            :uid => auth['uid'],
-            :access_token => auth['credentials']['token'],
-            :access_token_secret => auth['credentials']['secret'],
+            :provider => provider, 
+            :uid => auth_info.id,
+            :access_token => oauth.access_token.token,
+            :access_token_secret => oauth.access_token.secret,
             :bind_status => Authorization::BINDED
         })
       end
@@ -23,20 +26,20 @@ class AuthorizationController < ApplicationController
       if user_auth 
         @user = user_auth.user 
       else
-        @weibo_user = Authorization.get_user_details(access_token, access_token_secret)
+        @weibo_user = Authorization.get_user_details(oauth.access_token.token, oauth.access_token.secret)
         count = User.count 
         @user = User.build(:email => "user#{count+1}@haoxiangwan.net", 
                            :password => '3275315321',
                            :password_confirmation => '3275315321' )
-        name = @weibo_user['screen_name']
-        location_info = @weibo_user['location']
+        name = @weibo_user.name
+        location_info = @weibo_user.location
         city_name = location_info.split(' ')[1];
         city  = City.find_by_name(city_name)
         city_id = city ? city.id : 1 
         location = Location.create(:city_id => city_id)
         if @user.save
           @user.profile.name = name
-          if @weibo_user['gender'] == 'm'
+          if @weibo_user.gender == 'm'
             @user.profile.gender = 1 
           else
             @user.profile.gender = 0 
@@ -45,10 +48,11 @@ class AuthorizationController < ApplicationController
           @user.profile.location = location 
           @user.profile.save
           @user.authorizations.find_or_create_by_params({
-            :provider => auth['provider'], 
-            :uid => auth['uid'],
-            :access_token => auth['credentials']['token'],
-            :access_token_secret => auth['credentials']['secret']
+            :provider => provider, 
+            :uid => @weibo_user.id,
+            :access_token => oauth.access_token.token,
+            :access_token_secret => oauth.access_token.secret,
+            :bind_status => Authorization::NOT_BINDED
           })
         else
         end
@@ -58,6 +62,13 @@ class AuthorizationController < ApplicationController
   end
 
   def oauth_destroy
+  end
+
+  def connect 
+    oauth = Weibo::OAuth.new(Weibo::Config.api_key, Weibo::Config.api_secret)
+    request_token = oauth.consumer.get_request_token
+    session[:rtoken], session[:rsecret] = request_token.token, request_token.secret
+    redirect_to "#{request_token.authorize_url}&oauth_callback=http://#{request.env["HTTP_HOST"]}/auth/callback"
   end
 
   def bind_account

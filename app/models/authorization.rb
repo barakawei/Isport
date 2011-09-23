@@ -10,17 +10,15 @@ class Authorization < ActiveRecord::Base
   validate :uid, :uniqueness => { :scope => :provider } 
 
   def self.get_user_details(access_token, access_token_secret)
-    consumer = OAuth::Consumer.new('3275315321','672d08bd608a97e4adb23e8e81c215a0',{:site =>'http://api.t.sina.com.cn'})
-    accesstoken = OAuth::AccessToken.new(consumer, access_token, access_token_secret)
-    response = accesstoken.get("http://api.t.sina.com.cn/account/verify_credentials.json")
-    JSON.parse(response.body)
+    oauth = Weibo::OAuth.new(Weibo::Config.api_key, Weibo::Config.api_secret)
+    oauth.authorize_from_access(access_token, access_token_secret)
+    auth_info = Weibo::Base.new(oauth).verify_credentials
   end
 
   def get_details
-    consumer = OAuth::Consumer.new('3275315321','672d08bd608a97e4adb23e8e81c215a0',{:site =>'http://api.t.sina.com.cn'})
-    accesstoken = OAuth::AccessToken.new(consumer, self.access_token, self.access_token_secret)
-    response = accesstoken.get("http://api.t.sina.com.cn/account/verify_credentials.json")
-    JSON.parse(response.body)
+    oauth = Weibo::OAuth.new(Weibo::Config.api_key, Weibo::Config.api_secret)
+    oauth.authorize_from_access(self.access_token, self.access_token_secret)
+    auth_info = Weibo::Base.new(oauth).verify_credentials
   end
 
   def create_weibo_with_photo(status, file)

@@ -2,7 +2,8 @@ Isport::Application.routes.draw do
 
   get "authorization/oauth_create"
   get "authorization/oauth_destroy"
-  match "/auth/:provider/callback" => "authorization#oauth_create"
+  match "/auth/connect" => "authorization#connect" 
+  match "/auth/callback" => "authorization#oauth_create"
   match "/users/connect" => 'registration#oauth_new', :as => 'connect_to_weibo', :method => :post
   match "/account/bind" => 'authorization#bind_account', :as => 'account_bind'
   match "/authorization/bind_new_account" => 'authorization#bind_new_account', :as => 'bind_new_account'
