@@ -1,34 +1,51 @@
 class Pic < ActiveRecord::Base
   require 'carrierwave/orm/activerecord'
-  mount_uploader :processed_image,ProcessedAlbumpicUploader
   mount_uploader :unprocessed_image,UnprocessedImageUploader
+  mount_uploader :processed_image,ProcessedAlbumpicUploader
+  mount_uploader :avatar_processed_image,ProcessedImageUploader
 
 
-  after_destroy :update_owner_counter
   after_update :update_owner_counter
+  after_destroy :update_owner_counter
 
   belongs_to :album
   belongs_to :status_message
   belongs_to :author, :class_name => 'Person'
   has_many :pic_comments, :dependent => :destroy
   has_many :comments, :class_name => 'PicComment',:dependent => :destroy
+  attr_accessor :pic_type
 
-  
+  def pic_avatar?
+    if self.pic_type == "avatar" || self.album.name == "avatar"
+      true
+    else
+      false
+    end
+  end
+
   def not_processed?
-    processed_image.path.nil?
+    if self.pic_type == "avatar" || self.album.name == "avatar"
+      avatar_processed_image.path.nil?
+    else
+      processed_image.path.nil?
+    end
   end
 
   def processed?
-    !processed_image.path.nil?
+    if self.pic_type == "avatar" || self.album.name == "avatar"
+      !avatar_processed_image.path.nil?
+    else
+      !processed_image.path.nil?
+    end
   end
 
-  def self.initialize(params = {}, ip, port,user)
+  def self.initialize(params = {}, ip, port,person)
     photo = Pic.new
     image_file = params[ :user_file] 
     photo.random_string = ActiveSupport::SecureRandom.hex(10) 
     photo.unprocessed_image.store!( image_file )
     photo.update_remote_path(ip,port)
-    photo.author = user
+    photo.author = person
     photo
   end
 
@@ -39,20 +56,23 @@ class Pic < ActiveRecord::Base
     self.remote_photo_name = remote_path.slice(name_start + 1, remote_path.length)
   end
 
-  def update_albums(user,params = {})
-    pic_type = params[ :pic_type ]
-    if pic_type === 'event'
+  def update_albums(person)
+    if self.pic_type === 'event'
       event = Event.find(params[:id])
       event.albums.first.pics << self
     else
-      user.person.albums.where( :name => pic_type ).first.pics << self
+      person.albums.where( :name => self.pic_type ).first.pics << self
     end
   end
 
   def url(size=:thumb_small)
     name = size.to_s 
     if processed?
-      processed_image.url(name)
+      if self.pic_type == "avatar" || self.album.name == "avatar"
+        avatar_processed_image.url(name)
+      else
+        processed_image.url(name)
+      end
     elsif not_processed?
       unprocessed_image.url
     elsif remote_photo_path
@@ -68,7 +88,11 @@ class Pic < ActiveRecord::Base
 
   def process
     return false if self.processed? || (!unprocessed_image.path.nil? && unprocessed_image.path.include?('.gif'))
-    processed_image.store!(unprocessed_image) 
+    if self.pic_type == "avatar" || self.album.name == "avatar"
+      avatar_processed_image.store!(unprocessed_image) 
+    else
+      processed_image.store!(unprocessed_image) 
+    end
     save!
   end
 
@@ -77,8 +101,9 @@ class Pic < ActiveRecord::Base
       :photo => {
         :id => self.id,
         :url => self.origin_url,
-        :thumb_small => self.url,
-        :thumb_medium => self.url(:thumb_medium),
+        :thumb_small => self.url(:thumb_small),
+        :thumb_medium => self.url(:thumb_medium ),
+        :thumb_large => self.url(:thumb_large ),
         :content => self.description
       }
     }

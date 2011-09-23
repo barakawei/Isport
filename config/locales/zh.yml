@@ -87,6 +87,9 @@ zh:
   status_message:
     show_more_comments: "%{number}条旧的评论"
     hide_comments:  "隐藏评论"
+  albums:
+    status_message: "信息中的照片"
+    avatar: "头像照片"
 
   events:
       pics: '活动'

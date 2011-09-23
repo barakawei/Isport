@@ -1,0 +1,7 @@
+.person_albums
+  .title
+    %h2
+      = "你的相册"
+  .albums
+    = render :partial => "albums/album_element",:collection => @albums,:as => :album,:locals =>{:person => @person}
+  .clear

@@ -78,5 +78,12 @@ class Person < ActiveRecord::Base
     end
   end
 
+  def my_albums
+    person_albums = self.albums
+    events = self.involved_events
+    event_albums = Album.joins( :pics ).where( "albums.imageable_type=?","Event" ).where(:imageable_id => events).where("pics.author_id" => self).group("albums.id")
+    albums = person_albums + event_albums
+  end
+
 end
 

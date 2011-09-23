@@ -1,0 +1,9 @@
+-if album.pics.size > 0
+  .album_element
+    .album
+      = album_image_link(album,person,:shortcut_medium )
+    .name
+      = album_name_tag(album)
+    .pic_counts
+      = album.album_pics( person ).size.to_s + "张照片"
+   

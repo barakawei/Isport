@@ -193,6 +193,11 @@ jQuery.fn.center = (function() {
         images = selectedImage.closest( ".pic_container" ).find('img.stream-photo'),
         imageThumb;
       self.imageset.html("");
+      if( images.length == 1 ){
+        self.pic_left_arrow.hide();
+        self.pic_right_arrow.hide(); 
+        self.imageset.hide();
+      }
       images.each(function(index, image) {
         image = $(image);
         var thumb = $("<img/>", {
@@ -217,9 +222,7 @@ jQuery.fn.center = (function() {
       self.auto_image_height_2();
     };
 
-    this.imagesetImageClicked = function(evt) { 
-      evt.preventDefault();
-      evt.stopPropagation();
+    this.imagesetImageClicked = function() { 
       self.selectImage($(this));
     };
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110916143937) do
+ActiveRecord::Schema.define(:version => 20110922142243) do
 
   create_table "administrators", :force => true do |t|
     t.integer  "user_id"
@@ -288,7 +288,8 @@ ActiveRecord::Schema.define(:version => 20110916143937) do
     t.datetime "updated_at"
     t.integer  "status_message_id"
     t.integer  "position"
-    t.integer  "comments_count",    :default => 0
+    t.integer  "comments_count",         :default => 0
+    t.string   "avatar_processed_image"
   end
 
   create_table "post_visibilities", :force => true do |t|
