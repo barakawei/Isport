@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110916143937) do
+ActiveRecord::Schema.define(:version => 20110923160847) do
 
   create_table "administrators", :force => true do |t|
     t.integer  "user_id"
@@ -209,6 +209,34 @@ ActiveRecord::Schema.define(:version => 20110916143937) do
     t.integer  "groups_count",     :default => 0
   end
 
+  create_table "itemtopic_comments", :force => true do |t|
+    t.string   "content"
+    t.integer  "person_id"
+    t.integer  "itemtopic_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "itemtopicfollowships", :force => true do |t|
+    t.integer  "itemtopic_id"
+    t.integer  "person_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "itemtopics", :force => true do |t|
+    t.string   "name"
+    t.integer  "theme_id"
+    t.integer  "city_id",          :default => 0
+    t.string   "image_url_large"
+    t.string   "image_url_medium"
+    t.string   "image_url_small"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "followers_count",  :default => 0
+    t.integer  "comments_count",   :default => 0
+  end
+
   create_table "locations", :force => true do |t|
     t.integer  "city_id"
     t.integer  "district_id"
@@ -359,6 +387,25 @@ ActiveRecord::Schema.define(:version => 20110916143937) do
     t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "themefollowships", :force => true do |t|
+    t.integer  "person_id"
+    t.integer  "theme_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "themes", :force => true do |t|
+    t.string   "name"
+    t.integer  "item_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "image_url_small"
+    t.string   "image_url_medium"
+    t.string   "image_url_large"
+    t.integer  "followers_count",  :default => 0
+    t.integer  "itemtopics_count", :default => 0
   end
 
   create_table "topic_comments", :force => true do |t|

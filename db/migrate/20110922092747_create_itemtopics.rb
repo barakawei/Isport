@@ -4,6 +4,9 @@ class CreateItemtopics < ActiveRecord::Migration
       t.string :name
       t.integer :theme_id
       t.integer :city_id, :default => 0
+      t.string :image_url_large
+      t.string :image_url_medium
+      t.string :image_url_small
 
       t.timestamps
     end

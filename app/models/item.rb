@@ -17,6 +17,7 @@ class Item < ActiveRecord::Base
                     :conditions => ["groups.status = ?", 2]
 
   belongs_to :category
+
   attr_accessor :selected
 
   def initialize(hash={})

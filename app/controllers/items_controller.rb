@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_filter :registrations_closed?
-  before_filter :authenticate_user!, :except => [:index, :show ]
+  before_filter :is_admin, :except => [:index, :show ]
 
   EVELIMIT = 6
   ACTLIMIT = 12
@@ -128,5 +128,10 @@ class ItemsController < ApplicationController
     Item.remove_fan(params[:id], current_user.person)if params[:id]
     render :nothing => true
   end
+
+  def is_admin
+    raise ActionController::RoutingError.new("such action only can be exeute by admin") unless current_user.try(:admin?)
+  end
+
 end
 
