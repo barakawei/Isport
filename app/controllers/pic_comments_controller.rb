@@ -15,5 +15,10 @@ class PicCommentsController < ApplicationController
   end
 
   def destroy
+    @pic_comment = PicComment.find(params[:id])
+    if current_user.person.id == @pic_comment.author.id
+      @pic_comment.destroy
+      respond_with @pic_comment
+    end 
   end
 end

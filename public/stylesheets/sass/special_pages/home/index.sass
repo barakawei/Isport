@@ -143,6 +143,7 @@
   .details
     :color #AAA
   .comment
+    :position relative
     :padding 8px
     :border-bottom 1px dotted #CCCCCC 
   :margin-bottom 10px
@@ -356,7 +357,7 @@
       display: inline-block
       :padding-right 10px
       a
-        :font-size 18px
+        :font-size 17px
         @include border-radius-feed( 6px )
         :background-color #e1e1e1 
         padding: 10px
@@ -392,6 +393,7 @@
         :font-size 15px
         padding: 5px
         font-weight: bold
+        @include border-radius(4px)
         &:hover
           :background-color #c6c6c3
           :color #646464
@@ -403,9 +405,3 @@
     .glass_button
       :margin-top 0
       :margin-right 10px
-
-
-
-
-
-

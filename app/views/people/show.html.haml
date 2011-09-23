@@ -101,7 +101,7 @@
     .following_people_panel
       - if @befollowed_people.length > 0
         .titile
-          =render 'common/header_box',:title => "被关注"
+          =render 'common/header_box',:title => "粉丝"
         - for person in @befollowed_people[ 0...24 ]
           .person_avatar
             = person_image_link(person)

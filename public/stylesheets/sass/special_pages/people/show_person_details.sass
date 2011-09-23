@@ -3,15 +3,15 @@
   a
     :color black
 .person_details_tab
-  @include border-radius(8px)
+  :position relative
   :padding 0
-
   .home_tabs
     @include border-radius(5px)
     background: #F9F9F9 url('/images/ui/tabs-bg.png')  repeat
     height: 62px
     :width 950px
-    float: left
+    .following_tab
+      :margin-left 70px
     li
       font-size: 16px
       display: inline-block
@@ -24,7 +24,7 @@
       position: relative
       
     li.hoverable
-      width: 165px
+      width: 120px
       a
         padding: 10px
         @include border-radius-noie( 6px )
@@ -40,25 +40,9 @@
       
     
 .person_card
-  :float left
-  :height 64px
-  :width 60px
-  .avatar
-    @include border-radius(8px)
-    :float left
-    :margin
-      top: 7px
-      left: 8px
-    :height 50px
-    :width 50px
-    :float left
-  h2
-    :float left
-    :font-size 16px
-    :margin-left 10px
-  .follow_prompt
-    :margin-left 95px
-
+  :position absolute
+  :top 5px 
+  :left 13px
 .box_element
   @include border-radius( 10px )
   @include box-shadow(0,0,2px,1px,#ccc  )

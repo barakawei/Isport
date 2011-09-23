@@ -1,13 +1,11 @@
 .stream
   .stream_element
-    = person_image_link(note.actor,:thumb_small) 
+    .author_avatar
+      = person_image_link(note.actor,:thumb_small) 
     .content
       .from
         = notification_message_for(note)
       .time.timeago
         = how_long_ago( note )
 
-
-:javascript
-  $("abbr.timeago").timeago();
     

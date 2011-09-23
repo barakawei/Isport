@@ -26,4 +26,12 @@ class StatusMessagesController < ApplicationController
   def new
     @status_message = StatusMessage.new
   end
+
+  def destroy
+    @status_message = StatusMessage.find(params[:id])
+    if current_user.person.id == @status_message.author.id
+      @status_message.destroy
+      respond_with @status_message
+    end 
+  end
 end

@@ -4,7 +4,6 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(:post_id => params[ :status_message_id ],:content => params[ :comment ][ :content ],:person_id => current_user.person.id)
     if @comment.save
-      @comment.dispatch_comment
       respond_with @comment
     end
   end
@@ -15,5 +14,13 @@ class CommentsController < ApplicationController
       @comments = @post.comments.includes(:author => :profile)
       render :layout => false    
     end
+  end
+
+  def destroy
+    @comment = Comment.find(params[:id])
+    if current_user.person.id == @comment.author.id
+      @comment.destroy
+      respond_with @comment
+    end 
   end
 end

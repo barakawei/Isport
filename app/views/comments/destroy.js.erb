@@ -1,0 +1,5 @@
+commentId = <%=@comment.id%>;
+comment = $(".comment[id='"+commentId+"']");
+if( comment.length === 1 ){
+  comment.fadeOut( 100 ); 
+}

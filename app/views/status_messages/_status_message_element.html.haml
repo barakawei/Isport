@@ -14,6 +14,10 @@
           =how_long_ago( post )
         %span.action
           =link_to "评论","#",:class => "replay"
+      .action
+        - if post.author.id == current_user.person.id
+          .delete
+            = link_to image_tag("/images/ui/delete.png" ),post,:remote => true,:method => "delete",:confirm => "确定删除？"
   
     = render "comments/comments", :post => post, :comments => post.comments
     .comment_form{:class => ('hide' if post.comments.size == 0)}
