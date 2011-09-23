@@ -197,6 +197,10 @@ jQuery.fn.center = (function() {
         self.pic_left_arrow.hide();
         self.pic_right_arrow.hide(); 
         self.imageset.hide();
+      }else{ 
+        self.pic_left_arrow.show();
+        self.pic_right_arrow.show(); 
+        self.imageset.show();
       }
       images.each(function(index, image) {
         image = $(image);
