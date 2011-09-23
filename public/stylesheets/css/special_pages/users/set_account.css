@@ -1,0 +1,101 @@
+.settings {
+  padding: 30px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  behavior: url(/javascripts/PIE.htc);
+  background-color: white;
+  border: 1px solid #d5ddde; }
+  .settings h1 {
+    border-bottom: 1px solid #dddddd;
+    padding-bottom: 10px;
+    margin-bottom: 0px; }
+  .settings .email_setting {
+    border-bottom: 1px solid #dddddd; }
+    .settings .email_setting .submit {
+      padding: 19px 0 0 0; }
+  .settings .password_setting {
+    border-bottom: 1px solid #dddddd; }
+    .settings .password_setting .field {
+      width: 600px; }
+    .settings .password_setting span.new_pass {
+      padding-bottom: 98px; }
+    .settings .password_setting span.current {
+      border-bottom: 1px solid #dddddd;
+      padding-bottom: 19px; }
+    .settings .password_setting .field.new_password {
+      height: 58px; }
+    .settings .password_setting .submit {
+      float: left;
+      width: 300px;
+      margin-left: 13px;
+      padding: 0.3em 0 0 0.6em; }
+      .settings .password_setting .submit .submit_btn {
+        float: right; }
+  .settings .sync_setting {
+    border-bottom: 1px solid #dddddd; }
+    .settings .sync_setting .field {
+      height: 38px;
+      padding: 30px 0 10px 10px; }
+    .settings .sync_setting .bind_btn, .settings .sync_setting .cancel_bind_btn {
+      float: right;
+      font-size: 14px;
+      color: #eb374b;
+      text-decoration: underline; }
+      .settings .sync_setting .bind_btn:hover, .settings .sync_setting .cancel_bind_btn:hover {
+        color: #eb374b; }
+    .settings .sync_setting .cancel_bind_btn {
+      color: #888888; }
+    .settings .sync_setting .weibo_module {
+      float: left;
+      width: 300px; }
+      .settings .sync_setting .weibo_module .weibo_desc {
+        float: left; }
+        .settings .sync_setting .weibo_module .weibo_desc img {
+          float: left; }
+        .settings .sync_setting .weibo_module .weibo_desc span {
+          height: 16px;
+          line-height: 16px;
+          font-size: 13px;
+          display: block;
+          float: left;
+          margin-left: 5px; }
+    .settings .sync_setting .bind_error {
+      margin-left: 20px;
+      font-size: 13px;
+      color: red; }
+
+.desc {
+  width: 150px;
+  color: #4f545a;
+  display: block;
+  float: left;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 38px;
+  padding: 20px 15px;
+  text-align: right;
+  background-color: #f5f5f5; }
+
+.field {
+  height: 78px;
+  float: left; }
+  .field input#email, .field input#current_password,
+  .field input#password, .field input#password_confirmation {
+    height: 38px;
+    margin: 10px;
+    width: 300px;
+    -moz-border-radius: 0px;
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
+    behavior: url(/javascripts/PIE.htc); }
+  .field input#password, .field input#password_confirmation {
+    margin: 5px 10px 0 10px; }
+  .field input#email {
+    display: block;
+    margin-bottom: 0; }
+
+label.error {
+  font-size: 13px;
+  color: red;
+  margin-left: 10px; }

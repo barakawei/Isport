@@ -4,14 +4,20 @@ Isport::Application.routes.draw do
   get "authorization/oauth_destroy"
   match "/auth/:provider/callback" => "authorization#oauth_create"
   match "/users/connect" => 'registration#oauth_new', :as => 'connect_to_weibo', :method => :post
+  match "/account/bind" => 'authorization#bind_account', :as => 'account_bind'
+  match "/authorization/bind_new_account" => 'authorization#bind_new_account', :as => 'bind_new_account'
+  match "/authorization/bind_old_account" => 'authorization#bind_old_account', :as => 'bind_old_account'
+  match "/authorization/skip_binding" => 'authorization#skip_bind', :as => 'skip_bind'
+  match "/users/validate_email" => 'users#validate_email', :as => 'validate_email'
+  match "/users/validate_email_exist" => 'users#validate_email_exist', :as => 'validate_email_exist'
 
   resources :site_posts
 
   devise_for :users, :controllers => { :registrations => "registrations",:invitations   => "invitations" } do
     get 'invitations/resend/:id' => 'invitations#resend', :as => 'invitation_resend'
     get 'invitations/email' => 'invitations#email', :as => 'invite_email'
-    
   end
+
   resources :contacts
   resources :profiles
   resources :posts do
@@ -23,7 +29,7 @@ Isport::Application.routes.draw do
   resources :requests
   resources :status_messages
   resources :status_messages do
-    resources :comments,:only => [ :create,:show ]
+    resources :comments,:only => [ :create,:show]
   end
   resources :notifications
   resources :conversations do
@@ -68,8 +74,12 @@ Isport::Application.routes.draw do
     match 'select_interests' => :select_interests, :as => 'select_interests'
     match 'select_interested_people' => :select_interested_people, :as => 'select_interested_people'
     match 'change_password'=> :change_password, :as => 'change_password'
-    match 'update_password'=> :update_password, :as => 'update_password', :via => :put
+    match 'update_password'=> :update_password, :as => 'update_password'
+    match 'update_email'=> :update_email, :as => 'update_email'
     match 'online_user' => :online_user,:as => 'online_user'
+    match 'account_setting' => :set_account, :as => 'set_account'
+    match 'delete_auth' => :delete_auth, :as => 'delete_auth'
+    match '/users/connent_error' => :weibo_already_binded_error, :as => 'bind_error' 
   end
 
   match '/users/sign_in' => 'users#sign_in', :as => 'sign_in' 

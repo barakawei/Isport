@@ -56,6 +56,9 @@
     margin-top: 20px; }
   .event_form .form_area .field {
     margin-bottom: 5px; }
+    .event_form .form_area .field span.sync_to_weibo {
+      margin-right: 70px;
+      float: right; }
     .event_form .form_area .field label.info {
       display: inline-block;
       width: 70px;

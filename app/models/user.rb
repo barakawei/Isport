@@ -25,6 +25,7 @@ class User < ActiveRecord::Base
       access_token, access_token_secret = params[:access_token], params[:access_token_secret]
       authorization = find_or_create_by_provider_and_uid(provider, uid) 
       authorization.update_attributes(params.except(:provider,:uid))
+      authorization
     end
   end
 

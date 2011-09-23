@@ -1,0 +1,108 @@
+@import '../../general/ui/mixins'
+.settings
+  :padding 30px
+  @include border-radius(10px)
+  :background-color #fff
+  :border 1px solid #d5ddde
+
+  h1
+    :border-bottom 1px solid #dddddd
+    :padding-bottom 10px
+    :margin-bottom 0px
+  
+  .email_setting
+    :border-bottom 1px solid #dddddd
+    .submit
+      :padding 19px 0 0 0
+  
+  .password_setting
+    :border-bottom 1px solid #dddddd
+    .field
+      :width 600px 
+    span.new_pass
+      :padding-bottom 98px 
+    span.current
+      :border-bottom 1px solid #ddd
+      :padding-bottom 19px
+    .field.new_password
+      :height 58px
+    .submit
+      :float left
+      :width 300px
+      :margin-left 13px
+      :padding 0.3em 0 0  0.6em 
+      .submit_btn
+        :float right
+  
+  .sync_setting
+    :border-bottom 1px solid #dddddd
+    .field
+      :height 38px
+      :padding 30px 0 10px 10px
+    .bind_btn, .cancel_bind_btn
+      :float right 
+      :font-size 14px
+      :color #EB374B
+      :text-decoration underline
+
+      &:hover
+        :color #EB374B
+
+    .cancel_bind_btn
+      :color #888
+        
+    .weibo_module
+      :float left
+      :width 300px
+      .weibo_desc
+        :float left
+        img
+          :float left
+        span
+          :height 16px
+          :line-height 16px
+          :font-size 13px
+          :display block 
+          :float left
+          :margin-left 5px
+    .bind_error
+      :margin-left 20px
+      :font-size 13px
+      :color red
+
+
+.desc
+  :width 150px 
+  color: #4F545A
+  display: block
+  float: left
+  font-size: 14px
+  font-weight: bold
+  line-height: 38px
+  padding: 20px 15px
+  text-align: right
+  background-color: #F5F5F5
+
+.field
+  :height 78px
+  :float left
+  
+    
+  input#email, input#current_password,
+  input#password, input#password_confirmation
+    :height 38px 
+    :margin 10px 
+    :width 300px
+    @include border-radius(0px)
+
+  input#password, input#password_confirmation
+    :margin 5px 10px 0 10px 
+
+  input#email
+    :display block 
+    :margin-bottom 0
+
+label.error
+  :font-size 13px
+  :color red
+  :margin-left 10px

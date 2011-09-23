@@ -157,6 +157,8 @@ stylesheets:
 
   sepcial_pages_users_selectinterests:
     - public/stylesheets/css/special_pages/users/select_interests.css
+  special_pages_users_set_account:
+    - public/stylesheets/css/special_pages/users/set_account.css
   sepcial_pages_people_edit_interests:
     - public/stylesheets/css/special_pages/people/edit_interests.css
 
@@ -183,3 +185,6 @@ stylesheets:
     - public/stylesheets/css/special_pages/pics/index.css
   sepcial_pages_pics_show:
     - public/stylesheets/css/special_pages/pics/show.css
+
+  special_pages_authorization_bind_account: 
+    - public/stylesheets/css/special_pages/authorization/bind_account.css

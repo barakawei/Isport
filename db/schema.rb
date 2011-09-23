@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110916143937) do
+ActiveRecord::Schema.define(:version => 20110918132254) do
 
   create_table "administrators", :force => true do |t|
     t.integer  "user_id"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(:version => 20110916143937) do
     t.string   "access_token_secret"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "bind_status",         :default => 0
   end
 
   create_table "categories", :force => true do |t|

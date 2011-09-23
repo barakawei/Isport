@@ -39,6 +39,7 @@ GEM
     builder (2.1.2)
     carrierwave (0.5.7)
       activesupport (~> 3.0)
+    crack (0.1.8)
     date_validator (0.6.2)
       activemodel (< 3.2.0, >= 3.0.0)
     devise (1.4.4)
@@ -65,7 +66,10 @@ GEM
       activesupport (~> 3.0)
       haml (~> 3.0)
       railties (~> 3.0)
+    hashie (1.0.0)
     hpricot (0.8.4)
+    httparty (0.6.1)
+      crack (= 0.1.8)
     i18n (0.5.0)
     jammit (0.6.3)
       yui-compressor (>= 0.9.3)
@@ -201,6 +205,10 @@ GEM
       rack (>= 1.0.0)
     warden (1.0.5)
       rack (>= 1.0)
+    weibo (0.0.2)
+      hashie
+      httparty (>= 0.5.2)
+      oauth (~> 0.4.1)
     will_paginate (3.0.pre4)
     yui-compressor (0.9.6)
       POpen4 (>= 0.1.4)
@@ -223,6 +231,7 @@ DEPENDENCIES
   json
   mini_magick (= 3.3)
   mysql2 (< 0.3)
+  oauth
   omniauth
   rails (= 3.0.10)
   redis-store (= 1.0.0.1)
@@ -232,4 +241,6 @@ DEPENDENCIES
   sass (= 3.1.7)
   seedbed (= 1.1.1)
   settingslogic (= 2.0.6)
+  sinatra
+  weibo
   will_paginate (= 3.0.pre4)

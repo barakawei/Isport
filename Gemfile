@@ -25,6 +25,11 @@ gem 'redis-store','1.0.0.1'
 gem 'acts_as_list', '~> 0.1.4'
 gem 'omniauth'
 
+gem "sinatra"
+gem "oauth"
+gem "weibo"
+
+
 group :development, :test do
   gem 'rspec-rails', '2.6.1'
   gem 'haml-rails','0.3.4'
