@@ -1,10 +1,9 @@
 class Itemtopic < ActiveRecord::Base
-  belongs_to :theme, :counter_cache => true
-
+  belongs_to :item
   has_many :itemtopicfollowships, :dependent => :destroy
   has_many :followers, :through => :itemtopicfollowships, :source => :person
 
-  has_many :comments, :classname => 'ItemtopicComment' 
+  has_many :posts 
 
   def image_url(size = :thumb_large)
     result = if size == :thumb_medium && self[:image_url_medium]
@@ -18,7 +17,7 @@ class Itemtopic < ActiveRecord::Base
   end
 
   def default_url(size)
-    self.theme.image_url(size) 
+    self.item.image_url(size) 
   end
 
   def self.add_follower(itemtopic_id, person)

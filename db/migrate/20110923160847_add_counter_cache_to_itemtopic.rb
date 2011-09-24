@@ -3,10 +3,10 @@ class AddCounterCacheToItemtopic < ActiveRecord::Migration
     add_column :itemtopics, :followers_count, :integer, :default => 0
     add_column :itemtopics, :comments_count, :integer, :default => 0
 
-    Theme.reset_column_information
-    Theme.find(:all).each do |itemtopic|
-      Theme.update_counters itemtopic.id, :followers_count => itemtopic.followers.count
-      Theme.update_counters itemtopic.id, :comments_count => itemtopic.comments.count
+    Itemtopic.reset_column_information
+    Itemtopic.find(:all).each do |itemtopic|
+      Itemtopic.update_counters itemtopic.id, :followers_count => itemtopic.followers.count
+      Itemtopic.update_counters itemtopic.id, :comments_count => itemtopic.comments.count
     end
   end
 
