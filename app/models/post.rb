@@ -4,7 +4,7 @@ class Post < ActiveRecord::Base
   has_many :contacts, :through => :post_visibilities
   has_many :comments
 
-  belongs_to :itemtopic, :counter_cache => true
+  belongs_to :item_topic, :counter_cache => true
 
   def subscribers(user,action)
     user.followed_people
@@ -27,5 +27,5 @@ class Post < ActiveRecord::Base
     }
   end  
   
-
 end
+
