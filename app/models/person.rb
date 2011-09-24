@@ -31,6 +31,8 @@ class Person < ActiveRecord::Base
            :source => :event
   has_one :profile
   has_many :albums, :as => :imageable
+  has_many :post_visibilities
+  has_many :posts, :through => :post_visibilities
 
   scope :friends_of, lambda {|user| where("user_id = ?", user.id)} 
   scope :at_city, lambda {|city_id| joins(:profile => :location).where(:locations => {:city_id => city_id})}
@@ -59,12 +61,12 @@ class Person < ActiveRecord::Base
 
   def as_json(opts={})
     {
-    :person => {
         :id => self.id,
         :name => self.name,
+        :avatar => self.profile.image_url(:thumb_small),
         :image_url =>self.profile.image_url(:thumb_small),
         :url => "/people/#{self.id}"
-      }
+      
     }
   end 
 

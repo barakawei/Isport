@@ -1,4 +1,7 @@
 @charset "UTF-8";
+.inline {
+  display: inline; }
+
 .calendar_panel {
   height: 50px;
   width: 50px;
@@ -383,9 +386,6 @@ span.medium_avatar {
 
 .person_avatar {
   display: inline-block;
-  position: relative; }
-
-.avatar {
   position: relative; }
 
 input, textarea, select, .box_element {

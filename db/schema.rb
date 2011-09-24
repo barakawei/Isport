@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110922142243) do
+ActiveRecord::Schema.define(:version => 20110924101738) do
 
   create_table "administrators", :force => true do |t|
     t.integer  "user_id"
@@ -234,6 +234,13 @@ ActiveRecord::Schema.define(:version => 20110922142243) do
   add_index "memberships", ["person_id", "group_id"], :name => "index_memberships_on_person_id_and_group_id", :unique => true
   add_index "memberships", ["person_id"], :name => "index_memberships_on_person_id"
 
+  create_table "mentions", :force => true do |t|
+    t.integer  "person_id"
+    t.integer  "post_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "messages", :force => true do |t|
     t.integer  "conversation_id"
     t.integer  "person_id"
@@ -293,7 +300,7 @@ ActiveRecord::Schema.define(:version => 20110922142243) do
   end
 
   create_table "post_visibilities", :force => true do |t|
-    t.integer  "contact_id"
+    t.integer  "person_id"
     t.integer  "post_id"
     t.datetime "created_at"
     t.datetime "updated_at"

@@ -21,8 +21,8 @@ class Dispatch
   end
 
   def dispatch_status_message
-    contact_ids =  @subscribers.map{ |p| p.user_id }
-    Resque.enqueue(Job::DispatchStatusMessageJob,@object.id,contact_ids)
+    person_ids =  @subscribers.map{ |p| p.id }
+    Resque.enqueue(Job::DispatchStatusMessageJob,@object.id,person_ids)
   end
 end
 

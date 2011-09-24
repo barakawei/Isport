@@ -7,8 +7,8 @@
         = person_link(post.author, :class => 'author')
       .photos
         = render 'photos/photos_container',:photos => post.pics
-      %p
-        = post.content
+      .post_content
+        = post_content_tag(post)
       .content_info
         %span.time.timeago{:datetime => post.created_at,:style=>"font-size: 11px"}
           =how_long_ago( post )

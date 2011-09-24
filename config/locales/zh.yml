@@ -83,6 +83,7 @@ zh:
     status_comment: "%{actor_link} 评论了你的%{post_link}"
     topic_comment: "%{actor_link} 在%{group_link}小组中评论了你的%{comment_link}"
     event_comment: "%{actor_link} 在%{event_link}活动中评论了你的%{comment_link}"
+    mention: "%{actor_link} 在%{post_link}中提到了你"
 
   status_message:
     show_more_comments: "%{number}条旧的评论"

@@ -27,4 +27,11 @@ class ContactsController < ApplicationController
     current_user.remove_person( @person )
     respond_with @person
   end
+
+  def index
+    @people = current_user.followed_people 
+    respond_to do |format|  
+      format.json { render :json => @people.to_json}    
+    end
+  end
 end
