@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110923160847) do
+ActiveRecord::Schema.define(:version => 20110924095753) do
 
   create_table "administrators", :force => true do |t|
     t.integer  "user_id"
@@ -333,6 +333,7 @@ ActiveRecord::Schema.define(:version => 20110923160847) do
     t.string   "random_string"
     t.integer  "item_id"
     t.integer  "post_id"
+    t.integer  "itemtopic_id"
   end
 
   create_table "profiles", :force => true do |t|
