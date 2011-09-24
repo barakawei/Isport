@@ -3,6 +3,9 @@ class CreateItems < ActiveRecord::Migration
     create_table :items do |t|
       t.string :name
       t.text :description
+      t.string :image_url_large
+      t.string :image_url_medium
+      t.string :image_url_small
 
       t.timestamps
     end

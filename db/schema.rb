@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110918132254) do
+ActiveRecord::Schema.define(:version => 20110924095753) do
 
   create_table "administrators", :force => true do |t|
     t.integer  "user_id"
@@ -126,10 +126,10 @@ ActiveRecord::Schema.define(:version => 20110918132254) do
     t.integer  "group_id",           :default => 0
     t.integer  "status",             :default => 0
     t.string   "status_msg"
-    t.integer  "audit_person_id"
     t.integer  "participants_count", :default => 0
     t.integer  "comments_count",     :default => 0
     t.integer  "fans_count",         :default => 0
+    t.integer  "audit_person_id"
   end
 
   create_table "favorites", :force => true do |t|
@@ -195,6 +195,27 @@ ActiveRecord::Schema.define(:version => 20110918132254) do
   add_index "involvements", ["event_id"], :name => "index_involvements_on_event_id"
   add_index "involvements", ["person_id", "event_id"], :name => "index_involvements_on_person_id_and_event_id", :unique => true
   add_index "involvements", ["person_id"], :name => "index_involvements_on_person_id"
+
+  create_table "item_topic_followships", :force => true do |t|
+    t.integer  "item_topic_id"
+    t.integer  "person_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "item_topics", :force => true do |t|
+    t.string   "name"
+    t.integer  "item_id"
+    t.integer  "key_topic"
+    t.integer  "city_id",          :default => 0
+    t.string   "image_url_large"
+    t.string   "image_url_medium"
+    t.string   "image_url_small"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "followers_count",  :default => 0
+    t.integer  "comments_count",   :default => 0
+  end
 
   create_table "items", :force => true do |t|
     t.string   "name"
@@ -313,6 +334,7 @@ ActiveRecord::Schema.define(:version => 20110918132254) do
     t.string   "random_string"
     t.integer  "item_id"
     t.integer  "post_id"
+    t.integer  "item_topic_id"
   end
 
   create_table "profiles", :force => true do |t|

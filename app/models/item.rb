@@ -15,8 +15,10 @@ class Item < ActiveRecord::Base
 
   has_many :groups, :foreign_key => "item_id",
                     :conditions => ["groups.status = ?", 2]
+  has_many :topics, :class_name => 'ItemTopic'  
 
   belongs_to :category
+
   attr_accessor :selected
 
   def initialize(hash={})

@@ -46,6 +46,8 @@ Isport::Application.routes.draw do
   resources :comments
   resources :pic_comments
 
+  resources :themes
+
   root :to => "welcome#index"
 
   resource :user, :only => [:edit, :update, :destroy] 
