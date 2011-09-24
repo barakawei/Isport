@@ -1,0 +1,109 @@
+-content_for :head do
+  = include_javascripts :jquery_validation
+  = include_stylesheets :special_pages_authorization_bind_account, :media => 'all'
+.title
+  .account_avatar
+    %img{:src => @weibo_user.profile_image_url}
+  %h2="你好, #{@weibo_user.name}, 欢迎来到好享玩!"
+
+.span-24
+  .bind_container
+    .bind_area
+      .field
+        =radio_button_tag 'bind_new_account', 'new', @bind_new, :id => 'bind_new_account_radio'
+        =label_tag 'bind_new_account', '创建好享玩帐户并绑定', :class => 'radio bind_new_account_radio'
+        = form_tag bind_new_account_path, :id => 'bind_new_account_form', :class => ('hide' unless @bind_new), do
+          .reg_relative
+            .reg_email
+              = text_field_tag :email, nil
+              = label_tag :email, t('email'), :class => 'email in_field'
+              - if @user && @user.errors[:email][0]
+                = label_tag :email, '对不起，该邮箱' + @user.errors[:email][0], :class => 'error'
+            .reg_password
+              = password_field_tag :password
+              = label_tag :password, '密码', :class => "password in_field"
+            .reg_input.submit
+              .reg_action
+                = submit_tag '完成', :class => 'log_submit right glass_button'
+          
+      .field
+        =radio_button_tag 'bind_old_account', 'old', !@bind_new, :id => 'bind_old_account_radio'
+        =label_tag 'bind_old_account', '绑定已存在好享玩帐号', :class => 'radio bind_old_account_radio'
+
+        = form_tag bind_old_account_path, :id => 'bind_old_account_form', :class => ('hide' if @bind_new), do
+          .reg_relative
+            .reg_email
+              = text_field_tag :old_email, nil
+              = label_tag :old_email, t('email'), :class => 'email in_field'
+              - if @user && @user.errors[:email][0]
+                = label_tag :email, '对不起，该邮箱' + @user.errors[:email][0], :class => 'error'
+            .reg_password
+              = password_field_tag :old_password
+              = label_tag :old_password, '密码', :class => "password in_field"
+              - if @user && @user.errors[:password][0]
+                = label_tag :password, '对不起，您' + @user.errors[:password][0], :class => 'error'
+            .reg_input.submit
+              .reg_action
+                = submit_tag '完成', :class => 'log_submit right glass_button'
+
+    .right
+      %span.skip_desc='跳过以上步骤，'
+      = link_to '直接使用>', skip_bind_path, :class => 'skip_bind'
+
+:javascript
+  $(function() {
+    $('#bind_new_account_form').validate({  
+      rules: {
+        'email': {
+          required: true,
+          email: true,
+          remote: {
+            url: "#{validate_email_path}",
+            data: {
+              email:function() {
+                return $('#email').val(); 
+              }
+            }
+          }
+        },
+        'password': {
+          required: true,
+          minlength: 5 
+        }
+      },
+      messages: {
+        'email': {
+          required: '请输入电子邮箱',
+          email: '邮箱格式错误',
+          remote: '对不起,该邮箱已经被使用'
+        },
+        'password': {
+          required: '请输入密码',
+          minlength: '密码长度不能少于{0}位'
+        }
+      }
+    });
+  });
+
+  $("#email").add("#password").add('#old_email').add('#old_password').keyup(function() {
+    if ($.trim($(this).val()) != '' ) {
+      $(this).siblings(".in_field").hide();
+    } else {
+      $(this).siblings(".in_field").show();
+    }
+  }); 
+
+  $('#bind_old_account_radio').add('label.bind_old_account_radio').click(function() {
+    $('#bind_old_account_radio').attr('checked', 'checked');
+    $('#bind_new_account_radio').removeAttr('checked');
+    $('#bind_old_account_form').show(); 
+    $('#bind_new_account_form').hide(); 
+  }); 
+
+  $('#bind_new_account_radio').add('label.bind_new_account_radio').click(function() {
+    $('#bind_new_account_radio').attr('checked', 'checked');
+    $('#bind_old_account_radio').removeAttr('checked');
+    $('#bind_new_account_form').show(); 
+    $('#bind_old_account_form').hide(); 
+  }); 
+  

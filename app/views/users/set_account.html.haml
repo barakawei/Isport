@@ -1,0 +1,96 @@
+-content_for :head do
+  = include_javascripts :jquery_validation
+  = include_stylesheets :special_pages_users_set_account, :media => 'all'
+  
+.span-22.settings
+  %h1='帐号设置'
+  .email_setting.span-22
+    =form_tag update_email_path,  :id => 'change_email',  do
+      %span.desc= '电子邮件地址'
+      .field
+        = text_field_tag :email, @user.email 
+        - if @user && @user.errors[:email][0]
+          = label_tag :email, '对不起，该邮箱' + @user.errors[:email][0], :class => 'error'
+      .submit
+        = submit_tag '更新', :class => 'glass_button submit_btn'
+  .password_setting.span-22
+    = form_tag update_password_path, :method => :put, :id => 'change_password', do
+      %span{:class => (@skip_binding ?  'hide' : 'desc current' )}= '当前密码'
+      %div{:class => (@skip_binding ?  'hide' : 'field' )} 
+        = password_field_tag :current_password, @current_pass
+        - if @user && @user.errors[:current_password][0]
+          = label_tag :current_password, '您输入的当前密码' + @user.errors[:current_password][0], :class => 'error'
+      %span.desc.new_pass= '新密码'
+      .field.new_password
+        = password_field_tag :password
+      .field.new_password
+        = password_field_tag :password_confirmation
+      .submit
+        = submit_tag '更新', :class => 'glass_button submit_btn'
+  .sync_setting.span-22
+    %span.desc= '同步设置'
+    .field
+      .weibo_module
+        .weibo_desc  
+          %img{:src => '/images/ui/sina_weibo16.png'}
+          %span="新浪微博"
+          %span="(已绑定:#{@weibo_name})" if @weibo_name
+          %span="(未绑定)" unless @weibo_name
+        = link_to '绑定', '/auth/connect', :class => (@weibo_name.nil?) ? 'bind_btn' : 'bind_btn hide'
+        = link_to '取消', delete_auth_path, :class => (@weibo_name) ? 'cancel_bind_btn' : 'cancel_bind_btn hide'
+      -if @error
+        = label_tag :bind_error, @error, :class => 'bind_error' 
+:javascript 
+  $(function(){
+    $('#change_email').validate({  
+      rules: {
+        'email': {
+          required: true,
+          email: true,
+          remote: {
+            url: "#{validate_email_path}",
+            data: {
+              email:function() {
+                return $('#email').val(); 
+              }
+            }
+          }
+        }
+      },
+      messages: {
+        'email': {
+          required: '请输入电子邮箱',
+          email: '邮箱格式错误',
+          remote: '对不起,该邮箱已经被使用'
+        }
+      }
+    });
+    $('#change_password').validate({  
+      rules: {
+        'current_password': {
+          required: true
+        },
+        'password': {
+          required: true,
+          minlength: 5 
+        },
+        'password_confirmation': {
+          required: true,
+          equalTo: "#password"
+        }
+      },
+      messages: {
+        'current_password': {
+          required: '请输入当前密码'
+        },
+        'password': {
+          required: '请输入新密码',
+          minlength: '密码长度不能少于{0}位'
+        },
+        'password_confirmation': {
+          required: '请再一次输入您的密码',
+          equalTo: '两次输入的密码不一致'
+        }
+      }
+    });
+  });

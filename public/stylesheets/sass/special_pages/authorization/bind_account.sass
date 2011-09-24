@@ -1,0 +1,109 @@
+@import '../../general/ui/mixins'
+.span-24
+  .title
+    .account_avatar
+      :float left
+    h2
+      :float left
+      :margin-left 10px
+      :line-height 50px 
+
+.bind_container
+  :float left
+  :width 485px   
+  .bind_area
+    float: left
+    @include border-radius(5px)
+    @include box-shadow(0,1px,5px,0,#333)
+    background-color: white
+    :margin-top 10px
+    padding: 10px 0 10px 35px
+    position: relative
+    width: 450px
+    z-index: 1
+
+    .field
+      :float left
+      :width 450px
+      label.radio
+        :margin-left 5px
+        :font-size 17px
+        :color #333
+
+      input#email, 
+      input#old_email, 
+      input#password,
+      input#old_password
+        :height 30px
+        :font-size 18px
+        :line-height 30px
+        :width 245px
+        :border medium none
+        :background none repeat scroll 0 0 transparent
+        :color #324f65
+        :margin 0 0
+        :padding 0 0
+
+    
+.reg_relative
+  float: left
+  position: relative
+  display: block
+  margin: 10px 0 10px 20px 
+
+  label.in_field
+    :position absolute
+    :top 3px
+    :left 5px
+    :font-size 18px
+    :color #ddd
+
+  label.error
+    :position absolute
+    :left 0px
+    :top 35px
+    :font-size 12px
+    :height 12px
+    :line-height 12px
+    :color red
+
+
+  .reg_email, .reg_password
+    background: white 
+    height: 30px
+    border: medium none
+    position: relative
+    padding: 2px
+    margin-bottom: 20px
+    @include border-radius(5px)
+    border: 1px solid #bbbbbb
+
+  .reg_email
+    width: 250px
+
+  .reg_password
+    width: 250px
+
+  .reg_action
+    :float left
+    :height 30px 
+
+.skip_desc, .skip_bind
+  :float left
+  :font-size 16px
+  :margin-top 20px
+  :font-weight bold
+
+.skip_bind
+  :color #00BED4
+  display: block
+  
+  &:hover
+    color: #EB374B
+  
+
+
+
+    
+    
+

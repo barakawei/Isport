@@ -184,6 +184,8 @@ zh:
         to_be_reviewed_short: '待审核'
         denied_short: '不合格'
         passed_short: '合格'
+      weibo_status: "我在好享玩发起了一个%{type}活动, %{name}, 感兴趣的朋友速来报名, 时间:%{time} 地点: %{location} %{url}"
+
 
   items:
       items_list: "所有兴趣"
@@ -265,6 +267,7 @@ zh:
         refuse: '拒绝'
         exit: '退出'
         join: '加入该小组'
+    weibo_status: "我在好享玩创建了一个%{type}小组, %{name}, 对%{type}感兴趣的朋友快来加入吧! %{url}"
   date:
     formats:
       default: "%Y-%m-%d"
@@ -437,7 +440,11 @@ zh:
         odd: "必须为单数"
         even: "必须为双数"
         taken: "已经被使用"
+        not_found: '不存在'
+        already_used: '已经被占用'
+        password_wrong: '输入的密码有误'
         record_invalid: "校验失败: %{errors}"
+        bind_alreay_exist:  "*当前微博帐号已经绑定了另一个好享完帐号"
 
   activemodel:
     errors:

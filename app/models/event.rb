@@ -228,6 +228,18 @@ class Event < ActiveRecord::Base
     status == Event::BEING_REVIEWED || status == Event::DENIED
   end
 
+  def weibo_image_file
+    url = self.image_url ? self.image_url : default_url(:thumb_large)  
+    url =  Rails.root.to_s + "/public#{url}" 
+    File.new(url)
+  end
+
+  def weibo_status(url)
+    str = I18n.t('events.weibo_status', {:type => self.item.name,
+                 :name => self.name, :time => I18n.l(self.start_at, :format => :long),
+                 :location => self.location.to_s, :url => url})
+  end
+
   private
     
   def default_url(size)

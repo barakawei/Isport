@@ -1,7 +1,7 @@
 class CreateItemtopicfollowships < ActiveRecord::Migration
   def self.up
-    create_table :itemtopicfollowships do |t|
-      t.integer :itemtopic_id
+    create_table :item_topic_followships do |t|
+      t.integer :item_topic_id
       t.integer :person_id
 
       t.timestamps
@@ -9,6 +9,6 @@ class CreateItemtopicfollowships < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :itemtopicfollowships
+    drop_table :item_topic_followships
   end
 end

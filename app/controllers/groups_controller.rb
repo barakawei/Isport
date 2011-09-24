@@ -74,9 +74,13 @@ class GroupsController < ApplicationController
     current_person = current_user.person
     @group.person = current_person
     @group.forum = Forum.create
+    auth = current_user.authorizations.first
 
     if @group.save
       @group.memberships.create(:person_id => current_person.id, :is_admin => true)
+      if params['sina_weibo'] == 'yes' && auth
+        auth.create_weibo_with_photo(@group.weibo_status(group_path(@group)), @group.weibo_image_file)
+      end
       redirect_to new_group_invite_path(@group)
     else
       @step = 1

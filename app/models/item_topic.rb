@@ -1,7 +1,7 @@
 class ItemTopic < ActiveRecord::Base
   belongs_to :item
-  has_many :itemtopicfollowships, :dependent => :destroy
-  has_many :followers, :through => :itemtopicfollowships, :source => :person
+  has_many :item_topic_followships, :dependent => :destroy
+  has_many :followers, :through => :item_topic_followships, :source => :person
 
   has_many :posts 
 

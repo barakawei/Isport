@@ -5,10 +5,17 @@ class HomeController < ApplicationController
 
   def index
     if current_user
+      auth = current_user.authorizations.first
+      if (auth && auth.bind_status == Authorization::NOT_BINDED)
+        redirect_to account_bind_path
+        return
+      end
+
       if (current_user.getting_started == true)
         redirect_to getting_started_path
         return
       end
+      
       @person = current_user.person
       #@requests_count = Request.where( :recipient_id => @person.id ).count
       @friends = current_user.friends

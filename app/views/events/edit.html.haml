@@ -4,7 +4,7 @@
   = include_stylesheets :forms, :media => 'all'
   = include_stylesheets :common_vertical_nav
 .span-24
-- if params[:action] == 'edit' 
+- if params[:action] == 'edit' || @update_error 
   .span-19
     = render 'form', :is_edit => true, :new => @new
 - else

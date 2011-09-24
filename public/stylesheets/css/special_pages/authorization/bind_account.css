@@ -1,0 +1,97 @@
+.span-24 .title .account_avatar {
+  float: left; }
+.span-24 .title h2 {
+  float: left;
+  margin-left: 10px;
+  line-height: 50px; }
+
+.bind_container {
+  float: left;
+  width: 485px; }
+  .bind_container .bind_area {
+    float: left;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    behavior: url(/javascripts/PIE.htc);
+    -webkit-box-shadow: 0 1px 5px 0 #333333;
+    -moz-box-shadow: 0 1px 5px 0 #333333;
+    box-shadow: 0 1px 5px 0 #333333;
+    behavior: url(/javascripts/PIE.htc);
+    background-color: white;
+    margin-top: 10px;
+    padding: 10px 0 10px 35px;
+    position: relative;
+    width: 450px;
+    z-index: 1; }
+    .bind_container .bind_area .field {
+      float: left;
+      width: 450px; }
+      .bind_container .bind_area .field label.radio {
+        margin-left: 5px;
+        font-size: 17px;
+        color: #333333; }
+      .bind_container .bind_area .field input#email,
+      .bind_container .bind_area .field input#old_email,
+      .bind_container .bind_area .field input#password,
+      .bind_container .bind_area .field input#old_password {
+        height: 30px;
+        font-size: 18px;
+        line-height: 30px;
+        width: 245px;
+        border: medium none;
+        background: none repeat scroll 0 0 transparent;
+        color: #324f65;
+        margin: 0 0;
+        padding: 0 0; }
+
+.reg_relative {
+  float: left;
+  position: relative;
+  display: block;
+  margin: 10px 0 10px 20px; }
+  .reg_relative label.in_field {
+    position: absolute;
+    top: 3px;
+    left: 5px;
+    font-size: 18px;
+    color: #dddddd; }
+  .reg_relative label.error {
+    position: absolute;
+    left: 0px;
+    top: 35px;
+    font-size: 12px;
+    height: 12px;
+    line-height: 12px;
+    color: red; }
+  .reg_relative .reg_email, .reg_relative .reg_password {
+    background: white;
+    height: 30px;
+    border: medium none;
+    position: relative;
+    padding: 2px;
+    margin-bottom: 20px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    behavior: url(/javascripts/PIE.htc);
+    border: 1px solid #bbbbbb; }
+  .reg_relative .reg_email {
+    width: 250px; }
+  .reg_relative .reg_password {
+    width: 250px; }
+  .reg_relative .reg_action {
+    float: left;
+    height: 30px; }
+
+.skip_desc, .skip_bind {
+  float: left;
+  font-size: 16px;
+  margin-top: 20px;
+  font-weight: bold; }
+
+.skip_bind {
+  color: #00bed4;
+  display: block; }
+  .skip_bind:hover {
+    color: #eb374b; }

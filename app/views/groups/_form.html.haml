@@ -53,14 +53,18 @@
         = f.label t('groups.join_mode.name') + ":", :class => 'field_info' 
         .group_radio_button
           = f.radio_button :join_mode, Group::JOIN_FREE
-          = f.label 'xixi',  t('groups.join_mode.no_restrict') 
+          = f.label 'join_mode_1',  t('groups.join_mode.no_restrict') 
           %br
           = f.radio_button :join_mode, Group::JOIN_AFTER_AUTHENTICATAION  
-          = f.label 'xixi', t('groups.join_mode.authenticate_before_join') 
+          = f.label 'join_mode_2', t('groups.join_mode.authenticate_before_join') 
           %br
           = f.radio_button :join_mode, Group::JOIN_BY_INVITATION_FROM_ADMIM
-          = f.label t('groups.join_mode.invite_by_admin') 
+          = f.label 'join_mode_3', t('groups.join_mode.invite_by_admin') 
         = error_on(@group, :join_mode)
+        - unless is_edit
+          %span.sync_to_weibo
+            = check_box_tag 'sina_weibo', 'yes', true  
+            = label_tag 'sina_weibo', '同时发布到新浪微博'
       .field.hide
         = f.text_field :image_url_large
         = f.text_field :image_url_medium

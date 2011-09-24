@@ -207,6 +207,16 @@ class Group < ActiveRecord::Base
     end
   end
 
+  def weibo_image_file
+    url =  Rails.root.to_s + "/public#{image_url(:thumb_large)}" 
+    File.new(url)
+  end
+
+  def weibo_status(url)
+     str = I18n.t('groups.weibo_status', {:type => self.item.name,
+                 :name => self.name, :url => "http://www.haoxiangwan.net#{url}"})
+  end
+
 
   private
   def default_url(size)

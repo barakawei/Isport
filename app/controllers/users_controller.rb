@@ -51,18 +51,80 @@ class UsersController < ApplicationController
     render 'devise/passwords/change_password.html.haml' 
   end
 
+  def set_account
+    @user = current_user
+    @auth = @user.authorizations.first
+    @skip_binding = @auth && @auth.bind_status == Authorization::SKIP_BINDING
+    @current_pass = @skip_binding ? '...' : '' 
+    @weibo_user = @auth.get_details if @auth
+    @weibo_name = @weibo_user.name if @weibo_user
+  end
+
+  
+  def weibo_already_binded_error 
+    @user = current_user
+    @error = I18n.t('activerecord.errors.messages.bind_alreay_exist')
+    @skip_binding = true
+    @current_pass = '...'
+    render 'set_account' 
+  end
+
   def update_password
     @user = current_user
+    @auth = @user.authorizations.first 
+    params['current_password'] = '3275315321' if @auth.bind_status == Authorization::SKIP_BINDING 
     if @user.update_with_password(params)
+      @auth.update_attributes(:bind_status => Authorization::BINDED) if @auth.bind_status == Authorization::SKIP_BINDING
       sign_in(@user, :bypass => true)
       redirect_to root_path, :notice => "Password updated!"
     else
-      render 'devise/passwords/change_password.html.haml' 
+      render 'set_account' 
     end
   end
 
+  def update_email
+    email = params[:email] 
+    @user = current_user
+    if User.where(:email => email).size > 0 && email != @user.email
+      @user.errors[:email] = I18n.t('activerecord.errors.messages.already_used')
+      @user.email = email
+      render 'set_account' 
+    else
+      if @user.update_attributes(:email => email)
+        redirect_to root_path     
+      else
+        render 'set_account'
+      end
+    end
+  end
+
+  def delete_auth
+    current_user.authorizations.first.destroy 
+    redirect_to :back
+  end
+
+  
+
   def online_user
    @online_user = Person.joins(:user).joins( :profile ).where(["last_request_at > ?", 5.minutes.ago]).where("location_id is not null").paginate(:page => params[:page], :per_page => 100)
+  end
+
+  def validate_email
+    email = params[:email]
+    if User.where(:email => email).size > 0 && email != current_user.email
+      render :text => 'false' 
+    else
+      render :text => 'true' 
+    end
+  end
+
+  def validate_email_exist
+    email = params[:email]  
+    if User.where(:email => email).size > 0
+      render :text => 'true' 
+    else
+      render :text => 'false' 
+    end
   end
   
 end

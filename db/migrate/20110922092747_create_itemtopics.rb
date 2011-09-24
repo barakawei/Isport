@@ -1,6 +1,6 @@
 class CreateItemtopics < ActiveRecord::Migration
   def self.up
-    create_table :itemtopics do |t|
+    create_table :item_topics do |t|
       t.string :name
       t.integer :item_id
       t.integer :key_topic
@@ -14,6 +14,6 @@ class CreateItemtopics < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :itemtopics
+    drop_table :item_topics
   end
 end

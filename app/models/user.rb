@@ -25,6 +25,7 @@ class User < ActiveRecord::Base
       access_token, access_token_secret = params[:access_token], params[:access_token_secret]
       authorization = find_or_create_by_provider_and_uid(provider, uid) 
       authorization.update_attributes(params.except(:provider,:uid))
+      authorization
     end
   end
 
@@ -49,6 +50,27 @@ class User < ActiveRecord::Base
 
   def contact_for_person_id(person_id)
         Contact.where(:user_id => self.id, :person_id => person_id).first if person_id
+  end 
+
+  def self.create_user_by_weibo(weibo_user)
+    user = User.build(:email => "#{Authorization::P_SINA}user_#{weibo_user.id}#{User.count+1}@haoxiangwan.net", 
+                       :password => '3275315321',
+                       :password_confirmation => '3275315321')
+    name = weibo_user.name
+    location_info = weibo_user.location
+    city_name = location_info.split(' ')[1];
+    city  = City.find_by_name(city_name)
+    city_id = city ? city.id : 1 
+    location = Location.create(:city_id => city_id)
+    
+    if user.save
+      user.profile.name = name
+      user.profile.gender = weibo_user.gender == 'm' ? 1 : 0 
+      user.profile.location = location 
+      user.profile.save
+    else
+    end
+    user
   end 
 
   def update_profile(params)
