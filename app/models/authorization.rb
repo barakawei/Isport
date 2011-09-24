@@ -4,6 +4,8 @@ class Authorization < ActiveRecord::Base
   BINDED = 2
   CRLF = "\r\n"
 
+  P_SINA = 'sina'
+
   belongs_to :user
   
   validate :user_id, :uid, :provider, :presence => true
@@ -15,10 +17,19 @@ class Authorization < ActiveRecord::Base
     auth_info = Weibo::Base.new(oauth).verify_credentials
   end
 
-  def get_details
-    oauth = Weibo::OAuth.new(Weibo::Config.api_key, Weibo::Config.api_secret)
-    oauth.authorize_from_access(self.access_token, self.access_token_secret)
+  def self.get_user_details_by_oauth(oauth)
+    oauth.authorize_from_access(oauth.access_token.token, oauth.access_token.secret)
     auth_info = Weibo::Base.new(oauth).verify_credentials
+  end
+
+  def self.get_authorized_request(rtoken, rsecret, oauth_verifier)
+    oauth = Weibo::OAuth.new(Weibo::Config.api_key, Weibo::Config.api_secret)
+    oauth.authorize_from_request(rtoken, rsecret, oauth_verifier)
+    oauth
+  end
+
+  def get_details
+    Authorization.get_user_details(self.access_token, self.access_token_secret) 
   end
 
   def create_weibo_with_photo(status, file)

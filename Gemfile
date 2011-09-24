@@ -23,7 +23,6 @@ gem 'date_validator','0.6.2'
 gem 'settingslogic','2.0.6'
 gem 'redis-store','1.0.0.1'
 gem 'acts_as_list', '~> 0.1.4'
-gem 'omniauth'
 
 gem "sinatra"
 gem "oauth"
