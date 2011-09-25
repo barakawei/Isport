@@ -45,7 +45,7 @@ class PicsController < ApplicationController
       @photo = Pic.initialize(params[:photo], self.request.host, self.request.port,current_user.person)
       @photo.pic_type = params[ :pic_type ]
       if @photo.save
-        @photo.update_albums(current_user.person)
+        @photo.update_albums(current_user.person,params)
         @photo.process
 
         respond_to do |format|
@@ -64,8 +64,8 @@ class PicsController < ApplicationController
   def update_description
     @event = Event.find(params[:id])
     pics = Pic.where(:id => [*params[:photos]])
-    status_message = {:content => ""}
-    @status_message =StatusMessage.initialize(current_user,status_message)
+    content ="%{event;#{@event.id}}"
+    @status_message =StatusMessage.initialize(current_user,content)
     if pics && pics.size > 0
       pics.each do |pic|
        pic.update_attributes(:description => params[:desc][pic.id.to_s])

@@ -1,16 +1,3 @@
-
-jQuery.fn.center = (function() {
-  var $window = $(window);
-  return function () {
-    this.css({
-      position: "absolute",
-      top: ($window.height() - this.height()) / 2 + $window.scrollTop() + "px",
-      left:($window.width() - this.width()) / 2 + $window.scrollLeft() + "px"
-    });
-    return this;
-  };
-})();
-
 (function() {
   var Lightbox = function() {
     var self = this;
@@ -242,9 +229,6 @@ jQuery.fn.center = (function() {
       var left = (width/2-35)-(imageThumb.attr("index") * 70);
       self.imageset.css("left", left+"px");
       self.auto_resize_pic();
-      imgReady(imageThumb.attr( "data-full-photo" ),function(){
-        self.auto_image_height(this.height);
-      });
       return self;
     };  
     

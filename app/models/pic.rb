@@ -56,7 +56,7 @@ class Pic < ActiveRecord::Base
     self.remote_photo_name = remote_path.slice(name_start + 1, remote_path.length)
   end
 
-  def update_albums(person)
+  def update_albums(person,params={})
     if self.pic_type === 'event'
       event = Event.find(params[:id])
       event.albums.first.pics << self

@@ -1,9 +1,13 @@
 module ApplicationHelper
   def post_content_tag( post )
-    if post.respond_to?(:format_mentions)
-      message = post.format_mentions(post.content)
+    if post.respond_to?(:format_message)
+      message = post.format_message(post.content)
     end
-    return message.html_safe
+    if message.nil?
+      message
+    else
+      message.html_safe
+    end
   end
 
   def follow_button_tag( person )
@@ -123,9 +127,11 @@ module ApplicationHelper
   end
 
   def person_link(person, opts={})
-    "<a href='/people/#{person.id}' class='#{opts[:class]}'>
-  #{person.name}
-</a>".html_safe
+    "<a href='/people/#{person.id}' class='#{opts[:class]}'>#{person.name}</a>".html_safe
+  end
+
+  def event_link(event, opts={})
+    "<a href='/events/#{event.id}' class='#{opts[:class]}'>#{event.title}</a>".html_safe
   end
 
   def event_image_tag(event,size)
