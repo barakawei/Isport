@@ -24,6 +24,7 @@
       .create_post
         = form_tag '', do
           = text_area_tag 'weibo'
+          = label_tag 'weibo', '说点什么吧...', :class => 'placeholder'
       .new_event.hide
         = render 'common/big_link_button', :content => '发起活动', :path => new_event_path 
       .new_post
@@ -49,7 +50,11 @@
   $.get("/home/show_post");
   $('.create_post textarea').focusin(function() {
     $(this).css('height', '60px'); 
+    $("label.placeholder").hide();
   });
   $('.create_post textarea').focusout(function() {
-    $(this).css('height', '30px'); 
+    if ($.trim($(this).val()) == '' ) {
+      $("label.placeholder").show();
+      $(this).css('height', '30px'); 
+    }
   });

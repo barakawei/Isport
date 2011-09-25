@@ -412,16 +412,22 @@
       width: 15px; }
   .feed_toolbar .create_post {
     float: left;
+    position: relative;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     border-radius: 5px;
     behavior: url(/javascripts/PIE.htc);
-    border: 2px solid #d5ddde; }
+    border: 1px solid #888888; }
     .feed_toolbar .create_post textarea {
       width: 500px;
       height: 30px;
       margin: 5px;
       border: none; }
+    .feed_toolbar .create_post label.placeholder {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      font-size: 14px; }
   .feed_toolbar .new_post {
     float: right; }
   .feed_toolbar ul li {
