@@ -410,13 +410,19 @@
         :width 15px
   .create_post
     :float left
+    :position relative
     @include border-radius(5px)
-    :border 2px solid #d5ddde 
+    :border 1px solid #888
     textarea
       :width 500px 
       :height 30px
       :margin 5px
       :border none
+    label.placeholder
+      :position absolute
+      :top 10px
+      :left 10px
+      :font-size 14px
   .new_post
     :float right
   ul
