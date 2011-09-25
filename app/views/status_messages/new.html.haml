@@ -2,6 +2,7 @@
   = include_stylesheets :sepcial_pages_events_upload_pic, :media => 'all'
   = include_stylesheets :jquery_fancybox_css, :media => 'all'
   = include_javascripts :jquery_fancybox
+  = include_javascripts :mention
   
 .container.upload_area
   #upload_event_pic.status_message_pic
@@ -12,6 +13,7 @@
       = form_for(@status_message) do |status|
         .photo_form.field
           = status.text_area :content,:class => 'content'
+          = hidden_field_tag :contacts
           %ul#photozone
           #file-upload.glass_button
             ='+ 上传图片'

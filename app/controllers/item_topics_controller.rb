@@ -11,4 +11,7 @@ class ItemTopicsController < ApplicationController
     raise ActionController::RoutingError.new("such action only can be exeute by admin") unless current_user.try(:admin?)
   end
 
+  def create
+  end
+
 end

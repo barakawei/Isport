@@ -5,6 +5,11 @@ if (page == ''){
 }else{
   $('.stream').append(content);
 }
+tab = '<%=@tab%>';
+if(tab != ''  ){
+  $( '.current' ).removeClass( 'current' );
+  $( '#'+tab).addClass( 'current' );
+}
 
 
 

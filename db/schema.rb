@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110925080117) do
+ActiveRecord::Schema.define(:version => 20110925152905) do
 
   create_table "administrators", :force => true do |t|
     t.integer  "user_id"
@@ -126,10 +126,10 @@ ActiveRecord::Schema.define(:version => 20110925080117) do
     t.integer  "group_id",           :default => 0
     t.integer  "status",             :default => 0
     t.string   "status_msg"
-    t.integer  "audit_person_id"
     t.integer  "participants_count", :default => 0
     t.integer  "comments_count",     :default => 0
     t.integer  "fans_count",         :default => 0
+    t.integer  "audit_person_id"
   end
 
   create_table "favorites", :force => true do |t|
@@ -215,6 +215,7 @@ ActiveRecord::Schema.define(:version => 20110925080117) do
     t.datetime "updated_at"
     t.integer  "followers_count",  :default => 0
     t.integer  "comments_count",   :default => 0
+    t.text     "description"
     t.integer  "person_id"
   end
 
@@ -256,6 +257,13 @@ ActiveRecord::Schema.define(:version => 20110925080117) do
   add_index "memberships", ["group_id"], :name => "index_memberships_on_group_id"
   add_index "memberships", ["person_id", "group_id"], :name => "index_memberships_on_person_id_and_group_id", :unique => true
   add_index "memberships", ["person_id"], :name => "index_memberships_on_person_id"
+
+  create_table "mentions", :force => true do |t|
+    t.integer  "person_id"
+    t.integer  "post_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "messages", :force => true do |t|
     t.integer  "conversation_id"
@@ -311,11 +319,12 @@ ActiveRecord::Schema.define(:version => 20110925080117) do
     t.datetime "updated_at"
     t.integer  "position"
     t.integer  "status_message_id"
-    t.integer  "comments_count",    :default => 0
+    t.integer  "comments_count",         :default => 0
+    t.string   "avatar_processed_image"
   end
 
   create_table "post_visibilities", :force => true do |t|
-    t.integer  "contact_id"
+    t.integer  "person_id"
     t.integer  "post_id"
     t.datetime "created_at"
     t.datetime "updated_at"

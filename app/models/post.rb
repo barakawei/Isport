@@ -2,12 +2,13 @@ class Post < ActiveRecord::Base
   belongs_to :author, :class_name => 'Person'
   has_many :post_visibilities
   has_many :contacts, :through => :post_visibilities
-  has_many :comments
+  has_many :comments, :dependent => :destroy
+  has_many :mentions, :dependent => :destroy
 
   belongs_to :item_topic, :counter_cache => true
 
   def subscribers(user,action)
-    user.followed_people
+    user.befollowed_people
   end
   
   def dispatch_post( action=false )
@@ -22,7 +23,7 @@ class Post < ActiveRecord::Base
   def as_json(opts={})
     {
         :post => {
-          :id     => self.id
+          :id => self.id
         }
     }
   end  

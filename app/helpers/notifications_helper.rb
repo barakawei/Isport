@@ -35,6 +35,10 @@ module NotificationsHelper
         event_link =  "<a href='#{object_path(event)}'>#{event.title}</a>"
         comment_link =  "<a href='#{object_path(event)}'>#{t( 'comment' )}</a>"
         translation(target_type, :actor_link => actor_link,:comment_link => comment_link,:event_link =>event_link )
+      elsif note.instance_of?( Notifications::Mention )
+        post = note.target.post
+        post_link = "<a href='#{object_path(post)}'>#{t( 'message' )}</a>"
+        translation(target_type, :actor_link => actor_link,:post_link => post_link)
       end
     else 
       translation(target_type, :actor_link => actor_link)

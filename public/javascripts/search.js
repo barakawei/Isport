@@ -14,7 +14,7 @@ var Search = {
   parse : function(data) {
     var results=new Array();
     for( var i in data ){
-      person_element = data[ i ].person;
+      person_element = data[ i ];
       person_json = {data : person_element, value : person_element['name']};
       results.push( person_json );
     }

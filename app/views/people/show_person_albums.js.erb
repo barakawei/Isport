@@ -1,0 +1,16 @@
+content = "<%= escape_javascript(render('albums/albums_container')) %>";
+page = '<%=@page%>';
+if (page == ''){ 
+  $('.stream').html(content);
+}else{
+  $('.stream').append(content);
+}
+tab = '<%=@tab%>';
+if(tab != ''  ){
+  $( '.current' ).removeClass( 'current' );
+  $( '#'+tab).addClass( 'current' );
+}
+
+
+
+
