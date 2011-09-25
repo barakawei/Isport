@@ -25,6 +25,7 @@
         = form_tag '', do
           = text_area_tag 'weibo'
           = label_tag 'weibo', '说点什么吧...', :class => 'placeholder'
+        
       .new_event.hide
         = render 'common/big_link_button', :content => '发起活动', :path => new_event_path 
       .new_post
@@ -39,6 +40,14 @@
         %a{:class => 'at_friend'} 
           %span.img
           %span.desc='好友'
+        .popup_box.topic_box.hide
+          .box_border_top 
+          .box_center
+            .box_border_left
+            .box_content
+              = link_to 'close', 'javascript:void(0)', :class => 'close_box'
+            .box_border_right
+          .box_border_bottom
       .clear
 
 
@@ -59,3 +68,12 @@
       $(this).css('height', '30px'); 
     }
   });
+
+  $('.post_type_bar a.topic').click(function(){
+    $('.topic_box').show();      
+  });
+
+  $('a.close_box').click(function() {
+    $(this).closest('.topic_box').hide();
+  });
+
