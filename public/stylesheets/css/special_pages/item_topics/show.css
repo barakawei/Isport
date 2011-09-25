@@ -4,16 +4,18 @@
   margin-top: 20px; }
   .topic_area .topic_info {
     float: left;
-    position: relative; }
+    position: relative;
+    background-color: #c6c6c3;
+    width: 250px;
+    height: 230px;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    behavior: url(/javascripts/PIE.htc); }
     .topic_area .topic_info .topic_image {
-      width: 50px;
-      width: 50px;
+      width: 100px;
+      width: 100px;
       float: left;
       position: absolute;
-      left: 2px;
-      top: 2px; }
-      .topic_area .topic_info .topic_image img {
-        -moz-border-radius: 2px;
-        -webkit-border-radius: 2px;
-        border-radius: 2px;
-        behavior: url(/javascripts/PIE.htc); }
+      left: 8px;
+      top: 8px; }
