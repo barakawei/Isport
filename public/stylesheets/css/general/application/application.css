@@ -807,8 +807,8 @@ a.app_black_link_button {
   .stream_element .action .delete, .pic_comments .action .delete {
     cursor: pointer;
     position: absolute;
-    top: 0;
-    right: 10px;
+    top: 5px;
+    right: 15px;
     filter: alpha(opacity=40);
     -moz-opacity: 0.4;
     -khtml-opacity: 0.4;

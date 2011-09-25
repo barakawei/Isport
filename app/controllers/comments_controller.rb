@@ -13,6 +13,7 @@ class CommentsController < ApplicationController
     if @post
       @comments = @post.comments.includes(:author => :profile)
     end
+    render :layout => false
   end
 
   def destroy
