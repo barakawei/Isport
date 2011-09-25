@@ -216,6 +216,7 @@ ActiveRecord::Schema.define(:version => 20110925152905) do
     t.integer  "followers_count",  :default => 0
     t.integer  "comments_count",   :default => 0
     t.text     "description"
+    t.integer  "person_id"
   end
 
   create_table "items", :force => true do |t|

@@ -152,8 +152,8 @@ module ApplicationHelper
     end
   end
 
-  def theme_image_tag(theme, size=:thumb_small)
-    "<img title=\"#{h(theme.name)}\" class=\"avatar \"  src=\"#{theme.image_url(size)}\" >".html_safe
+  def item_topic_image_tag(topic, size=:thumb_small)
+    "<img title=\"#{h(topic.name)}\" class=\"avatar \"  src=\"#{topic.image_url(size)}\" >".html_safe
   end
 
   def item_events_notify

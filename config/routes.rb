@@ -47,7 +47,7 @@ Isport::Application.routes.draw do
   resources :comments
   resources :pic_comments
 
-  resources :themes
+  resources :item_topics
 
   root :to => "welcome#index"
 

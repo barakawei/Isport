@@ -5,7 +5,7 @@ class Post < ActiveRecord::Base
   has_many :comments, :dependent => :destroy
   has_many :mentions, :dependent => :destroy
 
-  belongs_to :itemtopic, :counter_cache => true
+  belongs_to :item_topic, :counter_cache => true
 
   def subscribers(user,action)
     user.befollowed_people
@@ -28,5 +28,5 @@ class Post < ActiveRecord::Base
     }
   end  
   
-
 end
+

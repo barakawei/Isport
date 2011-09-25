@@ -120,6 +120,8 @@ stylesheets:
   special_pages_items_commom:
     - public/stylesheets/css/special_pages/item/commom.css
 
+  special_pages_item_topics_show:
+    - public/stylesheets/css/special_pages/item_topics/show.css
 
   sepcial_pages_groups_form:
     - public/stylesheets/css/special_pages/groups/form.css

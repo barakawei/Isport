@@ -64,6 +64,7 @@ class Person < ActiveRecord::Base
 
   def as_json(opts={})
     {
+      :person => {
         :id => self.id,
         :name => self.name,
         :avatar => self.profile.image_url(:thumb_small),
