@@ -4,6 +4,7 @@
   =include_javascripts :show_photo
   =include_javascripts :status_message
   = include_javascripts :google_map
+  = include_javascripts :jquery_validation
   =javascript_include_tag "http://maps.google.com/maps/api/js?sensor=false"
 .span-18.last.content_panel
   .home_container
@@ -46,6 +47,26 @@
             .box_border_left
             .box_content
               = link_to 'close', 'javascript:void(0)', :class => 'close_box'
+              %h3='发起新话题'
+              .new_topic_form
+                = form_for @item_topic, :html => {:multipart => true}, do |f|
+                  = render "photos/new_item_topic_photo", :topic=> @item_topic, :is_edit => false, :model_name => "item_topic"
+                  .topic_content_area
+                    .field
+                      = f.text_field :name
+                      = f.label '话题名称', :class => 'topic_name'
+                      = error_on(@item_topic, :name)
+                    .field
+                      = f.text_area :description
+                      = f.label '话题描述...', :class => 'topic_desc'
+                      = error_on(@item_topic, :description)
+                    .field.select
+                      = f.label '话题类型:', :class => "item_id"
+                      = collection_select(:item_topic, :item_id, Item.all, :id, :name, {:prompt => true})
+                    .actions
+                      = f.submit '保存', :class => "glass_button"
+                  
+                      
             .box_border_right
           .box_border_bottom
       .clear
@@ -57,6 +78,26 @@
 .span-6.last.right_bar
   = render 'people/person_list', :person => @person
 :javascript
+  $(function(){
+    $('#new_item_topic').validate({
+      rules: {
+        'item_topic[name]': {
+          required: true 
+        }, 
+        'item_topic[item_id]': {
+          required: true
+        }
+      },
+      messages: {
+        'item_topic[name]': {
+          required: "*请输入话题名称"
+        },
+        'item_topic[item_id]': {
+          required: "*请选择话题类型" 
+        }
+      } 
+    });
+  });
   $.get("/home/show_post");
   $('.create_post textarea').focusin(function() {
     $(this).css('height', '60px'); 
@@ -68,6 +109,27 @@
       $(this).css('height', '30px'); 
     }
   });
+    
+  $('.topic_content_area #item_topic_name').focusin(function(){
+    $('.topic_content_area label.topic_name').hide();
+  });
+
+  $('.topic_content_area #item_topic_name').focusout(function(){
+    if ($.trim($(this).val()) == '' ) {
+      $('.topic_content_area label.topic_name').show();
+    }
+  });
+
+  $('.topic_content_area #item_topic_description').focusin(function(){
+    $('.topic_content_area label.topic_desc').hide();
+  });
+
+  $('.topic_content_area #item_topic_description').focusout(function(){
+    if ($.trim($(this).val()) == '' ) {
+      $('.topic_content_area label.topic_desc').show();
+    }
+  });
+
 
   $('.post_type_bar a.topic').click(function(){
     $('.topic_box').show();      

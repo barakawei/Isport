@@ -132,6 +132,10 @@ module ApplicationHelper
     "<img title=\"#{h(event.title)}\" class=\"avatar \"  src=\"#{event.image_url(size)}\" >".html_safe
   end
 
+  def item_topic_image_tag(topic, size)
+    "<img title=\"#{h(topic.name)}\" class=\"avatar \"  src=\"#{topic.image_url(size)}\" >".html_safe
+  end
+
   def group_image_tag(group, size=:thumb_small)
     "<img title=\"#{h(group.name)}\" class=\"avatar \"  src=\"#{group.image_url(size)}\" >".html_safe
   end
