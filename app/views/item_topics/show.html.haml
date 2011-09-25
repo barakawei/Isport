@@ -1,0 +1,9 @@
+-content_for :head do
+  = include_stylesheets :special_pages_item_topics_show, :media => 'all'
+
+.span-24.last
+  .topic_area
+    .topic_info
+      .topic_image
+        = item_topic_image_tag(@topic, :thumb_small)
+
