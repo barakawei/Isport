@@ -1,4 +1,11 @@
 module ApplicationHelper
+  def post_content_tag( post )
+    if post.respond_to?(:format_mentions)
+      message = post.format_mentions(post.content)
+    end
+    return message.html_safe
+  end
+
   def follow_button_tag( person )
     link_html = "<div class='follow_button'></div>"
     contact = current_user.contact_for( person )
@@ -75,6 +82,12 @@ module ApplicationHelper
     avatar_html = "<img  class=\"avatar person_avatar_detail \" data_person_id=\"#{person.id}\" src=\"#{person.profile.image_url(size)}\">"
     avatar_html.html_safe
   end
+
+  def person_link_show( person,size=:thumb_small )
+    name_html = "<span  class=\"avatar person_avatar_detail \" data_person_id=\"#{person.id}\" src=\"#{person.profile.image_url(size)}\">#{person.name}</span>"
+    name_link = "<a href='/people/#{person.id}'>#{name_html}</a>".html_safe
+    "<span class='avatar_container'>#{name_link}</span>".html_safe
+  end
   
 
   def owner_image_link
@@ -111,7 +124,7 @@ module ApplicationHelper
 
   def person_link(person, opts={})
     "<a href='/people/#{person.id}' class='#{opts[:class]}'>
-  #{h(person.name)}
+  #{person.name}
 </a>".html_safe
   end
 

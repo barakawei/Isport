@@ -19,6 +19,8 @@ javascripts:
     - public/javascripts/google_analytics.js
   status_message:
     - public/javascripts/statusMessage.js
+  mention:
+    - public/javascripts/mention.js
   scroll_page:
     - public/javascripts/scrollPage.js
   show_photo:

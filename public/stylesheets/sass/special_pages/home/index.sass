@@ -1,5 +1,6 @@
 @import '../../general/ui/mixins'
 .home_container
+  :float left
   :width 680px
   margin-top: 30px
   .new_event
@@ -35,6 +36,7 @@
     
   
 .events_panel
+  :float left
   :margin-top 0 !important
   .stream_element
     :background-color white
@@ -372,11 +374,51 @@
 
         
 .feed_toolbar
+  :float left
+  :padding 10px 0px 10px 20px
   :margin-top 7px
   :background white
-  :width 680px
-  :height 62px
+  :width 660px
   :border-bottom 1px solid #ECEAE8
+  .post_type_bar
+    :float left
+    :width 500px
+    a
+      :margin 5px 10px 0 0 
+      :display block
+      :float left
+      span
+        :display block
+        :float left
+      span.desc 
+        :font-size 14px
+        :line-height 14px
+        :margin-left 3px
+        :color #666
+      span.img
+        :width 19px
+        :background-image url("/images/ui/weibo_global.png")
+        :background-position -63px 0 
+        height: 14px 
+    a.topic
+      span.img
+        :background-position -123px 0 
+        :width 17px
+    a.at_friend
+      span.img
+        :background-position -434px 0 
+        :width 15px
+  .create_post
+    :float left
+    @include border-radius(5px)
+    :border 2px solid #d5ddde 
+    textarea
+      :width 500px 
+      :height 30px
+      :margin 5px
+      :border none
+  .new_post
+    :float right
   ul
     li
       float: left

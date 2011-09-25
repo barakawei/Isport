@@ -1,3 +1,16 @@
 content = "<%= escape_javascript(render('people/person_event_container')) %>";
+page = '<%=@page%>';
+if (page == ''){ 
+  $('.stream').html(content);
+}else{
+  $('.stream').append(content);
+}
+tab = '<%=@tab%>';
+if(tab != ''  ){
+  $( '.current' ).removeClass( 'current' );
+  $( '#'+tab).addClass( 'current' );
+}
 
-$('.person_event_container').append(content);
+
+
+

@@ -31,6 +31,8 @@ class Person < ActiveRecord::Base
            :source => :event
   has_one :profile
   has_many :albums, :as => :imageable
+  has_many :post_visibilities
+  has_many :posts, :through => :post_visibilities
 
   has_many :item_topic_followships, :dependent => :destroy
   has_many :concern_itemtopics, :through => :item_topic_followships, :source => :item_topic
@@ -62,12 +64,12 @@ class Person < ActiveRecord::Base
 
   def as_json(opts={})
     {
-    :person => {
         :id => self.id,
         :name => self.name,
+        :avatar => self.profile.image_url(:thumb_small),
         :image_url =>self.profile.image_url(:thumb_small),
         :url => "/people/#{self.id}"
-      }
+      
     }
   end 
 
@@ -79,6 +81,13 @@ class Person < ActiveRecord::Base
     item_ids.each do |item_id|
       Favorite.create(:item_id => item_id, :person_id => self.id)
     end
+  end
+
+  def my_albums
+    person_albums = self.albums
+    events = self.involved_events
+    event_albums = Album.joins( :pics ).where( "albums.imageable_type=?","Event" ).where(:imageable_id => events).where("pics.author_id" => self).group("albums.id")
+    albums = person_albums + event_albums
   end
 
 end

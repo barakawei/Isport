@@ -3,6 +3,7 @@
   =include_javascripts :scroll_page
   =include_javascripts :show_photo
   =include_javascripts :status_message
+  =include_stylesheets :sepcial_pages_home_index
 .person_left_bar
   .avatar_panel
     #profile_photo
@@ -32,6 +33,33 @@
         %span="个人介绍:"
         %p
           = @person.profile.bio
+
+    .avatar_panel_container
+      #followed_people
+        - if @followed_people.length > 0
+          .title
+            .name
+              = '关注'
+            .link
+              = element_more_tag(@person,:show_friends,:followed)
+            .clear
+          .contacts
+            - for person in @followed_people[ 0...16]
+              .person_avatar
+                = person_image_link(person)
+      #followed_people
+        - if @befollowed_people.length > 0
+          .title
+            .name
+              = '粉丝'
+            .link
+              = element_more_tag(@person,:show_friends,:befollowed)
+            .clear
+          .contacts
+            - for person in @befollowed_people[ 0...16]
+              .person_avatar
+                = person_image_link(person)
+            
     -if @person.joined_groups.size > 0  
       .groups
         .title
@@ -40,8 +68,6 @@
           .link
             = element_more_tag(@person,:show_groups)
           .clear
-
-
         %ul
           -for group in @person.joined_groups[ 0...5 ]
             %li
@@ -58,8 +84,6 @@
           .link
             = element_more_tag(@person,:show_items)
           .clear
-
-
         %ul
           -for item in @person.interests[ 0...5 ]
             %li
@@ -85,59 +109,41 @@
       .history_bar
         =render 'common/big_header_box', :number => @person.involved_events.size, :text => '活动', :background_color => '#ff8a3c'
         =render 'common/big_header_box', :number => @person.joined_groups.size, :text => '小组', :background_color => '#aad450'
-        =render 'common/big_header_box', :number => @person.event_comments.size+@person.topic_comments.size, :background_color => '#4ebaff', :text => '评论'
+        =render 'common/big_header_box', :number => @person.user.befollowed_people.size, :background_color => '#4ebaff', :text => '粉丝'
 
-    .following_people_panel
-      - if @followed_people.length > 0
-        =render 'common/header_box',:title => "关注"
-        - for person in @followed_people[ 0...24 ]
-          .person_avatar
-            = person_image_link(person)
-      - if @followed_people.length > 24
-        .people_more
-          = element_more_tag(@person,:show_friends,:followed)
-            
 
-    .following_people_panel
-      - if @befollowed_people.length > 0
-        .titile
-          =render 'common/header_box',:title => "粉丝"
-        - for person in @befollowed_people[ 0...24 ]
-          .person_avatar
-            = person_image_link(person)
-      - if @befollowed_people.length > 24
-        .people_more
-          = element_more_tag(@person,:show_friends,:befollowed)
-            
+    .home_tabs
+      %ul
+        %li
+          =link_to "信息","#",:id => 'my_posts'
+        %li
+          =link_to "活动","#",:id=>'my_events'        
+        %li
+          =link_to "照片","#",:id=>'my_albums'        
     .stream
-      .events_panel
-        .current_events
-          =render 'common/header_box',:title => "参加的活动"
-          .person_event_container
 :javascript
-  $.get("/people/show_person_events",{person_id:#{@person.id}}  ); 
+
+  $.get("/people/show_posts",{person_id:#{@person.id}}  ); 
 
   $( ".edit_profile" ).click( function(  ){
     $( location ).attr( "href","#{edit_profile_path}" );
   } );
 
-  $( ".my_events" ).live( "click",function(  ){  
-    $( ".select_on" ).removeClass( "select_on" );
-    $(this).addClass( "select_on" );
+  $( "#my_events" ).live( "click",function(  ){  
     $.get("/people/show_person_events",{person_id:#{@person.id}}  ); 
+    return false;
   } );
 
-  $( ".my_posts" ).live( "click",function(  ){
-    $( ".select_on" ).removeClass( "select_on" );
-    $(this).addClass( "select_on" );
+  $( "#my_posts" ).live( "click",function(  ){
     $.get("/people/show_posts",{person_id:#{@person.id}}  ); 
+    return false;
   } );
 
-  $( ".my_profile" ).live( "click",function(  ){
-    $( ".select_on" ).removeClass( "select_on" );
-    $(this).addClass( "select_on" );
-    $.get("/people/show_person_profile",{person_id:#{@person.id}}  ); 
+  $( "#my_albums" ).live( "click",function(  ){
+    $.get("/people/show_person_albums",{person_id:#{@person.id}}  ); 
+    return false;
   } );
+
 
   $("abbr.timeago").timeago();
   $( ".new_message_action" ).colorbox();

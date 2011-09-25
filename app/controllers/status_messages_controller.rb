@@ -4,8 +4,7 @@ class StatusMessagesController < ApplicationController
   respond_to :js
   def create
     pics = Pic.where(:id => [*params[:photos]])
-    @status_message =StatusMessage.initialize(current_user,params[:status_message])
-
+    @status_message =StatusMessage.initialize(current_user,params[ :contacts ])
     if !pics.empty?
       pics.each do |p|
         p.update_attributes(:description => params[:desc][p.id.to_s])

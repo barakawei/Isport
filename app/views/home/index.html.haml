@@ -10,9 +10,9 @@
     .nav_tab
       %ul
         %li
-          =link_to "动态信息","/home/show_post",:remote => true,:id => 'post'
+          =link_to "信息","/home/show_post",:remote => true,:id => 'post'
         %li
-          =link_to "活动信息","/home/show_event",:remote => true,:id=>'event_info'
+          =link_to "活动","/home/show_event",:remote => true,:id=>'event_info'
     .feed_toolbar
       %ul.event.hide
         %li
@@ -21,10 +21,23 @@
           =link_to "我的活动","/home/show_my_event",:remote => true,:id => 'my_event'
         %li
           =link_to "朋友活动","/home/show_following_event",:remote => true,:id => 'following_event'
+      .create_post
+        = form_tag '', do
+          = text_area_tag 'weibo'
       .new_event.hide
         = render 'common/big_link_button', :content => '发起活动', :path => new_event_path 
       .new_post
         = render 'common/big_link_button', :content => '分享', :path => new_status_message_path 
+      .post_type_bar
+        %a{:class => 'photo'} 
+          %span.img
+          %span.desc='图片'
+        %a{:class => 'topic'} 
+          %span.img
+          %span.desc='话题'
+        %a{:class => 'at_friend'} 
+          %span.img
+          %span.desc='好友'
 
 
     .events_panel
@@ -34,4 +47,9 @@
   = render 'people/person_list', :person => @person
 :javascript
   $.get("/home/show_post");
-
+  $('.create_post textarea').focusin(function() {
+    $(this).css('height', '60px'); 
+  });
+  $('.create_post textarea').focusout(function() {
+    $(this).css('height', '30px'); 
+  });

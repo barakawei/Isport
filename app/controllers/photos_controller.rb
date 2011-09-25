@@ -22,15 +22,15 @@ class PhotosController < ApplicationController
       else
         params[:photo][:user_file] = file_handler(params)
       end
-      @photo = Photo.initialize(params[ :photo ], self.request.host, self.request.port,current_user.person)
-
+      @photo = Pic.initialize(params[ :photo ], self.request.host, self.request.port,current_user.person)
+      @photo.pic_type = "avatar"
       if @photo.save
+        @photo.update_albums(current_user.person)
         @photo.process
         rounder_corner
         if params[:photo][:is_avatar]
           updateUrls(params, @photo)
         end
-
         respond_to do |format|
           if params[:authenticity_token] #upload with iframe
             format.html{ render(:layout => false , :json => {"success" => true, "data" => @photo}.to_json )}

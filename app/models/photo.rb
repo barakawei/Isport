@@ -28,6 +28,10 @@ class Photo < Post
     self.remote_photo_name = remote_path.slice(name_start + 1, remote_path.length)
   end
 
+  def update_avatar_albums(user)
+    user.person.albums.where( :name => "avatar").first.pics << pic
+  end
+
   
   def url(name = nil)
     if processed?

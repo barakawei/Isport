@@ -1,8 +1,6 @@
 class Contact < ActiveRecord::Base
   belongs_to :user
   belongs_to :person
-  has_many :post_visibilities
-  has_many :posts, :through => :post_visibilities
   
   
   scope :sharing, lambda {

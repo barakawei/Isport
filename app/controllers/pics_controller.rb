@@ -43,8 +43,9 @@ class PicsController < ApplicationController
         params[:photo][:user_file] = file_handler(params)
       end
       @photo = Pic.initialize(params[:photo], self.request.host, self.request.port,current_user.person)
+      @photo.pic_type = params[ :pic_type ]
       if @photo.save
-        @photo.update_albums(current_user,params)
+        @photo.update_albums(current_user.person)
         @photo.process
 
         respond_to do |format|
@@ -62,11 +63,18 @@ class PicsController < ApplicationController
 
   def update_description
     @event = Event.find(params[:id])
-    pids = params[:photos]
-    if pids && pids.size > 0
-      pids.each do |id|
-        Pic.find(id).update_attributes(:description => params[:desc][id])
+    pics = Pic.where(:id => [*params[:photos]])
+    status_message = {:content => ""}
+    @status_message =StatusMessage.initialize(current_user,status_message)
+    if pics && pics.size > 0
+      pics.each do |pic|
+       pic.update_attributes(:description => params[:desc][pic.id.to_s])
       end 
+      @status_message.pics << pics
+    end
+
+    if @status_message.save
+      @status_message.dispatch_post 
     end
     redirect_to album_pics_path(@event.albums.first)
   end

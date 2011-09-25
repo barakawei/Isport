@@ -5,10 +5,10 @@
     .content
       .from
         = person_link(post.author, :class => 'author')
+      .post_content
+        = post_content_tag(post)
       .photos
         = render 'photos/photos_container',:photos => post.pics
-      %p
-        = post.content
       .content_info
         %span.time.timeago{:datetime => post.created_at,:style=>"font-size: 11px"}
           =how_long_ago( post )
@@ -30,6 +30,5 @@
           = f.submit "回复", :class => 'glass_button inline'
           .cancle.inline.glass_button
             = "取消"
-
 
 

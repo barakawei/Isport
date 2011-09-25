@@ -61,17 +61,20 @@ Isport::Application.routes.draw do
     match '/people/edit_interests' => :edit_interests, :as => "edit_interests"
     match '/people/item_fans(/:city)' => :random_item_fans, :as => "random_item_fans", :via => :post,
           :constraints => { :city => /nanjing|shanghai|beijing|suzhou|guangzhou|shenzhen|hangzhou/}
+    match '/people/show_posts' => :show_posts,:as => "show_posts"
+    match '/people/show_items' => :show_items
+    match '/people/show_groups' => :show_groups
+    match '/people/update_profile' => :update_profile
+    match '/people/show_person_events' => :show_person_events
+    match '/people/show_person_profile' => :show_person_profile
+    match '/people/edit_profile' => :edit_profile,:as => 'edit_profile'
+    match '/people/friend_select' => :friend_select
+    match '/people/show_person_albums' => :show_person_albums
   end
 
-  match '/people/show_posts' => 'people#show_posts'
-  match '/people/show_items' => 'people#show_items'
-  match '/people/show_groups' => 'people#show_groups'
-  match '/profile/update_profile' => 'profiles#update_profile'
-  match '/people/show_person_events' => 'people#show_person_events'
-  match '/people/show_person_profile' => 'people#show_person_profile'
-  match '/people/edit_profile' => 'people#edit_profile',:as => 'edit_profile'
-  match '/people/friend_select' => 'people#friend_select'
-  resources :people
+  resources :people do
+    resources :albums
+  end
 
   controller :users do
     match 'getting_started' => :getting_started, :as => 'getting_started'
