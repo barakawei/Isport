@@ -93,7 +93,7 @@ class PeopleController < ApplicationController
 
 
   def show_posts
-    @posts = Post.where( :author_id => params[ :person_id ],:type => 'StatusMessage' ).order( "posts.created_at DESC" ).paginate(:page => params[:page], :per_page => 30)
+    @posts = Post.by_owner(params[ :person_id ]).order( "posts.created_at DESC" ).paginate(:page => params[:page], :per_page => 30)
     @page = params[ :page ]
     @tab = 'my_posts'
     respond_with @posts

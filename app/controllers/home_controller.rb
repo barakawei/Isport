@@ -28,7 +28,7 @@ class HomeController < ApplicationController
   end
 
   def show_post
-    @posts = Post.select("distinct(posts.id),posts.*").joins( "left join post_visibilities pv on(posts.id = pv.post_id) " ).where( "posts.type='StatusMessage' and (author_id = #{current_user.person.id} or pv.person_id = #{current_user.person.id})" ).order( "posts.created_at DESC" ).paginate(:page => params[:page], :per_page => 30)
+    @posts = Post.by_view( current_user.person ).order( "posts.created_at DESC" ).paginate(:page => params[:page], :per_page => 30)
     @event_tab = 'post'
     respond_with @posts
   end
