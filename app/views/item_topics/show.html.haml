@@ -6,4 +6,20 @@
     .topic_info
       .topic_image
         = item_topic_image_tag(@topic, :thumb_medium)
+      .topic_msg
+        .topic_name
+          = truncate(@topic.name, :length => 18)
+        .topic_owner
+          = "发起人： "
+          = link_to @topic.person.profile.name, person_path(@topic.person)
 
+      .topic_des
+        = truncate(@topic.description, :length => 140)
+
+    .topic_followers
+      .followers_title
+        = "关注者"
+
+      -@followers.each_with_index do |follower, index|
+        .follower{:class => ("last" if (index+1)%4==0)}
+          = person_image_link(follower)

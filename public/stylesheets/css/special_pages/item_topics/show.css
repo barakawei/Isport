@@ -1,21 +1,74 @@
 .topic_area {
   width: 150px;
   float: left;
-  margin-top: 20px; }
+  margin-top: 15px; }
   .topic_area .topic_info {
     float: left;
     position: relative;
-    background-color: #c6c6c3;
+    background-color: white;
+    border: 3px solid #d5ddde;
     width: 250px;
-    height: 230px;
     -moz-border-radius: 6px;
     -webkit-border-radius: 6px;
     border-radius: 6px;
     behavior: url(/javascripts/PIE.htc); }
     .topic_area .topic_info .topic_image {
       width: 100px;
-      width: 100px;
+      height: 100px;
       float: left;
       position: absolute;
       left: 8px;
       top: 8px; }
+      .topic_area .topic_info .topic_image img {
+        -moz-border-radius: 6px;
+        -webkit-border-radius: 6px;
+        border-radius: 6px;
+        behavior: url(/javascripts/PIE.htc); }
+    .topic_area .topic_info .topic_msg {
+      width: 130px;
+      height: 100px;
+      position: absolute;
+      top: 5px;
+      right: 6px;
+      float: left; }
+      .topic_area .topic_info .topic_msg .topic_name {
+        float: left;
+        color: black;
+        font-size: 16px; }
+      .topic_area .topic_info .topic_msg .topic_owner {
+        float: left;
+        color: black;
+        font-size: 12px;
+        position: absolute;
+        bottom: 1px; }
+    .topic_area .topic_info .topic_des {
+      float: left;
+      width: 250px;
+      overflow: hidden;
+      margin-top: 135px;
+      margin-left: 7px;
+      margin-bottom: 5px;
+      font-size: 14px;
+      color: #77777e;
+      text-indent: 21pt; }
+  .topic_area .topic_followers {
+    width: 250px;
+    margin-top: 15px;
+    margin-left: 3px;
+    float: left;
+    overflow: show; }
+    .topic_area .topic_followers .followers_title {
+      font-size: 16px;
+      color: blue;
+      margin-bottom: 10px; }
+    .topic_area .topic_followers .follower {
+      float: left;
+      width: 50px;
+      height: 50px;
+      margin-right: 8px;
+      margin-bottom: 8px; }
+      .topic_area .topic_followers .follower img {
+        -moz-border-radius: 2px;
+        -webkit-border-radius: 2px;
+        border-radius: 2px;
+        behavior: url(/javascripts/PIE.htc); }
