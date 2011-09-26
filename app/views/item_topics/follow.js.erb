@@ -1,0 +1,4 @@
+topic_id = <%= @topic.id %>;
+button = $(".tfollow[data_id='"+topic_id+"']" );
+link_html = "<%= escape_javascript(follow_topic_tag(@topic)) %>";
+button.replaceWith( link_html );

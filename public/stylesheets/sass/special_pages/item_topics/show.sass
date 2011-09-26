@@ -55,6 +55,52 @@
       :color #77777E
       :text-indent 21pt
 
+  .follow_action
+    :width 256px
+    :height 40px
+    @include border-radius(6px)
+    :background-color #F4F4F4
+    :float left
+    :margin-top 10px
+    :position relative
+
+    .tfollow, .detfollow
+      :width 60px
+      :height 20px
+      :position absolute
+      :top 7px
+      :left 8px
+
+    .detfollow
+      :background-color #8DBC6E
+      span
+        background: url(/images/ui/icon-check.png) no-repeat 0 50%
+        :padding-left 18px
+      &:hover
+        :background-color #e76b75
+        span
+          :color #e76b75
+          background: url(/images/ui/icon-x.png) no-repeat 0 50%
+
+    .tfollow
+      :background-color lightGrey
+      span
+        :padding-left 18px
+        background: url(/images/ui/follow-gray.gif) no-repeat 0 50%
+        :color #777
+      &:hover
+        :background-color #8aba56
+        span
+          background: url(/images/ui/follow-white.gif) no-repeat 0 50%
+          :color white
+
+    .followers_count
+      :position absolute
+      :top 9px
+      :right 6px
+      :color blue
+      :font-size 12px
+      :font-weight bold
 
   .topic_followers
     :width 250px

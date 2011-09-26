@@ -51,6 +51,51 @@
       font-size: 14px;
       color: #77777e;
       text-indent: 21pt; }
+  .topic_area .follow_action {
+    width: 256px;
+    height: 40px;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    behavior: url(/javascripts/PIE.htc);
+    background-color: #f4f4f4;
+    float: left;
+    margin-top: 10px;
+    position: relative; }
+    .topic_area .follow_action .tfollow, .topic_area .follow_action .detfollow {
+      width: 60px;
+      height: 20px;
+      position: absolute;
+      top: 7px;
+      left: 8px; }
+    .topic_area .follow_action .detfollow {
+      background-color: #8dbc6e; }
+      .topic_area .follow_action .detfollow span {
+        background: url(/images/ui/icon-check.png) no-repeat 0 50%;
+        padding-left: 18px; }
+      .topic_area .follow_action .detfollow:hover {
+        background-color: #e76b75; }
+        .topic_area .follow_action .detfollow:hover span {
+          color: #e76b75;
+          background: url(/images/ui/icon-x.png) no-repeat 0 50%; }
+    .topic_area .follow_action .tfollow {
+      background-color: lightGrey; }
+      .topic_area .follow_action .tfollow span {
+        padding-left: 18px;
+        background: url(/images/ui/follow-gray.gif) no-repeat 0 50%;
+        color: #777777; }
+      .topic_area .follow_action .tfollow:hover {
+        background-color: #8aba56; }
+        .topic_area .follow_action .tfollow:hover span {
+          background: url(/images/ui/follow-white.gif) no-repeat 0 50%;
+          color: white; }
+    .topic_area .follow_action .followers_count {
+      position: absolute;
+      top: 9px;
+      right: 6px;
+      color: blue;
+      font-size: 12px;
+      font-weight: bold; }
   .topic_area .topic_followers {
     width: 250px;
     margin-top: 15px;

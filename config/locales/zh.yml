@@ -215,12 +215,9 @@ zh:
       findgroups: "寻找你喜欢的小组吧，认识志同道合的人"
       groupsthiscity: "%{count}个同城小组"
 
-  themes:
-      name: "主题名"
-      new_theme: "增加主题"
-      edit: "编辑主题"
-      save: "保存主题"  
-
+  item_topic:
+      followers_count: "%{count}位关注者"
+      
   album:
     default: '默认相册'
   welcome:
