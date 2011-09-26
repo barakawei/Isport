@@ -15,7 +15,7 @@ class StatusMessagesController < ApplicationController
     if @status_message.save
       @status_message.dispatch_post 
     end
-    redirect_to home_path
+    respond_with @status_message
   end
 
   def show

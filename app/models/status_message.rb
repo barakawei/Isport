@@ -18,12 +18,14 @@ class StatusMessage < Post
       form_message = format_pic_upload(text)
     elsif text.rindex("@{")
       form_message = format_mention(text)
+    else
+      form_message = text
     end
     form_message
   end
 
   def format_mention( text )
-    regex = /@\{([^;]+); ([^\}]+)\}/
+    regex = /@\{([^;]+);([^\}]+)\}/
     form_message = text.to_str.gsub(regex) do |matched_string|
       people = self.mentioned_people
       person = people.detect{ |p|
@@ -74,7 +76,7 @@ class StatusMessage < Post
   end
 
   def mentioned_people_from_string
-    regex = /@\{([^;]+); ([^\}]+)\}/
+    regex = /@\{([^;]+);([^\}]+)\}/
     return if self.contacts.nil?
     ids = self.contacts.scan(regex).map do |match|
       match.last
