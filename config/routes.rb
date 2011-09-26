@@ -13,6 +13,7 @@ Isport::Application.routes.draw do
   match "/users/validate_email_exist" => 'users#validate_email_exist', :as => 'validate_email_exist'
 
   resources :site_posts
+  resources :item_topics
 
   devise_for :users, :controllers => { :registrations => "registrations",:invitations   => "invitations" } do
     get 'invitations/resend/:id' => 'invitations#resend', :as => 'invitation_resend'
@@ -46,7 +47,7 @@ Isport::Application.routes.draw do
   resources :comments
   resources :pic_comments
 
-  resources :themes
+  resources :item_topics
 
   root :to => "welcome#index"
 

@@ -4,6 +4,7 @@ class ItemTopic < ActiveRecord::Base
   has_many :followers, :through => :item_topic_followships, :source => :person
 
   has_many :posts 
+  belongs_to :person
 
   def image_url(size = :thumb_large)
     result = if size == :thumb_medium && self[:image_url_medium]
@@ -17,7 +18,15 @@ class ItemTopic < ActiveRecord::Base
   end
 
   def default_url(size)
-    self.item.image_url(size) 
+    if self.item
+      self.item.image_url(size) 
+    else
+      case size
+         when :thumb_medium then "/images/item_topic/medium.png"
+         when :thumb_large   then "/images/item_topic/large.png"
+         when :thumb_small   then "/images/item_topic/small.png"
+      end
+    end
   end
 
   def self.add_follower(itemtopic_id, person)

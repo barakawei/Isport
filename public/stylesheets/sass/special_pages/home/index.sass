@@ -379,10 +379,11 @@
   :width 660px
   :border-bottom 1px solid #ECEAE8
   .post_type_bar
+    :position relative
     :float left
     :width 500px
     a
-      :margin 5px 10px 0 0 
+      :margin 5px 10px 5px 0 
       :display block
       :float left
       span
@@ -406,6 +407,116 @@
       span.img
         :background-position -434px 0 
         :width 15px
+    .popup_box
+      :position absolute
+      :top 20px
+      :left 55px
+      :margin-top 5px
+      :width 500px
+      :height 300px
+      :float left
+      :z-index 2000
+      
+      .box_border_left, .box_border_right,
+      .box_border_top, .box_border_bottom
+        :float left
+        background: url("/images/ui/popup_box_border.png") repeat scroll 0 0 transparent
+        opacity: 0.5
+      .box_border_top, .box_border_bottom
+        height: 5px
+        :width 500px 
+      .box_center
+        :float left
+        :width 500px 
+        :height 290px
+
+        .box_border_left, .box_border_right
+          :height 290px 
+          :width 5px
+        .box_content
+          :position relative
+          :background-color #ffffff
+          :float left
+          :padding 20px
+          :width 450px 
+          :height 250px
+
+          a.close_box
+            :position absolute
+            :top 10px
+            :right 10px
+            background: url("/images/ui/cross_close_icon.png") no-repeat scroll -26px 0 transparent
+            margin: 0 0 0 10px
+            text-indent: -9999px
+            width: 16px
+
+            &:hover
+              :background-position 0 0  
+
+          h3
+            :padding-bottom 10px
+            :border-bottom 1px solid #d5ddde
+
+
+          .new_topic_form
+            :float left
+            #item_topic_photo_upload
+              :float left
+              :height 200px
+              .img_contained
+              :width 119px
+              :border-right 1px dashed #aaa
+
+              img
+                @include border-radius(5px)
+                :width 100px
+                :height 100px
+                :border 1px solid #d5ddde
+            .topic_content_area
+              :width 290px 
+              :padding 0px 20px
+              :float left
+
+              .actions
+                :width 276px
+                input
+                  :float right 
+
+              .field.select
+                label.error
+                  :display inline
+                  :margin-left 15px
+              
+              .field
+                :margin-bottom 10px
+                :position relative
+                input
+                  :padding 3px
+                input#item_topic_name
+                  :width 270px
+                label
+                  :position absolute
+                  :left 5px 
+                  :top 3px 
+                  :font-size 13px
+                  :color #aaa
+                label.error
+                  :position static
+                  :display block
+                  :color red
+                label.item_id
+                  :position static
+                  :color #666
+                  :margin-right 5px
+                textarea
+                  :height 80px
+                  :width 270px
+                select
+                  :border 1px solid #888
+                  :font-size 13px
+                  
+            
+
   .create_post
     :float left
     :position relative
@@ -421,6 +532,7 @@
       :top 10px
       :left 10px
       :font-size 14px
+
   .new_post
     :float right
   ul

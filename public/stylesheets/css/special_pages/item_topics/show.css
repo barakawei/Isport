@@ -1,0 +1,19 @@
+.topic_area {
+  width: 150px;
+  float: left;
+  margin-top: 20px; }
+  .topic_area .topic_info {
+    float: left;
+    position: relative; }
+    .topic_area .topic_info .topic_image {
+      width: 50px;
+      width: 50px;
+      float: left;
+      position: absolute;
+      left: 2px;
+      top: 2px; }
+      .topic_area .topic_info .topic_image img {
+        -moz-border-radius: 2px;
+        -webkit-border-radius: 2px;
+        border-radius: 2px;
+        behavior: url(/javascripts/PIE.htc); }
