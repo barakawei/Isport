@@ -47,12 +47,6 @@
     });
   });
 
-  $('a.close_box').click(function() {
-    $topic_box =$(this).closest('.topic_box'); 
-    $form = $topic_box.find('form');
-    resetNewTopicForm($form);
-    $topic_box.hide();
-  });
 
   function validate_form() {
     return $('#new_item_topic').validate().form();
@@ -113,4 +107,5 @@
     $form.find('input#item_topic_image_url_large').val("");
     $form.find('input#item_topic_image_url_medium').val("");
     $form.find('input#item_topic_image_url_small').val("");
+    closeTopicBoxCallback();
   }

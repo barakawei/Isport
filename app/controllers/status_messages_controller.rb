@@ -4,6 +4,7 @@ class StatusMessagesController < ApplicationController
   respond_to :js
   def create
     pics = Pic.where(:id => [*params[:photos]])
+    item_topic = ItemTopic.where(:id => params[:topic_id]).first   
     @status_message =StatusMessage.initialize(current_user,params[ :contacts ])
     if !pics.empty?
       pics.each do |p|
@@ -12,6 +13,7 @@ class StatusMessagesController < ApplicationController
       @status_message.pics << pics
     end
     
+    @status_message.item_topic = item_topic
     if @status_message.save
       @status_message.dispatch_post 
     end

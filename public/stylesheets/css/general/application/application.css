@@ -797,13 +797,20 @@ a.app_black_link_button {
 .stream_element, .pic_comments {
   position: relative; }
   .stream_element .from a, .pic_comments .from a {
-    font-size: 15px; }
+    font-size: 14px; }
   .stream_element .post_content, .pic_comments .post_content {
-    font-size: 14px;
+    font-size: 13px;
     margin: 5px 0;
     color: #333333; }
+    .stream_element .post_content a.topic_name, .pic_comments .post_content a.topic_name {
+      color: #cc3300;
+      font-size: 14px; }
+      .stream_element .post_content a.topic_name:hover, .pic_comments .post_content a.topic_name:hover {
+        text-decoration: underline; }
   .stream_element .comment, .pic_comments .comment {
     position: relative; }
+  .stream_element .action a.replay, .pic_comments .action a.replay {
+    font-size: 12px; }
   .stream_element .action .delete, .pic_comments .action .delete {
     cursor: pointer;
     position: absolute;

@@ -446,6 +446,10 @@
       left: 10px;
       border: 1px solid #3f980e;
       color: white; }
+      .feed_toolbar .create_post .topic_tag a.topic_name {
+        color: white; }
+        .feed_toolbar .create_post .topic_tag a.topic_name:hover {
+          text-decoration: underline; }
       .feed_toolbar .create_post .topic_tag a.close_topic_tag {
         color: #cccccc;
         margin-left: 5px; }

@@ -828,14 +828,21 @@ a.app_black_link_button
   :position relative
   .from
     a
-      font-size: 15px 
+      font-size: 14px 
   .post_content
-    :font-size 14px
+    a.topic_name
+      :color #CC3300
+      :font-size 14px
+      &:hover
+        :text-decoration underline
+    :font-size 13px
     :margin 5px 0
     :color #333
   .comment
     :position relative
   .action
+    a.replay
+      :font-size 12px
     .delete
       :cursor pointer
       :position absolute
