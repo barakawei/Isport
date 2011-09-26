@@ -122,6 +122,10 @@ stylesheets:
 
   special_pages_item_topics_show:
     - public/stylesheets/css/special_pages/item_topics/show.css
+  special_pages_item_topics_form:
+    - public/stylesheets/css/special_pages/item_topics/form.css
+  special_pages_item_topics_topic_box:
+    - public/stylesheets/css/special_pages/item_topics/topic_box.css
 
   sepcial_pages_groups_form:
     - public/stylesheets/css/special_pages/groups/form.css

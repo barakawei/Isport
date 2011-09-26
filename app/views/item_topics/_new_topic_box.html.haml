@@ -1,92 +1,35 @@
 =content_for :head do
-  = include_javascripts :jquery_validation
+  = include_stylesheets :special_pages_item_topics_topic_box, :media => 'all'
 .popup_box.topic_box.hide
   .box_border_top 
   .box_center
     .box_border_left
     .box_content
       = link_to 'close', 'javascript:void(0)', :class => 'close_box'
-      %h3='发起新话题'
-      .new_topic_form
-        = form_for item_topic, :html => { :multipart => true }, do |f|
-          = render "photos/new_item_topic_photo", :topic=> item_topic, :is_edit => false, :model_name => "item_topic"
-          .topic_content_area
-            .field
-              = f.text_field :name
-              = f.label '话题名称', :class => 'topic_name'
-              = error_on(item_topic, :name)
-              = hidden_field_tag 'format', 'json' 
-              = f.hidden_field :image_url_large
-              = f.hidden_field :image_url_medium
-              = f.hidden_field :image_url_small
-            .field
-              = f.text_area :description
-              = f.label '话题描述...', :class => 'topic_desc'
-              = error_on(item_topic, :description)
-            .field.select
-              = f.label '话题类型:', :class => "item_id"
-              = collection_select(:item_topic, :item_id, Item.all, :id, :name, {:prompt => true})
-            .actions
-              = f.submit '保存', :class => "glass_button"
-              
+      %ul.title_bar
+        %li
+          = link_to '发起话题', 'javascript:void(0)', :class => 'select new_topic' 
+        %li
+          = link_to '选择话题', 'javascript:void(0)', :class => 'select_topic' 
+      #select_topic_area.hide
+        = render :partial => 'item_topics/select_topic', :locals => {:item_topic => item_topic }
+      #new_topic_area
+        = render :partial => 'item_topics/form', :locals => {:item_topic => item_topic}
     .box_border_right
   .box_border_bottom
 
 :javascript
-  $(function(){
-    var options = {success: afterCreate, resetForm:true, beforeSubmit: validate_form};
-    $('#new_item_topic').ajaxForm(options);
-    $('#new_item_topic').validate({
-      rules: {
-        'item_topic[name]': {
-          required: true 
-        }, 
-        'item_topic[item_id]': {
-          required: true
-        }
-      },
-      messages: {
-        'item_topic[name]': {
-          required: "*请输入话题名称"
-        },
-        'item_topic[item_id]': {
-          required: "*请选择话题类型" 
-        }
-      } 
-    });
-  });
-  $('a.close_box').click(function() {
-    $topic_box =$(this).closest('.topic_box'); 
-    $form = $topic_box.find('form');
-    resetNewTopicForm($form);
-    $topic_box.hide();
+  $('a.select_topic').click(function(){
+    $(this).addClass('select'); 
+    $('a.new_topic').removeClass('select');
+    $('#select_topic_area').show(); 
+    $('#new_topic_area').hide(); 
   });
 
-  function validate_form() {
-    return $('#new_item_topic').validate().form();
-  }
+  $('a.new_topic').click(function(){
+    $(this).addClass('select'); 
+    $('a.select_topic').removeClass('select');
+    $('#select_topic_area').hide(); 
+    $('#new_topic_area').show(); 
+  });
 
-  function afterCreate(responseText, statusText, xhr, $form){
-    var id, name;
-    $(responseText).find("item-topic").each(function(i){
-      id = $(this).children('id').text(); 
-      name = $(this).children('name').text(); 
-    });
-    resetNewTopicForm($form);
-    $form.closest('.topic_box').hide();
-    createTopicCallback(id, name);
-  }
-
-  function imageUploadCallback(image_l, image_m, image_s) {
-    $('form#new_item_topic').find('input#item_topic_image_url_large').val(image_l);
-    $('form#new_item_topic').find('input#item_topic_image_url_medium').val(image_m);
-    $('form#new_item_topic').find('input#item_topic_image_url_small').val(image_s);
-  }
-
-  function resetNewTopicForm($form) {
-    $form.find('input#item_topic_name, textarea#item_topic_description, select').val("");
-    $form.find('img.avatar').attr('src', "#{item_topic.image_url(:thumb_medium)}");
-    $form.find('input#item_topic_image_url_large').val("");
-    $form.find('input#item_topic_image_url_medium').val("");
-    $form.find('input#item_topic_image_url_small').val("");
-  }

@@ -409,106 +409,10 @@
     .feed_toolbar .post_type_bar a.at_friend span.img {
       background-position: -434px 0;
       width: 15px; }
-    .feed_toolbar .post_type_bar .popup_box {
-      position: absolute;
-      top: 20px;
-      left: 55px;
-      margin-top: 5px;
-      width: 500px;
-      height: 300px;
-      float: left;
-      z-index: 2000; }
-      .feed_toolbar .post_type_bar .popup_box .box_border_left, .feed_toolbar .post_type_bar .popup_box .box_border_right,
-      .feed_toolbar .post_type_bar .popup_box .box_border_top, .feed_toolbar .post_type_bar .popup_box .box_border_bottom {
-        float: left;
-        background: url("/images/ui/popup_box_border.png") repeat scroll 0 0 transparent;
-        opacity: 0.5; }
-      .feed_toolbar .post_type_bar .popup_box .box_border_top, .feed_toolbar .post_type_bar .popup_box .box_border_bottom {
-        height: 5px;
-        width: 500px; }
-      .feed_toolbar .post_type_bar .popup_box .box_center {
-        float: left;
-        width: 500px;
-        height: 290px; }
-        .feed_toolbar .post_type_bar .popup_box .box_center .box_border_left, .feed_toolbar .post_type_bar .popup_box .box_center .box_border_right {
-          height: 290px;
-          width: 5px; }
-        .feed_toolbar .post_type_bar .popup_box .box_center .box_content {
-          position: relative;
-          background-color: white;
-          float: left;
-          padding: 20px;
-          width: 450px;
-          height: 250px; }
-          .feed_toolbar .post_type_bar .popup_box .box_center .box_content a.close_box {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: url("/images/ui/cross_close_icon.png") no-repeat scroll -26px 0 transparent;
-            margin: 0 0 0 10px;
-            text-indent: -9999px;
-            width: 16px; }
-            .feed_toolbar .post_type_bar .popup_box .box_center .box_content a.close_box:hover {
-              background-position: 0 0; }
-          .feed_toolbar .post_type_bar .popup_box .box_center .box_content h3 {
-            padding-bottom: 10px;
-            border-bottom: 1px solid #d5ddde; }
-          .feed_toolbar .post_type_bar .popup_box .box_center .box_content .new_topic_form {
-            float: left; }
-            .feed_toolbar .post_type_bar .popup_box .box_center .box_content .new_topic_form #item_topic_photo_upload {
-              float: left;
-              height: 200px;
-              width: 119px;
-              border-right: 1px dashed #aaaaaa; }
-              .feed_toolbar .post_type_bar .popup_box .box_center .box_content .new_topic_form #item_topic_photo_upload img {
-                -moz-border-radius: 5px;
-                -webkit-border-radius: 5px;
-                border-radius: 5px;
-                behavior: url(/javascripts/PIE.htc);
-                width: 100px;
-                height: 100px;
-                border: 1px solid #d5ddde; }
-            .feed_toolbar .post_type_bar .popup_box .box_center .box_content .new_topic_form .topic_content_area {
-              width: 290px;
-              padding: 0px 20px;
-              float: left; }
-              .feed_toolbar .post_type_bar .popup_box .box_center .box_content .new_topic_form .topic_content_area .actions {
-                width: 276px; }
-                .feed_toolbar .post_type_bar .popup_box .box_center .box_content .new_topic_form .topic_content_area .actions input {
-                  float: right; }
-              .feed_toolbar .post_type_bar .popup_box .box_center .box_content .new_topic_form .topic_content_area .field.select label.error {
-                display: inline;
-                margin-left: 15px; }
-              .feed_toolbar .post_type_bar .popup_box .box_center .box_content .new_topic_form .topic_content_area .field {
-                margin-bottom: 10px;
-                position: relative; }
-                .feed_toolbar .post_type_bar .popup_box .box_center .box_content .new_topic_form .topic_content_area .field input {
-                  padding: 3px; }
-                .feed_toolbar .post_type_bar .popup_box .box_center .box_content .new_topic_form .topic_content_area .field input#item_topic_name {
-                  width: 270px; }
-                .feed_toolbar .post_type_bar .popup_box .box_center .box_content .new_topic_form .topic_content_area .field label {
-                  position: absolute;
-                  left: 5px;
-                  top: 3px;
-                  font-size: 13px;
-                  color: #aaaaaa; }
-                .feed_toolbar .post_type_bar .popup_box .box_center .box_content .new_topic_form .topic_content_area .field label.error {
-                  position: static;
-                  display: block;
-                  color: red; }
-                .feed_toolbar .post_type_bar .popup_box .box_center .box_content .new_topic_form .topic_content_area .field label.item_id {
-                  position: static;
-                  color: #666666;
-                  margin-right: 5px; }
-                .feed_toolbar .post_type_bar .popup_box .box_center .box_content .new_topic_form .topic_content_area .field textarea {
-                  height: 80px;
-                  width: 270px; }
-                .feed_toolbar .post_type_bar .popup_box .box_center .box_content .new_topic_form .topic_content_area .field select {
-                  border: 1px solid #888888;
-                  font-size: 13px; }
   .feed_toolbar .create_post {
     float: left;
     position: relative;
+    padding-bottom: 20px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     border-radius: 5px;
@@ -516,7 +420,7 @@
     border: 1px solid #888888; }
     .feed_toolbar .create_post textarea {
       width: 500px;
-      height: 30px;
+      height: 20px;
       margin: 5px;
       border: none; }
     .feed_toolbar .create_post label.placeholder {
@@ -524,6 +428,29 @@
       top: 10px;
       left: 10px;
       font-size: 14px; }
+    .feed_toolbar .create_post .topic_tag {
+      -moz-border-radius: 3px;
+      -webkit-border-radius: 3px;
+      border-radius: 3px;
+      behavior: url(/javascripts/PIE.htc);
+      -webkit-box-shadow: 0 1px 5px 0 #aaaaaa;
+      -moz-box-shadow: 0 1px 5px 0 #aaaaaa;
+      box-shadow: 0 1px 5px 0 #aaaaaa;
+      behavior: url(/javascripts/PIE.htc);
+      background-color: #67ae3f;
+      padding: 3px 5px;
+      font-size: 12px;
+      line-height: 12px;
+      position: absolute;
+      bottom: 3px;
+      left: 10px;
+      border: 1px solid #3f980e;
+      color: white; }
+      .feed_toolbar .create_post .topic_tag a.close_topic_tag {
+        color: #cccccc;
+        margin-left: 5px; }
+        .feed_toolbar .create_post .topic_tag a.close_topic_tag:hover {
+          color: white; }
   .feed_toolbar .new_post {
     float: right; }
   .feed_toolbar ul li {
