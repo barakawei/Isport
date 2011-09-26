@@ -1,5 +1,6 @@
 content = "<%= escape_javascript(render('people/person_event_container')) %>";
 page = '<%=@page%>';
+person_id = "<%=@person.id%>";
 if (page == ''){ 
   $('.stream').html(content);
 }else{
@@ -10,6 +11,8 @@ if(tab != ''  ){
   $( '.current' ).removeClass( 'current' );
   $( '#'+tab).addClass( 'current' );
 }
+$(".stream").fadeTo(100, 1);
+$( "#my_events" ).attr( "href","/people/"+person_id+"/show_person_events" );
 
 
 

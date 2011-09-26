@@ -48,6 +48,13 @@
 .span-6.last.right_bar
   = render 'people/person_list', :person => @person
 :javascript
+  $( ".nav_tab a" ).live( "click",function( ){
+    $(".feed_toolbar").fadeTo(100, 0.4);
+    $(".events_panel").fadeTo(100, 0.4);
+    })
+  $( ".feed_toolbar .event a" ).live( "click",function( ){
+    $(".events_panel").fadeTo(100, 0.4);
+    })
   $.get("/home/show_post");
   $('.create_post textarea').focusin(function() {
     $(this).css('height', '60px'); 

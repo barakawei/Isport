@@ -1,5 +1,6 @@
 content = "<%= escape_javascript(render('status_messages/status_messages_container')) %>"; 
 page = '<%=@page%>';
+person_id = "<%=@person.id%>";
 if (page == ''){ 
   $('.stream').html(content);
 }else{
@@ -11,6 +12,8 @@ if(tab != ''  ){
   $( '#'+tab).addClass( 'current' );
 }
 $("abbr.timeago").timeago();
+$(".stream").fadeTo(100, 1);
+$( "#my_posts" ).attr( "href","/people/"+person_id+"/show_posts" );
 
 
 

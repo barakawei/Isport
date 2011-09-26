@@ -115,33 +115,22 @@
     .home_tabs
       %ul
         %li
-          =link_to "信息","#",:id => 'my_posts'
+          =link_to "信息",show_person_posts_path( @person ),:id => 'my_posts',:remote => true
         %li
-          =link_to "活动","#",:id=>'my_events'        
+          =link_to "活动",show_person_events_path( @person ),:id=>'my_events',:remote => true        
         %li
-          =link_to "照片","#",:id=>'my_albums'        
+          =link_to "照片",show_person_albums_path( @person ),:id=>'my_albums',:remote => true        
     .stream
 :javascript
 
-  $.get("/people/show_posts",{person_id:#{@person.id}}  ); 
+  $.get("#{show_person_posts_path( @person )}"); 
+
+  $( ".home_tabs a" ).live( "click",function( ){
+    $(".stream").fadeTo(100, 0.4);
+  })
 
   $( ".edit_profile" ).click( function(  ){
     $( location ).attr( "href","#{edit_profile_path}" );
-  } );
-
-  $( "#my_events" ).live( "click",function(  ){  
-    $.get("/people/show_person_events",{person_id:#{@person.id}}  ); 
-    return false;
-  } );
-
-  $( "#my_posts" ).live( "click",function(  ){
-    $.get("/people/show_posts",{person_id:#{@person.id}}  ); 
-    return false;
-  } );
-
-  $( "#my_albums" ).live( "click",function(  ){
-    $.get("/people/show_person_albums",{person_id:#{@person.id}}  ); 
-    return false;
   } );
 
 

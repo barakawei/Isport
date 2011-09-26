@@ -27,7 +27,7 @@
         .field
           = f.text_area :content, :rows => 2
         .comment_button.hide
-          = f.submit "回复", :class => 'glass_button inline'
+          = f.submit "回复", :class => 'glass_button inline',"data-disable-with" => t("posting")
           .cancle.inline.glass_button
             = "取消"
 
