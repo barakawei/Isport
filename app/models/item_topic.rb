@@ -6,6 +6,7 @@ class ItemTopic < ActiveRecord::Base
   has_many :followers, :through => :item_topic_followships, :source => :person
 
   has_many :posts 
+  belongs_to :person
 
   def image_url(size = :thumb_large)
     result = if size == :thumb_medium && self[:image_url_medium]
