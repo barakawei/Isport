@@ -32,5 +32,5 @@
       = link_to "发送新信息",new_conversation_path,:class=>"new_message_action" 
       
 :javascript 
-  $(".new_message_action").colorbox({opacity:0.3});
+  $(".new_message_action").colorbox({ transition:"none",opacity:"0.3"});
   jQuery("abbr.timeago").timeago();
