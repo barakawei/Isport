@@ -49,13 +49,14 @@
               = link_to 'close', 'javascript:void(0)', :class => 'close_box'
               %h3='发起新话题'
               .new_topic_form
-                = form_for @item_topic, :html => {:multipart => true}, do |f|
+                = form_for @item_topic, :html => { :multipart => true }, do |f|
                   = render "photos/new_item_topic_photo", :topic=> @item_topic, :is_edit => false, :model_name => "item_topic"
                   .topic_content_area
                     .field
                       = f.text_field :name
                       = f.label '话题名称', :class => 'topic_name'
                       = error_on(@item_topic, :name)
+                      = hidden_field_tag 'format', 'json' 
                     .field
                       = f.text_area :description
                       = f.label '话题描述...', :class => 'topic_desc'
@@ -79,6 +80,8 @@
   = render 'people/person_list', :person => @person
 :javascript
   $(function(){
+    var options = {success: appendToPostArea, resetForm:true, beforeSubmit: validate_form};
+    $('#new_item_topic').ajaxForm(options);
     $('#new_item_topic').validate({
       rules: {
         'item_topic[name]': {
@@ -136,6 +139,23 @@
   });
 
   $('a.close_box').click(function() {
-    $(this).closest('.topic_box').hide();
+    $topic_box =$(this).closest('.topic_box'); 
+    $topic_box.find('form input#item_topic_name, form textarea#item_topic_description, form select').val("");
+    $topic_box.find('form img.avatar').attr('src', "#{@item_topic.image_url(:thumb_medium)}");
+    $topic_box.hide();
   });
 
+  function validate_form() {
+    return $('#new_item_topic').validate().form();
+  }
+
+  function appendToPostArea(responseText, statusText, xhr, $form){
+    var id, name;
+    $(responseText).find("item-topic").each(function(i){
+      id = $(this).children('id').text(); 
+      name = $(this).children('name').text(); 
+    });
+    var topic = "#" + name + "# " + $('textarea#weibo').val();
+    $form.closest('.topic_box').hide().find('form img.avatar').attr('src', "#{@item_topic.image_url(:thumb_medium)}");
+    $('textarea#weibo').val(topic).focus();
+  }

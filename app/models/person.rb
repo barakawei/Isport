@@ -70,7 +70,7 @@ class Person < ActiveRecord::Base
         :avatar => self.profile.image_url(:thumb_small),
         :image_url =>self.profile.image_url(:thumb_small),
         :url => "/people/#{self.id}"
-      
+      } 
     }
   end 
 
