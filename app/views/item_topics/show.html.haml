@@ -1,7 +1,6 @@
 -content_for :head do
   = include_stylesheets :special_pages_item_topics_show, :media => 'all'
   = include_javascripts :jquery_validation
-  = include_stylesheets :sepcial_pages_home_index
 
 .span-24.last
   .topic_area
@@ -20,9 +19,8 @@
     .follow_action
       - if current_user
         = follow_topic_tag(@topic)
-      
-      .followers_count
-        = t('item_topic.followers_count', :count => @topic.followers.size)  
+     
+      = followers_count_tag(@topic) 
 
     .topic_followers
       .followers_title
@@ -31,3 +29,25 @@
       -@followers.each_with_index do |follower, index|
         .follower{:class => ("last" if (index+1)%4==0)}
           = person_image_link(follower)
+
+  .post_area
+    .create_post
+      = form_for(StatusMessage.new,:remote => true) do |status|
+        = status.text_area :content,:class => 'content'
+        = hidden_field_tag :contacts
+        = label_tag 'weibo', '说点什么吧...', :class => 'placeholder'
+        = status.submit "分享", :class => 'glass_button',"data-disable-with" => t("posting")
+      
+
+:javascript
+  $.get("/home/show_post");
+  $('.create_post textarea').focusin(function() {
+    $(this).css('height', '40px'); 
+    $("label.placeholder").hide();
+  });
+  $('.create_post textarea').focusout(function() {
+    if ($.trim($(this).val()) == '' ) {
+      $("label.placeholder").show();
+      $(this).css('height', '20px'); 
+    }
+  });

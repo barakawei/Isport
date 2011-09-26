@@ -44,6 +44,11 @@ module ApplicationHelper
     link_html.html_safe
   end
 
+  def followers_count_tag( topic )
+    count_html = "<div class='followers_count' data_id='#{topic.id}'>"+t('item_topic.followers_count', :count => topic.followers.size)+"</div>"
+    count_html.html_safe
+  end
+
   def element_more_tag(person,action,type=nil)
     button_html = "<div class='element_more'>"+t('all')+"</div>"
     link_html = link_to({:controller => 'people',:action => "#{action}",:type=>"#{type}",:person_id =>person.id}) do

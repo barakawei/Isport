@@ -1,5 +1,5 @@
 .topic_area {
-  width: 150px;
+  width: 250px;
   float: left;
   margin-top: 15px; }
   .topic_area .topic_info {
@@ -117,3 +117,56 @@
         -webkit-border-radius: 2px;
         border-radius: 2px;
         behavior: url(/javascripts/PIE.htc); }
+
+.post_area {
+  width: 660px;
+  margin-left: 20px;
+  margin-top: 16px;
+  float: left;
+  background: white;
+  border-bottom: 1px solid #eceae8;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  behavior: url(/javascripts/PIE.htc); }
+  .post_area .create_post {
+    float: left;
+    position: relative;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    behavior: url(/javascripts/PIE.htc);
+    border: 1px solid #888888; }
+    .post_area .create_post textarea {
+      width: 500px;
+      height: 30px;
+      margin: 5px;
+      border: none; }
+    .post_area .create_post label.placeholder {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      font-size: 14px; }
+    .post_area .create_post .topic_tag {
+      -moz-border-radius: 3px;
+      -webkit-border-radius: 3px;
+      border-radius: 3px;
+      behavior: url(/javascripts/PIE.htc);
+      -webkit-box-shadow: 0 1px 5px 0 #aaaaaa;
+      -moz-box-shadow: 0 1px 5px 0 #aaaaaa;
+      box-shadow: 0 1px 5px 0 #aaaaaa;
+      behavior: url(/javascripts/PIE.htc);
+      background-color: #67ae3f;
+      padding: 3px 5px;
+      font-size: 12px;
+      line-height: 12px;
+      position: absolute;
+      bottom: 3px;
+      left: 10px;
+      border: 1px solid #3f980e;
+      color: white; }
+      .post_area .create_post .topic_tag a.close_topic_tag {
+        color: #cccccc;
+        margin-left: 5px; }
+        .post_area .create_post .topic_tag a.close_topic_tag:hover {
+          color: white; }

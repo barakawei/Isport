@@ -1,7 +1,7 @@
 @import '../../general/ui/mixins'
 
 .topic_area
-  :width 150px
+  :width 250px
   :float left
   :margin-top 15px
 
@@ -123,4 +123,48 @@
   
       img
         @include border-radius(2px)
+
+.post_area
+  :width 660px
+  :margin-left 20px
+  :margin-top 16px
+  :float left
+  :background white
+  :border-bottom 1px solid #ECEAE8
+  @include border-radius(5px)
+
+  .create_post
+    :float left
+    :position relative
+    @include border-radius(5px)
+    :border 1px solid #888
+
+    textarea
+      :width 500px 
+      :height 30px
+      :margin 5px
+      :border none
+    label.placeholder
+      :position absolute
+      :top 10px
+      :left 10px
+      :font-size 14px
+    .topic_tag
+      @include border-radius(3px)
+      @include box-shadow(0,1px,5px,0,#aaa)
+      :background-color #67AE3F
+      :padding 3px 5px
+      :font-size 12px
+      :line-height 12px
+      :position absolute
+      :bottom 3px
+      :left 10px
+      :border 1px solid #3F980E
+      :color white
+      
+      a.close_topic_tag
+        :color #ccc
+        :margin-left 5px
+        &:hover
+          :color #fff
 
