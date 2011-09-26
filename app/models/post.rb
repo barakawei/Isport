@@ -4,7 +4,7 @@ class Post < ActiveRecord::Base
   has_many :people, :through => :post_visibilities
   has_many :comments, :dependent => :destroy
   has_many :mentions, :dependent => :destroy
-  belongs_to :itemtopic, :counter_cache => true
+  belongs_to :item_topic, :counter_cache => true
   scope :by_view, lambda { |person_id| select("distinct(posts.id),posts.*").joins( "left join post_visibilities pv on(posts.id = pv.post_id) ").where( "posts.type='StatusMessage' and (author_id = ? or pv.person_id = ?)",person_id,person_id)}
   scope :by_owner, lambda { |person_id| where(:author_id => person_id,:type =>"StatusMessage")}
 

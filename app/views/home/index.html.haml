@@ -27,7 +27,8 @@
           = status.text_area :content,:class => 'content'
           = hidden_field_tag :contacts
           = label_tag 'weibo', '说点什么吧...', :class => 'placeholder'
-          = status.submit "分享", :class => 'glass_button',"data-disable-with" => t("posting")
+          = hidden_field_tag :topic_id
+          = status.submit "发布", :class => 'glass_button',"data-disable-with" => t("posting")
         
       .new_event.hide
         = render 'common/big_link_button', :content => '发起活动', :path => new_event_path 
@@ -41,7 +42,7 @@
         %a{:class => 'at_friend', :href => 'javascript:void(0)'} 
           %span.img
           %span.desc='好友'
-        = render :partial => 'item_topics/new_topic_box', :locals => {:item_topic => @item_topic} 
+        = render :partial => 'item_topics/new_topic_box', :locals => {:item_topic => @item_topic, :rtopics => @recent_topics} 
       .clear
 
 
@@ -50,7 +51,7 @@
 
 #hide_area
   .topic_tag.hide
-    %span='话题'
+    = link_to '话题', 'javascript:void(0)', :class => 'topic_name' 
     = link_to 'x', 'javascript:void(0)', :class => 'close_topic_tag'
     
 .span-6.last.right_bar
@@ -69,6 +70,9 @@
     $(this).css('height', '40px'); 
     $("label.placeholder").hide();
   });
+  $("label.placeholder").click(function(){
+    $('.create_post textarea').focus(); 
+  });
   $('.create_post textarea').focusout(function() {
     if ($.trim($(this).val()) == '' ) {
       $("label.placeholder").show();
@@ -85,11 +89,23 @@
 
   function createTopicCallback(t_id, t_name){
     $('.create_post .topic_tag').remove();
+    $('#new_status_message #topic_id').val(t_id);
     var topic_tag = $('#hide_area .topic_tag').clone();
-    topic_tag.find('span').text('话题: ' + t_name);
-    topic_tag.find('a').click(function(){
+    topic_tag.find('a.topic_name').text('话题: ' + t_name);
+    topic_tag.find('a.topic_name').attr('href', "/item_topics/" + t_id);
+    topic_tag.find('a.close_topic_tag').click(function(){
       topic_tag.remove();
+      $('#new_status_message #topic_id').val("");
     });
+    $('.topic_box a.select_topic').click();
     topic_tag.appendTo('.create_post');
     topic_tag.show();
+  }
+
+  function closeTopicBoxCallback() {
+    $('#new_status_message #topic_id').val("");
+  }
+  
+  function createPostCallBack() {
+    $('.create_post .topic_tag a.close_topic_tag').click(); 
   }

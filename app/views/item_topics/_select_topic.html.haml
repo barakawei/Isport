@@ -1,2 +1,11 @@
 .select_topic
-  %h1='任也脑残'
+  %h4='我最近的话题'
+  -rtopics.each do |t|
+    = link_to t.name, 'javascript:void(0)', :id => t.id, :class => 'topic_item'
+
+:javascript
+  $('.select_topic a.topic_item').click(function(){
+    var id = $(this).attr('id'); 
+    var name = $(this).text();
+    selectTopicCallBack(id, name);
+  });
