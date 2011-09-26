@@ -4,7 +4,6 @@
   =include_javascripts :show_photo
   =include_javascripts :status_message
   = include_javascripts :google_map
-  = include_javascripts :jquery_validation
   =javascript_include_tag "http://maps.google.com/maps/api/js?sensor=false"
 .span-18.last.content_panel
   .home_container
@@ -41,35 +40,7 @@
         %a{:class => 'at_friend'} 
           %span.img
           %span.desc='好友'
-        .popup_box.topic_box.hide
-          .box_border_top 
-          .box_center
-            .box_border_left
-            .box_content
-              = link_to 'close', 'javascript:void(0)', :class => 'close_box'
-              %h3='发起新话题'
-              .new_topic_form
-                = form_for @item_topic, :html => { :multipart => true }, do |f|
-                  = render "photos/new_item_topic_photo", :topic=> @item_topic, :is_edit => false, :model_name => "item_topic"
-                  .topic_content_area
-                    .field
-                      = f.text_field :name
-                      = f.label '话题名称', :class => 'topic_name'
-                      = error_on(@item_topic, :name)
-                      = hidden_field_tag 'format', 'json' 
-                    .field
-                      = f.text_area :description
-                      = f.label '话题描述...', :class => 'topic_desc'
-                      = error_on(@item_topic, :description)
-                    .field.select
-                      = f.label '话题类型:', :class => "item_id"
-                      = collection_select(:item_topic, :item_id, Item.all, :id, :name, {:prompt => true})
-                    .actions
-                      = f.submit '保存', :class => "glass_button"
-                  
-                      
-            .box_border_right
-          .box_border_bottom
+        = render :partial => 'item_topics/new_topic_box', :locals => {:item_topic => @item_topic} 
       .clear
 
 
@@ -145,24 +116,9 @@
     $('.topic_box').show();      
   });
 
-  $('a.close_box').click(function() {
-    $topic_box =$(this).closest('.topic_box'); 
-    $topic_box.find('form input#item_topic_name, form textarea#item_topic_description, form select').val("");
-    $topic_box.find('form img.avatar').attr('src', "#{@item_topic.image_url(:thumb_medium)}");
-    $topic_box.hide();
-  });
 
-  function validate_form() {
-    return $('#new_item_topic').validate().form();
-  }
 
-  function appendToPostArea(responseText, statusText, xhr, $form){
-    var id, name;
-    $(responseText).find("item-topic").each(function(i){
-      id = $(this).children('id').text(); 
-      name = $(this).children('name').text(); 
-    });
-    var topic = "#" + name + "# " + $('textarea#weibo').val();
-    $form.closest('.topic_box').hide().find('form img.avatar').attr('src', "#{@item_topic.image_url(:thumb_medium)}");
+  function createTopicCallback(t_id, t_name){
+    var topic = "#" + t_name+ "# " + $('textarea#weibo').val();
     $('textarea#weibo').val(topic).focus();
   }
