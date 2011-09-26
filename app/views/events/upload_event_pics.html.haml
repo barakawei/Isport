@@ -52,6 +52,6 @@
       pids[index] = $(this).attr('data-id'); 
     });
     $('#cancel_upload_request #pids').val(pids);
-    $.colorbox({ inline:true, href: "#cancel_upload_request", opacity:0.3});
+    $.colorbox({transition:"none",inline:true, href: "#cancel_upload_request", opacity:0.3});
     return false;
   });
