@@ -1,11 +1,35 @@
+=content_for :head do
+  = include_stylesheets :special_pages_item_topics_topic_box, :media => 'all'
 .popup_box.topic_box.hide
   .box_border_top 
   .box_center
     .box_border_left
     .box_content
       = link_to 'close', 'javascript:void(0)', :class => 'close_box'
-      %h3='发起新话题'
-      = render :partial => 'item_topics/form', :locals => {:item_topic => item_topic }
+      %ul.title_bar
+        %li
+          = link_to '发起话题', 'javascript:void(0)', :class => 'select new_topic' 
+        %li
+          = link_to '选择话题', 'javascript:void(0)', :class => 'select_topic' 
+      #select_topic_area.hide
+        = render :partial => 'item_topics/select_topic', :locals => {:item_topic => item_topic }
+      #new_topic_area
+        = render :partial => 'item_topics/form', :locals => {:item_topic => item_topic}
     .box_border_right
   .box_border_bottom
+
+:javascript
+  $('a.select_topic').click(function(){
+    $(this).addClass('select'); 
+    $('a.new_topic').removeClass('select');
+    $('#select_topic_area').show(); 
+    $('#new_topic_area').hide(); 
+  });
+
+  $('a.new_topic').click(function(){
+    $(this).addClass('select'); 
+    $('a.select_topic').removeClass('select');
+    $('#select_topic_area').hide(); 
+    $('#new_topic_area').show(); 
+  });
 
