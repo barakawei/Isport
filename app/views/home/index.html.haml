@@ -3,6 +3,7 @@
   =include_javascripts :scroll_page
   =include_javascripts :show_photo
   =include_javascripts :status_message
+  = include_javascripts :mention
   = include_javascripts :google_map
   =javascript_include_tag "http://maps.google.com/maps/api/js?sensor=false"
 .span-18.last.content_panel
@@ -22,14 +23,14 @@
         %li
           =link_to "朋友活动","/home/show_following_event",:remote => true,:id => 'following_event'
       .create_post
-        = form_tag '', do
-          = text_area_tag 'weibo'
+        = form_for(StatusMessage.new,:remote => true) do |status|
+          = status.text_area :content,:class => 'content'
+          = hidden_field_tag :contacts
           = label_tag 'weibo', '说点什么吧...', :class => 'placeholder'
+          = status.submit "分享", :class => 'glass_button',"data-disable-with" => t("posting")
         
       .new_event.hide
         = render 'common/big_link_button', :content => '发起活动', :path => new_event_path 
-      .new_post
-        = render 'common/big_link_button', :content => '分享', :path => new_status_message_path 
       .post_type_bar
         %a{:class => 'photo', :href => 'javascript:void(0)'} 
           %span.img
@@ -62,6 +63,7 @@
   $( ".feed_toolbar .event a" ).live( "click",function( ){
     $(".events_panel").fadeTo(100, 0.4);
     })
+
   $.get("/home/show_post");
   $('.create_post textarea').focusin(function() {
     $(this).css('height', '40px'); 
