@@ -38,9 +38,9 @@
 
               $("#item_topic_photo_upload").find(".avatar").fadeTo(200,1);
               $("#item_topic_photo_upload").find(".avatar").attr("src",url);
-              $("#topic_image_url").val(responseJSON.data.photo.thumb_large);
-              $("#topic_image_url_small").val(responseJSON.data.photo.thumb_small);
-              $("#topic_image_url_medium").val(responseJSON.data.photo.thumb_medium);
+              imageUploadCallback(responseJSON.data.photo.thumb_large,
+                                  responseJSON.data.photo.thumb_medium,
+                                  responseJSON.data.photo.thumb_small) 
              }
              
          });
