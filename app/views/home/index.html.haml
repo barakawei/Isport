@@ -31,13 +31,13 @@
       .new_post
         = render 'common/big_link_button', :content => '分享', :path => new_status_message_path 
       .post_type_bar
-        %a{:class => 'photo'} 
+        %a{:class => 'photo', :href => 'javascript:void(0)'} 
           %span.img
           %span.desc='图片'
-        %a{:class => 'topic'} 
+        %a{:class => 'topic', :href => 'javascript:void(0)'} 
           %span.img
           %span.desc='话题'
-        %a{:class => 'at_friend'} 
+        %a{:class => 'at_friend', :href => 'javascript:void(0)'} 
           %span.img
           %span.desc='好友'
         = render :partial => 'item_topics/new_topic_box', :locals => {:item_topic => @item_topic} 
@@ -46,6 +46,11 @@
 
     .events_panel
     .clear
+
+#hide_area
+  .topic_tag.hide
+    %span='话题'
+    = link_to 'x', 'javascript:void(0)', :class => 'close_topic_tag'
     
 .span-6.last.right_bar
   = render 'people/person_list', :person => @person
@@ -57,60 +62,18 @@
   $( ".feed_toolbar .event a" ).live( "click",function( ){
     $(".events_panel").fadeTo(100, 0.4);
     })
-  $(function(){
-    var options = {success: appendToPostArea, resetForm:true, beforeSubmit: validate_form};
-    $('#new_item_topic').ajaxForm(options);
-    $('#new_item_topic').validate({
-      rules: {
-        'item_topic[name]': {
-          required: true 
-        }, 
-        'item_topic[item_id]': {
-          required: true
-        }
-      },
-      messages: {
-        'item_topic[name]': {
-          required: "*请输入话题名称"
-        },
-        'item_topic[item_id]': {
-          required: "*请选择话题类型" 
-        }
-      } 
-    });
-  });
   $.get("/home/show_post");
   $('.create_post textarea').focusin(function() {
-    $(this).css('height', '60px'); 
+    $(this).css('height', '40px'); 
     $("label.placeholder").hide();
   });
   $('.create_post textarea').focusout(function() {
     if ($.trim($(this).val()) == '' ) {
       $("label.placeholder").show();
-      $(this).css('height', '30px'); 
+      $(this).css('height', '20px'); 
     }
   });
     
-  $('.topic_content_area #item_topic_name').focusin(function(){
-    $('.topic_content_area label.topic_name').hide();
-  });
-
-  $('.topic_content_area #item_topic_name').focusout(function(){
-    if ($.trim($(this).val()) == '' ) {
-      $('.topic_content_area label.topic_name').show();
-    }
-  });
-
-  $('.topic_content_area #item_topic_description').focusin(function(){
-    $('.topic_content_area label.topic_desc').hide();
-  });
-
-  $('.topic_content_area #item_topic_description').focusout(function(){
-    if ($.trim($(this).val()) == '' ) {
-      $('.topic_content_area label.topic_desc').show();
-    }
-  });
-
 
   $('.post_type_bar a.topic').click(function(){
     $('.topic_box').show();      
@@ -119,6 +82,12 @@
 
 
   function createTopicCallback(t_id, t_name){
-    var topic = "#" + t_name+ "# " + $('textarea#weibo').val();
-    $('textarea#weibo').val(topic).focus();
+    $('.create_post .topic_tag').remove();
+    var topic_tag = $('#hide_area .topic_tag').clone();
+    topic_tag.find('span').text('话题: ' + t_name);
+    topic_tag.find('a').click(function(){
+      topic_tag.remove();
+    });
+    topic_tag.appendTo('.create_post');
+    topic_tag.show();
   }
