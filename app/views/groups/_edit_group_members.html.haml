@@ -118,7 +118,7 @@
 
   $('.friend_select_input').click(function() {
     friend_select("#{group_invitees_select_path(@group)}"); 
-    $.colorbox({ inline:true, href:"#friend_select",
+    $.colorbox({ transition:"none",inline:true, href:"#friend_select",
                                      opacity:0.1, width:"502", height:"462" });
     return false;
   });
@@ -154,7 +154,7 @@
       arr[i] = $(checked[i]).attr('person_id'); 
     }
     $('.facebox_content #member_ids').val(arr);
-    $.colorbox({ inline:true, href:"#delete_member_request", opacity:0.5 });
+    $.colorbox({ transition:"none",inline:true, href:"#delete_member_request", opacity:0.5 });
     return false;
   }
 

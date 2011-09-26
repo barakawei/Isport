@@ -14,6 +14,10 @@ var Mention = {
     }
     return Mention.cachedForm;
   },
+    
+  clear: function(){
+    this.autocompletion.mentionList.clear();
+  },
   
   cachedHiddenInput : false,
   hiddenInput: function(){
@@ -42,7 +46,7 @@ var Mention = {
       disableRightAndLeft : true
     };},
     hiddenMentionFromPerson : function(personData){
-      return "@{" + personData.name + "; " + personData.id + "}";
+      return "@{" + personData.name + ";" + personData.id + "}";
     },
 
     onSelect :  function(visibleInput, data, formatted) {
@@ -230,6 +234,7 @@ var Mention = {
         return '';
       }
     },
+
     initialize: function(){
       $.getJSON("/contacts", undefined ,
         function(data){
@@ -241,8 +246,6 @@ var Mention = {
       );
     }
   },
-  initialize: function() { 
-  }
 };
 $(document).ready(function() {
   Mention.autocompletion.initialize();

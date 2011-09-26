@@ -41,7 +41,7 @@
               #pic-right-arrow
               %img#lightbox-image
               #image-desc
-              #lightbox-imageset
+              #lightbox-imageset{ :tabindex => 0 }
           #lightbox-rightside{ :tabindex => 0 }
             .lightbox-rightpanel
               .left_sidebar.sidebar
@@ -61,6 +61,16 @@
 
 :javascript
   $(function() {
+      
+    $("a[data-remote='true']").live('ajax:beforeSend', function(event, xhr, settings) {
+      var href =  $( this ).attr("href");
+      if( href == "#" ){
+        return false;
+      }else{
+        $( this ).attr("href","#");
+      }
+    });
+    
 
     if ($.browser.msie && $.browser.version < 8) {
       window.location.href = '/notice';

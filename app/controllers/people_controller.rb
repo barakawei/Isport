@@ -93,7 +93,8 @@ class PeopleController < ApplicationController
 
 
   def show_posts
-    @posts = Post.where( :author_id => params[ :person_id ],:type => 'StatusMessage' ).order( "posts.created_at DESC" ).paginate(:page => params[:page], :per_page => 30)
+    @person = Person.find( params[ :id ] )
+    @posts = Post.by_owner(@person.id).order( "posts.created_at DESC" ).paginate(:page => params[:page], :per_page => 30)
     @page = params[ :page ]
     @tab = 'my_posts'
     respond_with @posts
@@ -107,11 +108,11 @@ class PeopleController < ApplicationController
   end
 
   def show_person_events
-    person = Person.find( params[ :person_id ] )
-    if current_user.person.id == person.id
-      @events = person.involved_events.order( "events.start_at DESC" ).paginate(:page => params[:page], :per_page => 30)
+    @person = Person.find( params[ :id ] )
+    if current_user.person.id == @person.id
+      @events = @person.involved_events.order( "events.start_at DESC" ).paginate(:page => params[:page], :per_page => 30)
     else
-      @events = person.involved_events.where("status = ? ",Event::PASSED).order( "events.start_at DESC" ).paginate(:page => params[:page], :per_page => 30)
+      @events = @person.involved_events.where("status = ? ",Event::PASSED).order( "events.start_at DESC" ).paginate(:page => params[:page], :per_page => 30)
     end
     @page = params[ :page ]
     @tab = 'my_events'
@@ -119,7 +120,7 @@ class PeopleController < ApplicationController
   end
 
   def show_person_albums
-    @person = Person.find( params[ :person_id ] )
+    @person = Person.find( params[ :id ] )
     @albums = @person.my_albums
     @page = params[ :page ]
     @tab = 'my_albums'
