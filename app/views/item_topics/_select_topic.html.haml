@@ -1,11 +1,53 @@
 .select_topic
-  %h4='我最近的话题'
-  -rtopics.each do |t|
-    = link_to t.name, 'javascript:void(0)', :id => t.id, :class => 'topic_item'
+  .filter_area
+    .left.target_filter
+      =link_to '我的话题', filter_item_topics_path('mine', 'order_by_time'), :class => 'select filter', :tag => 'mine'
+      =link_to '朋友的话题', filter_item_topics_path('friends', 'order_by_time'), :class => 'filter', :tag => 'friends'
+      =link_to '热门话题',filter_item_topics_path('hot', 'order_by_time'), :class => 'filter last', :tag => 'hot' 
+    .right.order_filter
+      =link_to '按时间', filter_item_topics_path('mine', 'order_by_time'), :class => 'select order', :tag => 'order_by_time'
+      =link_to '按热度', filter_item_topics_path('mine', 'order_by_hot'), :class => 'order last', :tag => 'order_by_hot'
+  .result_area
+    -rtopics.each do |t|
+      = link_to t.name, 'javascript:void(0)', :id => t.id, :class => 'topic_item'
 
 :javascript
-  $('.select_topic a.topic_item').click(function(){
+  $('.select_topic a.topic_item').bind('click', select_topic_item);
+  function select_topic_item() {
     var id = $(this).attr('id'); 
     var name = $(this).text();
     selectTopicCallBack(id, name);
+  }
+
+  $('.select_topic .filter_area a').click(function(){
+    $link = $(this); 
+    $(this).addClass('select'); 
+    $(this).siblings().removeClass('select');
+    $('.filter_area img').remove();
+    $("<img src='/images/ui/small-ajax-loader.gif'></img>").appendTo('.target_filter');
+    $.ajax({
+      type: 'get',
+      url: $(this).attr('href'),
+      async: false,
+      success: function(data) {
+        $('.filter_area img').remove();
+        $('.result_area').replaceWith(data);
+        $('.select_topic a.topic_item').bind('click', select_topic_item);
+        if ($link.hasClass('filter')) {
+          $orders_link = $('.select_topic .filter_area .order_filter a');
+          $orders_link.each(function(index) {
+            $(this).attr('href', "/item_topics/"+ $link.attr('tag') + "/" + $(this).attr('tag'));
+          });
+        } else {
+          $orders_link = $('.select_topic .filter_area .target_filter a');
+          $orders_link.each(function(index) {
+            $(this).attr('href', "/item_topics/"+ $(this).attr('tag') + "/" + $link.attr('tag'));
+          });
+        }
+      },
+      error: function(data) {
+        $('.filter_area img').remove();
+      }
+    });
+    return false
   });

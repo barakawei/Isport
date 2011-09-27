@@ -49,10 +49,17 @@
 
 
   function validate_form() {
-    return $('#new_item_topic').validate().form();
+    if($('#new_item_topic').validate().form()) {
+      $('ul.title_bar img').remove();
+      $("<img src='/images/ui/small-ajax-loader.gif'></img>").appendTo('ul.title_bar');
+      return true;
+    }else {
+      return false;
+    }
   }
 
   function afterCreate(responseText, statusText, xhr, $form){
+    $('ul.title_bar img').remove();
     var id, name;
     $(responseText).find("item-topic").each(function(i){
       id = $(this).children('id').text(); 

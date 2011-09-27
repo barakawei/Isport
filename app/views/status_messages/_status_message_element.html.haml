@@ -1,4 +1,7 @@
 .stream_element.pic_container{ :id => post.id }
+  - topic = post.item_topic
+  - if topic
+    = link_to topic.item.name, 'javascript:void(0)', :class => 'message_topic_type'
   .author_avatar
     = person_image_link(post.author,:thumb_small) 
   .element_body
@@ -6,7 +9,6 @@
       .from
         = person_link(post.author, :class => 'author')
       .post_content
-        - topic = post.item_topic
         - if topic 
           = link_to "##{topic.name}#", item_topic_path(topic), :class => 'topic_name'  
         = post_content_tag(post)

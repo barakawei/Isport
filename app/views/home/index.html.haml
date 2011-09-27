@@ -66,14 +66,15 @@
     })
 
   $.get("/home/show_post");
-  $('.create_post textarea').focusin(function() {
+  $('.create_post #status_message_content').focusin(function() {
     $(this).css('height', '40px'); 
     $("label.placeholder").hide();
   });
-  $("label.placeholder").click(function(){
-    $('.create_post textarea').focus(); 
+  $('label.placeholder').click(function(){
+    $(this).hide(); 
+    $('.create_post #status_message_content').focus();
   });
-  $('.create_post textarea').focusout(function() {
+  $('.create_post #status_message_content').focusout(function() {
     if ($.trim($(this).val()) == '' ) {
       $("label.placeholder").show();
       $(this).css('height', '20px'); 

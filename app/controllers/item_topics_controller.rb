@@ -11,6 +11,12 @@ class ItemTopicsController < ApplicationController
 
   end
 
+  def filter 
+    @person = current_user.person
+    @item_topics = ItemTopic.send(params[:target], @person).send(params[:order])
+    render :partial => 'filter', :locals => {:topics => @item_topics}
+  end
+
   def create
     @current_person = current_user.person
     @topic = ItemTopic.new(params[:item_topic])
