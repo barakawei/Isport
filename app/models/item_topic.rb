@@ -18,6 +18,10 @@ class ItemTopic < ActiveRecord::Base
     of_person(person.user.friends).limit(20)
   end
 
+  def self.hot(person)
+    order_by_hot.limit(20)
+  end
+
   def image_url(size = :thumb_large)
     result = if size == :thumb_medium && self[:image_url_medium]
        self[:image_url_medium]
