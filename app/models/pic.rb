@@ -69,7 +69,9 @@ class Pic < ActiveRecord::Base
     name = size.to_s 
     if processed?
       if self.pic_type == "avatar" || self.album.name == "avatar"
-        avatar_processed_image.url(name)
+        if name != "shortcut_medium"
+          avatar_processed_image.url(name)
+        end
       else
         processed_image.url(name)
       end
@@ -104,6 +106,7 @@ class Pic < ActiveRecord::Base
         :thumb_small => self.url(:thumb_small),
         :thumb_medium => self.url(:thumb_medium ),
         :thumb_large => self.url(:thumb_large ),
+        :shortcut_medium => self.url(:shortcut_medium),
         :content => self.description
       }
     }

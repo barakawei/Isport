@@ -1,0 +1,88 @@
+:javascript
+  function createPicUploader(){
+
+   var uploader = new qq.FileUploader({
+       element: document.getElementById('pic-upload'),
+       params: {'photo' : {'is_avatar':false},'pic_type':'#{pic_type}'},
+       allowedExtensions: ['jpg', 'jpeg', 'png', 'gif'],
+       action: "#{controller_path}",
+       debug: true,
+       button: document.getElementById('pic-upload'),
+       sizeLimit: 8294304,
+
+       onProgress: function(id, fileName, loaded, total){
+       },
+
+       onSubmit: function(id, fileName){
+
+        $( ".qq-upload-drop-area").hide();
+        $( ".qq-uploader" ).addClass("upload_more_pic");
+        $( ".qq-upload-button" ).addClass("upload_link").removeClass("qq-upload-button").find("span").html("上传更多图片");
+
+        $('#pic-upload').addClass("loading");
+        $('.new_status_message').find("input[type='submit']").attr('disabled','disabled');
+        $('#photozone').append(
+          "<li class='photo loading' style='position:relative;'>" +
+            "<div class='ajax_load left'>" + 
+            "<a class='upload_img_link'>" + 
+            "<img src='/images/ui/pic_loading.gif' class='load_img upload_image' />" +
+            "<div class='action'><span class='remove_link'>close</span></div>" +
+            "</a>" +
+            "</div>" +
+            "<input type='text' name='desc' onkeydown='if(event.keyCode==13) this.blur();' value=''>" +
+          "</li>"
+          );
+       },
+
+       onComplete: function(id, fileName, responseJSON) {
+        var id = responseJSON.data.photo.id,
+            url = responseJSON.data.photo.shortcut_medium
+            origin_url = responseJSON.data.photo.url, 
+            currentPlaceholder = $('li.loading').first();
+
+        currentPlaceholder.append("<input type='hidden' value='" + id + "' name='photos[]' />");
+
+        var img = currentPlaceholder.find('img');
+        var input = currentPlaceholder.find('input[type="text"]');
+        var link = currentPlaceholder.find('a.upload_img_link');
+        img.attr('src', url);
+        img.attr('data-id', id);
+        img.removeClass( "load_img" );
+        link.attr('href', "javascript:void(0)");
+        link.addClass( "upload_finshed" );
+        input.attr('name', "desc["+ id +"]");
+        currentPlaceholder.removeClass('loading');
+        
+        var form = $('.new_status_message');
+
+        form.find("input[type='submit']").removeAttr('disabled');
+
+        $('.remove_link',currentPlaceholder).bind('click', function(){
+          
+          var photo = $(this).closest('.photo');
+          photo.addClass("dim");
+          $.ajax({url: "/pics/" + photo.find('img').attr('data-id'),
+                  type: 'DELETE',
+                  success: function() {
+                      photo.fadeOut(400, function(){
+                            photo.remove();
+                            if( $("#new_pic_area #photozone .photo").length == 0){
+                              $( ".qq-uploader" ).removeClass("upload_more_pic");
+                              $( ".upload_link" ).removeClass("upload_link").addClass("qq-upload-button").find("span").html("选择图片");
+                              $( ".qq-upload-drop-area").show();
+                            }
+                            });
+                          }
+                  });
+        });
+        
+
+       },
+
+       onAllComplete: function(completed_files){
+       }
+
+   });
+  }
+    window.onload = createPicUploader;
+

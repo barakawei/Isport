@@ -23,23 +23,24 @@
         %li
           =link_to "朋友活动","/home/show_following_event",:remote => true,:id => 'following_event'
       .create_post
-        = form_for(StatusMessage.new,:remote => true) do |status|
+        = form_for(StatusMessage.new,:remote => true,:html => { :multipart => true }) do |status|
           = status.text_area :content,:class => 'content'
           = hidden_field_tag :contacts
           = label_tag 'weibo', '说点什么吧...', :class => 'placeholder'
           = hidden_field_tag :topic_id
           = status.submit "发布", :class => 'glass_button',"data-disable-with" => t("posting")
+          = render :partial => 'status_messages/add_pic'
         
       .new_event.hide
         = render 'common/big_link_button', :content => '发起活动', :path => new_event_path 
       .post_type_bar
-        %a{:class => 'photo', :href => 'javascript:void(0)'} 
+        %a{:class => 'title photo', :href => 'javascript:void(0)'} 
           %span.img
           %span.desc='图片'
-        %a{:class => 'topic', :href => 'javascript:void(0)'} 
+        %a{:class => 'title topic', :href => 'javascript:void(0)'} 
           %span.img
           %span.desc='话题'
-        %a{:class => 'at_friend', :href => 'javascript:void(0)'} 
+        %a{:class => 'title at_friend', :href => 'javascript:void(0)'} 
           %span.img
           %span.desc='好友'
         = render :partial => 'item_topics/new_topic_box', :locals => {:item_topic => @item_topic, :rtopics => @recent_topics} 
@@ -83,6 +84,10 @@
 
   $('.post_type_bar a.topic').click(function(){
     $('.topic_box').show();      
+  });
+
+  $('.post_type_bar a.photo').click(function(){
+    $('.pic_box').show();      
   });
 
 

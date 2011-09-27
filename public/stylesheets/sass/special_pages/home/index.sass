@@ -382,7 +382,7 @@
     :position relative
     :float left
     :width 500px
-    a
+    a.title
       :margin 5px 10px 5px 0 
       :display block
       :float left
@@ -455,7 +455,7 @@
 
   .new_post
     :float right
-  ul
+  ul.event
     li
       float: left
       font-weight: bold
@@ -492,3 +492,140 @@
       :font-size 18px
       :padding 10px
 
+
+.pic_box
+  left: 0 !important
+  bottom: -325px !important
+  top: auto !important
+
+  .upload_more_pic
+    :position absolute
+    :bottom 0
+    :left 0
+    :height 32px
+    :width 100%
+    :border-top 1px solid #e5e5e5
+    .upload_link
+      :display inline-block
+      :font-size 15px
+      :margin-left 15px !important
+      :margin-top 5px !important
+      :position relative
+      :overflow hidden
+      :color #4083a9
+      input
+        :cursor pointer
+      &:hover
+        :color #205f82
+  #new_pic_area
+    #pic-upload
+      .qq-upload-drop-area
+        :width 430px
+        :height 270px
+      .qq-upload-list
+        :display none
+      .qq-upload-button
+        :margin-top 140px
+        :margin-left 165px
+        position: relative
+        overflow: hidden
+        input
+          cursor: pointer
+      .qq-upload-drop-area
+        :top -140px
+    .title_bar
+      :display block
+      :float left
+      h2
+        :display inline-block
+        :font-size 20px
+        :line-height 50px
+        :height 50px
+        :float left
+        :margin-left 10px
+      img
+        :border 1px solid #d5ddde
+        :display block
+    .photo_form
+      :width 450px
+      :position static !important
+
+      
+      a.upload_img_link
+        :width 100px
+        :height 100px
+        :display inline-block
+
+
+      .glass_button
+        :height 23px
+        :margin-top 2px
+      .upload_confirm_button, .cancel_button
+        :position absolute
+        :bottom 0px
+        :right 60px
+        :padding 0 10px
+        :line-height 30px
+        :height 30px
+        :font-size 15px
+        :background-color #f5f5f5
+        :border 1px solid #dddddd
+        :color #529214
+        :cursor pointer
+
+        &:hover
+          :background-color #e6efc2
+          :border 1px solid #c6d880
+
+      .cancel_button
+        :right 0
+        :height 28px
+          
+        
+    #photozone
+      :position static
+      :width 450px
+      :height auto
+      li.loading
+        .ajax_load
+          :width 100px
+          :display inline-block
+      li 
+        :margin-bottom 22px
+        :float left
+        :margin-right 5px
+
+        :display block
+        :position relative
+        img
+          :width 100px
+          :height 100px
+        
+        input
+          :position absolute
+          :bottom -18px
+          :left 0
+          :width 90px
+          :height 10px
+        .action
+          :display none
+          width: 100px
+          height: 20px
+          left: 0
+          top: 0
+          position: absolute
+          background-color: black
+          filter: alpha(opacity=60)
+          opacity: .6
+          
+          
+        .remove_link
+          :background url('/images/ui/delete_white.png') no-repeat 
+          :position absolute
+          :right 0 
+          :top 6px
+          width: 10px
+          height: 10px
+          text-indent: -9999px
+          :cursor pointer
+          

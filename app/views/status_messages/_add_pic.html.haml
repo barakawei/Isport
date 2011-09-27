@@ -1,0 +1,41 @@
+-content_for :head do
+  = include_stylesheets :special_pages_item_topics_topic_box, :media => 'all'
+
+.popup_box.pic_box.hide
+  .box_border_top 
+  .box_center
+    .box_border_left
+    .box_content
+      = link_to 'close', 'javascript:void(0)', :class => 'close_box'
+      #new_pic_area
+        .photo_form
+          #pic-upload
+          %ul#photozone
+        =render 'photos/new_pic',:controller_path => pics_path,:pic_type => 'status_message'
+    .box_border_right
+  .box_border_bottom
+
+
+
+:javascript
+
+  $( ".upload_finshed" ).live({ 
+    mouseenter:function(){
+      $( this ).find( ".action" ).show();
+    },
+    mouseleave:function(){
+      $( this ).find( ".action" ).hide();
+    }
+  });
+
+  $( ".pic_box .close_box" ).live( "click",function(){ 
+    $( ".pic_box").hide();
+    $(".pic_box #photozone .photo").remove(); 
+    $( ".pic_box .upload_img_link" ).remove();
+    $(".pic_box #photozone input").remove(); 
+    if($( ".pic_box .qq-uploader" ).hasClass( "upload_more_pic" )){
+      $( ".pic_box .qq-uploader" ).removeClass("upload_more_pic");
+      $( ".pic_box .upload_link" ).removeClass("upload_link").addClass("qq-upload-button").find("span").html("选择图片");
+      $( ".pic_box .qq-upload-drop-area").show();
+    }
+  });
