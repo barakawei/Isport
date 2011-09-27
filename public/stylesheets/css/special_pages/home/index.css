@@ -593,7 +593,8 @@
         bottom: -18px;
         left: 0;
         width: 90px;
-        height: 10px; }
+        height: 10px;
+        display: none; }
       .pic_box #new_pic_area #photozone li .action {
         display: none;
         width: 100px;
