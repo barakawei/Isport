@@ -6,6 +6,18 @@ class ItemTopic < ActiveRecord::Base
   has_many :posts 
   belongs_to :person
 
+  scope :of_person, lambda {|person| where(:person_id => person)}
+  scope :order_by_time, lambda {order('created_at desc') }
+  scope :order_by_hot, lambda { order('posts_count desc') }
+
+  def self.mine(person)
+    of_person(person).limit(20)
+  end
+
+  def self.friends(person)
+    of_person(person.user.friends).limit(20)
+  end
+
   def image_url(size = :thumb_large)
     result = if size == :thumb_medium && self[:image_url_medium]
        self[:image_url_medium]

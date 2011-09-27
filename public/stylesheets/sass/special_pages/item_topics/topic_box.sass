@@ -38,7 +38,7 @@
       ul.title_bar
         :float left
         :display block
-        :width 420px
+        :width 450px
         :padding-bottom 5px
         :border-bottom 1px solid #d5ddde
         :margin-bottom 20px
@@ -82,19 +82,36 @@
 
       #select_topic_area
         :float left
-        
-        h4
-          :margin-bottom 5px
-        
-        a.topic_item 
-          background-color: #F5F5F5
-          font-size: 13px
-          line-height: 13px
-          padding: 5px 8px
-          color: #778087
-          @include border-radius(3px)
+        :width 450px
+        .select_topic 
+          .filter_area
+            :width 450px
+            :float left
+            :margin-top -20px
+            h4
+              :margin-bottom 5px
+            a
+              :border-right 1px solid #ddd
+              :height 14px
+              :padding 0 5px 0 0
+              :margin 5px 5px 15px 0
+              :font-size 13px
+            a.last
+              :border none
+            a.select
+              :color #444
+          
+          .result_area
+            :width 450px
+            a.topic_item 
+              background-color: #F5F5F5
+              font-size: 13px
+              line-height: 13px
+              padding: 5px 8px
+              color: #778087
+              @include border-radius(3px)
 
-          &:hover
-            background-color: #9999aa
-            color: #fff
-              
+              &:hover
+                background-color: #9999aa
+                color: #fff
+                  
