@@ -44,6 +44,11 @@ Isport::Application.routes.draw do
     match '/comments/show_pic_comment' => :show_pic_comment
   end
 
+  controller :item_topics do
+    match '/item_topics/:target/:order' => :filter, :as => 'filter_item_topics',
+          :constraints => { :target => /mine|friends|hot/, :oreder => /order_by_time|order_by_hot/ }
+  end
+
   resources :comments
   resources :pic_comments
 
