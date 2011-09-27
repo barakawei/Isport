@@ -31,14 +31,16 @@ class ItemTopicsController < ApplicationController
   end
 
   def follow
+    ItemTopic.add_follower(params[:id], current_user.person) if params[:id]
     @topic = ItemTopic.find(params[:id])
-    @topic.add_follower(current_user.person) if params[:id]
+
     respond_with @topic
   end
 
   def defollow
+    ItemTopic.remove_follower(params[:id], current_user.person) if params[:id]
     @topic = ItemTopic.find(params[:id])
-    @topic.remove_follower(current_user.person) if params[:id]
+    
     respond_with @topic
   end
 end
