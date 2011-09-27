@@ -121,9 +121,8 @@
 .post_area {
   width: 660px;
   margin-left: 20px;
-  margin-top: 16px;
+  margin-top: 11px;
   float: left;
-  background: white;
   border-bottom: 1px solid #eceae8;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -131,22 +130,31 @@
   behavior: url(/javascripts/PIE.htc); }
   .post_area .create_post {
     float: left;
-    position: relative;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
-    behavior: url(/javascripts/PIE.htc);
-    border: 1px solid #888888; }
+    width: 600px;
+    position: relative; }
     .post_area .create_post textarea {
       width: 500px;
-      height: 30px;
+      height: 50px;
       margin: 5px;
-      border: none; }
+      border: none;
+      border: 1px solid #888888;
+      -moz-border-radius: 5px;
+      -webkit-border-radius: 5px;
+      border-radius: 5px;
+      behavior: url(/javascripts/PIE.htc);
+      background: white; }
     .post_area .create_post label.placeholder {
       position: absolute;
       top: 10px;
       left: 10px;
       font-size: 14px; }
+    .post_area .create_post .glass_button {
+      position: absolute;
+      width: 70px;
+      height: 40px;
+      font-size: 16px;
+      top: 10px;
+      right: 5px; }
     .post_area .create_post .topic_tag {
       -moz-border-radius: 3px;
       -webkit-border-radius: 3px;
@@ -170,3 +178,28 @@
         margin-left: 5px; }
         .post_area .create_post .topic_tag a.close_topic_tag:hover {
           color: white; }
+  .post_area .post_type_bar {
+    position: relative;
+    float: left;
+    margin-left: 6px;
+    width: 500px; }
+    .post_area .post_type_bar a {
+      margin: 5px 10px 5px 0;
+      display: block;
+      float: left; }
+      .post_area .post_type_bar a span {
+        display: block;
+        float: left; }
+      .post_area .post_type_bar a span.desc {
+        font-size: 14px;
+        line-height: 14px;
+        margin-left: 3px;
+        color: #666666; }
+      .post_area .post_type_bar a span.img {
+        width: 19px;
+        background-image: url("/images/ui/weibo_global.png");
+        background-position: -63px 0;
+        height: 14px; }
+    .post_area .post_type_bar a.at_friend span.img {
+      background-position: -434px 0;
+      width: 15px; }

@@ -8,7 +8,7 @@ class ItemTopicsController < ApplicationController
   def show
     @topic = ItemTopic.find(params[:id]) 
     @followers = @topic.followers.limit(FOLLOWER).includes(:profile) 
-     
+
   end
 
   def create

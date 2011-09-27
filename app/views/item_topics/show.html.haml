@@ -1,6 +1,10 @@
 -content_for :head do
   = include_stylesheets :special_pages_item_topics_show, :media => 'all'
   = include_javascripts :jquery_validation
+  = include_javascripts :scroll_page
+  = include_javascripts :show_photo
+  = include_javascripts :status_message
+  = include_javascripts :mention
 
 .span-24.last
   .topic_area
@@ -36,18 +40,28 @@
         = status.text_area :content,:class => 'content'
         = hidden_field_tag :contacts
         = label_tag 'weibo', '说点什么吧...', :class => 'placeholder'
+        = hidden_field_tag :topic_id, @topic.id
         = status.submit "分享", :class => 'glass_button',"data-disable-with" => t("posting")
-      
+
+    .post_type_bar
+      %a{:class => 'photo', :href => 'javascript:void(0)'} 
+        %span.img
+        %span.desc='图片'
+      %a{:class => 'at_friend', :href => 'javascript:void(0)'} 
+        %span.img
+        %span.desc='好友'
+
+    = render :partial => 'status_messages/status_message_element', :collection => @topic.posts, :as => :post
 
 :javascript
   $.get("/home/show_post");
   $('.create_post textarea').focusin(function() {
-    $(this).css('height', '40px'); 
+    $(this).css('height', '60px'); 
     $("label.placeholder").hide();
   });
   $('.create_post textarea').focusout(function() {
     if ($.trim($(this).val()) == '' ) {
       $("label.placeholder").show();
-      $(this).css('height', '20px'); 
+      $(this).css('height', '50px'); 
     }
   });
