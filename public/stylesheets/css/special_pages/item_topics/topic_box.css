@@ -29,8 +29,7 @@
       padding: 5px 20px;
       width: 450px;
       height: 280px;
-      z-index: 1999;
-      overflow-y: auto; }
+      z-index: 1999; }
       .popup_box .box_center .box_content ul.title_bar {
         float: left;
         display: block;

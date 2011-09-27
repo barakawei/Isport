@@ -505,6 +505,7 @@
     :height 32px
     :width 100%
     :border-top 1px solid #e5e5e5
+    :z-index 2
     .upload_link
       :display inline-block
       :font-size 15px
@@ -584,8 +585,8 @@
         
     #photozone
       :position static
-      :width 450px
-      :height auto
+      :width 470px
+      overflow-y: auto
       li.loading
         .ajax_load
           :width 100px
