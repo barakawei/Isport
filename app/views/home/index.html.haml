@@ -29,7 +29,8 @@
           = label_tag 'weibo', '说点什么吧...', :class => 'placeholder'
           = hidden_field_tag :topic_id
           = status.submit "发布", :class => 'glass_button',"data-disable-with" => t("posting")
-          = render :partial => 'status_messages/add_pic'
+          .pic_upload_panel
+            = render "status_messages/add_pic"
         
       .new_event.hide
         = render 'common/big_link_button', :content => '发起活动', :path => new_event_path 
@@ -90,8 +91,6 @@
   $('.post_type_bar a.photo').click(function(){
     $('.pic_box').show();      
   });
-
-
 
   function createTopicCallback(t_id, t_name){
     $('.create_post .topic_tag').remove();

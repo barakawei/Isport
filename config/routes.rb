@@ -29,6 +29,9 @@ Isport::Application.routes.draw do
     resources :pic_comments,:only => [ :create,:show ]
   end
   resources :requests
+  controller :status_messages do
+    match '/status_messages/pic_upload' => :pic_upload
+  end
   resources :status_messages
   resources :status_messages do
     resources :comments,:only => [ :create,:show,:destroy ]

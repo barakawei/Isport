@@ -28,6 +28,10 @@ class StatusMessagesController < ApplicationController
     @status_message = StatusMessage.new
   end
 
+  def pic_upload
+    render "status_messages/_add_pic.html.haml",:layout => false
+  end
+
   def destroy
     @status_message = StatusMessage.find(params[:id])
     if current_user.person.id == @status_message.author.id
