@@ -1,0 +1,46 @@
+- content_for :head do
+  = include_stylesheets :special_pages_item_topics_index  
+.span-24
+  .topics
+    %h2='所有话题'
+    .topic_result
+      - @item_topics.each do |t|
+        .topic_item  
+          .pic 
+            = item_topic_image_tag(t, :thumb_small)
+          .content
+            .name
+              = link_to t.name, item_topic_path(t), :class => 't_content'
+              = link_to t.posts_count.to_s+'讨论', item_topic_path(t), :class => 'post_count'
+            .author
+              %span
+                = '由'
+                = link_to t.person.name, person_path(t.person)
+                = '发起'
+          
+         
+  .span-7.last.subjects
+    %h2='兴趣'
+    %ul
+      %li
+        = link_to '所有', item_topics_path, :class => 'select'
+      - Item.all.each do |i|
+        %li
+          = link_to i.name,  search_item_topic_path(i.id), :class => 'ajax'
+ 
+:javascript       
+  $('.subjects ul li a').click(function(){
+    $('.subjects ul li a').removeClass('select'); 
+    $(this).addClass('select');
+    if ($(this).hasClass('ajax')) {
+      $.ajax({
+        type: 'get',
+        url: $(this).attr('href'),
+        async: false,
+        success: function(data) {
+          $('.topic_result').replaceWith(data);
+        }
+      });
+      return false;
+    }
+  });

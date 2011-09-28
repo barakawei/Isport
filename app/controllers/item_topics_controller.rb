@@ -12,6 +12,16 @@ class ItemTopicsController < ApplicationController
     render :partial => 'filter', :locals => {:topics => @item_topics}
   end
 
+  def search
+    @item = Item.find(params[:item_id])
+    @item_topics = ItemTopic.of_item(@item);
+    render :partial => 'search', :locals => {:topics => @item_topics}
+  end
+
+  def index
+    @item_topics = ItemTopic.all
+  end
+
   def create
     @current_person = current_user.person
     @topic = ItemTopic.new(params[:item_topic])
