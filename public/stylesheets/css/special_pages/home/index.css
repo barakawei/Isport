@@ -386,19 +386,19 @@
     position: relative;
     float: left;
     width: 500px; }
-    .feed_toolbar .post_type_bar a {
+    .feed_toolbar .post_type_bar a.title {
       margin: 5px 10px 5px 0;
       display: block;
       float: left; }
-      .feed_toolbar .post_type_bar a span {
+      .feed_toolbar .post_type_bar a.title span {
         display: block;
         float: left; }
-      .feed_toolbar .post_type_bar a span.desc {
+      .feed_toolbar .post_type_bar a.title span.desc {
         font-size: 14px;
         line-height: 14px;
         margin-left: 3px;
         color: #666666; }
-      .feed_toolbar .post_type_bar a span.img {
+      .feed_toolbar .post_type_bar a.title span.img {
         width: 19px;
         background-image: url("/images/ui/weibo_global.png");
         background-position: -63px 0;
@@ -457,14 +457,14 @@
           color: white; }
   .feed_toolbar .new_post {
     float: right; }
-  .feed_toolbar ul li {
+  .feed_toolbar ul.event li {
     float: left;
     font-weight: bold;
     display: inline-block;
     margin-top: 20px;
     margin-bottom: 20px;
     margin-left: 10px; }
-    .feed_toolbar ul li a {
+    .feed_toolbar ul.event li a {
       color: #505050;
       background: #e1e1e1;
       border: 1px solid #dededd;
@@ -475,10 +475,10 @@
       -webkit-border-radius: 4px;
       border-radius: 4px;
       behavior: url(/javascripts/PIE.htc); }
-      .feed_toolbar ul li a:hover {
+      .feed_toolbar ul.event li a:hover {
         background-color: #c6c6c3;
         color: #646464; }
-    .feed_toolbar ul li a.current {
+    .feed_toolbar ul.event li a.current {
       background-color: white;
       color: #546266; }
 
@@ -492,3 +492,125 @@
   top: 5px;
   font-size: 18px;
   padding: 10px; }
+
+.pic_box {
+  left: 0 !important;
+  bottom: -325px !important;
+  top: auto !important; }
+  .pic_box .upload_more_pic {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 32px;
+    width: 100%;
+    border-top: 1px solid #e5e5e5;
+    z-index: 2; }
+    .pic_box .upload_more_pic .upload_link {
+      display: inline-block;
+      font-size: 15px;
+      margin-left: 15px !important;
+      margin-top: 5px !important;
+      position: relative;
+      overflow: hidden;
+      color: #4083a9; }
+      .pic_box .upload_more_pic .upload_link input {
+        cursor: pointer; }
+      .pic_box .upload_more_pic .upload_link:hover {
+        color: #205f82; }
+  .pic_box #new_pic_area #pic-upload .qq-upload-drop-area {
+    width: 430px;
+    height: 270px; }
+  .pic_box #new_pic_area #pic-upload .qq-upload-list {
+    display: none; }
+  .pic_box #new_pic_area #pic-upload .qq-upload-button {
+    margin-top: 140px;
+    margin-left: 165px;
+    position: relative;
+    overflow: hidden; }
+    .pic_box #new_pic_area #pic-upload .qq-upload-button input {
+      cursor: pointer; }
+  .pic_box #new_pic_area #pic-upload .qq-upload-drop-area {
+    top: -140px; }
+  .pic_box #new_pic_area .title_bar {
+    display: block;
+    float: left; }
+    .pic_box #new_pic_area .title_bar h2 {
+      display: inline-block;
+      font-size: 20px;
+      line-height: 50px;
+      height: 50px;
+      float: left;
+      margin-left: 10px; }
+    .pic_box #new_pic_area .title_bar img {
+      border: 1px solid #d5ddde;
+      display: block; }
+  .pic_box #new_pic_area .photo_form {
+    width: 450px;
+    position: static !important; }
+    .pic_box #new_pic_area .photo_form a.upload_img_link {
+      width: 100px;
+      height: 100px;
+      display: inline-block; }
+    .pic_box #new_pic_area .photo_form .glass_button {
+      height: 23px;
+      margin-top: 2px; }
+    .pic_box #new_pic_area .photo_form .upload_confirm_button, .pic_box #new_pic_area .photo_form .cancel_button {
+      position: absolute;
+      bottom: 0px;
+      right: 60px;
+      padding: 0 10px;
+      line-height: 30px;
+      height: 30px;
+      font-size: 15px;
+      background-color: #f5f5f5;
+      border: 1px solid #dddddd;
+      color: #529214;
+      cursor: pointer; }
+      .pic_box #new_pic_area .photo_form .upload_confirm_button:hover, .pic_box #new_pic_area .photo_form .cancel_button:hover {
+        background-color: #e6efc2;
+        border: 1px solid #c6d880; }
+    .pic_box #new_pic_area .photo_form .cancel_button {
+      right: 0;
+      height: 28px; }
+  .pic_box #new_pic_area #photozone {
+    position: static;
+    width: 470px;
+    overflow-y: auto; }
+    .pic_box #new_pic_area #photozone li.loading .ajax_load {
+      width: 100px;
+      display: inline-block; }
+    .pic_box #new_pic_area #photozone li {
+      margin-bottom: 22px;
+      float: left;
+      margin-right: 5px;
+      display: block;
+      position: relative; }
+      .pic_box #new_pic_area #photozone li img {
+        width: 100px;
+        height: 100px; }
+      .pic_box #new_pic_area #photozone li input {
+        position: absolute;
+        bottom: -18px;
+        left: 0;
+        width: 90px;
+        height: 10px;
+        display: none; }
+      .pic_box #new_pic_area #photozone li .action {
+        display: none;
+        width: 100px;
+        height: 20px;
+        left: 0;
+        top: 0;
+        position: absolute;
+        background-color: black;
+        filter: alpha(opacity=60);
+        opacity: 0.6; }
+      .pic_box #new_pic_area #photozone li .remove_link {
+        background: url("/images/ui/delete_white.png") no-repeat;
+        position: absolute;
+        right: 0;
+        top: 6px;
+        width: 10px;
+        height: 10px;
+        text-indent: -9999px;
+        cursor: pointer; }

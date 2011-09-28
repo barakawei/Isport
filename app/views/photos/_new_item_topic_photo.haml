@@ -6,7 +6,6 @@
       =t('upload')
     %br
     %br
-      #fileInfo
     #publisher_photo_upload
     :javascript
       function createUploader(){
@@ -31,7 +30,6 @@
              },
              
              onComplete: function(id, fileName, responseJSON){
-              $('#fileInfo').text(fileName + ' completed').fadeOut(2000);
               $('#file-upload').removeClass("loading");
               var id = responseJSON.data.photo.id
               var url = responseJSON.data.photo.thumb_large

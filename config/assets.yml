@@ -79,6 +79,9 @@ stylesheets:
     - public/stylesheets/css/general/common/autocomplete.css
     - public/stylesheets/css/general/common/lightbox.css
 
+  ie8_hack:
+    - public/stylesheets/css/general/common/ie8_hack.css
+
   forms:
     - public/stylesheets/css/general/forms/events_form.css
 

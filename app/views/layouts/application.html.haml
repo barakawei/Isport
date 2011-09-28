@@ -11,6 +11,10 @@
     = include_javascripts :jquery_form
     = include_javascripts :show_avatar
     //= include_javascripts :google_analytics
+    <!--[if IE 8]>
+    = include_stylesheets :ie8_hack
+    <![endif]-->
+    
     = csrf_meta_tag
     = yield :head
      
