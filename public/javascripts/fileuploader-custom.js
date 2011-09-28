@@ -279,7 +279,7 @@ qq.FileUploaderBasic = function(o){
         },
         showMessage: function(message){
             alert(message);
-        }
+        
     };
     qq.extend(this._options, o);
 
@@ -578,7 +578,6 @@ qq.extend(qq.FileUploader.prototype, {
         //dropArea.style.display = 'none';
 
         qq.attach(document, 'dragenter', function(e){
-            alert( 1 );
             if (!dz._isValidFileDrag(e)) return;
 
             dropArea.style.display = 'block';
