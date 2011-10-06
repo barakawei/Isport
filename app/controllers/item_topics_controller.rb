@@ -4,11 +4,12 @@ class ItemTopicsController < ApplicationController
   respond_to :js 
 
   FOLLOWER = 12
+  RELATED = 8
 
   def show
     @topic = ItemTopic.find(params[:id]) 
     @followers = @topic.followers.limit(FOLLOWER).includes(:profile) 
-
+    @related = @topic.item.topics.where("id != ?", @topic.id).order("created_at DESC").limit(RELATED)
   end
 
   def filter 
