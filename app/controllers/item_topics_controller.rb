@@ -20,14 +20,21 @@ class ItemTopicsController < ApplicationController
 
   def search
     @item = Item.find(params[:item_id])
-    @item_topics = ItemTopic.of_item(@item).paginate :page => params[:page],
+    @item_topics = ItemTopic.of_item(@item).order('created_at desc').paginate :page => params[:page],
                                                      :per_page => 15 
     render :action => :index 
   end
 
   def index
-    @item_topics = ItemTopic.all.paginate :page => params[:page],
+    @item_topics = ItemTopic.order('created_at desc').paginate :page => params[:page],
                                           :per_page => 15 
+  end
+
+  def interested
+    @interests = current_user.person.interests
+    @item_topics = ItemTopic.in_items(@interests).order('created_at desc').paginate :page => params[:page],
+                                               :per_page => 15 
+    render :action => :index 
   end
 
   def create

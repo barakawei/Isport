@@ -29,9 +29,9 @@
       :position relative
       :background-color #ffffff
       :float left
-      :padding 5px 20px
+      :padding 10px 20px
       :width 450px 
-      :height 280px
+      :height 270px
       :z-index 1999
 
 
@@ -50,6 +50,8 @@
           :margin 0
           :padding 0
           a
+            :margin-right 8px
+            @include border-radius(3px)
             :background-color #fff
             border: none 
             font-size: 13px
@@ -67,6 +69,7 @@
               :background-color #697D84
             
         li.browse
+          :margin-right 15px
           a
             :background-color #fff 
             :color #277098
@@ -89,6 +92,7 @@
         :border-bottom 1px solid #d5ddde
 
       #select_topic_area
+        :margin-top 5px
         :float left
         :width 450px
         .select_topic 
@@ -113,9 +117,17 @@
               :margin-top 5px
           
           .result_area
+            :margin-top 8px
+            :float left
             :width 450px
             a.topic_item 
               background-color: #F5F5F5
+              :display block
+              :float left
+              margin:
+                :bottom 10px
+                :right 8px
+
               font-size: 13px
               line-height: 13px
               padding: 5px 8px

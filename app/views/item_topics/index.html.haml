@@ -4,6 +4,8 @@
   .topics
     - if params[:action] == 'index' 
       %h2='所有话题' 
+    - elsif params[:action] == 'interested'  
+      %h2='我感兴趣的话题' 
     - else
       %h2="#{@item.name}话题"
     .topic_result
@@ -17,20 +19,24 @@
               = link_to t.posts_count.to_s+'讨论', item_topic_path(t), :class => 'post_count'
             .author
               %span
+                = time_ago_in_words(t.created_at) + '前'          
                 = '由'
                 = link_to t.person.name, person_path(t.person)
                 = '发起'
-          
+              %span.right
+                = link_to t.item.name, item_path(t.item)
+    .pagination_box
+      = will_paginate @item_topics, {:previous_label => t("pagination.previous"), 
+                                :next_label => t("pagination.next")}
          
   .span-7.last.subjects
-    %h2='兴趣'
+    %h2='话题类型'
     %ul
       %li
         = link_to '所有', item_topics_path, :class => (params[:action] == 'index') ? 'select' : '' 
+      %li
+        = link_to '我感兴趣', interested_topics_path, :class => (params[:action] == 'interested') ? 'select' : ''
       - Item.all.each do |i|
         %li
           = link_to i.name,  search_item_topic_path(i.id), :class => (@item && @item.id == i.id) ? 'select' : ''
  
-  .span-17.pagination_box
-    = will_paginate @item_topics, {:previous_label => t("pagination.previous"), 
-                              :next_label => t("pagination.next")}

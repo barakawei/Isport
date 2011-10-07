@@ -12,6 +12,7 @@ class ItemTopic < ActiveRecord::Base
   scope :order_by_time, lambda {order('created_at desc') }
   scope :order_by_hot, lambda { order('posts_count desc') }
   scope :of_item, lambda {|item| where(:item_id => item.id)}
+  scope :in_items, lambda {|items| where(:item_id => items) }
 
   def self.mine(person)
     of_person(person).limit(20)

@@ -13,7 +13,6 @@ Isport::Application.routes.draw do
   match "/users/validate_email_exist" => 'users#validate_email_exist', :as => 'validate_email_exist'
 
   resources :site_posts
-  resources :item_topics
 
   devise_for :users, :controllers => { :registrations => "registrations",:invitations   => "invitations" } do
     get 'invitations/resend/:id' => 'invitations#resend', :as => 'invitation_resend'
@@ -50,13 +49,14 @@ Isport::Application.routes.draw do
   controller :item_topics do
     match '/item_topics/:target/:order' => :filter, :as => 'filter_item_topics',
           :constraints => { :target => /mine|friends|hot/, :oreder => /order_by_time|order_by_hot/ }
-    match '/item_topics/search/:item_id' => :search, :as => 'search_item_topic',
+    match '/item_topics/search/:item_id' => :search, :as => 'search_item_topic'
+    match '/item_topics/interested' => :interested, :as => 'interested_topics'
   end
+  resources :item_topics
 
   resources :comments
   resources :pic_comments
 
-  resources :item_topics
 
   root :to => "welcome#index"
 
