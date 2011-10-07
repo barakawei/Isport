@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
   before_filter :registrations_closed?
   before_filter :is_admin, :except => [:index, :show ]
+  respond_to :js 
 
   EVELIMIT = 6
   ACTLIMIT = 12
@@ -47,6 +48,7 @@ class ItemsController < ApplicationController
     @events = @item.hot_events(EVELIMIT, @city)  
     @actors = @item.hot_stars(ACTLIMIT)
     @groups = @item.hot_groups(EVELIMIT, @city)  
+    @topics = @item.topics.limit(EVELIMIT)
 
     @select_tab = 'item'
     respond_to do |format|

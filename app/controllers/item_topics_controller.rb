@@ -21,9 +21,10 @@ class ItemTopicsController < ApplicationController
   def create
     @current_person = current_user.person
     @topic = ItemTopic.new(params[:item_topic])
-    @topic.person = @current_person  
-    puts params[:format]
+    @topic.person = @current_person 
+
     if @topic.save
+      ItemTopic.add_follower(@topic.id, @current_person)
       if params[:format] == 'json'  
         render :xml=> @topic.to_xml
       else

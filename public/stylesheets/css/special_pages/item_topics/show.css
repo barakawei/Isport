@@ -98,15 +98,23 @@
       font-weight: bold; }
   .topic_area .related {
     width: 256px;
-    margin-top: 10px;
+    margin-top: 20px;
     float: left; }
     .topic_area .related .related_title {
       width: 256px;
       position: relative;
-      float: left; }
+      float: left;
+      margin-bottom: 10px; }
       .topic_area .related .related_title .name {
-        color: blue;
+        color: white;
         font-size: 16px;
+        background-color: #bdbda3;
+        font-weight: bold;
+        -moz-border-radius: 4px;
+        -webkit-border-radius: 4px;
+        border-radius: 4px;
+        behavior: url(/javascripts/PIE.htc);
+        padding: 1px 3px 1px 3px;
         position: absolute;
         left: 3px; }
       .topic_area .related .related_title .link_more {
@@ -114,6 +122,7 @@
         right: 4px; }
     .topic_area .related .related_topics {
       float: left;
+      width: 256px;
       margin-top: 30px;
       background-color: #f4f4f4;
       -moz-border-radius: 6px;
@@ -127,8 +136,16 @@
     float: left;
     overflow: show; }
     .topic_area .topic_followers .followers_title {
+      width: 51px;
       font-size: 16px;
-      color: blue;
+      color: white;
+      font-weight: bold;
+      background-color: #bdbda3;
+      -moz-border-radius: 4px;
+      -webkit-border-radius: 4px;
+      border-radius: 4px;
+      behavior: url(/javascripts/PIE.htc);
+      padding: 1px 3px 1px 3px;
       margin-bottom: 10px; }
     .topic_area .topic_followers .follower {
       float: left;

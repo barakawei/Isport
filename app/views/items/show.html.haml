@@ -1,6 +1,7 @@
 -content_for :head do
   = include_stylesheets :special_pages_items_show, :media => 'all'
   = include_stylesheets :special_pages_items_commom, :media => 'all'
+
 .span-24.last
   .itemleft
     .item_image
@@ -19,9 +20,20 @@
           = link_to t('items.unlike' ), url_for(:action=> "remove_fan", :id => @item.id), :class => "item_unmark" 
           = t('items.unlikeinfo', :name => @item.name)
 
+    .topics_area
+      .title
+        .flag_name
+          = @item.name + "话题"
+        .link_more
+          = "更多"
+
+      .topics
+        = render :partial => 'item_topics/related_topics',:collection => @topics,:as => :topic
+
     .item_star
       .star_title
-        = @item.name + t('items.mavin')
+        .title_name
+          = @item.name + t('items.mavin')
 
       -@actors.each_with_index do |person, index|
         .star_one{:class => ("last" if (index+1)%4==0)}
@@ -64,4 +76,3 @@
                                                                 :action => '创建小组'}
       
 
-      

@@ -27,7 +27,40 @@
     overflow: hidden;
     display: block;
     font-size: 13px;
-    margin-bottom: 10px; }
+    margin-bottom: 15px; }
+  .itemleft .topics_area {
+    width: 220px;
+    position: relative;
+    margin-bottom: 15px; }
+    .itemleft .topics_area .title {
+      width: 220px;
+      position: relative;
+      float: left;
+      margin-bottom: 10px; }
+      .itemleft .topics_area .title .flag_name {
+        color: white;
+        font-size: 16px;
+        background-color: #bdbda3;
+        font-weight: bold;
+        -moz-border-radius: 4px;
+        -webkit-border-radius: 4px;
+        border-radius: 4px;
+        behavior: url(/javascripts/PIE.htc);
+        padding: 1px 3px 1px 3px;
+        position: absolute; }
+      .itemleft .topics_area .title .link_more {
+        position: absolute;
+        right: 4px; }
+    .itemleft .topics_area .topics {
+      float: left;
+      width: 220px;
+      margin-top: 30px;
+      background-color: #f4f4f4;
+      -moz-border-radius: 6px;
+      -webkit-border-radius: 6px;
+      border-radius: 6px;
+      behavior: url(/javascripts/PIE.htc);
+      margin-bottom: 15px; }
   .itemleft .item_star {
     width: 220px;
     display: block;
@@ -36,8 +69,18 @@
       margin-top: 3px;
       width: 220px;
       height: 32px;
-      font-size: 16px;
-      color: #fc4469; }
+      margin-bottom: 8px; }
+      .itemleft .item_star .star_title .title_name {
+        float: left;
+        font-size: 16px;
+        color: white;
+        -moz-border-radius: 4px;
+        -webkit-border-radius: 4px;
+        border-radius: 4px;
+        behavior: url(/javascripts/PIE.htc);
+        font-weight: bold;
+        background-color: #bdbda3;
+        padding: 1px 3px 1px 3px; }
     .itemleft .item_star .star_one {
       float: left;
       width: 50px;

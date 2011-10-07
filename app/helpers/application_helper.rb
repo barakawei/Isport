@@ -63,7 +63,6 @@ module ApplicationHelper
     end
   end
 
-
   def how_long_ago(obj)
     timeago(obj.created_at)
   end
