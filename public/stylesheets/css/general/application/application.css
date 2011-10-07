@@ -788,11 +788,11 @@ a.app_black_link_button {
     text-align: left;
     margin-bottom: 50px; }
     #lightbox-comment-panel .comment_form textarea {
-      width: 170px;
+      width: 200px;
       height: 50px; }
   #lightbox-comment-panel .comment_button {
     text-align: left;
-    margin-left: 50px; }
+    margin-left: 36px; }
 
 .stream_element, .pic_comments {
   position: relative; }

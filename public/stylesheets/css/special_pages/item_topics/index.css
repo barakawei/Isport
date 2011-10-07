@@ -51,7 +51,7 @@
             line-height: 14px; }
 
 .subjects {
-  background-color: #103038;
+  background-color: white;
   padding: 15px 0 20px 0;
   -webkit-box-shadow: 0 1px 5px 0 #aaaaaa;
   -moz-box-shadow: 0 1px 5px 0 #aaaaaa;
@@ -60,21 +60,23 @@
   .subjects h2 {
     float: right;
     margin-right: 30px;
-    color: white; }
+    color: black; }
   .subjects ul {
     float: left; }
     .subjects ul li a {
       display: block;
       padding: 8px 0;
       width: 210px;
-      border-top: 1px solid #38535a;
+      border-top: 1px solid #bdbda3;
       font-size: 15px;
-      color: white;
+      color: #333333;
       margin: 0 30px; }
     .subjects ul li a.select {
       margin: 0;
       padding: 8px 30px;
       width: 218px;
-      background-color: #00bed4;
-      border-top: 1px solid #00bed4;
-      margin-left: -8px; }
+      color: white;
+      background-color: #99c94b;
+      border-top: 1px solid #99c94b;
+      margin-left: -8px;
+      margin-bottom: -1px; }

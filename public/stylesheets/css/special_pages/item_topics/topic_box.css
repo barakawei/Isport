@@ -56,6 +56,11 @@
             color: white; }
             .popup_box .box_center .box_content ul.title_bar li a.select:hover {
               background-color: #697d84; }
+        .popup_box .box_center .box_content ul.title_bar li.browse a {
+          background-color: white;
+          color: #277098; }
+          .popup_box .box_center .box_content ul.title_bar li.browse a:hover {
+            background-color: white; }
       .popup_box .box_center .box_content a.close_box {
         position: absolute;
         top: 10px;

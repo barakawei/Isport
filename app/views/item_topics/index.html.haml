@@ -2,7 +2,10 @@
   = include_stylesheets :special_pages_item_topics_index  
 .span-24
   .topics
-    %h2='所有话题'
+    - if params[:action] == 'index' 
+      %h2='所有话题' 
+    - else
+      %h2="#{@item.name}话题"
     .topic_result
       - @item_topics.each do |t|
         .topic_item  
@@ -23,24 +26,11 @@
     %h2='兴趣'
     %ul
       %li
-        = link_to '所有', item_topics_path, :class => 'select'
+        = link_to '所有', item_topics_path, :class => (params[:action] == 'index') ? 'select' : '' 
       - Item.all.each do |i|
         %li
-          = link_to i.name,  search_item_topic_path(i.id), :class => 'ajax'
+          = link_to i.name,  search_item_topic_path(i.id), :class => (@item && @item.id == i.id) ? 'select' : ''
  
-:javascript       
-  $('.subjects ul li a').click(function(){
-    $('.subjects ul li a').removeClass('select'); 
-    $(this).addClass('select');
-    if ($(this).hasClass('ajax')) {
-      $.ajax({
-        type: 'get',
-        url: $(this).attr('href'),
-        async: false,
-        success: function(data) {
-          $('.topic_result').replaceWith(data);
-        }
-      });
-      return false;
-    }
-  });
+  .span-17.pagination_box
+    = will_paginate @item_topics, {:previous_label => t("pagination.previous"), 
+                              :next_label => t("pagination.next")}
