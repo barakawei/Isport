@@ -51,6 +51,7 @@ Isport::Application.routes.draw do
           :constraints => { :target => /mine|friends|hot/, :oreder => /order_by_time|order_by_hot/ }
     match '/item_topics/search/:item_id' => :search, :as => 'search_item_topic'
     match '/item_topics/interested' => :interested, :as => 'interested_topics'
+    match '/item_topics/by_friends' => :friends, :as => 'friends_topics'
   end
   resources :item_topics
 

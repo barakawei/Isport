@@ -71,6 +71,10 @@
       font-size: 15px;
       color: #333333;
       margin: 0 30px; }
+    .subjects ul li a.interested {
+      color: #ff8a3c; }
+    .subjects ul li a.friends {
+      color: #4ebaff; }
     .subjects ul li a.select {
       margin: 0;
       padding: 8px 30px;

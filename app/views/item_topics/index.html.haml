@@ -6,6 +6,8 @@
       %h2='所有话题' 
     - elsif params[:action] == 'interested'  
       %h2='我感兴趣的话题' 
+    - elsif params[:action] == 'friends'  
+      %h2='由我关注的人发起的话题' 
     - else
       %h2="#{@item.name}话题"
     .topic_result
@@ -33,9 +35,11 @@
     %h2='话题类型'
     %ul
       %li
-        = link_to '所有', item_topics_path, :class => (params[:action] == 'index') ? 'select' : '' 
+        = link_to '我感兴趣', interested_topics_path, :class => (params[:action] == 'interested') ? 'select interested' : 'interested'
       %li
-        = link_to '我感兴趣', interested_topics_path, :class => (params[:action] == 'interested') ? 'select' : ''
+        = link_to '我关注的人发起', friends_topics_path, :class => (params[:action] == 'friends') ? 'select friends' : 'friends'
+      %li
+        = link_to '所有', item_topics_path, :class => (params[:action] == 'index') ? 'select' : '' 
       - Item.all.each do |i|
         %li
           = link_to i.name,  search_item_topic_path(i.id), :class => (@item && @item.id == i.id) ? 'select' : ''

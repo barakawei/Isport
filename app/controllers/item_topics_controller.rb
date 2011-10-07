@@ -37,6 +37,13 @@ class ItemTopicsController < ApplicationController
     render :action => :index 
   end
 
+  def friends
+    @friends = current_user.friends 
+    @item_topics = ItemTopic.by_friends(@friends).order('created_at desc').paginate :page => params[:page],
+                                               :per_page => 15 
+    render :action => :index 
+  end
+
   def create
     @current_person = current_user.person
     @topic = ItemTopic.new(params[:item_topic])
