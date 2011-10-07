@@ -1,9 +1,84 @@
 -content_for :head do
   = include_stylesheets :special_pages_item_topics_show, :media => 'all'
+  = include_javascripts :jquery_validation
+  = include_javascripts :scroll_page
+  = include_javascripts :show_photo
+  = include_javascripts :status_message
+  = include_javascripts :mention
 
 .span-24.last
   .topic_area
     .topic_info
       .topic_image
-        = item_topic_image_tag(@topic, :thumb_small)
+        = item_topic_image_tag(@topic, :thumb_medium)
+      .topic_msg
+        .topic_name
+          = truncate(@topic.name, :length => 18)
+        .topic_owner
+          = "发起人： "
+          = link_to @topic.person.profile.name, person_path(@topic.person)
 
+      .topic_des
+        = truncate(@topic.description, :length => 140)
+    .follow_action
+      - if current_user
+        = follow_topic_tag(@topic)
+     
+      = followers_count_tag(@topic) 
+
+    .related
+      .related_title
+        .name
+          = "相关话题"
+        .link_more
+          = "更多"
+
+      .related_topics
+        = render :partial => 'item_topics/related_topics',:collection => @related,:as => :topic
+
+    .topic_followers
+      .followers_title
+        = "关注者"
+
+      -@followers.each_with_index do |follower, index|
+        .follower{:class => ("last" if (index+1)%4==0)}
+          = person_image_link(follower)
+
+  .post_area
+    .create_post
+      = form_for(StatusMessage.new,:remote => true) do |status|
+        = status.text_area :content,:class => 'content'
+        = hidden_field_tag :contacts
+        = label_tag 'weibo', '说点什么吧...', :class => 'placeholder'
+        = hidden_field_tag :topic_id, @topic.id
+        = status.submit "分享", :class => 'glass_button',"data-disable-with" => t("posting")
+        .pic_upload_panel
+          = render "status_messages/add_pic"
+
+    .post_type_bar
+      %a{:class => 'title photo', :href => 'javascript:void(0)'} 
+        %span.img
+        %span.desc='图片'
+      %a{:class => 'title at_friend', :href => 'javascript:void(0)'} 
+        %span.img
+        %span.desc='好友'
+
+    = render :partial => 'status_messages/status_message_element', :collection => @topic.posts, :as => :post
+
+:javascript
+  $.get("/home/show_post");
+  $('.create_post textarea').focusin(function() {
+    $(this).css('height', '60px'); 
+    $("label.placeholder").hide();
+  });
+
+  $('.create_post textarea').focusout(function() {
+    if ($.trim($(this).val()) == '' ) {
+      $("label.placeholder").show();
+      $(this).css('height', '50px'); 
+    }
+  });
+
+  $('.post_type_bar a.photo').click(function(){
+    $('.pic_box').show();      
+  });

@@ -28,6 +28,27 @@ module ApplicationHelper
     link_html.html_safe
   end
 
+  def follow_topic_tag( topic )
+    followed = topic.followers.include?(current_user.person)
+    unless followed
+      button_html = "<div class='tfollow glass_button' data_id='#{topic.id}'><span>"+t('follow')+"</span></div>"
+      link_html = link_to({:controller => 'item_topics', :action => 'follow', :id => topic.id},:method =>'post',:remote => true) do
+        button_html.html_safe
+      end
+    else 
+      button_html = "<div class='detfollow glass_button' data_id='#{topic.id}'><span>"+t('following')+"</span></div>"
+      link_html = link_to({:controller => 'item_topics', :action => 'defollow', :id => topic.id},:method =>'delete',:remote => true) do
+        button_html.html_safe
+      end
+    end
+    link_html.html_safe
+  end
+
+  def followers_count_tag( topic )
+    count_html = "<div class='followers_count' data_id='#{topic.id}'>"+t('item_topic.followers_count', :count => topic.followers.size)+"</div>"
+    count_html.html_safe
+  end
+
   def element_more_tag(person,action,type=nil)
     button_html = "<div class='element_more'>"+t('all')+"</div>"
     link_html = link_to({:controller => 'people',:action => "#{action}",:type=>"#{type}",:person_id =>person.id}) do

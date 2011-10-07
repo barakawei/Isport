@@ -11,6 +11,7 @@ class StatusMessage < Post
     status_message.content = content
     status_message.contacts = content
     status_message
+
   end
 
   def format_message(text)

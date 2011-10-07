@@ -1,5 +1,7 @@
 class ItemTopic < ActiveRecord::Base
   belongs_to :item
+  belongs_to :person
+
   has_many :item_topic_followships, :dependent => :destroy
   has_many :followers, :through => :item_topic_followships, :source => :person
 
@@ -46,13 +48,13 @@ class ItemTopic < ActiveRecord::Base
     end
   end
 
-  def self.add_follower(itemtopic_id, person)
-    followship = Itemtopicfollowship.new(:itemtopic_id => item_id, :person_id => person.id)
+  def self.add_follower(topic_id, person)
+    followship = ItemTopicFollowship.new(:item_topic_id => topic_id, :person_id => person.id)
     followship.save
   end
 
-  def self.remove_follower(itemtopic_id, person)
-    Itemtopicfollowship.destroy_all(:itemtopic_id => item_id, :person_id => person.id)
+  def self.remove_follower(topic_id, person)
+    ItemTopicFollowship.destroy_all(:item_topic_id => topic_id, :person_id => person.id)
   end
 
 end

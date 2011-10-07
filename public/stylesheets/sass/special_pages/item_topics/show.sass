@@ -1,23 +1,234 @@
 @import '../../general/ui/mixins'
 
 .topic_area
-  :width 150px
+  :width 250px
   :float left
-  :margin-top 20px
+  :margin-top 15px
 
   .topic_info
     :float left
     :position relative
+    :background-color white
+    :border 3px solid #D5DDDE
+    :width 250px
+    @include border-radius(6px)
 
     .topic_image
-      :width 50px
-      :width 50px
+      :width 100px
+      :height 100px
       :float left
       :position absolute
-      :left 2px
-      :top 2px
+      :left 8px
+      :top 8px
 
       img
-        @include border-radius(2px)
+        @include border-radius(6px)
+
+    .topic_msg
+      :width 130px
+      :height 100px
+      :position absolute
+      :top 5px
+      :right 6px
+      :float left
+
+      .topic_name
+        :float left
+        :color black
+        :font-size 16px
+
+      .topic_owner
+        :float left
+        :color black
+        :font-size 12px
+        :position absolute
+        :bottom 1px
+
+    .topic_des
+      :float left
+      :width 250px
+      :overflow hidden
+      :margin-top 135px
+      :margin-left 7px
+      :margin-bottom 5px
+      :font-size 14px
+      :color #77777E
+      :text-indent 21pt
+
+  .follow_action
+    :width 256px
+    :height 40px
+    @include border-radius(6px)
+    :background-color #F4F4F4
+    :float left
+    :margin-top 10px
+    :position relative
+
+    .tfollow, .detfollow
+      :width 60px
+      :height 20px
+      :position absolute
+      :top 7px
+      :left 8px
+
+    .detfollow
+      :background-color #8DBC6E
+      span
+        background: url(/images/ui/icon-check.png) no-repeat 0 50%
+        :padding-left 18px
+      &:hover
+        :background-color #e76b75
+        span
+          :color #e76b75
+          background: url(/images/ui/icon-x.png) no-repeat 0 50%
+
+    .tfollow
+      :background-color lightGrey
+      span
+        :padding-left 18px
+        background: url(/images/ui/follow-gray.gif) no-repeat 0 50%
+        :color #777
+      &:hover
+        :background-color #8aba56
+        span
+          background: url(/images/ui/follow-white.gif) no-repeat 0 50%
+          :color white
+
+    .followers_count
+      :position absolute
+      :top 9px
+      :right 6px
+      :color blue
+      :font-size 12px
+      :font-weight bold
+
+  .related
+    :width 256px
+    :margin-top 10px
+    :float left
+
+    .related_title
+      :width 256px
+      :position relative
+      :float left
+
+      .name
+        :color blue
+        :font-size 16px
+        :position absolute
+        :left 3px
+
+      .link_more
+        :position absolute
+        :right 4px
+        
+
+    .related_topics
+      :float left
+      :margin-top 30px
+      :background-color #F4F4F4
+      @include border-radius(6px)
+
+  .topic_followers
+    :width 250px
+    :margin-top 15px
+    :margin-left 3px
+    :float left
+    :overflow show
+
+    .followers_title
+      :font-size 16px
+      :color blue
+      :margin-bottom 10px
+     
+    .follower
+      :float left
+      :width 50px
+      :height 50px
+      :margin-right 8px
+      :margin-bottom 8px
   
-          
+      img
+        @include border-radius(2px)
+
+.post_area
+  :width 660px
+  :margin-left 20px
+  :margin-top 11px
+  :float left
+  :border-bottom 1px solid #ECEAE8
+  @include border-radius(5px)
+
+  .create_post
+    :float left
+    :width 600px
+    :position relative
+
+    textarea
+      :width 500px 
+      :height 50px
+      :margin 5px
+      :border none
+      :border 1px solid #888
+      @include border-radius(5px)
+      :background white
+    label.placeholder
+      :position absolute
+      :top 10px
+      :left 10px
+      :font-size 14px
+
+    .glass_button
+      :position absolute
+      :width 70px
+      :height 40px
+      :font-size 16px
+      :top 10px
+      :right 5px
+
+    .topic_tag
+      @include border-radius(3px)
+      @include box-shadow(0,1px,5px,0,#aaa)
+      :background-color #67AE3F
+      :padding 3px 5px
+      :font-size 12px
+      :line-height 12px
+      :position absolute
+      :bottom 3px
+      :left 10px
+      :border 1px solid #3F980E
+      :color white
+      
+      a.close_topic_tag
+        :color #ccc
+        :margin-left 5px
+        &:hover
+          :color #fff
+
+  .post_type_bar
+    :position relative
+    :float left
+    :margin-left 6px
+    :width 500px
+    a
+      :margin 5px 10px 5px 0 
+      :display block
+      :float left
+      span
+        :display block
+        :float left
+      span.desc 
+        :font-size 14px
+        :line-height 14px
+        :margin-left 3px
+        :color #666
+      span.img
+        :width 19px
+        :background-image url("/images/ui/weibo_global.png")
+        :background-position -63px 0 
+        height: 14px 
+    a.at_friend
+      span.img
+        :background-position -434px 0 
+        :width 15px
+

@@ -18,6 +18,15 @@ function processPost(postId,html){
       textarea.val("");
       $("#contacts").val("");
       Mention.clear();
+      $( ".pic_box" ).hide();
+      $(".pic_box #photozone .photo").remove(); 
+      $( ".pic_box .upload_img_link" ).remove();
+      $(".pic_box #photozone input").remove(); 
+      if($( ".pic_box .qq-uploader" ).hasClass( "upload_more_pic" )){
+        $( ".pic_box .qq-uploader" ).removeClass("upload_more_pic");
+        $( ".pic_box .upload_link" ).removeClass("upload_link").addClass("qq-upload-button").find("span").html("选择图片");
+        $( ".pic_box .qq-upload-drop-area").show();
+      }
       createPostCallBack();
     }      
 }

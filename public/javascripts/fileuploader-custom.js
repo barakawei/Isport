@@ -280,6 +280,7 @@ qq.FileUploaderBasic = function(o){
         showMessage: function(message){
             alert(message);
         }
+        
     };
     qq.extend(this._options, o);
 
@@ -352,7 +353,7 @@ qq.FileUploaderBasic.prototype = {
             if (!self._filesInProgress){return;}
 
             var e = e || window.event;
-            // for ie, ff
+            // for #205f82ie, ff
             e.returnValue = self._options.messages.onLeave;
             // for webkit
             return self._options.messages.onLeave;
@@ -490,8 +491,8 @@ qq.FileUploader = function(o){
         listElement: null,
 
         template: '<div class="qq-uploader">' +
-                '<div class="qq-upload-drop-area"><span>Drop files here to upload</span></div>' +
-                '<div class="qq-upload-button">Upload a file</div>' +
+                '<div class="qq-upload-drop-area"><span class="title">把图片拖放到此处</span><span class="info">你也可以</span></div>' +
+                '<div class="qq-upload-button"><span>选择图片</span></div>' +
                 '<ul class="qq-upload-list"></ul>' +
              '</div>',
 
@@ -575,7 +576,7 @@ qq.extend(qq.FileUploader.prototype, {
             }
         });
 
-        dropArea.style.display = 'none';
+        //dropArea.style.display = 'none';
 
         qq.attach(document, 'dragenter', function(e){
             if (!dz._isValidFileDrag(e)) return;
