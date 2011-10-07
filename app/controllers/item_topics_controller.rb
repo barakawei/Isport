@@ -18,6 +18,32 @@ class ItemTopicsController < ApplicationController
     render :partial => 'filter', :locals => {:topics => @item_topics}
   end
 
+  def search
+    @item = Item.find(params[:item_id])
+    @item_topics = ItemTopic.of_item(@item).order('created_at desc').paginate :page => params[:page],
+                                                     :per_page => 15 
+    render :action => :index 
+  end
+
+  def index
+    @item_topics = ItemTopic.order('created_at desc').paginate :page => params[:page],
+                                          :per_page => 15 
+  end
+
+  def interested
+    @interests = current_user.person.interests
+    @item_topics = ItemTopic.in_items(@interests).order('created_at desc').paginate :page => params[:page],
+                                               :per_page => 15 
+    render :action => :index 
+  end
+
+  def friends
+    @friends = current_user.friends 
+    @item_topics = ItemTopic.by_friends(@friends).order('created_at desc').paginate :page => params[:page],
+                                               :per_page => 15 
+    render :action => :index 
+  end
+
   def create
     @current_person = current_user.person
     @topic = ItemTopic.new(params[:item_topic])

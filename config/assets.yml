@@ -129,6 +129,8 @@ stylesheets:
     - public/stylesheets/css/special_pages/item_topics/form.css
   special_pages_item_topics_topic_box:
     - public/stylesheets/css/special_pages/item_topics/topic_box.css
+  special_pages_item_topics_index:
+    - public/stylesheets/css/special_pages/item_topics/index.css
   special_pages_related_topics_panel:
     - public/stylesheets/css/special_pages/item_topics/related_topics.css
 

@@ -1,0 +1,90 @@
+.topics {
+  background-color: white;
+  height: 100%;
+  padding: 25px;
+  width: 600px;
+  margin-right: 20px;
+  float: left; }
+  .topics h2 {
+    color: #057b99; }
+  .topics .topic_result {
+    float: left; }
+    .topics .topic_result .topic_item {
+      float: left;
+      width: 580px;
+      border-top: 1px solid #d5ddde;
+      padding: 10px; }
+      .topics .topic_result .topic_item .pic {
+        float: left;
+        width: 60px; }
+      .topics .topic_result .topic_item .content {
+        float: left;
+        width: 520px; }
+        .topics .topic_result .topic_item .content .name {
+          width: 520px;
+          float: left;
+          height: 35px; }
+          .topics .topic_result .topic_item .content .name a.t_content {
+            font-size: 17px;
+            color: #333333;
+            float: left;
+            line-height: 20px; }
+            .topics .topic_result .topic_item .content .name a.t_content:hover {
+              text-decoration: underline; }
+          .topics .topic_result .topic_item .content .name a.post_count {
+            font-size: 12px;
+            float: right;
+            background-color: #bdbda3;
+            color: white;
+            padding: 5px 8px;
+            line-height: 12px;
+            -moz-border-radius: 3px;
+            -webkit-border-radius: 3px;
+            border-radius: 3px;
+            behavior: url(/javascripts/PIE.htc); }
+        .topics .topic_result .topic_item .content .author {
+          height: 15px;
+          float: left;
+          width: 520px; }
+          .topics .topic_result .topic_item .content .author span {
+            color: #999999;
+            line-height: 14px; }
+
+.subjects {
+  background-color: white;
+  padding: 15px 0 20px 0;
+  -webkit-box-shadow: 0 1px 5px 0 #aaaaaa;
+  -moz-box-shadow: 0 1px 5px 0 #aaaaaa;
+  box-shadow: 0 1px 5px 0 #aaaaaa;
+  behavior: url(/javascripts/PIE.htc); }
+  .subjects h2 {
+    float: right;
+    margin-right: 30px;
+    color: black; }
+  .subjects ul {
+    float: left; }
+    .subjects ul li a {
+      display: block;
+      padding: 8px 0;
+      width: 210px;
+      border-top: 1px solid #bdbda3;
+      font-size: 15px;
+      color: #333333;
+      margin: 0 30px; }
+    .subjects ul li a.interested {
+      color: #ff8a3c; }
+    .subjects ul li a.friends {
+      color: #4ebaff; }
+    .subjects ul li a.select {
+      margin: 0;
+      padding: 8px 30px;
+      width: 218px;
+      color: white;
+      background-color: #99c94b;
+      border-top: 1px solid #99c94b;
+      margin-left: -8px;
+      margin-bottom: -1px; }
+
+.pagination_box {
+  width: 600px;
+  float: left; }

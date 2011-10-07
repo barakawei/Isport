@@ -11,6 +11,8 @@
           = link_to '选择话题', 'javascript:void(0)', :class => 'select_topic select' 
         %li
           = link_to '发起话题', 'javascript:void(0)', :class => 'new_topic' 
+        %li.right.browse
+          = link_to '浏览话题', item_topics_path
       #select_topic_area
         = render :partial => 'item_topics/select_topic', :locals => {:item_topic => item_topic, :rtopics => rtopics}
       #new_topic_area.hide
