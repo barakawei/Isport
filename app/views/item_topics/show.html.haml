@@ -31,7 +31,7 @@
         .name
           = "相关话题"
         .link_more
-          = "更多"
+          = link_to "更多", search_item_topic_path(@topic.item.id)
 
       .related_topics
         = render :partial => 'item_topics/related_topics',:collection => @related,:as => :topic

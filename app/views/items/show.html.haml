@@ -25,7 +25,7 @@
         .flag_name
           = @item.name + "话题"
         .link_more
-          = "更多"
+          = link_to "更多", search_item_topic_path(@item.id)
 
       .topics
         = render :partial => 'item_topics/related_topics',:collection => @topics,:as => :topic
