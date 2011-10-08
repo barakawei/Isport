@@ -47,11 +47,16 @@ Isport::Application.routes.draw do
   end
 
   controller :item_topics do
+    match '/item_topics(/:order)' => :index, :as => 'item_topics',
+          :constraints => {:order => /order_by_time|order_by_hot/ }
     match '/item_topics/:target/:order' => :filter, :as => 'filter_item_topics',
           :constraints => { :target => /mine|friends|hot/, :oreder => /order_by_time|order_by_hot/ }
-    match '/item_topics/search/:item_id' => :search, :as => 'search_item_topic'
-    match '/item_topics/interested' => :interested, :as => 'interested_topics'
-    match '/item_topics/by_friends' => :friends, :as => 'friends_topics'
+    match '/item_topics/search/:item_id(/:order)' => :search, :as => 'search_item_topic',
+          :constraints => { :item_id => /[1-9]\d*/, :order => /order_by_time|order_by_hot/ }
+    match '/item_topics/interested(/:order)' => :interested, :as => 'interested_topics',
+          :constraints => {:order => /order_by_time|order_by_hot/ }
+    match '/item_topics/by_friends(/:order)' => :friends, :as => 'friends_topics',
+          :constraints => {:order => /order_by_time|order_by_hot/ }
   end
   resources :item_topics
 
