@@ -36,7 +36,6 @@ class ApplicationController < ActionController::Base
         end
       end
       @unread_notify_count = @unread_notify_count - unpassed
-
     end
   end
 

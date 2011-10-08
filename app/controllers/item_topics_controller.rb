@@ -19,28 +19,60 @@ class ItemTopicsController < ApplicationController
   end
 
   def search
+    order_type = params[:order] ? params[:order] : 'order_by_time'
     @item = Item.find(params[:item_id])
-    @item_topics = ItemTopic.of_item(@item).order('created_at desc').paginate :page => params[:page],
-                                                     :per_page => 15 
+    if order_type == 'order_by_time'
+      @item_topics = ItemTopic.of_item(@item).order('created_at desc').paginate :page => params[:page],
+                                                       :per_page => 15 
+    else
+      @item_topics = ItemTopic.of_item(@item).order('posts_count desc').paginate :page => params[:page],
+                                                       :per_page => 15 
+    end
+    @sort_by_time = search_item_topic_path(@item)
+    @sort_by_hot= search_item_topic_path(@item, 'order_by_hot')
     render :action => :index 
   end
 
   def index
-    @item_topics = ItemTopic.order('created_at desc').paginate :page => params[:page],
-                                          :per_page => 15 
+    order_type = params[:order] ? params[:order] : 'order_by_time'
+    if order_type == 'order_by_time'
+      @item_topics = ItemTopic.order('created_at desc').paginate :page => params[:page],
+                                            :per_page => 15 
+    else
+      @item_topics = ItemTopic.order('posts_count desc').paginate :page => params[:page],
+                                            :per_page => 15 
+    end
+    @sort_by_time = item_topics_path
+    @sort_by_hot = item_topics_path('order_by_hot')
   end
 
   def interested
+    order_type = params[:order] ? params[:order] : 'order_by_time'
     @interests = current_user.person.interests
-    @item_topics = ItemTopic.in_items(@interests).order('created_at desc').paginate :page => params[:page],
-                                               :per_page => 15 
+    if order_type == 'order_by_time'
+      @item_topics = ItemTopic.in_items(@interests).order('created_at desc').paginate :page => params[:page],
+                                                 :per_page => 15 
+    else
+      @item_topics = ItemTopic.in_items(@interests).order('posts_count desc').paginate :page => params[:page],
+                                                 :per_page => 15 
+    end
+    @sort_by_time= interested_topics_path()
+    @sort_by_hot= interested_topics_path('order_by_hot')
     render :action => :index 
   end
 
   def friends
+    order_type = params[:order] ? params[:order] : 'order_by_time'
     @friends = current_user.friends 
-    @item_topics = ItemTopic.by_friends(@friends).order('created_at desc').paginate :page => params[:page],
-                                               :per_page => 15 
+    if order_type == 'order_by_time'
+      @item_topics = ItemTopic.by_friends(@friends).order('created_at desc').paginate :page => params[:page],
+                                                 :per_page => 15 
+    else
+      @item_topics = ItemTopic.by_friends(@friends).order('posts_count desc').paginate :page => params[:page],
+                                                 :per_page => 15 
+    end
+    @sort_by_time= friends_topics_path()
+    @sort_by_hot= friends_topics_path('order_by_hot')
     render :action => :index 
   end
 

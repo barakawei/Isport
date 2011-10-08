@@ -6,7 +6,23 @@
   margin-right: 20px;
   float: left; }
   .topics h2 {
-    color: #057b99; }
+    color: #057b99;
+    float: left;
+    margin-bottom: 0px; }
+  .topics .sort {
+    margin-top: 10px; }
+    .topics .sort span {
+      font-size: 13px;
+      padding-left: 5px;
+      border-right: 1px solid #999999; }
+      .topics .sort span a {
+        font-size: 13px; }
+      .topics .sort span a.last {
+        border: none; }
+      .topics .sort span a.select {
+        color: #666666; }
+    .topics .sort span.last {
+      border: none; }
   .topics .topic_result {
     float: left; }
     .topics .topic_result .topic_item {

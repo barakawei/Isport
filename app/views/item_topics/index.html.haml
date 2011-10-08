@@ -10,6 +10,12 @@
       %h2='由我关注的人发起的话题' 
     - else
       %h2="#{@item.name}话题"
+    .sort.right
+      %span
+        = link_to_unless_current '按时间排序', @sort_by_time 
+      %span.last
+        = link_to_unless_current '按热度排序', @sort_by_hot, :class => 'last'
+        
     .topic_result
       - @item_topics.each do |t|
         .topic_item  
