@@ -166,7 +166,6 @@
         data: "pic_id="+pic_id,
         success: function(data){
           self.comment.html(data);
-          $("abbr.timeago").timeago();
           self.auto_resize_window(); 
           self.reday = true;
         }

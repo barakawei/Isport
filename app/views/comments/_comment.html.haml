@@ -8,7 +8,8 @@
         =":" 
       %span.comment_body
         = comment.content
-    = how_long_ago( comment )
+    %span.time.timeago
+      = how_long_ago( comment )
   .action
     - if comment.author.id == current_user.person.id
       .delete

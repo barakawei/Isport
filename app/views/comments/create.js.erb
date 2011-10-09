@@ -10,7 +10,6 @@ function processComment(postId,commentId,html){
       post.append($(html).fadeIn( 100 ));
       $(".comment[id='"+commentId+"']").css("opacity","100" );
       post.removeClass( "hide" );
-      $("abbr.timeago").timeago();
       comment.find( "#comment_content" ).val("");
       }
 }
