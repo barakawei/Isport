@@ -29,7 +29,7 @@
         .name
           = "相关话题"
         .link_more
-          = "更多"
+          = link_to "更多", search_item_topic_path(@topic.item.id)
 
       .related_topics
         = render :partial => 'item_topics/related_topics',:collection => @related,:as => :topic
@@ -37,10 +37,11 @@
     .topic_followers
       .followers_title
         = "关注者"
-
-      -@followers.each_with_index do |follower, index|
-        .follower{:class => ("last" if (index+1)%4==0)}
-          = person_image_link(follower)
+      
+      .followers
+        -@followers.each_with_index do |follower, index|
+          .follower{:class => ("last" if (index+1)%4==0)}
+            = person_image_link(follower)
 
   .post_area
     .feed_toolbar

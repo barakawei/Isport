@@ -103,27 +103,32 @@
 
   .related
     :width 256px
-    :margin-top 10px
+    :margin-top 20px
     :float left
 
     .related_title
       :width 256px
       :position relative
       :float left
+      :margin-bottom 10px
 
       .name
-        :color blue
+        :color white
         :font-size 16px
+        :background-color #BDBDA3
+        :font-weight bold
+        @include border-radius(4px)
+        :padding 1px 3px 1px 3px
         :position absolute
-        :left 3px
+        :left 0px
 
       .link_more
         :position absolute
         :right 4px
         
-
     .related_topics
       :float left
+      :width 256px
       :margin-top 30px
       :background-color #F4F4F4
       @include border-radius(6px)
@@ -131,24 +136,35 @@
   .topic_followers
     :width 250px
     :margin-top 15px
-    :margin-left 3px
     :float left
     :overflow show
 
     .followers_title
+      :width 51px
       :font-size 16px
-      :color blue
+      :color white
+      :font-weight bold
+      :background-color #BDBDA3
+      @include border-radius(4px)
+      :padding 1px 3px 1px 3px
       :margin-bottom 10px
-     
-    .follower
+    
+    .followers
+      :width 254px
       :float left
-      :width 50px
-      :height 50px
-      :margin-right 8px
-      :margin-bottom 8px
-  
-      img
-        @include border-radius(2px)
+      :background-color white
+      @include border-radius(6px)
+      :padding-bottom 10px
+
+      .follower
+        :float left
+        :width 50px
+        :height 50px
+        :margin-left 10px
+        :margin-top 10px
+
+        img
+          @include border-radius(2px)
 
 .post_area
   :width 660px

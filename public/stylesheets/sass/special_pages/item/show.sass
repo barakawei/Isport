@@ -35,8 +35,40 @@ $darkgray: #74777B
     :overflow hidden
     :display block
     :font-size 13px
-    :margin-bottom 10px
-  
+    :margin-bottom 15px
+ 
+  .topics_area
+    :width 220px
+    :position relative 
+    :margin-bottom 15px
+
+    .title
+      :width 220px
+      :position relative
+      :float left
+      :margin-bottom 10px
+
+      .flag_name
+        :color white
+        :font-size 16px
+        :background-color #BDBDA3
+        :font-weight bold
+        @include border-radius(4px)
+        :padding 1px 3px 1px 3px
+        :position absolute
+
+      .link_more
+        :position absolute
+        :right 4px
+
+    .topics
+      :float left
+      :width 220px
+      :margin-top 30px
+      :background-color #F4F4F4
+      @include border-radius(6px)
+      :margin-bottom 15px
+
   .item_star
     :width 220px
     :display block
@@ -46,16 +78,34 @@ $darkgray: #74777B
       :margin-top 3px
       :width 220px
       :height 32px
-      :font-size 16px
-      :color #FC4469
+      :margin-bottom 8px
 
-    .star_one
+      .title_name
+        :float left
+        :font-size 16px
+        :color white
+        @include border-radius(4px)
+        :font-weight bold
+        :background-color #BDBDA3
+        :padding 1px 3px 1px 3px
+
+    .stars
       :float left
-      :width 50px
-      :height 50px
-      :margin-right 5px
-      :margin-bottom 5px
-      
+      :width 220px
+      :background-color white
+      @include border-radius(6px)
+      :padding-bottom 4px
+
+      .star_one
+        :float left
+        :width 50px
+        :height 50px
+        :margin-left 4px
+        :margin-top 4px
+     
+        img
+          @include border-radius(3px)
+
 .itemright
   :width 700px
   :margin-left 25px
