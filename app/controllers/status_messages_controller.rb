@@ -13,7 +13,7 @@ class StatusMessagesController < ApplicationController
       @status_message.pics << pics
     end
     
-    @status_message.item_topic = item_topic
+    @status_message.item_topic = item_topic if item_topic
     if @status_message.save
       @status_message.dispatch_post 
     end
