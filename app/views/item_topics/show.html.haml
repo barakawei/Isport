@@ -44,26 +44,27 @@
         .follower{:class => ("last" if (index+1)%4==0)}
           = person_image_link(follower)
 
-  .post_area
-    .create_post
-      = form_for(StatusMessage.new,:remote => true) do |status|
-        = status.text_area :content,:class => 'content'
-        = hidden_field_tag :contacts
-        = label_tag 'weibo', '说点什么吧...', :class => 'placeholder'
-        = hidden_field_tag :topic_id, @topic.id
-        = status.submit "分享", :class => 'glass_button',"data-disable-with" => t("posting")
-        .pic_upload_panel
-          = render "status_messages/add_pic"
+  - if current_user
+    .post_area
+      .create_post
+        = form_for(StatusMessage.new,:remote => true) do |status|
+          = status.text_area :content,:class => 'content'
+          = hidden_field_tag :contacts
+          = label_tag 'weibo', '说点什么吧...', :class => 'placeholder'
+          = hidden_field_tag :topic_id, @topic.id
+          = status.submit "分享", :class => 'glass_button',"data-disable-with" => t("posting")
+          .pic_upload_panel
+            = render "status_messages/add_pic"
 
-    .post_type_bar
-      %a{:class => 'title photo', :href => 'javascript:void(0)'} 
-        %span.img
-        %span.desc='图片'
-      %a{:class => 'title at_friend', :href => 'javascript:void(0)'} 
-        %span.img
-        %span.desc='好友'
+      .post_type_bar
+        %a{:class => 'title photo', :href => 'javascript:void(0)'} 
+          %span.img
+          %span.desc='图片'
+        %a{:class => 'title at_friend', :href => 'javascript:void(0)'} 
+          %span.img
+          %span.desc='好友'
 
-    = render :partial => 'status_messages/status_message_element', :collection => @topic.posts, :as => :post
+      = render :partial => 'status_messages/status_message_element', :collection => @topic.posts, :as => :post
 
 :javascript
   $.get("/home/show_post");
