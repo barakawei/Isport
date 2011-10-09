@@ -1,6 +1,5 @@
 class ItemTopicsController < ApplicationController
   before_filter :registrations_closed?
-  before_filter :is_admin, :except => [:index, :show ]
   respond_to :js 
 
   FOLLOWER = 12

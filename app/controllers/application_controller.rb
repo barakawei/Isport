@@ -40,6 +40,6 @@ class ApplicationController < ActionController::Base
   end
 
   def is_admin
-    redirect_to events_path unless current_user.try(:admin?)
+    raise ActionController::RoutingError.new("not such route") unless current_user.try(:admin?)
   end
 end
