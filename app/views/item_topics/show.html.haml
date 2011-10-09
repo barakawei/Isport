@@ -50,5 +50,11 @@
 
 :javascript
   $.get("#{show_topic_posts_path( @topic )}");
+  $(document).ready(function () { 
+    setInterval("startRequest()",100000); 
+  }); 
+  function startRequest() { 
+    $.get("/status_messages/refresh",{id:"#{@topic.id}"});
+  } 
 
 

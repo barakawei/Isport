@@ -39,4 +39,18 @@ class StatusMessagesController < ApplicationController
       respond_with @status_message
     end 
   end
+
+  def refresh
+    if params[ :id ]
+      @topic = ItemTopic.find(params[:id]) 
+      @posts = @topic.posts.refresh( current_user ).order( "posts.created_at DESC" )
+    else
+      @posts = Post.by_view( current_user.person ).refresh( current_user ).order( "posts.created_at DESC" )
+    end
+    respond_with @posts
+  end
+
+  def refresh_update
+    render :nothing => true
+  end
 end

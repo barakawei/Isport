@@ -1,0 +1,20 @@
+var new_posts = "<%=@posts.size%>";
+if(new_posts != "0"){
+content = "<%= escape_javascript(render('status_messages/status_message_refresh')) %>"; 
+posts = $( ".post_element_panel" );
+prevPosts =  posts.find( ".stream_element" );
+if(prevPosts.length > 0 ){
+  prevPosts.first().before(
+    $(content).fadeIn("fast", function(){})
+  );
+}else{
+  posts.html(
+    $(content).fadeIn("fast", function(){})
+  );
+}
+$.post( "/status_messages/refresh_update" );
+}
+
+
+
+

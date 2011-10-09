@@ -30,6 +30,8 @@ Isport::Application.routes.draw do
   resources :requests
   controller :status_messages do
     match '/status_messages/pic_upload' => :pic_upload
+    match '/status_messages/refresh' => :refresh
+    match '/status_messages/refresh_update' => :refresh_update
   end
   resources :status_messages
   resources :status_messages do
