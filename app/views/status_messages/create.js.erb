@@ -2,7 +2,7 @@ processPost(<%= @status_message.id %>,"<%= escape_javascript(render(:partial => 
 
 function processPost(postId,html){  
     if ($( ".stream_element[id='"+postId+"']" ).length == 0){
-      posts = $( ".events_panel" );
+      posts = $( ".post_element_panel" );
       prevPosts =  posts.find( ".stream_element" );
       if(prevPosts.length > 0 ){
         prevPosts.first().before(

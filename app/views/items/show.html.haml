@@ -35,9 +35,10 @@
         .title_name
           = @item.name + t('items.mavin')
 
-      -@actors.each_with_index do |person, index|
-        .star_one{:class => ("last" if (index+1)%4==0)}
-          = person_image_link(person) 
+      .stars
+        -@actors.each_with_index do |person, index|
+          .star_one{:class => ("last" if (index+1)%4==0)}
+            = person_image_link(person) 
 
   .itemright
     .item_info

@@ -12,6 +12,12 @@ class ItemTopicsController < ApplicationController
     @related = @topic.item.topics.where("id != ?", @topic.id).order("created_at DESC").limit(RELATED)
   end
 
+  def show_posts
+    @topic = ItemTopic.find(params[:id]) 
+    @posts = @topic.posts.order( "posts.created_at DESC" ).paginate(:page => params[:page], :per_page => 5)
+    respond_with @posts
+  end
+
   def filter 
     @person = current_user.person
     @item_topics = ItemTopic.send(params[:target], @person).send(params[:order])

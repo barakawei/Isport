@@ -14,7 +14,6 @@ class StatusMessagesController < ApplicationController
     end
     
     @status_message.item_topic = item_topic if item_topic
-
     if @status_message.save
       @status_message.dispatch_post 
     end

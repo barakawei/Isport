@@ -81,12 +81,26 @@
         font-weight: bold;
         background-color: #bdbda3;
         padding: 1px 3px 1px 3px; }
-    .itemleft .item_star .star_one {
+    .itemleft .item_star .stars {
       float: left;
-      width: 50px;
-      height: 50px;
-      margin-right: 5px;
-      margin-bottom: 5px; }
+      width: 220px;
+      background-color: white;
+      -moz-border-radius: 6px;
+      -webkit-border-radius: 6px;
+      border-radius: 6px;
+      behavior: url(/javascripts/PIE.htc);
+      padding-bottom: 4px; }
+      .itemleft .item_star .stars .star_one {
+        float: left;
+        width: 50px;
+        height: 50px;
+        margin-left: 4px;
+        margin-top: 4px; }
+        .itemleft .item_star .stars .star_one img {
+          -moz-border-radius: 3px;
+          -webkit-border-radius: 3px;
+          border-radius: 3px;
+          behavior: url(/javascripts/PIE.htc); }
 
 .itemright {
   width: 700px;
