@@ -4,7 +4,6 @@
   :width 250px
   :float left
   :margin-top 15px
-
   .topic_info
     :float left
     :position relative
@@ -158,77 +157,5 @@
   :float left
   :border-bottom 1px solid #ECEAE8
   @include border-radius(5px)
-
-  .create_post
-    :float left
-    :width 600px
-    :position relative
-
-    textarea
-      :width 500px 
-      :height 50px
-      :margin 5px
-      :border none
-      :border 1px solid #888
-      @include border-radius(5px)
-      :background white
-    label.placeholder
-      :position absolute
-      :top 10px
-      :left 10px
-      :font-size 14px
-
-    .glass_button
-      :position absolute
-      :width 70px
-      :height 40px
-      :font-size 16px
-      :top 10px
-      :right 5px
-
-    .topic_tag
-      @include border-radius(3px)
-      @include box-shadow(0,1px,5px,0,#aaa)
-      :background-color #67AE3F
-      :padding 3px 5px
-      :font-size 12px
-      :line-height 12px
-      :position absolute
-      :bottom 3px
-      :left 10px
-      :border 1px solid #3F980E
-      :color white
-      
-      a.close_topic_tag
-        :color #ccc
-        :margin-left 5px
-        &:hover
-          :color #fff
-
-  .post_type_bar
-    :position relative
-    :float left
-    :margin-left 6px
-    :width 500px
-    a
-      :margin 5px 10px 5px 0 
-      :display block
-      :float left
-      span
-        :display block
-        :float left
-      span.desc 
-        :font-size 14px
-        :line-height 14px
-        :margin-left 3px
-        :color #666
-      span.img
-        :width 19px
-        :background-image url("/images/ui/weibo_global.png")
-        :background-position -63px 0 
-        height: 14px 
-    a.at_friend
-      span.img
-        :background-position -434px 0 
-        :width 15px
-
+  .feed_toolbar
+    :width 640px

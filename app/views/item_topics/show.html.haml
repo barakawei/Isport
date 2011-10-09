@@ -3,8 +3,6 @@
   = include_javascripts :jquery_validation
   = include_javascripts :scroll_page
   = include_javascripts :show_photo
-  = include_javascripts :status_message
-  = include_javascripts :mention
 
 .span-24.last
   .topic_area
@@ -45,40 +43,11 @@
           = person_image_link(follower)
 
   .post_area
-    .create_post
-      = form_for(StatusMessage.new,:remote => true) do |status|
-        = status.text_area :content,:class => 'content'
-        = hidden_field_tag :contacts
-        = label_tag 'weibo', '说点什么吧...', :class => 'placeholder'
-        = hidden_field_tag :topic_id, @topic.id
-        = status.submit "分享", :class => 'glass_button',"data-disable-with" => t("posting")
-        .pic_upload_panel
-          = render "status_messages/add_pic"
-
-    .post_type_bar
-      %a{:class => 'title photo', :href => 'javascript:void(0)'} 
-        %span.img
-        %span.desc='图片'
-      %a{:class => 'title at_friend', :href => 'javascript:void(0)'} 
-        %span.img
-        %span.desc='好友'
-
-    = render :partial => 'status_messages/status_message_element', :collection => @topic.posts, :as => :post
+    .feed_toolbar
+      = render 'common/post',:item_topic => @item_topic, :recent_topics => @recent_topics
+    .stream.post_element_panel
 
 :javascript
-  $.get("/home/show_post");
-  $('.create_post textarea').focusin(function() {
-    $(this).css('height', '60px'); 
-    $("label.placeholder").hide();
-  });
+  $.get("#{show_topic_posts_path( @topic )}");
 
-  $('.create_post textarea').focusout(function() {
-    if ($.trim($(this).val()) == '' ) {
-      $("label.placeholder").show();
-      $(this).css('height', '50px'); 
-    }
-  });
 
-  $('.post_type_bar a.photo').click(function(){
-    $('.pic_box').show();      
-  });
