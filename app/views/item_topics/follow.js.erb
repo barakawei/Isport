@@ -1,0 +1,9 @@
+topic_id = <%= @topic.id %>;
+button = $(".tfollow[data_id='"+topic_id+"']").parent();
+link_html = "<%= escape_javascript(follow_topic_tag(@topic)) %>";
+button.replaceWith( link_html );
+
+count = $(".followers_count[data_id='"+topic_id+"']");
+new_count = "<%= escape_javascript(followers_count_tag(@topic)) %>";
+count.replaceWith( new_count );
+

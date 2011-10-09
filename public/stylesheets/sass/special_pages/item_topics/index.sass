@@ -1,0 +1,105 @@
+@import '../../general/ui/mixins'
+.topics
+  :background-color #fff 
+  :height 100%
+  :padding 25px
+  :width 600px
+  :margin-right 20px
+  :float left
+  h2
+    :color #057B99
+    :float left
+    :margin-bottom 0px
+  .sort
+    :margin-top 10px
+    span
+      :font-size 13px
+      :padding-left 5px
+      :border-right 1px solid #999
+      a
+        :font-size 13px
+      a.last
+        :border none
+      a.select
+        :color #666
+    span.last
+      :border none
+        
+  .topic_result
+    :float left 
+
+    .topic_item 
+      :float left
+      :width 580px
+      :border-top 1px solid #d5ddde
+      :padding 10px
+
+      .pic
+        :float left
+        :width 60px
+      .content
+        :float left
+        :width 520px 
+        .name
+          :width 520px 
+          :float left
+          :height 35px
+          a.t_content
+            :font-size 17px
+            :color #333
+            :float left
+            :line-height 20px
+            &:hover
+              :text-decoration underline  
+          a.post_count  
+            :font-size 12px
+            :float right
+            background-color: #BDBDA3
+            :color #fff
+            :padding 5px 8px
+            :line-height 12px
+            @include border-radius(3px)
+        .author
+          :height 15px
+          :float left
+          :width 520px
+          span
+            :color #999 
+            :line-height 14px
+
+.subjects
+  :background-color #fff
+  :padding 15px 0 20px 0
+  @include box-shadow(0,1px,5px,0,#aaa)
+  h2
+    :float right
+    :margin-right 30px
+    :color #000
+  ul
+    :float left
+    li
+      a
+        :display block
+        :padding 8px 0 
+        :width 210px 
+        :border-top 1px solid #BDBDA3
+        :font-size 15px
+        :color #333
+        :margin 0 30px
+      a.interested
+        :color #FF8A3C
+      a.friends
+        :color #4EBAFF 
+      a.select
+        :margin 0
+        :padding 8px 30px
+        :width 218px 
+        :color #fff
+        :background-color #99C94B
+        :border-top 1px solid #99C94B
+        :margin-left -8px
+        :margin-bottom -1px
+
+.pagination_box
+  :width 600px
+  :float left

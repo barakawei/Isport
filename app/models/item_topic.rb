@@ -1,5 +1,7 @@
 class ItemTopic < ActiveRecord::Base
   belongs_to :item
+  belongs_to :person
+
   has_many :item_topic_followships, :dependent => :destroy
   has_many :followers, :through => :item_topic_followships, :source => :person
 
@@ -9,6 +11,9 @@ class ItemTopic < ActiveRecord::Base
   scope :of_person, lambda {|person| where(:person_id => person)}
   scope :order_by_time, lambda {order('created_at desc') }
   scope :order_by_hot, lambda { order('posts_count desc') }
+  scope :of_item, lambda {|item| where(:item_id => item.id)}
+  scope :in_items, lambda {|items| where(:item_id => items) }
+  scope :by_friends, lambda {|friends| where(:person_id => friends) }
 
   def self.mine(person)
     of_person(person).limit(20)
@@ -45,13 +50,13 @@ class ItemTopic < ActiveRecord::Base
     end
   end
 
-  def self.add_follower(itemtopic_id, person)
-    followship = Itemtopicfollowship.new(:itemtopic_id => item_id, :person_id => person.id)
+  def self.add_follower(topic_id, person)
+    followship = ItemTopicFollowship.new(:item_topic_id => topic_id, :person_id => person.id)
     followship.save
   end
 
-  def self.remove_follower(itemtopic_id, person)
-    Itemtopicfollowship.destroy_all(:itemtopic_id => item_id, :person_id => person.id)
+  def self.remove_follower(topic_id, person)
+    ItemTopicFollowship.destroy_all(:item_topic_id => topic_id, :person_id => person.id)
   end
 
 end

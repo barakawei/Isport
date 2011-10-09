@@ -1,0 +1,52 @@
+- content_for :head do
+  = include_stylesheets :special_pages_item_topics_index  
+.span-24
+  .topics
+    - if params[:action] == 'index' 
+      %h2='所有话题' 
+    - elsif params[:action] == 'interested'  
+      %h2='我感兴趣的话题' 
+    - elsif params[:action] == 'friends'  
+      %h2='由我关注的人发起的话题' 
+    - else
+      %h2="#{@item.name}话题"
+    .sort.right
+      %span
+        = link_to_unless_current '按时间排序', @sort_by_time 
+      %span.last
+        = link_to_unless_current '按热度排序', @sort_by_hot, :class => 'last'
+        
+    .topic_result
+      - @item_topics.each do |t|
+        .topic_item  
+          .pic 
+            = item_topic_image_tag(t, :thumb_small)
+          .content
+            .name
+              = link_to t.name, item_topic_path(t), :class => 't_content'
+              = link_to t.posts_count.to_s+'讨论', item_topic_path(t), :class => 'post_count'
+            .author
+              %span
+                = time_ago_in_words(t.created_at) + '前'          
+                = '由'
+                = link_to t.person.name, person_path(t.person)
+                = '发起'
+              %span.right
+                = link_to t.item.name, item_path(t.item)
+    .pagination_box
+      = will_paginate @item_topics, {:previous_label => t("pagination.previous"), 
+                                :next_label => t("pagination.next")}
+         
+  .span-7.last.subjects
+    %h2='话题类型'
+    %ul
+      %li
+        = link_to '我感兴趣', interested_topics_path, :class => (params[:action] == 'interested') ? 'select interested' : 'interested'
+      %li
+        = link_to '我关注的人发起', friends_topics_path, :class => (params[:action] == 'friends') ? 'select friends' : 'friends'
+      %li
+        = link_to '所有', item_topics_path, :class => (params[:action] == 'index') ? 'select' : '' 
+      - Item.all.each do |i|
+        %li
+          = link_to i.name,  search_item_topic_path(i.id), :class => (@item && @item.id == i.id) ? 'select' : ''
+ 

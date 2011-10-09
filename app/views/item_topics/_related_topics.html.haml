@@ -1,0 +1,10 @@
+-content_for :head do
+  = include_stylesheets :special_pages_related_topics_panel, :media => 'all'
+
+.topic_row
+
+  .topic_name
+    = link_to truncate(topic.name, :length => 18), item_topic_path(topic)
+
+  .topic_date
+    = how_long_ago(topic)

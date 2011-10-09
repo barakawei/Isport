@@ -13,7 +13,6 @@ Isport::Application.routes.draw do
   match "/users/validate_email_exist" => 'users#validate_email_exist', :as => 'validate_email_exist'
 
   resources :site_posts
-  resources :item_topics
 
   devise_for :users, :controllers => { :registrations => "registrations",:invitations   => "invitations" } do
     get 'invitations/resend/:id' => 'invitations#resend', :as => 'invitation_resend'
@@ -48,14 +47,22 @@ Isport::Application.routes.draw do
   end
 
   controller :item_topics do
+    match '/item_topics(/:order)' => :index, :as => 'item_topics',
+          :constraints => {:order => /order_by_time|order_by_hot/ }
     match '/item_topics/:target/:order' => :filter, :as => 'filter_item_topics',
           :constraints => { :target => /mine|friends|hot/, :oreder => /order_by_time|order_by_hot/ }
+    match '/item_topics/search/:item_id(/:order)' => :search, :as => 'search_item_topic',
+          :constraints => { :item_id => /[1-9]\d*/, :order => /order_by_time|order_by_hot/ }
+    match '/item_topics/interested(/:order)' => :interested, :as => 'interested_topics',
+          :constraints => {:order => /order_by_time|order_by_hot/ }
+    match '/item_topics/by_friends(/:order)' => :friends, :as => 'friends_topics',
+          :constraints => {:order => /order_by_time|order_by_hot/ }
   end
+  resources :item_topics
 
   resources :comments
   resources :pic_comments
 
-  resources :item_topics
 
   root :to => "welcome#index"
 
