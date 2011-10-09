@@ -14,7 +14,7 @@ class ItemTopicsController < ApplicationController
 
   def show_posts
     @topic = ItemTopic.find(params[:id]) 
-    @posts = @topic.posts.order( "posts.created_at DESC" ).paginate(:page => params[:page], :per_page => 5)
+    @posts = @topic.posts.order( "posts.created_at DESC" ).paginate(:page => params[:page], :per_page => 30)
     respond_with @posts
   end
 

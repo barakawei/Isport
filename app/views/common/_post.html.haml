@@ -26,9 +26,6 @@
       %a{:class => 'title topic', :href => 'javascript:void(0)'} 
         %span.img
         %span.desc='话题'
-    %a{:class => 'title at_friend', :href => 'javascript:void(0)'} 
-      %span.img
-      %span.desc='好友'
     -if !item_topic.nil?
       = render :partial => 'item_topics/new_topic_box', :locals => {:item_topic => item_topic, :rtopics => recent_topics} 
   .clear
