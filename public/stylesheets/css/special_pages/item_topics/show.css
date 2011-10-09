@@ -19,11 +19,6 @@
       position: absolute;
       left: 8px;
       top: 8px; }
-      .topic_area .topic_info .topic_image img {
-        -moz-border-radius: 6px;
-        -webkit-border-radius: 6px;
-        border-radius: 6px;
-        behavior: url(/javascripts/PIE.htc); }
     .topic_area .topic_info .topic_msg {
       width: 130px;
       height: 100px;
