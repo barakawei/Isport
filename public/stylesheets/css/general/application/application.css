@@ -278,20 +278,21 @@ span.medium_avatar {
       border-radius: 4px;
       behavior: url(/javascripts/PIE.htc);
       border: 1px solid white;
-      background-color: #f1f1f1;
+      background-color: white;
+      border: 1px solid #e8e8e8;
       padding: 2px 5px 1px 5px;
       font-size: 13px;
       margin-right: 5px;
       color: #4c4c4c; }
     .pagination_box .pagination em {
-      background-color: #fc4469;
-      border: 1px solid #82190b;
+      background-color: #99c94b;
       color: white; }
     .pagination_box .pagination span.disabled {
       display: none; }
     .pagination_box .pagination a:hover {
-      background-color: white;
-      text-decoration: none; }
+      background-color: #99c94b;
+      text-decoration: none;
+      color: white; }
 
 .app_module_title {
   margin: 15px 0 5px 0;
