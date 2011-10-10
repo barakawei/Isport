@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   before_filter :registrations_closed?
+  before_filter :is_admin, :except => [:index, :show ]
   respond_to :js 
 
   EVELIMIT = 6
