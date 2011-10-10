@@ -6,6 +6,8 @@ class ItemTopicsController < ApplicationController
   RELATED = 8
 
   def show
+    auth = current_user.authorizations.first
+    @is_binded = !auth.nil?
     @topic = ItemTopic.find(params[:id]) 
     @followers = @topic.followers.limit(FOLLOWER).includes(:profile) 
     @related = @topic.item.topics.where("id != ?", @topic.id).order("created_at DESC").limit(RELATED)

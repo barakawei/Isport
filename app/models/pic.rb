@@ -117,4 +117,9 @@ class Pic < ActiveRecord::Base
     self.album.save
   end
 
+  def weibo_image_file  
+    image_url =  Rails.root.to_s + "/public#{self.url(:thumb_large)}" 
+    File.new(image_url)
+  end
+
 end

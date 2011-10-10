@@ -490,10 +490,14 @@
 
 .create_post .new_status_message #status_message_submit {
   position: absolute;
+  left: 530px;
+  font-size: 15px;
+  top: 0px;
+  padding: 5px 20px; }
+.create_post span#sync_to_weibo {
+  position: absolute;
   right: -90px;
-  top: 5px;
-  font-size: 18px;
-  padding: 10px; }
+  top: 40px; }
 
 .pic_box {
   left: 0 !important;

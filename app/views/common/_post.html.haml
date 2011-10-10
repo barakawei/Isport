@@ -12,6 +12,10 @@
         = hidden_field_tag :topic_id 
       -else
         = hidden_field_tag :topic_id,@topic.id 
+      - if is_binded 
+        %span#sync_to_weibo
+          = check_box_tag 'sina_weibo', 'yes', true  
+          = label_tag 'sina_weibo', '同步新浪微博'
       = status.submit "发布", :class => 'glass_button',"data-disable-with" => t("posting")
       .pic_upload_panel
         = render "status_messages/add_pic"
@@ -28,7 +32,7 @@
         %span.desc='话题'
     -if !item_topic.nil?
       = render :partial => 'item_topics/new_topic_box', :locals => {:item_topic => item_topic, :rtopics => recent_topics} 
-    %span.noti.hide.right="使用 '@＋好友姓名' 提醒你的好友"
+    %span.noti.hide.right="使用 '@＋好友姓名' 分享给好友"
   .clear
 
 :javascript
@@ -81,4 +85,5 @@
   
   function createPostCallBack() {
     $('.create_post .topic_tag a.close_topic_tag').click(); 
+    $('.create_post #status_message_content').focusout();
   }

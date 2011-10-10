@@ -85,6 +85,14 @@ class StatusMessage < Post
     ids.empty? ? [] : Person.where(:id => ids)
   end
 
+  def weibo_status(url="")
+    if item_topic
+      '#'+item_topic.name+ "#    " + self.content + "  " + url+"#{self.item_topic_id}"
+    else
+      self.content
+    end
+  end
+
   def event_from_string
     regex = /%\{(event);([^\}]+)\}/
     return if self.content.nil?
