@@ -28,12 +28,14 @@
         %span.desc='话题'
     -if !item_topic.nil?
       = render :partial => 'item_topics/new_topic_box', :locals => {:item_topic => item_topic, :rtopics => recent_topics} 
+    %span.noti.hide.right="使用 '@＋好友姓名' 提醒你的好友"
   .clear
 
 :javascript
   $('.create_post #status_message_content').focusin(function() {
     $(this).css('height', '40px'); 
     $("label.placeholder").hide();
+    $('.post_type_bar span.noti').show();
   });
 
   $('label.placeholder').click(function(){
@@ -42,6 +44,7 @@
   });
 
   $('.create_post #status_message_content').focusout(function() {
+    $('.post_type_bar span.noti').hide();
     if ($.trim($(this).val()) == '' ) {
       $("label.placeholder").show();
       $(this).css('height', '20px'); 

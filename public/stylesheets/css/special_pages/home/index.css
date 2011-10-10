@@ -408,6 +408,9 @@
     .feed_toolbar .post_type_bar a.at_friend span.img {
       background-position: -434px 0;
       width: 15px; }
+    .feed_toolbar .post_type_bar span.noti {
+      margin-top: 5px;
+      color: #999999; }
   .feed_toolbar .create_post {
     float: left;
     position: relative;
