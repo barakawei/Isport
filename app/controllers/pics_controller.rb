@@ -35,6 +35,9 @@ class PicsController < ApplicationController
     end
   end
 
+  def update
+  end
+
   def create
     begin
       if params[:authenticity_token] #upload with iframe
@@ -45,7 +48,9 @@ class PicsController < ApplicationController
       @photo = Pic.initialize(params[:photo], self.request.host, self.request.port,current_user.person)
       @photo.pic_type = params[ :pic_type ]
       if @photo.save
-        @photo.update_albums(current_user.person,params)
+        if params[ :pic_type ] != "upload_pic"
+          @photo.update_albums(current_user.person,params)
+        end
         @photo.process
 
         respond_to do |format|

@@ -16,7 +16,6 @@
        onSubmit: function(id, fileName){
 
         $( ".qq-upload-drop-area").hide();
-        $( ".pic_box #new_pic_area #photozone").css("height","254px");
         $( ".qq-uploader" ).addClass("upload_more_pic");
         $( ".qq-upload-button" ).addClass("upload_link").removeClass("qq-upload-button").find("span").html("上传更多图片");
 
@@ -56,6 +55,7 @@
         currentPlaceholder.removeClass('loading');
         
         var form = $('.new_status_message');
+        $( ".pic_confirm" ).show();
 
         form.find("input[type='submit']").removeAttr('disabled');
 
@@ -69,6 +69,7 @@
                       photo.fadeOut(400, function(){
                             photo.remove();
                             if( $("#new_pic_area #photozone .photo").length == 0){
+                              $( ".pic_confirm" ).hide();
                               $( ".qq-uploader" ).removeClass("upload_more_pic");
                               $( ".upload_link" ).removeClass("upload_link").addClass("qq-upload-button").find("span").html("选择图片");
                               $( ".qq-upload-drop-area").show();

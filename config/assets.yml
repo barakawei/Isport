@@ -73,7 +73,6 @@ stylesheets:
     - public/stylesheets/css/plugins/autoSuggest.css
     - public/stylesheets/css/special_pages/conversations/index.css
     - public/stylesheets/css/special_pages/status_messages/status_message.css
-    - public/stylesheets/css/special_pages/people/show.css
     - public/stylesheets/css/special_pages/people/show_person_details.css
     - public/stylesheets/css/general/common/autocomplete.css
     - public/stylesheets/css/general/common/lightbox.css
@@ -175,6 +174,8 @@ stylesheets:
     - public/stylesheets/css/special_pages/users/set_account.css
   sepcial_pages_people_edit_interests:
     - public/stylesheets/css/special_pages/people/edit_interests.css
+  sepcial_pages_people_show:
+    - public/stylesheets/css/special_pages/people/show.css
 
   sepcial_pages_site_info_common:
     - public/stylesheets/css/special_pages/site_info/common.css
@@ -187,6 +188,8 @@ stylesheets:
 
   sepcial_pages_home_index:
     - public/stylesheets/css/special_pages/home/index.css
+  sepcial_pages_home_upload:
+    - public/stylesheets/css/special_pages/home/upload_pic.css
 
   sepcial_pages_site_posts_index:
     - public/stylesheets/css/special_pages/site_posts/index.css
@@ -202,3 +205,5 @@ stylesheets:
 
   special_pages_authorization_bind_account: 
     - public/stylesheets/css/special_pages/authorization/bind_account.css
+  sepcial_pages_albums_show:
+    - public/stylesheets/css/special_pages/albums/show.css
