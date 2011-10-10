@@ -37,4 +37,10 @@ class Authorization < ActiveRecord::Base
     oauth.authorize_from_access(self.access_token, self.access_token_secret)
     Weibo::Base.new(oauth).upload(status, file)
   end
+
+  def create_weibo(status)
+    oauth = Weibo::OAuth.new(Weibo::Config.api_key, Weibo::Config.api_secret)
+    oauth.authorize_from_access(self.access_token, self.access_token_secret)
+    Weibo::Base.new(oauth).update(status)
+  end
 end

@@ -22,7 +22,7 @@
           =link_to "我的活动","/home/show_my_event",:remote => true,:id => 'my_event'
         %li
           =link_to "朋友活动","/home/show_following_event",:remote => true,:id => 'following_event'
-      = render 'common/post',:item_topic => @item_topic, :recent_topics => @recent_topics
+      = render 'common/post',:item_topic => @item_topic, :recent_topics => @recent_topics, :is_binded => @is_binded
 
     .events_panel.post_element_panel
     .clear

@@ -9,7 +9,7 @@
         = f.text_field :name
         = f.label '话题名称', :class => 'topic_name'
         = error_on(item_topic, :name)
-        = hidden_field_tag 'format', 'json' 
+        = hidden_field_tag 'format', 'xml' 
         = f.hidden_field :image_url_large
         = f.hidden_field :image_url_medium
         = f.hidden_field :image_url_small

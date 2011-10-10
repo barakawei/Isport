@@ -3,6 +3,7 @@ class StatusMessagesController < ApplicationController
   before_filter :authenticate_user!
   respond_to :js
   def create
+    auth = current_user.authorizations.first
     pics = Pic.where(:id => [*params[:photos]])
     item_topic = ItemTopic.where(:id => params[:topic_id]).first   
     @status_message = StatusMessage.initialize(current_user, params[:contacts])
@@ -15,6 +16,13 @@ class StatusMessagesController < ApplicationController
     
     @status_message.item_topic = item_topic if item_topic
     if @status_message.save
+      if params['sina_weibo'] == 'yes' && auth
+        if pics.empty?
+          auth.create_weibo(@status_message.weibo_status("http://#{request.host}:#{request.port}/item_topics/"))
+        else
+          auth.create_weibo_with_photo(@status_message.weibo_status("http://#{request.host}:#{request.port}/item_topics/"), pics.first.weibo_image_file)
+        end
+      end
       @status_message.dispatch_post 
     end
     respond_with @status_message

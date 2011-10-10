@@ -46,7 +46,7 @@ var Mention = {
       disableRightAndLeft : true
     };},
     hiddenMentionFromPerson : function(personData){
-      return "@{" + personData.name + ";" + personData.id + "}";
+      return "{" + personData.name + ";" + personData.id + "}";
     },
 
     onSelect :  function(visibleInput, data, formatted) {
@@ -200,10 +200,10 @@ var Mention = {
       var stringStart = inputContent.slice(0, stringLoc[0]);
       var stringEnd = inputContent.slice(stringLoc[1]);
 
-      input.val(stringStart + formatted + stringEnd);
+      input.val(stringStart + formatted + stringEnd + " ");
       var offset = formatted.length - (stringLoc[1] - stringLoc[0]);
       Mention.autocompletion.mentionList.updateMentionLocations(stringStart.length, offset);
-      return [stringStart.length, stringStart.length + formatted.length];
+      return [stringStart.length, stringStart.length + formatted.length+1];
     },
 
     findStringToReplace: function(value, cursorIndex){
@@ -212,20 +212,20 @@ var Mention = {
       var nextAt = cursorIndex;
 
       if(nextAt == -1){nextAt = value.length;}
-      return [atLocation, nextAt];
+      return [atLocation+1, nextAt];
 
     },
 
     searchTermFromValue: function(value, cursorIndex)
     {
       var stringLoc = Mention.autocompletion.findStringToReplace(value, cursorIndex);
-      if(stringLoc[0] <= 2){
+      if(stringLoc[0] <= 1){
         stringLoc[0] = 0;
       }else{
-        stringLoc[0] -= 2;
+        stringLoc[0] -= 1;
       }
 
-      var relevantString = value.slice(stringLoc[0], stringLoc[1]).replace(/\s+$/,"");
+      var relevantString = value.slice(stringLoc[0], stringLoc[1]);
 
       var matches = relevantString.match(/(^|\s)@(.+)/);
       if(matches){

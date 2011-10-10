@@ -6,6 +6,8 @@ class ItemTopicsController < ApplicationController
   RELATED = 8
 
   def show
+    auth = current_user.authorizations.first
+    @is_binded = !auth.nil?
     @topic = ItemTopic.find(params[:id]) 
     @followers = @topic.followers.limit(FOLLOWER).includes(:profile) 
     @related = @topic.item.topics.where("id != ?", @topic.id).order("created_at DESC").limit(RELATED)
@@ -85,10 +87,15 @@ class ItemTopicsController < ApplicationController
     @current_person = current_user.person
     @topic = ItemTopic.new(params[:item_topic])
     @topic.person = @current_person 
-
+    puts '**************************'
+    puts '**************************'
+    puts '**************************'
     if @topic.save
+      puts '&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&'
+      puts '&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&'
+      puts '&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&'   
       ItemTopic.add_follower(@topic.id, @current_person)
-      if params[:format] == 'json'  
+      if params[:format] == 'xml'  
         render :xml=> @topic.to_xml
       else
         redirect_to item_topic_path(@topic)
