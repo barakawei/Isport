@@ -200,10 +200,10 @@ var Mention = {
       var stringStart = inputContent.slice(0, stringLoc[0]);
       var stringEnd = inputContent.slice(stringLoc[1]);
 
-      input.val(stringStart + formatted + stringEnd);
+      input.val(stringStart + formatted + stringEnd + " ");
       var offset = formatted.length - (stringLoc[1] - stringLoc[0]);
       Mention.autocompletion.mentionList.updateMentionLocations(stringStart.length, offset);
-      return [stringStart.length, stringStart.length + formatted.length];
+      return [stringStart.length, stringStart.length + formatted.length+1];
     },
 
     findStringToReplace: function(value, cursorIndex){
