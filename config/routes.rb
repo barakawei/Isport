@@ -47,7 +47,7 @@ Isport::Application.routes.draw do
   end
 
   controller :item_topics do
-    match '/item_topics(/:order)' => :index, :as => 'item_topics',
+    match '/item_topics(/:order)' => :index, :as => 'item_topics', :via => :get,
           :constraints => {:order => /order_by_time|order_by_hot/ }
     match '/item_topics/:target/:order' => :filter, :as => 'filter_item_topics',
           :constraints => { :target => /mine|friends|hot/, :oreder => /order_by_time|order_by_hot/ }
