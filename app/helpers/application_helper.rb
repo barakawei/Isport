@@ -64,11 +64,11 @@ module ApplicationHelper
   end
 
   def how_long_ago(obj)
-    timeago(obj.created_at)
+    time_ago_in_words(obj.created_at)+t( "ago" )
   end
 
   def how_long_ago_conversation(obj)
-    timeago(obj.updated_at)
+    time_ago_in_words(obj.updated_at)+t( "ago" )
   end
 
   def object_path( object )

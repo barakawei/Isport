@@ -1,5 +1,3 @@
 = render :partial => 'notifications/notification_element', :collection => @notifications,:as => :note
 = will_paginate @notifications,:page_links => false,:next_label=> '',:previous_label=>''
 
-:javascript
-  $("abbr.timeago").timeago();
