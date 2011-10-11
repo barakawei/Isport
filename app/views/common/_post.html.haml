@@ -15,7 +15,7 @@
       - if is_binded 
         %span#sync_to_weibo
           = check_box_tag 'sina_weibo', 'yes', true  
-          = label_tag 'sina_weibo', '同步新浪微博'
+          = label_tag 'sina_weibo', '同步到新浪微博'
       = status.submit "发布", :class => 'glass_button',"data-disable-with" => t("posting")
       .pic_upload_panel
         = render "status_messages/add_pic"

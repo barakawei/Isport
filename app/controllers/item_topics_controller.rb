@@ -87,13 +87,7 @@ class ItemTopicsController < ApplicationController
     @current_person = current_user.person
     @topic = ItemTopic.new(params[:item_topic])
     @topic.person = @current_person 
-    puts '**************************'
-    puts '**************************'
-    puts '**************************'
     if @topic.save
-      puts '&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&'
-      puts '&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&'
-      puts '&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&'   
       ItemTopic.add_follower(@topic.id, @current_person)
       if params[:format] == 'xml'  
         render :xml=> @topic.to_xml
