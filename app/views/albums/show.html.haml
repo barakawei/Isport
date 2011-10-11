@@ -14,8 +14,7 @@
       .upload_pic_btn.glass_button
         = "上传照片"
     .pics
-      -for pic in @pics
-        = pic_image_link( pic )
+      = render :partial => "pics/pic_element",:collection => @pics,:as => :pic
 
 :javascript
   $('.upload_pic_btn').click(function(){
