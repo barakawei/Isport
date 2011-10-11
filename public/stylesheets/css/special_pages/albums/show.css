@@ -1,3 +1,11 @@
+.album_pics_show {
+  background-color: white;
+  margin-right: -100px;
+  float: left;
+  padding: 20px;
+  width: 750px;
+  min-height: 1000px; }
+
 .pic_background {
   display: none;
   filter: alpha(opacity=50);
@@ -12,11 +20,25 @@
 
 .album_show {
   position: relative; }
-  .album_show .upload_pic_btn {
+  .album_show .destroy_album {
+    display: inline-block;
+    margin-left: 40px;
+    height: 35px; }
+    .album_show .destroy_album a:hover {
+      color: white;
+      margin-top: 2px; }
+  .album_show .upload_pic_btn, .album_show .destroy_album .glass_button {
     width: 80px;
-    display: inline-block; }
+    height: 30px;
+    line-height: 30px;
+    display: inline-block;
+    font-size: 15px; }
   .album_show .upload_pic {
-    height: 30px; }
+    position: absolute;
+    top: 30px;
+    right: 20px; }
+  .album_show .album_name {
+    display: inline-block; }
 
 .album_title {
   color: #546266;

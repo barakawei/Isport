@@ -8,7 +8,7 @@
     .box_content
       = link_to 'close', 'javascript:void(0)', :class => 'close_box'
       #new_pic_area
-        = form_for(@album,:html => { :multipart => true }) do |album|
+        = form_for(@album,:remote => true,:html => { :multipart => true }) do |album|
           .album_title
             -if @album.id.nil?
               .field
@@ -24,7 +24,10 @@
             = album.submit "添加",:class => "pic_confirm glass_button"
             .pic_cancle.close_box.glass_button
               = "取消"
-          =render 'photos/new_pic',:controller_path => pics_path,:pic_type => 'upload_pic'
+          - if @album.is_avatar?
+            =render 'photos/new_pic',:controller_path => photos_path,:pic_type => 'upload_avatar'
+          -else
+            =render 'photos/new_pic',:controller_path => pics_path,:pic_type => 'upload_pic'
 
     .box_border_right
   .box_border_bottom
@@ -52,12 +55,14 @@
     if($( ".pic_box .qq-uploader" ).hasClass( "upload_more_pic" )){
       $( ".pic_box .qq-uploader" ).removeClass("upload_more_pic");
       $( ".pic_box .upload_link" ).removeClass("upload_link").addClass("qq-upload-button").find("span").html("选择图片");
-      $( ".pic_box .qq-upload-drop-area").show();
+      $( ".pic_box .qq-upload-drop-area").css( "visibility","visible" );
     }
   });
 
 
   $(function() {
+    var new_album = "#{ @album.id.nil? }";
+    if (new_album == "true"){ 
     $('#new_album').validate({  
       rules: {
         'album[name]': {
@@ -72,5 +77,6 @@
        }
       }
     });
+  }
   });
 

@@ -5,7 +5,7 @@
       = "你的相册"
   .upload_pic
     .upload_pic_btn.glass_button
-      = "上传照片"
+      = "添加相册"
   .albums
     = render :partial => "albums/album_element",:collection => @albums,:as => :album,:locals =>{:person => @person}
   .clear

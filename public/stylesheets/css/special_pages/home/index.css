@@ -42,13 +42,13 @@
         background-color: #697d84;
         color: white; }
 
-.events_panel {
+.post_element_panel {
   margin-top: 0 !important; }
-  .events_panel .stream_element {
+  .post_element_panel .stream_element {
     background-color: white;
     border: none;
     margin-bottom: 2px; }
-  .events_panel .pagination {
+  .post_element_panel .pagination {
     position: absolute;
     bottom: -40px;
     left: 315px; }

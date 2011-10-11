@@ -16,7 +16,7 @@ class Pic < ActiveRecord::Base
   attr_accessor :pic_type
 
   def pic_avatar?
-    if self.pic_type == "avatar" || (self.album && self.album.name == "avatar")
+    if self.pic_type == "avatar" || self.pic_type == "upload_avatar" || (self.album && self.album.name == "avatar")
       true
     else
       false
@@ -24,7 +24,7 @@ class Pic < ActiveRecord::Base
   end
 
   def not_processed?
-    if self.pic_type == "avatar" || (self.album && self.album.name == "avatar")
+    if self.pic_type == "avatar" || self.pic_type == "upload_avatar" || (self.album && self.album.name == "avatar")
       avatar_processed_image.path.nil?
     else
       processed_image.path.nil?
@@ -32,7 +32,7 @@ class Pic < ActiveRecord::Base
   end
 
   def processed?
-    if self.pic_type == "avatar" || (self.album && self.album.name == "avatar")
+    if self.pic_type == "avatar" || self.pic_type == "upload_avatar" || (self.album && self.album.name == "avatar")
       !avatar_processed_image.path.nil?
     else
       !processed_image.path.nil?
@@ -68,7 +68,7 @@ class Pic < ActiveRecord::Base
   def url(size=:thumb_small)
     name = size.to_s 
     if processed?
-      if self.pic_type == "avatar" || (self.album && self.album.name == "avatar")
+      if self.pic_type == "avatar" || self.pic_type == "upload_avatar" || (self.album && self.album.name == "avatar")
         if name != "shortcut_medium"
           avatar_processed_image.url(name)
         end
@@ -90,7 +90,7 @@ class Pic < ActiveRecord::Base
 
   def process
     return false if self.processed? || (!unprocessed_image.path.nil? && unprocessed_image.path.include?('.gif'))
-    if self.pic_type == "avatar" || (self.album && self.album.name == "avatar")
+    if self.pic_type == "avatar" || self.pic_type == "upload_avatar" || (self.album && self.album.name == "avatar")
       avatar_processed_image.store!(unprocessed_image) 
     else
       processed_image.store!(unprocessed_image) 

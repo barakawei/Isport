@@ -15,7 +15,7 @@
 
        onSubmit: function(id, fileName){
 
-        $( ".qq-upload-drop-area").hide();
+        $( ".qq-upload-drop-area").css( "visibility","hidden" );
         $( ".qq-uploader" ).addClass("upload_more_pic");
         $( ".qq-upload-button" ).addClass("upload_link").removeClass("qq-upload-button").find("span").html("上传更多图片");
 
@@ -38,6 +38,7 @@
         var id = responseJSON.data.photo.id,
             url = responseJSON.data.photo.shortcut_medium
             origin_url = responseJSON.data.photo.url, 
+            large_url =  responseJSON.data.photo.thumb_large,
             currentPlaceholder = $('li.loading').first();
 
         currentPlaceholder.append("<input type='hidden' value='" + id + "' name='photos[]' />");
@@ -46,7 +47,11 @@
         var input = currentPlaceholder.find('input[type="text"]');
         input.show();
         var link = currentPlaceholder.find('a.upload_img_link');
-        img.attr('src', url);
+        if (url == null || url == ""){
+          img.attr('src', large_url);
+         }else{
+          img.attr('src', url);
+        }
         img.attr('data-id', id);
         img.removeClass( "load_img" );
         link.attr('href', "javascript:void(0)");
@@ -72,7 +77,7 @@
                               $( ".pic_confirm" ).hide();
                               $( ".qq-uploader" ).removeClass("upload_more_pic");
                               $( ".upload_link" ).removeClass("upload_link").addClass("qq-upload-button").find("span").html("选择图片");
-                              $( ".qq-upload-drop-area").show();
+                              $( ".qq-upload-drop-area").css( "visibility","visible" );
                             }
                             });
                           }

@@ -48,7 +48,7 @@ class PicsController < ApplicationController
       @photo = Pic.initialize(params[:photo], self.request.host, self.request.port,current_user.person)
       @photo.pic_type = params[ :pic_type ]
       if @photo.save
-        if params[ :pic_type ] != "upload_pic"
+        if params[ :pic_type ] != "upload_pic" && params[ :pic_type ] != "upload_avatar"
           @photo.update_albums(current_user.person,params)
         end
         @photo.process

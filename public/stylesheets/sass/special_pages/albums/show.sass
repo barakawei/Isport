@@ -1,4 +1,13 @@
 @import '../../general/ui/mixins'
+
+.album_pics_show
+  :background-color white
+  :margin-right -100px
+  :float left
+  :padding 20px
+  :width 750px
+  :min-height 1000px
+
 .pic_background
   :display none
   filter: alpha(opacity=50)
@@ -14,11 +23,28 @@
 
 .album_show
   :position relative
-  .upload_pic_btn
-    :width 80px
-    :display inline-block
+  .destroy_album
+    display: inline-block
+    :margin-left 40px
+    :height 35px
+    a
+      &:hover
+        :color white
+        :margin-top 2px
+  .upload_pic_btn,.destroy_album .glass_button
+    width: 80px
+    height: 30px
+    line-height: 30px
+    display: inline-block
+    font-size: 15px
   .upload_pic
-    :height 30px
+    :position absolute
+    :top 30px
+    :right 20px
+    
+    
+  .album_name
+    :display inline-block
 .album_title
   :color #546266
   :font-size 20px

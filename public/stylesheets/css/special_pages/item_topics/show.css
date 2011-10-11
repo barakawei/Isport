@@ -174,3 +174,14 @@
   behavior: url(/javascripts/PIE.htc); }
   .post_area .feed_toolbar {
     width: 640px; }
+
+.post_element_panel {
+  margin-top: 0 !important; }
+  .post_element_panel .stream_element {
+    background-color: white;
+    border: none;
+    margin-bottom: 2px; }
+  .post_element_panel .pagination {
+    position: absolute;
+    bottom: -40px;
+    left: 315px; }
