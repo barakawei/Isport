@@ -3,20 +3,26 @@
   = include_javascripts :show_photo
   =include_javascripts :scroll_page
 
-.span-22.album
+.span-22.album.relative
+  = render "albums/upload_pic"
   .title_bar
     %h3
       = get_imageable_des(@album)
       = link_to @album.imageable.name, get_imageable_path(@album)
       = '的相册'
       = "(共#{@album.pics.size}张)" 
-    = link_to '上传更多照片', upload_event_pic_path(@album.imageable), :class => 'glass_button right upload_link_button'
+    = link_to '上传更多照片', 'javascript:void(0)', :class => 'glass_button right upload_link_button'
   .albums.pic_container
 
 
 :javascript
   $(function() {
     var size = $(window).width(); 
+  });
+
+  $('.upload_link_button').click(function(){
+    $('.pic_box').show();      
+    $( ".pic_background" ).show();
   });
   
   $.getScript("#{paginate_pics_path(@album.id)}", function(data) {

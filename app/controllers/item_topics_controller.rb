@@ -85,8 +85,15 @@ class ItemTopicsController < ApplicationController
 
   def create
     @current_person = current_user.person
-    @topic = ItemTopic.new(params[:item_topic])
-    @topic.person = @current_person 
+
+    item = Item.find(params[:item_topic][:item_id])
+    @existed_topics = item.topics.where(:name => params[:item_topic][:name])
+    if @existed_topics.size > 0
+      @topic = @existed_topics.first 
+    else
+      @topic = ItemTopic.new(params[:item_topic])
+      @topic.person = @current_person 
+    end
     if @topic.save
       ItemTopic.add_follower(@topic.id, @current_person)
       if params[:format] == 'xml'  
@@ -97,7 +104,6 @@ class ItemTopicsController < ApplicationController
     else
       respond_to do |format|
         format.html{ render :action => :new }
-        format.json { render :text => @topic.to_json }
       end
     end
   end

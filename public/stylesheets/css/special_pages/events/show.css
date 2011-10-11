@@ -201,8 +201,12 @@
     .right_column .albums_area .event_pic span.desc {
       float: left;
       margin-top: 2px;
-      font-size: 13px;
+      font-size: 11px;
       color: #aaaaaa; }
+      .right_column .albums_area .event_pic span.desc a {
+        color: #777777; }
+        .right_column .albums_area .event_pic span.desc a:hover {
+          text-decoration: underline; }
       .right_column .albums_area .event_pic span.desc .c_count {
         margin-left: 10px; }
 .right_column .event_title .status {
