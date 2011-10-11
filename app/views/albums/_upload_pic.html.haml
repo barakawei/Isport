@@ -1,0 +1,82 @@
+-content_for :head do
+  =include_stylesheets :sepcial_pages_albums_show, :media => 'all'
+.pic_background
+.popup_box.pic_box.hide
+  .box_border_top 
+  .box_center
+    .box_border_left
+    .box_content
+      = link_to 'close', 'javascript:void(0)', :class => 'close_box'
+      #new_pic_area
+        = form_for(@album,:remote => true,:html => { :multipart => true }) do |album|
+          .album_title
+            -if @album.id.nil?
+              .field
+                = "相册名称"
+                = album.text_field :name
+            -else
+              .name
+                = album_name_tag(@album)
+          .photo_form
+            #pic-upload
+            %ul#photozone
+          .pic_action
+            = album.submit "添加",:class => "pic_confirm glass_button"
+            .pic_cancle.close_box.glass_button
+              = "取消"
+          - if @album.is_avatar?
+            =render 'photos/new_pic',:controller_path => photos_path,:pic_type => 'upload_avatar'
+          -else
+            =render 'photos/new_pic',:controller_path => pics_path,:pic_type => 'upload_pic'
+
+    .box_border_right
+  .box_border_bottom
+
+
+
+:javascript
+
+  $( ".upload_finshed" ).live({ 
+    mouseenter:function(){
+      $( this ).find( ".action" ).show();
+    },
+    mouseleave:function(){
+      $( this ).find( ".action" ).hide();
+    }
+  });
+
+  $( ".pic_box .close_box" ).live( "click",function(){ 
+    $( ".pic_confirm" ).hide();
+    $( ".pic_background" ).hide();
+    $( ".pic_box").hide();
+    $(".pic_box #photozone .photo").remove(); 
+    $( ".pic_box .upload_img_link" ).remove();
+    $(".pic_box #photozone input").remove(); 
+    if($( ".pic_box .qq-uploader" ).hasClass( "upload_more_pic" )){
+      $( ".pic_box .qq-uploader" ).removeClass("upload_more_pic");
+      $( ".pic_box .upload_link" ).removeClass("upload_link").addClass("qq-upload-button").find("span").html("选择图片");
+      $( ".pic_box .qq-upload-drop-area").css( "visibility","visible" );
+    }
+  });
+
+
+  $(function() {
+    var new_album = "#{ @album.id.nil? }";
+    if (new_album == "true"){ 
+    $('#new_album').validate({  
+      rules: {
+        'album[name]': {
+          required: true,
+          maxlength:20
+        }
+      },
+      messages: {
+        'album[name]': {
+          required: '相册名称不能为空',
+          maxlength: '相册名称不能超过20个字符'
+       }
+      }
+    });
+  }
+  });
+

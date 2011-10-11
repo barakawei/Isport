@@ -1,7 +1,24 @@
 - content_for :head do
   =include_javascripts :show_photo
-.left_album_side
-  = render "album_nav",:albums => @albums,:person => @person,:current_album => @album
-.album_pics_show.pic_container
-  -for pic in @pics
-    = pic_image_link( pic )
+.album_show
+  = render "upload_pic"
+  .left_album_side
+    = render "album_nav",:albums => @albums,:person => @person,:current_album => @album
+  .album_pics_show.pic_container
+    %h2.album_name
+      = album_name_tag( @album )
+    -if @album.can_delete?
+      .destroy_album
+        = link_to "删除相册",album_path(@album), :method => 'delete',:confirm => "确定删除吗？",:class => "glass_button"
+    .upload_pic
+      .upload_pic_btn.glass_button
+        = "上传照片"
+    .pics
+      = render :partial => "pics/pic_element",:collection => @pics,:as => :pic
+
+:javascript
+  $('.upload_pic_btn').click(function(){
+    $('.pic_box').show();      
+    $( ".pic_background" ).show();
+  });
+

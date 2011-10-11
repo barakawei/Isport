@@ -37,12 +37,14 @@
 
       self.pic_left_arrow.click(function(  ){
         var imageThumb = self.imageset.find("img.selected");
-        self.selectImage(self.prevImage(imageThumb));
+        var index = imageThumb.attr( "index" );
+        self.selectImage(self.prevImage(index));
       });
 
       self.pic_right_arrow.click(function(  ){
         var imageThumb = self.imageset.find("img.selected");
-        self.selectImage(self.nextImage(imageThumb));
+        var index = imageThumb.attr( "index" );
+        self.selectImage(self.nextImage(index));
       });
 
       
@@ -73,11 +75,13 @@
 
       self.image.click(function(){
         var imageThumb = self.imageset.find("img.selected");
-        self.selectImage(self.nextImage(imageThumb));
+        var index = imageThumb.attr( "index" );
+        self.selectImage(self.nextImage(index));
       });
 
       self.body.keydown(function(evt) {
         var imageThumb = self.imageset.find("img.selected");
+        var index = imageThumb.attr( "index" );
         
         var keyCode = evt.which ? evt.which : evt.keyCode;
 
@@ -87,11 +91,11 @@
           break;
         case 37:
           //left
-          self.selectImage(self.prevImage(imageThumb));
+          self.selectImage(self.prevImage(index));
           break;
         case 39:
           //right
-          self.selectImage(self.nextImage(imageThumb));
+          self.selectImage(self.nextImage(index));
           break;
         }
       });
@@ -131,16 +135,18 @@
     }
 
 
-    this.nextImage = function(thumb){
-      var next = thumb.next();
+    this.nextImage = function(index){
+      var index = Number(index) + 1;
+      next = self.imageset.find("img[index="+index+"]");
       if (next.length == 0) {
         next = self.imageset.find("img").first();
       }
       return(next);
     };
 
-    this.prevImage = function(thumb){
-      var prev = thumb.prev();
+    this.prevImage = function(index){
+      var index = Number(index) - 1;
+      prev = self.imageset.find("img[index="+index+"]");
       if (prev.length == 0) {
         prev = self.imageset.find("img").last();
       }
@@ -195,14 +201,23 @@
           "data-full-photo": image.attr("data-full-photo"),
           "id": image.attr("id"),
           "desc": image.attr("desc"),
+          "count": image.attr("count"),
           "index":index
         });
         
         if(image.attr("data-full-photo") == imageUrl) {
           imageThumb = thumb;
         };
-
-        self.imageset.append(thumb);
+        var count = image.attr("count");
+        var pic_count = $( "<div/>",{ "class":"count" }).html(count);
+        var pic_arrow = $( "<div/>",{ "class":"arrow" });
+        var pic_comment = $( "<div/>",{ "class":"pic_comment" }).append( pic_count ).append( pic_arrow );
+        var pic_element = $( "<div/>",{"class":"pic_element" }).append(thumb).append(pic_comment);
+        if( count > 0 ){
+          self.imageset.append(pic_element);
+        }else{
+          self.imageset.append(thumb);
+        }
       });
 
       imageset_width =  self.imageset.find( "img" ).length * 70 +1000+"px";
@@ -220,8 +235,11 @@
       self.reday = false;
       var pic_id =  imageThumb.attr( "id" );
       self.loadComments(pic_id);
-      $(".selected", self.imageset).removeClass("selected");
+      selected = $(".selected", self.imageset);
+      selected.parent().find(".pic_comment").show();
+      selected.removeClass("selected");
       imageThumb.addClass("selected");
+      imageThumb.closest(".pic_element").find(".pic_comment").hide();
       self.image.attr("src", imageThumb.attr("data-full-photo"));
       self.image_desc.html( imageThumb.attr( "desc" ) );
       var width = Number(self.lightbox_content.css( "width" ).split("px")[0]);

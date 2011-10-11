@@ -330,7 +330,6 @@ dd
     @include border-radius(5px)
     :margin-top 5px
     :font-size 15px
-    border: 1px solid white
     height: 26px
     padding: 4px
     width: 250px
@@ -522,13 +521,16 @@ dd
           :height 43px
           :width 43px
 .person_albums
+  :position relative
   :min-height 500px
   :padding 20px
   :background white
   .title
     :margin-bottom 20px
+    :display inline-block
   .albums
     .album_element
+      :margin-top 20px
       :padding-right 10px
       :float left
       :display inline-block
@@ -554,4 +556,16 @@ dd
         :color #8a8a8a
         :line-height 1px
 
-
+.upload_pic
+  .glass_button
+    :width 80px
+    :height 30px 
+    :line-height 30px
+    :display inline-block
+    :font-size 15px
+  :position absolute
+  :right 30px
+  :top 25px 
+.pic_box
+  left: -200px !important
+  top: -250px !important

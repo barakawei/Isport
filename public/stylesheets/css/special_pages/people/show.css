@@ -333,7 +333,6 @@ dd {
     behavior: url(/javascripts/PIE.htc);
     margin-top: 5px;
     font-size: 15px;
-    border: 1px solid white;
     height: 26px;
     padding: 4px;
     width: 250px; }
@@ -529,12 +528,15 @@ dd {
       width: 43px; }
 
 .person_albums {
+  position: relative;
   min-height: 500px;
   padding: 20px;
   background: white; }
   .person_albums .title {
-    margin-bottom: 20px; }
+    margin-bottom: 20px;
+    display: inline-block; }
   .person_albums .albums .album_element {
+    margin-top: 20px;
     padding-right: 10px;
     float: left;
     display: inline-block; }
@@ -561,3 +563,18 @@ dd {
       padding: 0;
       color: #8a8a8a;
       line-height: 1px; }
+
+.upload_pic {
+  position: absolute;
+  right: 30px;
+  top: 25px; }
+  .upload_pic .glass_button {
+    width: 80px;
+    height: 30px;
+    line-height: 30px;
+    display: inline-block;
+    font-size: 15px; }
+
+.pic_box {
+  left: -200px !important;
+  top: -250px !important; }

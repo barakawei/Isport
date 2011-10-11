@@ -6,7 +6,17 @@ module PicsHelper
     else
       url = pic.url(size)
     end
-    link_to (image_tag url,:desc => pic.description,:id => pic.id,:class => 'stream-photo', 'data-small-photo' => pic.url(:thumb_large), 'data-full-photo' => pic.url( :thumb_large )), "#", :class => 'stream-photo-link'
+    link_to (image_tag url,:desc => pic.description,:count =>pic.comments.size,:id => pic.id,:class => 'stream-photo', 'data-small-photo' => pic.url(:thumb_large), 'data-full-photo' => pic.url( :thumb_large )), "#", :class => 'stream-photo-link'
+  end
+
+  def pic_image_tag( pic,size=:thumb_medium )
+    link = pic_image_link(pic,size)
+    count = pic.comments.size
+    pic_comment = ""
+    if count > 0
+      pic_comment = "<div class='pic_comment'><div class='count'>#{count}</div><div class='arrow'></div></div>"
+    end
+    "<div class='pic_element'>#{link.html_safe}#{pic_comment.html_safe}</div>".html_safe
   end
 
   def get_imageable_des(album) 

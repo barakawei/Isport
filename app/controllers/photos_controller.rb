@@ -25,7 +25,9 @@ class PhotosController < ApplicationController
       @photo = Pic.initialize(params[ :photo ], self.request.host, self.request.port,current_user.person)
       @photo.pic_type = "avatar"
       if @photo.save
-        @photo.update_albums(current_user.person)
+        if params[ :pic_type ] != "upload_avatar"
+          @photo.update_albums(current_user.person)
+        end
         @photo.process
         rounder_corner
         if params[:photo][:is_avatar]

@@ -1,0 +1,356 @@
+@import '../../general/ui/mixins'
+    
+.album_pics_show
+  :background-color white
+  :margin-right -100px
+  :float left
+  :padding 20px
+  :width 680px
+  :min-height 1000px
+
+.pic_background
+  :display none
+  filter: alpha(opacity=50)
+  opacity: 0.5
+  width: 1230px
+  height: 1230px
+  background: white
+  left: 0
+  position: fixed
+  top: 0
+  z-index: 1100
+  
+
+.album_show
+  :position relative
+  .destroy_album
+    display: inline-block
+    :margin-left 40px
+    :height 35px
+    a
+      &:hover
+        :color white
+        :margin-top 2px
+  .upload_pic_btn,.destroy_album .glass_button
+    width: 80px
+    height: 30px
+    line-height: 30px
+    display: inline-block
+    font-size: 15px
+  .upload_pic
+    :position absolute
+    :top 30px
+    :right 45px
+    
+    
+  .album_name
+    :display inline-block
+.album_title
+  :color #546266
+  :font-size 20px
+  :height 40px
+  :border-bottom 1px solid #E5E5E5
+  :width 890px
+  :margin-left -20px
+  input
+    :height 20px
+  .field,.name
+    :margin-left 20px
+    label
+      :font-size 15px
+      :color red
+
+    
+.pic_box
+  .pic_action
+    :position absolute
+    :bottom 0
+    :left 0
+    :height 45px
+    :width 100%
+    :border-top 1px solid #e5e5e5
+    .pic_cancle
+      :width 50px
+      :position absolute
+      :right 17px
+      :margin-top 10px
+    .pic_confirm
+      :display none
+      :position absolute
+      :width 60px
+      :height 25px
+      :right 87px
+      :margin-top 10px
+  .upload_more_pic
+    :position absolute
+    :bottom 0
+    :left 0
+    :height 45px
+    :width 200px
+    :border-top 1px solid #e5e5e5
+    :z-index 2
+    .upload_link
+      :display inline-block
+      :font-size 15px
+      :margin-left 15px !important
+      :margin-top 10px !important
+      :position relative
+      :overflow hidden
+      :color #4083a9
+      input
+        :cursor pointer
+      &:hover
+        :color #205f82
+  #new_pic_area
+    #pic-upload
+      .qq-upload-drop-area
+        :margin-top 20px
+        :width 845px
+        :height 360px
+      .qq-upload-list
+        :display none
+      .qq-upload-button
+        :margin-top 205px
+        :margin-left 370px
+        position: relative
+        overflow: hidden
+        input
+          cursor: pointer
+      .qq-upload-drop-area
+        :top -205px
+    .title_bar
+      :display block
+      :float left
+      h2
+        :display inline-block
+        :font-size 20px
+        :line-height 50px
+        :height 50px
+        :float left
+        :margin-left 10px
+      img
+        :border 1px solid #d5ddde
+        :display block
+    .photo_form
+      :width 845px
+      :position static !important
+
+      a.upload_img_link
+        :width 150px
+        :height 150px
+        :display inline-block
+
+
+      .glass_button
+        :height 23px
+        :margin-top 2px
+      .upload_confirm_button, .cancel_button
+        :position absolute
+        :bottom 0px
+        :right 60px
+        :padding 0 10px
+        :line-height 30px
+        :height 30px
+        :font-size 15px
+        :background-color #f5f5f5
+        :border 1px solid #dddddd
+        :color #529214
+        :cursor pointer
+
+        &:hover
+          :background-color #e6efc2
+          :border 1px solid #c6d880
+
+      .cancel_button
+        :right 0
+        :height 28px
+          
+        
+    #photozone
+      :position static
+      :width 865px
+      :height 400px
+      overflow-y: auto
+      li.loading
+        .ajax_load
+          :width 150px
+          :display inline-block
+      li 
+        :margin-top 20px
+        :margin-bottom 22px
+        :float left
+        :margin-right 5px
+
+        :display block
+        :position relative
+        img
+          :width 150px
+          :height 150px
+        
+        input
+          :position absolute
+          :bottom -18px
+          :left 0
+          :width 140px
+          :height 10px
+          :display none
+        .action
+          :display none
+          width: 150px
+          height: 20px
+          left: 0
+          top: 0
+          position: absolute
+          background-color: black
+          filter: alpha(opacity=60)
+          opacity: .6
+          
+          
+        .remove_link
+          :background url('/images/ui/delete_white.png') no-repeat 
+          :position absolute
+          :right 0 
+          :top 6px
+          width: 10px
+          height: 10px
+          text-indent: -9999px
+          :cursor pointer
+
+.popup_box
+  :position absolute
+  :top 0
+  :left 0
+  :width 900px
+  :height 500px
+  :z-index 2000
+  
+  .box_border_left, .box_border_right,
+  .box_border_top, .box_border_bottom
+    :float left
+    background: url("/images/ui/popup_box_border.png") repeat scroll 0 0 transparent
+    opacity: 0.5
+  .box_border_top, .box_border_bottom
+    height: 5px
+    :width 900px 
+  .box_center
+    :float left
+    :width 900px 
+    :height 500px
+
+    .box_border_left, .box_border_right
+      :height 500px 
+      :width 5px
+    .box_content
+      :position relative
+      :background-color #ffffff
+      :float left
+      :padding 10px 20px
+      :width 850px 
+      :height 480px
+      :z-index 1999
+
+
+      ul.title_bar
+        :float left
+        :display block
+        :width 450px
+        :padding-bottom 5px
+        :border-bottom 1px solid #d5ddde
+        :margin-bottom 20px
+        
+        img
+          :margin-left 50px
+        li
+          :float left
+          :margin 0
+          :padding 0
+          a
+            :margin-right 8px
+            @include border-radius(3px)
+            :background-color #fff
+            border: none 
+            font-size: 13px
+            font-weight: bold
+            padding: 3px 6px
+
+            &:hover
+              background-color: #E1E1E1
+
+          a.select
+            :background-color #697D84
+            :color #fff
+
+            &:hover
+              :background-color #697D84
+            
+        li.browse
+          :margin-right 15px
+          a
+            :background-color #fff 
+            :color #277098
+            &:hover
+              :background-color #fff
+      a.close_box
+        :position absolute
+        :top 10px
+        :right 10px
+        background: url("/images/ui/cross_close_icon.png") no-repeat scroll -26px 0 transparent
+        margin: 0 0 0 10px
+        text-indent: -9999px
+        width: 16px
+
+        &:hover
+          :background-position 0 0  
+
+      h3
+        :padding-bottom 10px
+        :border-bottom 1px solid #d5ddde
+
+      #select_topic_area
+        :margin-top 5px
+        :float left
+        :width 450px
+        .select_topic 
+          .filter_area
+            :width 450px
+            :float left
+            :margin-top -20px
+            h4
+              :margin-bottom 5px
+            a
+              :border-right 1px solid #ddd
+              :height 14px
+              :padding 0 5px 0 0
+              :margin 5px 5px 15px 0
+              :font-size 13px
+            a.last
+              :border none
+            a.select
+              :color #444
+            img
+              :margin-left 10px
+              :margin-top 5px
+          
+          .result_area
+            :margin-top 8px
+            :float left
+            :width 450px
+            a.topic_item 
+              background-color: #F5F5F5
+              :display block
+              :float left
+              margin:
+                :bottom 10px
+                :right 8px
+
+              font-size: 13px
+              line-height: 13px
+              padding: 5px 8px
+              color: #778087
+              @include border-radius(3px)
+
+              &:hover
+                background-color: #9999aa
+                color: #fff
+                  
+
