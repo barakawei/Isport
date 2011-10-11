@@ -1347,7 +1347,7 @@ zhoushan
   嵊泗县
 city_change
  台州市
-taizhou
+tai'zhou
   市辖区
    椒江区
    黄岩区
@@ -1492,7 +1492,7 @@ fuyang
   界首市
 city_change
  宿州市
-suzhou
+su'zhou
   市辖区
    埇桥区
   砀山县
@@ -1785,7 +1785,7 @@ yichun
   高安市
 city_change
  抚州市
-fuzhou
+fu'zhou
   市辖区
    临川区
   南城县
@@ -3807,7 +3807,7 @@ hanzhong
   佛坪县
 city_change
  榆林市
-yulin
+yu'lin
   市辖区
    榆阳区
   神木县

@@ -4,4 +4,9 @@ class LocationController < ApplicationController
     @districts = District.where(:city_id => params[:id])
     render :partial => "districts_select", :locals => {:name => params[:select_name]}
   end
+
+  def cities_of_province
+    @cities = City.where(:province_id => params[:id]) 
+    render :partial => "cities_select", :locals => {:name => params[:select_name]}
+  end
 end

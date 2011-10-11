@@ -3,14 +3,14 @@
   = include_stylesheets :sepcial_pages_events_common, :media => 'all'
   = include_stylesheets :common_index, :media => 'all'
 
-#city_select_box.hide    
-  - City.all.each do |city|
-    %h4.inline= link_to city.name, "/events/?city=#{city.pinyin}", :class => 'event_color'
+#location_select_box.hide
+  = collection_select nil, :province_id, Province.all, :id, :name, :selected => @city.province.id
+  = collection_select nil, :city_id, @city.province.cities, :id, :name, :selected => @city.id
 
 .span-24.append-bottom
   .span-17
     %h1.inline.app_subfunction_title.events= '好享玩活动'
-    %h3.inline= link_to @city.name , 'javascript:void(0);', :id => 'switch_city', :class => 'dark_gray'
+    %h3.inline= link_to @city.name , 'javascript:void(0);', :id => 'switch_location', :class => 'dark_gray'
   .span-7.last
     = render 'common/big_link_button', :content => '发起活动', :path => new_event_path 
 
@@ -36,26 +36,26 @@
       .filter_title
         %strong=link_to '活动', 'javascript:void(0);'
       .filter_items
-        = link_to '全部', event_filter_path(:city => @city.pinyin)
+        = link_to '全部', event_filter_path(:city => @city.id)
                          
         - Item.all.each do |i|
-          = link_to i.name, event_filter_path(@city.pinyin,@district_id, i.id, @time)
+          = link_to i.name, event_filter_path(@city.id,@district_id, i.id, @time)
     .search_line
       .filter_title
         %strong=link_to '区域', 'javascript:void(0);' 
       .filter_items
-        = link_to '全部', event_filter_path(:city => @city.pinyin, :item_id => @item_id, :time => @time)
+        = link_to '全部', event_filter_path(:city => @city.id, :item_id => @item_id, :time => @time)
         - @city.districts.each do |d| 
-          = link_to d.name, event_filter_path(@city.pinyin, d.id, @item_id, @time)
+          = link_to d.name, event_filter_path(@city.id, d.id, @item_id, @time)
     .search_line
       .filter_title
         %strong=link_to '时间', 'javascript:void(0);' 
       .filter_items
-        = link_to '全部', event_filter_path(@city.pinyin, @district_id, @item_id, 'alltime')
-        = link_to '今天', event_filter_path(@city.pinyin, @district_id, @item_id, 'today')
-        = link_to '本周', event_filter_path(@city.pinyin, @district_id, @item_id, 'week')
-        = link_to '周末', event_filter_path(@city.pinyin, @district_id, @item_id, 'weekends')
-        = link_to '一个月内', event_filter_path(@city.pinyin, @district_id, @item_id, 'next_month')
+        = link_to '全部', event_filter_path(@city.id, @district_id, @item_id, 'alltime')
+        = link_to '今天', event_filter_path(@city.id, @district_id, @item_id, 'today')
+        = link_to '本周', event_filter_path(@city.id, @district_id, @item_id, 'week')
+        = link_to '周末', event_filter_path(@city.id, @district_id, @item_id, 'weekends')
+        = link_to '一个月内', event_filter_path(@city.id, @district_id, @item_id, 'next_month')
         =text_field_tag 'date', t('filter.time.select_time'), :readonly => true
 
 - if @hot_items.size > 0
@@ -67,7 +67,7 @@
           .item_avatar
             = item_image_link(i, :size => :thumb_large)
             %span.item_des=i.name
-          = link_to '更多', event_filter_path(:city => @city.pinyin, :item_id => i.id), :class => 'right more'
+          = link_to '更多', event_filter_path(:city => @city.id, :item_id => i.id), :class => 'right more'
           - i.hot_events(6, @city).each do |e|
             .item_event
               = event_image_link(e, :thumb_medium)
@@ -80,15 +80,15 @@
 
 :javascript
   $(function() {
-    var left = $('#switch_city').offset().left;
-    var t =$('#switch_city').offset().top + $('#switch_city').innerHeight();
-    $('#city_select_box').css("left", left+"px");
-    $('#city_select_box').css("top", t+"px");
+    var left = $('#switch_location').offset().left;
+    var t =$('#switch_location').offset().top + $('#switch_location').innerHeight();
+    $('#location_select_box').css("left", left+"px");
+    $('#location_select_box').css("top", t+"px");
 
     $("#date").datepicker(); 
     $("#date").val("#{I18n.t('filter.time.select_time')}"); 
   });
-  
+
   $('#nextBtn').bind('click', slideRight);
   $('#preBtn').bind('click', slideLeft);
 
@@ -147,15 +147,27 @@
     return false;
   }
 
-  $("#switch_city").click(function(e) {
-    $('#city_select_box').toggleClass('hide'); 
+  $("#switch_location").click(function(e) {
+    $('#location_select_box').toggleClass('hide'); 
     e.stopPropagation();
     return false;
   });
 
   $('input#date').change(function() {
-    var path = "#{event_filter_path(@city.pinyin, @district_id, @item_id)}/"+ $('input#date').val();
+    var path = "#{event_filter_path(@city.id, @district_id, @item_id)}/"+ $('input#date').val();
     $(location).attr('href', path);
     return false;
   });
-  
+
+  $("#_province_id").change(function() {
+    $.get("#{cities_of_province_path}", {id: $("#_province_id").val(),
+                                        select_name:'_city_id'}, function(data){
+      $("#_city_id").replaceWith(data);
+    });
+  });
+
+  $("#_city_id").change(function() {
+      var path = "/events/?city=" + $("#_city_id").val();
+      $(location).attr('href', path);
+  });
+
