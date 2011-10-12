@@ -21,20 +21,20 @@ class ItemTopic < ActiveRecord::Base
   end
   
   def self.recent_random_topics
-    @topics = ItemTopic.recent_hot
-    size = @topics.size
-    @ran_nums = []
+    topics = ItemTopic.recent_hot
+    size = topics.size
+    ran_nums = []
     if size <= 7 
-      @topics
+      topics
     else
       7.times.each do
         temp = rand(size) 
-        while @ran_nums.include?(temp)
+        while ran_nums.include?(temp)
           temp = rand(size) 
         end
-        @ran_nums << temp
+        ran_nums << temp
       end 
-      @ran_nums.collect {|i| @topics[i] }
+      ran_nums.collect {|i| topics[i] }
     end
 
   end

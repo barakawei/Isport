@@ -1,0 +1,5 @@
+.recent_events
+  - events.each do |e|
+    .event_item
+      = link_to e.title, event_path(e)
+      %span.members_count="(#{e.participants_count})"

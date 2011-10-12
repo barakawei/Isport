@@ -85,6 +85,24 @@ class Event < ActiveRecord::Base
     events = Event.in_items(item_ids).next_month.at_city(city).not_started.not_full.visable.order('start_at').limit(6) unless events.size > 0
     events
   end
+
+  def self.recent_events(city)
+    events = Event.not_started.visable.order('start_at').limit(50)
+    size = events.size
+    ran_nums = []
+    if size <= 7 
+      events 
+    else
+      7.times.each do
+        temp = rand(size) 
+        while ran_nums.include?(temp)
+          temp = rand(size) 
+        end
+        ran_nums << temp
+      end 
+      ran_nums.collect {|i| events[i] }
+    end
+  end
   
   def self.visable
     open.pass_audit 

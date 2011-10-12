@@ -189,6 +189,7 @@ Isport::Application.routes.draw do
           :constraints => { :id => /[1-9]\d*/ } 
     match 'upload_photos/:id' => :upload_event_pics, :as => 'upload_event_pic',
           :constraints => { :id => /[1-9]\d*/ } 
+    match '/events/recent_events' => :recent_events,:as => "recent_events"
   end
 
   controller :pics do
