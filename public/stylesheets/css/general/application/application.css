@@ -278,20 +278,21 @@ span.medium_avatar {
       border-radius: 4px;
       behavior: url(/javascripts/PIE.htc);
       border: 1px solid white;
-      background-color: #f1f1f1;
+      background-color: white;
+      border: 1px solid #e8e8e8;
       padding: 2px 5px 1px 5px;
       font-size: 13px;
       margin-right: 5px;
       color: #4c4c4c; }
     .pagination_box .pagination em {
-      background-color: #fc4469;
-      border: 1px solid #82190b;
+      background-color: #99c94b;
       color: white; }
     .pagination_box .pagination span.disabled {
       display: none; }
     .pagination_box .pagination a:hover {
-      background-color: white;
-      text-decoration: none; }
+      background-color: #99c94b;
+      text-decoration: none;
+      color: white; }
 
 .app_module_title {
   margin: 15px 0 5px 0;
@@ -788,7 +789,7 @@ a.app_black_link_button {
     text-align: left;
     margin-bottom: 50px; }
     #lightbox-comment-panel .comment_form textarea {
-      width: 200px;
+      width: 180px;
       height: 50px; }
   #lightbox-comment-panel .comment_button {
     text-align: left;
@@ -796,7 +797,7 @@ a.app_black_link_button {
 
 .stream_element, .pic_comments {
   position: relative; }
-  .stream_element a.message_topic_type, .pic_comments a.message_topic_type {
+  .stream_element span.message_topic_type, .pic_comments span.message_topic_type {
     position: absolute;
     top: 10px;
     right: 40px;
@@ -809,8 +810,6 @@ a.app_black_link_button {
     -webkit-border-radius: 3px;
     border-radius: 3px;
     behavior: url(/javascripts/PIE.htc); }
-    .stream_element a.message_topic_type:hover, .pic_comments a.message_topic_type:hover {
-      background-color: #6fb7e9; }
   .stream_element .from a, .pic_comments .from a {
     font-size: 13px; }
   .stream_element .post_content, .pic_comments .post_content {
@@ -907,10 +906,28 @@ a.app_black_link_button {
       border-top: 1px solid #d9d9d9;
       border-bottom: 1px solid #d9d9d9; }
 
-.album_pics_show {
-  background-color: white;
-  margin-right: -100px;
-  float: left;
-  padding: 20px;
-  width: 750px;
-  min-height: 500px; }
+.pic_element {
+  position: relative;
+  display: inline-block;
+  margin-right: 3px;
+  margin-bottom: 1px; }
+  .pic_element img {
+    width: 164px; }
+  .pic_element .pic_comment {
+    cursor: pointer;
+    position: absolute;
+    right: 4px;
+    top: 4px; }
+    .pic_element .pic_comment .count {
+      background-color: white;
+      border-radius: 4px 4px 4px 4px;
+      -webkit-border-radius: 4px;
+      -moz-border-radius: 4px;
+      padding: 1px 7px;
+      color: #546266; }
+    .pic_element .pic_comment .arrow {
+      border-right: 4px solid transparent;
+      border-top: 4px solid white;
+      bottom: -4px;
+      left: 4px;
+      position: absolute; }

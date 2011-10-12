@@ -122,6 +122,7 @@ class PeopleController < ApplicationController
   def show_person_albums
     @person = Person.find( params[ :id ] )
     @albums = @person.my_albums
+    @album = Album.new
     @page = params[ :page ]
     @tab = 'my_albums'
     respond_with @albums

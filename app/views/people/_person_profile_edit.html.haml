@@ -1,5 +1,6 @@
 -content_for :head do
   = include_javascripts :jquery_validation
+  = include_stylesheets :sepcial_pages_people_show, :media => 'all'
 = form_for @profile do |f|
   = hidden_field_tag "profile_edit","1"
   = hidden_field_tag "profile[location_attributes][city_id]", @profile.location.city_id

@@ -1,7 +1,18 @@
 .person_albums
+  = render "albums/upload_pic"
   .title
     %h2
       = "你的相册"
+  -if current_user.person == @person
+    .upload_pic
+      .upload_pic_btn.glass_button
+        = "添加相册"
   .albums
     = render :partial => "albums/album_element",:collection => @albums,:as => :album,:locals =>{:person => @person}
   .clear
+
+:javascript
+  $('.upload_pic_btn').click(function(){
+    $('.pic_box').show();      
+    $( ".pic_background" ).show();
+  });
