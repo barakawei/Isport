@@ -7,6 +7,6 @@ class LocationController < ApplicationController
 
   def cities_of_province
     @cities = City.where(:province_id => params[:id]) 
-    render :partial => "cities_select", :locals => {:name => params[:select_name]}
+    render :partial => "cities_select"
   end
 end

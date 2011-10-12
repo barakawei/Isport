@@ -173,8 +173,8 @@ class PeopleController < ApplicationController
 
   def random_item_fans
     item  = Item.find params[:item_id]
-    city_pinyin = params[:city] ? params[:city] : (current_user ? current_user.city.pinyin : City.first.pinyin)
-    city = City.find_by_pinyin(city_pinyin)
+    city_id = params[:city] ? params[:city] : (current_user ? current_user.city.id : City.first.id)
+    city = City.find_by_id(city_id)
 
     @people = item.random_people(city, 6, current_user.followed_people+[current_user.person]) 
     render :partial => 'people/show_contacts', :locals => {:people => @people, :groups => nil, :items => nil}

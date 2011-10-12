@@ -18,10 +18,14 @@
     %span
       =  "女"
   .relative
+    = hidden_field_tag "profile[location_attributes][city_id]"
+    %h4
+      = "省份"
+    = collection_select nil, :province_id, Province.all, :id, :name, {:prompt => true}
+    %br
     %h4
       = "城市"
-    = select_tag "profile[location_attributes][city_id]",
-               options_from_collection_for_select(City.all, "id", "name", location.city_id)
+    = collection_select nil, :city_id, Province.first.cities, :id, :name, {:prompt => true}
 
 :javascript
   $(function() {
@@ -46,4 +50,18 @@
       }
     });
   });
-  
+ 
+  function changeCity() {
+    $("#profile_location_attributes_city_id").val($("#_city_id").val());
+  }
+
+  $("#_province_id").change(function() {
+    $.get("#{cities_of_province_path}", {id: $("#_province_id").val(),
+                                        select_name:'_city_id'}, function(data){
+      $("#_city_id").replaceWith(data);
+      $("#_city_id").bind('change', changeCity);
+    });
+  });
+
+  $("#_city_id").bind('change', changeCity);
+

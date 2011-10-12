@@ -20,7 +20,7 @@
             .iteminfo
               %span.title
                 = item_events_notify
-                = link_to t('items.eventsthisweek', :count => item[:events_count]), event_filter_path(@city.pinyin, nil, item[:item].id, 'week') 
+                = link_to t('items.eventsthisweek', :count => item[:events_count]), event_filter_path(@city.id, nil, item[:item].id, 'week') 
               %span.detail= item[:item].fans.size.to_s + t('items.fans')
 
   - if current_user
@@ -35,7 +35,7 @@
             .itemmsg
               = link_to item[:item].name, item[:item]
               %br
-              = link_to t('items.eventsthisweek', :count => item[:count]), event_filter_path(@city.pinyin, nil, item[:item].id, 'week')
+              = link_to t('items.eventsthisweek', :count => item[:count]), event_filter_path(@city.id, nil, item[:item].id, 'week')
 
 :javascript
   $(function() {

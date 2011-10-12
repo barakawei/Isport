@@ -95,7 +95,7 @@
           color: #546266;
           margin: 0; }
 
-#location_select_box {
+#city_select_box {
   position: absolute;
   border: 3px solid #d5ddde;
   -moz-border-radius: 5px;
@@ -106,7 +106,7 @@
   background-color: white;
   overflow: show; }
 
-#switch_location {
+#switch_city {
   text-decoration: none;
   border: 3px solid #e9eef1;
   -moz-border-radius: 5px;
@@ -114,7 +114,7 @@
   border-radius: 5px;
   behavior: url(/javascripts/PIE.htc);
   padding: 3px; }
-  #switch_location:hover {
+  #switch_city:hover {
     border: 3px solid #d5ddde;
     color: #666666; }
 

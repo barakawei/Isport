@@ -5,8 +5,8 @@ class GroupsController < ApplicationController
   before_filter :authenticate_admin!, :only => [:edit, :edit_members, :invite_friends, :update]
   
   def index
-    city_pinyin = params[:city] ? params[:city] : (current_user ? current_user.city.pinyin : City.first.pinyin)
-    @city = City.find_by_pinyin(city_pinyin)
+    city_id = params[:city] ? params[:city] : (current_user ? current_user.city.id : City.first.id)
+    @city = City.find_by_id(city_id)
     @hot_groups = current_user ? Group.interested_groups(@city,current_user.person) : []
     @hot_items = Item.hot_items(5, current_user.person.location.city)
     @select_tab = 'group'
@@ -144,8 +144,8 @@ class GroupsController < ApplicationController
   end
 
   def filtered
-    city_pinyin = params[:city] ? params[:city] : (current_user ? current_user.city.pinyin : City.first.pinyin)
-    @city = City.find_by_pinyin(city_pinyin)
+    city_id = params[:city] ? params[:city] : (current_user ? current_user.city.id : City.first.id)
+    @city = City.find_by_id(city_id)
     @district_id = params[:district_id]
     @item_id = params[:item_id]
     search_hash = {:city_id => @city.id}

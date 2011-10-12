@@ -1,15 +1,16 @@
--content_for :head do
+- content_for :head do
   = include_stylesheets :sepcial_pages_events_common, :media => 'all'
   = include_stylesheets :sepcial_pages_events_filtered, :media => 'all'
 
 #city_select_box.hide    
-  - City.all.each do |city|
-    %h4.inline= link_to city.name, event_filter_path(:city => city.id), :class => 'event_color'
+  = collection_select nil, :province_id, Province.all, :id, :name, :selected => @city.province.id
+  = collection_select nil, :city_id, @city.province.cities, :id, :name, :selected => @city.id
 
 .span-24.append-bottom
   .span-17
     %h1.title.inline.app_subfunction_title.events= '好想玩活动'
-    %h3.inline= link_to @city.name, '#', :id => 'switch_city', :class => 'dark_gray'
+    %h3.inline= link_to @city.name, 'javascript:void(0);', :id => 'switch_city', :class => 'dark_gray'
+
   .span-7.last
     = render 'common/big_link_button', :content => '发起活动', :path => new_event_path 
 
@@ -72,11 +73,14 @@
     $("#date").val("#{@time_filter_str}"); 
   });
 
- 
   $("#switch_city").click(function(e) {
     $('#city_select_box').toggleClass('hide'); 
     e.stopPropagation();
     return false;
+  });
+
+  $('#city_select_box').click(function(e){
+    e.stopPropagation();
   });
 
   $('input#date').change(function() {
@@ -84,3 +88,19 @@
     $(location).attr('href', path);
     return false;
   });
+
+  function changeCity() {
+    var path = "/events/?city=" + $("#_city_id").val();
+    $(location).attr('href', path);
+  }
+
+  $("#_province_id").change(function() {
+    $.get("#{cities_of_province_path}", {id: $("#_province_id").val(),
+                                        select_name:'_city_id'}, function(data){
+      $("#_city_id").replaceWith(data);
+      $("#_city_id").bind('change', changeCity);
+    });
+  });
+
+  $("#_city_id").bind('change', changeCity);
+
