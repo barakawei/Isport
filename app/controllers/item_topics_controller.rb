@@ -121,4 +121,9 @@ class ItemTopicsController < ApplicationController
     
     respond_with @topic
   end
+
+  def recent_topics
+    @topics = ItemTopic.recent_random_topics 
+    render :partial => 'item_topics/recent_topics', :locals => {:topics => @topics} 
+  end
 end

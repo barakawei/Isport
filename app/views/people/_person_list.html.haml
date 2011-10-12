@@ -9,6 +9,16 @@
       
     = link_to "邀请好友", invite_friends_to_site_path
 
+  - if @hot_topics.size > 0
+    .groups
+      .title
+        .name
+          = '近期话题'
+        .link
+          = link_to '换一换', 'javascript:void(0)', :class => 'change_topics'
+          = link_to '更多', item_topics_path
+        .clear
+        = render :partial => 'item_topics/recent_topics', :locals => {:topics => @hot_topics} 
   .avatar_panel_container
     #followed_people
       - if @followed_people.length > 0
@@ -55,3 +65,19 @@
                 = item_image_link(item, :size =>:thumb_small)
               .name
                 = object_name_link(item)
+
+:javascript
+  $('.groups a.change_topics').click(function() {
+    $.ajax({
+      type: 'get', 
+      url: "#{recent_topics_path}",
+      async: false,
+      success: function(data) {
+        $('.groups .topics').fadeOut(200, function(){
+          $(this).replaceWith(data);
+        });
+      }, 
+      error: function(data) {
+      }
+    });
+  });

@@ -6,6 +6,7 @@ class HomeController < ApplicationController
   def index
     if current_user
       auth = current_user.authorizations.first
+      @hot_topics = ItemTopic.recent_random_topics
       @is_binded = !auth.nil?
       if (auth && auth.bind_status == Authorization::NOT_BINDED)
         redirect_to account_bind_path
