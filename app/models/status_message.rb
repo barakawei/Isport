@@ -37,6 +37,14 @@ class StatusMessage < Post
     form_message
   end
 
+  def format_4_weibo(text)
+    regex = /@\{([^;]+);([^\}]+)\}/
+    form_message = text.to_str.gsub(regex) do |matched_string|
+      "@#{$~[1]} "
+    end
+    form_message 
+  end
+
   def format_pic_upload( text )
     regex = /%\{([^;]+);([^\}]+)\}/
     form_message = text.to_str.gsub(regex) do |matched_string|
@@ -87,9 +95,9 @@ class StatusMessage < Post
 
   def weibo_status(url="")
     if item_topic
-      '#'+item_topic.name+ "#    " + self.content + "  " + url+"#{self.item_topic_id}"
+      '#'+item_topic.name+ "#    " + format_4_weibo(self.content)+ "  " + url+"#{self.item_topic_id}"
     else
-      self.content
+      format_4_weibo(self.content)
     end
   end
 
