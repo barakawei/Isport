@@ -43,8 +43,10 @@
         = f.collection_select :item_id, Item.all, :id, :name, {:prompt => true}
         = error_on(@group, :item_id)
       .field.module
-        = f.label t('groups.city') + ":", :class => 'field_info' 
-        = f.collection_select :city_id, City.all, :id, :name, {:prompt => true}
+        = f.label t('groups.city') + ":", :class => 'field_info'
+        = f.hidden_field :city_id
+        = collection_select nil, :province_id, Province.all, :id, :name, :selected => @group.city.province_id
+        = collection_select nil, :city_id, @group.city.province.cities, :id, :name, :selected => @group.city_id
         = f.collection_select :district_id, @group.city.districts, :id, :name
       .field
         = f.label t('groups.is_private') + ":", :class => 'field_info' 
@@ -102,10 +104,24 @@
     });  
   });
 
-  $('#group_city_id').change(function() {
-    $.get("#{districts_of_city_path}", {id: $("#group_city_id").val(),
+  function changeCity() {
+    $.get("#{districts_of_city_path}", {id: $("#_city_id").val(),
                                         select_name: 'group[district_id]'}, function(data){
       $("#group_district_id").replaceWith(data);
+      $("#group_city_id").val($("#_city_id").val());
     });
-  }); 
+  }
+
+  $("#_city_id").bind('change', changeCity);
+
+  $("#_province_id").change(function() {
+    $.get("#{cities_of_province_path}", {id: $("#_province_id").val(),
+                                        select_name:'_city_id'}, function(data){
+      $("#_city_id").replaceWith(data);
+      $("#_city_id").bind('change', changeCity);
+    });
+  });
+
+  
+
   

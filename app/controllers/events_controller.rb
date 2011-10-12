@@ -80,6 +80,7 @@ class EventsController < ApplicationController
       @event.location = Location.new(:city_id => @group.city_id, :district_id => @group.district_id)
     end
     @items = Item.find(:all, :select => 'id, name')
+    @city = current_user.person.location.city
   end
 
   def edit

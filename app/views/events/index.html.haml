@@ -4,7 +4,7 @@
   = include_stylesheets :common_index, :media => 'all'
 
 #city_select_box.hide
-  = collection_select nil, :province_id, Province.all, :id, :name, :selected => @city.province.id
+  = collection_select nil, :province_id, Province.all, :id, :name, :selected => @city.province_id
   = collection_select nil, :city_id, @city.province.cities, :id, :name, :selected => @city.id
 
 .span-24.append-bottom
