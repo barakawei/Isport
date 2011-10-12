@@ -196,9 +196,9 @@
       cursor: pointer; }
 
 .popup_box {
-  position: absolute;
-  top: 0;
-  left: 0;
+  position: fixed;
+  top: 100px;
+  left: 200px;
   width: 900px;
   height: 500px;
   z-index: 2000; }

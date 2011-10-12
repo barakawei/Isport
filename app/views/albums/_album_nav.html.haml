@@ -9,16 +9,17 @@
     .clear
   .albums
     - for album in albums
-      = link_to person_album_path(person,album ) do
-        .album{ :id => album.id }
-          .album_pic
-            = album_image_tag( album,person,:shortcut_medium )
-          .album_info
-            .album_name
-              = album_name_tag( album )
-            .pic_counts
-              = album.album_pics( person ).size.to_s + "张照片"
-          .clear
+      - if album.pics.size > 0
+        = link_to person_album_path(person,album ) do
+          .album{ :id => album.id }
+            .album_pic
+              = album_image_tag( album,person,:shortcut_medium )
+            .album_info
+              .album_name
+                = album_name_tag( album )
+              .pic_counts
+                = album.album_pics( person ).size.to_s + "张照片"
+            .clear
 
 
 :javascript

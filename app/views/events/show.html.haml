@@ -4,7 +4,8 @@
   = include_javascripts :google_map
   =include_javascripts :scroll_page
   =javascript_include_tag "http://maps.google.com/maps/api/js?sensor=false"
-.span-24
+.span-24.relative
+  = render "albums/upload_pic"
   .span-6.left_column
     .avatar=event_image_tag(@event, :thumb_large)
     .span-7.other_info
@@ -119,7 +120,7 @@
       .span-13
         = render 'common/header_box', :title => '活动相关', :blue => true
       .span-4.last
-        = link_to '上传活动照片', upload_event_pic_path(@event), :class => 'glass_button right upload_link_button'
+        = link_to '上传活动照片', 'javascript:void(0)', :class => 'glass_button right upload_link_button'
     
     .span-17.event_tabs
       %ul.home_tabs
@@ -144,7 +145,7 @@
       - else
         %span.link_to_upload
           %span.desc= '当前还没有照片'
-          = link_to '上传', upload_event_pic_path(@event), :class => 'glass_button upload_link_button'
+          = link_to '上传', 'javascript:void(0)', :class => 'glass_button upload_link_button'
         
             
     .span-17.comments_area.hide
@@ -208,3 +209,7 @@
     $('li#recent_comments a').removeClass('current');
   });
 
+  $('.upload_link_button').click(function(){
+    $('.pic_box').show();      
+    $( ".pic_background" ).show();
+  });

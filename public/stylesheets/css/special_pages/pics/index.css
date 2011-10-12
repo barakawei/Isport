@@ -8,11 +8,12 @@
   .album .title_bar {
     float: left;
     width: 850px;
-    border-bottom: 1px solid #d5ddde;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
+    margin-top: 10px;
     height: 30px; }
     .album .title_bar .glass_button {
-      color: white; }
+      color: white;
+      padding: 5px 10px; }
     .album .title_bar h3 {
       width: 700px;
       float: left;
@@ -29,8 +30,12 @@
     .album .event_pic span.desc {
       float: left;
       margin-top: 2px;
-      font-size: 13px;
+      font-size: 12px;
       color: #aaaaaa; }
+      .album .event_pic span.desc a {
+        color: #777777; }
+        .album .event_pic span.desc a:hover {
+          text-decoration: underline; }
       .album .event_pic span.desc .c_count {
         margin-left: 10px; }
   .album .pagination {
