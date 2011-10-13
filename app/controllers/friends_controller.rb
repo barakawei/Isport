@@ -4,8 +4,8 @@ class FriendsController < ApplicationController
   end
 
   def find
-    city_pinyin = params[:city] ? params[:city] : (current_user ? current_user.city.pinyin : City.first.pinyin)
-    @city = City.find_by_pinyin(city_pinyin)
+    city_id = params[:city] ? params[:city] : (current_user ? current_user.city.id : City.first.id)
+    @city = City.find(city_id)
 
     @except_person = current_user.followed_people + [ current_user.person ]
     @interests =  current_user.person.interests

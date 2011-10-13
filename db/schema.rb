@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110926164513) do
+ActiveRecord::Schema.define(:version => 20111010065422) do
 
   create_table "administrators", :force => true do |t|
     t.integer  "user_id"
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(:version => 20110926164513) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "pinyin"
+    t.integer  "province_id"
   end
 
   create_table "comments", :force => true do |t|
@@ -126,10 +127,10 @@ ActiveRecord::Schema.define(:version => 20110926164513) do
     t.integer  "group_id",           :default => 0
     t.integer  "status",             :default => 0
     t.string   "status_msg"
-    t.integer  "audit_person_id"
     t.integer  "participants_count", :default => 0
     t.integer  "comments_count",     :default => 0
     t.integer  "fans_count",         :default => 0
+    t.integer  "audit_person_id"
   end
 
   create_table "favorites", :force => true do |t|
@@ -215,8 +216,8 @@ ActiveRecord::Schema.define(:version => 20110926164513) do
     t.datetime "updated_at"
     t.integer  "followers_count",  :default => 0
     t.integer  "posts_count",      :default => 0
-    t.integer  "person_id"
     t.text     "description"
+    t.integer  "person_id"
   end
 
   create_table "items", :force => true do |t|
@@ -317,8 +318,8 @@ ActiveRecord::Schema.define(:version => 20110926164513) do
     t.string   "random_string"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "status_message_id"
     t.integer  "position"
+    t.integer  "status_message_id"
     t.integer  "comments_count",         :default => 0
     t.string   "avatar_processed_image"
   end
@@ -343,7 +344,7 @@ ActiveRecord::Schema.define(:version => 20110926164513) do
     t.boolean  "pending",           :default => false
     t.string   "random_string"
     t.integer  "item_id"
-    t.integer  "post_d"
+    t.integer  "post_id"
     t.integer  "item_topic_id"
   end
 
@@ -365,6 +366,12 @@ ActiveRecord::Schema.define(:version => 20110926164513) do
 
   add_index "profiles", ["name"], :name => "index_profiles_on_name"
   add_index "profiles", ["person_id"], :name => "index_profiles_on_person_id"
+
+  create_table "provinces", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "recommendations", :force => true do |t|
     t.integer  "item_id"

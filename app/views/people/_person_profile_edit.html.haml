@@ -3,6 +3,7 @@
   = include_stylesheets :sepcial_pages_people_show, :media => 'all'
 = form_for @profile do |f|
   = hidden_field_tag "profile_edit","1"
+  = hidden_field_tag "profile[location_attributes][city_id]", @profile.location.city_id
   .person_settings
     = render 'common/header_box', :title => '编辑个人资料', :background_color => '#8DBC6E' 
   .stream
@@ -28,9 +29,8 @@
       .location.info_text
         %span="城市"
         .content#location
-          = select_tag "profile[location_attributes][city_id]",
-               options_from_collection_for_select(City.all, "id", "name", @profile.location.city_id)
-
+          = collection_select nil, :province_id, Province.all, :id, :name, :selected => @profile.location.city.province_id
+          = collection_select nil, :city_id, @profile.location.city.province.cities, :id, :name, :selected => @profile.location.city_id
 
   .person_profile_button
     =submit_tag '保存个人信息',:class => "button"
@@ -58,6 +58,18 @@
       }
     });
   });
-  
+ 
+  function changeCity() {
+    $("#profile_location_attributes_city_id").val($("#_city_id").val());
+  }
 
+  $("#_province_id").change(function() {
+    $.get("#{cities_of_province_path}", {id: $("#_province_id").val(),
+                                        select_name:'_city_id'}, function(data){
+      $("#_city_id").replaceWith(data);
+      $("#_city_id").bind('change', changeCity);
+    });
+  });
+
+  $("#_city_id").bind('change', changeCity);
 

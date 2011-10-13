@@ -48,10 +48,14 @@
             = f.datetime_select :end_at
           = error_on(@event, :end_at)
         .field
-          = f.label t('activerecord.attributes.event.location'), :class => "info location"
           = f.fields_for :location do |location_form|
-            = location_form.collection_select :city_id, City.all, :id, :name, {:prompt => true}
+            = location_form.hidden_field :city_id
+            = f.label "城市", :class => "info location"
+            = collection_select nil, :province_id, Province.all, :id, :name, :selected => @city.province_id
+            = collection_select nil, :city_id, @city.province.cities, :id, :name, :selected => @city.id
             = location_form.collection_select :district_id, @event.location.city.districts, :id, :name, {:prompt => true}
+            %br
+            = f.label "地址", :class => "info location"
             = location_form.text_field :detail
           = error_on(@event, :location)
         .field.module
@@ -146,16 +150,28 @@
       }
     }); 
   });
-  $("#event_location_attributes_city_id").change(function() {
-    $.get("#{districts_of_city_path}", {id: $("#event_location_attributes_city_id").val(),
+
+  function changeCity() {
+    $.get("#{districts_of_city_path}", {id: $("#_city_id").val(),
                                         select_name:'event[location_attributes][district_id]'}, function(data){
       $("#event_location_attributes_district_id").replaceWith(data);
+      $("#event_location_attributes_city_id").val($("#_city_id").val());
     });
-  });
+  }
 
+  $("#_city_id").bind('change', changeCity);
 
   $('a.app_black_link_button').click(function(){
     $.colorbox({transition:"none", inline:true, href:"#cancel_event",
                                      opacity:0.2, width:"600", height:"370" });
     return false;
-  }); 
+  });
+
+  $("#_province_id").change(function() {
+    $.get("#{cities_of_province_path}", {id: $("#_province_id").val(),
+                                        select_name:'_city_id'}, function(data){
+      $("#_city_id").replaceWith(data);
+      $("#_city_id").bind('change', changeCity);
+    });
+  });
+

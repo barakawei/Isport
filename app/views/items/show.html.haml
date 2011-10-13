@@ -53,7 +53,7 @@
       .title
         = render 'common/header_box', :title =>t('items.events')  
       .link
-        = link_to "更多>>", event_filter_path(@city.pinyin, nil, @item.id, 'week') 
+        = link_to "更多>>", event_filter_path(@city.id, nil, @item.id, 'week') 
 
     .hot_area.events_panel
       = render :partial => 'events/event_element',:collection => @events,:as => :event 
@@ -67,7 +67,7 @@
       .title
         = render 'common/header_box', :title =>t('items.citygroups')  
       .link
-        = link_to "更多>>", group_filter_path(:city => @city.pinyin, :item_id => @item.id)
+        = link_to "更多>>", group_filter_path(:city => @city.id, :item_id => @item.id)
        
     .hot_area.groups_panel
       = render :partial => 'groups/group_box',:collection => @groups,:as => :group

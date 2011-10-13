@@ -14,8 +14,8 @@ class EventsController < ApplicationController
 
 
   def index
-    city_pinyin = params[:city] ? params[:city] : (current_user ? current_user.city.pinyin : City.first.pinyin)
-    @city = City.find_by_pinyin(city_pinyin)
+    city_id = params[:city] ? params[:city] : (current_user ? current_user.city.id : City.first.id)
+    @city = City.find(city_id)
     @hot_events = current_user ? Event.interested_event(@city.id, current_user.person) : []
     @hot_items = current_user ? Item.hot_items(5, @city).all: []
     @select_tab = 'event'
@@ -80,6 +80,7 @@ class EventsController < ApplicationController
       @event.location = Location.new(:city_id => @group.city_id, :district_id => @group.district_id)
     end
     @items = Item.find(:all, :select => 'id, name')
+    @city = current_user.person.location.city
   end
 
   def edit
@@ -155,8 +156,8 @@ class EventsController < ApplicationController
   end
 
   def filtered
-    city_pinyin = params[:city] ? params[:city] : (current_user ? current_user.city.pinyin : City.first.pinyin)
-    @city = City.find_by_pinyin(city_pinyin)
+    city_id = params[:city] ? params[:city] : (current_user ? current_user.city.id : City.first.id)
+    @city = City.find(city_id)
     @district_id = params[:district_id]
     @item_id = params[:item_id]
     @time = params[:time].nil? ?  'alltime' : params[:time] 

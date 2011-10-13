@@ -80,7 +80,40 @@ Isport::Application.routes.draw do
     match 'choose_interests' => :choose_interests, :as => "choose_interests", :via => :post
     match '/people/edit_interests' => :edit_interests, :as => "edit_interests"
     match '/people/item_fans(/:city)' => :random_item_fans, :as => "random_item_fans", :via => :post,
-          :constraints => { :city => /nanjing|shanghai|beijing|suzhou|guangzhou|shenzhen|hangzhou/}
+          :constraints => { :city => /nanjing|shanghai|beijing|suzhou|tianjin|chongqing
+                            |shijiazhuang|tangshan|qinghuangdao|handan|xintai|baoding|zhangjiakou|chengde|cangzhou
+                            |langfang|hengshui|taiyuan|datong|yangquan|changzhi|jincheng|shuozhou|jinzhong|yuncheng
+                            |xinzhou|linfen|lvliang|huhehaote|baotou|wuhai|chifeng|tongliao|erdos|hulunbell|bayanaor
+                            |ulanchabu|xingan|xinlinguole|alanshan|shenyang|dalian|anshan|fushun|benxi|dandong|jinzhou
+                            |yinkou|fuxin|liaoyang|panjing|tielin|chaoyang|huludao|changchun|jilin|siping|liaoyuan
+                            |tonghua|baishan|songyuan|baicheng|yanbian|harbin|qiqihar|jixi|hegang|shuangyashan|daqing
+                            |yinchun|jiamusi|qitaihe|mudanjiang|heihe|suihua|nanjing|wuxi|xuzhou|changzhou
+                            |nantong|lianyungang|huaian|yancheng|yangzhou|zhenjiang|taizhou|suqian|hangzhou|ningbo
+                            |wenzhou|jiaxing|huzhou|shaoxing|jinhua|quzhou|zhoushan|tai'zhou|lishui|hefei|wuhu|bangbu
+                            |huainan|maanshan|huaibei|tongling|anqing|huangshan|chuzhou|fuyang|su'zhou|chaohu|luan|bozhou
+                            |chizhou|xuancheng|fuzhou|xiamen|putian|sanming|quanzhou|zhangzhou|nanping|longyan|ningde
+                            |nanchang|jingdezhen|pinxiang|jiujiang|xinyu|yingtan|ganzhou|ji'an|yichun|fu'zhou|shangrao
+                            |jinan|qingdao|zibo|zaozhuang|dongyin|yantai|weifang|jining|taian|weihai|rizhao|laiwu|linyi
+                            |dezhou|liaocheng|binzhou|heze|zhenzhou|kaifeng|luoyang|pingdingshan|anyang|hebi|xinxiang
+                            |jiaozuo|puyang|xuchang|luohe|sanmengxia|nanyang|shangqiu|xinyang|zhoukou|zhumadian|wuhan
+                            |huangshi|shiyan|yichang|xiangyang|ezhou|jingmeng|xiaogan|jingzhou|huanggang|xianning
+                            |suizhou|shien|xiantao|qianjiang|tianmen|shennongjia|changsha|zhuzhou|xiangtan|hengyang
+                            |shaoyang|yueyang|changde|zhangjiajie|yiyang|chenzhou|yongzhou|huaihua|loudi|xiangxi
+                            |guangzhou|shaoguan|shenzhen|zhuhai|shantou|foshan|jiangmen|ganjiang|maoming|zhaoqing
+                            |huizhou|meizhou|shanwei|heyuan|yangjiang|qingyuan|dongguan|zhongshan|chaozhou|yeyang|yufu
+                            |nanning|liuzhou|guilin|wuzhou|beihai|fangchenggang|qinzhou|guigang|yulin|baise|hezhou|hechi
+                            |laibin|zongzuo|haikou|sanya|wuzhishan|qionghai|danzhou|wenchang|wanning|dongfang|dingan
+                            |tunchang|chengmai|lingao|baisha|changjiang|ledong|lingshui|baoting|qiongzhong|chengdu
+                            |zigong|panzhihua|luzhou|deyang|mianyang|guangyuan|suining|neijiang|leshan|nanchong|meishan
+                            |yibin|guangan|dazhou|yaan|bazhong|ziyang|aba|ganzi|liangshan|guiyang|liupanshui|zunyi
+                            |anshun|tongren|qianxinan|bijie|qiandongnan|qiannan|kunming|qujing|yuxi|baoshan|zhaotong
+                            |lijiang|puer|lincang|shuxiong|honghe|wenshan|xishuangbana|dali|dehong|nujiang|diqing|lasa
+                            |changdu|shannan|rikaze|naqu|ali|linzhi|xi'an|tongchuan|baoji|xianyang|weinan|yanan|hanzhong
+                            |yu'lin|ankang|shangluo|lanzhou|jiayuguan|jinchang|baiyin|tianshui|wuwei|zhangye|pingliang
+                            |jiuquan|qingyang|dingxi|longnan|linxia|gannan|xining|haidong|haibei|huangnan|hainan|guoluo
+                            |yushu|haixi|yinchuan|shizuishan|wuzhong|guyuan|zhongwei|wulumuqi|kelamayi|tulufan|hami
+                            |changji|bortala|bayinguoleng|akesu|kezilesukerkezi|kashi|hetian|yili|tacheng|ataile
+                            |shihezi|alaer|tumushuke|wujiaqu/}
     match '/people/:id/show_posts' => :show_posts,:as => "show_person_posts"
     match '/people/show_items' => :show_items
     match '/people/show_groups' => :show_groups
@@ -159,7 +192,7 @@ Isport::Application.routes.draw do
     match '/events/:id' => :show, :via => :get,
           :constraints => { :id => /[1-9]\d*/}
     match '/events/:city/(/district/:district_id)(/item/:item_id)(/:time)' => :filtered, :as => 'event_filter',
-           :constraints => { :city => /nanjing|shanghai|beijing|suzhou|guangzhou|shenzhen|hangzhou/, 
+           :constraints => { :city => /[1-9]\d*/,
                              :district_id => /[1-9]\d*/,
                              :item_id => /[1-9]\d*/,
                              :time => /today|week|weekends|next_month|month|alltime|((((19|20)(([02468][048])|([13579][26]))-02-29))|((20[0-9][0-9])|(19[0-9][0-9]))-((((0[1-9])|(1[0-2]))-((0[1-9])|(1\d)|(2[0-8])))|((((0[13578])|(1[02]))-31)|(((0[1,3-9])|(1[0-2]))-(29|30)))))/
@@ -218,7 +251,7 @@ Isport::Application.routes.draw do
   controller :friends do
     match '/friends/invite' => :invite, :as => 'invite_friends_to_site'
     match '/friends/find(/:city)' => :find, :as => 'find_interested_people',
-          :constraints => { :city => /nanjing|shanghai|beijing|suzhou|guangzhou|shenzhen|hangzhou/}
+          :constraints => { :city => /[1-9]\d*/}
   end
 
   controller :site_posts do
@@ -230,11 +263,14 @@ Isport::Application.routes.draw do
 
   controller :location do
     match '/locations/districts_of_city' => :districts_of_city, :as => 'districts_of_city'
+    match '/locations/cities_of_province' => :cities_of_province, :as => 'cities_of_province'
   end
   
   controller :groups do
+    match '/groups/:id' => :show, :via => :get,
+          :constraints => { :id => /[1-9]\d*/}
     match '/groups/:city/(/district/:district_id)(/item/:item_id)' => :filtered, :as => 'group_filter',
-          :constraints => { :city => /nanjing|shanghai|beijing|suzhou|guangzhou|shenzhen|hangzhou/,
+          :constraints => { :city => /[1-9]\d*/,
                             :district_id => /[1-9]\d*/,
                             :item_id => /[1-9]\d*/}
     match '/groups/:id/invite_friends' => :invite_friends, :as => 'new_group_invite',

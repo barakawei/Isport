@@ -6,67 +6,62 @@
 #
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Daley', :city => cities.first)
-['南京', '上海', '北京','苏州','广州','深圳','杭州'].each do |name|
-  City.find_or_create_by_name(:name => name)
+
+#init all provinces and cities
+
+#encoding: utf-8
+city_file_name = "./db/citys.txt"
+if FileTest.exist?(city_file_name)
+  i_file = File.new(city_file_name, "r")
+  province = false
+  city = false
+  pinyin = false
+
+  province_id = 0
+  city_id = 0
+
+  i_file.each_line do |line|
+    if province
+      line.strip!
+      line.delete! "省"
+      line.delete! "自治区"
+      tmp = Province.find_or_create_by_name(:name => line)
+      province_id = tmp.id
+      province = false
+    elsif city
+      line.strip!
+      line.delete! "市"
+      tmp = City.find_or_create_by_name(:name => line)
+      tmp.update_attributes(:province_id => province_id)
+      city_id = tmp.id
+      city=false
+      pinyin = true
+    else
+      if line == "city_change\n"
+        city = true
+        province = false
+      elsif line == "province_change\n"
+        city = false
+        province = true
+      else
+        if pinyin
+          line.strip!
+          tmp = City.find(city_id)
+          tmp.update_attributes(:pinyin => line)
+          pinyin = false
+        else
+          line.strip!
+          District.find_or_create_by_name(:name => line, :city_id => city_id)
+        end
+        city = false
+        province = false
+      end
+    end
+  end
+  i_file.close
+else
+  puts "File #{city_file_name} do not exist"
 end
-
-nanjing = City.find_by_name('南京')
-shanghai = City.find_by_name('上海')
-beijing = City.find_by_name('北京')
-suzhou = City.find_by_name('苏州')
-guangzhou = City.find_by_name('广州')
-shenzhen = City.find_by_name('深圳')
-hangzhou = City.find_by_name('杭州')
-
-nanjing.pinyin = 'nanjing'
-shanghai.pinyin = 'shanghai'
-beijing.pinyin = 'beijing'
-suzhou.pinyin = 'suzhou'
-guangzhou.pinyin = 'guangzhou'
-shenzhen.pinyin = 'shenzhen'
-hangzhou.pinyin = 'hangzhou'
-nanjing.save
-shanghai.save
-beijing.save
-suzhou.save
-guangzhou.save
-shenzhen.save
-hangzhou.save
-
-['玄武区', '鼓楼区', '建邺区', '白下区', '秦淮区', 
- '下关区', '雨花台区', '栖霞区', '浦口区', '江宁区', '六合区', '溧水县', '高淳县'].each do |name|
-  District.find_or_create_by_name(:name => name, :city_id => nanjing.id) 
-end
-
-
-['黄浦区','徐汇区','长宁区','静安区','普陀区','闸北区','虹口区','杨浦区','浦东新区','宝山区','闵行区',
- '嘉定区','金山区','松江区','青浦区','奉贤区','崇明县'].each do |name|
-  District.find_or_create_by_name(:name => name, :city_id => shanghai.id)
-end
-
-[ '东城区','西城区','朝阳区','丰台区','石景山区','海淀区','门头沟区','房山区','通州区','顺义区','昌平区',
-  '大兴区','怀柔区','平谷区','密云县','延庆县'].each do |name|
-  District.find_or_create_by_name(:name => name, :city_id => beijing.id)
-end
-
-[ '吴中区','相城区','平江区','金阊区','沧浪区','高新区','工业园区','常熟市','昆山市','张家港市','吴江市',
-  '太仓市'].each do |name|
-  District.find_or_create_by_name(:name => name, :city_id => suzhou.id)    
-end
-
-[ '越秀区','天河区','白云区','荔湾区','萝岗区','黄埔区','海珠区','番禺区','花都区','南沙区','增城市','从化市' ].each do |name|
-  District.find_or_create_by_name(:name => name, :city_id => guangzhou.id)
-end
-
-[ '福田区','罗湖区','南山区','盐田区','宝安区','龙岗区'].each do |name|
-  District.find_or_create_by_name(:name => name, :city_id => shenzhen.id)
-end
-
-[ '上城区','下城区','江干区','拱墅区','西湖区','滨江区','萧山区','余杭区','桐庐县','淳安县','建德市','富阳市',
-  '临安市'].each do |name|
-  District.find_or_create_by_name(:name => name, :city_id => hangzhou.id)
-end
-
 
 
 #init table items

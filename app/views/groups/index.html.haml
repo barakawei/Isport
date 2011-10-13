@@ -3,9 +3,9 @@
   = include_stylesheets :sepcial_pages_groups_index, :media => 'all'
   = include_stylesheets :common_index, :media => 'all'
 
-#city_select_box.hide    
-  - City.all.each do |city|
-    %h4.inline= link_to city.name, "/groups/?city=#{city.pinyin}", :class => 'group_color'
+#city_select_box.hide 
+  = collection_select nil, :province_id, Province.all, :id, :name, :selected => @city.province_id
+  = collection_select nil, :city_id, @city.province.cities, :id, :name, :selected => @city.id
 
 .span-24.nav_bar
   .span-17
@@ -36,16 +36,16 @@
       .filter_title
         =link_to '兴趣', 'javascript:void(0);' 
       .filter_items
-        = link_to '全部', group_filter_path(@city.pinyin)
+        = link_to '全部', group_filter_path(@city.id)
         - Item.all.each do |i|
-          = link_to i.name, group_filter_path(:city => @city.pinyin, :item_id => i.id)
+          = link_to i.name, group_filter_path(:city => @city.id, :item_id => i.id)
     .search_line
       .filter_title
         =link_to '区域', 'javascript:void(0);' 
       .filter_items
-        = link_to '全部', group_filter_path(@city.pinyin)
+        = link_to '全部', group_filter_path(@city.id)
         - @city.districts.each do |d| 
-          = link_to d.name, group_filter_path(:city => @city.pinyin, @district_id => d.id)
+          = link_to d.name, group_filter_path(:city => @city.id, @district_id => d.id)
 
 .span-24.prepend-top
   = render 'common/header_box',  :title => '热门小组', :dark => false
@@ -54,7 +54,7 @@
       - hot_groups = Group.hot_group_by_item(@city, i).all 
       - if hot_groups.size > 0
         .hot_item_groups
-          = link_to '更多', group_filter_path(:city => @city.pinyin, :item_id => i.id), :class => 'right'
+          = link_to '更多', group_filter_path(:city => @city.id, :item_id => i.id), :class => 'right'
           .item_avatar
             = item_image_link(i, :size => :thumb_large) 
           = render :partial => 'group_element', :collection => hot_groups, :as => :group
@@ -73,6 +73,9 @@
     return false;
   });
       
+  $('#city_select_box').click(function(e){
+    e.stopPropagation();
+  });
 
   $('#nextBtn').bind('click', slideRight);
   $('#preBtn').bind('click', slideLeft);
@@ -131,4 +134,19 @@
     });
     return false;
   }
+
+  function changeCity() {
+    var path = "/groups/?city=" + $("#_city_id").val();
+    $(location).attr('href', path);
+  }
+
+  $("#_province_id").change(function() {
+    $.get("#{cities_of_province_path}", {id: $("#_province_id").val(),
+                                        select_name:'_city_id'}, function(data){
+      $("#_city_id").replaceWith(data);
+      $("#_city_id").bind('change', changeCity);
+    });
+  });
+
+  $("#_city_id").bind('change', changeCity);
 
