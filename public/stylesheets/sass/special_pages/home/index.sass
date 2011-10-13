@@ -432,18 +432,21 @@
         :display block
         :float left
       span.desc 
-        :font-size 14px
-        :line-height 14px
+        :font-size 12px
+        :line-height 18px
         :margin-left 3px
         :color #666
+
+        &:hover
+          :text-decoration underline
       span.img
         :width 19px
-        :background-image url("/images/ui/weibo_global.png")
-        :background-position -63px 0 
-        height: 14px 
+        :background-image url("/images/ui/ico.png")
+        :background-position 0 -32px 
+        height: 18px 
     a.topic
       span.img
-        :background-position -123px 0 
+        :background-position 0 -135px 
         :width 17px
     a.at_friend
       span.img
@@ -476,14 +479,14 @@
     .topic_tag
       @include border-radius(3px)
       @include box-shadow(0,1px,5px,0,#aaa)
-      :background-color #67AE3F
+      :background-color #99C94B
       :padding 3px 5px
       :font-size 12px
       :line-height 12px
       :position absolute
       :bottom 3px
       :left 10px
-      :border 1px solid #3F980E
+      :border 1px solid #99C94B
       :color white
       
       a.topic_name
