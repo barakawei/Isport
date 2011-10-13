@@ -31,12 +31,12 @@ module ApplicationHelper
   def follow_topic_tag( topic )
     followed = topic.followers.include?(current_user.person)
     unless followed
-      button_html = "<div class='tfollow glass_button' data_id='#{topic.id}'><span>"+t('follow')+"</span></div>"
+      button_html = "<div class='tfollow big_button' data_id='#{topic.id}'><span>"+t('follow')+"</span></div>"
       link_html = link_to({:controller => 'item_topics', :action => 'follow', :id => topic.id},:method =>'post',:remote => true) do
         button_html.html_safe
       end
     else 
-      button_html = "<div class='detfollow glass_button' data_id='#{topic.id}'><span>"+t('following')+"</span></div>"
+      button_html = "<div class='detfollow big_button' data_id='#{topic.id}'><span>"+t('following')+"</span></div>"
       link_html = link_to({:controller => 'item_topics', :action => 'defollow', :id => topic.id},:method =>'delete',:remote => true) do
         button_html.html_safe
       end

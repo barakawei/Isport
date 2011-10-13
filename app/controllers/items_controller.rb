@@ -8,7 +8,7 @@ class ItemsController < ApplicationController
 
   def myitems
     @items_array = Item.get_user_items(current_user)
-    @city = City.find_by_pinyin(current_user.city.pinyin)
+    @city = City.find(current_user.city.id)
     
     @select_tab = 'item'
     respond_to do |format|
@@ -22,7 +22,7 @@ class ItemsController < ApplicationController
     @myitems = []
 
     if current_user
-      @city = City.find_by_pinyin(current_user.city.pinyin)
+      @city = City.find(current_user.city.id)
     else
       @city = City.first      
     end
@@ -40,7 +40,7 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
 
     if current_user
-      @city = City.find_by_pinyin(current_user.city.pinyin)
+      @city = City.find(current_user.city.id)
     else
       @city = City.first
     end

@@ -9,7 +9,7 @@ class ItemTopicsController < ApplicationController
     auth = current_user.authorizations.first
     @is_binded = !auth.nil?
     @topic = ItemTopic.find(params[:id]) 
-    @followers = @topic.followers.limit(FOLLOWER).includes(:profile) 
+    @followers = @topic.followers.order('rand()').limit(FOLLOWER).includes(:profile) 
     @related = @topic.item.topics.where("id != ?", @topic.id).order("created_at DESC").limit(RELATED)
   end
 
