@@ -56,11 +56,13 @@
   });
 
   $('.post_type_bar a.topic').click(function(){
+    $('.pic_box').hide();
     $('.topic_box').show();      
     $('.topic_box a.filter[tag = "mine"]').click();
   });
 
   $('.post_type_bar a.photo').click(function(){
+    $('.topic_box').hide();      
     $('.pic_box').show();      
   });
 

@@ -65,6 +65,19 @@
 #home_user
   :margin-left 10px
   :position relative
+
+  a.link_button, .element_more
+    @include border-radius(3px)
+    border: 1px solid #DCE4E6
+    color: #888 
+    font-size: 11px
+    font-weight: bold
+    height: 20px
+    padding: 2px 4px 0 6px
+
+    &:hover
+      :color #666
+    
   h3
     :position absolute
     :top 4px
@@ -76,12 +89,35 @@
     .title
       background-color: white
       :padding 10px
+      .title_bar
+        :border-bottom 1px solid #d5ddde 
+        :padding-bottom 3px
+
       .name
         :float left
-        :font-size 15px
-        :color #fc4469
+        :font-size 13px
+        :color #FC4469 
       .link
         :float right
+
+        a
+          :font-size 11px
+        a.change_topics
+          :margin-right 5px
+      .topics, .recent_events
+        :margin-top 10px
+        .topic, .event_item
+          :margin-bottom 5px
+          :padding-left 5px
+          a
+            :font-size 13px
+            :color #71715B
+            &:hover
+              :text-decoration underline
+          span
+            :font-size 13px
+            :color #B8B7B7
+            
     :margin-top 20px
     :left 0
   .avatar_panel_container
@@ -90,10 +126,14 @@
     .title
       background-color: white
       :padding 10px
+
+      .title_bar
+        :border-bottom 1px solid #d5ddde 
+        :padding-bottom 3px
       .name
         :float left
-        :font-size 15px
-        :color #fc4469
+        :font-size 13px
+        :color #FC4469
       .link
         :float right
 
@@ -120,6 +160,9 @@
       :padding-left 10px
       :font-weight normal
       :height 30px
+
+      a
+        :color #71715B 
 
 
 #friend_listings
@@ -389,18 +432,21 @@
         :display block
         :float left
       span.desc 
-        :font-size 14px
-        :line-height 14px
+        :font-size 12px
+        :line-height 18px
         :margin-left 3px
         :color #666
+
+        &:hover
+          :text-decoration underline
       span.img
         :width 19px
-        :background-image url("/images/ui/weibo_global.png")
-        :background-position -63px 0 
-        height: 14px 
+        :background-image url("/images/ui/ico.png")
+        :background-position 0 -32px 
+        height: 18px 
     a.topic
       span.img
-        :background-position -123px 0 
+        :background-position 0 -135px 
         :width 17px
     a.at_friend
       span.img
@@ -433,14 +479,14 @@
     .topic_tag
       @include border-radius(3px)
       @include box-shadow(0,1px,5px,0,#aaa)
-      :background-color #67AE3F
+      :background-color #99C94B
       :padding 3px 5px
       :font-size 12px
       :line-height 12px
       :position absolute
       :bottom 3px
       :left 10px
-      :border 1px solid #3F980E
+      :border 1px solid #99C94B
       :color white
       
       a.topic_name

@@ -32,7 +32,7 @@
                 = link_to t.person.name, person_path(t.person)
                 = '发起'
               %span.right
-                = link_to t.item.name, item_path(t.item)
+                = link_to t.item.name, item_path(t.item), :class => 'type'
     .pagination_box
       = will_paginate @item_topics, {:previous_label => t("pagination.previous"), 
                                 :next_label => t("pagination.next")}

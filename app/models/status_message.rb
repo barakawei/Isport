@@ -95,9 +95,13 @@ class StatusMessage < Post
 
   def weibo_status(url="")
     if item_topic
-      '#'+item_topic.name+ "#    " + format_4_weibo(self.content)+ "  " + url+"#{self.item_topic_id}"
+      topic_name = '#'+item_topic.name+ "#    "
+      topic_url = "  " + url+"#{self.item_topic_id}"
+      size = 140 - topic_name.size - topic_url.size
+      topic_content = format_4_weibo(self.content)[0..size-1]
+      topic_name + topic_content + topic_url 
     else
-      format_4_weibo(self.content)
+      format_4_weibo(self.content)[0..139]
     end
   end
 

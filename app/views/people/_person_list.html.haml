@@ -9,15 +9,38 @@
       
     = link_to "邀请好友", invite_friends_to_site_path
 
+  - if @hot_topics.size > 0
+    .groups
+      .title
+        .title_bar
+          .name
+            = '近期话题'
+          .link
+            = link_to '换一换', 'javascript:void(0)', :class => 'change_topics link_button'
+            = link_to '更多', item_topics_path, :class => 'link_button'
+          .clear
+        = render :partial => 'item_topics/recent_topics', :locals => {:topics => @hot_topics} 
+  - if @events.size > 0
+    .groups
+      .title
+        .title_bar
+          .name
+            = '近期活动'
+          .link
+            = link_to '换一换', 'javascript:void(0)', :class => 'change_events link_button'
+            = link_to '更多', events_path, :class => 'link_button' 
+          .clear
+        = render :partial => 'events/recent_events',  :locals => { :events => @events}
   .avatar_panel_container
     #followed_people
       - if @followed_people.length > 0
         .title
-          .name
-            = '关注'
-          .link
-            = element_more_tag(@person,:show_friends,:followed)
-          .clear
+          .title_bar
+            .name
+              = '关注'
+            .link
+              = element_more_tag(@person,:show_friends,:followed)
+            .clear
         .contacts
           - for person in @followed_people[ 0...30]
             .person_avatar
@@ -25,11 +48,12 @@
   -if current_user.person.joined_groups.size > 0
     .groups
       .title
-        .name
-          = '小组'
-        .link
-          = element_more_tag(@person,:show_groups)
-        .clear
+        .title_bar
+          .name
+            = '小组'
+          .link
+            = element_more_tag(@person,:show_groups)
+          .clear
       %ul
         -for group in current_user.person.joined_groups[ 0...5 ]
           %li
@@ -41,11 +65,12 @@
   -if current_user.person.interests.size > 0
     .groups
       .title
-        .name
-          = '兴趣'
-        .link
-          = element_more_tag(@person,:show_items)
-        .clear
+        .title_bar
+          .name
+            = '兴趣'
+          .link
+            = element_more_tag(@person,:show_items)
+          .clear
 
       %ul
         -for item in current_user.person.interests[ 0...5 ]
@@ -55,3 +80,35 @@
                 = item_image_link(item, :size =>:thumb_small)
               .name
                 = object_name_link(item)
+
+:javascript
+  $('.groups a.change_topics').click(function() {
+    $.ajax({
+      type: 'get', 
+      url: "#{recent_topics_path}",
+      async: false,
+      success: function(data) {
+        $('.groups .topics').fadeOut(200, function(){
+          $(this).replaceWith(data);
+        });
+      }, 
+      error: function(data) {
+      }
+    });
+  });
+
+
+  $('.groups a.change_events').click(function() {
+    $.ajax({
+      type: 'get', 
+      url: "#{recent_events_path}",
+      async: false,
+      success: function(data) {
+        $('.groups .recent_events').fadeOut(200, function(){
+          $(this).replaceWith(data);
+        });
+      }, 
+      error: function(data) {
+      }
+    });
+  });

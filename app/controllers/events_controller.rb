@@ -175,6 +175,11 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
   end
   
+  def recent_events
+    @events = Event.recent_events(current_user.person.location.city)
+    render :partial => 'events/recent_events',  :locals => { :events => @events}
+  end
+
   private
 
   def check_canceled 
@@ -204,4 +209,5 @@ class EventsController < ApplicationController
         @comment.commentable= @event 
       end
   end
+
 end
