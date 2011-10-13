@@ -431,17 +431,19 @@
         display: block;
         float: left; }
       .feed_toolbar .post_type_bar a.title span.desc {
-        font-size: 14px;
-        line-height: 14px;
+        font-size: 12px;
+        line-height: 18px;
         margin-left: 3px;
         color: #666666; }
+        .feed_toolbar .post_type_bar a.title span.desc:hover {
+          text-decoration: underline; }
       .feed_toolbar .post_type_bar a.title span.img {
         width: 19px;
-        background-image: url("/images/ui/weibo_global.png");
-        background-position: -63px 0;
-        height: 14px; }
+        background-image: url("/images/ui/ico.png");
+        background-position: 0 -32px;
+        height: 18px; }
     .feed_toolbar .post_type_bar a.topic span.img {
-      background-position: -123px 0;
+      background-position: 0 -135px;
       width: 17px; }
     .feed_toolbar .post_type_bar a.at_friend span.img {
       background-position: -434px 0;
@@ -477,14 +479,14 @@
       -moz-box-shadow: 0 1px 5px 0 #aaaaaa;
       box-shadow: 0 1px 5px 0 #aaaaaa;
       behavior: url(/javascripts/PIE.htc);
-      background-color: #67ae3f;
+      background-color: #99c94b;
       padding: 3px 5px;
       font-size: 12px;
       line-height: 12px;
       position: absolute;
       bottom: 3px;
       left: 10px;
-      border: 1px solid #3f980e;
+      border: 1px solid #99c94b;
       color: white; }
       .feed_toolbar .create_post .topic_tag a.topic_name {
         color: white; }
