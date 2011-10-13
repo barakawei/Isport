@@ -47,8 +47,10 @@ class ItemsController < ApplicationController
 
     @events = @item.hot_events(EVELIMIT, @city)  
     @actors = @item.hot_stars(ACTLIMIT)
-    @groups = @item.hot_groups(EVELIMIT, @city)  
-    @topics = @item.topics.limit(EVELIMIT)
+    @groups = @item.hot_groups(EVELIMIT, @city) 
+
+    @topics = ItemTopic.of_item(@item).recent_hot.limit(50)
+    @topics = @topics.sort_by{rand}[0..7]
 
     @select_tab = 'item'
     respond_to do |format|
