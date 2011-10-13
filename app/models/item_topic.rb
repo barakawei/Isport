@@ -14,9 +14,29 @@ class ItemTopic < ActiveRecord::Base
   scope :of_item, lambda {|item| where(:item_id => item.id)}
   scope :in_items, lambda {|items| where(:item_id => items) }
   scope :by_friends, lambda {|friends| where(:person_id => friends) }
+  scope :recent_hot, lambda {where("created_at >= ? and created_at <= ?", 7.days.ago, Time.now).order('posts_count desc').limit(50)}
 
   def self.mine(person)
     of_person(person).limit(20)
+  end
+  
+  def self.recent_random_topics
+    topics = ItemTopic.recent_hot
+    size = topics.size
+    ran_nums = []
+    if size <= 7 
+      topics
+    else
+      7.times.each do
+        temp = rand(size) 
+        while ran_nums.include?(temp)
+          temp = rand(size) 
+        end
+        ran_nums << temp
+      end 
+      ran_nums.collect {|i| topics[i] }
+    end
+
   end
 
   def self.friends(person)

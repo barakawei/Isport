@@ -6,7 +6,7 @@
   margin-right: 20px;
   float: left; }
   .topics h2 {
-    color: #057b99;
+    color: #333333;
     float: left;
     margin-bottom: 0px; }
   .topics .sort {
@@ -65,6 +65,11 @@
           .topics .topic_result .topic_item .content .author span {
             color: #999999;
             line-height: 14px; }
+            .topics .topic_result .topic_item .content .author span a {
+              color: #999999;
+              text-decoration: underline; }
+              .topics .topic_result .topic_item .content .author span a:hover {
+                color: #666666; }
 
 .subjects {
   background-color: white;

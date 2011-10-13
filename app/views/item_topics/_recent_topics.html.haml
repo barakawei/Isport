@@ -1,0 +1,5 @@
+.topics
+  - topics.each do |t|
+    .topic
+      = link_to t.name, item_topic_path(t) 
+      %span.post_count="(#{t.posts_count})"

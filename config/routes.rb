@@ -60,6 +60,7 @@ Isport::Application.routes.draw do
     match '/item_topics/by_friends(/:order)' => :friends, :as => 'friends_topics',
           :constraints => {:order => /order_by_time|order_by_hot/ }
     match '/item_topics/:id/show_posts' => :show_posts,:as => "show_topic_posts"
+    match '/item_topics/recent_topics' => :recent_topics,:as => "recent_topics"
   end
   resources :item_topics
 
@@ -188,6 +189,7 @@ Isport::Application.routes.draw do
           :constraints => { :id => /[1-9]\d*/ } 
     match 'upload_photos/:id' => :upload_event_pics, :as => 'upload_event_pic',
           :constraints => { :id => /[1-9]\d*/ } 
+    match '/events/recent_events' => :recent_events,:as => "recent_events"
   end
 
   controller :pics do
