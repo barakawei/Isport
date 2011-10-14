@@ -84,6 +84,15 @@ class ItemTopicsController < ApplicationController
     render :action => :index 
   end
 
+  def update
+    @topic = ItemTopic.find(params[:id]) 
+
+    @topic.update_attributes(params[:item_topic])
+    if params[:format] == 'xml'  
+      render :xml=> @topic.to_xml
+    end
+  end
+
   def create
     @current_person = current_user.person
 
