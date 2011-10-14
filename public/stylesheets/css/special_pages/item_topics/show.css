@@ -7,60 +7,87 @@
     float: left;
     position: relative;
     background-color: white;
-    border: 3px solid #d5ddde;
-    width: 655px;
-    -moz-border-radius: 6px;
-    -webkit-border-radius: 6px;
-    border-radius: 6px;
-    behavior: url(/javascripts/PIE.htc); }
+    width: 630px;
+    padding: 20px 10px 10px 20px; }
+    .topic_area .topic_info .tfollow, .topic_area .topic_info .detfollow {
+      display: block;
+      width: 60px;
+      height: 30px;
+      position: absolute;
+      top: -10px;
+      right: 10px;
+      font-size: 13px;
+      line-height: 30px; }
+    .topic_area .topic_info .detfollow {
+      background-color: #8dbc6e; }
+      .topic_area .topic_info .detfollow span {
+        background: url(/images/ui/icon-check.png) no-repeat 0 50%;
+        padding-left: 18px; }
+      .topic_area .topic_info .detfollow:hover {
+        background-color: #e76b75; }
+        .topic_area .topic_info .detfollow:hover span {
+          color: #e76b75;
+          background: url(/images/ui/icon-x.png) no-repeat 0 50%; }
+    .topic_area .topic_info .tfollow {
+      background-color: lightGrey; }
+      .topic_area .topic_info .tfollow span {
+        padding-left: 18px;
+        background: url(/images/ui/follow-gray.gif) no-repeat 0 50%;
+        color: #777777; }
+      .topic_area .topic_info .tfollow:hover {
+        background-color: #8aba56; }
+        .topic_area .topic_info .tfollow:hover span {
+          background: url(/images/ui/follow-white.gif) no-repeat 0 50%;
+          color: white; }
     .topic_area .topic_info .topic_image {
       width: 100px;
       height: 100px;
       float: left;
-      margin-left: 8px;
-      margin-top: 8px;
-      margin-bottom: 8px; }
+      margin-right: 10px; }
     .topic_area .topic_info .topic_msg {
-      width: 540px;
+      width: 510px;
       height: 112px;
       float: left;
-      margin-left: 2px;
-      position: relative; }
+      margin-left: 2px; }
       .topic_area .topic_info .topic_msg .title {
-        margin-top: 2px;
-        width: 540px;
-        height: 26px;
         position: relative;
-        float: left; }
+        width: 510px; }
         .topic_area .topic_info .topic_msg .title .topic_name {
+          position: relative;
           color: black;
-          position: absolute;
-          font-size: 16px;
-          left: 8px;
-          bottom: 1px; }
-        .topic_area .topic_info .topic_msg .title .topic_owner {
-          color: black;
+          width: 430px;
+          margin-bottom: 5px;
+          font-size: 15px;
+          font-weight: bold; }
+          .topic_area .topic_info .topic_msg .title .topic_name a.edit_topic {
+            font-size: 13px; }
+            .topic_area .topic_info .topic_msg .title .topic_name a.edit_topic:hover {
+              text-decoration: underline; }
+          .topic_area .topic_info .topic_msg .title .topic_name .topic_box {
+            top: 15px;
+            left: 0px; }
+      .topic_area .topic_info .topic_msg .topic_owner {
+        color: black;
+        margin-top: 10px;
+        font-size: 12px;
+        width: 510px; }
+        .topic_area .topic_info .topic_msg .topic_owner .followers_count {
+          display: inline;
+          float: right;
+          color: blue;
           font-size: 12px;
-          position: absolute;
-          right: 10px;
-          bottom: 1px; }
+          margin-right: 15px; }
       .topic_area .topic_info .topic_msg .topic_des {
-        float: left;
-        overflow: hidden;
-        position: absolute;
-        margin-left: 7px;
-        bottom: 1px;
-        right: 3px;
-        font-size: 14px;
-        color: #77777e;
-        text-indent: 21pt; }
+        font-size: 12px;
+        color: #666666;
+        margin-top: 10px; }
   .topic_area .post_area {
     width: 660px;
-    margin-top: 3px;
     float: left;
     border-bottom: 1px solid #eceae8; }
     .topic_area .post_area .feed_toolbar {
-      width: 640px; }
+      width: 640px;
+      margin-top: 0; }
     .topic_area .post_area .post_element_panel {
       margin-top: 0 !important; }
       .topic_area .post_area .post_element_panel .stream_element {
@@ -81,40 +108,6 @@
     float: left;
     margin-top: 10px;
     position: relative; }
-    .right_column .follow_action .tfollow, .right_column .follow_action .detfollow {
-      width: 100px;
-      height: 40px;
-      position: absolute;
-      top: 5px;
-      left: 0px; }
-    .right_column .follow_action .detfollow {
-      background-color: #8dbc6e; }
-      .right_column .follow_action .detfollow span {
-        background: url(/images/ui/icon-check.png) no-repeat 0 50%;
-        padding-left: 18px; }
-      .right_column .follow_action .detfollow:hover {
-        background-color: #e76b75; }
-        .right_column .follow_action .detfollow:hover span {
-          color: #e76b75;
-          background: url(/images/ui/icon-x.png) no-repeat 0 50%; }
-    .right_column .follow_action .tfollow {
-      background-color: lightGrey; }
-      .right_column .follow_action .tfollow span {
-        padding-left: 18px;
-        background: url(/images/ui/follow-gray.gif) no-repeat 0 50%;
-        color: #777777; }
-      .right_column .follow_action .tfollow:hover {
-        background-color: #8aba56; }
-        .right_column .follow_action .tfollow:hover span {
-          background: url(/images/ui/follow-white.gif) no-repeat 0 50%;
-          color: white; }
-    .right_column .follow_action .followers_count {
-      position: absolute;
-      bottom: 6px;
-      left: 2px;
-      color: blue;
-      font-size: 12px;
-      font-weight: bold; }
   .right_column .related {
     width: 256px;
     margin-top: 20px;
