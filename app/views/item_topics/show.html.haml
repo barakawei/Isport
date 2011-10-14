@@ -11,14 +11,22 @@
       .topic_image
         = item_topic_image_tag(@topic, :thumb_medium)
       .topic_msg
-        .topic_name
-          = truncate(@topic.name, :length => 18)
-        .topic_owner
-          = "发起人： "
-          = link_to @topic.person.profile.name, person_path(@topic.person)
+        .title
+          .topic_name
+            = truncate(@topic.name, :length => 18)
+          .topic_owner
+            = "发起人： "
+            = link_to @topic.person.profile.name, person_path(@topic.person)
 
-      .topic_des
-        = truncate(@topic.description, :length => 140)
+        .topic_des
+          = @topic.description
+
+    .post_area
+      .feed_toolbar
+        = render 'common/post',:item_topic => @item_topic, :recent_topics => @recent_topics, :is_binded => @is_binded
+      .stream.post_element_panel
+
+  .right_column
     .follow_action
       - if current_user
         = follow_topic_tag(@topic)
@@ -43,11 +51,6 @@
         -@followers.each_with_index do |follower, index|
           .follower{:class => ("last" if (index+1)%4==0)}
             = person_image_link(follower)
-
-  .post_area
-    .feed_toolbar
-      = render 'common/post',:item_topic => @item_topic, :recent_topics => @recent_topics, :is_binded => @is_binded
-    .stream.post_element_panel
 
 :javascript
   $.get("#{show_topic_posts_path( @topic )}");

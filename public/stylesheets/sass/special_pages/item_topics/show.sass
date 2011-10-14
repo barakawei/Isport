@@ -1,73 +1,104 @@
 @import '../../general/ui/mixins'
 
 .topic_area
-  :width 250px
   :float left
-  :margin-top 15px
+  :margin-top 10px
+  :margin-right 20px
+  :width 660px
+
   .topic_info
     :float left
     :position relative
     :background-color white
     :border 3px solid #D5DDDE
-    :width 250px
+    :width 655px
     @include border-radius(6px)
 
     .topic_image
       :width 100px
       :height 100px
       :float left
-      :position absolute
-      :left 8px
-      :top 8px
-
+      :margin-left 8px
+      :margin-top 8px
+      :margin-bottom 8px
 
     .topic_msg
-      :width 130px
-      :height 100px
-      :position absolute
-      :top 5px
-      :right 6px
+      :width 540px
+      :height 112px
       :float left
+      :margin-left 2px
+      :position relative
 
-      .topic_name
+      .title
+        :margin-top 2px
+        :width 540px
+        :height 26px
+        :position relative
         :float left
-        :color black
-        :font-size 16px
 
-      .topic_owner
+        .topic_name
+          :color black
+          :position absolute
+          :font-size 16px
+          :left 8px
+          :bottom 1px
+
+        .topic_owner
+          :color black
+          :font-size 12px
+          :position absolute
+          :right 10px
+          :bottom 1px
+
+      .topic_des
         :float left
-        :color black
-        :font-size 12px
+        :overflow hidden
         :position absolute
+        :margin-left 7px
         :bottom 1px
+        :right 3px
+        :font-size 14px
+        :color #77777E
+        :text-indent 21pt
+ 
+  .post_area
+    :width 660px
+    :margin-top 3px
+    :float left
+    :border-bottom 1px solid #ECEAE8
+    @include border-radius(5px)
+    :overflow hidden
+    .feed_toolbar
+      :width 640px
 
-    .topic_des
-      :float left
-      :width 250px
-      :overflow hidden
-      :margin-top 135px
-      :margin-left 7px
-      :margin-bottom 5px
-      :padding-right 3px
-      :font-size 14px
-      :color #77777E
-      :text-indent 21pt
+    .post_element_panel
+      :margin-top 0 !important
+      .stream_element
+        :background-color white
+        :border none
+        :margin-bottom 2px
+      .pagination
+        :position absolute
+        :bottom -40px
+        :left 315px
+
+.right_column
+  :float left
+  :width 256px
 
   .follow_action
     :width 256px
-    :height 40px
-    @include border-radius(6px)
-    :background-color #F4F4F4
+    :height 112px
     :float left
     :margin-top 10px
     :position relative
 
     .tfollow, .detfollow
-      :width 60px
-      :height 20px
+      :width 100px
+      :height 40px
       :position absolute
-      :top 7px
-      :left 8px
+      :top 5px
+      :left 0px
 
     .detfollow
       :background-color #8DBC6E
@@ -94,8 +125,8 @@
 
     .followers_count
       :position absolute
-      :top 9px
-      :right 6px
+      :bottom 6px
+      :left 2px
       :color blue
       :font-size 12px
       :font-weight bold
@@ -152,7 +183,6 @@
       :width 254px
       :float left
       :background-color white
-      @include border-radius(6px)
       :padding-bottom 10px
 
       .follower
@@ -162,26 +192,4 @@
         :margin-left 10px
         :margin-top 10px
 
-        img
-          @include border-radius(2px)
 
-.post_area
-  :width 660px
-  :margin-left 20px
-  :margin-top 11px
-  :float left
-  :border-bottom 1px solid #ECEAE8
-  @include border-radius(5px)
-  .feed_toolbar
-    :width 640px
-
-.post_element_panel
-  :margin-top 0 !important
-  .stream_element
-    :background-color white
-    :border none
-    :margin-bottom 2px
-  .pagination
-    :position absolute
-    :bottom -40px
-    :left 315px

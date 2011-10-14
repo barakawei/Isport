@@ -3,14 +3,15 @@ class ItemTopicsController < ApplicationController
   respond_to :js 
 
   FOLLOWER = 12
-  RELATED = 8
+  RELATED = 12
 
   def show
     auth = current_user.authorizations.first
     @is_binded = !auth.nil?
     @topic = ItemTopic.find(params[:id]) 
-    @followers = @topic.followers.limit(FOLLOWER).includes(:profile) 
-    @related = @topic.item.topics.where("id != ?", @topic.id).order("created_at DESC").limit(RELATED)
+    @followers = @topic.followers.order('rand()').limit(FOLLOWER).includes(:profile) 
+    @related = ItemTopic.of_item(@topic.item).recent_hot.where("id != ?", @topic.id).limit(50)
+    @related = @related.sort_by{rand}[0..RELATED]
   end
 
   def show_posts

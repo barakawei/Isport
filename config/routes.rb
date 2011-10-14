@@ -191,7 +191,7 @@ Isport::Application.routes.draw do
   controller :events do
     match '/events/:id' => :show, :via => :get,
           :constraints => { :id => /[1-9]\d*/}
-    match '/events/:city/(/district/:district_id)(/item/:item_id)(/:time)' => :filtered, :as => 'event_filter',
+    match '/events/search/:city/(/district/:district_id)(/item/:item_id)(/:time)' => :filtered, :as => 'event_filter',
            :constraints => { :city => /[1-9]\d*/,
                              :district_id => /[1-9]\d*/,
                              :item_id => /[1-9]\d*/,
@@ -269,7 +269,7 @@ Isport::Application.routes.draw do
   controller :groups do
     match '/groups/:id' => :show, :via => :get,
           :constraints => { :id => /[1-9]\d*/}
-    match '/groups/:city/(/district/:district_id)(/item/:item_id)' => :filtered, :as => 'group_filter',
+    match '/groups/search/:city/(/district/:district_id)(/item/:item_id)' => :filtered, :as => 'group_filter',
           :constraints => { :city => /[1-9]\d*/,
                             :district_id => /[1-9]\d*/,
                             :item_id => /[1-9]\d*/}

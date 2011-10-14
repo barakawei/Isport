@@ -56,10 +56,6 @@
       width: 220px;
       margin-top: 30px;
       background-color: #f4f4f4;
-      -moz-border-radius: 6px;
-      -webkit-border-radius: 6px;
-      border-radius: 6px;
-      behavior: url(/javascripts/PIE.htc);
       margin-bottom: 15px; }
   .itemleft .item_star {
     width: 220px;
@@ -85,10 +81,6 @@
       float: left;
       width: 220px;
       background-color: white;
-      -moz-border-radius: 6px;
-      -webkit-border-radius: 6px;
-      border-radius: 6px;
-      behavior: url(/javascripts/PIE.htc);
       padding-bottom: 4px; }
       .itemleft .item_star .stars .star_one {
         float: left;

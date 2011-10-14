@@ -8,7 +8,7 @@ class ItemsController < ApplicationController
 
   def myitems
     @items_array = Item.get_user_items(current_user)
-    @city = City.find_by_pinyin(current_user.city.pinyin)
+    @city = City.find(current_user.city.id)
     
     @select_tab = 'item'
     respond_to do |format|
@@ -22,7 +22,7 @@ class ItemsController < ApplicationController
     @myitems = []
 
     if current_user
-      @city = City.find_by_pinyin(current_user.city.pinyin)
+      @city = City.find(current_user.city.id)
     else
       @city = City.first      
     end
@@ -40,15 +40,17 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
 
     if current_user
-      @city = City.find_by_pinyin(current_user.city.pinyin)
+      @city = City.find(current_user.city.id)
     else
       @city = City.first
     end
 
     @events = @item.hot_events(EVELIMIT, @city)  
     @actors = @item.hot_stars(ACTLIMIT)
-    @groups = @item.hot_groups(EVELIMIT, @city)  
-    @topics = @item.topics.limit(EVELIMIT)
+    @groups = @item.hot_groups(EVELIMIT, @city) 
+
+    @topics = ItemTopic.of_item(@item).recent_hot.limit(50)
+    @topics = @topics.sort_by{rand}[0..7]
 
     @select_tab = 'item'
     respond_to do |format|
