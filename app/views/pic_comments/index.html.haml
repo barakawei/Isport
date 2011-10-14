@@ -13,7 +13,7 @@
     = form_for([@pic,PicComment.new], :remote => true) do |f|
       = f.text_area :content, :rows => 2
       .comment_button.hide
-        = f.submit "回复", :class => 'glass_button inline',"data-disable-with" => t("posting")
+        = f.submit "回复", :class => 'glass_button_ie inline',"data-disable-with" => t("posting")
 
 :javascript
   $( ".comment_form textarea" ).live("focus", function(){ 

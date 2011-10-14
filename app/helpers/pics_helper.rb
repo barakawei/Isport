@@ -6,7 +6,7 @@ module PicsHelper
     else
       url = pic.url(size)
     end
-    link_to (image_tag url,:desc => pic.description,:count =>pic.comments.size,:id => pic.id,:class => 'stream-photo', 'data-small-photo' => pic.url(:thumb_large), 'data-full-photo' => pic.url( :thumb_large )), "#", :class => 'stream-photo-link'
+    link_to (image_tag url,:image_width => pic.image_width,:image_height => pic.image_height,:desc => pic.description,:count =>pic.comments.size,:id => pic.id,:class => 'stream-photo', 'data-small-photo' => pic.url(:thumb_large), 'data-full-photo' => pic.url( :thumb_large )), "#", :class => 'stream-photo-link'
   end
 
   def pic_image_tag( pic,size=:thumb_medium )

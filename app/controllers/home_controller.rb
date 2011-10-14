@@ -6,9 +6,6 @@ class HomeController < ApplicationController
   def index
     if current_user
       auth = current_user.authorizations.first
-      @hot_topics = ItemTopic.recent_random_topics
-      @events = Event.recent_events(current_user.profile.location.city)
-      @is_binded = !auth.nil?
       if (auth && auth.bind_status == Authorization::NOT_BINDED)
         redirect_to account_bind_path
         return
@@ -18,6 +15,9 @@ class HomeController < ApplicationController
         redirect_to getting_started_path
         return
       end
+      @hot_topics = ItemTopic.recent_random_topics
+      @events = Event.recent_events(current_user.profile.location.city)
+      @is_binded = !auth.nil?
       
       @person = current_user.person
       #@requests_count = Request.where( :recipient_id => @person.id ).count

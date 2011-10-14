@@ -10,7 +10,7 @@
           = I18n.l(event.start_at,:format => :normal)
           = "-"
           = I18n.l(event.end_at,:format => :shortest)
-          = link_to truncate("@"+event.location.to_s,:length => 40),event_home_map_path(event),:class =>'map_link'
+          = truncate("@"+event.location.to_s,:length => 40)
       .action
         - if event.is_owner(current_user) && event.status != Event::CANCELED_BY_EVENT_ADMIN 
           .event_edit

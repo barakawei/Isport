@@ -4,7 +4,6 @@ class Pic < ActiveRecord::Base
   mount_uploader :processed_image,ProcessedAlbumpicUploader
   mount_uploader :avatar_processed_image,ProcessedImageUploader
 
-
   after_update :update_owner_counter
   after_destroy :update_owner_counter
 
