@@ -63,7 +63,7 @@
     -webkit-border-radius: 5px;
     border-radius: 5px;
     behavior: url(/javascripts/PIE.htc);
-    overflow: hidden; }
+    overflow: show; }
     .topic_area .post_area .feed_toolbar {
       width: 640px; }
     .topic_area .post_area .post_element_panel {
