@@ -151,7 +151,6 @@ Event.all.each do |e|
   Album.find_or_create_by_imageable_id_and_name(:imageable_id => e.id,:name =>'default',:imageable_type => 'Event')
 end
 
-#can not repeat run
 Person.all.each do |p|
   Album.find_or_create_by_imageable_id_and_name(:imageable_id =>p.id,:name => 'status_message',:imageable_type =>'Person')
   album = Album.find_or_create_by_imageable_id_and_name(:imageable_id =>p.id,:name => 'avatar',:imageable_type =>'Person')
@@ -159,7 +158,7 @@ Person.all.each do |p|
   pic.remote_photo_path = "/uploads/images/"
   pic.author = p
   url = p.profile.image_url
-  if url.index("/user/").nil?
+  if url.index("/user/").nil? && album.pics.size == 0
     length = "/uploads/images/thumb_large_".length
     pic.remote_photo_name = url[ length,url.length ] 
     pic.random_string = url[ length,url.length].split( "." )[ 0 ]
