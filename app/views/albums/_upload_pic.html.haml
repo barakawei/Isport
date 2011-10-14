@@ -21,8 +21,8 @@
             #pic-upload
             %ul#photozone
           .pic_action
-            = album.submit "添加",:class => "pic_confirm glass_button"
-            .pic_cancle.close_box.glass_button
+            = album.submit "添加",:class => "pic_confirm glass_button_ie"
+            .pic_cancle.close_box.glass_button_ie
               = "取消"
           - if @album.is_avatar?
             =render 'photos/new_pic',:controller_path => photos_path,:pic_type => 'upload_avatar'

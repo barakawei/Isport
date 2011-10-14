@@ -452,6 +452,25 @@ a.button {
   .glass_button a, .big_button a {
     color: white; }
 
+.glass_button_ie {
+  position: relative;
+  background: url(/images/ui/glass-light.png) repeat-x 0 50%;
+  background-color: #8dbc6e;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
+  color: white;
+  font-size: 13px;
+  font-weight: bold;
+  padding: 3px 5px;
+  text-shadow: 0 -1px rgba(41, 41, 41, 0.5);
+  text-align: center;
+  cursor: pointer; }
+  .glass_button_ie:hover {
+    background-color: #e76b75;
+    margin-top: 2px; }
+  .glass_button_ie a {
+    color: white; }
 .glass_button {
   font-size: 13px;
   font-weight: bold;
@@ -770,8 +789,11 @@ a.app_black_link_button {
     min-height: 400px; }
   #lightbox-comment-panel .comments {
     border-top: none !important; }
+  #lightbox-comment-panel .from {
+    width: 180px; }
   #lightbox-comment-panel .comment_body {
-    word-wrap: break-word;
+    word-break: break-all;
+    overflow: hidden;
     line-height: 1.4;
     color: #cccccc; }
   #lightbox-comment-panel .details {
@@ -938,3 +960,8 @@ a.app_black_link_button {
       bottom: -4px;
       left: 4px;
       position: absolute; }
+
+.progress {
+  width: 16px;
+  height: 11px;
+  background: url(/images/ui/small-ajax-loader.gif); }

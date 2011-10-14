@@ -456,6 +456,23 @@ a.button
     :margin-top 2px
   a
     :color white
+.glass_button_ie
+  position: relative
+  background:  url(/images/ui/glass-light.png) repeat-x 0 50%
+  background-color: #8dbc6e
+  @include border-radius-noie(6px)
+  color: white
+  font-size: 13px
+  font-weight: bold
+  padding: 3px 5px
+  text-shadow: 0 -1px rgba(41, 41, 41, 0.5)
+  text-align: center
+  cursor: pointer
+  &:hover
+    :background-color #e76b75
+    :margin-top 2px
+  a
+    :color white
 
 .glass_button
   font-size: 13px
@@ -800,8 +817,11 @@ a.app_black_link_button
     min-height: 400px
   .comments
     :border-top none !important
+  .from
+    :width 180px
   .comment_body
-    :word-wrap break-word
+    :word-break break-all
+    :overflow hidden
     :line-height 1.4
     :color #ccc
   .details
@@ -965,3 +985,7 @@ a.app_black_link_button
       bottom: -4px
       left: 4px
       position: absolute
+.progress
+  :width 16px
+  :height 11px
+  :background url( /images/ui/small-ajax-loader.gif )

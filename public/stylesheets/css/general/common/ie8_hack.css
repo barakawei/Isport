@@ -1,4 +1,9 @@
-.pic_box #new_pic_area #photozone li input[type='text']{
+.create_post .pic_box #new_pic_area #photozone li input[type='text']{
   height:15px\0;
   width:95px\0;
+}
+
+.album_pic_tool .pic_box #new_pic_area #photozone li input[type='text']{
+  width:146px\0;
+  height:15px\0;
 }

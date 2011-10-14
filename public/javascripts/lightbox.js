@@ -31,7 +31,6 @@
         self.auto_resize_window(); 
         if( self.reday ){
           self.auto_resize_pic();
-          self.auto_image_height_2();
         }
       }).trigger("resize");
 
@@ -202,6 +201,8 @@
           "id": image.attr("id"),
           "desc": image.attr("desc"),
           "count": image.attr("count"),
+          "image_width": image.attr("image_width"),
+          "image_height": image.attr("image_height"),
           "index":index
         });
         
@@ -224,7 +225,7 @@
       self.imageset.css( "width",imageset_width);
       self.selectImage(imageThumb).revealLightbox();
       self.auto_resize_pic();
-      self.auto_image_height_2();
+      self.auto_image_height();
     };
 
     this.imagesetImageClicked = function() { 
@@ -241,30 +242,21 @@
       imageThumb.addClass("selected");
       imageThumb.closest(".pic_element").find(".pic_comment").hide();
       self.image.attr("src", imageThumb.attr("data-full-photo"));
+      self.image.attr("image_width", imageThumb.attr("image_width"));
+      self.image.attr("image_height", imageThumb.attr("image_height"));
+
       self.image_desc.html( imageThumb.attr( "desc" ) );
       var width = Number(self.lightbox_content.css( "width" ).split("px")[0]);
       var left = (width/2-35)-(imageThumb.attr("index") * 70);
       self.imageset.css("left", left+"px");
       self.auto_resize_pic();
+      self.auto_image_height();
       return self;
     };  
     
-    this.auto_image_height_2 = function(){
-      self.image.load(function(){  
+    this.auto_image_height = function(){
         var window_height = self.window.height();
-        var margin_height_img = (window_height - 100 - self.image.height())/2;
         var margin_height_arrow = (window_height - 175 - self.pic_left_arrow.height())/2;
-        self.image.css( "margin-top",margin_height_img+"px" );
-        self.pic_left_arrow.css( "top",margin_height_arrow+"px" );
-        self.pic_right_arrow.css( "top",margin_height_arrow+"px" );
-      });
-    }
-
-    this.auto_image_height = function(img_height){
-        var window_height = self.window.height();
-        var margin_height_img = (window_height - 100 - img_height)/2;
-        var margin_height_arrow = (window_height - 175 - self.pic_left_arrow.height())/2;
-        self.image.css( "margin-top",margin_height_img+"px" );
         self.pic_left_arrow.css( "top",margin_height_arrow+"px" );
         self.pic_right_arrow.css( "top",margin_height_arrow+"px" );
     }

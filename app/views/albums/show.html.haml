@@ -1,6 +1,6 @@
 - content_for :head do
   =include_javascripts :show_photo
-.album_show
+.album_show.album_pic_tool
   = render "upload_pic"
   .left_album_side
     = render "album_nav",:albums => @albums,:person => @person,:current_album => @album

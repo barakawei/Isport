@@ -47,7 +47,6 @@ class ProcessedAlbumpicUploader < CarrierWave::Uploader::Base
     model.random_string + File.extname(filename) if filename
   end
 
-
   private
 
   def shrink(size)
@@ -65,10 +64,10 @@ class ProcessedAlbumpicUploader < CarrierWave::Uploader::Base
           h = size
         end
         img.resize "#{w}x#{h}"
-        img
-      else
-        img
       end
+     model.image_width = w.to_i
+     model.image_height = h.to_i
+     img
     end
   end 
 end

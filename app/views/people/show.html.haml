@@ -122,13 +122,16 @@
           =link_to "活动",show_person_events_path( @person ),:id=>'my_events',:remote => true        
         %li
           =link_to "照片",show_person_albums_path( @person ),:id=>'my_albums',:remote => true        
+        .tab_progress
+          .progress
     .stream
 :javascript
 
   $.get("#{show_person_posts_path( @person )}"); 
+  $(".tab_progress").show();
 
   $( ".home_tabs a" ).live( "click",function( ){
-    $(".stream").fadeTo(100, 0.4);
+    $(".tab_progress").show();
   })
 
   $( ".edit_profile" ).click( function(  ){

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111010065422) do
+ActiveRecord::Schema.define(:version => 20111013133212) do
 
   create_table "administrators", :force => true do |t|
     t.integer  "user_id"
@@ -322,6 +322,8 @@ ActiveRecord::Schema.define(:version => 20111010065422) do
     t.integer  "position"
     t.integer  "comments_count",         :default => 0
     t.string   "avatar_processed_image"
+    t.integer  "image_width"
+    t.integer  "image_height"
   end
 
   create_table "post_visibilities", :force => true do |t|

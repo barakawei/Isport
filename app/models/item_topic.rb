@@ -23,20 +23,7 @@ class ItemTopic < ActiveRecord::Base
   def self.recent_random_topics
     topics = ItemTopic.recent_hot
     size = topics.size
-    ran_nums = []
-    if size <= 7 
-      topics
-    else
-      7.times.each do
-        temp = rand(size) 
-        while ran_nums.include?(temp)
-          temp = rand(size) 
-        end
-        ran_nums << temp
-      end 
-      ran_nums.collect {|i| topics[i] }
-    end
-
+    topics.sort_by{rand}[0..6]
   end
 
   def self.friends(person)

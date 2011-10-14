@@ -52,7 +52,6 @@ class PicsController < ApplicationController
           @photo.update_albums(current_user.person,params)
         end
         @photo.process
-
         respond_to do |format|
           if params[:authenticity_token] #upload with iframe
             format.html{ render(:layout => false , :json => {"success" => true, "data" => @photo}.to_json )}

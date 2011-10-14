@@ -23,7 +23,7 @@
             = item_topic_image_tag(t, :thumb_small)
           .content
             .name
-              = link_to t.name, item_topic_path(t), :class => 't_content'
+              = link_to truncate(t.name, :length => 30), item_topic_path(t), :class => 't_content'
               = link_to t.posts_count.to_s+'讨论', item_topic_path(t), :class => 'post_count'
             .author
               %span
