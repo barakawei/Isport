@@ -67,7 +67,7 @@
   :position relative
 
   a.link_button, .element_more
-    @include border-radius(3px)
+    @include border-radius-noie(3px)
     border: 1px solid #DCE4E6
     color: #888 
     font-size: 11px
@@ -107,10 +107,10 @@
       .topics, .recent_events
         :margin-top 10px
         .topic, .event_item
-          :margin-bottom 5px
+          :margin-bottom 8px
           :padding-left 5px
           a
-            :font-size 13px
+            :font-size 12px
             :color #71715B
             &:hover
               :text-decoration underline

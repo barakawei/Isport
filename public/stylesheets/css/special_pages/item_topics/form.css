@@ -1,5 +1,9 @@
 .new_topic_form {
   float: left; }
+  .new_topic_form #file-upload {
+    height: 20px;
+    width: 60px;
+    line-height: 20px; }
   .new_topic_form #item_topic_photo_upload {
     float: left;
     height: 200px;
