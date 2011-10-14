@@ -58,12 +58,7 @@
     width: 660px;
     margin-top: 3px;
     float: left;
-    border-bottom: 1px solid #eceae8;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
-    behavior: url(/javascripts/PIE.htc);
-    overflow: hidden; }
+    border-bottom: 1px solid #eceae8; }
     .topic_area .post_area .feed_toolbar {
       width: 640px; }
     .topic_area .post_area .post_element_panel {
