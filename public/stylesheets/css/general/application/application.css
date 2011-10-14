@@ -434,7 +434,7 @@ a.button {
   border-radius: 5px 5px 0 0;
   behavior: url(/javascripts/PIE.htc); }
 
-.glass_button {
+.glass_button, .big_button {
   position: relative;
   background: url(/images/ui/glass-light.png) repeat-x 0 50%;
   background-color: #8dbc6e;
@@ -443,17 +443,24 @@ a.button {
   border-radius: 6px;
   behavior: url(/javascripts/PIE.htc);
   color: white;
-  font-size: 13px;
-  font-weight: bold;
-  padding: 3px 5px;
   text-shadow: 0 -1px rgba(41, 41, 41, 0.5);
   text-align: center;
   cursor: pointer; }
-  .glass_button:hover {
+  .glass_button:hover, .big_button:hover {
     background-color: #e76b75;
     margin-top: 2px; }
-  .glass_button a {
+  .glass_button a, .big_button a {
     color: white; }
+
+.glass_button {
+  font-size: 13px;
+  font-weight: bold;
+  padding: 3px 5px; }
+
+.big_button {
+  font-size: 20px;
+  font-weight: bolder;
+  line-height: 40px; }
 
 input {
   margin: 0;

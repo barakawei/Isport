@@ -1,13 +1,14 @@
 .topic_area {
-  width: 250px;
   float: left;
-  margin-top: 15px; }
+  margin-top: 10px;
+  margin-right: 20px;
+  width: 660px; }
   .topic_area .topic_info {
     float: left;
     position: relative;
     background-color: white;
     border: 3px solid #d5ddde;
-    width: 250px;
+    width: 655px;
     -moz-border-radius: 6px;
     -webkit-border-radius: 6px;
     border-radius: 6px;
@@ -16,92 +17,119 @@
       width: 100px;
       height: 100px;
       float: left;
-      position: absolute;
-      left: 8px;
-      top: 8px; }
+      margin-left: 8px;
+      margin-top: 8px;
+      margin-bottom: 8px; }
     .topic_area .topic_info .topic_msg {
-      width: 130px;
-      height: 100px;
-      position: absolute;
-      top: 5px;
-      right: 6px;
-      float: left; }
-      .topic_area .topic_info .topic_msg .topic_name {
-        float: left;
-        color: black;
-        font-size: 16px; }
-      .topic_area .topic_info .topic_msg .topic_owner {
-        float: left;
-        color: black;
-        font-size: 12px;
-        position: absolute;
-        bottom: 1px; }
-    .topic_area .topic_info .topic_des {
+      width: 540px;
+      height: 112px;
       float: left;
-      width: 250px;
-      overflow: hidden;
-      margin-top: 135px;
-      margin-left: 7px;
-      margin-bottom: 5px;
-      padding-right: 3px;
-      font-size: 14px;
-      color: #77777e;
-      text-indent: 21pt; }
-  .topic_area .follow_action {
-    width: 256px;
-    height: 40px;
-    -moz-border-radius: 6px;
-    -webkit-border-radius: 6px;
-    border-radius: 6px;
+      margin-left: 2px;
+      position: relative; }
+      .topic_area .topic_info .topic_msg .title {
+        margin-top: 2px;
+        width: 540px;
+        height: 26px;
+        position: relative;
+        float: left; }
+        .topic_area .topic_info .topic_msg .title .topic_name {
+          color: black;
+          position: absolute;
+          font-size: 16px;
+          left: 8px;
+          bottom: 1px; }
+        .topic_area .topic_info .topic_msg .title .topic_owner {
+          color: black;
+          font-size: 12px;
+          position: absolute;
+          right: 10px;
+          bottom: 1px; }
+      .topic_area .topic_info .topic_msg .topic_des {
+        float: left;
+        overflow: hidden;
+        position: absolute;
+        margin-left: 7px;
+        bottom: 1px;
+        right: 3px;
+        font-size: 14px;
+        color: #77777e;
+        text-indent: 21pt; }
+  .topic_area .post_area {
+    width: 660px;
+    margin-top: 3px;
+    float: left;
+    border-bottom: 1px solid #eceae8;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
     behavior: url(/javascripts/PIE.htc);
-    background-color: #f4f4f4;
+    overflow: hidden; }
+    .topic_area .post_area .feed_toolbar {
+      width: 640px; }
+    .topic_area .post_area .post_element_panel {
+      margin-top: 0 !important; }
+      .topic_area .post_area .post_element_panel .stream_element {
+        background-color: white;
+        border: none;
+        margin-bottom: 2px; }
+      .topic_area .post_area .post_element_panel .pagination {
+        position: absolute;
+        bottom: -40px;
+        left: 315px; }
+
+.right_column {
+  float: left;
+  width: 256px; }
+  .right_column .follow_action {
+    width: 256px;
+    height: 112px;
     float: left;
     margin-top: 10px;
     position: relative; }
-    .topic_area .follow_action .tfollow, .topic_area .follow_action .detfollow {
-      width: 60px;
-      height: 20px;
+    .right_column .follow_action .tfollow, .right_column .follow_action .detfollow {
+      width: 100px;
+      height: 40px;
       position: absolute;
-      top: 7px;
-      left: 8px; }
-    .topic_area .follow_action .detfollow {
+      top: 5px;
+      left: 0px; }
+    .right_column .follow_action .detfollow {
       background-color: #8dbc6e; }
-      .topic_area .follow_action .detfollow span {
+      .right_column .follow_action .detfollow span {
         background: url(/images/ui/icon-check.png) no-repeat 0 50%;
         padding-left: 18px; }
-      .topic_area .follow_action .detfollow:hover {
+      .right_column .follow_action .detfollow:hover {
         background-color: #e76b75; }
-        .topic_area .follow_action .detfollow:hover span {
+        .right_column .follow_action .detfollow:hover span {
           color: #e76b75;
           background: url(/images/ui/icon-x.png) no-repeat 0 50%; }
-    .topic_area .follow_action .tfollow {
+    .right_column .follow_action .tfollow {
       background-color: lightGrey; }
-      .topic_area .follow_action .tfollow span {
+      .right_column .follow_action .tfollow span {
         padding-left: 18px;
         background: url(/images/ui/follow-gray.gif) no-repeat 0 50%;
         color: #777777; }
-      .topic_area .follow_action .tfollow:hover {
+      .right_column .follow_action .tfollow:hover {
         background-color: #8aba56; }
-        .topic_area .follow_action .tfollow:hover span {
+        .right_column .follow_action .tfollow:hover span {
           background: url(/images/ui/follow-white.gif) no-repeat 0 50%;
           color: white; }
-    .topic_area .follow_action .followers_count {
+    .right_column .follow_action .followers_count {
       position: absolute;
-      top: 9px;
-      right: 6px;
+      bottom: 6px;
+      left: 2px;
       color: blue;
       font-size: 12px;
       font-weight: bold; }
-  .topic_area .related {
+  .right_column .related {
     width: 256px;
     margin-top: 20px;
     float: left; }
-    .topic_area .related .related_title {
+    .right_column .related .related_title {
       width: 256px;
       position: relative;
       float: left;
       margin-bottom: 10px; }
-      .topic_area .related .related_title .name {
+      .right_column .related .related_title .name {
         color: white;
         font-size: 16px;
         background-color: #bdbda3;
@@ -113,10 +141,10 @@
         padding: 1px 3px 1px 3px;
         position: absolute;
         left: 0px; }
-      .topic_area .related .related_title .link_more {
+      .right_column .related .related_title .link_more {
         position: absolute;
         right: 4px; }
-    .topic_area .related .related_topics {
+    .right_column .related .related_topics {
       float: left;
       width: 256px;
       margin-top: 30px;
@@ -125,12 +153,12 @@
       -webkit-border-radius: 6px;
       border-radius: 6px;
       behavior: url(/javascripts/PIE.htc); }
-  .topic_area .topic_followers {
+  .right_column .topic_followers {
     width: 250px;
     margin-top: 15px;
     float: left;
     overflow: show; }
-    .topic_area .topic_followers .followers_title {
+    .right_column .topic_followers .followers_title {
       width: 51px;
       font-size: 16px;
       color: white;
@@ -142,47 +170,14 @@
       behavior: url(/javascripts/PIE.htc);
       padding: 1px 3px 1px 3px;
       margin-bottom: 10px; }
-    .topic_area .topic_followers .followers {
+    .right_column .topic_followers .followers {
       width: 254px;
       float: left;
       background-color: white;
-      -moz-border-radius: 6px;
-      -webkit-border-radius: 6px;
-      border-radius: 6px;
-      behavior: url(/javascripts/PIE.htc);
       padding-bottom: 10px; }
-      .topic_area .topic_followers .followers .follower {
+      .right_column .topic_followers .followers .follower {
         float: left;
         width: 50px;
         height: 50px;
         margin-left: 10px;
         margin-top: 10px; }
-        .topic_area .topic_followers .followers .follower img {
-          -moz-border-radius: 2px;
-          -webkit-border-radius: 2px;
-          border-radius: 2px;
-          behavior: url(/javascripts/PIE.htc); }
-
-.post_area {
-  width: 660px;
-  margin-left: 20px;
-  margin-top: 11px;
-  float: left;
-  border-bottom: 1px solid #eceae8;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
-  behavior: url(/javascripts/PIE.htc); }
-  .post_area .feed_toolbar {
-    width: 640px; }
-
-.post_element_panel {
-  margin-top: 0 !important; }
-  .post_element_panel .stream_element {
-    background-color: white;
-    border: none;
-    margin-bottom: 2px; }
-  .post_element_panel .pagination {
-    position: absolute;
-    bottom: -40px;
-    left: 315px; }
