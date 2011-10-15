@@ -64,7 +64,7 @@
     enableSelector: 'input[data-disable-with]:disabled, button[data-disable-with]:disabled, textarea[data-disable-with]:disabled',
 
     // Form required input elements
-    requiredInputSelector: 'input[name][required],textarea[name][required]',
+    requiredInputSelector: 'input[name][require],textarea[name][require]',
 
     // Form file input elements
     fileInputSelector: 'input:file',
@@ -211,7 +211,7 @@
       form.find(selector).each(function() {
         input = $(this);
         // Collect non-blank inputs if nonBlank option is true, otherwise, collect blank inputs
-        if (nonBlank ? input.val() : !input.val()) {
+        if (nonBlank && $.trim(input.val()) == "") {
           inputs = inputs.add(input);
         }
       });
@@ -265,7 +265,7 @@
   $(rails.formSubmitSelector).live('submit.rails', function(e) {
     var form = $(this),
       remote = form.data('remote') !== undefined,
-      blankRequiredInputs = rails.blankInputs(form, rails.requiredInputSelector),
+      blankRequiredInputs = rails.blankInputs(form, rails.requiredInputSelector,true),
       nonBlankFileInputs = rails.nonBlankInputs(form, rails.fileInputSelector);
 
     if (!rails.allowAction(form)) return rails.stopEverything(e);

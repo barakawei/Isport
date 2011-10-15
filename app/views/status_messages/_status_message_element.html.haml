@@ -29,7 +29,7 @@
       .author_avatar
         = person_image_link(current_user,:thumb_small)
       = form_for([post,Comment.new], :remote => true) do |f|
-        = f.text_area :content, :rows => 2
+        = f.text_area :content, :rows => 2,:require => true
         .comment_button.hide
           = f.submit "回复", :class => 'glass_button_ie',"data-disable-with" => t("posting")
           .cancle.glass_button_ie

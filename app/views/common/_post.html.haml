@@ -5,7 +5,7 @@
 .post_tool
   .create_post
     = form_for(StatusMessage.new,:remote => true,:html => { :multipart => true }) do |status|
-      = status.text_area :content,:class => 'content'
+      = status.text_area :content,:class => 'content',:require => true
       = hidden_field_tag :contacts
       = label_tag 'weibo', '说点什么吧...', :class => 'placeholder'
       -if @topic.nil?
