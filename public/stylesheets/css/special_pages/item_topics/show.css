@@ -52,18 +52,18 @@
       .topic_area .topic_info .topic_msg .title {
         position: relative;
         width: 510px; }
-        .topic_area .topic_info .topic_msg .title .topic_name {
+        .topic_area .topic_info .topic_msg .title h3.topic_name {
           position: relative;
           color: black;
           width: 430px;
           margin-bottom: 5px;
           font-size: 15px;
           font-weight: bold; }
-          .topic_area .topic_info .topic_msg .title .topic_name a.edit_topic {
+          .topic_area .topic_info .topic_msg .title h3.topic_name a.edit_topic {
             font-size: 13px; }
-            .topic_area .topic_info .topic_msg .title .topic_name a.edit_topic:hover {
+            .topic_area .topic_info .topic_msg .title h3.topic_name a.edit_topic:hover {
               text-decoration: underline; }
-          .topic_area .topic_info .topic_msg .title .topic_name .topic_box {
+          .topic_area .topic_info .topic_msg .title h3.topic_name .topic_box {
             top: 15px;
             left: 0px; }
       .topic_area .topic_info .topic_msg .topic_owner {

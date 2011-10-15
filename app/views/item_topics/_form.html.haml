@@ -26,6 +26,12 @@
 :javascript
   $(function(){
     var options = {success: afterCreate, resetForm:true, beforeSubmit: validate_form};
+    if ($('#item_topic_name').val().length > 0) {
+     $('.new_topic_form form .field label.topic_name').hide();   
+    }
+    if ($('#item_topic_description').val().length > 0) {
+     $('.new_topic_form form .field label.topic_desc').hide();   
+    }
     $('.new_topic_form form').ajaxForm(options);
     $('.new_topic_form form').validate({
       rules: {
@@ -78,20 +84,9 @@
       $form.closest('.topic_box').hide();
       createTopicCallback(id, name);
     } else {
-      var name, desc;
-      $(responseText).find("item-topic").each(function(i){
-        name = $(this).children('name').text(); 
-        desc= $(this).children('description').text(); 
-        $img = $(this).children('image-url-medium'); 
-        img_url = $img.text(); 
-        $('.topic_info .topic_msg  .topic_name span').text(name);
-        $('.topic_info .topic_msg  .topic_des').text(desc);
-        if (img_url.length > 1) {
-          $('.topic_info  .topic_image img').attr('src', img_url);
-        }
-        resetNewTopicForm($form);
-        $form.closest('.topic_box').hide();
-      });
+      resetNewTopicForm($form);
+      $form.closest('.topic_box').hide();
+      location.reload();
     }
   }
 

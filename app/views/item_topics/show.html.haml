@@ -15,7 +15,7 @@
           - if current_user
             = follow_topic_tag(@topic)
           %h3.topic_name
-            %span= @topic.name
+            %span.name= @topic.name
             = link_to '编辑', 'javascript:void(0)', :class => 'edit_topic' 
             = render :partial => 'item_topics/edit_topic_box', :locals => {:item_topic => @topic}
         .topic_owner
@@ -64,5 +64,6 @@
   $('.topic_msg .topic_name .edit_topic').click(function(){
     $('.topic_box').show();
   });
+
 
 
