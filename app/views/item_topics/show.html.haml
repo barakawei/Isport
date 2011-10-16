@@ -12,11 +12,16 @@
         = item_topic_image_tag(@topic, :thumb_medium)
       .topic_msg
         .title
-          .topic_name
-            = truncate(@topic.name, :length => 18)
-          .topic_owner
-            = "发起人： "
-            = link_to @topic.person.profile.name, person_path(@topic.person)
+          - if current_user
+            = follow_topic_tag(@topic)
+          %h3.topic_name
+            %span.name= @topic.name
+            = link_to '编辑', 'javascript:void(0)', :class => 'edit_topic' 
+            = render :partial => 'item_topics/edit_topic_box', :locals => {:item_topic => @topic}
+        .topic_owner
+          = "发起人： "
+          = link_to @topic.person.profile.name, person_path(@topic.person)
+          = followers_count_tag(@topic) 
 
         .topic_des
           = @topic.description
@@ -27,11 +32,6 @@
       .stream.post_element_panel
 
   .right_column
-    .follow_action
-      - if current_user
-        = follow_topic_tag(@topic)
-     
-      = followers_count_tag(@topic) 
 
     .related
       .related_title
@@ -60,5 +60,10 @@
   function startRequest() { 
     $.get("/status_messages/refresh",{id:"#{@topic.id}"});
   } 
+
+  $('.topic_msg .topic_name .edit_topic').click(function(){
+    $('.topic_box').show();
+  });
+
 
 
