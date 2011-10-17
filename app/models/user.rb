@@ -19,7 +19,6 @@ class User < ActiveRecord::Base
   delegate :name,:to => :person
   delegate :location,:to => :profile
 
-  after_create :init_album
 
   has_many :authorizations do
     def find_or_create_by_params(params)
@@ -30,12 +29,6 @@ class User < ActiveRecord::Base
       authorization
     end
   end
-
-  def init_album
-    Album.find_or_create_by_imageable_id_and_name(:imageable_id =>self.person.id,:name => 'status_message',:imageable_type =>'Person')
-    Album.find_or_create_by_imageable_id_and_name(:imageable_id =>self.person.id,:name => 'avatar',:imageable_type =>'Person')
-  end
-
 
   def self.build( opts={} )
     u = User.new( opts )

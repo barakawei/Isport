@@ -61,7 +61,7 @@
       .title
         :position relative
         :width 510px
-        .topic_name
+        h3.topic_name
           :position relative
           :color black
           :width 430px
@@ -100,6 +100,8 @@
     :width 660px
     :float left
     :border-bottom 1px solid #ECEAE8
+    @include border-radius(5px)
+    :overflow show
     .feed_toolbar
       :width 640px
       :margin-top 0

@@ -2,6 +2,8 @@ class Person < ActiveRecord::Base
   cattr_reader :per_page
   @@per_page = 10
 
+  after_create :init_album
+
   belongs_to :user
   has_many :contacts
   has_many :events
@@ -44,7 +46,12 @@ class Person < ActiveRecord::Base
   delegate :name, :to => :profile
   delegate :email, :to => :user
   delegate :location, :to => :profile
-  
+
+  def init_album
+    Album.find_or_create_by_imageable_id_and_name(:imageable_id =>self.id,:name => 'status_message',:imageable_type =>'Person')
+    Album.find_or_create_by_imageable_id_and_name(:imageable_id =>self.id,:name => 'avatar',:imageable_type =>'Person')
+  end
+
   def self.search(query,user)
     return [] if query.to_s.blank? || query.to_s.length < 1
 
