@@ -211,7 +211,7 @@
       form.find(selector).each(function() {
         input = $(this);
         // Collect non-blank inputs if nonBlank option is true, otherwise, collect blank inputs
-        if (nonBlank && $.trim(input.val()) == "") {
+        if (nonBlank && $.trim(input.val()) == "") { 
           inputs = inputs.add(input);
         }
       });
@@ -220,7 +220,7 @@
 
     // Helper function which checks for non-blank inputs in a form that match the specified CSS selector
     nonBlankInputs: function(form, specifiedSelector) {
-      return rails.blankInputs(form, specifiedSelector, true); // true specifies nonBlank
+      return rails.blankInputs(form, specifiedSelector); // true specifies nonBlank
     },
 
     // Helper function, needed to provide consistent behavior in IE
@@ -313,3 +313,4 @@
   });
 
 })( jQuery );
+
