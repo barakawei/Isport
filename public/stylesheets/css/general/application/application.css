@@ -467,8 +467,7 @@ a.button {
   text-align: center;
   cursor: pointer; }
   .glass_button_ie:hover {
-    background-color: #e76b75;
-    margin-top: 2px; }
+    background-color: #e76b75; }
   .glass_button_ie a {
     color: white; }
 
@@ -498,6 +497,14 @@ input {
   .comment_form .comment_button {
     margin-top: 5px;
     margin-left: 40px; }
+    .comment_form .comment_button input {
+      display: inline-block;
+      width: 45px;
+      height: 25px; }
+    .comment_form .comment_button .cancle {
+      margin-left: 10px;
+      display: inline-block;
+      width: 35px; }
   .comment_form textarea {
     resize: none;
     margin-left: 4px;
@@ -859,16 +866,7 @@ a.app_black_link_button {
     cursor: pointer;
     position: absolute;
     top: 5px;
-    right: 15px;
-    filter: alpha(opacity=40);
-    -moz-opacity: 0.4;
-    -khtml-opacity: 0.4;
-    opacity: 0.4; }
-    .stream_element .action .delete:hover, .pic_comments .action .delete:hover {
-      filter: alpha(opacity=100);
-      -moz-opacity: 1;
-      -khtml-opacity: 1;
-      opacity: 1; }
+    right: 15px; }
 
 .stream_element .stream-photo {
   width: 100px;

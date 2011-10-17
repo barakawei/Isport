@@ -519,8 +519,7 @@
       font-weight: bold;
       -moz-border-radius: 4px;
       -webkit-border-radius: 4px;
-      border-radius: 4px;
-      behavior: url(/javascripts/PIE.htc); }
+      border-radius: 4px; }
       .feed_toolbar ul.event li a:hover {
         background-color: #c6c6c3;
         color: #646464; }

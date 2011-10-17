@@ -470,7 +470,6 @@ a.button
   cursor: pointer
   &:hover
     :background-color #e76b75
-    :margin-top 2px
   a
     :color white
 
@@ -500,13 +499,21 @@ input
   .comment_button
     :margin-top 5px
     :margin-left 40px
+    input 
+      :display inline-block
+      :width 45px
+      :height 25px
+    .cancle
+      :margin-left 10px
+      :display inline-block
+      :width 35px
   textarea
     :resize none
     :margin-left 4px
     :width 345px
     :height 23px
     :overflow-y hidden
-    @include border-radius-noie( 5px )
+    @include border-radius-noie( 5px ) 
 .content_panel
   :position relative
   :z-index 4
@@ -888,9 +895,6 @@ a.app_black_link_button
       :position absolute
       :top 5px 
       :right 15px 
-      @include opacity(0.4)
-      &:hover
-        @include opacity(1)
 .stream_element
   .stream-photo
     :width 100px
