@@ -5,6 +5,9 @@ class ItemTopic < ActiveRecord::Base
   has_many :item_topic_followships, :dependent => :destroy
   has_many :followers, :through => :item_topic_followships, :source => :person
 
+  has_many :item_topic_involvements, :dependent => :destroy
+  has_many :involved_people, :through => :item_topic_involvements, :source => :person   
+
   has_many :posts 
   belongs_to :person
 
@@ -17,7 +20,7 @@ class ItemTopic < ActiveRecord::Base
   scope :recent_hot, lambda {where("created_at >= ? and created_at <= ?", 7.days.ago, Time.now).order('posts_count desc').limit(50)}
 
   def self.mine(person)
-    of_person(person).limit(20)
+    person.involved_topics.order('item_topic_involvements.created_at desc').limit(20)
   end
   
   def self.recent_random_topics
@@ -27,7 +30,8 @@ class ItemTopic < ActiveRecord::Base
   end
 
   def self.friends(person)
-    of_person(person.user.friends).limit(20)
+    ItemTopic.joins(:item_topic_involvements).where(:item_topic_involvements => {:person_id => person.user.friends})
+             .order('item_topic_involvements.created_at desc').limit(20) 
   end
 
   def self.hot(person)
@@ -67,3 +71,4 @@ class ItemTopic < ActiveRecord::Base
   end
 
 end
+    

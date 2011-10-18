@@ -1,8 +1,8 @@
 .select_topic
   .filter_area
     .left.target_filter
-      =link_to '我的话题', filter_item_topics_path('mine', 'order_by_time'), :class => 'select filter', :tag => 'mine'
-      =link_to '朋友的话题', filter_item_topics_path('friends', 'order_by_time'), :class => 'filter', :tag => 'friends'
+      =link_to '我参与的话题', filter_item_topics_path('mine', 'order_by_time'), :class => 'select filter', :tag => 'mine'
+      =link_to '朋友参与的话题', filter_item_topics_path('friends', 'order_by_time'), :class => 'filter', :tag => 'friends'
       =link_to '热门话题',filter_item_topics_path('hot', 'order_by_time'), :class => 'filter last', :tag => 'hot' 
     .right.order_filter
       =link_to '按时间', filter_item_topics_path('mine', 'order_by_time'), :class => 'select order', :tag => 'order_by_time'

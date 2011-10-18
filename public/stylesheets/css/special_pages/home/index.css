@@ -478,11 +478,6 @@
       -moz-border-radius: 3px;
       -webkit-border-radius: 3px;
       border-radius: 3px;
-      behavior: url(/javascripts/PIE.htc);
-      -webkit-box-shadow: 0 1px 5px 0 #aaaaaa;
-      -moz-box-shadow: 0 1px 5px 0 #aaaaaa;
-      box-shadow: 0 1px 5px 0 #aaaaaa;
-      behavior: url(/javascripts/PIE.htc);
       background-color: #99c94b;
       padding: 3px 5px;
       font-size: 12px;
@@ -538,9 +533,14 @@
   top: 0px;
   padding: 5px 20px; }
 .create_post span#sync_to_weibo {
+  width: 200px;
   position: absolute;
-  right: -110px;
+  left: 530px;
   top: 40px; }
+  .create_post span#sync_to_weibo label {
+    font-size: 10px; }
+  .create_post span#sync_to_weibo #sina_weibo {
+    vertical-align: text-top; }
 
 .event_status_open {
   background-color: white; }

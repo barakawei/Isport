@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111013133212) do
+ActiveRecord::Schema.define(:version => 20111018143400) do
 
   create_table "administrators", :force => true do |t|
     t.integer  "user_id"
@@ -198,6 +198,13 @@ ActiveRecord::Schema.define(:version => 20111013133212) do
   add_index "involvements", ["person_id"], :name => "index_involvements_on_person_id"
 
   create_table "item_topic_followships", :force => true do |t|
+    t.integer  "item_topic_id"
+    t.integer  "person_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "item_topic_involvements", :force => true do |t|
     t.integer  "item_topic_id"
     t.integer  "person_id"
     t.datetime "created_at"

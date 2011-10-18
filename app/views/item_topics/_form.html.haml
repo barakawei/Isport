@@ -32,7 +32,7 @@
     if ($('#item_topic_description').val().length > 0) {
      $('.new_topic_form form .field label.topic_desc').hide();   
     }
-    $('.new_topic_form form').ajaxForm(options);
+    $('#new_item_topic').ajaxForm(options);
     $('.new_topic_form form').validate({
       rules: {
         'item_topic[name]': {
@@ -73,21 +73,15 @@
   }
 
   function afterCreate(responseText, statusText, xhr, $form){
-    if (isNewTopic()) {
-      $('ul.title_bar img').remove();
-      var id, name;
-      $(responseText).find("item-topic").each(function(i){
-        id = $(this).children('id').text(); 
-        name = $(this).children('name').text(); 
-      });
-      resetNewTopicForm($form);
-      $form.closest('.topic_box').hide();
-      createTopicCallback(id, name);
-    } else {
-      resetNewTopicForm($form);
-      $form.closest('.topic_box').hide();
-      location.reload();
-    }
+    $('ul.title_bar img').remove();
+    var id, name;
+    $(responseText).find("item-topic").each(function(i){
+      id = $(this).children('id').text(); 
+      name = $(this).children('name').text(); 
+    });
+    resetNewTopicForm($form);
+    $form.closest('.topic_box').hide();
+    createTopicCallback(id, name);
   }
 
   function imageUploadCallback(image_l, image_m, image_s) {
@@ -131,12 +125,14 @@
 
 
   function resetNewTopicForm($form) {
-    $form.find('input#item_topic_name, textarea#item_topic_description, select').val("");
-    $form.find('label.topic_name').show();
-    $form.find('label.topic_desc').show();
-    $form.find('img.avatar').attr('src', "#{item_topic.image_url(:thumb_medium)}");
-    $form.find('input#item_topic_image_url_large').val("");
-    $form.find('input#item_topic_image_url_medium').val("");
-    $form.find('input#item_topic_image_url_small').val("");
-    closeTopicBoxCallback();
+    $form.find('#item_topic_name, #item_topic_description, select').val("");
+    if (isNewTopic()) {
+      $form.find('label.topic_name').show();
+      $form.find('label.topic_desc').show();
+      $form.find('img.avatar').attr('src', "#{item_topic.image_url(:thumb_medium)}");
+      $form.find('#item_topic_image_url_large').val("");
+      $form.find('#item_topic_image_url_medium').val("");
+      $form.find('#item_topic_image_url_small').val("");
+      closeTopicBoxCallback();
+    }
   }

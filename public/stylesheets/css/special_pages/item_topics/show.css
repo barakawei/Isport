@@ -13,7 +13,6 @@
       width: 80px;
       height: 28px;
       position: absolute;
-      top: -10px;
       right: 10px;
       font-size: 13px;
       line-height: 30px; }
@@ -54,7 +53,7 @@
         .topic_area .topic_info .topic_msg .title h3.topic_name {
           position: relative;
           color: black;
-          width: 430px;
+          width: 400px;
           margin-bottom: 5px;
           font-size: 15px;
           font-weight: bold; }
@@ -69,7 +68,7 @@
             left: 0px; }
       .topic_area .topic_info .topic_msg .topic_owner {
         color: black;
-        margin-top: 10px;
+        margin-top: 15px;
         font-size: 12px;
         width: 510px; }
         .topic_area .topic_info .topic_msg .topic_owner .followers_count {
@@ -118,7 +117,8 @@
     width: 236px;
     float: left;
     background-color: white;
-    padding: 10px; }
+    padding: 10px;
+    margin-bottom: 15px; }
     .right_column .related .related_title {
       width: 236px;
       position: relative;
@@ -148,7 +148,6 @@
       width: 236px; }
   .right_column .topic_followers {
     width: 236px;
-    margin-top: 15px;
     float: left;
     overflow: show;
     background-color: white;
