@@ -20,17 +20,28 @@ if FileTest.exist?(city_file_name)
   province_id = 0
   city_id = 0
 
+  city_name_modify = true
   i_file.each_line do |line|
     if province
       line.strip!
       line.delete! "省"
       line.delete! "自治区"
+      if province_id != 0
+        City.find_or_create_by_name_and_province_id(:name => "其他", :province_id => province_id)
+      end
       tmp = Province.find_or_create_by_name(:name => line)
       province_id = tmp.id
       province = false
+      if line == "台湾"
+        city_name_modify = false
+      else
+        city_name_modify = true
+      end
     elsif city
       line.strip!
-      line.delete! "市"
+      if city_name_modify
+        line.delete! "市"
+      end
       tmp = City.find_or_create_by_name(:name => line)
       tmp.update_attributes(:province_id => province_id)
       city_id = tmp.id
@@ -51,7 +62,7 @@ if FileTest.exist?(city_file_name)
           pinyin = false
         else
           line.strip!
-          District.find_or_create_by_name(:name => line, :city_id => city_id)
+          District.find_or_create_by_name_and_city_id(:name => line, :city_id => city_id)
         end
         city = false
         province = false

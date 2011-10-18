@@ -107,7 +107,6 @@ city_change
   秀山土家族苗族自治县
   酉阳土家族苗族自治县
   彭水苗族土家族自治县
-
 province_change
 河北省
 city_change
@@ -4252,5 +4251,144 @@ tumushuke
 city_change
   五家渠市
 wujiaqu
-
+province_change
+台湾省
+city_change
+ 台北市
+taibei
+  中正区
+  中山区
+  大同区
+city_change
+ 高雄市
+gaoxiong
+  楠梓区
+  左营区
+  鼓山区
+  三民区
+  苓雅区
+  新兴区
+  前金区
+  盐埕区
+  前镇区
+  旗津区
+  小港区
+city_change
+ 基隆市
+ jilong
+  仁爱区
+  安乐区
+  信义区
+  七堵区
+  中山区
+  中正区
+  暖暖区
+city_change
+ 台中市
+ taizhong
+ 西区
+ 北区
+ 南区
+ 东区
+ 中区
+ 西屯区
+ 南屯区
+ 北屯区
+city_change
+ 台南市
+ tainan
+city_change
+ 新竹市
+ xinzhu
+  东区
+  西区
+  南区
+  北区
+  竹东区
+  宝山区
+city_change
+ 嘉义市
+ jiayi
+city_change
+ 台北县
+ taibeixian
+city_change
+ 宜兰县
+ yilanxian
+city_change
+ 桃园县
+ toayuanxian
+city_change
+ 新竹县
+ xinzhuxian
+city_change
+ 苗栗县
+ miaolixian
+city_change
+ 台中县
+ taizhongxian
+city_change
+ 彰化县
+ penghuaxian
+city_change
+ 南投县
+ nantouxian
+city_change
+ 云林县
+ yunlinxian
+city_change
+ 嘉义县
+ jiayixian
+city_change
+ 台南县
+ tainanxian
+city_change
+ 高雄县
+ gaoxiongxian
+city_change
+ 屏东县
+ pingdongxian
+city_change
+ 澎湖县
+ penghuxian
+city_change
+ 台东县
+ taidongxian
+city_change
+ 花莲县
+ hualianxian
+province_change
+特别行政区
+city_change
+香港
+hongkong
+ 中西区
+ 东区
+ 南区
+ 湾仔区
+ 九龙城区
+ 深水埗区
+ 油尖旺区
+ 黄大仙区
+ 观塘区
+ 北区
+ 西贡区
+ 沙田区
+ 大埔区
+ 离岛区
+ 葵青区
+ 荃湾区
+ 屯门区
+ 元朗区
+city_change
+澳门
+macau
+ 花地玛堂区
+ 圣安多尼堂区
+ 大堂区
+ 望德堂区
+ 风顺堂区
+ 嘉模堂区
+ 圣方济各堂区			
+ 路氹城	
 
