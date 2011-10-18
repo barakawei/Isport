@@ -52,7 +52,7 @@
     margin-top: -9px; }
     .header .message_count span {
       background: url("/images/ui/message_count.png") no-repeat scroll transparent;
-      background-position: 100% -288px;
+      background-position: 104% -288px;
       display: block;
       text-align: center; }
       .header .message_count span span {
