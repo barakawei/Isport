@@ -30,69 +30,75 @@
     margin-bottom: 15px; }
   .itemleft .topics_area {
     width: 220px;
-    position: relative;
-    margin-bottom: 15px; }
+    float: left;
+    background-color: white;
+    margin-bottom: 15px;
+    padding: 10px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px; }
     .itemleft .topics_area .title {
       width: 220px;
       position: relative;
       float: left;
-      margin-bottom: 10px; }
+      padding-bottom: 5px;
+      border-bottom: 1px solid #d5ddde; }
       .itemleft .topics_area .title .flag_name {
-        color: white;
-        font-size: 16px;
-        background-color: #bdbda3;
+        color: #fc4469;
+        font-size: 14px;
         font-weight: bold;
-        -moz-border-radius: 4px;
-        -webkit-border-radius: 4px;
-        border-radius: 4px;
-        behavior: url(/javascripts/PIE.htc);
-        padding: 1px 3px 1px 3px;
-        position: absolute; }
+        float: left; }
       .itemleft .topics_area .title .link_more {
         position: absolute;
         right: 4px; }
+        .itemleft .topics_area .title .link_more a {
+          border: 1px solid #dce4e6;
+          color: #888888;
+          font-size: 11px;
+          font-weight: bold;
+          height: 20px;
+          padding: 2px 4px 0 6px;
+          -moz-border-radius: 3px;
+          -webkit-border-radius: 3px;
+          border-radius: 3px; }
     .itemleft .topics_area .topics {
       float: left;
       width: 220px;
-      margin-top: 30px;
-      background-color: #f4f4f4;
-      margin-bottom: 15px; }
+      padding-bottom: 5px; }
   .itemleft .item_star {
     width: 220px;
-    display: block;
-    float: left; }
+    float: left;
+    padding: 10px;
+    background-color: white;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px; }
     .itemleft .item_star .star_title {
       margin-top: 3px;
-      width: 220px;
-      height: 32px;
-      margin-bottom: 8px; }
+      width: 216px;
+      float: left;
+      padding-bottom: 5px;
+      border-bottom: 1px solid #d5ddde; }
       .itemleft .item_star .star_title .title_name {
         float: left;
-        font-size: 16px;
-        color: white;
-        -moz-border-radius: 4px;
-        -webkit-border-radius: 4px;
-        border-radius: 4px;
-        behavior: url(/javascripts/PIE.htc);
+        font-size: 14px;
+        color: #fc4469;
         font-weight: bold;
-        background-color: #bdbda3;
-        padding: 1px 3px 1px 3px; }
+        float: left; }
     .itemleft .item_star .stars {
       float: left;
       width: 220px;
-      background-color: white;
-      padding-bottom: 4px; }
+      padding-bottom: 5px; }
       .itemleft .item_star .stars .star_one {
         float: left;
         width: 50px;
         height: 50px;
-        margin-left: 4px;
-        margin-top: 4px; }
+        margin-right: 5px;
+        margin-top: 5px; }
         .itemleft .item_star .stars .star_one img {
           -moz-border-radius: 3px;
           -webkit-border-radius: 3px;
-          border-radius: 3px;
-          behavior: url(/javascripts/PIE.htc); }
+          border-radius: 3px; }
 
 .itemright {
   width: 700px;

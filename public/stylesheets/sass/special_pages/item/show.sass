@@ -39,70 +39,78 @@ $darkgray: #74777B
  
   .topics_area
     :width 220px
-    :position relative 
+    :float left
+    :background-color #fff
     :margin-bottom 15px
+    :padding 10px
+    @include border-radius-noie(4px)
 
     .title
       :width 220px
       :position relative
       :float left
-      :margin-bottom 10px
+      :padding-bottom 5px
+      :border-bottom 1px solid #d5ddde
 
       .flag_name
-        :color white
-        :font-size 16px
-        :background-color #BDBDA3
+        :color #FC4469
+        :font-size 14px
         :font-weight bold
-        @include border-radius(4px)
-        :padding 1px 3px 1px 3px
-        :position absolute
+        :float left
 
       .link_more
         :position absolute
         :right 4px
+        
+        a
+          border: 1px solid #DCE4E6
+          color: #888888
+          font-size: 11px
+          font-weight: bold
+          height: 20px
+          padding: 2px 4px 0 6px
+          @include border-radius-noie(3px)
 
     .topics
       :float left
       :width 220px
-      :margin-top 30px
-      :background-color #F4F4F4
-      :margin-bottom 15px
+      :padding-bottom 5px
 
   .item_star
     :width 220px
-    :display block
     :float left
-
+    :padding 10px
+    :background-color #fff
+    @include border-radius-noie(4px)
+    
     .star_title
       :margin-top 3px
-      :width 220px
-      :height 32px
-      :margin-bottom 8px
+      :width 216px
+      :float left
+      :padding-bottom 5px
+      :border-bottom 1px solid #d5ddde
 
       .title_name
         :float left
-        :font-size 16px
-        :color white
-        @include border-radius(4px)
+        :font-size 14px
+        :color #FC4469
         :font-weight bold
-        :background-color #BDBDA3
-        :padding 1px 3px 1px 3px
+        :float left
 
     .stars
       :float left
       :width 220px
-      :background-color white
-      :padding-bottom 4px
+      :padding-bottom 5px
 
       .star_one
         :float left
         :width 50px
         :height 50px
-        :margin-left 4px
-        :margin-top 4px
+        :margin-right 5px
+        :margin-top 5px
      
         img
-          @include border-radius(3px)
+          @include border-radius-noie(3px)
 
 .itemright
   :width 700px

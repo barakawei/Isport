@@ -118,7 +118,10 @@
     width: 236px;
     float: left;
     background-color: white;
-    padding: 10px; }
+    padding: 10px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px; }
     .right_column .related .related_title {
       width: 236px;
       position: relative;
@@ -127,7 +130,8 @@
       border-bottom: 1px solid #d5ddde; }
       .right_column .related .related_title .name {
         color: #fc4469;
-        font-size: 13px;
+        font-size: 14px;
+        font-weight: bold;
         float: left; }
       .right_column .related .related_title .link_more {
         float: right; }
@@ -152,9 +156,13 @@
     float: left;
     overflow: show;
     background-color: white;
-    padding: 10px; }
+    padding: 10px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px; }
     .right_column .topic_followers .followers_title {
-      font-size: 13px;
+      font-size: 14px;
+      font-weight: bold;
       color: #fc4469;
       border-bottom: 1px solid #d5ddde;
       padding-bottom: 5px; }

@@ -129,13 +129,12 @@
     :margin-top 10px
     :position relative
 
-
-
   .related
     :width 236px
     :float left
     :background-color #fff
     :padding 10px
+    @include border-radius-noie(4px)
 
     .related_title
       :width 236px
@@ -146,7 +145,8 @@
 
       .name
         :color #FC4469
-        :font-size 13px
+        :font-size 14px
+        :font-weight bold
         :float left
 
       .link_more
@@ -167,8 +167,6 @@
       :float left
       :width 236px
 
-        
-
   .topic_followers
     :width 236px
     :margin-top 15px
@@ -176,9 +174,11 @@
     :overflow show
     :background-color #fff
     :padding 10px
+    @include border-radius-noie(4px)
 
     .followers_title
-      :font-size 13px
+      :font-size 14px
+      :font-weight bold
       :color #FC4469
       :border-bottom 1px solid #d5ddde
       :padding-bottom 5px
