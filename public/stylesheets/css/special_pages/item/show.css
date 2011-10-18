@@ -6,6 +6,11 @@
     position: relative;
     overflow: hidden;
     margin-bottom: 10px; }
+    .itemleft .item_image img {
+      -moz-border-radius: 6px;
+      -webkit-border-radius: 6px;
+      border-radius: 6px;
+      behavior: url(/javascripts/PIE.htc); }
     .itemleft .item_image .item_name {
       position: absolute;
       left: 6px;
