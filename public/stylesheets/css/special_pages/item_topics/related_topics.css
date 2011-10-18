@@ -1,14 +1,13 @@
 .topic_row {
-  margin-left: 1px;
   display: block;
-  border-bottom: 1px dashed #d5ddde; }
+  margin-top: 5px; }
   .topic_row .topic_name {
-    text-align: left;
-    font-size: 14px;
-    margin-top: 4px;
-    margin-left: 6px; }
+    font-size: 12px;
+    margin-top: 4px; }
     .topic_row .topic_name a {
-      color: #cc3300; }
+      color: #71715b; }
+      .topic_row .topic_name a:hover {
+        text-decoration: underline; }
   .topic_row .topic_date {
     text-align: right;
     margin-right: 3px;

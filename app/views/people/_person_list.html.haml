@@ -16,7 +16,7 @@
           .name
             = '近期话题'
           .link
-            = link_to '换一换', 'javascript:void(0)', :class => 'change_topics link_button'
+            = link_to '换一换', 'javascript:void(0)', :class => 'change_topics link_button' if @changeable
             = link_to '更多', item_topics_path, :class => 'link_button'
           .clear
         = render :partial => 'item_topics/recent_topics', :locals => {:topics => @hot_topics} 

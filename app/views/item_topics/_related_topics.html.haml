@@ -3,6 +3,5 @@
 .topic_row
   .topic_name
     = link_to truncate(topic.name, :length => 16), item_topic_path(topic)
+    %span.post_count="(#{topic.posts_count})"
 
-  .topic_date
-    = time_ago_in_words(topic.created_at) + "前"

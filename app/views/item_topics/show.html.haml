@@ -16,8 +16,9 @@
             = follow_topic_tag(@topic)
           %h3.topic_name
             %span.name= @topic.name
-            = link_to '编辑', 'javascript:void(0)', :class => 'edit_topic' 
-            = render :partial => 'item_topics/edit_topic_box', :locals => {:item_topic => @topic}
+            -if @editable
+              = link_to '编辑', 'javascript:void(0)', :class => 'edit_topic'  
+              = render :partial => 'item_topics/edit_topic_box', :locals => {:item_topic => @topic}
         .topic_owner
           = "发起人： "
           = link_to @topic.person.profile.name, person_path(@topic.person)
@@ -38,14 +39,16 @@
         .name
           = "相关话题"
         .link_more
+          = link_to '换一换', 'javascript:void(0)', :class => 'change_topics' if @changeable
           = link_to "更多", search_item_topic_path(@topic.item.id)
 
-      .related_topics
-        = render :partial => 'item_topics/related_topics',:collection => @related,:as => :topic
+      - if @related.size > 0
+        .related_topics
+          = render :partial => 'item_topics/related_topics',:collection => @related,:as => :topic
 
     .topic_followers
       .followers_title
-        = "关注者"
+        = "关注该话题的人"
       
       .followers
         -@followers.each_with_index do |follower, index|
@@ -63,7 +66,31 @@
 
   $('.topic_msg .topic_name .edit_topic').click(function(){
     $('.topic_box').show();
+    $('#item_topic_name').val("#{@topic.name}");
+    $('#item_topic_description').val("#{@topic.description}");
+    $('#item_topic_item_id').val("#{@topic.item_id}");
+    if ($('#item_topic_name').val().length > 0) {
+      $('.new_topic_form form .field label.topic_name').hide(); 
+    }
+    if ($('#item_topic_description').val().length > 0) {
+      $('.new_topic_form form .field label.topic_desc').hide(); 
+    } 
   });
 
-
+  $('.related a.change_topics').click(function() {
+    $.ajax({
+      type: 'get', 
+      url: "#{related_topics_path(@topic)}",
+      async: false,
+      success: function(data) {
+        $('.related .related_topics').fadeOut(200, function(){
+          $(this).empty();
+          $(this).html(data);
+          $(this).fadeIn();
+        });
+      }, 
+      error: function(data) {
+      }
+    });
+  });
 

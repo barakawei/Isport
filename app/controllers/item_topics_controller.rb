@@ -3,7 +3,7 @@ class ItemTopicsController < ApplicationController
   respond_to :js 
 
   FOLLOWER = 12
-  RELATED = 12
+  RELATED = 7 
 
   def show
     auth = current_user.authorizations.first
@@ -11,7 +11,9 @@ class ItemTopicsController < ApplicationController
     @topic = ItemTopic.find(params[:id]) 
     @followers = @topic.followers.order('rand()').limit(FOLLOWER).includes(:profile) 
     @related = ItemTopic.of_item(@topic.item).recent_hot.where("id != ?", @topic.id).limit(50)
+    @changeable = (@related.size > 7) 
     @related = @related.sort_by{rand}[0..RELATED]
+    @editable = (@topic.person ==  current_user.person)
   end
 
   def show_posts
@@ -85,7 +87,7 @@ class ItemTopicsController < ApplicationController
   end
 
   def update
-    @topic = ItemTopic.find(params[:id]) 
+    @topic = current_user.person.item_topics.find(params[:id]) 
 
     @topic.update_attributes(params[:item_topic])
     if params[:format] == 'xml'  
@@ -135,5 +137,12 @@ class ItemTopicsController < ApplicationController
   def recent_topics
     @topics = ItemTopic.recent_random_topics 
     render :partial => 'item_topics/recent_topics', :locals => {:topics => @topics} 
+  end
+
+  def related_topics
+    topic = ItemTopic.find(params[:topic_id])
+    rtopics =  ItemTopic.of_item(topic.item).recent_hot.where("id != ?", topic.id).limit(50)
+    @topics = rtopics.sort_by{rand}[0..RELATED]
+    render :partial => 'item_topics/related_topics',:collection => @topics,:as => :topic
   end
 end

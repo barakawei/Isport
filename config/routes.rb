@@ -61,6 +61,8 @@ Isport::Application.routes.draw do
           :constraints => {:order => /order_by_time|order_by_hot/ }
     match '/item_topics/:id/show_posts' => :show_posts,:as => "show_topic_posts"
     match '/item_topics/recent_topics' => :recent_topics,:as => "recent_topics"
+    match '/item_topics/related_topics/:topic_id' => :related_topics,:as => "related_topics",
+          :constraints => { :topic_id => /[1-9]\d*/}
   end
   resources :item_topics
 

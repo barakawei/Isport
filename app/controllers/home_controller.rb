@@ -16,6 +16,7 @@ class HomeController < ApplicationController
         return
       end
       @hot_topics = ItemTopic.recent_random_topics
+      @changeable = (@hot_topics.size == 7) 
       @events = Event.recent_events(current_user.profile.location.city)
       @is_binded = !auth.nil?
       

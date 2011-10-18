@@ -218,7 +218,7 @@ zh:
       groupsthiscity: "%{count}个同城小组"
 
   item_topic:
-      followers_count: "%{count}位关注者"
+      followers_count: "%{count}人关注"
       
   album:
     default: '默认相册'
