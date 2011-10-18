@@ -447,8 +447,7 @@ a.button {
   text-align: center;
   cursor: pointer; }
   .glass_button:hover, .big_button:hover {
-    background-color: #e76b75;
-    margin-top: 2px; }
+    background-color: #e76b75; }
   .glass_button a, .big_button a {
     color: white; }
 
@@ -633,14 +632,14 @@ input {
   .follow_button .following:hover {
     background-color: #e76b75; }
     .follow_button .following:hover span {
-      color: #e76b75;
+      color: #ff99cc;
       background: url(/images/ui/icon-x.png) no-repeat 0 50%; }
 .follow_button .follow {
   background-color: lightGrey; }
   .follow_button .follow span {
     padding-left: 18px;
     background: url(/images/ui/follow-gray.gif) no-repeat 0 50%;
-    color: #777777; }
+    color: #999999; }
   .follow_button .follow:hover {
     background-color: #8aba56; }
     .follow_button .follow:hover span {
