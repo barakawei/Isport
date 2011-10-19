@@ -30,6 +30,9 @@ class User < ActiveRecord::Base
     end
   end
 
+  Municipals = [I18n.t('municipals.beijing'), I18n.t('municipals.shanghai'),
+                I18n.t('municipals.tianjin'), I18n.t('municipals.chongqing')]
+
   def self.build( opts={} )
     u = User.new( opts )
     u.setup( opts)
@@ -58,7 +61,11 @@ class User < ActiveRecord::Base
                        :password_confirmation => '3275315321')
     name = weibo_user.name
     location_info = weibo_user.location
+    province_name = location_info.split(' ')[0]; 
     city_name = location_info.split(' ')[1];
+    if Municipals.include?(province_name)
+      city_name = province_name
+    end 
     city  = City.find_by_name(city_name)
     city_id = city ? city.id : 1 
     location = Location.create(:city_id => city_id)

@@ -52,6 +52,11 @@ zh:
       by_starttime: "按开始时间排序"
       by_popularity: "按人气排序" 
   inbox: "信箱"
+  municipals:
+    beijing: '北京'
+    shanghai: '上海' 
+    tianjin: '天津'
+    chongqing: '重庆'
   registrations: 
     new: 
       enter_email: "输入电子邮箱"
