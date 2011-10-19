@@ -69,6 +69,8 @@ class EventsController < ApplicationController
   end
 
   def new
+    auth = current_user.authorizations.first
+    @is_binded = !auth.nil?
     @steps = [I18n.t('events.new_event_wizards.step_1'), I18n.t('events.new_event_wizards.step_2')]
     @step = 1 
     @event = Event.new
@@ -86,6 +88,7 @@ class EventsController < ApplicationController
   def edit
     @items = Item.find(:all, :select => 'id, name')
     @new = true if params[:new] == 'new'
+    @city = @event.location.city
   end
 
   def edit_members
@@ -122,6 +125,7 @@ class EventsController < ApplicationController
       end
       redirect_to new_event_invite_path(@event)
     else
+      @city = @event.location.city
       @step = 1
       @steps = [I18n.t('events.new_event_wizards.step_1'), I18n.t('events.new_event_wizards.step_2')]
       render :action => :new
