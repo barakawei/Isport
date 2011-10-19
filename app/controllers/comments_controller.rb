@@ -4,7 +4,9 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(:post_id => params[ :status_message_id ],:content => params[ :comment ][ :content ],:person_id => current_user.person.id)
     if @comment.save
-      @comment.dispatch_comment
+      if @comment.author.id != @comment.post.author.id
+        @comment.dispatch_comment
+      end
       respond_with @comment
     end
   end

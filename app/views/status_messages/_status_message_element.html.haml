@@ -15,10 +15,10 @@
       .photos
         = render 'photos/photos_container',:photos => post.pics
       .content_info
-        %span.time.timeago{:datetime => post.created_at,:style=>"font-size: 11px"}
+        %span.time.timeago{:datetime => post.created_at}
           =how_long_ago( post )
         %span.action
-          =link_to "评论","#",:class => "replay"
+          =link_to "评论","11",:class => "replay"
       
     .action
       - if post.author.id == current_user.person.id
