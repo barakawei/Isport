@@ -245,9 +245,12 @@
   .person_left_bar .groups .title {
     background-color: white;
     padding: 10px; }
+    .person_left_bar .groups .title .title_bar {
+      border-bottom: 1px solid #d5ddde;
+      padding-bottom: 3px; }
     .person_left_bar .groups .title .name {
       float: left;
-      font-size: 15px;
+      font-size: 13px;
       color: #fc4469; }
     .person_left_bar .groups .title .link {
       float: right; }
@@ -496,7 +499,7 @@ dd {
 .element_more {
   height: 20px;
   font-weight: bold;
-  color: #22aec1;
+  color: #888888;
   font-size: 11px;
   cursor: pointer;
   background-color: white;
@@ -506,6 +509,8 @@ dd {
   -webkit-border-radius: 3px;
   border-radius: 3px;
   behavior: url(/javascripts/PIE.htc); }
+  .element_more:hover {
+    color: #666666; }
 
 .people_more {
   float: right;
@@ -518,9 +523,12 @@ dd {
   .person_left_bar .avatar_panel_container #followed_people .title, .person_left_bar .avatar_panel_container #befollowed_people .title {
     background-color: white;
     padding: 10px; }
+    .person_left_bar .avatar_panel_container #followed_people .title .title_bar, .person_left_bar .avatar_panel_container #befollowed_people .title .title_bar {
+      border-bottom: 1px solid #d5ddde;
+      padding-bottom: 3px; }
     .person_left_bar .avatar_panel_container #followed_people .title .name, .person_left_bar .avatar_panel_container #befollowed_people .title .name {
       float: left;
-      font-size: 15px;
+      font-size: 13px;
       color: #fc4469; }
     .person_left_bar .avatar_panel_container #followed_people .title .link, .person_left_bar .avatar_panel_container #befollowed_people .title .link {
       float: right; }

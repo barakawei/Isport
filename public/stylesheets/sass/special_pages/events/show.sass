@@ -3,23 +3,31 @@
 .left_column
   .link_to_all
     border: 1px solid #DCE4E6
-    color: #22AEC1
+    color: #888
     font-size: 11px
     font-weight: bold
     height: 20px
     padding: 2px 4px 0 6px
     @include border-radius(5px)
+    &:hover
+      :color #666
   
   #map_div
+    :margin-top 20px
+    :background-color white
     :padding 10px
     :width 180px
+    .title_bar
+      :border-bottom 1px solid #d5ddde 
+      :padding-bottom 10px
   #map
     :width 178px
     :border 1px solid  #d5ddde
+    :margin-top 10px
     :margin-bottom 0px
 
   .other_info
-    :margin 0px 0 5px 0
+    :margin-top 15px
     
     .info_block
       :display block
@@ -67,10 +75,13 @@
         :height 25px
   
   .members
-    :margin-top 5px
+    :margin-top 20px
     :padding 10px
     :width 180px
     :background-color white
+    .title_bar
+      :border-bottom 1px solid #d5ddde 
+      :padding-bottom 10px
   .person_array
     :width 220px
     :margin-top 10px

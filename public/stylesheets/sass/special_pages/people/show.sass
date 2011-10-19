@@ -244,9 +244,12 @@
     .title
       background-color: white
       :padding 10px
+      .title_bar
+        :border-bottom 1px solid #d5ddde 
+        :padding-bottom 3px
       .name
         :float left
-        :font-size 15px
+        :font-size 13px
         :color #fc4469
       .link
         :float right
@@ -490,13 +493,15 @@ dd
 .element_more
   height: 20px
   font-weight: bold
-  color: #22AEC1
+  color: #888
   font-size: 11px
   cursor: pointer
   background-color: white
   padding: 2px 4px 0 6px
   border: 1px solid #dce4e6
   @include border-radius( 3px )
+  &:hover
+    :color #666
 .people_more
   float: right
   margin-top: 5px
@@ -510,9 +515,12 @@ dd
       .title
         background-color: white
         :padding 10px
+        .title_bar
+          :border-bottom 1px solid #d5ddde 
+          :padding-bottom 3px
         .name
           :float left
-          :font-size 15px
+          :font-size 13px
           :color #fc4469
         .link
           :float right
