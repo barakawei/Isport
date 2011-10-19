@@ -33,16 +33,15 @@
       .stream.post_element_panel
 
   .right_column
+    - if @related.size > 0
+      .related
+        .related_title
+          .name
+            = "相关话题"
+          .link_more
+            = link_to '换一换', 'javascript:void(0)', :class => 'change_topics' if @changeable
+            = link_to "更多", search_item_topic_path(@topic.item.id)
 
-    .related
-      .related_title
-        .name
-          = "相关话题"
-        .link_more
-          = link_to '换一换', 'javascript:void(0)', :class => 'change_topics' if @changeable
-          = link_to "更多", search_item_topic_path(@topic.item.id)
-
-      - if @related.size > 0
         .related_topics
           = render :partial => 'item_topics/related_topics',:collection => @related,:as => :topic
 

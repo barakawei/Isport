@@ -198,9 +198,8 @@ var Mention = {
       var stringLoc = Mention.autocompletion.findStringToReplace(inputContent, cursorIndex);
 
       var stringStart = inputContent.slice(0, stringLoc[0]);
-      var stringEnd = inputContent.slice(stringLoc[1]);
-
-      input.val(stringStart + formatted + stringEnd + " ");
+      
+      input.val(stringStart + formatted + " ");
       var offset = formatted.length - (stringLoc[1] - stringLoc[0]);
       Mention.autocompletion.mentionList.updateMentionLocations(stringStart.length, offset);
       return [stringStart.length, stringStart.length + formatted.length+1];

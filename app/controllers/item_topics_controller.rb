@@ -91,11 +91,8 @@ class ItemTopicsController < ApplicationController
 
   def update
     @topic = current_user.person.item_topics.find(params[:id]) 
-
     @topic.update_attributes(params[:item_topic])
-    if params[:format] == 'xml'  
-      render :xml=> @topic.to_xml
-    end
+    redirect_to item_topic_path(@topic)
   end
 
   def create

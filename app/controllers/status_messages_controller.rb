@@ -13,8 +13,10 @@ class StatusMessagesController < ApplicationController
       end
       @status_message.pics << pics
     end
-    
-    @status_message.item_topic = item_topic if item_topic
+    if item_topic
+      @status_message.item_topic = item_topic 
+      ItemTopicInvolvement.find_or_create_by_item_topic_id_and_person_id(:item_topic_id => item_topic.id, :person_id => current_user.person.id) 
+    end
     if @status_message.save
       if params['sina_weibo'] == 'yes' && auth
         if pics.empty?

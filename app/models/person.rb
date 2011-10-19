@@ -40,6 +40,9 @@ class Person < ActiveRecord::Base
   has_many :item_topic_followships, :dependent => :destroy
   has_many :concern_itemtopics, :through => :item_topic_followships, :source => :item_topic
 
+  has_many :item_topic_involvements, :dependent => :destroy
+  has_many :involved_topics, :through => :item_topic_involvements, :source => :item_topic
+
   scope :friends_of, lambda {|user| where("user_id = ?", user.id)} 
   scope :at_city, lambda {|city_id| joins(:profile => :location).where(:locations => {:city_id => city_id})}
 
