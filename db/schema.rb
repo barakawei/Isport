@@ -127,10 +127,10 @@ ActiveRecord::Schema.define(:version => 20111018143400) do
     t.integer  "group_id",           :default => 0
     t.integer  "status",             :default => 0
     t.string   "status_msg"
+    t.integer  "audit_person_id"
     t.integer  "participants_count", :default => 0
     t.integer  "comments_count",     :default => 0
     t.integer  "fans_count",         :default => 0
-    t.integer  "audit_person_id"
   end
 
   create_table "favorites", :force => true do |t|
@@ -223,8 +223,8 @@ ActiveRecord::Schema.define(:version => 20111018143400) do
     t.datetime "updated_at"
     t.integer  "followers_count",  :default => 0
     t.integer  "posts_count",      :default => 0
-    t.text     "description"
     t.integer  "person_id"
+    t.text     "description"
   end
 
   create_table "items", :force => true do |t|
@@ -325,8 +325,8 @@ ActiveRecord::Schema.define(:version => 20111018143400) do
     t.string   "random_string"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "position"
     t.integer  "status_message_id"
+    t.integer  "position"
     t.integer  "comments_count",         :default => 0
     t.string   "avatar_processed_image"
     t.integer  "image_width"
@@ -353,7 +353,7 @@ ActiveRecord::Schema.define(:version => 20111018143400) do
     t.boolean  "pending",           :default => false
     t.string   "random_string"
     t.integer  "item_id"
-    t.integer  "post_id"
+    t.integer  "post_d"
     t.integer  "item_topic_id"
   end
 
