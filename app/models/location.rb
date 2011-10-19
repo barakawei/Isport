@@ -7,7 +7,7 @@ class Location < ActiveRecord::Base
 
   def to_s 
     c_name = city ? city.name : ""
-    d_name = district ? district : ""
+    d_name = district ? district.name : ""
     c_name + d_name + detail
   end
 end
