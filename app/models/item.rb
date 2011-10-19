@@ -176,15 +176,9 @@ class Item < ActiveRecord::Base
     end
 
     if people.length < limited
-      peopleplus = self.fans
-                  .find(:all, :limit => (limited - people.length),
-                        :conditions => ['people.id not in (?)', people.map(&:id)],
-                        :order => 'rand()')
-                       
-      if peopleplus
-        people += peopleplus 
-      end
+      people = self.fans.find(:all, :limit => limited, :order => 'rand()')
     end
+
     return people
   end
 
