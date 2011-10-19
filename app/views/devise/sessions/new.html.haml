@@ -15,23 +15,21 @@
         = f.password_field :password, :id=> "password"
         = f.label :password,t('password'), :class => "password in_field"
       .reg_input.submit
-        .span-3
+        .span-4
           %span#remember_me
             -if devise_mapping.rememberable?
               =f.check_box :remember_me
               =f.label :remember_me,t('.remember_me'), :class=> "ckbox"
+              = link_to '忘记密码?', new_password_path(resource), :class => 'forget_password_link'
             -else
               \.
         .reg_action
           =f.submit t('.sign_in'), :class => "log_submit right"
 
-.span-24.login_footer
-  = link_to  '/auth/connect', :class => 'xinlang_btn' do
-    %img{:src => '/images/ui/sina_weibo24.png'}
-    %span='新浪微博登陆'
-  .forget_password
-    %span.notify='notify'
-    = render 'common/small_link_button', :path => new_password_path(resource), :content => '忘记密码？'
+    .weibo_login
+      = link_to  '/auth/connect', :class => 'xinlang_btn' do
+        %img{:src => '/images/ui/sina_weibo16.png'}
+        %span='新浪微博登陆'
 
 .footer
   = render 'layouts/footer'
