@@ -168,6 +168,8 @@ Person.all.each do |p|
   pic = Pic.new
   pic.remote_photo_path = "/uploads/images/"
   pic.author = p
+  pic.image_width = 200
+  pic.image_height = 200
   url = p.profile.image_url
   if url.index("/user/").nil? && album.pics.size == 0
     length = "/uploads/images/thumb_large_".length
