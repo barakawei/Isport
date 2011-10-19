@@ -57,6 +57,10 @@ zh:
     shanghai: '上海' 
     tianjin: '天津'
     chongqing: '重庆'
+    xianggang: '香港'
+    aomen: '澳门'
+  cities:
+    qita: '其他'
   registrations: 
     new: 
       enter_email: "输入电子邮箱"

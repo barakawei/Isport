@@ -24,8 +24,8 @@
     %br
     %h4
       = "城市"
-    = collection_select nil, :city_id, Province.first.cities, :id, :name, {:prompt => true, :selected => (@city) ? @city.id : nil }
-    = hidden_field_tag "profile[location_attributes][city_id]"
+    = collection_select nil, :city_id, (@province ? @province.cities : Province.first.cities), :id, :name, {:prompt => true, :selected => (@city) ? @city.id : nil }
+    = hidden_field_tag "profile[location_attributes][city_id]", (@city ? @city.id : nil)
 
 :javascript
   $(function() {
