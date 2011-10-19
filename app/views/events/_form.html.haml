@@ -78,9 +78,10 @@
           = f.text_field :participants_limit
           = error_on(@event, :participants_limit)
           - unless is_edit
-            %span.sync_to_weibo
-              = check_box_tag 'sina_weibo', 'yes', true  
-              = label_tag 'sina_weibo', '同时发布到新浪微博'
+            - if @is_binded
+              %span.sync_to_weibo
+                = check_box_tag 'sina_weibo', 'yes', true  
+                = label_tag 'sina_weibo', '同时发布到新浪微博'
           
         .field.hide
           = f.text_field :image_url

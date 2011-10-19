@@ -13,6 +13,8 @@ class UsersController < ApplicationController
     @person = @user.person
     @profile = @user.profile
     @profile.location = Location.new if @profile.location.nil?
+    @city = @profile.location.city
+    @province = @city ? @city.province : nil
     render "users/getting_started"
   end
 
