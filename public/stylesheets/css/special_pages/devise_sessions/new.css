@@ -1,11 +1,19 @@
 #remember_me input {
   display: inline;
   height: auto !important;
-  top: 2px !important; }
+  top: 2px !important;
+  vertical-align: top; }
 #remember_me label.ckbox {
   font-size: 10px;
   position: static;
-  color: #5179ac; }
+  color: #5179ac;
+  font-size: 12px; }
+#remember_me a {
+  margin-left: 10px;
+  font-size: 12px;
+  color: #888888; }
+  #remember_me a:hover {
+    text-decoration: underline; }
 
 .login {
   -moz-border-radius: 8px;
@@ -87,41 +95,29 @@
       .login form .reg_action .log_submit:hover {
         background: url("/images/ui/person_edit.png") no-repeat scroll 100% -46px transparent;
         margin: 3px 4px 0 0; }
-
-.login_footer {
-  margin-top: 50px; }
-  .login_footer .forget_password {
-    float: right;
-    padding: 17px 30px 12px 20px;
-    width: 160px;
-    background-color: #dddddd; }
-  .login_footer .notify {
-    background: url("/images/ui/icon-notify.gif") no-repeat scroll 0 0 transparent;
+  .login .weibo_login {
     float: left;
-    height: 41px;
-    margin: 5px 0 0 7px;
-    overflow: hidden;
-    text-indent: -9999px;
-    width: 45px; }
-
-a.xinlang_btn {
-  display: block;
-  float: left;
-  background-color: white;
-  border: 1px solid #d5ddde;
-  padding: 5px 10px;
-  margin-left: 240px;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
-  behavior: url(/javascripts/PIE.htc);
-  font-size: 13px; }
-  a.xinlang_btn:hover {
-    background-color: #dcefff; }
-  a.xinlang_btn img, a.xinlang_btn span {
-    display: block;
-    float: left; }
-  a.xinlang_btn span {
-    height: 24px;
-    line-height: 24px;
-    margin-left: 5px; }
+    margin-bottom: 20px;
+    position: absolute;
+    right: 15px;
+    top: 13px; }
+    .login .weibo_login a.xinlang_btn {
+      display: block;
+      float: left;
+      background-color: white;
+      border: 1px solid #bbbbbb;
+      padding: 5px 10px;
+      -moz-border-radius: 5px;
+      -webkit-border-radius: 5px;
+      border-radius: 5px;
+      behavior: url(/javascripts/PIE.htc);
+      font-size: 11px; }
+      .login .weibo_login a.xinlang_btn:hover {
+        background-color: #dcefff; }
+      .login .weibo_login a.xinlang_btn img, .login .weibo_login a.xinlang_btn span {
+        display: block;
+        float: left; }
+      .login .weibo_login a.xinlang_btn span {
+        height: 16px;
+        line-height: 16px;
+        margin-left: 5px; }
