@@ -4393,3 +4393,6 @@ macau
  路氹城	
 province_change
 其他
+city_change
+其他
+qita
