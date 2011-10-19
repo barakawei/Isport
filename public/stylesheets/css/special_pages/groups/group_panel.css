@@ -23,6 +23,10 @@
     height: 100px;
     margin: 5px;
     float: left; }
+    .group_box_panel .group_box .group_image img {
+      -moz-border-radius: 4px;
+      -webkit-border-radius: 4px;
+      border-radius: 4px; }
   .group_box_panel .group_box .group_message {
     width: 180px;
     height: 110px;

@@ -169,16 +169,16 @@ class Item < ActiveRecord::Base
 
     if people.length < limited
       time_scope = (Time.now.beginning_of_month)..(Time.now.end_of_month)
-      people = Person.joins(:involved_events, :interests, :profile => :location)
+      people = Person.joins(:involved_events, :interests)
                      .where(:events => {:subject_id => self.id, :start_at => time_scope},
-                            :items => {:id => self.id}, :involvements => {:is_pending => false}, :locations => {:city_id => city.id})
+                            :items => {:id => self.id}, :involvements => {:is_pending => false})
                      .group("involvements.person_id").order("count(event_id) DESC").limit(limited).includes(:profile)
     end
 
     if people.length < limited
-      peopleplus = self.fans.joins(:profile => :location)
+      peopleplus = self.fans
                   .find(:all, :limit => (limited - people.length),
-                        :conditions => ['people.id not in (?) AND locations.city_id = ?', people.map(&:id), city.id],
+                        :conditions => ['people.id not in (?)', people.map(&:id)],
                         :order => 'rand()')
                        
       if peopleplus

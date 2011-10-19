@@ -1,19 +1,22 @@
 class ItemTopicsController < ApplicationController
   before_filter :registrations_closed?
+  before_filter :authenticate_user!, 
+                :except => [:index, :show, :show_post, :search, :recent_topics, :related_topics]
+  
   respond_to :js 
 
   FOLLOWER = 12
   RELATED = 7 
 
   def show
-    auth = current_user.authorizations.first
+    auth = current_user ? current_user.authorizations.first : nil
     @is_binded = !auth.nil?
     @topic = ItemTopic.find(params[:id]) 
     @followers = @topic.followers.order('rand()').limit(FOLLOWER).includes(:profile) 
     @related = ItemTopic.of_item(@topic.item).recent_hot.where("id != ?", @topic.id).limit(50)
     @changeable = (@related.size > 7) 
     @related = @related.sort_by{rand}[0..RELATED]
-    @editable = (@topic.person ==  current_user.person)
+    @editable = current_user ? (@topic.person == current_user.person) : false
   end
 
   def show_posts
