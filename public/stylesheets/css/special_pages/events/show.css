@@ -5,10 +5,9 @@
   font-weight: bold;
   height: 20px;
   padding: 2px 4px 0 6px;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
-  behavior: url(/javascripts/PIE.htc); }
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px; }
   .left_column .link_to_all:hover {
     color: #666666; }
 .left_column #map_div {
@@ -179,10 +178,9 @@
     bottom: 20px;
     right: 30px;
     position: absolute;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
-    behavior: url(/javascripts/PIE.htc); }
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px; }
 .right_column .comments_area {
   width: 650px;
   padding: 10px;
