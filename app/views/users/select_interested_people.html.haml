@@ -6,7 +6,7 @@
   -current_user.person.interests.each do |item|
     - stars = item.active_fans(current_user.person.location.city, 6) - [current_user.person]
     - if stars.size > 0
-      = render 'common/header_box', :title => item.name + '同好'
+      = render 'common/header_box', :title => item.name + '同好',blue_angle => true
       = render 'people/show_contacts',:people => stars, :groups => nil, :items => nil
   .bg_bottom
     .results

@@ -25,10 +25,10 @@ function friend_select(get_url){
           success: function(result){
             $.each(result.data, function(i){
               $fcbklist.append(
-              $('<li id="'+result.data[ i ].person.id+'">'+
-              '<img class="avatar" title="'+result.data[ i ].person.name+'" alt="'+result.data[ i ].person.name+'" src="'+result.data[ i ].person.image_url+'"/>'+
+              $('<li id="'+result.data[ i ].id+'">'+
+              '<img class="avatar" title="'+result.data[ i ].name+'" alt="'+result.data[ i ].name+'" src="'+result.data[ i ].image_url+'"/>'+
               '<div class="content" style="position: absolute;left: 60px;top: 0">'+
-              result.data[ i ].person.name+
+              result.data[ i ].name+
               '</div></li>'
               ))
              });
