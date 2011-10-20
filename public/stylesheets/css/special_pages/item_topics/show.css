@@ -118,13 +118,10 @@
     float: left;
     background-color: white;
     padding: 10px;
-<<<<<<< HEAD
-    margin-bottom: 15px; }
-=======
+    margin-bottom: 15px;
     -moz-border-radius: 4px;
     -webkit-border-radius: 4px;
     border-radius: 4px; }
->>>>>>> db59e8648ca17df51b604e05447a9600ccbaad02
     .right_column .related .related_title {
       width: 236px;
       position: relative;

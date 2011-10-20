@@ -64,9 +64,10 @@
           = f.label 'join_mode_3', t('groups.join_mode.invite_by_admin') 
         = error_on(@group, :join_mode)
         - unless is_edit
-          %span.sync_to_weibo
-            = check_box_tag 'sina_weibo', 'yes', true  
-            = label_tag 'sina_weibo', '同时发布到新浪微博'
+          - if @is_binded
+            %span.sync_to_weibo
+              = check_box_tag 'sina_weibo', 'yes', true  
+              = label_tag 'sina_weibo', '同时发布到新浪微博'
       .field.hide
         = f.text_field :image_url_large
         = f.text_field :image_url_medium

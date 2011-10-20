@@ -6,6 +6,8 @@ class Location < ActiveRecord::Base
   has_one :profiles
 
   def to_s 
-    city.name + district.name + detail
+    c_name = city ? city.name : ""
+    d_name = district ? district.name : ""
+    c_name + d_name + detail
   end
 end

@@ -19,8 +19,7 @@ class Group < ActiveRecord::Base
   belongs_to :audit_person, :foreign_key => "audit_person_id", :class_name => 'Person'
   attr_accessor :invited_people
 
-  validates_presence_of :name, :description, :item_id, :city_id, :district_id,
-                        :join_mode,
+  validates_presence_of :name, :description, :item_id, :city_id, :join_mode,
                         :message => I18n.t('activerecord.errors.messages.blank')
 
   validates_length_of :name, :maximum => 30

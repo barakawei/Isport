@@ -25,7 +25,9 @@ if FileTest.exist?(city_file_name)
     if province
       line.strip!
       line.delete! "省"
-      line.delete! "自治区"
+      if line != "特别行政区"
+        line.delete! "自治区"
+      end
       if province_id != 0
         City.find_or_create_by_name_and_province_id(:name => "其他", :province_id => province_id)
       end

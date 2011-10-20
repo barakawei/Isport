@@ -31,8 +31,10 @@ class GroupsController < ApplicationController
   end
 
   def new
-    @group = Group.new(:join_mode => 4)
-    @group.city = City.first
+    auth = current_user.authorizations.first
+    @is_binded = !auth.nil?
+    @group = Group.new(:join_mode => Group::JOIN_FREE)
+    @group.city = current_user.person.location.city 
     @friends = current_user.friends
     @step = 1
     @steps = [I18n.t('groups.new_group_wizard.step_1'),I18n.t('groups.new_group_wizard.step_2')]
