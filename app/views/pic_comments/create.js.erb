@@ -4,7 +4,7 @@ function processComment(picId,commentId,html){
 
     if( $(".comment[id='"+commentId+"']").length === 0 ) {
       var pic_comments = $(".pic_comments[id='"+picId+"']");
-      pic_comments.append($(html).fadeIn( 100 ));
+      pic_comments.append(html);
       $(".comment[id='"+commentId+"']").css("opacity","100" );
       $(".comment[id='"+commentId+"']").css("filter","alpha(opacity=100)");
       comment_form = $( "#lightbox-comment").find( ".comment_form" );
