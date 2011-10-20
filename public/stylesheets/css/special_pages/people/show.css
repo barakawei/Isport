@@ -64,7 +64,7 @@
           display: none; }
     .events_panel .event_box_panel .event_box {
       width: 300px;
-      margin: 0 10px 14px 15px;
+      margin: 0 8px 14px 8px;
       float: left; }
       .events_panel .event_box_panel .event_box .event_border {
         background: url(/images/ui/event_border.png) no-repeat scroll 0 0;
@@ -507,8 +507,7 @@ dd {
   border: 1px solid #dce4e6;
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
-  border-radius: 3px;
-  behavior: url(/javascripts/PIE.htc); }
+  border-radius: 3px; }
   .element_more:hover {
     color: #666666; }
 
@@ -522,7 +521,7 @@ dd {
   margin-top: 20px; }
   .person_left_bar .avatar_panel_container #followed_people .title, .person_left_bar .avatar_panel_container #befollowed_people .title {
     background-color: white;
-    padding: 10px; }
+    padding: 8px; }
     .person_left_bar .avatar_panel_container #followed_people .title .title_bar, .person_left_bar .avatar_panel_container #befollowed_people .title .title_bar {
       border-bottom: 1px solid #d5ddde;
       padding-bottom: 3px; }
@@ -533,10 +532,10 @@ dd {
     .person_left_bar .avatar_panel_container #followed_people .title .link, .person_left_bar .avatar_panel_container #befollowed_people .title .link {
       float: right; }
   .person_left_bar .avatar_panel_container #followed_people .contacts, .person_left_bar .avatar_panel_container #befollowed_people .contacts {
-    padding-left: 10px; }
+    padding-left: 8px; }
     .person_left_bar .avatar_panel_container #followed_people .contacts .person_avatar_detail, .person_left_bar .avatar_panel_container #befollowed_people .contacts .person_avatar_detail {
-      height: 43px;
-      width: 43px; }
+      height: 42px;
+      width: 42px; }
 
 .person_albums {
   position: relative;
