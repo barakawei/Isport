@@ -91,6 +91,8 @@ class Pic < ActiveRecord::Base
     return false if self.processed? || (!unprocessed_image.path.nil? && unprocessed_image.path.include?('.gif'))
     if self.pic_type == "avatar" || self.pic_type == "upload_avatar" || (self.album && self.album.name == "avatar")
       avatar_processed_image.store!(unprocessed_image) 
+      self.image_width = 200 
+      self.image_height = 200
     else
       processed_image.store!(unprocessed_image) 
     end

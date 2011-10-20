@@ -149,7 +149,6 @@ h1 .description, h2 .description, h3 .description, h4 .description {
   margin-right: 40px; }
 
 .stream_element {
-  font-size: 13px;
   min-height: 50px;
   border-top: 1px solid #ebebeb;
   padding-left: 20px;
@@ -447,8 +446,7 @@ a.button {
   text-align: center;
   cursor: pointer; }
   .glass_button:hover, .big_button:hover {
-    background-color: #e76b75;
-    margin-top: 2px; }
+    background-color: #e76b75; }
   .glass_button a, .big_button a {
     color: white; }
 
@@ -560,6 +558,11 @@ input {
       float: left;
       height: 41px;
       width: 15px; }
+    .app_title_bar .app_header_box .box_all .box_right_blue {
+      background: url("/images/ui/border_hdrs_blue.png") no-repeat scroll -15px 0 transparent;
+      float: left;
+      height: 41px;
+      width: 15px; }
 .app_title_bar .bottom_pic {
   background: url("/images/ui/border_bubble_point.gif") no-repeat scroll 0 0 transparent;
   background-color: #697d84;
@@ -568,6 +571,12 @@ input {
   width: 10px; }
 .app_title_bar .bottom_pic_white {
   background: url("/images/ui/border_bubble_point_white.png") no-repeat scroll 0 0 transparent;
+  background-color: #697d84;
+  height: 10px;
+  margin: 0 0 10px 20px;
+  width: 10px; }
+.app_title_bar .bottom_pic_blue {
+  background: url("/images/ui/border_bubble_point_blue.png") no-repeat scroll 0 0 transparent;
   background-color: #697d84;
   height: 10px;
   margin: 0 0 10px 20px;
@@ -633,14 +642,14 @@ input {
   .follow_button .following:hover {
     background-color: #e76b75; }
     .follow_button .following:hover span {
-      color: #e76b75;
+      color: #ff99cc;
       background: url(/images/ui/icon-x.png) no-repeat 0 50%; }
 .follow_button .follow {
   background-color: lightGrey; }
   .follow_button .follow span {
     padding-left: 18px;
     background: url(/images/ui/follow-gray.gif) no-repeat 0 50%;
-    color: #777777; }
+    color: #999999; }
   .follow_button .follow:hover {
     background-color: #8aba56; }
     .follow_button .follow:hover span {
@@ -947,11 +956,15 @@ a.app_black_link_button {
     right: 4px;
     top: 4px; }
     .pic_element .pic_comment .count {
+      line-height: 16px;
       background-color: white;
       border-radius: 4px 4px 4px 4px;
       -webkit-border-radius: 4px;
       -moz-border-radius: 4px;
-      padding: 1px 7px;
+      padding-top: 1px;
+      padding-bottom: 1px;
+      padding-left: 5px;
+      padding-right: 5px;
       color: #546266; }
     .pic_element .pic_comment .arrow {
       border-right: 4px solid transparent;

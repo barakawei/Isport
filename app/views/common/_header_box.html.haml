@@ -9,10 +9,14 @@
           =title
       - if defined?(white_angle)
         .box_right_white
+      -elsif defined?(blue_angle)
+        .box_right_blue
       -else
         .box_right
   .clear
   - if defined?(white_angle)
     .bottom_pic_white{:style => ("background-color:#{background_color}" if defined?(background_color))}
+  -elsif defined?(blue_angle)
+    .bottom_pic_blue{:style => ("background-color:#{background_color}" if defined?(background_color))}
   -else
     .bottom_pic{:style => ("background-color:#{background_color}" if defined?(background_color))}

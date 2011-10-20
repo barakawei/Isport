@@ -29,13 +29,15 @@
           .left='发起人:'
           .content=link_to @event.person.name, person_path(@event.person)
     .span-6#map_div
-      %h4.app_module_title.inline='活动地图'
-      %span.right= link_to '详细>>', event_map_path(@event)
+      .title_bar
+        %h4.app_module_title.inline='活动地图'
+        %span.right= link_to '详细', event_map_path(@event),:class => 'right link_to_all'
       #map
     - if @participants.size > 0
       .span-6.members
-        %h4.app_module_title.inline='活动成员'
-        = link_to '全部', participants_path, :class => 'right link_to_all' 
+        .title_bar
+          %h4.app_module_title.inline='活动成员'
+          = link_to '全部', participants_path, :class => 'right link_to_all' 
         .person_array
           - @participants.each do |member|
             .member
@@ -43,8 +45,9 @@
     
     - if @references.size > 0
       .span-6.members
-        %h4.app_module_title.inline='喜欢该活动的人'
-        = link_to '全部', references_path, :class => 'right link_to_all' 
+        .title_bar
+          %h4.app_module_title.inline='喜欢该活动的人'
+          = link_to '全部', references_path, :class => 'right link_to_all' 
         .person_array
           - @references.each do |member|
             .member

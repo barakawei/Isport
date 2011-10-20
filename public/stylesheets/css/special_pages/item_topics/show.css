@@ -24,14 +24,14 @@
       .topic_area .topic_info .detfollow:hover {
         background-color: #e76b75; }
         .topic_area .topic_info .detfollow:hover span {
-          color: #e76b75;
+          color: #ff99cc;
           background: url(/images/ui/icon-x.png) no-repeat 0 50%; }
     .topic_area .topic_info .tfollow {
       background-color: lightGrey; }
       .topic_area .topic_info .tfollow span {
         padding-left: 18px;
         background: url(/images/ui/follow-gray.gif) no-repeat 0 50%;
-        color: #777777; }
+        color: #999999; }
       .topic_area .topic_info .tfollow:hover {
         background-color: #8aba56; }
         .topic_area .topic_info .tfollow:hover span {
@@ -175,9 +175,6 @@
         height: 30px;
         margin-right: 5px;
         margin-top: 10px; }
-        .right_column .topic_followers .followers .follower .avatar_container img {
+        .right_column .topic_followers .followers .follower .avatar {
           width: 30px;
           height: 30px; }
-        .right_column .topic_followers .followers .follower .avatar_container .avatar_show img {
-          width: 50px;
-          height: 50px; }
