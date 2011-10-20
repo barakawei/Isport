@@ -9,7 +9,7 @@
       .comment_top
         .author_box
           = person_image_link(author)
-        .author_text
+        .author_name
           = link_to author.name, person_path(author) 
         .comment_text
           %span.content=simple_format comment.content
@@ -52,9 +52,9 @@
   .response_form.hide
     .response_box
       = person_image_link(current_person) 
-      .res_text
-        .res_text_inner
-          .res_text_frame
+      .res_text_white
+        .res_text_inner_white
+          .res_text_frame_white
             %p.res_author=current_person.name
             =form_tag event_event_comments_path(event.id) do
               = text_area_tag "comment[content]"
@@ -145,7 +145,7 @@
     response_form.find('#comment_commentable_id').val(block.attr('comment_id')); 
     response_form.slideDown('fast', function() {
       response_form.find('textarea')
-                   .val('回复'+ block.find('a.author_name').html() + ":")
+                   .val('回复'+ block.find('.author_name a').html() + ":")
                    .end().find('a.cancel').click(function() {
                       link.show();
                       response_form.slideUp();                   
