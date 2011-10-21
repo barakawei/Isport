@@ -31,7 +31,7 @@ class ItemTopic < ActiveRecord::Base
 
   def self.friends(person)
     ItemTopic.joins(:item_topic_involvements).where(:item_topic_involvements => {:person_id => person.user.friends})
-             .order('item_topic_involvements.created_at desc').limit(20) 
+             .order('item_topic_involvements.created_at desc').select('DISTINCT(item_topics.id)').limit(20) 
   end
 
   def self.hot(person)
