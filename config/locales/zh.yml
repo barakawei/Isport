@@ -99,9 +99,12 @@ zh:
   status_message:
     show_more_comments: "%{number}条旧的评论"
     hide_comments:  "隐藏评论"
+    pass_event: "刚刚发起了活动%{event_link}，有兴趣的朋友赶快报名"
+    reference_event: "推荐个活动%{event_link},有兴趣的朋友可以去看看"
   albums:
     status_message: "信息中的照片"
     avatar: "头像照片"
+    album_name: "相册名称:"
 
   events:
       pics: '活动'

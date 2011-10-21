@@ -34,4 +34,9 @@ module AlbumsHelper
       album.name
     end
   end
+
+  def album_link( person,album )
+    name = album_name_tag( album )
+    person_album_path = "<a href='/people/#{person.id}/albums/#{album.id}''>#{name}</a>".html_safe
+  end
 end

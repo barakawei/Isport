@@ -8,7 +8,7 @@ class Pic < ActiveRecord::Base
   after_destroy :update_owner_counter
 
   belongs_to :album
-  belongs_to :status_message
+  belongs_to :status_message, :dependent => :destroy
   belongs_to :author, :class_name => 'Person'
   has_many :pic_comments, :dependent => :destroy
   has_many :comments, :class_name => 'PicComment',:dependent => :destroy
