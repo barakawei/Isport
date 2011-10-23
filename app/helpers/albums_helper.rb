@@ -25,9 +25,9 @@ module AlbumsHelper
   def album_name_tag( album )
     name = album.name
     if name == "status_message"
-      t("albums.status_message")
+      I18n.t("albums.status_message")
     elsif name == "avatar"
-      t("albums.avatar")
+      I18n.t("albums.avatar")
     elsif album.imageable.instance_of? Event
       album.imageable.title
     else
