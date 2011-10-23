@@ -1,5 +1,5 @@
 class Post < ActiveRecord::Base
-  belongs_to :author, :class_name => 'Person'
+  belongs_to :author, :class_name => 'Person', :counter_cache => "twitter_posts_count" 
   has_many :post_visibilities
   has_many :people, :through => :post_visibilities
   has_many :comments, :dependent => :destroy

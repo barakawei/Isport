@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111018143400) do
+ActiveRecord::Schema.define(:version => 20111023131325) do
 
   create_table "administrators", :force => true do |t|
     t.integer  "user_id"
@@ -302,6 +302,7 @@ ActiveRecord::Schema.define(:version => 20111018143400) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "twitter_posts_count"
   end
 
   add_index "people", ["user_id"], :name => "index_people_on_user_id", :unique => true
@@ -325,8 +326,8 @@ ActiveRecord::Schema.define(:version => 20111018143400) do
     t.string   "random_string"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "status_message_id"
     t.integer  "position"
+    t.integer  "status_message_id"
     t.integer  "comments_count",         :default => 0
     t.string   "avatar_processed_image"
     t.integer  "image_width"
@@ -353,7 +354,7 @@ ActiveRecord::Schema.define(:version => 20111018143400) do
     t.boolean  "pending",           :default => false
     t.string   "random_string"
     t.integer  "item_id"
-    t.integer  "post_d"
+    t.integer  "post_id"
     t.integer  "item_topic_id"
   end
 
