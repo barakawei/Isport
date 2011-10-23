@@ -28,11 +28,10 @@
     .comment_form{:class => ('hide' if post.comments.size == 0)}
       .author_avatar
         = person_image_link(current_user,:thumb_small)
-      = form_for([post,Comment.new], :remote => true) do |f|
-        = f.text_area :content, :rows => 2,:require => true
+      = form_for([post,Comment.new], :remote => true,:html=>{:class => "mention_form",:data_id => post.id}) do |f|
+        = f.text_area :content, :rows => 2,:require => true,:class => 'content',:data_id => post.id
+        = hidden_field_tag :contacts,'',:class => 'contacts'
         .comment_button.hide
           = f.submit "回复", :class => 'glass_button_ie',"data-disable-with" => t("posting")
           .cancle.glass_button_ie
             = "取消"
-
-

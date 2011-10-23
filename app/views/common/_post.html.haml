@@ -1,12 +1,11 @@
 =content_for :head do
   = include_javascripts :status_message
   = include_stylesheets :sepcial_pages_home_index, :media => 'all'
-  = include_javascripts :mention
 .post_tool
   .create_post
-    = form_for(StatusMessage.new,:remote => true,:html => { :multipart => true }) do |status|
+    = form_for(StatusMessage.new,:remote => true,:html => { :multipart => true,:class => "new_status_message mention_form" }) do |status|
       = status.text_area :content,:class => 'content',:require => true
-      = hidden_field_tag :contacts
+      = hidden_field_tag :contacts,'',:class => 'contacts'
       = label_tag 'weibo', '说点什么吧...', :class => 'placeholder'
       -if @topic.nil?
         = hidden_field_tag :topic_id 

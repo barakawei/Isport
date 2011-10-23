@@ -1,8 +1,9 @@
 var Mention = {
   cachedInput : false,
+  contacts_input : false,
   input: function(){
     if(!Mention.cachedInput){
-      Mention.cachedInput = Mention.form().find('#status_message_content');
+      Mention.cachedInput = Mention.form().find('.content[name]');
     }
     return Mention.cachedInput;
   }, 
@@ -10,7 +11,7 @@ var Mention = {
   cachedForm : false,
   form: function(){
     if(!Mention.cachedForm){
-      Mention.cachedForm = $('#new_status_message');
+      Mention.cachedForm = $('.mention_form');
     }
     return Mention.cachedForm;
   },
@@ -22,7 +23,7 @@ var Mention = {
   cachedHiddenInput : false,
   hiddenInput: function(){
     if(!Mention.cachedHiddenInput){
-      Mention.cachedHiddenInput = Mention.form().find('#contacts');
+      Mention.cachedHiddenInput = $( this ).closest(".mention_form").find('.contacts');
     }
     return Mention.cachedHiddenInput;
   },
@@ -61,7 +62,7 @@ var Mention = {
                     };
       Mention.autocompletion.mentionList.push(mention);
       Mention.oldInputContent = visibleInput.val();
-      Mention.hiddenInput().val(Mention.autocompletion.mentionList.generateHiddenInput(visibleInput.val()));
+      contacts_input.val(Mention.autocompletion.mentionList.generateHiddenInput(visibleInput.val()));
     },
 
     mentionList : {
@@ -166,20 +167,22 @@ var Mention = {
         return resultMentions;
       }
     },
-    repopulateHiddenInput: function(){
-      var newHiddenVal = Mention.autocompletion.mentionList.generateHiddenInput(Mention.input().val());
-      if(newHiddenVal != Mention.hiddenInput().val()){
-        Mention.hiddenInput().val(newHiddenVal);
+    repopulateHiddenInput: function(input){
+      var newHiddenVal = Mention.autocompletion.mentionList.generateHiddenInput(input.val());
+      if(newHiddenVal != contacts_input.val()){
+        contacts_input.val(newHiddenVal);
       }
     },
 
     keyUpHandler : function(event){
-      Mention.autocompletion.repopulateHiddenInput();
+      var input = $( this );
+      Mention.autocompletion.repopulateHiddenInput(input);
       //Mention.determineSubmitAvailability();
     },
 
     keyDownHandler : function(event){
-      var input = Mention.input();
+      var input = $( this );
+      contacts_input = $( this ).closest(".mention_form").find('.contacts');
       var selectionStart = input[0].selectionStart;
       var selectionEnd = input[0].selectionEnd;
       var isDeletion = (event.keyCode == KEYCODES.DEL && selectionStart < input.val().length) || (event.keyCode == KEYCODES.BACKSPACE && (selectionStart > 0 || selectionStart != selectionEnd));
@@ -246,11 +249,6 @@ var Mention = {
     }
   },
 };
-$(document).ready(function() {
-  Mention.autocompletion.initialize();
-  Mention.input().keydown(Mention.autocompletion.keyDownHandler);
-  Mention.input().keyup(Mention.autocompletion.keyUpHandler);
-  
-});  
+ 
 
 

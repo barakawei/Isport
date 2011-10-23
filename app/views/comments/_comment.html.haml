@@ -7,9 +7,13 @@
       %span.details
         =":" 
       %span.comment_body
-        = comment.content
-    %span.time.timeago
-      = how_long_ago( comment )
+        = comment_content_tag(comment)
+    .replay_info
+      %span.time.timeago
+        = how_long_ago( comment )
+      - if comment.author.id != current_user.person.id
+        %span.replay_comment
+          =link_to "回复","#",:class => "replay"
   .action
     - if comment.author.id == current_user.person.id
       .delete

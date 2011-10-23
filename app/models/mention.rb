@@ -1,7 +1,7 @@
 class Mention < ActiveRecord::Base
   belongs_to :post
   belongs_to :person
-  validates :post, :presence => true
+  belongs_to :comment
   validates :person, :presence => true
   after_destroy :delete_notification
 
@@ -15,7 +15,12 @@ class Mention < ActiveRecord::Base
   end
 
   def dispatch_mention(action=false)
-    Dispatch.new(self.post.author.user, self,action).notify_user
+    if self.post
+      user = self.post.author.user
+    else
+      user =self.comment.author.user
+    end
+    Dispatch.new(user, self,action).notify_user
   end
 
   def delete_notification

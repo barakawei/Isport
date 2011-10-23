@@ -20,14 +20,7 @@ class StatusMessagesController < ApplicationController
     if @status_message.save
       if params['sina_weibo'] == 'yes' && auth
         if pics.empty?
-          puts '******************'
-          puts '******************'
-          puts '******************'
-          puts Time.now
           auth.create_weibo(@status_message.weibo_status("http://#{request.host}:#{request.port}/item_topics/"))
-          puts Time.now
-          puts '******************'
-          puts '******************'
         else
           auth.create_weibo_with_photo(@status_message.weibo_status("http://#{request.host}:#{request.port}/item_topics/"), pics.first.weibo_image_file)
         end

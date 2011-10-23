@@ -74,7 +74,6 @@ class StatusMessage < Post
 
   def mentioned_people
     if self.persisted?
-      create_mentions if self.mentions.empty?
       self.mentions.map{ |mention| mention.person }
     else
       mentioned_people_from_string

@@ -11,6 +11,8 @@ function processComment(postId,commentId,html){
       $(".comment[id='"+commentId+"']").css("opacity","100" );
       post.removeClass( "hide" );
       comment.find( "#comment_content" ).val("");
+      comment.find(".contacts").val("");
+      Mention.clear();
       }
 }
 
