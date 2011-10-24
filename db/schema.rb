@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111022055950) do
+ActiveRecord::Schema.define(:version => 20111023131325) do
 
   create_table "administrators", :force => true do |t|
     t.integer  "user_id"
@@ -303,6 +303,7 @@ ActiveRecord::Schema.define(:version => 20111022055950) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "twitter_posts_count"
   end
 
   add_index "people", ["user_id"], :name => "index_people_on_user_id", :unique => true

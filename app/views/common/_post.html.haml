@@ -1,6 +1,7 @@
 =content_for :head do
   = include_javascripts :status_message
   = include_stylesheets :sepcial_pages_home_index, :media => 'all'
+  = include_javascripts :mention
 .post_tool
   .create_post
     = form_for(StatusMessage.new,:remote => true,:html => { :multipart => true,:class => "new_status_message mention_form" }) do |status|
