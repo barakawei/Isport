@@ -13,7 +13,7 @@
         = how_long_ago( comment )
       - if comment.author.id != current_user.person.id
         %span.replay_comment
-          =link_to "回复","1",:class => "replay"
+          =link_to "回复","javascript:void(0)",:class => "replay"
   .action
     - if comment.author.id == current_user.person.id
       .delete
