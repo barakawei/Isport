@@ -45,10 +45,21 @@ class Person < ActiveRecord::Base
 
   scope :friends_of, lambda {|user| where("user_id = ?", user.id)} 
   scope :at_city, lambda {|city_id| joins(:profile => :location).where(:locations => {:city_id => city_id})}
+  scope :potential_interested_people, lambda {|person| joins(:favorites).where(:favorites => {:item_id => person.interests})
+                                                                        .select('DISTINCT(people.id)')}
+  scope :not_in, lambda {|ids| where("people.id not in (?)", ids)}
 
   delegate :name, :to => :profile
   delegate :email, :to => :user
   delegate :location, :to => :profile
+
+  def self.potential_interested_people_limit(person)
+    f_ids= person.user.friends.collect{|f| f.id}
+    people = potential_interested_people(person)
+              .at_city(person.profile.location.city.id).not_in(f_ids).limit(50) 
+    people = potential_interested_people(person).not_in(f_ids).limit(50) if people.size == 0 
+    people.sort_by{rand}[0..2]
+  end
 
   def init_album
     Album.find_or_create_by_imageable_id_and_name(:imageable_id =>self.id,:name => 'status_message',:imageable_type =>'Person')
@@ -99,6 +110,10 @@ class Person < ActiveRecord::Base
     event_albums = Album.joins( :pics ).where( "albums.imageable_type=?","Event" ).where(:imageable_id => events).where("pics.author_id" => self).group("albums.id")
     albums = person_albums + event_albums
     albums.sort! { |a,b| a.created_at <=> b.created_at } 
+  end
+
+  def common_interests(person)
+    interests & person.interests
   end
 
 end

@@ -29,6 +29,7 @@ class HomeController < ApplicationController
       @recent_topics = @person.item_topics.order('created_at desc').limit(8)
       #@post = Post.where( :author_id => current_user.person.id,:type => 'StatusMessage' ).order( "posts.created_at DESC" ).limit( 1 )
       @select_tab = 'home'
+      @potential_friends = Person.potential_interested_people_limit(current_user.person)
       render
     end
   end

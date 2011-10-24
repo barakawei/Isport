@@ -71,6 +71,12 @@ class UsersController < ApplicationController
     render 'set_account' 
   end
 
+  def potential_interested_people
+    person = current_user.person 
+    @people = Person.potential_interested_people_limit(current_user.person)
+    render :partial => 'people/potential_interested_people',  :locals => { :people => @people}
+  end
+
   def update_password
     @user = current_user
     @auth = @user.authorizations.first 
