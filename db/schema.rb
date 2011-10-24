@@ -327,8 +327,8 @@ ActiveRecord::Schema.define(:version => 20111023131325) do
     t.string   "random_string"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "status_message_id"
     t.integer  "position"
+    t.integer  "status_message_id"
     t.integer  "comments_count",         :default => 0
     t.string   "avatar_processed_image"
     t.integer  "image_width"
@@ -355,7 +355,7 @@ ActiveRecord::Schema.define(:version => 20111023131325) do
     t.boolean  "pending",           :default => false
     t.string   "random_string"
     t.integer  "item_id"
-    t.integer  "post_d"
+    t.integer  "post_id"
     t.integer  "item_topic_id"
   end
 

@@ -50,6 +50,7 @@ class ItemsController < ApplicationController
     @groups = @item.hot_groups(EVELIMIT, @city) 
 
     @topics = ItemTopic.of_item(@item).recent_hot.limit(50)
+    @topics = ItemTopic.of_item(@item).order_by_hot.limit(50) unless @topics.length > 0
     @topics = @topics.sort_by{rand}[0..7]
 
     @select_tab = 'item'

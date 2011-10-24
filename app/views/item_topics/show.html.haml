@@ -33,7 +33,7 @@
       .stream.post_element_panel
 
   .right_column
-    - if @related.size > 0
+    - if @related.length > 0
       .related
         .related_title
           .name
@@ -45,14 +45,15 @@
         .related_topics
           = render :partial => 'item_topics/related_topics',:collection => @related,:as => :topic
 
-    .topic_followers
-      .followers_title
-        = "关注该话题的人"
-      
-      .followers
-        -@followers.each_with_index do |follower, index|
-          .follower{:class => ("last" if (index+1)%4==0)}
-            = person_image_link(follower)
+    - if @followers.length > 0
+      .topic_followers
+        .followers_title
+          = "关注该话题的人"
+        
+        .followers
+          -@followers.each_with_index do |follower, index|
+            .follower{:class => ("last" if (index+1)%4==0)}
+              = person_image_link(follower)
 
 :javascript
   $.get("#{show_topic_posts_path( @topic )}");

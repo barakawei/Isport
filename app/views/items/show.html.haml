@@ -20,25 +20,27 @@
           = link_to t('items.unlike' ), url_for(:action=> "remove_fan", :id => @item.id), :class => "item_unmark" 
           = t('items.unlikeinfo', :name => @item.name)
 
-    .topics_area
-      .title
-        .flag_name
-          = @item.name + "话题"
-        .link_more
-          = link_to "更多", search_item_topic_path(@item.id)
+    - if @topics.length > 0
+      .topics_area
+        .title
+          .flag_name
+            = @item.name + "话题"
+          .link_more
+            = link_to "更多", search_item_topic_path(@item.id)
 
-      .topics
-        = render :partial => 'item_topics/related_topics',:collection => @topics,:as => :topic
+        .topics
+          = render :partial => 'item_topics/related_topics',:collection => @topics,:as => :topic
 
-    .item_star
-      .star_title
-        .title_name
-          = @item.name + t('items.mavin')
+    - if @actors.length > 0
+      .item_star
+        .star_title
+          .title_name
+            = @item.name + t('items.mavin')
 
-      .stars
-        -@actors.each_with_index do |person, index|
-          .star_one{:class => ("last" if (index+1)%4==0)}
-            = person_image_link(person) 
+        .stars
+          -@actors.each_with_index do |person, index|
+            .star_one{:class => ("last" if (index+1)%4==0)}
+              = person_image_link(person) 
 
   .itemright
     .item_info
