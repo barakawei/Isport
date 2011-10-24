@@ -2,7 +2,7 @@
     stream_element = $( this ).closest(".stream_element");
     commentBlock = stream_element.find(".comment_form");
     commentBlock.removeClass( "hide" );    
-    textarea = commentBlock.find("textarea");
+    textarea = commentBlock.find("#comment_content");
     textarea.focus(); 
     replay_comment = $( this ).closest(".replay_comment");
     if ( replay_comment.length != 0 ){
@@ -64,15 +64,22 @@
     return false;
   }
 
-  $( ".comment_form textarea" ).live("focus", function(){ 
+  $( ".content[name]" ).live("focus", function(){ 
+    if ( $( this ).val() == '' ){
+      $( ".content[name]" ).val( '' );
+      $(".contacts").val("");
+      Mention.clear();
+    }
     comment_button = $( this ).closest( ".comment_form" ).find( ".comment_button" ); 
     comment_button.removeClass( "hide" );
   });
+  
 
   $( ".cancle" ).live( "click",function(  ){
     comment_form = $( this ).closest( ".comment_form" );
-    comment_form.find( "textarea" ).val( '' );
+    comment_form.find( "#comment_content" ).val( '' );
     comment_form.find(".contacts").val("");
+    Mention.clear();
     if( $( ".comments",comment_form.closest( '.element_body' )).length == 0 ){
       comment_form.addClass( "hide" );
         }else{

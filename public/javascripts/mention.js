@@ -249,6 +249,11 @@ var Mention = {
     }
   },
 };
+$( function() {
+Mention.autocompletion.initialize();
+Mention.input().die();
+Mention.input().live( "keydown", Mention.autocompletion.keyDownHandler);
+Mention.input().live( "keyup", Mention.autocompletion.keyUpHandler);
+});
  
-
 

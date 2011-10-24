@@ -5,11 +5,6 @@ $(' .events_panel').append(content);
 }else{
 $(' .events_panel').html(content);
 }
-
-Mention.autocompletion.initialize();
-Mention.input().keydown(Mention.autocompletion.keyDownHandler);
-Mention.input().keyup(Mention.autocompletion.keyUpHandler);
-
 event_tab = '<%=@event_tab%>';
 if(event_tab != ''  ){
   $( '.current' ).removeClass( 'current' );
