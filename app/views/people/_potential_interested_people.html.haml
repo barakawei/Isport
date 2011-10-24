@@ -6,7 +6,7 @@
     - commons_limit = commons[0..6]
     .person_item
       .avatar_area
-        = person_image_link(p)
+        = link_to person_image_tag(p), person_path(p)
       .desc_area
         = link_to truncate(p.name, :length => 8), person_path(p), :class => 'pname'
         %span.city= "@#{p.location.city.name}"
