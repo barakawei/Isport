@@ -56,7 +56,7 @@ class Person < ActiveRecord::Base
   delegate :location, :to => :profile
 
   def self.potential_interested_people_limit(person)
-    f_ids= person.user.friends.collect{|f| f.id}
+    f_ids= person.user.friends.collect{|f| f.id} + [person.id]
     people = potential_interested_people(person)
               .at_city(person.profile.location.city.id).not_in(f_ids).limit(50) 
     people = potential_interested_people(person).not_in(f_ids).limit(50) if people.size == 0 
