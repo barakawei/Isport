@@ -34,7 +34,9 @@ class HomeController < ApplicationController
   end
 
   def show_post
-    @posts = Post.by_view( current_user.person ).order( "posts.created_at DESC" ).paginate(:page => params[:page], :per_page => 30)
+    followed_people = current_user.followed_people
+    people_id = followed_people.map{|p| p.id} + [current_user.person.id]
+    @posts = Post.where( :author_id => people_id ).order( "posts.created_at DESC" ).paginate(:page => params[:page], :per_page => 30)
     @event_tab = 'post'
     respond_with @posts
   end

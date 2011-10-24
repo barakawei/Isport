@@ -55,7 +55,9 @@ class StatusMessagesController < ApplicationController
       @topic = ItemTopic.find(params[:id]) 
       @posts = @topic.posts.refresh( current_user ).order( "posts.created_at DESC" )
     else
-      @posts = Post.by_view( current_user.person ).refresh( current_user ).order( "posts.created_at DESC" )
+      followed_people = current_user.followed_people
+      people_id = followed_people.map{|p| p.id} + [current_user.person.id]
+      @posts = Post.where( :author_id => people_id ).refresh( current_user ).order( "posts.created_at DESC" )
     end
     respond_with @posts
   end
