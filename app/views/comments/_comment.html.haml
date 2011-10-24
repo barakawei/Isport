@@ -7,11 +7,14 @@
       %span.details
         =":" 
       %span.comment_body
-        = comment_content_tag(comment)
+        -if comment.instance_of?(PicComment)
+          = comment.content
+        -else
+          = comment_content_tag(comment)
     .replay_info
       %span.time.timeago
         = how_long_ago( comment )
-      - if comment.author.id != current_user.person.id
+      - if comment.author.id != current_user.person.id && comment.instance_of?(Comment)
         %span.replay_comment
           =link_to "回复","javascript:void(0)",:class => "replay"
   .action
