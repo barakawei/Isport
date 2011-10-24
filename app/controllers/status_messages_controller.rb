@@ -25,7 +25,7 @@ class StatusMessagesController < ApplicationController
           auth.create_weibo_with_photo(@status_message.weibo_status("http://#{request.host}:#{request.port}/item_topics/"), pics.first.weibo_image_file)
         end
       end
-      @status_message.dispatch_post 
+      #@status_message.dispatch_post 
     end
     respond_with @status_message
   end
@@ -57,7 +57,7 @@ class StatusMessagesController < ApplicationController
     else
       followed_people = current_user.followed_people
       people_id = followed_people.map{|p| p.id} + [current_user.person.id]
-      @posts = Post.where( :author_id => people_id ).refresh( current_user ).order( "posts.created_at DESC" )
+      @posts = Post.where( :author_id => people_id ).where( "type='StatusMessage'" ).refresh( current_user ).order( "posts.created_at DESC" )
     end
     respond_with @posts
   end

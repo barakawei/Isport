@@ -9,6 +9,7 @@
       contacts_input = stream_element.find( "#contacts" );
       author_name = $( this ).closest(".comment_content").find( ".from a" ).html();
       author_id = $( this ).closest(".comment").find( ".author_avatar .person_avatar_detail" ).attr("data_person_id");
+      Mention.clear();
       content = "回复@"+author_name+": ";
       textarea.val(content); 
       contacts_content = "回复@{"+author_name+";"+author_id+"}";
