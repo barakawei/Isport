@@ -1,0 +1,62 @@
+.interested_people .person_item {
+  margin-top: 15px; }
+  .interested_people .person_item .avatar_area {
+    vertical-align: top;
+    display: inline-block; }
+  .interested_people .person_item .desc_area {
+    width: 140px;
+    height: 50px;
+    display: inline-block;
+    margin-left: 5px;
+    position: relative; }
+    .interested_people .person_item .desc_area .follow_button_mini {
+      position: absolute;
+      top: 0px;
+      right: 0px; }
+      .interested_people .person_item .desc_area .follow_button_mini .follow, .interested_people .person_item .desc_area .follow_button_mini .following {
+        margin-top: 0; }
+    .interested_people .person_item .desc_area a.pname {
+      font-size: 13px;
+      line-height: 13px; }
+    .interested_people .person_item .desc_area a.follow {
+      margin-top: 5px;
+      display: block;
+      background-color: #bdbda3;
+      padding-left: 10px;
+      width: 40px;
+      color: white; }
+      .interested_people .person_item .desc_area a.follow:hover {
+        background-color: #888888; }
+    .interested_people .person_item .desc_area span.city {
+      display: block;
+      color: #888888; }
+    .interested_people .person_item .desc_area a.desc {
+      position: absolute;
+      bottom: 0px;
+      display: block;
+      color: #888888; }
+      .interested_people .person_item .desc_area a.desc span {
+        border-color: #888888 transparent transparent;
+        border-style: solid dashed dashed;
+        border-width: 4px 4px 0;
+        display: inline-block;
+        font-size: 0;
+        height: 0;
+        line-height: 0;
+        margin: 0 0 0 3px;
+        vertical-align: middle;
+        width: 0; }
+      .interested_people .person_item .desc_area a.desc span.up_arrow {
+        border-color: transparent transparent #888888;
+        border-style: dashed dashed solid;
+        border-width: 0 4px 4px; }
+      .interested_people .person_item .desc_area a.desc:hover {
+        text-decoration: underline; }
+    .interested_people .person_item .desc_area span.followed {
+      display: block;
+      margin-top: 5px; }
+  .interested_people .person_item .common_desc {
+    background-color: #f4f4f4;
+    margin-top: 5px;
+    width: 170px;
+    padding: 5px 10px; }

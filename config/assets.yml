@@ -176,6 +176,8 @@ stylesheets:
     - public/stylesheets/css/special_pages/people/edit_interests.css
   sepcial_pages_people_show:
     - public/stylesheets/css/special_pages/people/show.css
+  sepcial_pages_people_potential_friends:
+    - public/stylesheets/css/special_pages/people/potential_friends.css
 
   sepcial_pages_site_info_common:
     - public/stylesheets/css/special_pages/site_info/common.css
