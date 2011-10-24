@@ -194,6 +194,8 @@
     position: relative;
     padding: 8px;
     border-bottom: 1px dotted #cccccc; }
+    .comments .comment .replay_info {
+      font-size: 12px; }
   .comments .comment_content {
     margin-left: 36px; }
   .comments .timeago {

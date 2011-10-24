@@ -68,6 +68,25 @@ class Event < ActiveRecord::Base
   scope :all, lambda { select("*") }
   scope :open, lambda { where("is_private = ?", false)}
 
+  def pass
+    self.update_attributes(:status => Event::PASSED)
+    event_link ="%{event;#{self.id}}"
+    content = I18n.t "status_message.pass_event",:event_link => event_link
+    @status_message =StatusMessage.initialize(self.person.user,content)
+    if @status_message.save
+      @status_message.dispatch_post 
+    end 
+  end
+
+  def reference_event( user )
+    event_link ="%{event;#{self.id}}"
+    content = I18n.t "status_message.reference_event",:event_link => event_link
+    @status_message =StatusMessage.initialize(user,content)
+    if @status_message.save
+      @status_message.dispatch_post 
+    end 
+  end
+
   
   def name
     title

@@ -37,6 +37,10 @@ module NotificationsHelper
         translation(target_type, :actor_link => actor_link,:comment_link => comment_link,:event_link =>event_link )
       elsif note.instance_of?( Notifications::Mention )
         post = note.target.post
+        if post.nil?
+          post =  note.target.comment.post
+          target_type = "notifications.replay"
+        end
         post_link = "<a href='#{object_path(post)}'>#{t( 'message' )}</a>"
         translation(target_type, :actor_link => actor_link,:post_link => post_link)
       end

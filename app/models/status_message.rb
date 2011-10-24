@@ -1,5 +1,6 @@
 class StatusMessage < Post
   include ApplicationHelper
+  include AlbumsHelper
   has_many :pics, :dependent => :destroy
   attr_accessible :content
   attr_accessor :contacts
@@ -15,8 +16,10 @@ class StatusMessage < Post
   end
 
   def format_message(text)
-    if text.rindex("%{")
-      form_message = format_pic_upload(text)
+    if text.rindex("%{event")
+      form_message = format_event(text)
+    elsif text.rindex("%{album")
+      form_message = format_album(text)
     elsif text.rindex("@{")
       form_message = format_mention(text)
     else
@@ -45,7 +48,7 @@ class StatusMessage < Post
     form_message 
   end
 
-  def format_pic_upload( text )
+  def format_event( text )
     regex = /%\{([^;]+);([^\}]+)\}/
     form_message = text.to_str.gsub(regex) do |matched_string|
       events = self.event_from_string
@@ -57,9 +60,20 @@ class StatusMessage < Post
     form_message
   end
 
+  def format_album( text )
+    regex = /%\{([^;]+);([^\}]+)\}/
+    form_message = text.to_str.gsub(regex) do |matched_string|
+      albums = self.album_from_string
+      album = albums.detect{ |a|
+        a.id.to_s == $~[2] unless a.nil?
+      }
+      album ? album_link(self.author,album) : ""
+    end
+    form_message
+  end
+
   def mentioned_people
     if self.persisted?
-      create_mentions if self.mentions.empty?
       self.mentions.map{ |mention| mention.person }
     else
       mentioned_people_from_string
@@ -113,6 +127,16 @@ class StatusMessage < Post
     end
     id.empty? ? [] : Event.where(:id => id)
   end
+
+  def album_from_string
+    regex = /%\{(album);([^\}]+)\}/
+    return if self.content.nil?
+    id = self.content.scan(regex).map do |match|
+      match.last
+    end
+    id.empty? ? [] : Album.where(:id => id)
+  end
+
 end
 
 

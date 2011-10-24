@@ -19,6 +19,15 @@ class AlbumsController < ApplicationController
       end
       @album.pics << pics
     end
+    #post weibo
+    album_link ="%{album;#{@album.id}}"
+    @status_message =StatusMessage.initialize(current_user,album_link)
+    if !pics.empty?
+      @status_message.pics << pics
+    end
+    if @status_message.save
+      @status_message.dispatch_post 
+    end 
     respond_with [@person,@album]
   end
 
@@ -34,7 +43,17 @@ class AlbumsController < ApplicationController
       end
       @album.pics << pics
     end
-    @album.save
+    #post weibo
+    if @album.save
+      album_link ="%{album;#{@album.id}}"
+      @status_message =StatusMessage.initialize(current_user,album_link)
+      if !pics.empty?
+        @status_message.pics << pics
+      end
+      if @status_message.save
+        @status_message.dispatch_post 
+      end 
+    end
     respond_with @person
   end
 

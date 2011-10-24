@@ -91,17 +91,21 @@ zh:
     invite_event: "%{actor_link} 邀请你参加活动 %{event_link}"
     invite_group: "%{actor_link} 邀请你参加小组 %{group_link}"
     recommendation_event: "%{actor_link} 推荐了活动 %{event_link}"
-    status_comment: "%{actor_link} 评论了你的%{post_link}"
+    status_comment: "%{actor_link}对你的%{post_link}发表了评论"
     topic_comment: "%{actor_link} 在%{group_link}小组中评论了你的%{comment_link}"
     event_comment: "%{actor_link} 在%{event_link}活动中评论了你的%{comment_link}"
     mention: "%{actor_link} 在%{post_link}中提到了你"
+    replay: "%{actor_link} 在%{post_link}中回复了你的评论"
 
   status_message:
     show_more_comments: "%{number}条旧的评论"
     hide_comments:  "隐藏评论"
+    pass_event: "刚刚发起了活动%{event_link}，有兴趣的朋友赶快报名"
+    reference_event: "推荐个活动%{event_link},有兴趣的朋友可以去看看"
   albums:
     status_message: "信息中的照片"
     avatar: "头像照片"
+    album_name: "相册名称:"
 
   events:
       pics: '活动'

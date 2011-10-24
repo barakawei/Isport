@@ -2,7 +2,25 @@
     stream_element = $( this ).closest(".stream_element");
     commentBlock = stream_element.find(".comment_form");
     commentBlock.removeClass( "hide" );    
-    commentBlock.find("textarea").focus(); 
+    textarea = commentBlock.find("#comment_content");
+    textarea.focus(); 
+    replay_comment = $( this ).closest(".replay_comment");
+    if ( replay_comment.length != 0 ){
+      contacts_input = stream_element.find( "#contacts" );
+      author_name = $( this ).closest(".comment_content").find( ".from a" ).html();
+      author_id = $( this ).closest(".comment").find( ".author_avatar .person_avatar_detail" ).attr("data_person_id");
+      Mention.clear();
+      content = "回复@"+author_name+": ";
+      textarea.val(content); 
+      contacts_content = "回复@{"+author_name+";"+author_id+"}";
+      contacts_input.val(contacts_content);
+      var mention = { visibleStart: 3, 
+                      visibleEnd  : 4+author_name.length,
+                      mentionString : "{"+author_name+";"+author_id+"}"
+                    };
+      Mention.autocompletion.mentionList.push(mention);
+
+    }
     return false;
     }); 
 
@@ -47,14 +65,22 @@
     return false;
   }
 
-  $( ".comment_form textarea" ).live("focus", function(){ 
+  $( ".content[name]" ).live("focus", function(){ 
+    if ( $( this ).val() == '' ){
+      $( ".content[name]" ).val( '' );
+      $(".contacts").val("");
+      Mention.clear();
+    }
     comment_button = $( this ).closest( ".comment_form" ).find( ".comment_button" ); 
     comment_button.removeClass( "hide" );
   });
+  
 
   $( ".cancle" ).live( "click",function(  ){
     comment_form = $( this ).closest( ".comment_form" );
-    comment_form.find( "textarea" ).val( '' );
+    comment_form.find( "#comment_content" ).val( '' );
+    comment_form.find(".contacts").val("");
+    Mention.clear();
     if( $( ".comments",comment_form.closest( '.element_body' )).length == 0 ){
       comment_form.addClass( "hide" );
         }else{

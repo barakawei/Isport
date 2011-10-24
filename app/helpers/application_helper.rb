@@ -10,6 +10,17 @@ module ApplicationHelper
     end
   end
 
+  def comment_content_tag( comment )
+    if comment.respond_to?(:format_message)
+      message = comment.format_message(comment.content)
+    end
+    if message.nil?
+      message
+    else
+      message.html_safe
+    end
+  end
+
   def follow_button_tag( person )
     link_html = "<div class='follow_button'></div>"
     contact = current_user.contact_for( person )

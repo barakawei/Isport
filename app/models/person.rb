@@ -36,6 +36,8 @@ class Person < ActiveRecord::Base
   has_many :albums, :as => :imageable
   has_many :post_visibilities
   has_many :posts, :through => :post_visibilities
+  
+  has_many :twitter_posts, :foreign_key => "author_id", :class_name => "Post"
 
   has_many :item_topic_followships, :dependent => :destroy
   has_many :concern_itemtopics, :through => :item_topic_followships, :source => :item_topic
