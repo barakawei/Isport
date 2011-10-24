@@ -8,7 +8,7 @@
       .avatar_area
         = person_image_link(p)
       .desc_area
-        = link_to p.name, person_path(p), :class => 'pname'
+        = link_to truncate(p.name, :length => 8), person_path(p), :class => 'pname'
         %span.city= "@#{p.location.city.name}"
         = link_to  'javascript:void(0)', :class => 'desc' do
           = "#{commons.size}个共同爱好"
