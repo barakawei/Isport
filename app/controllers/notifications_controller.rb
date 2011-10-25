@@ -2,7 +2,7 @@ class NotificationsController < ApplicationController
   include NotificationsHelper
   before_filter :registrations_closed?
   def index
-    notifications_temp = Notification.includes( :actor ).where( :recipient_id => current_user).order( "created_at DESC" )
+    notifications_temp = Notification.includes( :actor ).where( :recipient_id => current_user).order( "created_at DESC" ).all
 
     @unread_notify_count = Notification.sum(:unread, :conditions => "recipient_id = #{current_user.id}")
     notifications_t = Array.new( notifications_temp )
@@ -31,6 +31,8 @@ class NotificationsController < ApplicationController
     end
     @unread_notify_count = @unread_notify_count - unpassed
     @notifications = Array.new( notifications_t ).paginate(:page => params[:page], :per_page => 20)
+    noti_ids = @notifications.map{ |n|n.id }
+    Notification.update_all ["unread=0"],["id in (?)",noti_ids]
     respond_to do |format|  
       format.json { render :json => { :notifications => @notifications}}    
       format.html { render 'index.html.haml' }
@@ -46,9 +48,4 @@ class NotificationsController < ApplicationController
       Response.new :status => 404
     end
   end
-
-  def read_all(opts=params)
-    Notification.where(:recipient_id => current_user.id).update_all(:unread => false)
-  end
-  
 end
