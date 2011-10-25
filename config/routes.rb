@@ -37,6 +37,9 @@ Isport::Application.routes.draw do
   resources :status_messages do
     resources :comments,:only => [ :create,:show,:destroy ]
   end
+  controller :notifications do
+    match '/notifications/refresh_count' => :refresh_count
+  end
   resources :notifications
   resources :conversations do
   resources :messages, :only => [:create, :show]

@@ -67,7 +67,7 @@
           notificationElement.addClass("unread");
         });
       });
-      message_count = $("#notification_badge .message_count");
+      message_count = $("#notification_badge .message_count span span");
       count = parseInt(message_count.html()) || 0;  
       count = count - 20;
       if( count > 0 ){
