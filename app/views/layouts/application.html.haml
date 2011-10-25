@@ -110,4 +110,9 @@
   });
 
 
-
+  $(document).ready(function () { 
+    setInterval("refresh_count()",60000); 
+  }); 
+  function refresh_count() { 
+    $.get("/notifications/refresh_count");
+  } 

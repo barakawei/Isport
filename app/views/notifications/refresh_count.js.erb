@@ -1,0 +1,14 @@
+var message_count = "<%=@unread_message_count%>";
+var notify_count = "<%=@unread_notify_count%>";
+if(notify_count != "0"){
+  notify_count_html = $("#notification_badge .message_count span");
+  notify_count_html.html( "<span>"+notify_count+"</span>" );
+}
+if(message_count != "0"){
+  message_count_html = $(".inbox .message_count span");
+  message_count_html.html( "<span>"+message_count+"</span>" );
+}
+
+
+
+
