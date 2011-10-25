@@ -3,7 +3,7 @@
   = include_stylesheets :special_pages_item_topics_form, :media => 'all'
 .new_topic_form
   = form_for item_topic, :html => { :multipart => true }, do |f|
-    = render "photos/new_item_topic_photo", :topic=> item_topic, :is_edit => false, :model_name => "item_topic",:pic_type => "item_topic_avatar"
+    = render "photos/new_item_topic_photo", :topic=> item_topic, :is_edit => false, :model_name => "item_topic",:pic_type => "not_avatar"
     .topic_content_area
       .field
         = f.text_field :name
