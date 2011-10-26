@@ -43,6 +43,10 @@ module NotificationsHelper
         end
         post_link = "<a href='#{object_path(post)}'>#{t( 'message' )}</a>"
         translation(target_type, :actor_link => actor_link,:post_link => post_link)
+      elsif note.target_type == 'PicComment' 
+        pic = note.target.pic
+        pic_link = "<a href='#{object_path(pic)}'>#{t( 'pictures' )}</a>"
+        translation(target_type, :actor_link => actor_link,:pic_link => pic_link)
       end
     else 
       translation(target_type, :actor_link => actor_link)

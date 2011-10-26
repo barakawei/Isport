@@ -1,4 +1,8 @@
 @charset "UTF-8";
+.pic_show .stream_element .stream-photo {
+  width: auto !important;
+  height: auto !important; }
+
 .inline {
   display: inline; }
 

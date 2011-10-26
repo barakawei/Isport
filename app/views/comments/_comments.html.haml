@@ -1,7 +1,10 @@
 %ul.show_comments{:class => ("hide" if post.comments.size <= 3)}
   %li
-    = comment_toggle( post )
-%ul.comments{:id => post.id,:class => ( 'hide' if post.comments.size ==0  )}
+    -if post.instance_of?( Pic )
+      = pic_comment_toggle( post )
+    -else
+      = comment_toggle( post )
+%ul.pic_comments.comments{:id => post.id,:class => ( 'hide' if post.comments.size ==0  )}
   -if post.comments.size > 3 
     = render :partial => 'comments/comment', :collection => post.last_three_comments, :locals => {:post => post}
   -else

@@ -1,5 +1,5 @@
 commentId = <%=@pic_comment.id%>;
-pic_comment = $(".comment[id='"+commentId+"']",$( ".pic_comments" ));
-if( pic_comment.length === 1 ){
+pic_comment = $(".comment[id='"+commentId+"']",$( ".pic_comment_container .pic_comments" ));
+if( pic_comment.length > 0 ){
   pic_comment.fadeOut( 100 ); 
 }
