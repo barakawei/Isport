@@ -8,9 +8,21 @@ class PicCommentsController < ApplicationController
     end
   end
 
+  def show_more
+    @pic = Pic.find(params[:pic_id])
+    if @pic
+      @pic_comments = @pic.pic_comments.includes(:author => :profile)
+      render :layout => false    
+    end
+  end
+
   def create
     @pic_comment = PicComment.new(:pic_id => params[ :pic_id],:content => params[ :pic_comment ][ :content ],:person_id => current_user.person.id)
-    @pic_comment.save
+    if @pic_comment.save
+      if @pic_comment.pic.author.id != current_user.person.id
+        @pic_comment.dispatch_pic_comment
+      end
+    end
     respond_with @pic_comment
   end
 

@@ -6,6 +6,10 @@ class PicsController < ApplicationController
     @album = Album.find(params[:album_id])
   end
 
+  def show
+    @pic = Pic.find( params[ :id ] )
+  end
+
   def paginate_pics
     @album = Album.find(params[:album_id])
     @pics = @album.pics.paginate :page => params[:page], 

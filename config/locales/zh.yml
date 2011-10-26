@@ -34,6 +34,7 @@ zh:
   unlike: '取消喜欢'
   posting: "发布中"
   ago: "前"
+  pictures: '照片'
   pagination:
     previous: "上一页"
     next: "下一页" 
@@ -94,6 +95,7 @@ zh:
     status_comment: "%{actor_link}对你的%{post_link}发表了评论"
     topic_comment: "%{actor_link} 在%{group_link}小组中评论了你的%{comment_link}"
     event_comment: "%{actor_link} 在%{event_link}活动中评论了你的%{comment_link}"
+    pic_comment: "%{actor_link} 对你的%{pic_link}发表了评论"
     mention: "%{actor_link} 在%{post_link}中提到了你"
     replay: "%{actor_link} 在%{post_link}中回复了你的评论"
 
@@ -235,6 +237,7 @@ zh:
       
   album:
     default: '默认相册'
+    size_link: '%{name}(%{size}张)'
   welcome:
     globalinfo: "已有来自%{citycount}个城市的%{usercount}位朋友创建了%{groupcount}个小组并发起了%{eventcount}个活动！
                   如果您还没加入，那么"

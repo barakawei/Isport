@@ -10,4 +10,16 @@ class PicComment < ActiveRecord::Base
     self.pic.comments_count = self.pic.comments.count
     self.pic.save
   end 
+
+  def dispatch_pic_comment(user=self.author.user)
+    Dispatch.new(user, self).notify_user
+  end
+
+  def subscribers(user,action=false)
+    [self.pic.author]
+  end
+
+  def notification_type( action=false )
+    Notifications::PicComment
+  end
 end
