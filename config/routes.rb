@@ -112,6 +112,7 @@ Isport::Application.routes.draw do
     match 'account_setting' => :set_account, :as => 'set_account'
     match 'delete_auth' => :delete_auth, :as => 'delete_auth'
     match '/users/connent_error' => :weibo_already_binded_error, :as => 'bind_error' 
+    match '/users/potential_interested_people' => :potential_interested_people, :as => 'potential_interested_people'
   end
 
   match '/users/sign_in' => 'users#sign_in', :as => 'sign_in' 

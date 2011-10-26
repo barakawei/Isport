@@ -1,0 +1,35 @@
+=content_for :head do
+  =include_stylesheets :sepcial_pages_people_potential_friends, :media => 'all'
+.interested_people
+  - people.each do |p|
+    - commons = current_user.person.common_interests(p) 
+    - commons_limit = commons[0..6]
+    .person_item
+      .avatar_area
+        = person_image_link(p)
+      .desc_area
+        = link_to p.name, person_path(p), :class => 'pname'
+        %span.city= "@#{p.location.city.name}"
+        = link_to  'javascript:void(0)', :class => 'desc' do
+          = "#{commons.size}个共同爱好"
+          %span
+        .follow_button_mini
+          = follow_button_tag(p)
+      .common_desc.hide
+        %span
+          = '他同样喜欢'
+          - commons_limit.each_with_index do |i,index|
+            = i.name
+            = "," if index < commons_limit.size - 1
+          = '等' if commons.size > commons_limit.size
+            
+                    
+
+
+
+:javascript
+  $('.desc_area a.desc').click(function() {
+    $(this).closest('.person_item').children('.common_desc').toggle();
+    $(this).children('span').toggleClass('up_arrow');
+  });
+  

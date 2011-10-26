@@ -31,6 +31,17 @@
             = link_to '更多', events_path, :class => 'link_button' 
           .clear
         = render :partial => 'events/recent_events',  :locals => { :events => @events}
+  .groups
+    .title
+      .title_bar
+        .name
+          = '和你志趣相投的人'
+        .link
+          = link_to '换一换', 'javascript:void(0)', :class => 'change_friends link_button'
+        .clear
+      = render :partial => 'people/potential_interested_people',  :locals => { :people => @potential_friends}
+          
+    
   .avatar_panel_container
     #followed_people
       - if @followed_people.length > 0
@@ -96,7 +107,21 @@
       }
     });
   });
-
+  
+  $('.groups a.change_friends').click(function(){
+    $.ajax({
+      type: 'get', 
+      url: "#{potential_interested_people_path}",
+      async: false,
+      success: function(data) {
+        $('.groups .interested_people').fadeOut(200, function(){
+          $(this).replaceWith(data);
+        });
+      },
+      error: function(data) {
+      }
+    }); 
+  });
 
   $('.groups a.change_events').click(function() {
     $.ajax({
