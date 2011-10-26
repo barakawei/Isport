@@ -3,7 +3,7 @@
 .span-24.event_form 
   = form_for @event, :html => { :multipart => true }, do |f|
     .span-6
-      = render "photos/new_event_photo", :event => @event, :is_edit => is_edit, :model_name => "event"
+      = render "photos/new_event_photo", :event => @event, :is_edit => is_edit, :model_name => "event",:pic_type => "not_avatar"
       %ul.nav
         - if is_edit
           - unless new
