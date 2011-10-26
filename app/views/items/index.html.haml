@@ -6,6 +6,20 @@
     .hidebutton.last
       - if is_admin
         = link_to t('items.new_item'), new_item_path, :class => 'butten new_item'
+    .imageheard
+      .left
+        = render 'common/header_box', :title => "热门兴趣", :background_color => "#4EBAFF"
+    .imagearea
+      - @hot_items.each_with_index do |item, index|
+        .image
+          = item_image_link(item, :size => :thumb_medium)
+          .nameback
+          .itemname
+            = item.name
+          %br
+          .iteminfo
+            %span.detail= item.fans.size.to_s + t('items.fans')
+
     - @categories.each do |category|
       .imageheard
         .left
@@ -13,14 +27,12 @@
       .imagearea
         - @items_hash[category.id].each_with_index do |item, index|
           .image
-            = item_image_link(item[:item], :size => :thumb_large)
+            = item_image_link(item[:item], :size => :thumb_medium)
+            .nameback
             .itemname
               = item[:item].name
             %br
             .iteminfo
-              %span.title
-                = item_events_notify
-                = link_to t('items.eventsthisweek', :count => item[:events_count]), event_filter_path(@city.id, nil, item[:item].id, 'week') 
               %span.detail= item[:item].fans.size.to_s + t('items.fans')
 
   - if current_user

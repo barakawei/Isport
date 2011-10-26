@@ -73,19 +73,30 @@
 
     .image 
       :float left
-      :width 200px
+      :width 100px
       :position relative
-      
+      :margin-right 14px
+     
+      .nameback
+        :width 100px
+        :height 25px
+        :background-color #747474
+        @include opacity(0.5)
+        @include border-radius-bottom-noie(8px)
+        :position absolute
+        :left 0px
+        :top 75px
+
       .itemname
         :position absolute
-        :left 6px
-        :bottom 26px
-        :font-size 20px
+        :left 3px
+        :bottom 22px
+        :font-size 16px
         :font-weight bold
         :color #FFFFFF
 
       .iteminfo 
-        :width 200px
+        :width 100px
 
 span.title 
   overflow: show
@@ -99,5 +110,5 @@ span.detail
   float: right
   text-align: right 
   white-space: nowrap
-  margin-right: 7px 
+  margin-right: 6px 
 
