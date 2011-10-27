@@ -5,6 +5,11 @@ class Comment < ActiveRecord::Base
   attr_accessor :contacts
   has_many :mentions,:dependent => :destroy
   after_create :create_mentions
+  after_destroy :delete_notification
+
+  def delete_notification
+    Notification.where(:target_type => self.class.name, :target_id => self.id).delete_all
+  end
 
   def dispatch_comment(user=self.author.user)
     Dispatch.new(user, self).notify_user

@@ -38,9 +38,6 @@ class MembershipsController < ApplicationController
         member = Membership.find_or_create_by_group_id_and_person_id(:group_id => @group.id, :person_id => person_id,
                           :pending => true, :pending_type=> Group::JOIN_BY_INVITATION_FROM_ADMIM) 
       end
-        invited_people = Person.where( :id => person_ids )
-        @group.invited_people = invited_people
-        @group.dispatch_group(:invite)
     end 
     render :nothing => true
   end

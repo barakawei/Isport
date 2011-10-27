@@ -35,9 +35,6 @@ class InvolvementsController < ApplicationController
           Involvement.create(:event_id => @event.id, :person_id => person_id,
                             :is_pending => true)
         end
-        invited_people = Person.where( :id => person_ids )
-        @event.invited_people = invited_people
-        @event.dispatch_event( :invite )
      end 
      render :nothing => true
   end

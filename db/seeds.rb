@@ -99,13 +99,13 @@ image_path = '/images/items/'
   {:name => '登山', :description => "会当临绝顶，一览众山小", :category_id => 1,
     :large => "#{image_path}moutain_large.jpg", :medium => "#{image_path}moutain_medium.jpg",
     :small => "#{image_path}moutain_small.png"},
-  {:name => '桌球', :description => "准确，力量，预判，运气",  :category_id => 1,
+  {:name => '桌球', :description => "准确，力量，预判，运气",  :category_id => 2,
     :large => "#{image_path}pool_large.jpg", :medium => "#{image_path}pool_medium.jpg",
     :small => "#{image_path}pool_small.png"}, 
   {:name => '徒步', :description => "回归最原始",  :category_id => 1,
     :large => "#{image_path}walking_large.jpg", :medium => "#{image_path}walking_medium.jpg", 
     :small => "#{image_path}walking_small.png"}, 
-  {:name => '垂钓', :description => "修身养性的选择", :category_id => 1,
+  {:name => '垂钓', :description => "修身养性的选择", :category_id => 2,
     :large => "#{image_path}fishing_large.jpg", :medium => "#{image_path}fishing_medium.jpg",
     :small => "#{image_path}fishing_small.png"},
   {:name => '橄榄球', :description => "真正的男人运动", :category_id => 1,
@@ -147,6 +147,15 @@ image_path = '/images/items/'
   {:name => '聚餐', :description => "大胃王们你们还在闲着吗？", :category_id => 2,
     :large => "#{image_path}dinner_large.jpg", :medium => "#{image_path}dinner_medium.jpg",
     :small => "#{image_path}dinner_small.png"},
+  {:name => '电影', :description => "艺术的集大成者", :category_id => 2,
+    :large => "#{image_path}movie_large.jpg", :medium => "#{image_path}movie_medium.jpg",
+    :small => "#{image_path}movie_small.png"},
+  {:name => '旅行', :description => "去心灵想去的地方", :category_id => 2,
+    :large => "#{image_path}travel_large.jpg", :medium => "#{image_path}travel_medium.jpg",
+    :small => "#{image_path}travel_small.png"},
+  {:name => '街舞', :description => "释放青春的舞蹈", :category_id => 1,
+    :large => "#{image_path}hiphop_large.jpg", :medium => "#{image_path}hiphop_medium.jpg",
+    :small => "#{image_path}hiphop_small.png"},
   {:name => '其他', :description => "以后开放的项目", :category_id => 0,
     :large => "#{image_path}others_large.jpg", :medium => "#{image_path}others_medium.jpg",
     :small => "#{image_path}others_small.png"}].each do |item|
@@ -180,6 +189,14 @@ Person.all.each do |p|
     pic.save
     Pic.connection.execute("update pics set avatar_processed_image='#{url[ length,url.length ]}', unprocessed_image='#{url[ length,url.length ]}' where id=#{pic.id}")
     album.pics << pic
+  end
+end
+
+#delete invalid notifactions
+
+Notification.all.each do |n|
+  if n.target.nil?
+    n.destroy
   end
 end
 

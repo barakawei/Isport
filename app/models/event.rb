@@ -67,6 +67,11 @@ class Event < ActiveRecord::Base
   scope :canceled, lambda { where("status = ? ", Event::CANCELED_BY_EVENT_ADMIN) } 
   scope :all, lambda { select("*") }
   scope :open, lambda { where("is_private = ?", false)}
+  after_destroy :delete_notification
+
+  def delete_notification
+    Notification.where(:target_type => self.class.name, :target_id => self.id).delete_all
+  end
 
   def pass
     self.update_attributes(:status => Event::PASSED)
@@ -76,6 +81,9 @@ class Event < ActiveRecord::Base
     if @status_message.save
       @status_message.dispatch_post 
     end 
+    #invite request
+    dispatch_event( :invite )
+    
   end
 
   def reference_event( user )
@@ -176,7 +184,7 @@ class Event < ActiveRecord::Base
     elsif action == :create
       user.befollowed_people
     elsif action == :invite
-      self.invited_people
+      self.invitees
     elsif action == :involvement
       user.befollowed_people
     elsif action == :recommendation
