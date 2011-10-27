@@ -58,10 +58,16 @@ class Group < ActiveRecord::Base
   scope :audit_failed, lambda { where("status = ? ", Group::DENIED) } 
   scope :canceled, lambda { where("status = ? ", Group::CANCELED_BY_EVENT_ADMIN) } 
   scope :all, lambda { select("*") }
+  after_destroy :delete_notification
 
+  def delete_notification
+    Notification.where(:target_type => self.class.name, :target_id => self.id).delete_all
+  end
+
+  def pass
+    dispatch_group(:invite)
+  end
   
-
-
   def image_url(size = :thumb_large)
     result = if size == :thumb_medium && self[:image_url_medium]
                self[:image_url_medium]
@@ -175,7 +181,7 @@ class Group < ActiveRecord::Base
   def subscribers(user,action=false)
     action = action.to_sym
     if action == :invite
-      self.invited_people
+      self.invitees
     end
   end
 

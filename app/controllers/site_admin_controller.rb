@@ -58,6 +58,7 @@ class SiteAdminController < ApplicationController
   def pass_group
     group = Group.find(params[:group_id])
     group.update_attributes(:status => Group::PASSED, :audit_person_id => current_user.person.id)
+    group.pass
     render :partial => 'group_audit_block', :locals => {:g => group}
   end
 

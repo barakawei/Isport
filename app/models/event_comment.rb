@@ -5,6 +5,11 @@ class EventComment < ActiveRecord::Base
   belongs_to :commentable, :polymorphic => true
   belongs_to :person 
   has_many :responses, :class_name => "EventComment", :as => :commentable, :dependent => :destroy
+  after_destroy :delete_notification
+
+  def delete_notification
+    Notification.where(:target_type => self.class.name, :target_id => self.id).delete_all
+  end
 
   def update_owner_counter
     e = self.commentable
