@@ -2,6 +2,7 @@ class StatusMessage < Post
   include ApplicationHelper
   include AlbumsHelper
   has_many :pics, :dependent => :destroy
+  has_one :post_video, :dependent => :destroy
   attr_accessible :content
   attr_accessor :contacts
   after_create :create_mentions
@@ -137,6 +138,38 @@ class StatusMessage < Post
     id.empty? ? [] : Album.where(:id => id)
   end
 
+  def create_video
+    links = get_content_links 
+    links.each do |link|
+      if  !link.index("v.youku.com").nil? 
+        doc = Hpricot(open(link))
+        l = (doc/'a[@id="s_sina"]')
+        v = (doc/'[@id="link2"]')  
+        if l && v
+          href = l.attr('href')
+          pos = href.index("pic=")
+          length = href.length
+          p_add = href[(pos+4)..length]
+          v_add = v.attr('value')
+          self.post_video = PostVideo.create(:href => v_add, :thumb_href => p_add)
+          break
+        end
+      end
+    end
+  end
+
+  private
+
+  def get_content_links
+    result = []
+    regex = /https?:\/\/[^\s\u4e00-\u9fa5]+/
+    t_string = self.content.clone
+    while a=regex.match(t_string) do
+        result << a[0]
+        t_string.sub!(regex, '')
+    end
+    result
+  end
 end
 
 

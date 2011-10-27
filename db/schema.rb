@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111023131325) do
+ActiveRecord::Schema.define(:version => 20111025160217) do
 
   create_table "administrators", :force => true do |t|
     t.integer  "user_id"
@@ -333,6 +333,14 @@ ActiveRecord::Schema.define(:version => 20111023131325) do
     t.string   "avatar_processed_image"
     t.integer  "image_width"
     t.integer  "image_height"
+  end
+
+  create_table "post_videos", :force => true do |t|
+    t.integer  "status_message_id"
+    t.string   "href"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "thumb_href"
   end
 
   create_table "post_visibilities", :force => true do |t|

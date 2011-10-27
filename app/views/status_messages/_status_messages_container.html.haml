@@ -3,3 +3,37 @@
          :as => :post
 = will_paginate @posts,:page_links => false,:next_label=> '',:previous_label=>''
 
+:javascript
+  $('.video_thumb a').bind('click', open_video);
+
+  function open_video() {
+    var vid = $(this).attr('vid');
+    var thumb_id = "#video_thumb_" + vid
+    var player_id = "#video_player_" + vid
+    var container_id = "player" + vid
+    var vhref = $(this).attr('vhref');
+    $video_thumb= $(thumb_id);
+    $video_thumb.hide();
+    $video_player = $(player_id);
+    $video_player.show();
+    var flashParams = {quality:"high",allowScriptAccess:"always"};
+    var flashVars = {playMovie:"true", isAutoPlay:"true"};
+    swfobject.embedSWF(vhref, container_id, "480px", "420px", "9.0.0", null, flashVars, flashParams);
+  }
+
+  $('.video_player a.close_video').bind('click', close_video);
+
+  function close_video() {
+    var vid = $(this).attr('vid');
+    var thumb_id = "#video_thumb_" + vid
+    var player_id = "#video_player_" + vid
+    var container_id = "player" + vid
+    $video_player= $(player_id);
+    $video_thumb = $(thumb_id);
+    $video_player.find('object').remove();
+    $("<div></div>").attr('id', container_id).appendTo($video_player);
+    $video_player.hide();
+    $video_thumb.show();
+  }
+
+

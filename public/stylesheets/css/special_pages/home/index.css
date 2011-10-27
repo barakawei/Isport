@@ -53,6 +53,28 @@
     background-color: white;
     border: none;
     margin-bottom: 2px; }
+    .post_element_panel .stream_element .video_thumb a img.thumb {
+      width: 120px;
+      height: 80px; }
+    .post_element_panel .stream_element .video_thumb a img.play {
+      margin: 24px 0 22px -76px;
+      opacity: 0.5; }
+    .post_element_panel .stream_element .video_thumb a:hover img.play {
+      opacity: 1; }
+    .post_element_panel .stream_element .video_player {
+      padding: 15px;
+      background-color: #f8f8f8;
+      border: 1px solid #f0f0f0;
+      width: 480px;
+      position: relative; }
+      .post_element_panel .stream_element .video_player a.close_video {
+        background: url("/images/ui/big_close_icon.png") no-repeat scroll 0 0 transparent;
+        cursor: pointer;
+        height: 27px;
+        position: absolute;
+        right: -12px;
+        top: -12px;
+        width: 27px; }
   .post_element_panel .pagination {
     position: absolute;
     bottom: -40px;
@@ -454,6 +476,8 @@
     .feed_toolbar .post_type_bar a.at_friend span.img {
       background-position: -434px 0;
       width: 15px; }
+    .feed_toolbar .post_type_bar a.video span.img {
+      background-position: 0 -67px; }
     .feed_toolbar .post_type_bar span.noti {
       margin-top: 5px;
       color: #999999; }

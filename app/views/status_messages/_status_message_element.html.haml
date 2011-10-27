@@ -1,5 +1,6 @@
 .stream_element.pic_container{ :id => post.id }
   - topic = post.item_topic
+  - video = post.post_video
   - if topic
     %span.message_topic_type=topic.item.name
   .author_avatar
@@ -14,6 +15,15 @@
         = post_content_tag(post)
       .photos
         = render 'photos/photos_container',:photos => post.pics
+      - if video 
+        %div{:id => "video_thumb_#{video.id}", :class => 'video_thumb'}
+          = link_to 'javascript:void(0)', :vid => "#{video.id}", :vhref => "#{video.href}", :id => "open_video_#{video.id}", do
+            %img{:src => video.thumb_href, :class => 'thumb'}
+            %img{:src => 'images/ui/videoplay.gif', :class => 'play'}
+        %div{:id => "video_player_#{video.id}", :class => "hide video_player"}
+          = link_to '', 'javascript:void(0)', :class => 'close_video', :vid => "#{video.id}", :id => "close_video_#{video.id}"
+          %div{:id => "player#{video.id}"}
+        
       .content_info
         %span.time.timeago{:datetime => post.created_at}
           =how_long_ago( post )
@@ -35,3 +45,7 @@
           = f.submit "回复", :class => 'glass_button_ie',"data-disable-with" => t("posting")
           .cancle.glass_button_ie
             = "取消"
+- if video
+  :javascript
+    $(".video_thumb a#open_video_#{video.id}").bind('click', open_video);
+    $(".video_player a#close_video_#{video.id}").bind('click', close_video);
