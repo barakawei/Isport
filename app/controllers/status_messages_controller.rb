@@ -18,6 +18,7 @@ class StatusMessagesController < ApplicationController
       ItemTopicInvolvement.find_or_create_by_item_topic_id_and_person_id(:item_topic_id => item_topic.id, :person_id => current_user.person.id) 
     end
     if @status_message.save
+      @status_message.create_video
       if params['sina_weibo'] == 'yes' && auth
         if pics.empty?
           auth.create_weibo(@status_message.weibo_status("http://#{request.host}:#{request.port}/item_topics/"))
@@ -28,6 +29,11 @@ class StatusMessagesController < ApplicationController
       #@status_message.dispatch_post 
     end
     respond_with @status_message
+  end
+
+  def show_post_video
+    @video = PostVideo.find(params[:id]) 
+    render :partial => 'status_messages/video_player',  :locals => {:video => @video}
   end
 
   def show

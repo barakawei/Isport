@@ -44,9 +44,16 @@ class Item < ActiveRecord::Base
 
     events_counts = {  }  
 
-    Event.week.joins(:location).select("subject_id, count(*) evesize")
-      .where(:subject_id => items_ids, :locations => {:city_id => city.id}).group(:subject_id).each do |count|
-      events_counts[count.subject_id] = count.evesize
+    if city
+      Event.week.joins(:location).select("subject_id, count(*) evesize")
+        .where(:subject_id => items_ids, :locations => {:city_id => city.id}).group(:subject_id).each do |count|
+        events_counts[count.subject_id] = count.evesize
+      end
+    else
+      Event.week.select("subject_id, count(*) evesize")
+        .where(:subject_id => items_ids).group(:subject_id).each do |count|
+        events_counts[count.subject_id] = count.evesize
+      end
     end
 
     if user
@@ -95,11 +102,7 @@ class Item < ActiveRecord::Base
         .group(:subject_id).order("count(subject_id) DESC").limit(size)
 
       if items.length < size
-        items = self.joins(:events, :events => :location)
-         .where(:events => {:start_at => (Time.now.beginning_of_month)..(Time.now.next_month.end_of_month), 
-                            :locations => {:city_id => city.id},
-                            :status => 2})
-         .group(:subject_id).order("count(subject_id) DESC").limit(size)
+        items = self.order("fans_count DESC").limit(size)
       end
     end
     
