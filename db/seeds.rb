@@ -192,6 +192,14 @@ Person.all.each do |p|
   end
 end
 
+#delete invalid notifactions
+
+Notification.all.each do |n|
+  if n.target.nil?
+    n.destroy
+  end
+end
+
 
 
 

@@ -148,6 +148,7 @@ class EventsController < ApplicationController
     unless @event.status == Event::CANCELED_BY_EVENT_ADMIN && @event.is_owner(current_user) 
       @event.update_attributes(:status => Event::CANCELED_BY_EVENT_ADMIN, :status_msg => params[:reason])
     end
+    @event.delete_notification
     redirect_to event_path(@event)
   end
 
