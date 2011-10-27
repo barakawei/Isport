@@ -156,6 +156,30 @@ image_path = '/images/items/'
   {:name => '街舞', :description => "释放青春的舞蹈", :category_id => 1,
     :large => "#{image_path}hiphop_large.jpg", :medium => "#{image_path}hiphop_medium.jpg",
     :small => "#{image_path}hiphop_small.png"},
+  {:name => '电子竞技', :description => "小屏幕，大世界", :category_id => 2,
+    :large => "#{image_path}egame_large.jpg", :medium => "#{image_path}egame_medium.jpg",
+    :small => "#{image_path}egame_small.png"},
+  {:name => '动漫', :description => "属于梦想的东西", :category_id => 2,
+    :large => "#{image_path}cartoon_large.jpg", :medium => "#{image_path}cartoon_medium.jpg",
+    :small => "#{image_path}cartoon_small.png"},
+  {:name => '模型玩具', :description => "让那个存在你心中的世界变得真实", :category_id => 2,
+    :large => "#{image_path}toys_large.jpg", :medium => "#{image_path}toys_medium.jpg",
+    :small => "#{image_path}toys_small.png"},
+  {:name => '瑜伽', :description => "伸展到最大", :category_id => 1,
+    :large => "#{image_path}yoga_large.jpg", :medium => "#{image_path}yoga_medium.jpg",
+    :small => "#{image_path}yoga_small.png"},
+  {:name => 'Photoshop', :description => "神奇的魔术棒", :category_id => 3,
+    :large => "#{image_path}ps_large.jpg", :medium => "#{image_path}ps_medium.jpg",
+    :small => "#{image_path}ps_small.png"},
+  {:name => '智能手机', :description => "掌中的精灵", :category_id => 3,
+    :large => "#{image_path}smartphone_large.jpg", :medium => "#{image_path}smartphone_medium.jpg",
+    :small => "#{image_path}smartphone_small.png"},
+  {:name => '桌面系统', :description => "Mac?Linux?Win?最重要的是适合你", :category_id => 3,
+    :large => "#{image_path}os_large.jpg", :medium => "#{image_path}os_medium.jpg",
+    :small => "#{image_path}os_small.png"},
+  {:name => '互联网', :description => "这里，你将有机会改变世界", :category_id => 3,
+    :large => "#{image_path}internet_large.jpg", :medium => "#{image_path}internet_medium.jpg",
+    :small => "#{image_path}internet_small.png"},
   {:name => '其他', :description => "以后开放的项目", :category_id => 0,
     :large => "#{image_path}others_large.jpg", :medium => "#{image_path}others_medium.jpg",
     :small => "#{image_path}others_small.png"}].each do |item|
@@ -165,7 +189,7 @@ image_path = '/images/items/'
       :image_url_medium => item[:medium], :image_url_small => item[:small])
   end
 
-['体育运动', '休闲娱乐'].each do |name|
+['体育运动', '休闲娱乐', '信息技术'].each do |name|
   Category.find_or_create_by_name(:name => name)
 end
 
