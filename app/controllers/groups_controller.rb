@@ -3,6 +3,7 @@ class GroupsController < ApplicationController
   prepend_before_filter :authenticate_user!, :except => [:index, :show, :forum, :members, :events, :filtered] 
   before_filter :init, :except => [:index, :show, :forum, :members, :events, :filtered]
   before_filter :authenticate_admin!, :only => [:edit, :edit_members, :invite_friends, :update]
+  before_filter :is_owner, :only => [:edit, :edit_members, :update, :invite_friends]                 
   
   def index
     city_id = params[:city] ? params[:city] : (current_user ? current_user.city.id : City.first.id)
@@ -159,6 +160,12 @@ class GroupsController < ApplicationController
   end
 
   private
+
+  def is_owner
+    unless @group.is_owner(current_user)
+     redirect_to group_path(@event) 
+    end
+  end
 
   def init
     @current_person = current_user.person    

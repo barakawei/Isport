@@ -54,12 +54,11 @@
   .imageboard .imageheard {
     float: left;
     width: 800px;
-    font-size: 18px;
-    margin-bottom: 12px; }
+    font-size: 18px; }
   .imageboard .imagearea {
     width: 800px;
     overflow: hidden;
-    margin-bottom: 60px; }
+    margin-bottom: 40px; }
     .imageboard .imagearea .image {
       float: left;
       width: 100px;

@@ -8,6 +8,8 @@ class EventsController < ApplicationController
                             :paginate_references, :filtered, :map]
   before_filter :check_canceled,
                 :only => [:edit, :edit_members, :update]                 
+  before_filter :is_owner,
+                :only => [:edit, :edit_members, :update]                 
 
   LIMIT = 9 
   PICS_PER_PAGE  = 12
@@ -142,6 +144,12 @@ class EventsController < ApplicationController
       render :action => "edit" 
     end
   end
+
+  def is_owner
+    unless @event.is_owner(current_user)
+     redirect_to event_path(@event) 
+    end
+  end
   
   def cancel
     @event = Event.find(params[:id])
@@ -193,6 +201,7 @@ class EventsController < ApplicationController
       redirect_to event_path(@event) 
     end
   end
+
 
   def get_participants
     @event = Event.find(params[:id])
