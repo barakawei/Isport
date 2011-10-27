@@ -6,7 +6,7 @@ module ApplicationHelper
     if message.nil?
       message
     else
-      auto_link(message).html_safe
+      auto_link(message, :html => { :target => '_blank'}).html_safe
     end
   end
 
