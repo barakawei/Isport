@@ -1,11 +1,12 @@
 processComment(<%= @pic_comment.pic_id %>, <%= @pic_comment.id %>,"<%= escape_javascript(render(:partial => 'comments/comment', :locals => { :comment => @pic_comment}))%>");
 
 function processComment(picId,commentId,html){  
-    var pic_comments = $(".pic_comments[id='"+picId+"']");
+    var pic_comments = $(".pic_comment_container .pic_comments[id='"+picId+"']");
     if( pic_comments.find(".comment[id='"+commentId+"']").length === 0 ) {
       pic_comments.append(html);
       comment_form = $( "#lightbox-comment").find( ".comment_form" );
       comment_form.find( "#pic_comment_content" ).val("");
+      pic_comments.closest( ".stream_element" ).find( "#comment_content" ).val("");
       }
 }
 

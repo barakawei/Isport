@@ -14,6 +14,7 @@ class ItemTopicsController < ApplicationController
     @topic = ItemTopic.find(params[:id]) 
     @followers = @topic.followers.order('rand()').limit(FOLLOWER).includes(:profile) 
     @related = ItemTopic.of_item(@topic.item).recent_hot.where("id != ?", @topic.id).limit(50)
+    @related = ItemTopic.of_item(@topic.item).order_by_hot.where("id != ?", @topic.id).limit(50) unless @related.length > 0
     @changeable = (@related.size > 7) 
     @related = @related.sort_by{rand}[0..RELATED]
     @editable = current_user ? (@topic.person == current_user.person) : false

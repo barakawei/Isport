@@ -62,17 +62,35 @@
     margin-bottom: 60px; }
     .imageboard .imagearea .image {
       float: left;
-      width: 200px;
-      position: relative; }
+      width: 100px;
+      position: relative;
+      margin-right: 14px; }
+      .imageboard .imagearea .image .nameback {
+        width: 100px;
+        height: 25px;
+        background-color: #747474;
+        filter: alpha(opacity=50);
+        -moz-opacity: 0.5;
+        -khtml-opacity: 0.5;
+        opacity: 0.5;
+        -moz-border-radius-bottomleft: 8px;
+        -moz-border-radius-bottomright: 8px;
+        -webkit-border-bottom-left-radius: 8px;
+        -webkit-border-bottom-right-radius: 8px;
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+        position: absolute;
+        left: 0px;
+        top: 75px; }
       .imageboard .imagearea .image .itemname {
         position: absolute;
-        left: 6px;
-        bottom: 26px;
-        font-size: 20px;
+        left: 3px;
+        bottom: 22px;
+        font-size: 16px;
         font-weight: bold;
         color: white; }
       .imageboard .imagearea .image .iteminfo {
-        width: 200px; }
+        width: 100px; }
 
 span.title {
   overflow: show;
@@ -86,4 +104,4 @@ span.detail {
   float: right;
   text-align: right;
   white-space: nowrap;
-  margin-right: 7px; }
+  margin-right: 6px; }

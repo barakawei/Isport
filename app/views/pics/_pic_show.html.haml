@@ -1,0 +1,29 @@
+.stream_element.pic_container{ :id => pic.id }
+  .author_avatar
+    = person_image_link(pic.author,:thumb_small) 
+  .element_body
+    .content
+      .from
+        = person_link(pic.author, :class => 'author')
+      .photos
+        = pic_image_link( pic,:thumb_large )
+      .album
+        = "来自相册"
+        = album_size_link(pic.author,pic.album)
+        
+      .content_info
+        %span.time.timeago{:datetime => pic.created_at}
+          =how_long_ago( pic )
+        %span.action
+          =link_to "评论","javascript:void(0)",:class => "replay"
+    = render "comments/comments", :post => pic, :comments => pic.comments
+    .comment_form{:class => ('hide' if pic.comments.size == 0)}
+      .author_avatar
+        = person_image_link(current_user,:thumb_small)
+      = form_for([pic,PicComment.new], :remote => true) do |f|
+        = f.text_area :content, :rows => 2,:require => true,:id => "comment_content",:class => "content"
+        .comment_button.hide
+          = f.submit "回复", :class => 'glass_button_ie',"data-disable-with" => t("posting")
+          .cancle.glass_button_ie
+            = "取消"
+

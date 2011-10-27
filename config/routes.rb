@@ -25,7 +25,11 @@ Isport::Application.routes.draw do
     resources :comments, :only => [:create, :destroy, :index]
   end
   resources :pics do
-    resources :pic_comments,:only => [ :create,:show ]
+    resources :pic_comments,:only => [ :create,:show]
+  end
+
+  controller :pic_comments do
+    match '/pic_comments/:pic_id/show_more' => :show_more,:as => "pic_show_more_comments"
   end
   resources :requests
   controller :status_messages do
@@ -38,6 +42,9 @@ Isport::Application.routes.draw do
   resources :status_messages
   resources :status_messages do
     resources :comments,:only => [ :create,:show,:destroy ]
+  end
+  controller :notifications do
+    match '/notifications/refresh_count' => :refresh_count
   end
   resources :notifications
   resources :conversations do

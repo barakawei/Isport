@@ -182,7 +182,7 @@ module ApplicationHelper
   end
 
   def item_image_tag(item, size=:thumb_small)
-    if size == :thumb_large
+    if size == :thumb_large || size == :thumb_medium
       "<img title=\"#{h(item.name)}\" class=\"avatar radius_large \"  src=\"#{item.image_url(size)}\" >".html_safe
     else
       "<img title=\"#{h(item.name)}\" class=\"avatar \"  src=\"#{item.image_url(size)}\" >".html_safe

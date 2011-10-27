@@ -3,7 +3,7 @@ class Comment < ActiveRecord::Base
   belongs_to :author,:foreign_key => :person_id,:class_name => "Person"
   belongs_to :post,:touch => true
   attr_accessor :contacts
-  has_many :mentions
+  has_many :mentions,:dependent => :destroy
   after_create :create_mentions
 
   def dispatch_comment(user=self.author.user)

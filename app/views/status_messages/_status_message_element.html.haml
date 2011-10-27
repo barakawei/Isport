@@ -28,7 +28,7 @@
         %span.time.timeago{:datetime => post.created_at}
           =how_long_ago( post )
         %span.action
-          =link_to "评论","11",:class => "replay"
+          =link_to "评论","javascript:void(0)",:class => "replay"
       
     .action
       - if post.author.id == current_user.person.id

@@ -14,6 +14,10 @@ class Pic < ActiveRecord::Base
   has_many :comments, :class_name => 'PicComment',:dependent => :destroy
   attr_accessor :pic_type
 
+  def last_three_comments
+    self.comments.order('created_at DESC').limit(3).includes(:author => :profile).reverse
+  end 
+
   def pic_avatar?
     if self.pic_type == "avatar" || self.pic_type == "upload_avatar" || (self.album && self.album.name == "avatar")
       true

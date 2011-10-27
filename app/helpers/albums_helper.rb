@@ -39,4 +39,10 @@ module AlbumsHelper
     name = album_name_tag( album )
     person_album_path = "<a href='/people/#{person.id}/albums/#{album.id}''>#{name}</a>".html_safe
   end
+
+  def album_size_link( person,album )
+    name = album_name_tag( album )
+    link_name = I18n.t ( "album.size_link" ),:name => name,:size => album.pics.size
+    person_album_path = "<a href='/people/#{person.id}/albums/#{album.id}''>#{link_name}</a>".html_safe
+  end
 end
