@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  before_filter :set_header_data,:except => :refresh 
-  before_filter :set_last_request_at,:except => :refresh 
+  before_filter :set_header_data,:except => [:refresh_count,:refresh]
+  before_filter :set_last_request_at,:except => [:refresh,:refresh_count]
 
   def registrations_closed?
     if AppConfig[ :registrations_closed ] && !user_signed_in?

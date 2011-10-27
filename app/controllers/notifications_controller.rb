@@ -12,8 +12,7 @@ class NotificationsController < ApplicationController
         n[:translation_key] = n.translation_key
         n[:target] = n.target
     end
-    noti_ids = @notifications.map{ |n|n.id }
-    Notification.update_all ["unread=0"],["id in (?)",noti_ids]
+    Notification.update_all ["unread=0"],["unread = 1"]
     respond_to do |format|  
       format.json { render :json => { :notifications => @notifications}}    
       format.html { render 'index.html.haml' }
