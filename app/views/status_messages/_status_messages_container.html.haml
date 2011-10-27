@@ -16,7 +16,7 @@
     $video_thumb.hide();
     $video_player = $(player_id);
     $video_player.show();
-    var flashParams = {quality:"high",allowScriptAccess:"always"};
+    var flashParams = {quality:"high",allowScriptAccess:"always", allowFullScreen: "true"};
     var flashVars = {playMovie:"true", isAutoPlay:"true"};
     swfobject.embedSWF(vhref, container_id, "480px", "420px", "9.0.0", null, flashVars, flashParams);
   }
