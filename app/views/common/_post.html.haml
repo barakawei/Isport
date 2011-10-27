@@ -30,9 +30,10 @@
       %a{:class => 'title topic', :href => 'javascript:void(0)'} 
         %span.img
         %span.desc='话题'
-    %a{:class => 'title video', :href => 'javascript:void(0)'}
-      %span.img
-      %span.desc='视频'
+    .hide
+      %a{:class => 'title video', :href => 'javascript:void(0)'}
+        %span.img
+        %span.desc='视频'
     -if !item_topic.nil?
       = render :partial => 'item_topics/new_topic_box', :locals => {:item_topic => item_topic, :rtopics => recent_topics} 
     %span.noti.hide.right="使用 '@＋好友姓名' 分享给好友"

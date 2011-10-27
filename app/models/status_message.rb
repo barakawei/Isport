@@ -141,7 +141,7 @@ class StatusMessage < Post
   def create_video
     links = get_content_links 
     links.each do |link|
-      unless link.index("v.youku.com").nil? 
+      if  !link.index("v.youku.com").nil? 
         doc = Hpricot(open(link))
         l = (doc/'a[@id="s_sina"]')
         v = (doc/'[@id="link2"]')  

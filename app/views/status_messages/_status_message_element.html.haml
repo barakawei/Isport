@@ -16,12 +16,12 @@
       .photos
         = render 'photos/photos_container',:photos => post.pics
       - if video 
-        %div.video_thumb
-          = link_to 'javascript:void(0)' do
+        %div{:id => "video_thumb_#{video.id}", :class => 'video_thumb'}
+          = link_to 'javascript:void(0)', :vid => "#{video.id}", :vhref => "#{video.href}", :id => "open_video_#{video.id}", do
             %img{:src => video.thumb_href, :class => 'thumb'}
             %img{:src => 'images/ui/videoplay.gif', :class => 'play'}
-        .video_player.hide
-          = link_to '', 'javascript:void(0)', :class => 'close_video'
+        %div{:id => "video_player_#{video.id}", :class => "hide video_player"}
+          = link_to '', 'javascript:void(0)', :class => 'close_video', :vid => "#{video.id}", :id => "close_video_#{video.id}"
           %div{:id => "player#{video.id}"}
         
       .content_info
@@ -45,26 +45,7 @@
           = f.submit "回复", :class => 'glass_button_ie',"data-disable-with" => t("posting")
           .cancle.glass_button_ie
             = "取消"
-
--if video
+- if video
   :javascript
-    $('.video_thumb a').click(function(){
-      $video_thumb= $(this).closest('.video_thumb');
-      $video_thumb.hide();
-      $video_player = $video_thumb.siblings('.video_player');
-      $video_player.show();
-      var flashParams = {quality:"high",allowScriptAccess:"always"};
-      var flashVars = {playMovie:"true", isAutoPlay:"true"};
-      swfobject.embedSWF("#{video.href}", "player#{video.id}", "480px", "420px", "9.0.0", null, flashVars, flashParams);
-      
-    });
-
-    $('.video_player a.close_video').click(function() {
-      $video_player= $(this).closest('.video_player');
-      $video_thumb = $video_player.siblings('.video_thumb');
-      $video_player.find('object').remove();
-      $("<div></div>").attr('id', "player#{video.id}").appendTo($video_player);
-      $video_player.hide();
-      $video_thumb.show();
-    });
-
+    $(".video_thumb a#open_video_#{video.id}").bind('click', open_video);
+    $(".video_player a#close_video_#{video.id}").bind('click', close_video);
