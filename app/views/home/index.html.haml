@@ -38,6 +38,9 @@
 .span-6.last.right_bar
   = render 'people/person_list', :person => @person
 :javascript
+  $( "#event_info" ).live( "click",function(){
+    $(' .events_panel').removeClass( "status_message_refresh" );
+     } );
   $( ".nav_tab a" ).live( "click",function( ){
     $(".nav_progress").show();
     })
