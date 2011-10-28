@@ -79,7 +79,7 @@ class AuthorizationController < ApplicationController
     unless @user 
       @user = User.new
       @user.errors[:email] = I18n.t('activerecord.errors.messages.not_found') 
-      @weibo_user = Authorization.get_user_details(auth.access_token, auth.access_token_secret) 
+      @weibo_user = Authorization.get_user_details(@auth.access_token, @auth.access_token_secret) 
       render 'bind_account'
       return
     end
