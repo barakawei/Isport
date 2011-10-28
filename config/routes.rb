@@ -156,6 +156,7 @@ Isport::Application.routes.draw do
           :constraints => { :status=> /all|to_be_audit|pass_audit|audit_failed/}
     match '/site_admin/events_count' => :get_events_count_ajax, :as => 'events_count'
     match '/site_admin/groups_count' => :get_groups_count_ajax, :as => 'groups_count'
+    match '/site_admin/manage_users' => :users_admin, :as => 'manage_users'
   end
 
   controller :home do

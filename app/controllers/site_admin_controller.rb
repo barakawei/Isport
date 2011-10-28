@@ -9,6 +9,10 @@ class SiteAdminController < ApplicationController
     @status = params[:status].nil? ? 'to_be_audit' : params[:status]
     @events =  Event.send(@status).paginate :page => params[:page], :per_page => 15, :order => 'created_at desc' 
   end
+  
+  def users_admin
+    @users = User.paginate :page => params[:page], :per_page => 30, :order => 'created_at desc' 
+  end
 
   def groups_admin
     @status = params[:status].nil? ? 'to_be_audit' : params[:status]

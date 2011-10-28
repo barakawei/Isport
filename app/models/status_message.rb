@@ -162,7 +162,7 @@ class StatusMessage < Post
 
   def get_content_links
     result = []
-    regex = /https?:\/\/[^\s\u4e00-\u9fa5]+/
+    regex = /https?:\/\/[^\s\u4e00-\u9fa5]*/
     t_string = self.content.clone
     while a=regex.match(t_string) do
         result << a[0]
