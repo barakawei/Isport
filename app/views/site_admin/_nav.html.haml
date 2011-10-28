@@ -5,6 +5,8 @@
     %li
       = link_to '小组管理', manage_groups_path, :class => ('current' if params[:action] == 'groups_admin')
     %li
+      = link_to '用户管理', manage_users_path, :class => ('current' if params[:action] == 'users_admin')
+    %li
       = link_to '用户反馈管理', manage_feedbacks_path, :class => ('current' if params[:action] == 'feedbacks_admin')
     %li.right
       %span= Person.joins(:user).joins( :profile ).where(["last_request_at > ?", 5.minutes.ago]).where("location_id is not null").size
