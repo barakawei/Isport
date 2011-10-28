@@ -19,7 +19,7 @@
         %div{:id => "video_thumb_#{video.id}", :class => 'video_thumb'}
           = link_to 'javascript:void(0)', :vid => "#{video.id}", :vhref => "#{video.href}", :id => "open_video_#{video.id}", do
             %img{:src => video.thumb_href, :class => 'thumb'}
-            %img{:src => 'images/ui/videoplay.gif', :class => 'play'}
+            %img{:src => '/images/ui/videoplay.gif', :class => 'play'}
         %div{:id => "video_player_#{video.id}", :class => "hide video_player"}
           = link_to '', 'javascript:void(0)', :class => 'close_video', :vid => "#{video.id}", :id => "close_video_#{video.id}"
           %div{:id => "player#{video.id}"}
@@ -49,3 +49,33 @@
   :javascript
     $(".video_thumb a#open_video_#{video.id}").bind('click', open_video);
     $(".video_player a#close_video_#{video.id}").bind('click', close_video);
+
+    function open_video() {
+      var vid = $(this).attr('vid');
+      var thumb_id = "#video_thumb_" + vid
+      var player_id = "#video_player_" + vid
+      var container_id = "player" + vid
+      var vhref = $(this).attr('vhref');
+      $video_thumb= $(thumb_id);
+      $video_thumb.hide();
+      $video_player = $(player_id);
+      $video_player.show();
+      var flashParams = {quality:"high",allowScriptAccess:"always", allowFullScreen: "true"};
+      var flashVars = {playMovie:"true", isAutoPlay:"true"};
+      swfobject.embedSWF(vhref, container_id, "480px", "420px", "9.0.0", null, flashVars, flashParams);
+    }
+
+    function close_video() {
+      var vid = $(this).attr('vid');
+      var thumb_id = "#video_thumb_" + vid
+      var player_id = "#video_player_" + vid
+      var container_id = "player" + vid
+      $video_player= $(player_id);
+      $video_thumb = $(thumb_id);
+      $video_player.find('object').remove();
+      $("<div></div>").attr('id', container_id).appendTo($video_player);
+      $video_player.hide();
+      $video_thumb.show();
+    }
+
+
