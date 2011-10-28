@@ -1,6 +1,8 @@
 #home_user
-  %h2
-    = link_to @person.name, person_path(@person)
+  .person_page_link
+    %h2
+      = link_to @person.name, 'javascript:void(0)' 
+    = link_to '个人页面', person_path(@person), :class => 'person_page'
   .person_info_bar
     = person_image_link(@person)
     .person_info

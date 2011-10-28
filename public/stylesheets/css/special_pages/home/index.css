@@ -102,12 +102,17 @@
   margin-left: 10px;
   position: relative; }
   #home_user h2 {
-    font-size: 20px; }
+    font-size: 18px;
+    display: inline;
+    margin-right: 5px; }
     #home_user h2 a {
       color: #444444; }
-      #home_user h2 a:hover {
-        text-decoration: underline; }
+  #home_user a.person_page {
+    vertical-align: text-bottom; }
+    #home_user a.person_page:hover {
+      text-decoration: underline; }
   #home_user .person_info_bar {
+    margin-top: 10px;
     width: 200px;
     background-color: white;
     height: 50px; }
