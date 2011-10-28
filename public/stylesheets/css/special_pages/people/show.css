@@ -473,6 +473,8 @@ dd {
   padding: 10px;
   position: relative;
   margin-top: 15px; }
+  #person_profile_box .bio {
+    word-break: break-all; }
   #person_profile_box .info_text {
     padding: 10px 0 10px 0; }
   #person_profile_box .title h3 {
