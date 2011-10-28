@@ -5,7 +5,7 @@
 
 .person_show .person_action {
   margin-left: 20px;
-  height: 30px; }
+  height: 5px; }
   .person_show .person_action .message_box {
     margin-left: 15px; }
     .person_show .person_action .message_box .glass_button {
@@ -155,7 +155,7 @@
   .person_left_bar #profile_photo h2 {
     font-size: 20px;
     line-height: 20px;
-    margin-bottom: 35px; }
+    margin-bottom: 10px; }
   .person_left_bar .information {
     width: 100%; }
 
@@ -176,7 +176,7 @@
     display: inline; }
   #person_panel .home_tabs {
     position: relative;
-    margin-top: 50px;
+    margin-top: 20px;
     background: #f9f9f9 url("/images/ui/tabs-bg.png") repeat;
     height: 62px;
     border-bottom: solid 1px white;

@@ -1,9 +1,21 @@
 #home_user
-  = person_image_link(@person)
-  %h3.person_name
-    =@person.name
-    .description
-      = link_to '个人页面', person_path(@person)
+  %h2
+    = link_to @person.name, person_path(@person)
+  .person_info_bar
+    = person_image_link(@person)
+    .person_info
+      .info_block
+        = link_to({:controller => 'people',:action => 'show_friends',:type=>'followed',:person_id =>@person.id}, :class => 'info_link') do 
+          %span.count= @person.user.followed_people.size
+          %span.desc= "关注" 
+      .info_block
+        = link_to({:controller => 'people',:action => 'show_friends',:type=>'befollowed',:person_id=>@person.id}, :class => 'info_link') do 
+          %span.count= @person.user.befollowed_people.size
+          %span.desc= "粉丝" 
+      .info_block.last_item
+        = link_to({:controller => 'people',:action => 'show_items',:person_id=>@person.id}, :class => 'info_link') do 
+          %span.count= @person.favorites.size
+          %span.desc= "兴趣" 
   .home_invitation_link
     = link_to "发现玩伴", find_interested_people_path,  :class => 'left_one'
       
