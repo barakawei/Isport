@@ -163,6 +163,28 @@ h1 .description, h2 .description, h3 .description, h4 .description {
   .stream_element .show_comments {
     border-top: 1px solid #ebebeb;
     padding: 8px; }
+  .stream_element .video_thumb a img.thumb {
+    width: 120px;
+    height: 80px; }
+  .stream_element .video_thumb a img.play {
+    margin: 24px 0 22px -76px;
+    opacity: 0.5; }
+  .stream_element .video_thumb a:hover img.play {
+    opacity: 1; }
+  .stream_element .video_player {
+    padding: 15px;
+    background-color: #f8f8f8;
+    border: 1px solid #f0f0f0;
+    width: 480px;
+    position: relative; }
+    .stream_element .video_player a.close_video {
+      background: url("/images/ui/big_close_icon.png") no-repeat scroll 0 0 transparent;
+      cursor: pointer;
+      height: 27px;
+      position: absolute;
+      right: -12px;
+      top: -12px;
+      width: 27px; }
   .stream_element .author_avatar {
     float: left; }
   .stream_element .right {

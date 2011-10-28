@@ -7,6 +7,7 @@
   =include_stylesheets :sepcial_pages_people_show, :media => 'all'
   =include_stylesheets :sepcial_pages_albums_show, :media => 'all'
   = include_javascripts :mention
+  =javascript_include_tag "http://api.youku.com/api/js/swfobject.js"
 .person_left_bar
   .avatar_panel
     #profile_photo
@@ -114,15 +115,16 @@
   #person_panel
     .person_bar
       .history_bar
-        =render 'common/big_header_box', :number => @person.involved_events.size, :text => '活动', :background_color => '#ff8a3c'
-        =render 'common/big_header_box', :number => @person.joined_groups.size, :text => '小组', :background_color => '#aad450'
+        =render 'common/big_header_box', :number => @person.twitter_posts.size, :text => '微博', :background_color => '#ff8a3c'
+        =render 'common/big_header_box', :number => @person.involved_events.size, :text => '活动', :background_color => '#00BED4'
         =render 'common/big_header_box', :number => @person.user.befollowed_people.size, :background_color => '#4ebaff', :text => '粉丝'
+        =render 'common/big_header_box', :number => @person.joined_groups.size, :text => '小组', :background_color => '#aad450'
 
 
     .home_tabs
       %ul
         %li
-          =link_to "信息",show_person_posts_path( @person ),:id => 'my_posts',:remote => true
+          =link_to "微博",show_person_posts_path( @person ),:id => 'my_posts',:remote => true
         %li
           =link_to "活动",show_person_events_path( @person ),:id=>'my_events',:remote => true        
         %li
