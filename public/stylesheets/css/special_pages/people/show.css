@@ -544,9 +544,6 @@ dd {
   min-height: 500px;
   padding: 20px;
   background: white; }
-  .person_albums .title {
-    margin-bottom: 20px;
-    display: inline-block; }
   .person_albums .albums .album_element {
     margin-top: 20px;
     padding-right: 10px;

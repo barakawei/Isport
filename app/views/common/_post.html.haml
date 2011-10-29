@@ -37,9 +37,21 @@
     -if !item_topic.nil?
       = render :partial => 'item_topics/new_topic_box', :locals => {:item_topic => item_topic, :rtopics => recent_topics} 
     %span.noti.hide.right="使用 '@＋好友姓名' 分享给好友"
+  %ul.post_filter
+    .title
+      = "话题："
+    %li.following
+      =link_to "兴趣","/home/show_following_post",:remote => true,:id=>'following_post'
+      = "·"
+    %li.all
+      =link_to "所有","/home/show_post",:remote => true,:id=>'all_post'
   .clear
 
 :javascript
+  $( ".post_filter a" ).live( "click",function( ){
+    $(".nav_progress").show();
+  })
+
   $('.create_post #status_message_content').focusin(function() {
     $(this).css('height', '40px'); 
     $("label.placeholder").hide();

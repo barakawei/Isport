@@ -10,14 +10,22 @@ if(event_tab != ''  ){
   $( '.current' ).removeClass( 'current' );
   $( '#'+event_tab).addClass( 'current' );
 }
+post_filter = '<%=@post_filter%>';
+if(post_filter != ''  ){
+  $( '.filter_current' ).removeClass( 'filter_current' );
+  $( '#'+post_filter).addClass( 'filter_current' );
+}
 $(' .events_panel').addClass( "status_message_refresh" );
 $( ".new_event" ).hide();
 $( ".event" ).hide();
+$( ".post_filter" ).show();
 $( ".new_post" ).show();
 $( ".create_post" ).show();
 $( ".post_type_bar" ).show();
 $(".nav_progress").hide();
 $( "#post" ).attr( "href","/home/show_post" );
+$( "#all_post" ).attr( "href","/home/show_post" );
+$( "#following_post" ).attr( "href","/home/show_following_post" );
  
 
 
