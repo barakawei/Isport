@@ -248,6 +248,12 @@ Notification.all.each do |n|
   end
 end
 
+# update item_id if post has item_topic_id
+
+Post.joins( :item_topic ).each do |p|
+  item_id = p.item_topic.item.id
+  Pic.connection.execute("update posts set item_id='#{item_id}' where id=#{p.id}")
+end
 
 
 
