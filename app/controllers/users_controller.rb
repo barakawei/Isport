@@ -47,6 +47,9 @@ class UsersController < ApplicationController
     current_user.update_attributes(:getting_started => false)
     group = Group.where(:id => 2)
     group.first.members << current_user.person if group.size > 0
+    User.where( :admin=> true ).each do |u|
+      current_user.share_with(u.person)
+    end
   end
 
   def change_password
