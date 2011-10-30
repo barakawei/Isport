@@ -193,7 +193,9 @@ class Group < ActiveRecord::Base
   end
 
   def location  
-    city.name + district.name    
+    name = city.name 
+    name += district.name unless district == nil
+    return name
   end
 
   def need_notice?
