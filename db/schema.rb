@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111025160217) do
+ActiveRecord::Schema.define(:version => 20111030094732) do
 
   create_table "administrators", :force => true do |t|
     t.integer  "user_id"
@@ -127,10 +127,10 @@ ActiveRecord::Schema.define(:version => 20111025160217) do
     t.integer  "group_id",           :default => 0
     t.integer  "status",             :default => 0
     t.string   "status_msg"
-    t.integer  "audit_person_id"
     t.integer  "participants_count", :default => 0
     t.integer  "comments_count",     :default => 0
     t.integer  "fans_count",         :default => 0
+    t.integer  "audit_person_id"
   end
 
   create_table "favorites", :force => true do |t|
@@ -223,8 +223,9 @@ ActiveRecord::Schema.define(:version => 20111025160217) do
     t.datetime "updated_at"
     t.integer  "followers_count",  :default => 0
     t.integer  "posts_count",      :default => 0
-    t.integer  "person_id"
     t.text     "description"
+    t.integer  "person_id"
+    t.datetime "activated_at"
   end
 
   create_table "items", :force => true do |t|
