@@ -162,20 +162,31 @@ $darkgray: #74777B
 .item_mark, .item_unmark
   :width 100px
   :height 40px
-  :text-indent -9999em
   :display block
   :margin-bottom 7px
 
 .item_mark
-  :background url("/images/items/item_mark.png") no-repeat scroll 0 0 transparent
-
+  :background-color #8DBC6E
+  span
+    background: url(/images/ui/icon-check.png) no-repeat 0 50%
+    :padding-left 18px
   &:hover
-    :background url("/images/items/item_mark.png") no-repeat scroll left bottom transparent 
+    :background-color #e76b75
+    span
+      :color #f9c
+      background: url(/images/ui/icon-x.png) no-repeat 0 50%
 
 .item_unmark
-  :background url("/images/items/item_unmark.png") no-repeat scroll 0 0 transparent 
-  
+  :background-color lightGrey
+  span
+    :padding-left 18px
+    background: url(/images/ui/follow-gray.gif) no-repeat 0 50%
+    :color #999
   &:hover
-    :background url("/images/items/item_unmark.png") no-repeat scroll left bottom transparent
+    :background-color #8aba56
+    span
+      background: url(/images/ui/follow-white.gif) no-repeat 0 50%
+      :color white
+
 
 

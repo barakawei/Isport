@@ -1,6 +1,6 @@
 class AddColumnTwitterPostsCountToPerson < ActiveRecord::Migration
   def self.up
-    add_column :people, :twitter_posts_count, :integer
+    add_column :people, :twitter_posts_count, :integer, :default => 0
 
     Person.reset_column_information
     Person.find(:all).each do |person|

@@ -15,6 +15,7 @@ class StatusMessagesController < ApplicationController
     end
     if item_topic
       @status_message.item_topic = item_topic 
+      @status_message.item = item_topic.item 
       ItemTopicInvolvement.find_or_create_by_item_topic_id_and_person_id(:item_topic_id => item_topic.id, :person_id => current_user.person.id) 
     end
     if @status_message.save

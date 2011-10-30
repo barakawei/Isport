@@ -5,6 +5,7 @@ class Post < ActiveRecord::Base
   has_many :comments, :dependent => :destroy
   has_many :mentions, :dependent => :destroy
   belongs_to :item_topic, :counter_cache => true
+  belongs_to :item
   scope :by_owner, lambda { |person_id| where(:author_id => person_id,:type =>"StatusMessage")}
   scope :refresh,  lambda { |current_user| where("posts.created_at > ? and author_id != ?",current_user.last_request_at,current_user.person.id) }
 
