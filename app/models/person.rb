@@ -86,6 +86,10 @@ class Person < ActiveRecord::Base
     Person.joins( :profile ).where(sql,*tokens)
   end
 
+  def self.hot_people()
+    Person.joins(:user).where(:users => {:getting_started => false}).order("twitter_posts_count DESC").limit(12)
+  end
+
   def as_json(opts={})
     {
         :id => self.id,

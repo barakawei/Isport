@@ -3,7 +3,7 @@
 
 .span-24.select_interests
   %h2='关注活跃用户'
-  - stars = Person.order("twitter_posts_count DESC").limit(12)
+  - stars = Person.hot_people()
   - if stars.size > 0
     = render 'common/header_box', :title => "活跃用户",:blue_angle => true
     = render 'people/show_contacts',:people => stars, :groups => nil, :items => nil
