@@ -20,7 +20,7 @@ class ItemTopic < ActiveRecord::Base
   scope :recent_hot, lambda {where("activated_at >= ? and activated_at <= ?", 3.days.ago, Time.now).order('posts_count desc').limit(50)}
 
   def self.mine(person)
-    person.involved_topics.order('item_topic_involvements.created_at desc').limit(20)
+    person.involved_topics.order('item_topic_involvements.created_at desc').limit(15)
   end
   
   def self.recent_random_topics
@@ -31,11 +31,11 @@ class ItemTopic < ActiveRecord::Base
 
   def self.friends(person)
     ItemTopic.joins(:item_topic_involvements).where(:item_topic_involvements => {:person_id => person.user.friends})
-             .order('item_topic_involvements.created_at desc').select('DISTINCT(item_topics.id)').limit(20) 
+             .order('item_topic_involvements.created_at desc').select('DISTINCT(item_topics.id)').limit(15) 
   end
 
   def self.hot(person)
-    order_by_hot.limit(20)
+    order_by_hot.limit(15)
   end
 
   def image_url(size = :thumb_large)

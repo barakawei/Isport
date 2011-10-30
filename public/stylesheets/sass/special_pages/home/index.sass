@@ -1,19 +1,42 @@
 @import '../../general/ui/mixins'
-.filter_current
-  :color #777
 .post_filter
+  .filter_current
+    :color #333
+    :background url("/images/ui/filter-button.png") no-repeat scroll 0 -21px transparent
+    span
+      background: url("/images/ui/filter-button.png") no-repeat scroll 100% 0 transparent 
+      padding-right: 8px
+      height: 21px
+    &:hover
+      :color #333
+       
+    
   :font-weight bold
   .title
     :color #777
     :display inline-block
   a
+    :display inline-block
+    :color #005EAC
+    padding: 0 8px 0 9px
+    :border-right 1px solid #aaa
+    :height 21px
+    :line-height 21px
+    :padding-right 5px
     &:hover
       color: #3F8FBA
       text-decoration: underline
+    span
+      :display inline-block
+      padding-right: 8px
+      height: 21px
+      
+  a#all_post
+    :border none
   
   :position absolute
-  :top 150px
-  :right 50px
+  :bottom 5px
+  :right 0px
   li
     :display inline-block
 .nav_progress
@@ -520,6 +543,7 @@
   :background white
   :width 660px
   :border-bottom 1px solid #ECEAE8
+  :position relative
   .post_type_bar
     :position relative
     :float left
