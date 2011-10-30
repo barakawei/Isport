@@ -28,17 +28,17 @@
     %li.inbox
       %a{:href => conversations_path,:class =>'red_tab long_li',:id=>'conversation'}
         =t( 'inbox' )
-        -if current_user && @unread_message_count != 0
-          %span.message_count
-            %span
+        %span.message_count
+          %span
+            -if current_user && @unread_message_count != 0
               %span=@unread_message_count
     %li.notifaction
       #notification_badge
         %a{ :href => "#" ,:class => 'red_tab long_li',:id=> 'notifaction'}
           = "通知"
-          -if current_user && @unread_notify_count != 0
-            %span.message_count
-              %span
+          %span.message_count
+            %span
+              -if current_user && @unread_notify_count != 0
                 %span=@unread_notify_count
     %li.set
       %a{:href => "#",:class => "current_user_link red_tab long_li",:id => 'set'}
