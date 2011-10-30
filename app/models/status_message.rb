@@ -5,7 +5,7 @@ class StatusMessage < Post
   has_one :post_video, :dependent => :destroy
   attr_accessible :content
   attr_accessor :contacts
-  after_create :create_mentions
+  after_create :create_mentions, :update_topic_time
 
   def self.initialize( user,content)
     status_message = StatusMessage.new
@@ -169,6 +169,12 @@ class StatusMessage < Post
         t_string.sub!(regex, '')
     end
     result
+  end
+
+  def update_topic_time
+    if self.item_topic 
+      item_topic.update_attributes(:activated_at => self.created_at)
+    end
   end
 end
 

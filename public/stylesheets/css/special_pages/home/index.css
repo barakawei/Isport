@@ -1,17 +1,37 @@
-.filter_current {
-  color: #777777; }
-
 .post_filter {
   font-weight: bold;
   position: absolute;
-  top: 150px;
-  right: 50px; }
+  bottom: 5px;
+  right: 0px; }
+  .post_filter .filter_current {
+    color: #333333;
+    background: url("/images/ui/filter-button.png") no-repeat scroll 0 -21px transparent; }
+    .post_filter .filter_current span {
+      background: url("/images/ui/filter-button.png") no-repeat scroll 100% 0 transparent;
+      padding-right: 8px;
+      height: 21px; }
+    .post_filter .filter_current:hover {
+      color: #333333; }
   .post_filter .title {
     color: #777777;
     display: inline-block; }
-  .post_filter a:hover {
-    color: #3f8fba;
-    text-decoration: underline; }
+  .post_filter a {
+    display: inline-block;
+    color: #005eac;
+    padding: 0 8px 0 9px;
+    border-right: 1px solid #aaaaaa;
+    height: 21px;
+    line-height: 21px;
+    padding-right: 5px; }
+    .post_filter a:hover {
+      color: #3f8fba;
+      text-decoration: underline; }
+    .post_filter a span {
+      display: inline-block;
+      padding-right: 8px;
+      height: 21px; }
+  .post_filter a#all_post {
+    border: none; }
   .post_filter li {
     display: inline-block; }
 
@@ -503,7 +523,8 @@
   margin-top: 7px;
   background: white;
   width: 660px;
-  border-bottom: 1px solid #eceae8; }
+  border-bottom: 1px solid #eceae8;
+  position: relative; }
   .feed_toolbar .post_type_bar {
     position: relative;
     float: left;
