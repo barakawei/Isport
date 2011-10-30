@@ -14,10 +14,12 @@
     .check_area
       - if current_user 
         - unless is_fan_of(@item)
-          = link_to t('items.like'), url_for(:action=> "add_fan", :id => @item.id), :class => "item_mark"
+          = link_to url_for(:action=> "add_fan", :id => @item.id), :class => "item_unmark big_button" do
+            %span= t('follow')
           = t('items.likeinfo')
         - else
-          = link_to t('items.unlike' ), url_for(:action=> "remove_fan", :id => @item.id), :class => "item_unmark" 
+          = link_to url_for(:action=> "remove_fan", :id => @item.id), :class => "item_mark big_button" do
+            %span= t('following')
           = t('items.unlikeinfo', :name => @item.name)
 
     - if @topics.length > 0

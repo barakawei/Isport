@@ -1,0 +1,4 @@
+- content_for :head do
+  = include_stylesheets :sepcial_pages_site_admin_common, :media => 'all'
+= render 'nav'
+  - @users.each do |e|
