@@ -37,7 +37,9 @@ class HomeController < ApplicationController
   def show_post
     followed_people = current_user.followed_people
     people_id = followed_people.map{|p| p.id} + [current_user.person.id]
-    @posts = Post.where( :author_id => people_id ).where( "type='StatusMessage'" ).includes( :comments ).includes( :author ).order( "posts.created_at DESC" ).paginate(:page => params[:page], :per_page => 30)
+    followed_itemtopic_ids = current_user.person.concern_itemtopics.map{|i| i.id}
+    followed_item_ids = current_user.person.interests.map{ |i| i.id}
+    @posts = Post.where("author_id in(?) or item_topic_id in (?) or item_id in (?)",people_id,followed_itemtopic_ids,followed_item_ids).where( "type='StatusMessage'" ).includes( :comments ).includes( :author ).order( "posts.created_at DESC" ).paginate(:page => params[:page], :per_page => 30)
     @event_tab = 'post'
     @post_filter = 'all_post'
     respond_with @posts
@@ -46,7 +48,9 @@ class HomeController < ApplicationController
   def show_following_post
     followed_people = current_user.followed_people
     people_id = followed_people.map{|p| p.id} + [current_user.person.id]
-    @posts = Post.where( :author_id => people_id).where( "item_id is null or item_id in (?)",current_user.person.interests ).where( "type='StatusMessage'" ).includes( :comments ).includes( :author ).order( "posts.created_at DESC" ).paginate(:page => params[:page], :per_page => 30)
+    followed_itemtopic_ids = current_user.person.concern_itemtopics.map{|i| i.id}
+    followed_item_ids = current_user.person.interests.map{ |i| i.id}
+    @posts = Post.where("(author_id in(?) and item_topic_id is null) or item_topic_id in (?) or item_id in (?)",people_id,followed_itemtopic_ids,followed_item_ids).where( "type='StatusMessage'" ).includes( :comments ).includes( :author ).order( "posts.created_at DESC" ).paginate(:page => params[:page], :per_page => 30)
     @event_tab = 'post'
     @post_filter = 'following_post'
     render 'show_post'
