@@ -38,14 +38,14 @@
       = render :partial => 'item_topics/new_topic_box', :locals => {:item_topic => item_topic, :rtopics => recent_topics} 
     %span.noti.hide.right="使用 '@＋好友姓名' 分享给好友"
 
--if !item_topic.nil?
-  %ul.post_filter
-    %li.following
-      =link_to "/home/show_following_post",:remote => true,:id=>'following_post', do
-        %span="我感兴趣"
-    %li.all
-      =link_to "/home/show_post",:remote => true,:id=>'all_post', do
-        %span="所有内容"
+  - if !item_topic.nil?
+    %ul.post_filter
+      %li.following
+        =link_to "/home/show_following_post",:remote => true,:id=>'following_post', do
+          %span="我感兴趣"
+      %li.all
+        =link_to "/home/show_post",:remote => true,:id=>'all_post', do
+          %span="所有内容"
   .clear
 
 :javascript
