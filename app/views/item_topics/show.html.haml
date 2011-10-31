@@ -34,6 +34,16 @@
       .stream.post_element_panel
 
   .right_column
+    - if @events.length > 0 
+      .related
+        .related_title
+          .name
+            ="近期#{@city.name}#{@item.name}相关活动" 
+          .link_more
+            = link_to "更多", event_filter_path(@city.id, nil, @item.id, 'week')
+        .related_topics
+          = render :partial => 'events/recent_events',  :locals => {:events => @events}
+      
     - if @related.length > 0
       .related
         .related_title

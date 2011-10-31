@@ -62,8 +62,7 @@ class ItemTopic < ActiveRecord::Base
   end
 
   def self.add_follower(topic_id, person)
-    followship = ItemTopicFollowship.new(:item_topic_id => topic_id, :person_id => person.id)
-    followship.save
+    followship = ItemTopicFollowship.find_or_create_by_item_topic_id_and_person_id(:item_topic_id => topic_id, :person_id => person.id)
   end
 
   def self.remove_follower(topic_id, person)
