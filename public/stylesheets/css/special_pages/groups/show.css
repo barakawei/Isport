@@ -2,9 +2,7 @@
   color: #666666; }
   .left_column .avatar img {
     width: 198px;
-    height: 198px;
-    border: 1px solid #f2f2f2;
-    background-color: white; }
+    height: 198px; }
   .left_column .nav ul {
     width: 200px; }
     .left_column .nav ul li a {

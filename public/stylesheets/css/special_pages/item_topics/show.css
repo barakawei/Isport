@@ -149,6 +149,14 @@
     .right_column .related .related_topics {
       float: left;
       width: 236px; }
+      .right_column .related .related_topics .event_item {
+        margin-top: 5px;
+        margin-bottom: 8px; }
+        .right_column .related .related_topics .event_item a:hover {
+          text-decoration: underline; }
+        .right_column .related .related_topics .event_item a, .right_column .related .related_topics .event_item span {
+          color: #71715b;
+          font-size: 12px; }
   .right_column .topic_followers {
     width: 236px;
     float: left;

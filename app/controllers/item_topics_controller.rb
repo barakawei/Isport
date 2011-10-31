@@ -10,13 +10,16 @@ class ItemTopicsController < ApplicationController
 
   def show
     auth = current_user ? current_user.authorizations.first : nil
-    @is_binded = !auth.nil?
     @topic = ItemTopic.find(params[:id]) 
+    @item = @topic.item
+    @city = current_user.person.location.city 
+    @is_binded = !auth.nil?
     @followers = @topic.followers.order('rand()').limit(FOLLOWER).includes(:profile) 
-    @related = ItemTopic.of_item(@topic.item).recent_hot.where("id != ?", @topic.id).limit(50)
-    @related = ItemTopic.of_item(@topic.item).order_by_hot.where("id != ?", @topic.id).limit(50) unless @related.length > 0
+    @related = ItemTopic.of_item(@item).recent_hot.where("id != ?", @topic.id).limit(50)
+    @related = ItemTopic.of_item(@item).order_by_hot.where("id != ?", @topic.id).limit(50) unless @related.length > 0
     @changeable = (@related.size > 7) 
     @related = @related.sort_by{rand}[0..RELATED]
+    @events = Event.of_item(@item.id).recent_events(@city)
     @editable = current_user ? (@topic.person == current_user.person) : false
   end
 

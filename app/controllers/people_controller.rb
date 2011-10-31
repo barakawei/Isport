@@ -25,14 +25,14 @@ class PeopleController < ApplicationController
 
   def show_groups
     @person = Person.find( params[ :person_id ] )
-    @groups = @person.joined_groups.paginate(:page => params[:page], :per_page => 20)
+    @groups = @person.joined_groups.order("created_at desc").paginate(:page => params[:page], :per_page => 20)
     @select_tab = 'groups_tab'  
     render "people/show_person_details"
   end
 
   def show_items
     @person = Person.find( params[ :person_id ] )
-    @items= @person.interests.paginate(:page => params[:page], :per_page => 35)
+    @items= @person.interests.order("created_at desc").paginate(:page => params[:page], :per_page => 35)
     @select_tab = 'items_tab'  
     render "people/show_person_details"
   end
@@ -41,11 +41,11 @@ class PeopleController < ApplicationController
     @type = params[ :type ]
     @person = Person.find( params[ :person_id ] )
     if @type == 'followed'
-      @people = @person.user.followed_people.paginate(:page => params[:page], :per_page => 35)
+      @people = @person.user.followed_people.order("created_at desc").paginate(:page => params[:page], :per_page => 35)
 
       @select_tab = 'following_tab'  
     else
-      @people = @person.user.befollowed_people.paginate(:page => params[:page], :per_page => 35)
+      @people = @person.user.befollowed_people.order("created_at desc").paginate(:page => params[:page], :per_page => 35)
 
       @select_tab = 'followers_tab'  
     end
