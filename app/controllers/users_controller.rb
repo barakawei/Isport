@@ -48,7 +48,8 @@ class UsersController < ApplicationController
     group = Group.where(:id => 2)
     group.first.members << current_user.person if group.size > 0
     User.where( :admin=> true ).each do |u|
-      current_user.share_with(u.person)
+      contact = current_user.share_with(u.person)
+      contact.dispatch_request 
     end
   end
 

@@ -18,6 +18,7 @@ class Item < ActiveRecord::Base
 
   has_many :topics, :class_name => 'ItemTopic'  
 
+
   belongs_to :category
 
   attr_accessor :selected
