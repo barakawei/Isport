@@ -37,7 +37,7 @@ Post.joins( :item_topic ).each do |p|
 end
 
 #update everyone follow admin
-User.where( :admin=> false ).each do |u|
+User.where( :admin => false,:getting_started => false ).each do |u|
   User.where( :admin=> true ).each do |admin|
     contact_user = u.contacts.find_or_initialize_by_person_id(admin.person.id)
     unless contact_user.receiving?
