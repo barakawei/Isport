@@ -6,7 +6,7 @@ class WelcomeController < ApplicationController
       redirect_to sign_in_path
     else
       @registe_wizard = true
-      @citycount = City.count
+      @citycount = Location.count('city_id', :distinct => true)
       @usercount = User.count
       @groupcount = Group.count
       @eventcount = Event.count
