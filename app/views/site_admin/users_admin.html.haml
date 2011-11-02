@@ -31,7 +31,9 @@
             = link_to("#", :class => (!p.selected ? "reco" : "reco hide"), :path => select_high_quality_user_path(p.id)) do
               .pass_button.glass_button
                 = '推到首页'
-
+  .span-17.pagination_box
+    = will_paginate @users, {:previous_label => t("pagination.previous"), 
+                              :next_label => t("pagination.next")}
 :javascript
   $('.operations .buttons a.reco').click(function() {
     $link = $(this);
