@@ -15,9 +15,11 @@ class User < ActiveRecord::Base
   has_many :friends, :through => :contacts, :source => :person, :conditions => "receiving=true"
   has_many :followed_people, :through => :contacts, :source => :person,:conditions => "receiving=true"
   has_many :befollowed_people, :through => :contacts, :source => :person,:conditions => "sharing=true"
-  
+  has_many :mutual_friends,:through => :contacts, :source => :person, :conditions => "receiving=true" 
   delegate :name,:to => :person
   delegate :location,:to => :profile
+
+  scope :online, lambda {where(["last_request_at > ?", 5.minutes.ago])}
 
 
   has_many :authorizations do
@@ -30,6 +32,7 @@ class User < ActiveRecord::Base
     end
   end
 
+
   Municipals = [I18n.t('municipals.beijing'), I18n.t('municipals.shanghai'),
                 I18n.t('municipals.tianjin'), I18n.t('municipals.chongqing'),
                 I18n.t('municipals.xianggang'), I18n.t('municipals.aomen')]
@@ -38,6 +41,13 @@ class User < ActiveRecord::Base
     u = User.new( opts )
     u.setup( opts)
     u
+  end
+
+  def online_friends 
+    u_ids = self.mutual_friends.collect {|f| f.user_id}
+    on_ids = User.where(:id => u_ids).online.collect {|u| u.id}
+    result = mutual_friends.delete_if{ |f| !on_ids.include?(f.user_id) }
+    result
   end
 
   def setup( opts )

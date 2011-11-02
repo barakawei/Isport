@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111030094732) do
+ActiveRecord::Schema.define(:version => 20111102083851) do
 
   create_table "administrators", :force => true do |t|
     t.integer  "user_id"
@@ -127,10 +127,11 @@ ActiveRecord::Schema.define(:version => 20111030094732) do
     t.integer  "group_id",           :default => 0
     t.integer  "status",             :default => 0
     t.string   "status_msg"
-    t.integer  "audit_person_id"
     t.integer  "participants_count", :default => 0
     t.integer  "comments_count",     :default => 0
     t.integer  "fans_count",         :default => 0
+    t.integer  "audit_person_id"
+    t.boolean  "selected",           :default => false
   end
 
   create_table "favorites", :force => true do |t|
@@ -175,6 +176,7 @@ ActiveRecord::Schema.define(:version => 20111030094732) do
     t.integer  "members_count",    :default => 0
     t.integer  "events_count",     :default => 0
     t.integer  "topics_count",     :default => 0
+    t.boolean  "selected",         :default => false
   end
 
   create_table "invitations", :force => true do |t|
@@ -223,8 +225,8 @@ ActiveRecord::Schema.define(:version => 20111030094732) do
     t.datetime "updated_at"
     t.integer  "followers_count",  :default => 0
     t.integer  "posts_count",      :default => 0
-    t.integer  "person_id"
     t.text     "description"
+    t.integer  "person_id"
     t.datetime "activated_at"
   end
 
@@ -305,6 +307,7 @@ ActiveRecord::Schema.define(:version => 20111030094732) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "twitter_posts_count"
+    t.boolean  "selected",            :default => false
   end
 
   add_index "people", ["user_id"], :name => "index_people_on_user_id", :unique => true

@@ -55,6 +55,13 @@
               = link_to('#', :class => 'deny', :event_id => e.id) do
                 .deny_button.glass_button
                   ='不通过'
+
+            = link_to("#", :class => (e.selected ? "cancel_reco" : "cancel_reco hide"), :path => cancel_high_quality_event_path(e.id)) do
+              .deny_button.glass_button
+                = '取消推荐'
+            = link_to("#", :class => (!e.selected ? "reco" : "reco hide"), :path => select_high_quality_event_path(e.id)) do
+              .pass_button.glass_button
+                = '推到首页'
             
             = link_to('#', :class => 'delete', :event_id => e.id) do
               .delete_button.glass_button
@@ -177,3 +184,35 @@
       }
     });
   }
+
+  $('.operations .buttons a.reco').click(function() {
+    $link = $(this);
+    $.ajax({
+      type: 'get',
+      url: $link.attr("path"),
+      async: false,
+      success: function(data) {
+        $link.hide();
+        $link.siblings(".cancel_reco").show(); 
+      }  
+    }); 
+    return false;
+  });
+
+  $('.operations .buttons a.cancel_reco').click(function() {
+    $link = $(this);
+    $.ajax({
+      type: 'get',
+      url: $link.attr("path"),
+      async: false,
+      success: function(data) {
+        $link.hide();
+        $link.siblings(".reco").show(); 
+      }  
+    }); 
+    return false;
+  });
+  
+              
+  
+              

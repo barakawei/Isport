@@ -58,6 +58,8 @@ class Group < ActiveRecord::Base
   scope :audit_failed, lambda { where("status = ? ", Group::DENIED) } 
   scope :canceled, lambda { where("status = ? ", Group::CANCELED_BY_EVENT_ADMIN) } 
   scope :all, lambda { select("*") }
+  scope :selected, lambda { where("selected= ?", true)}
+  scope :selected_random, lambda { where("selected= ?", true).order("rand()").limit(3)}
   after_destroy :delete_notification
 
   def delete_notification

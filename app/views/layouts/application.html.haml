@@ -32,6 +32,22 @@
     .container.body
       - if params[:controller] != 'site_posts'
         = link_to '官方博客', site_blog_path, :id => 'site_blog_link'
+      - if current_user
+        #online_freinds_container
+          .friend_list.hide
+            .friend_title_bar
+              %span="在线好友(#{@online_friends.size})"
+              = link_to 'show', 'javascript:void(0)', :class => 'hide_list'
+            .online_list
+              - @online_friends.each do |p|
+                = link_to person_path(p), :class => 'friend_item', do
+                  = person_image_tag(p)
+                  %span.name= truncate(p.name, :length => 9, :omission => '')
+                  %img{:src => '/images/ui/online_icon.gif', :class => 'online_icon'}
+          = link_to 'javascript:void(0)', :class => 'show_list' do
+            %img{:src => "/images/ui/online_friend_mini.gif"}
+            %span="在线好友(#{@online_friends.size})"
+            %img{:src => "/images/ui/down_arrow.gif", :class => 'hide down_arrow'}
       .brower_notice.hide
         %p='温馨提示:'
         %p='本网站当前只支持IE8及以上版本浏览器，为了更好的用户体验，推荐使用Firefox, Chrome, 或者Safari浏览器' 
@@ -105,6 +121,7 @@
       $('html').click(function(e) {
         $('.accout').addClass('hide');
         $('#city_select_box').addClass('hide'); 
+        hide_online_friends_list();
       });
     }
   });
@@ -116,3 +133,25 @@
   function refresh_count() { 
     $.get("/notifications/refresh_count");
   } 
+
+  $('#online_freinds_container .show_list').click(function() {
+    $('#online_freinds_container .friend_list').toggleClass('hide'); 
+    $(this).children('img.down_arrow').toggleClass('hide');
+    $(this).toggleClass('pressed');
+    return false;
+  });
+
+  $('#online_freinds_container .hide_list').click(function() {
+    hide_online_friends_list();
+  });
+
+  $('#online_freinds_container').click(function() {
+    e.stopPropagation();
+  });
+
+  function hide_online_friends_list() {
+   $('#online_freinds_container .friend_list').addClass('hide'); 
+    $('#online_freinds_container .show_list').children('img.down_arrow')
+                                             .addClass('hide');
+    $('#online_freinds_container .show_list').removeClass('pressed'); 
+  }

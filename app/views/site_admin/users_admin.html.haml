@@ -1,4 +1,66 @@
 - content_for :head do
   = include_stylesheets :sepcial_pages_site_admin_common, :media => 'all'
 = render 'nav'
-  - @users.each do |e|
+.span-23.content_area
+  - @users.each do |u|
+    - p = u.person 
+    .span-21.content_block    
+      .avatar
+        = person_image_link(p)
+      .content
+        %h4.title
+          %span.des_label="姓名:"
+          = link_to p.name, person_path(p)
+        %p
+          %span.des_label="注册时间:"
+          = l(u.created_at, :format => :long)
+        %p
+          %span.des_label="上次登陆时间:"
+          = l(u.last_sign_in_at, :format => :long)
+        %p
+          %span.des_label="粉丝数:"
+          = u.followed_people.size 
+        %p
+          %span.des_label="关注数:"
+          = u.befollowed_people.size 
+        .operations
+          .buttons
+            = link_to("#", :class => (p.selected ? "cancel_reco" : "cancel_reco hide"), :path => cancel_high_quality_user_path(p.id)) do
+              .deny_button.glass_button
+                = '取消推荐'
+            = link_to("#", :class => (!p.selected ? "reco" : "reco hide"), :path => select_high_quality_user_path(p.id)) do
+              .pass_button.glass_button
+                = '推到首页'
+
+:javascript
+  $('.operations .buttons a.reco').click(function() {
+    $link = $(this);
+    $.ajax({
+      type: 'get',
+      url: $link.attr("path"),
+      async: false,
+      success: function(data) {
+        $link.hide();
+        $link.siblings(".cancel_reco").show(); 
+      }  
+    }); 
+    return false;
+  });
+
+  $('.operations .buttons a.cancel_reco').click(function() {
+    $link = $(this);
+    $.ajax({
+      type: 'get',
+      url: $link.attr("path"),
+      async: false,
+      success: function(data) {
+        $link.hide();
+        $link.siblings(".reco").show(); 
+      }  
+    }); 
+    return false;
+  });
+  
+              
+  
+              

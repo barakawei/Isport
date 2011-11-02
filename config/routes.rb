@@ -157,6 +157,18 @@ Isport::Application.routes.draw do
     match '/site_admin/events_count' => :get_events_count_ajax, :as => 'events_count'
     match '/site_admin/groups_count' => :get_groups_count_ajax, :as => 'groups_count'
     match '/site_admin/manage_users' => :users_admin, :as => 'manage_users'
+    match '/site_admin/select_high_quality_user/:id' => :select_high_quality_user, :as => 'select_high_quality_user',
+          :constraints => {:id => /[1-9]\d*/}
+    match '/site_admin/cancel_high_quality_user/:id' => :cancel_high_quality_user, :as => 'cancel_high_quality_user',
+          :constraints => {:id => /[1-9]\d*/}
+    match '/site_admin/select_high_quality_event/:id' => :select_high_quality_event, :as => 'select_high_quality_event',
+          :constraints => {:id => /[1-9]\d*/}
+    match '/site_admin/cancel_high_quality_event/:id' => :cancel_high_quality_event, :as => 'cancel_high_quality_event',
+          :constraints => {:id => /[1-9]\d*/}
+    match '/site_admin/select_high_quality_group/:id' => :select_high_quality_group, :as => 'select_high_quality_group',
+          :constraints => {:id => /[1-9]\d*/}
+    match '/site_admin/cancel_high_quality_group/:id' => :cancel_high_quality_group, :as => 'cancel_high_quality_group',
+          :constraints => {:id => /[1-9]\d*/}
   end
 
   controller :home do

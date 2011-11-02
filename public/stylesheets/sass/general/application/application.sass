@@ -1081,3 +1081,92 @@ a.app_black_link_button
       :background-color #8aba56
       span
         background: url(/images/ui/follow-white.gif) no-repeat 0 50%
+
+#online_freinds_container
+  :z-index 99999
+  :position fixed
+  :bottom 0 
+  :right 30px
+  :width 200px
+  .friend_list
+    :background-color #f9f9f9
+    :border 1px solid #d5ddde
+    :border-bottom none
+
+    .friend_title_bar
+      :position relative
+      background: url("/images/ui/mainmenu-bg.png") repeat scroll 0 0 transparent
+      :height 25px
+      :padding-left 10px
+
+      a.hide_list
+        :position absolute
+        background: url("/images/ui/delete_white.png") no-repeat scroll center bottom transparent
+        display: inline-block
+        width: 14px
+        color: white
+        text-indent: -99999px
+        top: 0
+        right: 10px
+        
+
+      span
+        :color white
+        :line-height 25px
+        :padding-left 3px
+        :font-size 13px
+    .online_list
+      :height 300px
+      overflow-y: scroll
+      :padding 10px 0 10px 10px 
+     
+      a.friend_item 
+        :position relative
+        :display block
+        :margin-bottom 5px
+
+        &:hover
+          :background-color #eee
+        img
+          :width 35px
+          :height 35px
+          :vertical-align middle 
+          :margin-right 7px
+        img.online_icon
+          :width 12px
+          :height 12px
+          :position absolute 
+          :right 0
+          :top 11px
+        span
+          :font-size 12px 
+          :color #666
+  a.show_list
+    :background-color #f1f1f1
+    :border 1px solid #c8c8c8
+    :width 163px
+    :padding-left 10px
+    :display block
+    :height 23px
+    :color #777
+    :position relative
+    img
+      :margin-top 4px
+      :vertical-align text-bottom
+      :margin-right 5px
+    img.down_arrow
+      :position absolute
+      :width 12px
+      :height 12px
+      :right 10px
+      :top 3px
+    span
+      :display inline-block
+      :padding-left 10px
+      :height 23px
+      :border-left 1px solid #d5ddde
+      :line-height 23px
+      :font-size 12px
+  a.pressed
+    :border-top none
+    :background-color #fff

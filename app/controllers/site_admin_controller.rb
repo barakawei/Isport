@@ -71,6 +71,42 @@ class SiteAdminController < ApplicationController
     group.destroy
     render :nothing => true
   end
+  
+  def select_high_quality_user
+    p = Person.find(params[:id]) 
+    p.update_attributes(:selected => true)
+    render :nothing => true
+  end
+
+  def cancel_high_quality_user
+    p = Person.find(params[:id]) 
+    p.update_attributes(:selected => false)
+    render :nothing => true
+  end
+
+  def select_high_quality_event
+    event = Event.find(params[:id]) 
+    event.update_attributes(:selected => true)
+    render :nothing => true
+  end
+
+  def cancel_high_quality_event
+    event = Event.find(params[:id]) 
+    event.update_attributes(:selected => false)
+    render :nothing => true
+  end
+
+  def select_high_quality_group
+    group = Group.find(params[:id]) 
+    group.update_attributes(:selected => true)
+    render :nothing => true
+  end
+
+  def cancel_high_quality_group
+    group= Group.find(params[:id]) 
+    group.update_attributes(:selected => false)
+    render :nothing => true
+  end
 
   private 
 

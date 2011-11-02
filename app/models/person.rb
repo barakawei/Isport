@@ -50,6 +50,8 @@ class Person < ActiveRecord::Base
   scope :potential_interested_people, lambda {|person| joins(:favorites).where(:favorites => {:item_id => person.interests})
                                                                         .select('DISTINCT(people.id)')}
   scope :not_in, lambda {|ids| where("people.id not in (?)", ids)}
+  scope :selected, lambda { where("selected= ?", true)}
+  scope :selected_random, lambda { where("selected= ?", true).order("rand()").limit(40)}
 
   delegate :name, :to => :profile
   delegate :email, :to => :user

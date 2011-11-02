@@ -67,6 +67,8 @@ class Event < ActiveRecord::Base
   scope :canceled, lambda { where("status = ? ", Event::CANCELED_BY_EVENT_ADMIN) } 
   scope :all, lambda { select("*") }
   scope :open, lambda { where("is_private = ?", false)}
+  scope :selected, lambda { where("selected= ?", true)}
+  scope :selected_random, lambda { where("selected= ?", true).limit(3)}
   after_destroy :delete_notification
 
   def delete_notification

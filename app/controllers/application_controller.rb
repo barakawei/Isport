@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :set_header_data,:except => [:refresh_count,:refresh]
   before_filter :set_last_request_at,:except => [:refresh,:refresh_count]
+  before_filter :set_online_friends,:except => [:refresh,:refresh_count]
 
   def registrations_closed?
     if AppConfig[ :registrations_closed ] && !user_signed_in?
@@ -18,6 +19,12 @@ class ApplicationController < ActionController::Base
     if user_signed_in?
       @unread_message_count = ConversationVisibility.sum(:unread, :conditions => "person_id = #{current_user.person.id}")
       @unread_notify_count = Notification.sum(:unread, :conditions => "recipient_id = #{current_user.id} ")
+    end
+  end
+
+  def set_online_friends
+    if current_user
+      @online_friends = current_user.online_friends 
     end
   end
 
