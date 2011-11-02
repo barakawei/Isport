@@ -1,6 +1,7 @@
 .span-24
   %span.logo
-    = link_to image_tag( '/images/ui/logo.png' ), home_path 
+    %a{:href => '/welcome'}
+      = image_tag( '/images/ui/logo.png' ) 
     .beta
       = '测试版'
   .events_count.span-8.last.right
