@@ -11,23 +11,23 @@
     behavior: url(/javascripts/PIE.htc);
     background: #f9f9f9 url("/images/ui/tabs-bg.png") repeat;
     height: 62px;
-    width: 950px; }
+    width: 950px;
+    float: left; }
     .person_details_tab .home_tabs .following_tab {
-      margin-left: 70px; }
+      margin-left: 15px; }
     .person_details_tab .home_tabs li {
       font-size: 16px;
       display: inline-block;
       float: left;
       height: 62px;
-      margin-left: 5px;
       margin-right: 10px;
       line-height: 62px;
       text-align: center;
       position: relative; }
     .person_details_tab .home_tabs li.hoverable {
-      width: 120px; }
+      width: 170px; }
       .person_details_tab .home_tabs li.hoverable a {
-        padding: 10px;
+        padding: 8px;
         -moz-border-radius: 6px;
         -webkit-border-radius: 6px;
         border-radius: 6px;
@@ -41,9 +41,9 @@
         color: white; }
 
 .person_card {
-  position: absolute;
-  top: 5px;
-  left: 13px; }
+  float: left;
+  margin-top: 5px;
+  margin-left: 13px; }
 
 .box_element {
   -moz-border-radius: 10px;

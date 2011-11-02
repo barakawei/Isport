@@ -114,7 +114,7 @@ class Event < ActiveRecord::Base
   end
 
   def self.recent_events(city)
-    events = Event.not_started.visable.order('start_at').limit(50)
+    events = Event.at_city(city.id).not_started.visable.order('start_at').limit(50)
     size = events.size
     events.sort_by{rand}[0..6]
   end
