@@ -39,7 +39,7 @@ class HomeController < ApplicationController
     people_id = followed_people.map{|p| p.id} + [current_user.person.id]
     followed_itemtopic_ids = current_user.person.concern_itemtopics.map{|i| i.id}
     followed_item_ids = current_user.person.interests.map{ |i| i.id}
-    @posts = Post.where("author_id in(?) or item_topic_id in (?) or item_id in (?)",people_id,followed_itemtopic_ids,followed_item_ids).where( "type='StatusMessage'" ).includes( :comments ).includes( :author ).order( "posts.created_at DESC" ).paginate(:page => params[:page], :per_page => 30)
+    @posts = Post.where("author_id in(?) or item_topic_id in (?) or item_id in (?)",people_id,followed_itemtopic_ids,followed_item_ids).where( "type='StatusMessage'" ).includes( :comments ).includes( :author ).order( "posts.created_at DESC" ).paginate(:page => params[:page], :per_page => 20)
     @event_tab = 'post'
     @post_filter = 'all_post'
     respond_with @posts
@@ -50,27 +50,27 @@ class HomeController < ApplicationController
     people_id = followed_people.map{|p| p.id} + [current_user.person.id]
     followed_itemtopic_ids = current_user.person.concern_itemtopics.map{|i| i.id}
     followed_item_ids = current_user.person.interests.map{ |i| i.id}
-    @posts = Post.where("(author_id in(?) and item_topic_id is null) or item_topic_id in (?) or item_id in (?)",people_id,followed_itemtopic_ids,followed_item_ids).where( "type='StatusMessage'" ).includes( :comments ).includes( :author ).order( "posts.created_at DESC" ).paginate(:page => params[:page], :per_page => 30)
+    @posts = Post.where("item_topic_id in (?) or item_id in (?)",followed_itemtopic_ids,followed_item_ids).where( "type='StatusMessage'" ).includes( :comments ).includes( :author ).order( "posts.created_at DESC" ).paginate(:page => params[:page], :per_page => 20)
     @event_tab = 'post'
     @post_filter = 'following_post'
     render 'show_post'
   end
 
   def show_event
-    @events = Event.at_city( current_user.city ).where("status = ? or (status != ? and events.person_id = ?) ",Event::PASSED,Event::PASSED,current_user.person.id).order( "events.start_at DESC" ).paginate(:page => params[:page], :per_page => 30)
+    @events = Event.at_city( current_user.city ).where("status = ? or (status != ? and events.person_id = ?) ",Event::PASSED,Event::PASSED,current_user.person.id).order( "events.start_at DESC" ).paginate(:page => params[:page], :per_page => 20)
     @event_tab = 'recent_event'
     respond_with @events
   end
 
   def show_following_event
     following_people = current_user.followed_people
-    @events = Event.select( 'DISTINCT events.id,events.*' ).joins( :involvements).where( :person_id => following_people ).where("status = ? or (status != ? and events.person_id = ?) ",Event::PASSED,Event::PASSED,current_user.person.id).order( "events.start_at DESC" ).paginate(:page => params[:page], :per_page => 30)
+    @events = Event.select( 'DISTINCT events.id,events.*' ).joins( :involvements).where( :person_id => following_people ).where("status = ? or (status != ? and events.person_id = ?) ",Event::PASSED,Event::PASSED,current_user.person.id).order( "events.start_at DESC" ).paginate(:page => params[:page], :per_page => 20)
     @event_tab = 'following_event'
     render 'show_event'
   end
 
   def show_my_event
-    @events = current_user.person.involved_events.order( "events.start_at DESC" ).where("status = ? or (status != ? and events.person_id = ?) ",Event::PASSED,Event::PASSED,current_user.person.id).paginate(:page => params[:page], :per_page => 30)
+    @events = current_user.person.involved_events.order( "events.start_at DESC" ).where("status = ? or (status != ? and events.person_id = ?) ",Event::PASSED,Event::PASSED,current_user.person.id).paginate(:page => params[:page], :per_page => 20)
     @event_tab = 'my_event'
     render 'show_event'
   end
