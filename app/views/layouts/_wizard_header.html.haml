@@ -1,6 +1,6 @@
 .span-24
   %span.logo
-    = image_tag( '/images/ui/logo.png' )
+    = link_to image_tag( '/images/ui/logo.png' ), {:controller => :welcome, :action => :index}
     .beta
       = '测试版'
   .events_count.span-8.last.right

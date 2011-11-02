@@ -6,13 +6,13 @@ class WelcomeController < ApplicationController
       redirect_to sign_in_path
     else
       @registe_wizard = true
-      @citycount = City.count
+      @citycount = Location.count('city_id', :distinct => true)
       @usercount = User.count
       @groupcount = Group.count
       @eventcount = Event.count
       @items = Item.order('rand()').limit(3)
-      @events = Event.pass_audit.order('rand()').limit(3)
-      @groups = Group.pass_audit.order('rand()').limit(3)
+      @events = Event.pass_audit.where("image_url != ' '").order('rand()').limit(3)
+      @groups = Group.pass_audit.where("image_url_large != ' '").order('rand()').limit(3)
 
       @photos = [ ]
       numbers = Array.new(40).fill{|i| i+1}

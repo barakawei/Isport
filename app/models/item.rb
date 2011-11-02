@@ -91,9 +91,7 @@ class Item < ActiveRecord::Base
         .group(:subject_id).order("count(subject_id) DESC").limit(size)
 
       if items.length < size
-        items = self.joins(:events).
-          where(:events => {:start_at => (Time.now.beginning_of_month)..(Time.now.next_month.end_of_month), :status => 2})
-          .group(:subject_id).order("count(subject_id) DESC").limit(size)
+        items = self.order("fans_count DESC").limit(size)
       end
     else
       items = self.joins(:events, :events => :location)

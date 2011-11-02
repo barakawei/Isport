@@ -180,6 +180,9 @@ image_path = '/images/items/'
   {:name => '音乐', :description => "用双耳去欣赏世界", :category_id => 2,
     :large => "#{image_path}music_large.jpg", :medium => "#{image_path}music_medium.jpg",
     :small => "#{image_path}music_small.png"},
+  {:name => '宠物', :description => "秀出你的爱心吧", :category_id => 2,
+    :large => "#{image_path}pats_large.jpg", :medium => "#{image_path}pats_medium.jpg",
+    :small => "#{image_path}pats_small.png"},
   {:name => '瑜伽', :description => "伸展到最大", :category_id => 1,
     :large => "#{image_path}yoga_large.jpg", :medium => "#{image_path}yoga_medium.jpg",
     :small => "#{image_path}yoga_small.png"},
@@ -216,47 +219,4 @@ image_path = '/images/items/'
 ['体育运动', '休闲娱乐', '信息技术'].each do |name|
   Category.find_or_create_by_name(:name => name)
 end
-
-Event.all.each do |e|
-  Album.find_or_create_by_imageable_id_and_name(:imageable_id => e.id,:name =>'default',:imageable_type => 'Event')
-end
-
-Person.all.each do |p|
-  Album.find_or_create_by_imageable_id_and_name(:imageable_id =>p.id,:name => 'status_message',:imageable_type =>'Person')
-  album = Album.find_or_create_by_imageable_id_and_name(:imageable_id =>p.id,:name => 'avatar',:imageable_type =>'Person')
-  pic = Pic.new
-  pic.remote_photo_path = "/uploads/images/"
-  pic.author = p
-  pic.image_width = 200
-  pic.image_height = 200
-  url = p.profile.image_url
-  if url.index("/user/").nil? && album.pics.size == 0
-    length = "/uploads/images/thumb_large_".length
-    pic.remote_photo_name = url[ length,url.length ] 
-    pic.random_string = url[ length,url.length].split( "." )[ 0 ]
-    pic.save
-    Pic.connection.execute("update pics set avatar_processed_image='#{url[ length,url.length ]}', unprocessed_image='#{url[ length,url.length ]}' where id=#{pic.id}")
-    album.pics << pic
-  end
-end
-
-#delete invalid notifactions
-
-Notification.all.each do |n|
-  if n.target.nil?
-    n.destroy
-  end
-end
-
-# update item_id if post has item_topic_id
-
-Post.joins( :item_topic ).each do |p|
-  item_id = p.item_topic.item.id
-  Pic.connection.execute("update posts set item_id='#{item_id}' where id=#{p.id}")
-end
-
-
-
-
-
 
