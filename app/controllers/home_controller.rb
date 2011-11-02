@@ -50,7 +50,7 @@ class HomeController < ApplicationController
     people_id = followed_people.map{|p| p.id} + [current_user.person.id]
     followed_itemtopic_ids = current_user.person.concern_itemtopics.map{|i| i.id}
     followed_item_ids = current_user.person.interests.map{ |i| i.id}
-    @posts = Post.where("item_topic_id in (?) or item_id in (?)",followed_itemtopic_ids,followed_item_ids).where( "type='StatusMessage'" ).includes( :comments ).includes( :author ).order( "posts.created_at DESC" ).paginate(:page => params[:page], :per_page => 20)
+    @posts = Post.where("author_id = ? or item_topic_id in (?) or item_id in (?)",current_user.person.id,followed_itemtopic_ids,followed_item_ids).where( "type='StatusMessage'" ).includes( :comments ).includes( :author ).order( "posts.created_at DESC" ).paginate(:page => params[:page], :per_page => 20)
     @event_tab = 'post'
     @post_filter = 'following_post'
     render 'show_post'
