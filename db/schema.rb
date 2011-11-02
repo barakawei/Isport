@@ -127,10 +127,10 @@ ActiveRecord::Schema.define(:version => 20111102083851) do
     t.integer  "group_id",           :default => 0
     t.integer  "status",             :default => 0
     t.string   "status_msg"
+    t.integer  "audit_person_id"
     t.integer  "participants_count", :default => 0
     t.integer  "comments_count",     :default => 0
     t.integer  "fans_count",         :default => 0
-    t.integer  "audit_person_id"
     t.boolean  "selected",           :default => false
   end
 
@@ -225,8 +225,8 @@ ActiveRecord::Schema.define(:version => 20111102083851) do
     t.datetime "updated_at"
     t.integer  "followers_count",  :default => 0
     t.integer  "posts_count",      :default => 0
-    t.text     "description"
     t.integer  "person_id"
+    t.text     "description"
     t.datetime "activated_at"
   end
 

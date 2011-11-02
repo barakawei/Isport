@@ -3,13 +3,13 @@
 .span-24
   .welcome_box
     .poster_box
-      - @photos.each_with_index do |photo, index|
+      - @people.each_with_index do |person, index|
         - if index == 22
           %a{:href => sign_up_path}
             .plus_you_pic
               %span='+You'
         .image_tag
-          %img{:src => photo}
+          = person_image_link(person, :thumb_small)
 
     - if !AppConfig[:registrations_closed] 
       .reg_box

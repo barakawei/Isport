@@ -11,8 +11,9 @@ class WelcomeController < ApplicationController
       @groupcount = Group.count
       @eventcount = Event.count
       @items = Item.order('rand()').limit(3)
-      @events = Event.pass_audit.where("image_url != ' '").order('rand()').limit(3)
-      @groups = Group.pass_audit.where("image_url_large != ' '").order('rand()').limit(3)
+      @people = Person.selected_random
+      @events = Event.pass_audit.selected_random
+      @groups = Group.pass_audit.selected_random
 
       @photos = [ ]
       numbers = Array.new(40).fill{|i| i+1}

@@ -68,7 +68,7 @@ class Event < ActiveRecord::Base
   scope :all, lambda { select("*") }
   scope :open, lambda { where("is_private = ?", false)}
   scope :selected, lambda { where("selected= ?", true)}
-  scope :selected_random, lambda { where("selected= ?", true).limit(3)}
+  scope :selected_random, lambda { where("selected= ?", true).order('rand()').limit(3)}
   after_destroy :delete_notification
 
   def delete_notification
