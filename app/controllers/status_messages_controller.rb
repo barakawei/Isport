@@ -66,7 +66,7 @@ class StatusMessagesController < ApplicationController
       people_id = followed_people.map{|p| p.id} + [current_user.person.id]
       followed_itemtopic_ids = current_user.person.concern_itemtopics.map{|i| i.id}
       followed_item_ids = current_user.person.interests.map{ |i| i.id}
-      @posts = Post.where("author_id in(?)  or item_topic_id in (?) or item_id in (?)",people_id,followed_itemtopic_ids,followed_item_ids).where( "type='StatusMessage'" ).refresh( current_user ).order( "posts.created_at DESC" )
+      @posts = Post.where("item_topic_id in (?) or item_id in (?)",followed_itemtopic_ids,followed_item_ids).where( "type='StatusMessage'" ).refresh( current_user ).order( "posts.created_at DESC" )
     end
     respond_with @posts
   end
