@@ -1,7 +1,7 @@
 class ItemTopicsController < ApplicationController
   before_filter :registrations_closed?
   before_filter :authenticate_user!, 
-                :except => [:index, :show, :show_post, :search, :recent_topics, :related_topics]
+                :except => [:index, :show, :show_post, :filter, :search, :recent_topics, :related_topics]
   
   respond_to :js 
 
@@ -12,14 +12,19 @@ class ItemTopicsController < ApplicationController
     auth = current_user ? current_user.authorizations.first : nil
     @topic = ItemTopic.find(params[:id]) 
     @item = @topic.item
-    @city = current_user.person.location.city 
+    if current_user
+      @city = current_user.person.location.city 
+      @events = Event.of_item(@item.id).recent_events(@city)
+    else
+      @city = nil
+      @events = [] 
+    end
     @is_binded = !auth.nil?
     @followers = @topic.followers.order('rand()').limit(FOLLOWER).includes(:profile) 
     @related = ItemTopic.of_item(@item).recent_hot.where("id != ?", @topic.id).limit(50)
     @related = ItemTopic.of_item(@item).order_by_hot.where("id != ?", @topic.id).limit(50) unless @related.length > 0
     @changeable = (@related.size > 7) 
     @related = @related.sort_by{rand}[0..RELATED]
-    @events = Event.of_item(@item.id).recent_events(@city)
     @editable = current_user ? (@topic.person == current_user.person) : false
   end
 

@@ -24,7 +24,7 @@
       - @items.each do |item|
         .item_block
           .avatar
-            =item_image_tag(item, :thumb_medium)
+            =item_image_link(item, :size => :thumb_medium)
           .item_info
             %span.title=item.name
             %span.desc=item.description
@@ -37,7 +37,7 @@
       - @events.each do |event|
         .item_block
           .avatar
-            =event_image_tag(event, :thumb_medium)
+            =event_image_link(event, :thumb_medium)
           .item_info
             %span.title=event.title
             %span.desc= truncate(event.description, :length => 35)
@@ -51,7 +51,7 @@
       - @groups.each do |group|
         .item_block
           .avatar
-            =group_image_tag(group, :thumb_medium)
+            =group_image_link(group, :thumb_medium)
           .item_info
             %span.title= group.name
             %span.desc= truncate(group.description, :length => 30)
