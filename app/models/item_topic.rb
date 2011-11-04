@@ -26,7 +26,7 @@ class ItemTopic < ActiveRecord::Base
   def self.recent_random_topics
     topics = ItemTopic.recent_hot
     size = topics.size
-    topics.sort_by{rand}[0..6]
+    topics.sort_by{rand}[0..4]
   end
 
   def self.friends(person)

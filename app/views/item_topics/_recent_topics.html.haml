@@ -1,5 +1,19 @@
-.topics
+=content_for :head do
+  = include_stylesheets :special_pages_item_topics_recent_topics
+#recent_topics
   - topics.each do |t|
-    .topic
-      = link_to truncate(t.name, :length => 14), item_topic_path(t) 
-      %span.post_count="(#{t.posts_count})"
+    = link_to item_topic_path(t), :class => 'topic_link', do
+      .topic
+        .avatar
+          = item_topic_image_tag(t)
+          .back_bar
+            %br
+          .item_name
+            %span= t.item.name
+        .content
+          %h4
+            =truncate(t.name, :length => 14, :omission => "")
+          .desc
+            %span= truncate(t.description, :length => 35)
+          .info
+            %span= "#{t.posts.size}条讨论" 

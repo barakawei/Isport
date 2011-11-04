@@ -1,0 +1,47 @@
+#recent_topics a.topic_link {
+  display: block;
+  padding-top: 5px; }
+  #recent_topics a.topic_link:hover {
+    background-color: #f5f5f5; }
+  #recent_topics a.topic_link .topic {
+    border-bottom: 1px dashed #dddddd;
+    margin-top: 0px; }
+    #recent_topics a.topic_link .topic .avatar {
+      position: relative;
+      vertical-align: top;
+      display: inline-block;
+      width: 40px;
+      height: 40px; }
+      #recent_topics a.topic_link .topic .avatar img {
+        width: 40px;
+        height: 40px; }
+      #recent_topics a.topic_link .topic .avatar .back_bar {
+        width: 40px;
+        position: absolute;
+        bottom: 0px;
+        background-color: #747474;
+        opacity: 0.5; }
+      #recent_topics a.topic_link .topic .avatar .item_name {
+        position: absolute;
+        bottom: 0px;
+        color: white;
+        font-size: 10px;
+        margin-left: 3px; }
+    #recent_topics a.topic_link .topic .content {
+      display: inline-block;
+      width: 200px;
+      padding-left: 10px; }
+      #recent_topics a.topic_link .topic .content h4 {
+        margin-top: 0px;
+        margin-bottom: 3px;
+        font-size: 13px;
+        color: #71715b; }
+      #recent_topics a.topic_link .topic .content .desc span {
+        color: #888888;
+        font-size: 11px; }
+      #recent_topics a.topic_link .topic .content .info {
+        text-align: right; }
+        #recent_topics a.topic_link .topic .content .info span {
+          color: #aaaaaa;
+          font-size: 11px;
+          line-height: 11px; }

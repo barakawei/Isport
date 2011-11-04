@@ -5,7 +5,7 @@
   = include_javascripts :show_photo
   =javascript_include_tag "http://api.youku.com/api/js/swfobject.js"
 
-.span-18.last.content_panel
+.span-16.last.content_panel
   #shit
     #fuck
   .home_container
@@ -35,7 +35,7 @@
     = link_to '话题', 'javascript:void(0)', :class => 'topic_name' 
     = link_to 'x', 'javascript:void(0)', :class => 'close_topic_tag'
     
-.span-6.last.right_bar
+.span-8.last.right_bar
   = render 'people/person_list', :person => @person
 :javascript
   $( "#event_info" ).live( "click",function(){

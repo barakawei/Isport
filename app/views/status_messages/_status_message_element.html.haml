@@ -30,6 +30,9 @@
           =how_long_ago( post )
         %span.action
           =link_to "评论","javascript:void(0)",:class => "replay"
+        %span.like
+          - if topic
+            = follow_topic_link_tag( post.item_topic )
       
     .action
       - if post.author.id == current_user.person.id
