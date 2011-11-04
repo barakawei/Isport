@@ -14,6 +14,10 @@
         = link_to({:controller => 'people',:action => 'show_friends',:type=>'befollowed',:person_id=>@person.id}, :class => 'info_link') do 
           %span.count= @person.user.befollowed_people.size
           %span.desc= "粉丝" 
+      .info_block
+        = link_to({:controller => 'people',:action => 'show_groups',:person_id=>@person.id}, :class => 'info_link') do 
+          %span.count= @person.groups.size
+          %span.desc= "小组" 
       .info_block.last_item
         = link_to({:controller => 'people',:action => 'show_items',:person_id=>@person.id}, :class => 'info_link') do 
           %span.count= @person.favorites.size
@@ -62,7 +66,7 @@
       url: "#{recent_topics_path}",
       async: false,
       success: function(data) {
-        $('.groups .topics').fadeOut(200, function(){
+        $('.groups #recent_topics').fadeOut(200, function(){
           $(this).replaceWith(data);
         });
       }, 
@@ -92,7 +96,7 @@
       url: "#{recent_events_path}",
       async: false,
       success: function(data) {
-        $('.groups .recent_events').fadeOut(200, function(){
+        $('.groups #recent_events').fadeOut(200, function(){
           $(this).replaceWith(data);
         });
       }, 

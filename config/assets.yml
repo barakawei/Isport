@@ -108,6 +108,8 @@ stylesheets:
     - public/stylesheets/css/special_pages/events/in_audit.css
   sepcial_pages_events_upload_pic:
     - public/stylesheets/css/special_pages/events/upload_pic.css
+  special_pages_events_recent_events:
+    - public/stylesheets/css/special_pages/events/recent_events.css
 
   special_pages_items_show:
     - public/stylesheets/css/special_pages/item/show.css

@@ -4,9 +4,16 @@
   - topics.each do |t|
     = link_to item_topic_path(t), :class => 'topic_link', do
       .topic
-        %h4
-          =truncate(t.name, :length => 14, :omission => "")
-        .desc
-          %span= truncate(t.description, :length => 35)
-        .info
-          %span= "#{t.item.name} - #{t.posts.size}条讨论" 
+        .avatar
+          = item_topic_image_tag(t)
+          .back_bar
+            %br
+          .item_name
+            %span= t.item.name
+        .content
+          %h4
+            =truncate(t.name, :length => 14, :omission => "")
+          .desc
+            %span= truncate(t.description, :length => 35)
+          .info
+            %span= "#{t.posts.size}条讨论" 

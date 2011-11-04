@@ -28,8 +28,8 @@ zh:
   all: "全部"
   message: "信息"
   comment: "回复"
-  follow: "关注"
-  following: "已关注"
+  follow: "关注话题"
+  following: "取消关注"
   like: '喜欢'
   unlike: '取消喜欢'
   posting: "发布中"
