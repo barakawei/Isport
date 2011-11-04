@@ -43,6 +43,10 @@
       return this.dropdown.css("display") === "block";
     };
 
+    this.show_detail = function(){
+      alert( 1 );
+    }
+
     this.getNotifications = function(callback) {
       $.getJSON("/notifications", function(notifications) {
         self.notifications = notifications;
@@ -55,6 +59,7 @@
       $.each(self.notifications.notifications, function(index, notifications) {
         $.each(notifications, function(index, notification) {
           var notificationElement = $("<div/>")
+            .click(self.show_detail )
             .addClass("notification_element")
             .html(notification.translation)
             .prepend($("<img/>", { src: notification.actor.image_url,"class":"avatar" }))

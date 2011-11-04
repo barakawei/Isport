@@ -1,7 +1,8 @@
 class Notification < ActiveRecord::Base
   belongs_to :recipient, :class_name => 'User'
-  has_one :notification_actor,:dependent => :destroy
-  has_one :actor, :class_name => 'Person', :through => :notification_actor, :source => :person
+  has_many :notification_actors,:dependent => :destroy
+  has_many :actor, :class_name => 'Person', :through => :notification_actors, :source => :person
+  has_many :people, :through => :notification_actors
   belongs_to :target, :polymorphic => true   
 
 
@@ -14,11 +15,18 @@ class Notification < ActiveRecord::Base
 
 private
   def self.make_notification(recipient, target, actor, notification_type)
-    if notification_type.where(:target_id => target.id,:recipient_id => recipient.id ).size == 0
+    notify = notification_type.where(:target_id => target.id,:recipient_id => recipient.id ).first
+    if notify.nil? 
       n = notification_type.new(:target => target,:recipient_id => recipient.id)
-      n.actor = actor
+      n.actor << actor
       n.save!
+    else
+      na = NotificationActor.where( :notification_id => notify,:person_id => actor ).first
+      if na.nil?
+        notify.actor << actor
+      end
+      notify.unread = notify.unread + 1
+      notify.save!
     end
   end
-
 end

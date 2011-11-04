@@ -8,7 +8,7 @@ module NotificationsHelper
       return
     end
     target_type = note.translation_key
-    actor = note.actor
+    actor = note.actor.first
     actor_link = "<a href='#{object_path(actor)}'>#{actor.name}</a>"
     if !note.instance_of?(Notifications::StartedSharing)
       if note.instance_of?( Notifications::StatusComment )
@@ -49,7 +49,9 @@ module NotificationsHelper
         translation(target_type, :actor_link => actor_link,:pic_link => pic_link)
       end
     else 
-      translation(target_type, :actor_link => actor_link)
+      actors =  note.people
+      actor_text = actors.map{ |a|a.name }.join(",")
+      translation(target_type, :actor_text => actor_text)
     end
     
   end

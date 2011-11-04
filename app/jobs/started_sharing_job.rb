@@ -11,7 +11,7 @@ module Job
         contact.sharing= true
       end
       contact.save 
-      Notification.notify(user,person,person)
+      Notification.notify(user,user.person,person)
     end
   end
 end  

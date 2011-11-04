@@ -87,7 +87,7 @@ zh:
 
   notifications:
     create_event: "%{actor_link} 发起了活动 %{event_link}"
-    started_sharing: "%{actor_link} 关注了你"
+    started_sharing: "%{actor_text} 等人关注了你"
     involvement_event: "%{actor_link} 参加了活动 %{event_link}"
     invite_event: "%{actor_link} 邀请你参加活动 %{event_link}"
     invite_group: "%{actor_link} 邀请你参加小组 %{group_link}"

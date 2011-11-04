@@ -3,7 +3,7 @@ class NotificationsController < ApplicationController
   before_filter :registrations_closed?
   respond_to :js
   def index
-    @notifications = Notification.includes( :actor ).where( :recipient_id => current_user).order( "created_at DESC" ).paginate(:page => params[:page], :per_page => 20)
+    @notifications = Notification.includes( :actor ).where( :recipient_id => current_user).order( "updated_at DESC" ).paginate(:page => params[:page], :per_page => 20)
     @unread_notify_count = Notification.sum(:unread, :conditions => "recipient_id = #{current_user.id}")
 
     @notifications.each do |n|
