@@ -2,7 +2,8 @@
   - topic = post.item_topic
   - video = post.post_video
   - if topic
-    %span.message_topic_type=topic.item.name
+    - item = topic.item
+    = link_to item.name, search_item_topic_path(item.id) , :class => "message_topic_type"
   .author_avatar
     = person_image_link(post.author,:thumb_small) 
   .element_body
