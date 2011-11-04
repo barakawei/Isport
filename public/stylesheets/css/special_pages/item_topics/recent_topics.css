@@ -1,0 +1,22 @@
+#recent_topics a.topic_link {
+  display: block;
+  padding-top: 5px; }
+  #recent_topics a.topic_link:hover {
+    background-color: #f8f8f8; }
+  #recent_topics a.topic_link .topic {
+    border-bottom: 1px dashed #dddddd;
+    margin-top: 0px; }
+    #recent_topics a.topic_link .topic h4 {
+      margin-top: 0px;
+      margin-bottom: 3px;
+      font-size: 13px;
+      color: #71715b; }
+    #recent_topics a.topic_link .topic .desc span {
+      color: #888888;
+      font-size: 11px; }
+    #recent_topics a.topic_link .topic .info {
+      text-align: right; }
+      #recent_topics a.topic_link .topic .info span {
+        color: #aaaaaa;
+        font-size: 11px;
+        line-height: 11px; }
