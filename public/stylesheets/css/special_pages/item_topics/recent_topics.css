@@ -20,12 +20,21 @@
         position: absolute;
         bottom: 0px;
         background-color: #747474;
-        opacity: 0.5; }
+        filter: alpha(opacity=50);
+        -moz-opacity: 0.5;
+        -khtml-opacity: 0.5;
+        opacity: 0.5;
+        -moz-border-radius-bottomleft: 2px;
+        -moz-border-radius-bottomright: 2px;
+        -webkit-border-bottom-left-radius: 2px;
+        -webkit-border-bottom-right-radius: 2px;
+        border-bottom-left-radius: 2px;
+        border-bottom-right-radius: 2px; }
       #recent_topics a.topic_link .topic .avatar .item_name {
+        font-size: 9px;
         position: absolute;
         bottom: 0px;
         color: white;
-        font-size: 10px;
         margin-left: 3px; }
     #recent_topics a.topic_link .topic .content {
       display: inline-block;

@@ -149,13 +149,13 @@
       text-decoration: underline; }
   #home_user .person_info_bar {
     margin-top: 10px;
-    width: 240px;
+    width: 250px;
     background-color: white;
     height: 50px; }
     #home_user .person_info_bar .avatar_container {
       display: inline-block; }
     #home_user .person_info_bar .person_info {
-      width: 170px;
+      width: 180px;
       display: inline-block;
       vertical-align: top;
       margin-left: 10px; }
@@ -641,9 +641,9 @@
   top: 0px;
   padding: 5px 20px; }
 .create_post span#sync_to_weibo {
-  width: 200px;
+  width: 180px;
   position: absolute;
-  left: 530px;
+  left: 490px;
   top: 40px; }
   .create_post span#sync_to_weibo label {
     font-size: 10px; }

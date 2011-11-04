@@ -22,12 +22,13 @@
           :position absolute
           :bottom 0px
           :background-color #747474
-          :opacity 0.5
+          @include opacity(0.5)
+          @include border-radius-bottom-noie(2px)
         .item_name
+          :font-size 9px
           :position absolute
           :bottom 0px
           :color #fff
-          :font-size 10px
           :margin-left 3px
       .content
         :display inline-block

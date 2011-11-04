@@ -9,7 +9,7 @@
           .back_bar
             %br
           .item_name
-            %span= t.item.name
+            %span=truncate(t.item.name, :length => 4, :omission => "")
         .content
           %h4
             =truncate(t.name, :length => 14, :omission => "")
