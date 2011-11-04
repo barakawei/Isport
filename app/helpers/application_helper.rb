@@ -55,6 +55,22 @@ module ApplicationHelper
     link_html.html_safe
   end
 
+  def follow_topic_link_tag( topic )
+    followed = topic.followers.include?(current_user.person)
+    unless followed
+      button_html = "<div class='tfollow ' data_id='#{topic.id}'><span>"+t('follow')+"</span></div>"
+      link_html = link_to({:controller => 'item_topics', :action => 'follow', :id => topic.id},:method =>'post',:remote => true, :class => 'follow_link link_tag') do
+        button_html.html_safe
+      end
+    else 
+      button_html = "<div class='detfollow ' data_id='#{topic.id}'><span>"+t('following')+"</span></div>"
+      link_html = link_to({:controller => 'item_topics', :action => 'defollow', :id => topic.id},:method =>'delete',:remote => true, :class => 'follow_link link_tag') do
+        button_html.html_safe
+      end
+    end
+    link_html.html_safe
+  end
+
   def followers_count_tag( topic )
     count_html = "<div class='followers_count' data_id='#{topic.id}'>"+t('item_topic.followers_count', :count => topic.followers.size)+"</div>"
     count_html.html_safe
@@ -108,7 +124,7 @@ module ApplicationHelper
     options[:class] ||= "timeago"
     content_tag(:abbr, time.to_s, options.merge(:title => time.iso8601)) if time
   end
-  
+
   def owner_image_tag(size=nil)
     person_image_tag(current_user.person, size)
   end
@@ -123,7 +139,7 @@ module ApplicationHelper
     name_link = "<a href='/people/#{person.id}'>@#{name_html}</a>".html_safe
     "<span class='avatar_container'>#{name_link}</span>".html_safe
   end
-  
+
 
   def owner_image_link
     person_image_link(current_user.person)
@@ -152,7 +168,7 @@ module ApplicationHelper
       link_to item_image_tag(item, opts[:size]), item_photos_path(item)
     else
       "<a href='/items/#{item.id}'>
-  #{item_image_tag(item, opts[:size])}
+      #{item_image_tag(item, opts[:size])}
 </a>".html_safe
     end
   end
@@ -178,7 +194,7 @@ module ApplicationHelper
   end
 
   def group_image_link(group, size=nil)
-     link_to group_image_tag(group, size), group_path(group)
+    link_to group_image_tag(group, size), group_path(group)
   end
 
   def item_image_tag(item, size=:thumb_small)
@@ -207,9 +223,9 @@ module ApplicationHelper
 
   def pagination_options(param_name, param)
     {:previous_label => t("pagination.previous"), 
-     :next_label => t("pagination.next"),
-     :param_name => (param_name == nil) ? :page : param_name,
-     :params => param} 
+      :next_label => t("pagination.next"),
+      :param_name => (param_name == nil) ? :page : param_name,
+      :params => param} 
   end
 
   def error_on(model, field)
@@ -221,20 +237,20 @@ module ApplicationHelper
 
   def review_status(status)
     case status
-      when Event::BEING_REVIEWED then ('<span class="to_be">'+ I18n.t('audit_status.to_be_reviewed_short')+'<span/>').html_safe
-      when Event::DENIED then ('<span class="denied">'+ I18n.t('audit_status.denied_short')+'<span/>').html_safe
-      when Event::PASSED then ('<span class="passed">'+ I18n.t('audit_status.passed_short')+'<span/>').html_safe
-      when Event::CANCELED_BY_EVENT_ADMIN then ('<span class="passed">'+ I18n.t('audit_status.canceled_short')+'<span/>').html_safe
-      else ''
+    when Event::BEING_REVIEWED then ('<span class="to_be">'+ I18n.t('audit_status.to_be_reviewed_short')+'<span/>').html_safe
+    when Event::DENIED then ('<span class="denied">'+ I18n.t('audit_status.denied_short')+'<span/>').html_safe
+    when Event::PASSED then ('<span class="passed">'+ I18n.t('audit_status.passed_short')+'<span/>').html_safe
+    when Event::CANCELED_BY_EVENT_ADMIN then ('<span class="passed">'+ I18n.t('audit_status.canceled_short')+'<span/>').html_safe
+    else ''
     end 
   end
 
   def long_review_status(status, type)
     case status
-      when Event::BEING_REVIEWED then I18n.t('audit_status.to_be_reviewed', :type => type)
-      when Event::DENIED then I18n.t('audit_status.not_passed', :type => type)
-      when Event::CANCELED_BY_EVENT_ADMIN then I18n.t('audit_status.canceled_by_event_admin', :type => type)
-      else ''
+    when Event::BEING_REVIEWED then I18n.t('audit_status.to_be_reviewed', :type => type)
+    when Event::DENIED then I18n.t('audit_status.not_passed', :type => type)
+    when Event::CANCELED_BY_EVENT_ADMIN then I18n.t('audit_status.canceled_by_event_admin', :type => type)
+    else ''
     end 
   end
 end
