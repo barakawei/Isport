@@ -1,5 +1,21 @@
-.recent_events
+=content_for :head do
+  = include_stylesheets :special_pages_events_recent_events
+#recent_events
   - events.each do |e|
-    .event_item
-      = link_to e.title, event_path(e)
-      %span.members_count="(#{e.participants_count})"
+    = link_to event_path(e), :class => 'event_link', do
+      .event_item
+        .avatar
+          = event_image_tag(e, :thumb_small)
+          .back_bar
+            %br
+          .item_name
+            %span=e.item.name
+        .content
+          %h4
+            = truncate(e.title, :length => 12, :omission => '')
+          .time
+            %span="开始时间:#{I18n.l(e.start_at, :format => :long)}"
+          .address
+            %span="活动地点:#{e.location}"
+          .info
+            %span="#{e.participants.size}人参加"

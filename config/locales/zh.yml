@@ -30,6 +30,8 @@ zh:
   comment: "回复"
   follow: "关注"
   following: "已关注"
+  follow_topic: "关注话题"
+  following_topic: "取消关注"
   like: '喜欢'
   unlike: '取消喜欢'
   posting: "发布中"
