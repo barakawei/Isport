@@ -127,7 +127,7 @@ class Item < ActiveRecord::Base
       fans_counts[count.item_id] = count.fansize
     end
 
-    city = City.find_by_pinyin(user.city.pinyin)
+    city = City.find(user.city.id)
 
     Event.week.joins(:location).select("subject_id, count(*) evesize")
       .where(:subject_id => items_ids, :locations => {:city_id => city.id}).group(:subject_id).each do |count|
