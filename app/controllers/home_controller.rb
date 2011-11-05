@@ -16,7 +16,7 @@ class HomeController < ApplicationController
         return
       end
       @hot_topics = ItemTopic.recent_random_topics
-      @changeable = (@hot_topics.size == 7) 
+      @changeable = (@hot_topics.size == 5) 
       @events = Event.recent_events(current_user.profile.location.city)
       @is_binded = !auth.nil?
       
@@ -26,6 +26,7 @@ class HomeController < ApplicationController
       @followed_people = current_user.followed_people
       @befollowed_people = current_user.befollowed_people
       @item_topic = ItemTopic.new 
+      @active_items = @person.interests.limit(5) 
       @recent_topics = @person.item_topics.order('created_at desc').limit(8)
       #@post = Post.where( :author_id => current_user.person.id,:type => 'StatusMessage' ).order( "posts.created_at DESC" ).limit( 1 )
       @select_tab = 'home'

@@ -41,7 +41,7 @@ class ItemTopicsController < ApplicationController
 
   def filter 
     @person = current_user.person
-    @item_topics = ItemTopic.send(params[:target], @person).send(params[:order])
+    @item_topics = ItemTopic.send(params[:target], @person).send(params[:order]).limit(15)
     render :partial => 'filter', :locals => {:topics => @item_topics}
   end
 

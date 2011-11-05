@@ -1,0 +1,25 @@
+#active_items {
+  padding-top: 10px; }
+  #active_items .item_link {
+    display: block;
+    padding-top: 5px; }
+    #active_items .item_link:hover {
+      background-color: #f5f5f5; }
+    #active_items .item_link .each_item .avatar {
+      width: 50px;
+      height: 50px;
+      display: inline-block;
+      vertical-align: top;
+      margin-right: 5px;
+      margin-bottom: 10px; }
+      #active_items .item_link .each_item .avatar img {
+        width: 50px;
+        height: 50px; }
+    #active_items .item_link .each_item .content {
+      display: inline-block;
+      width: 170px; }
+      #active_items .item_link .each_item .content h4 {
+        font-size: 15px;
+        color: #71715b; }
+      #active_items .item_link .each_item .content .desc span {
+        color: #888888; }

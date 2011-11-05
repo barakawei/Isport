@@ -1,0 +1,13 @@
+- content_for :head do
+  = include_stylesheets :special_pages_items_active_items, :media => 'all'
+
+#active_items
+  - items.each do |i|
+    = link_to item_path(i), :class => 'item_link', do 
+      .each_item
+        .avatar
+          = item_image_tag(i, :thumb_medium)
+        .content
+          %h4= i.name
+          .info
+            %span="近期新增: "
