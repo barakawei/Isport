@@ -18,6 +18,7 @@ class ItemTopic < ActiveRecord::Base
   scope :in_items, lambda {|items| where(:item_id => items) }
   scope :by_friends, lambda {|friends| where(:person_id => friends) }
   scope :recent_hot, lambda {where("activated_at >= ? and activated_at <= ?", 3.days.ago, Time.now).order('posts_count desc').limit(50)}
+  scope :recent_created, lambda { where("created_at >= ?", 7.days.ago) }
 
   def self.mine(person)
     person.involved_topics.order('item_topic_involvements.created_at desc').limit(15)

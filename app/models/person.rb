@@ -53,6 +53,8 @@ class Person < ActiveRecord::Base
   scope :selected, lambda { where("selected= ?", true)}
   scope :selected_random, lambda { where("selected= ?", true).order("rand()").limit(40)}
 
+  scope :recent_created, lambda { where("created_at >= ?", 7.days.ago) }
+
   delegate :name, :to => :profile
   delegate :email, :to => :user
   delegate :location, :to => :profile
