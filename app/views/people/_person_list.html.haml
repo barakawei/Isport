@@ -59,12 +59,14 @@
             = link_to '换一换', 'javascript:void(0)', :class => 'change_friends link_button'
           .clear
         = render :partial => 'people/potential_interested_people',  :locals => { :people => @potential_friends}
-  - if @active_items.size > 0
+  - if @active_items.length > 0
     .groups
       .title
         .title_bar
           .name
-            = '你的兴趣动态'
+            = '兴趣动态'
+          .link
+            = link_to '更多', myitems_path, :class => 'link_button' 
           .clear
         = render :partial => 'items/active_items', :locals => {:items=> @active_items} 
     

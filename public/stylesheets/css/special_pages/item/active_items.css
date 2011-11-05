@@ -19,7 +19,10 @@
       display: inline-block;
       width: 170px; }
       #active_items .item_link .each_item .content h4 {
-        font-size: 15px;
+        font-size: 14px;
         color: #71715b; }
-      #active_items .item_link .each_item .content .desc span {
-        color: #888888; }
+      #active_items .item_link .each_item .content .info {
+        margin-top: 5px; }
+        #active_items .item_link .each_item .content .info span {
+          color: #888888;
+          font-size: 12px; }

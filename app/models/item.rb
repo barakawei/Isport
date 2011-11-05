@@ -20,6 +20,8 @@ class Item < ActiveRecord::Base
 
   belongs_to :category
 
+  scope :most_discussed, lambda{ joins(:topics).where("item_topics.created_at > ?",  7.days.ago).group("item_topics.item_id").order("count(item_topics.item_id) DESC") }
+
   attr_accessor :selected
 
   def initialize(hash={})

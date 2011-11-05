@@ -2,7 +2,9 @@
 .post_filter
   :position absolute
   :bottom 5px
-  :right 5px
+  :left 480px
+  :display block
+  :width 200px
   .filter_current
     :color #333
     :background url("/images/ui/filter-button.png") no-repeat scroll 0 -21px transparent
@@ -10,6 +12,7 @@
       background: url("/images/ui/filter-button.png") no-repeat scroll 100% 0 transparent 
       padding-right: 8px
       height: 21px
+      :padding-top 2px
     &:hover
       :color #333
        
@@ -552,7 +555,7 @@
   .post_type_bar
     :position relative
     :float left
-    :width 470px
+    :width 460px
     a.title
       :margin 5px 10px 5px 0 
       :display block
@@ -599,7 +602,7 @@
     @include border-radius(5px)
     :border 1px solid #888
     textarea
-      :width 460px 
+      :width 450px 
       :height 20px
       :margin 5px
       :border none
