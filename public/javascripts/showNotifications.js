@@ -68,6 +68,7 @@
               "class": "timeago",
               "title": notification.created_at
             }))
+            .append( $("<div/>",{ "class":"detail" }) )
             .appendTo(self.dropdownNotifications);
           notificationElement.addClass("unread");
         });
