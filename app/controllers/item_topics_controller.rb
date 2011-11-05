@@ -1,12 +1,17 @@
 class ItemTopicsController < ApplicationController
   before_filter :registrations_closed?
   before_filter :authenticate_user!, 
-                :except => [:index, :show, :show_post, :filter, :search, :recent_topics, :related_topics]
+                :except => [:index, :show, :show_posts, :filter, :search, :recent_topics, :related_topics]
   
   respond_to :js 
 
   FOLLOWER = 12
   RELATED = 7 
+
+  def login_and_reply
+    @topic = ItemTopic.find(params[:id]) 
+    redirect_to item_topic_path( @topic )
+  end
 
   def show
     auth = current_user ? current_user.authorizations.first : nil

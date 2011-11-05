@@ -14,10 +14,10 @@
     .replay_info
       %span.time.timeago
         = how_long_ago( comment )
-      - if comment.author.id != current_user.person.id && comment.instance_of?(Comment)
+      - if current_user && comment.author.id != current_user.person.id && comment.instance_of?(Comment)
         %span.replay_comment
           =link_to "回复","javascript:void(0)",:class => "replay"
   .action
-    - if comment.author.id == current_user.person.id
+    - if current_user && comment.author.id == current_user.person.id
       .delete
         = link_to image_tag("/images/ui/delete_gray.png" ),comment,:method => "delete",:remote => true

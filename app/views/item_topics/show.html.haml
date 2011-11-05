@@ -1,6 +1,7 @@
 -content_for :head do
   = include_stylesheets :special_pages_item_topics_show
   = include_stylesheets :sepcial_pages_home_upload
+  = include_stylesheets :sepcial_pages_home_index, :media => 'all'
   = include_javascripts :jquery_validation
   = include_javascripts :scroll_page
   = include_javascripts :show_photo
@@ -27,10 +28,10 @@
 
         .topic_des
           = @topic.description
-
     .post_area
-      .feed_toolbar
-        = render 'common/post',:item_topic => @item_topic, :recent_topics => @recent_topics, :is_binded => @is_binded
+      - if current_user
+        .feed_toolbar
+          = render 'common/post',:item_topic => @item_topic, :recent_topics => @recent_topics, :is_binded => @is_binded
       .stream.post_element_panel
 
   .right_column
@@ -65,43 +66,44 @@
           -@followers.each_with_index do |follower, index|
             .follower{:class => ("last" if (index+1)%4==0)}
               = person_image_link(follower)
+-if current_user
+  :javascript
+    $(document).ready(function () { 
+      setInterval("startRequest()",100000); 
+    }); 
+    function startRequest() { 
+      $.get("/status_messages/refresh",{id:"#{@topic.id}"});
+    } 
+
+    $('.topic_msg .topic_name .edit_topic').click(function(){
+      $('.topic_box').show();
+      $('#item_topic_name').val("#{@topic.name}");
+      $('#item_topic_description').val("#{@topic.description}");
+      $('#item_topic_item_id').val("#{@topic.item_id}");
+      if ($('#item_topic_name').val().length > 0) {
+        $('.new_topic_form form .field label.topic_name').hide(); 
+      }
+      if ($('#item_topic_description').val().length > 0) {
+        $('.new_topic_form form .field label.topic_desc').hide(); 
+      } 
+    });
+
+    $('.related a.change_topics').click(function() {
+      $.ajax({
+        type: 'get', 
+        url: "#{related_topics_path(@topic)}",
+        async: false,
+        success: function(data) {
+          $('.related .related_topics').fadeOut(200, function(){
+            $(this).empty();
+            $(this).html(data);
+            $(this).fadeIn();
+          });
+        }, 
+        error: function(data) {
+        }
+      });
+    });
 
 :javascript
   $.get("#{show_topic_posts_path( @topic )}");
-  $(document).ready(function () { 
-    setInterval("startRequest()",100000); 
-  }); 
-  function startRequest() { 
-    $.get("/status_messages/refresh",{id:"#{@topic.id}"});
-  } 
-
-  $('.topic_msg .topic_name .edit_topic').click(function(){
-    $('.topic_box').show();
-    $('#item_topic_name').val("#{@topic.name}");
-    $('#item_topic_description').val("#{@topic.description}");
-    $('#item_topic_item_id').val("#{@topic.item_id}");
-    if ($('#item_topic_name').val().length > 0) {
-      $('.new_topic_form form .field label.topic_name').hide(); 
-    }
-    if ($('#item_topic_description').val().length > 0) {
-      $('.new_topic_form form .field label.topic_desc').hide(); 
-    } 
-  });
-
-  $('.related a.change_topics').click(function() {
-    $.ajax({
-      type: 'get', 
-      url: "#{related_topics_path(@topic)}",
-      async: false,
-      success: function(data) {
-        $('.related .related_topics').fadeOut(200, function(){
-          $(this).empty();
-          $(this).html(data);
-          $(this).fadeIn();
-        });
-      }, 
-      error: function(data) {
-      }
-    });
-  });
-

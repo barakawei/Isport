@@ -10,7 +10,8 @@
     = include_javascripts :main
     = include_javascripts :jqueryui
     = include_javascripts :jquery_form
-    = include_javascripts :show_avatar
+    - if current_user
+      = include_javascripts :show_avatar
     //= include_javascripts :google_analytics
     <!--[if IE 8]>
     = include_stylesheets :ie8_hack
@@ -126,14 +127,6 @@
     }
   });
 
-
-  $(document).ready(function () { 
-    setInterval("refresh_count()",60000); 
-  }); 
-  function refresh_count() { 
-    $.get("/notifications/refresh_count");
-  } 
-
   $('#online_freinds_container .show_list').click(function() {
     $('#online_freinds_container .friend_list').toggleClass('hide'); 
     $(this).children('img.down_arrow').toggleClass('hide');
@@ -155,3 +148,12 @@
                                              .addClass('hide');
     $('#online_freinds_container .show_list').removeClass('pressed'); 
   }
+
+- if current_user
+  :javascript
+    $(document).ready(function () { 
+    setInterval("refresh_count()",60000); 
+    }); 
+    function refresh_count() { 
+      $.get("/notifications/refresh_count");
+    } 
