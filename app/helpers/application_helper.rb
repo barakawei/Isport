@@ -58,12 +58,12 @@ module ApplicationHelper
   def follow_topic_link_tag( topic )
     followed = topic.followers.include?(current_user.person)
     unless followed
-      button_html = "<div class='tfollow ' data_id='#{topic.id}'><span>"+t('follow')+"</span></div>"
+      button_html = "<div class='tfollow ' data_id='#{topic.id}'><span>"+t('follow_topic')+"</span></div>"
       link_html = link_to({:controller => 'item_topics', :action => 'follow', :id => topic.id},:method =>'post',:remote => true, :class => 'follow_link link_tag') do
         button_html.html_safe
       end
     else 
-      button_html = "<div class='detfollow ' data_id='#{topic.id}'><span>"+t('following')+"</span></div>"
+      button_html = "<div class='detfollow ' data_id='#{topic.id}'><span>"+t('following_topic')+"</span></div>"
       link_html = link_to({:controller => 'item_topics', :action => 'defollow', :id => topic.id},:method =>'delete',:remote => true, :class => 'follow_link link_tag') do
         button_html.html_safe
       end
