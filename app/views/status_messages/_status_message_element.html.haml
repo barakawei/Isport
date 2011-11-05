@@ -29,26 +29,30 @@
         %span.time.timeago{:datetime => post.created_at}
           =how_long_ago( post )
         %span.action
-          =link_to "评论","javascript:void(0)",:class => "replay"
+          - if current_user
+            =link_to "评论","javascript:void(0)",:class => "replay"
+          - else
+            =link_to "评论",login_and_reply_path(topic )
         %span.like
-          - if topic && @post_filter 
+          - if topic && @post_filter && current_user 
             = follow_topic_link_tag( post.item_topic )
       
     .action
-      - if post.author.id == current_user.person.id
+      - if current_user && post.author.id == current_user.person.id
         .delete
           = link_to image_tag("/images/ui/delete_gray.png" ),post,:remote => true,:method => "delete",:confirm => "确定删除？"
     = render "comments/comments", :post => post, :comments => post.comments
-    .comment_form{:class => ('hide' if post.comments.size == 0)}
-      .author_avatar
-        = person_image_link(current_user,:thumb_small)
-      = form_for([post,Comment.new], :remote => true,:html=>{:class => "mention_form",:data_id => post.id}) do |f|
-        = f.text_area :content, :rows => 2,:require => true,:class => 'content',:data_id => post.id
-        = hidden_field_tag :contacts,'',:class => 'contacts'
-        .comment_button.hide
-          = f.submit "回复", :class => 'glass_button_ie',"data-disable-with" => t("posting")
-          .cancle.glass_button_ie
-            = "取消"
+    - if current_user
+      .comment_form{:class => ('hide' if post.comments.size == 0)}
+        .author_avatar
+          = person_image_link(current_user,:thumb_small)
+        = form_for([post,Comment.new], :remote => true,:html=>{:class => "mention_form",:data_id => post.id}) do |f|
+          = f.text_area :content, :rows => 2,:require => true,:class => 'content',:data_id => post.id
+          = hidden_field_tag :contacts,'',:class => 'contacts'
+          .comment_button.hide
+            = f.submit "回复", :class => 'glass_button_ie',"data-disable-with" => t("posting")
+            .cancle.glass_button_ie
+              = "取消"
 - if video
   :javascript
     $(".video_thumb a#open_video_#{video.id}").bind('click', open_video);
@@ -81,5 +85,3 @@
       $video_player.hide();
       $video_thumb.show();
     }
-
-
