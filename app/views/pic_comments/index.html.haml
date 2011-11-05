@@ -7,13 +7,14 @@
 .pic_comment_container
   .pic_comments.comments{ :id => @pic.id }
     = render :partial => 'comments/comment', :collection => @pic_comments, :as =>:comment
-  .comment_form
-    .author_avatar
-      = person_image_link(current_user,:thumb_small)
-    = form_for([@pic,PicComment.new], :remote => true) do |f|
-      = f.text_area :content, :rows => 2,:require => true
-      .comment_button.hide
-        = f.submit "回复", :class => 'glass_button_ie inline',"data-disable-with" => t("posting")
+  - if current_user
+    .comment_form
+      .author_avatar
+        = person_image_link(current_user,:thumb_small)
+      = form_for([@pic,PicComment.new], :remote => true) do |f|
+        = f.text_area :content, :rows => 2,:require => true
+        .comment_button.hide
+          = f.submit "回复", :class => 'glass_button_ie inline',"data-disable-with" => t("posting")
 
 :javascript
   $( ".comment_form textarea" ).live("focus", function(){ 
