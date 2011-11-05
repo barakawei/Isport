@@ -18,8 +18,9 @@ class Item < ActiveRecord::Base
 
   has_many :topics, :class_name => 'ItemTopic'  
 
-
   belongs_to :category
+
+  scope :most_discussed, lambda{ join(:topics).where(:topics => {:created_at => (7.days.ago)...(Time.now)}).group(:item_id).order("count(item_id) DESC") }
 
   attr_accessor :selected
 
