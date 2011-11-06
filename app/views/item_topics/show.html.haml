@@ -8,7 +8,7 @@
   =javascript_include_tag "http://api.youku.com/api/js/swfobject.js"
 
 .span-24.last
-  .topic_area
+  .span-16.topic_area
     .topic_info
       .topic_image
         = item_topic_image_tag(@topic, :thumb_medium)
@@ -34,38 +34,39 @@
           = render 'common/post',:item_topic => @item_topic, :recent_topics => @recent_topics, :is_binded => @is_binded
       .stream.post_element_panel
 
-  .right_column
-    - if @events.length > 0 
-      .related
-        .related_title
-          .name
-            ="近期#{@city.name}#{@item.name}相关活动" 
-          .link_more
-            = link_to "更多", event_filter_path(@city.id, nil, @item.id, 'week')
-        .related_topics
-          = render :partial => 'events/recent_events',  :locals => {:events => @events}
-      
-    - if @related.length > 0
-      .related
-        .related_title
-          .name
-            = "相关话题"
-          .link_more
-            = link_to '换一换', 'javascript:void(0)', :class => 'change_topics' if @changeable
-            = link_to "更多", search_item_topic_path(@topic.item.id)
-
-        .related_topics
-          = render :partial => 'item_topics/related_topics',:collection => @related,:as => :topic
-
-    - if @followers.length > 0
-      .topic_followers
-        .followers_title
-          = "关注该话题的人"
+  .span-8.right_column.last
+    .right_container
+      - if @events.length > 0 
+        .related
+          .related_title
+            .name
+              ="近期#{@city.name}#{@item.name}相关活动" 
+            .link_more
+              = link_to "更多", event_filter_path(@city.id, nil, @item.id, 'week')
+          .related_topics
+            = render :partial => 'events/recent_events',  :locals => {:events => @events}
         
-        .followers
-          -@followers.each_with_index do |follower, index|
-            .follower{:class => ("last" if (index+1)%4==0)}
-              = person_image_link(follower)
+      - if @related.length > 0
+        .related
+          .related_title
+            .name
+              = "相关话题"
+            .link_more
+              = link_to '换一换', 'javascript:void(0)', :class => 'change_topics' if @changeable
+              = link_to "更多", search_item_topic_path(@topic.item.id)
+
+          #recent_topics
+            = render :partial => 'item_topics/recent_topics', :locals => {:topics => @related} 
+
+      - if @followers.length > 0
+        .topic_followers
+          .followers_title
+            = "关注该话题的人"
+          
+          .followers
+            -@followers.each_with_index do |follower, index|
+              .follower{:class => ("last" if (index+1)%4==0)}
+                = person_image_link(follower)
 -if current_user
   :javascript
     $(document).ready(function () { 
@@ -94,7 +95,7 @@
         url: "#{related_topics_path(@topic)}",
         async: false,
         success: function(data) {
-          $('.related .related_topics').fadeOut(200, function(){
+          $('#recent_topics').fadeOut(200, function(){
             $(this).empty();
             $(this).html(data);
             $(this).fadeIn();

@@ -280,9 +280,9 @@ class Event < ActiveRecord::Base
     
   def default_url(size)
      case size
-        when :thumb_medium then item.image_url(:thumb_medium) 
-        when :thumb_large   then item.image_url(:thumb_large) 
-        when :thumb_small   then item.image_url(:thumb_small) 
+        when :thumb_medium then (item) ? item.image_url(:thumb_medium) : "/images/event/event_medium.jpg"
+        when :thumb_large   then (item) ? item.image_url(:thumb_large) : "/images/event/event_large.jpg"
+        when :thumb_small   then (item) ? item.image_url(:thumb_small) : "/images/event/event_small.jpg"
      end
   end
   

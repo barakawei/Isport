@@ -14,8 +14,8 @@
           %h4
             = truncate(e.title, :length => 12, :omission => '')
           .time
-            %span="开始时间:#{I18n.l(e.start_at, :format => :long)}"
+            %span="时间:#{I18n.l(e.start_at, :format => :long)}"
           .address
-            %span="活动地点:#{e.location}"
+            %span="地点:#{e.location}"
           .info
             %span="#{e.participants.size}人参加"

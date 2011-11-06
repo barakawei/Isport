@@ -6,7 +6,7 @@ class ItemTopicsController < ApplicationController
   respond_to :js 
 
   FOLLOWER = 12
-  RELATED = 7 
+  RELATED = 5 
 
   def login_and_reply
     @topic = ItemTopic.find(params[:id]) 
@@ -155,8 +155,10 @@ class ItemTopicsController < ApplicationController
 
   def related_topics
     topic = ItemTopic.find(params[:topic_id])
-    rtopics =  ItemTopic.of_item(topic.item).recent_hot.where("id != ?", topic.id).limit(50)
+    item = topic.item
+    rtopics =  ItemTopic.of_item(item).recent_hot.where("id != ?", topic.id).limit(50)
+    rtopics = ItemTopic.of_item(item).order_by_hot.where("id != ?", topic.id).limit(50) unless rtopics.length > 0
     @topics = rtopics.sort_by{rand}[0..RELATED]
-    render :partial => 'item_topics/related_topics',:collection => @topics,:as => :topic
+    render :partial => 'item_topics/recent_topics', :locals => {:topics => @topics} 
   end
 end
