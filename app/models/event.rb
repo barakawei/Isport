@@ -279,11 +279,11 @@ class Event < ActiveRecord::Base
   private
     
   def default_url(size)
-     case size
-        when :thumb_medium then item.image_url(:thumb_medium) 
-        when :thumb_large   then item.image_url(:thumb_large) 
-        when :thumb_small   then item.image_url(:thumb_small) 
-     end
+    case size
+      when :thumb_medium then "images/event/event_medium.jpg"
+      when :thumb_large then "images/event/event_large.jpg"
+      when :thumb_small then "images/event/event_small.jpg"
+    end
   end
   
   def participants_limit_cannot_be_less_than_current_participants
