@@ -2,18 +2,24 @@
 
 .myitemlist
   :width 142px
-  :margin-top 42px
+  :margin-top 28px
   :margin-left 8px
   :overflow hidden
-  :display block
   :position relative
   :float left
 
   .itemlisttitle
-    :font-size 16px
-    :height 16px
-    :margin-bottom 15px
-    :display block
+    :margin-bottom 8px
+    :float left
+    :background-color white
+    :border 1px solid #7E989A
+    @include border-radius(4px)
+    :font-size 13px
+    :font-weight bold
+    :padding 2px 6px 2px 6px
+
+    &:hover
+      :background-color #F5F5F5
 
   .itemlistcontent
     :width 142px
@@ -28,11 +34,28 @@
         :width 50px
         :height 50px
         :float left
+        :position relative
+
+        .nameback
+          :width 50px
+          :height 18px
+          :background-color #747474
+          @include opacity(0.6)
+          @include border-radius-bottom-noie(2px)
+          :position absolute
+          :left 0px
+          :top 32px
+
+        .itemname
+          :position absolute
+          :left 1px
+          :bottom 0px
+          :font-size 12px
+          :color #FFFFFF
 
       .itemmsg
         :margin-left 4px
-        :padding-right 3px
-        :width 83px
+        :width 86px
         :height 50px
         :background none repeat scroll 0 0 #A8AAAD
         :overflow hidden

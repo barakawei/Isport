@@ -109,20 +109,26 @@ class Item < ActiveRecord::Base
     return items
   end
 
-  def self.get_user_items(user)
+  def self.get_user_items(user, size = 0)
     items_array = []
 
     if user == nil
        return items_array
     end
 
-    items = user.person.interests 
-    items_ids = items.map{|i| i.id}
+    if size == 0
+      items = user.person.interests 
+    else
+      items = user.person.interests.order('rand()').limit(size)
+    end
 
+    items_ids = items.map{|i| i.id}
+  
     fans_counts = {  }
     events_counts = {  }
     groups_counts = {  }  
-
+    topics_counts = {  }  
+    
     Favorite.select("item_id, count(*) fansize")
       .where(:item_id => items_ids).group(:item_id).each do |count|
       fans_counts[count.item_id] = count.fansize
@@ -140,13 +146,19 @@ class Item < ActiveRecord::Base
       groups_counts[count.item.id] = count.gpcount
     end
 
+    ItemTopic.recent_created.select("item_id, count(*) tpcount").where(:item_id => items_ids)
+      .group(:item_id).each do |count|
+      topics_counts[count.item_id] = count.tpcount
+    end
+
     items.each do |item|
       items_array.push({:item => item, 
                         :fans_count=>fans_counts[item.id]?fans_counts[item.id]:0,
                         :events_count=>events_counts[item.id]?events_counts[item.id]:0,
-                        :groups_count=>groups_counts[item.id]?groups_counts[item.id]:0})
+                        :groups_count=>groups_counts[item.id]?groups_counts[item.id]:0,
+                        :topics_count=>topics_counts[item.id]?topics_counts[item.id]:0})
     end
-    
+   
     return items_array
   end
 

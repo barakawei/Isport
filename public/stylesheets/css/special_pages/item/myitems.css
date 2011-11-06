@@ -15,6 +15,8 @@
     float: left;
     margin-bottom: 10px;
     margin-right: 15px; }
+    .myitemarea .oneitem:hover {
+      background-color: #f5f5f5; }
     .myitemarea .oneitem .itemimage {
       width: 100px;
       height: 100px;
@@ -25,12 +27,12 @@
       position: relative; }
       .myitemarea .oneitem .itemimage .nameback {
         width: 100px;
-        height: 25px;
+        height: 28px;
         background-color: #747474;
-        filter: alpha(opacity=50);
-        -moz-opacity: 0.5;
-        -khtml-opacity: 0.5;
-        opacity: 0.5;
+        filter: alpha(opacity=60);
+        -moz-opacity: 0.6;
+        -khtml-opacity: 0.6;
+        opacity: 0.6;
         -moz-border-radius-bottomleft: 8px;
         -moz-border-radius-bottomright: 8px;
         -webkit-border-bottom-left-radius: 8px;
@@ -39,17 +41,18 @@
         border-bottom-right-radius: 8px;
         position: absolute;
         left: 0px;
-        top: 75px; }
+        top: 72px; }
       .myitemarea .oneitem .itemimage .itemname {
         position: absolute;
         left: 3px;
-        bottom: 1px;
-        font-size: 16px;
+        bottom: 0px;
+        font-size: 19px;
         font-weight: bold;
         color: white; }
     .myitemarea .oneitem .itemdetail {
       margin-right: 5px;
       float: right;
       text-align: right;
-      display: block;
+      font-size: 16px;
+      font-weight: bold;
       overflow: hidden; }

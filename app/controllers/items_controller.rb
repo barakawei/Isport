@@ -23,11 +23,11 @@ class ItemsController < ApplicationController
 
     if current_user
       @city = City.find(current_user.city.id)
+      @myitems = Item.get_user_items(current_user, 5)
     else
       @city = nil      
     end
 
-    @items_hash = Item.all_items(@categories, @myitems, @city, current_user)
     @hot_items = Item.hot_items(7, @city) 
     @select_tab = 'item'
     respond_to do |format|

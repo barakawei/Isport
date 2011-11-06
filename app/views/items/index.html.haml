@@ -25,29 +25,34 @@
         .left
           = render 'common/header_box', :title =>category.name, :background_color => "#4EBAFF"
       .imagearea
-        - @items_hash[category.id].each_with_index do |item, index|
+        - category.items.each_with_index do |item, index|
           .image
-            = item_image_link(item[:item], :size => :thumb_medium)
+            = item_image_link(item, :size => :thumb_medium)
             .nameback
             .itemname
-              = item[:item].name
+              = item.name
             %br
             .iteminfo
-              %span.detail= item[:item].fans.size.to_s + t('items.fans')
+              %span.detail= item.fans.size.to_s + t('items.fans')
 
   - if current_user
     .myitemlist
       .itemlisttitle
-        = link_to t('items.myitems'), myitems_path, :class => "nounderline"
+        %a{:href => myitems_path}
+          = "新动态"
       .itemlistcontent
         - @myitems.each_with_index do |item, index|
           .itemlistrow
             .itemimage
               = item_image_link(item[:item], :size => :thumb_small)
+              .nameback
+              .itemname
+                = item[:item].name
             .itemmsg
-              = link_to item[:item].name, item[:item]
+              = link_to t('items.topicsrecent', :count => item[:topics_count]), search_item_topic_path(item[:item].id, 'order_by_time')
               %br
-              = link_to t('items.eventsthisweek', :count => item[:count]), event_filter_path(@city.id, nil, item[:item].id, 'week')
+              = link_to t('items.eventsthisweek', :count => item[:events_count]), event_filter_path(@city.id, nil, item[:item].id, 'week')
+              %br
 
 :javascript
   $(function() {
