@@ -23,9 +23,25 @@
       :margin-bottom 5px
       :margin-left 5px
       :float left
+      :position relative
 
-      img
-        @include border-radius(8px)
+      .nameback
+        :width 100px
+        :height 25px
+        :background-color #747474
+        @include opacity(0.5)
+        @include border-radius-bottom-noie(8px)
+        :position absolute
+        :left 0px
+        :top 75px
+
+      .itemname
+        :position absolute
+        :left 3px
+        :bottom 1px
+        :font-size 16px
+        :font-weight bold
+        :color #FFFFFF
 
     .itemdetail
       :margin-right 5px
