@@ -14,6 +14,8 @@
         - if topic 
           = link_to "##{topic.name}#", item_topic_path(topic), :class => 'topic_name'  
         = post_content_tag(post)
+        - if post.content.length > 30
+          = link_to '全文', 'javascript:void(0)', :id => post.id, :class => 'open_post_reader'
       .photos
         = render 'photos/photos_container',:photos => post.pics
       - if video 
@@ -85,3 +87,7 @@
       $video_player.hide();
       $video_thumb.show();
     }
+
+    $('a.open_post_reader').click(function(){
+      $('#post_reader').show(); 
+    });

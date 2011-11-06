@@ -1,0 +1,11 @@
+#post_reader.hide
+  = link_to 'close', "javascript:void(0)", :class => 'close_reader'
+  .detail_mask
+  #post_reader_content
+    .post_content 
+      %br
+
+:javascript
+  $('a.close_reader').click(function(){
+    $('#post_reader').hide(); 
+  });

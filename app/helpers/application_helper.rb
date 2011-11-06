@@ -6,6 +6,9 @@ module ApplicationHelper
     if message.nil?
       message
     else
+      if message.length > 30
+        message = truncate(message, :length => 30)
+      end
       auto_link(message, :html => { :target => '_blank'}).html_safe
     end
   end
