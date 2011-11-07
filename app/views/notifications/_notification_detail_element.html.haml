@@ -1,0 +1,10 @@
+.notification_detail_element.hide{ :id => note.id }
+  - if note.target.instance_of?(Person)
+    .title
+    .followed_you
+      - for a in note.actor
+        .person_avatar
+          = person_image_link(a)
+          = follow_button_tag(a)
+  -else
+    =render 'status_messages/status_message_element',:post => note.target

@@ -11,6 +11,7 @@ class Person < ActiveRecord::Base
   has_many :groups
   has_many :topics
   has_many :item_topics
+  has_many :notification_actors
   has_many :pics,  :foreign_key => 'author_id'
   has_many :topic_comments, :class_name => 'TopicComment'
   has_many :event_comments, :class_name => 'EventComment'

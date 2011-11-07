@@ -3,20 +3,24 @@ class NotificationsController < ApplicationController
   before_filter :registrations_closed?
   respond_to :js
   def index
-    @notifications = Notification.includes( :actor ).where( :recipient_id => current_user).order( "updated_at DESC" ).paginate(:page => params[:page], :per_page => 20)
+    @notifications = Notification.where( :recipient_id => current_user).order( "updated_at DESC" ).paginate(:page => params[:page], :per_page => 20).all
     @unread_notify_count = Notification.sum(:unread, :conditions => "recipient_id = #{current_user.id}")
 
     @notifications.each do |n|
-        n[:actor] = n.actor
         n[:translation] = object_link(n)
         n[:translation_key] = n.translation_key
         n[:target] = n.target
     end
-    Notification.update_all ["unread=0"],["unread = 1"]
+    #Notification.update_all ["unread=0"],["unread = 1"]
     respond_to do |format|  
       format.json { render :json => { :notifications => @notifications}}    
       format.html { render 'index.html.haml' }
     end 
+  end
+
+  def notifications_detail
+    @notifications = Notification.where( :recipient_id => current_user).order( "updated_at DESC" ).paginate(:page => params[:page], :per_page => 20)
+    respond_with @notifications
   end
 
   def update(opts=params)

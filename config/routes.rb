@@ -45,6 +45,7 @@ Isport::Application.routes.draw do
   end
   controller :notifications do
     match '/notifications/refresh_count' => :refresh_count
+    match '/notifications/notifications_detail' => :notifications_detail
   end
   resources :notifications
   resources :conversations do

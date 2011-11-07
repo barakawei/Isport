@@ -12,11 +12,9 @@
       this.badgeLink.toggle(function(evt) {
           evt.preventDefault();
           evt.stopPropagation();
-
           self.ajaxLoader.show();
           self.badgeLink.removeClass( "red_tab" ).addClass("gray_tab");
           self.dropdown.css("display", "block");
-
           self.getNotifications(function() {
             self.renderNotifications();
           });
@@ -44,10 +42,18 @@
     };
 
     this.show_detail = function(){
-      alert( 1 );
+      var element_id = $(this).attr( "id" );
+      var detail = $( ".notification_detail_element[id='"+element_id+"']");
+      $( "#notification_element" ).hide();
+      $( "#return_back_note" ).show();
+      detail.show();
+      detail.addClass( "open" );
+      $( ".see_all" ).hide();
+      $( ".next_note" ).show();
     }
 
     this.getNotifications = function(callback) {
+      $.get("/notifications/notifications_detail");
       $.getJSON("/notifications", function(notifications) {
         self.notifications = notifications;
         callback.apply(self, []);
@@ -58,19 +64,22 @@
       self.dropdownNotifications.empty();
       $.each(self.notifications.notifications, function(index, notifications) {
         $.each(notifications, function(index, notification) {
-          var notificationElement = $("<div/>")
+          var notificationElement = $("<div id='"+notification.id+"'/>")
             .click(self.show_detail )
             .addClass("notification_element")
             .html(notification.translation)
-            .prepend($("<img/>", { src: notification.actor.image_url,"class":"avatar" }))
+            .prepend($("<img/>", { src: "","class":"avatar" }))
             .append("<br />")
             .append($("<abbr/>", {
               "class": "timeago",
               "title": notification.created_at
             }))
-            .append( $("<div/>",{ "class":"detail" }) )
             .appendTo(self.dropdownNotifications);
           notificationElement.addClass("unread");
+          var notifiaction_detail_element = $("<div/>")
+            .addClass("detail")
+            .html(  )
+        
         });
       });
       message_count = $("#notification_badge .message_count span span");

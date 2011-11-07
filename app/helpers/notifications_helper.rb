@@ -8,13 +8,23 @@ module NotificationsHelper
       return
     end
     target_type = note.translation_key
-    actor = note.actor.first
-    actor_link = "<a href='#{object_path(actor)}'>#{actor.name}</a>"
+    if note.actor.instance_of?( Person )
+      person = note.actor
+    else
+      person = note.actor.first
+    end
+    actor_link = "<a href='#{object_path(person)}'>#{person.name}</a>"
+    actors =  note.actor
+    if actors.instance_of?( Person )
+      actor_text = actors.name
+    else
+      actor_text = actors.map{ |a|a.name }.join(",")
+    end
     if !note.instance_of?(Notifications::StartedSharing)
       if note.instance_of?( Notifications::StatusComment )
-        post = note.target.post
+        post = note.target
         post_link = "<a href='#{object_path(post)}'>#{t( 'message' )}</a>"
-        translation(target_type, :actor_link => actor_link,:post_link => post_link)
+        translation(target_type, :actor_text => actor_text,:post_link => post_link)
       elsif note.target_type == 'Group'
         group = note.target
         group_link =  "<a href='#{object_path(group)}'>#{group.name}</a>"
@@ -36,7 +46,7 @@ module NotificationsHelper
         comment_link =  "<a href='#{object_path(event)}'>#{t( 'comment' )}</a>"
         translation(target_type, :actor_link => actor_link,:comment_link => comment_link,:event_link =>event_link )
       elsif note.instance_of?( Notifications::Mention )
-        post = note.target.post
+        post = note.target
         if post.nil?
           post =  note.target.comment.post
           target_type = "notifications.replay"
@@ -49,8 +59,7 @@ module NotificationsHelper
         translation(target_type, :actor_link => actor_link,:pic_link => pic_link)
       end
     else 
-      actors =  note.people
-      actor_text = actors.map{ |a|a.name }.join(",")
+      
       translation(target_type, :actor_text => actor_text)
     end
     

@@ -59,15 +59,20 @@
           = link_to t('logout'), destroy_user_session_path
   #notification_dropdown
     .title
-      = link_to "全部", notifications_path, :id => "view_all_notifications"
+      = link_to "返回","javascript:void(0)", :id => "return_back_note",:class => "return_back_note hide"
+      = link_to "全部", notifications_path, :id => "view_all_notifications",:class =>"see_all"
+      = link_to "下一个", "javascript:void(0)", :class =>"next_note hide"
       %h4
-    .notifications.avatar_panel
+    #notification_element.notifications.avatar_panel
       .ajax_loader
         = image_tag("/images/ui/ajax-loader.gif") 
+    #notifications_detail
 
 
 -else
   %ul.setting
     %li
       = link_to "登录", sign_in_path
+
+
 

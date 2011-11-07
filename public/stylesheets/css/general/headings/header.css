@@ -221,10 +221,13 @@
       color: white;
       text-decoration: none; }
 
-#view_all_notifications {
-  float: right;
-  margin-right: 3px;
+#notification_dropdown .title {
   font-weight: bold; }
+  #notification_dropdown .title .return_back_note {
+    float: left; }
+  #notification_dropdown .title .see_all, #notification_dropdown .title .next_note {
+    float: right;
+    margin-right: 3px; }
 
 #notification_badge a {
   padding-right: 10px; }
@@ -237,7 +240,7 @@
   position: absolute;
   top: 100px;
   right: -110px;
-  width: 350px;
+  width: 420px;
   display: none;
   z-index: 999;
   height: 500px;
@@ -259,6 +262,7 @@
     text-align: center;
     padding: 15px; }
   #notification_dropdown .notification_element {
+    cursor: pointer;
     padding: 10px;
     min-height: 30px; }
     #notification_dropdown .notification_element .timeago {
@@ -275,3 +279,5 @@
       background-color: whiteSmoke;
       color: black;
       font-weight: bold; }
+    #notification_dropdown .notification_element:hover {
+      background-color: white; }

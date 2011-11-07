@@ -83,6 +83,25 @@
 
 :javascript
   $(function() {
+    
+    $( "#return_back_note" ).click(function( ){
+      $( "#notifications_detail .open" ).hide().removeClass( "open" );
+      $( "#notification_element" ).show();
+      $( "#return_back_note" ).hide();
+      $( ".see_all" ).show();
+      $( ".next_note" ).hide();
+    } );
+
+    $( ".next_note" ).click(function( ){
+      var open = $( "#notifications_detail .open" );
+      open.hide().removeClass( "open" );
+      if ( open.next().length > 0 ){
+        open.next().show();
+        open.next().addClass( "open" );
+      }else{
+        $( "#notifications_detail .notification_detail_element").first().show().addClass( "open" );
+      }
+    } );
       
     $("a[data-remote='true']").live('ajax:beforeSend', function(event, xhr, settings) {
       var href =  $( this ).attr("href");
