@@ -15,13 +15,6 @@ class WelcomeController < ApplicationController
       @events = Event.pass_audit.selected_random
       @groups = Group.pass_audit.selected_random
 
-      @photos = [ ]
-      numbers = Array.new(40).fill{|i| i+1}
-      numbers.each do |n|
-        @photos.push("/images/welcome/#{n}.jpg")
-      end
-      
-      @photos.sort_by!{rand}
       render
     end
   end
