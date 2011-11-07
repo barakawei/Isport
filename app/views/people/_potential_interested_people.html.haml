@@ -4,14 +4,18 @@
   - people.each do |p|
     - commons = current_user.person.common_interests(p) 
     - commons_limit = commons[0..6]
+    - user = p.user
     .person_item
       .avatar_area
         = link_to person_image_tag(p), person_path(p)
       .desc_area
         = link_to truncate(p.name, :length => 8), person_path(p), :class => 'pname'
-        %span.city= "@#{p.location.city.name}"
+        - if user
+          %span.city= "@#{p.location.city.name} - #{user.followed_people.size}粉丝 -  #{user.befollowed_people.size}关注" 
+        - else
+          %span.city= "@#{p.location.city.name}"
         = link_to  'javascript:void(0)', :class => 'desc' do
-          = "#{commons.size}个共同爱好"
+          = "和你有#{commons.size}个共同爱好"
           %span
         .follow_button_mini
           = follow_button_tag(p)

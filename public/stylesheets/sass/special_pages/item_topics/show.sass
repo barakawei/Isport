@@ -1,15 +1,11 @@
 @import '../../general/ui/mixins'
 
 .topic_area
-  :float left
-  :margin-right 20px
-  :width 660px
-
   .topic_info
     :float left
     :position relative
     :background-color white
-    :width 630px
+    :width 600px
     :padding  20px 10px 10px 20px
 
     .tfollow, .detfollow
@@ -17,7 +13,7 @@
       :width 80px
       :height 28px
       :position absolute
-      :right 10px
+      :right 20px
       :font-size 13px
       :line-height 30px
 
@@ -51,7 +47,7 @@
       :margin-right 10px
 
     .topic_msg
-      :width 510px
+      :width 480px
       :float left
       :margin-left 2px
 
@@ -89,20 +85,20 @@
           :float right
           :color #888 
           :font-size 12px
-          :margin-right 15px
+          :margin-right 25px
       .topic_des
         :font-size 12px
         :color #666666
         :margin-top 10px
  
   .post_area
-    :width 660px
+    :width 630px
     :float left
     :border-bottom 1px solid #ECEAE8
     @include border-radius(5px)
     :overflow show
     .feed_toolbar
-      :width 640px
+      :width 610px
       :margin-top 0
 
     .post_element_panel
@@ -111,101 +107,105 @@
         :background-color white
         :border none
         :margin-bottom 2px
+        &:first-child
+          border-top: 1px solid #ECEAE8 !important
       .pagination
         :position absolute
         :bottom -40px
         :left 315px
 
 .right_column
-  :float left
-  :width 256px
-
-  .follow_action
-    :width 256px
-    :height 112px
+  :background none
+  .right_container
+    :margin-left 30px
     :float left
-    :margin-top 10px
-    :position relative
-
-  .related
-    :width 236px
-    :float left
-    :background-color #fff
-    :padding 10px
-    :margin-bottom 15px
-    @include border-radius-noie(4px)
-
-    .related_title
-      :width 236px
-      :position relative
+    .follow_action
+      :width 256px
+      :height 112px
       :float left
-      :padding-bottom 5px
-      :border-bottom 1px solid #d5ddde
+      :margin-top 10px
+      :position relative
 
-      .name
-        :color #FC4469
+    .related
+      :float left
+      :background-color #fff
+      :padding 10px
+      :margin-bottom 15px
+      @include border-radius-noie(4px)
+
+      .related_title
+        :width 260px
+        :position relative
+        :float left
+        :padding-bottom 5px
+        :border-bottom 1px solid #d5ddde
+
+        .name
+          :color #FC4469
+          :font-size 14px
+          :font-weight bold
+          :float left
+
+        .link_more
+          :float right
+          
+          a
+            border: 1px solid #DCE4E6
+            color: #888888
+            font-size: 11px
+            font-weight: bold
+            height: 20px
+            padding: 2px 4px 0 6px
+            @include border-radius-noie(3px)
+          a.change_topics
+            :margin-right 5px
+      #recent_topics
+        :float left
+
+      .related_topics
+        :float left
+        :width 260px
+        
+        .event_item
+          margin-top: 5px
+          margin-bottom: 8px
+          a
+            &:hover
+              :text-decoration underline
+          a,span
+            color: #71715B
+            font-size: 12px
+            
+            
+            
+          
+    .topic_followers
+      :width 260px
+      :float left
+      :overflow show
+      :background-color #fff
+      :padding 10px
+      @include border-radius-noie(4px)
+
+      .followers_title
         :font-size 14px
         :font-weight bold
-        :float left
-
-      .link_more
-        :float right
-        
-        a
-          border: 1px solid #DCE4E6
-          color: #888888
-          font-size: 11px
-          font-weight: bold
-          height: 20px
-          padding: 2px 4px 0 6px
-          @include border-radius-noie(3px)
-        a.change_topics
-          :margin-right 5px
-
-    .related_topics
-      :float left
-      :width 236px
+        :color #FC4469
+        :border-bottom 1px solid #d5ddde
+        :padding-bottom 5px
       
-      .event_item
-        margin-top: 5px
-        margin-bottom: 8px
-        a
-          &:hover
-            :text-decoration underline
-        a,span
-          color: #71715B
-          font-size: 12px
-          
-          
-          
-        
-  .topic_followers
-    :width 236px
-    :float left
-    :overflow show
-    :background-color #fff
-    :padding 10px
-    @include border-radius-noie(4px)
-
-    .followers_title
-      :font-size 14px
-      :font-weight bold
-      :color #FC4469
-      :border-bottom 1px solid #d5ddde
-      :padding-bottom 5px
-    
-    .followers
-      :width 236px
-      :float left
-      :padding-bottom 10px
-
-      .follower
+      .followers
+        :width 260px
         :float left
-        :width 30px
-        :height 30px
-        :margin-right 5px
-        :margin-top 10px
-        .avatar
+        :padding-bottom 10px
+
+        .follower
+          :float left
           :width 30px
           :height 30px
+          :margin-right 5px
+          :margin-top 10px
+          .avatar
+            :width 30px
+            :height 30px
 

@@ -1,15 +1,18 @@
 .post_filter {
-  font-weight: bold;
   position: absolute;
   bottom: 5px;
-  right: 0px; }
+  left: 480px;
+  display: block;
+  width: 200px;
+  font-weight: bold; }
   .post_filter .filter_current {
     color: #333333;
     background: url("/images/ui/filter-button.png") no-repeat scroll 0 -21px transparent; }
     .post_filter .filter_current span {
       background: url("/images/ui/filter-button.png") no-repeat scroll 100% 0 transparent;
       padding-right: 8px;
-      height: 21px; }
+      height: 21px;
+      padding-top: 2px; }
     .post_filter .filter_current:hover {
       color: #333333; }
   .post_filter .title {
@@ -41,7 +44,7 @@
 
 .home_container {
   float: left;
-  width: 680px;
+  width: 630px;
   margin-top: 30px; }
   .home_container .new_event {
     padding-right: 10px; }
@@ -135,7 +138,7 @@
       color: #205f82; }
 
 #home_user {
-  margin-left: 10px;
+  margin-left: 30px;
   position: relative; }
   #home_user h2 {
     font-size: 18px;
@@ -149,13 +152,13 @@
       text-decoration: underline; }
   #home_user .person_info_bar {
     margin-top: 10px;
-    width: 200px;
+    width: 250px;
     background-color: white;
     height: 50px; }
     #home_user .person_info_bar .avatar_container {
       display: inline-block; }
     #home_user .person_info_bar .person_info {
-      width: 130px;
+      width: 180px;
       display: inline-block;
       vertical-align: top;
       margin-left: 10px; }
@@ -309,6 +312,11 @@
 
 .content_info .action {
   padding-left: 5px; }
+.content_info .like {
+  position: absolute;
+  right: -40px; }
+  .content_info .like a.follow_link .detfollow {
+    color: #999999; }
 
 .information h4 {
   padding-top: 10px;
@@ -521,13 +529,13 @@
   padding: 10px 0px 10px 20px;
   margin-top: 7px;
   background: white;
-  width: 660px;
+  width: 610px;
   border-bottom: 1px solid #eceae8;
   position: relative; }
   .feed_toolbar .post_type_bar {
     position: relative;
     float: left;
-    width: 500px; }
+    width: 460px; }
     .feed_toolbar .post_type_bar a.title {
       margin: 5px 10px 5px 0;
       display: block;
@@ -568,7 +576,7 @@
     behavior: url(/javascripts/PIE.htc);
     border: 1px solid #888888; }
     .feed_toolbar .create_post textarea {
-      width: 500px;
+      width: 450px;
       height: 20px;
       margin: 5px;
       border: none; }
@@ -631,14 +639,14 @@
 
 .create_post .new_status_message #status_message_submit {
   position: absolute;
-  left: 530px;
+  left: 490px;
   font-size: 15px;
   top: 0px;
   padding: 5px 20px; }
 .create_post span#sync_to_weibo {
-  width: 200px;
+  width: 180px;
   position: absolute;
-  left: 530px;
+  left: 490px;
   top: 40px; }
   .create_post span#sync_to_weibo label {
     font-size: 10px; }

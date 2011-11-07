@@ -1,12 +1,17 @@
 class ItemTopicsController < ApplicationController
   before_filter :registrations_closed?
   before_filter :authenticate_user!, 
-                :except => [:index, :show, :show_post, :filter, :search, :recent_topics, :related_topics]
+                :except => [:index, :show, :show_posts, :filter, :search, :recent_topics, :related_topics]
   
   respond_to :js 
 
   FOLLOWER = 12
-  RELATED = 7 
+  RELATED = 5 
+
+  def login_and_reply
+    @topic = ItemTopic.find(params[:id]) 
+    redirect_to item_topic_path( @topic )
+  end
 
   def show
     auth = current_user ? current_user.authorizations.first : nil
@@ -36,7 +41,7 @@ class ItemTopicsController < ApplicationController
 
   def filter 
     @person = current_user.person
-    @item_topics = ItemTopic.send(params[:target], @person).send(params[:order])
+    @item_topics = ItemTopic.send(params[:target], @person).send(params[:order]).limit(15)
     render :partial => 'filter', :locals => {:topics => @item_topics}
   end
 
@@ -150,8 +155,10 @@ class ItemTopicsController < ApplicationController
 
   def related_topics
     topic = ItemTopic.find(params[:topic_id])
-    rtopics =  ItemTopic.of_item(topic.item).recent_hot.where("id != ?", topic.id).limit(50)
+    item = topic.item
+    rtopics =  ItemTopic.of_item(item).recent_hot.where("id != ?", topic.id).limit(50)
+    rtopics = ItemTopic.of_item(item).order_by_hot.where("id != ?", topic.id).limit(50) unless rtopics.length > 0
     @topics = rtopics.sort_by{rand}[0..RELATED]
-    render :partial => 'item_topics/related_topics',:collection => @topics,:as => :topic
+    render :partial => 'item_topics/recent_topics', :locals => {:topics => @topics} 
   end
 end

@@ -4,7 +4,7 @@
     vertical-align: top;
     display: inline-block; }
   .interested_people .person_item .desc_area {
-    width: 130px;
+    width: 198px;
     height: 50px;
     display: inline-block;
     margin-left: 5px;
@@ -56,7 +56,7 @@
       display: block;
       margin-top: 5px; }
   .interested_people .person_item .common_desc {
-    background-color: #f4f4f4;
+    background-color: #f2f8fb;
     margin-top: 5px;
-    width: 170px;
+    width: 240px;
     padding: 5px 10px; }

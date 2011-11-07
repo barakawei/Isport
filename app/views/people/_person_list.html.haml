@@ -14,6 +14,10 @@
         = link_to({:controller => 'people',:action => 'show_friends',:type=>'befollowed',:person_id=>@person.id}, :class => 'info_link') do 
           %span.count= @person.user.befollowed_people.size
           %span.desc= "粉丝" 
+      .info_block
+        = link_to({:controller => 'people',:action => 'show_groups',:person_id=>@person.id}, :class => 'info_link') do 
+          %span.count= @person.groups.size
+          %span.desc= "小组" 
       .info_block.last_item
         = link_to({:controller => 'people',:action => 'show_items',:person_id=>@person.id}, :class => 'info_link') do 
           %span.count= @person.favorites.size
@@ -45,67 +49,28 @@
             = link_to '更多', events_path, :class => 'link_button' 
           .clear
         = render :partial => 'events/recent_events',  :locals => { :events => @events}
-  .groups
-    .title
-      .title_bar
-        .name
-          = '和你志趣相投的人'
-        .link
-          = link_to '换一换', 'javascript:void(0)', :class => 'change_friends link_button'
-        .clear
-      = render :partial => 'people/potential_interested_people',  :locals => { :people => @potential_friends}
-          
+  - if @potential_friends.size > 0
+    .groups
+      .title
+        .title_bar
+          .name
+            = '和你志趣相投的人'
+          .link
+            = link_to '换一换', 'javascript:void(0)', :class => 'change_friends link_button'
+          .clear
+        = render :partial => 'people/potential_interested_people',  :locals => { :people => @potential_friends}
+  - if @active_items.length > 0
+    .groups
+      .title
+        .title_bar
+          .name
+            = '兴趣动态'
+          .link
+            = link_to '更多', myitems_path, :class => 'link_button' 
+          .clear
+        = render :partial => 'items/active_items', :locals => {:items=> @active_items} 
     
-  .avatar_panel_container
-    #followed_people
-      - if @followed_people.length > 0
-        .title
-          .title_bar
-            .name
-              = '关注'
-            .link
-              = element_more_tag(@person,:show_friends,:followed)
-            .clear
-        .contacts
-          - for person in @followed_people[ 0...30]
-            .person_avatar
-              = person_image_link(person)
-  -if current_user.person.joined_groups.size > 0
-    .groups
-      .title
-        .title_bar
-          .name
-            = '小组'
-          .link
-            = element_more_tag(@person,:show_groups)
-          .clear
-      %ul
-        -for group in current_user.person.joined_groups[ 0...5 ]
-          %li
-            .group
-              .avatar
-                = group_image_link(group,:thumb_small)
-              .name
-                = object_name_link(group)
-  -if current_user.person.interests.size > 0
-    .groups
-      .title
-        .title_bar
-          .name
-            = '兴趣'
-          .link
-            = element_more_tag(@person,:show_items)
-          .clear
-
-      %ul
-        -for item in current_user.person.interests[ 0...5 ]
-          %li
-            .group
-              .avatar
-                = item_image_link(item, :size =>:thumb_small)
-              .name
-                = object_name_link(item)
-
+          
 :javascript
   $('.groups a.change_topics').click(function() {
     $.ajax({
@@ -113,7 +78,7 @@
       url: "#{recent_topics_path}",
       async: false,
       success: function(data) {
-        $('.groups .topics').fadeOut(200, function(){
+        $('.groups #recent_topics').fadeOut(200, function(){
           $(this).replaceWith(data);
         });
       }, 
@@ -143,7 +108,7 @@
       url: "#{recent_events_path}",
       async: false,
       success: function(data) {
-        $('.groups .recent_events').fadeOut(200, function(){
+        $('.groups #recent_events').fadeOut(200, function(){
           $(this).replaceWith(data);
         });
       }, 

@@ -21,12 +21,32 @@
       margin-top: 5px;
       margin-bottom: 5px;
       margin-left: 5px;
-      float: left; }
-      .myitemarea .oneitem .itemimage img {
-        -moz-border-radius: 8px;
-        -webkit-border-radius: 8px;
-        border-radius: 8px;
-        behavior: url(/javascripts/PIE.htc); }
+      float: left;
+      position: relative; }
+      .myitemarea .oneitem .itemimage .nameback {
+        width: 100px;
+        height: 25px;
+        background-color: #747474;
+        filter: alpha(opacity=50);
+        -moz-opacity: 0.5;
+        -khtml-opacity: 0.5;
+        opacity: 0.5;
+        -moz-border-radius-bottomleft: 8px;
+        -moz-border-radius-bottomright: 8px;
+        -webkit-border-bottom-left-radius: 8px;
+        -webkit-border-bottom-right-radius: 8px;
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+        position: absolute;
+        left: 0px;
+        top: 75px; }
+      .myitemarea .oneitem .itemimage .itemname {
+        position: absolute;
+        left: 3px;
+        bottom: 1px;
+        font-size: 16px;
+        font-weight: bold;
+        color: white; }
     .myitemarea .oneitem .itemdetail {
       margin-right: 5px;
       float: right;

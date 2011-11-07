@@ -48,10 +48,12 @@ class Person < ActiveRecord::Base
   scope :friends_of, lambda {|user| where("user_id = ?", user.id)} 
   scope :at_city, lambda {|city_id| joins(:profile => :location).where(:locations => {:city_id => city_id})}
   scope :potential_interested_people, lambda {|person| joins(:favorites).where(:favorites => {:item_id => person.interests})
-                                                                        .select('DISTINCT(people.id)')}
+                                                                        .select('distinct people.*')}
   scope :not_in, lambda {|ids| where("people.id not in (?)", ids)}
   scope :selected, lambda { where("selected= ?", true)}
   scope :selected_random, lambda { where("selected= ?", true).order("rand()").limit(40)}
+
+  scope :recent_created, lambda { where("people.created_at >= ?", 7.days.ago) }
 
   delegate :name, :to => :profile
   delegate :email, :to => :user

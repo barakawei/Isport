@@ -33,17 +33,51 @@
       :width 580px
       :border-top 1px solid #d5ddde
       :padding 10px
+      :position relative
+
+      a.post_count  
+        :position absolute 
+        :top 5px
+        :right 5px
+        :font-size 12px
+        background-color: #BDBDA3
+        :color #fff
+        :padding 5px 8px
+        :line-height 12px
+        @include border-radius-noie(3px)
 
       .pic
         :float left
-        :width 60px
+        :width 65px
+        :height 65px
+        :margin-right 5px
+        :position relative
+        
+        img
+          :width 65px
+          :height 65px
+          @include border-radius-noie(5px)
+        .back_bar
+          :position absolute
+          :bottom 0px
+          :background-color #747474
+          :width 65px
+          :float left
+          @include opacity(0.5)
+          @include border-radius-bottom-noie(5px)
+        .item_name
+          :position absolute
+          :bottom 0px
+          :font-size 11px
+          :margin-left 2px
+          span
+            :color #fff 
       .content
         :float left
-        :width 520px 
+        :width 505px 
         .name
-          :width 520px 
+          :width 470px 
           :float left
-          :height 35px
           a.t_content
             :font-size 15px
             :color #333
@@ -51,18 +85,16 @@
             :line-height 20px
             &:hover
               :text-decoration underline  
-          a.post_count  
-            :font-size 12px
-            :float right
-            background-color: #BDBDA3
-            :color #fff
-            :padding 5px 8px
-            :line-height 12px
-            @include border-radius-noie(3px)
-        .author
-          :height 15px
+        .desc
+          :width 430px
           :float left
-          :width 520px
+          span
+            :color #999 
+
+        .author
+          :position absolute
+          :bottom 0
+          :right 0
           span
             :color #999 
             :line-height 14px

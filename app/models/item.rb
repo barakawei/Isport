@@ -18,8 +18,9 @@ class Item < ActiveRecord::Base
 
   has_many :topics, :class_name => 'ItemTopic'  
 
-
   belongs_to :category
+
+  scope :most_discussed, lambda{ joins(:topics).where("item_topics.created_at > ?",  7.days.ago).group("item_topics.item_id").order("count(item_topics.item_id) DESC") }
 
   attr_accessor :selected
 
@@ -127,7 +128,7 @@ class Item < ActiveRecord::Base
       fans_counts[count.item_id] = count.fansize
     end
 
-    city = City.find_by_pinyin(user.city.pinyin)
+    city = City.find(user.city.id)
 
     Event.week.joins(:location).select("subject_id, count(*) evesize")
       .where(:subject_id => items_ids, :locations => {:city_id => city.id}).group(:subject_id).each do |count|

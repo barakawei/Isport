@@ -9,9 +9,10 @@
       .oneitem
         .itemimage
           = item_image_link(item[:item], :size => :thumb_medium)
+          .nameback
+          .itemname
+            = item[:item].name
         .itemdetail
-          = link_to item[:item].name, item[:item], :class => "nounderline"
-          %br
           = item[:fans_count].to_s + t('items.fans')
           %br
           = link_to t('items.eventsthisweek', :count => item[:events_count]), 

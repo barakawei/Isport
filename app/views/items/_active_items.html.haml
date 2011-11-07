@@ -1,0 +1,19 @@
+- content_for :head do
+  = include_stylesheets :special_pages_items_active_items, :media => 'all'
+
+#active_items
+  - items.each do |i|
+    = link_to item_path(i), :class => 'item_link', do 
+      .each_item
+        .avatar
+          = item_image_tag(i, :thumb_small)
+        .content
+          - events_count = i.events.recent_created.count
+          - fans_count = i.fans.recent_created.count 
+          - topics_count = i.topics.recent_created.count
+          %h4= i.name
+          .info
+            %span="近期新增: "
+            %span=" #{topics_count}话题" if topics_count > 0
+            %span="- #{fans_count}粉丝" if fans_count > 0
+            %span="- #{events_count}活动" if events_count > 0

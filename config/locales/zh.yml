@@ -30,6 +30,8 @@ zh:
   comment: "回复"
   follow: "关注"
   following: "已关注"
+  follow_topic: "关注话题"
+  following_topic: "取消关注"
   like: '喜欢'
   unlike: '取消喜欢'
   posting: "发布中"
@@ -225,7 +227,7 @@ zh:
       mavinfo: "想成为达人吗？更多的组织活动，更多的参加活动，你也可以！"
       all: "共有"
       fans: "位粉丝"
-      myitems: "我的兴趣"
+      myitems: "兴趣动态"
       eventsthisweek: "本周%{count}个活动"
       my_favorite_item: "我的兴趣"
       citygroups: "同城小组"

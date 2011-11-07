@@ -1,6 +1,10 @@
 topic_id = <%= @topic.id %>;
 button = $(".detfollow[data_id='"+topic_id+"']").parent();
-link_html = "<%= escape_javascript(follow_topic_tag(@topic)) %>";
+if (button.hasClass( "link_tag" )){
+  link_html = "<%= escape_javascript(follow_topic_link_tag(@topic)) %>";
+}else{
+  link_html = "<%= escape_javascript(follow_topic_tag(@topic)) %>";
+}
 button.replaceWith( link_html );
 
 count = $(".followers_count[data_id='"+topic_id+"']");

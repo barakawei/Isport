@@ -29,17 +29,61 @@
       float: left;
       width: 580px;
       border-top: 1px solid #d5ddde;
-      padding: 10px; }
+      padding: 10px;
+      position: relative; }
+      .topics .topic_result .topic_item a.post_count {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        font-size: 12px;
+        background-color: #bdbda3;
+        color: white;
+        padding: 5px 8px;
+        line-height: 12px;
+        -moz-border-radius: 3px;
+        -webkit-border-radius: 3px;
+        border-radius: 3px; }
       .topics .topic_result .topic_item .pic {
         float: left;
-        width: 60px; }
+        width: 65px;
+        height: 65px;
+        margin-right: 5px;
+        position: relative; }
+        .topics .topic_result .topic_item .pic img {
+          width: 65px;
+          height: 65px;
+          -moz-border-radius: 5px;
+          -webkit-border-radius: 5px;
+          border-radius: 5px; }
+        .topics .topic_result .topic_item .pic .back_bar {
+          position: absolute;
+          bottom: 0px;
+          background-color: #747474;
+          width: 65px;
+          float: left;
+          filter: alpha(opacity=50);
+          -moz-opacity: 0.5;
+          -khtml-opacity: 0.5;
+          opacity: 0.5;
+          -moz-border-radius-bottomleft: 5px;
+          -moz-border-radius-bottomright: 5px;
+          -webkit-border-bottom-left-radius: 5px;
+          -webkit-border-bottom-right-radius: 5px;
+          border-bottom-left-radius: 5px;
+          border-bottom-right-radius: 5px; }
+        .topics .topic_result .topic_item .pic .item_name {
+          position: absolute;
+          bottom: 0px;
+          font-size: 11px;
+          margin-left: 2px; }
+          .topics .topic_result .topic_item .pic .item_name span {
+            color: white; }
       .topics .topic_result .topic_item .content {
         float: left;
-        width: 520px; }
+        width: 505px; }
         .topics .topic_result .topic_item .content .name {
-          width: 520px;
-          float: left;
-          height: 35px; }
+          width: 470px;
+          float: left; }
           .topics .topic_result .topic_item .content .name a.t_content {
             font-size: 15px;
             color: #333333;
@@ -47,20 +91,15 @@
             line-height: 20px; }
             .topics .topic_result .topic_item .content .name a.t_content:hover {
               text-decoration: underline; }
-          .topics .topic_result .topic_item .content .name a.post_count {
-            font-size: 12px;
-            float: right;
-            background-color: #bdbda3;
-            color: white;
-            padding: 5px 8px;
-            line-height: 12px;
-            -moz-border-radius: 3px;
-            -webkit-border-radius: 3px;
-            border-radius: 3px; }
+        .topics .topic_result .topic_item .content .desc {
+          width: 430px;
+          float: left; }
+          .topics .topic_result .topic_item .content .desc span {
+            color: #999999; }
         .topics .topic_result .topic_item .content .author {
-          height: 15px;
-          float: left;
-          width: 520px; }
+          position: absolute;
+          bottom: 0;
+          right: 0; }
           .topics .topic_result .topic_item .content .author span {
             color: #999999;
             line-height: 14px; }

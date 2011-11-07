@@ -11,6 +11,10 @@ $event_color: #4BC5BE
 $error_color: #a10000
 $link_red: #FC4469
 
+.link_tag
+  :display inline-block
+  :margin-right 10px
+
 .pic_show .stream_element .stream-photo 
   :width auto !important
   :height auto !important
@@ -903,7 +907,8 @@ a.app_black_link_button
 
 .stream_element,.pic_comments
   :position relative
-  span.message_topic_type
+    
+  a.message_topic_type
     :position absolute
     :top 10px
     :right 40px
@@ -913,6 +918,9 @@ a.app_black_link_button
     padding: 5px 5px
     color: #fff
     @include border-radius(3px)
+
+    &:hover
+      :background-color #6FB7E9 
     
   .from
     a

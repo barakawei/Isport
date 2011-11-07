@@ -108,6 +108,8 @@ stylesheets:
     - public/stylesheets/css/special_pages/events/in_audit.css
   sepcial_pages_events_upload_pic:
     - public/stylesheets/css/special_pages/events/upload_pic.css
+  special_pages_events_recent_events:
+    - public/stylesheets/css/special_pages/events/recent_events.css
 
   special_pages_items_show:
     - public/stylesheets/css/special_pages/item/show.css
@@ -120,6 +122,8 @@ stylesheets:
 
   special_pages_items_commom:
     - public/stylesheets/css/special_pages/item/commom.css
+  special_pages_items_active_items:
+    - public/stylesheets/css/special_pages/item/active_items.css
 
   special_pages_item_topics_show:
     - public/stylesheets/css/special_pages/item_topics/show.css
@@ -131,6 +135,9 @@ stylesheets:
     - public/stylesheets/css/special_pages/item_topics/index.css
   special_pages_related_topics_panel:
     - public/stylesheets/css/special_pages/item_topics/related_topics.css
+  special_pages_item_topics_recent_topics:
+    - public/stylesheets/css/special_pages/item_topics/recent_topics.css
+
 
   sepcial_pages_groups_form:
     - public/stylesheets/css/special_pages/groups/form.css

@@ -1,5 +1,10 @@
 @import '../../general/ui/mixins'
 .post_filter
+  :position absolute
+  :bottom 5px
+  :left 480px
+  :display block
+  :width 200px
   .filter_current
     :color #333
     :background url("/images/ui/filter-button.png") no-repeat scroll 0 -21px transparent
@@ -7,6 +12,7 @@
       background: url("/images/ui/filter-button.png") no-repeat scroll 100% 0 transparent 
       padding-right: 8px
       height: 21px
+      :padding-top 2px
     &:hover
       :color #333
        
@@ -33,9 +39,6 @@
   a#all_post
     :border none
   
-  :position absolute
-  :bottom 5px
-  :right 0px
   li
     :display inline-block
 .nav_progress
@@ -44,7 +47,7 @@
   :top 35px
 .home_container
   :float left
-  :width 680px
+  :width 630px
   margin-top: 30px
   .new_event
     :padding-right 10px
@@ -146,18 +149,18 @@
     &:hover
       :text-decoration underline
 
-  :margin-left 10px
+  :margin-left 30px
   :position relative
   .person_info_bar
     :margin-top 10px
-    :width 200px
+    :width 250px
     :background-color #fff
     :height 50px
     .avatar_container
       :display inline-block
     
     .person_info
-      :width 130px
+      :width 180px
       :display inline-block
       :vertical-align top
       :margin-left 10px
@@ -328,6 +331,12 @@
 .content_info
   .action
     :padding-left 5px
+  .like
+    :position absolute
+    :right -40px
+    a.follow_link
+      .detfollow
+        :color #999
 
 .information
   h4
@@ -540,13 +549,13 @@
   :padding 10px 0px 10px 20px
   :margin-top 7px
   :background white
-  :width 660px
+  :width 610px
   :border-bottom 1px solid #ECEAE8
   :position relative
   .post_type_bar
     :position relative
     :float left
-    :width 500px
+    :width 460px
     a.title
       :margin 5px 10px 5px 0 
       :display block
@@ -593,7 +602,7 @@
     @include border-radius(5px)
     :border 1px solid #888
     textarea
-      :width 500px 
+      :width 450px 
       :height 20px
       :margin 5px
       :border none
@@ -660,15 +669,15 @@
   .new_status_message
     #status_message_submit
       :position absolute
-      :left 530px 
+      :left 490px 
       :font-size 15px
       :top 0px
       :padding 5px 20px
   
   span#sync_to_weibo
-    :width 200px 
+    :width 180px 
     :position absolute
-    :left 530px
+    :left 490px
     :top 40px
 
     label

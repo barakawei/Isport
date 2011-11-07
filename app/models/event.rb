@@ -69,6 +69,7 @@ class Event < ActiveRecord::Base
   scope :open, lambda { where("is_private = ?", false)}
   scope :selected, lambda { where("selected= ?", true)}
   scope :selected_random, lambda { where("selected= ?", true).order('rand()').limit(3)}
+  scope :recent_created, lambda { where("events.created_at >= ?", 7.days.ago) }
   after_destroy :delete_notification
 
   def delete_notification
@@ -279,9 +280,9 @@ class Event < ActiveRecord::Base
     
   def default_url(size)
      case size
-        when :thumb_medium then "/images/event/event_medium.jpg"
-        when :thumb_large   then "/images/event/event_large.jpg"
-        when :thumb_small   then "/images/event/event_small.jpg"
+        when :thumb_medium then (item) ? item.image_url(:thumb_medium) : "/images/event/event_medium.jpg"
+        when :thumb_large   then (item) ? item.image_url(:thumb_large) : "/images/event/event_large.jpg"
+        when :thumb_small   then (item) ? item.image_url(:thumb_small) : "/images/event/event_small.jpg"
      end
   end
   
