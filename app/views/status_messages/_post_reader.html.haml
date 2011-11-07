@@ -2,10 +2,20 @@
   = link_to 'close', "javascript:void(0)", :class => 'close_reader'
   .detail_mask
   #post_reader_content
-    .post_content 
+    .reader_content 
       %br
 
 :javascript
-  $('a.close_reader').click(function(){
+  $('a.close_reader').bind('click', close_reader)
+  $('#post_reader .detail_mask').bind('click', close_reader);
+
+  function close_reader() {
     $('#post_reader').hide(); 
-  });
+    $('#post_reader_content .reader_content').empty();
+  }
+
+  $(document).keydown(function(e) {
+      if (e.keyCode == '27') {
+        close_reader();
+      } 
+    });

@@ -38,6 +38,9 @@ Isport::Application.routes.draw do
     match '/status_messages/refresh_update' => :refresh_update
     match '/status_messages/video/:id' => :show_post_video, :as => 'status_message_video',
           :constraints => { :topic_id => /[1-9]\d*/}
+    match '/status_messages/read/:id' => :read_post, :as => 'read_post',
+          :constraints => { :topic_id => /[1-9]\d*/}
+
   end
   resources :status_messages
   resources :status_messages do

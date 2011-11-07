@@ -34,7 +34,6 @@
   .topic_tag.hide
     = link_to '话题', 'javascript:void(0)', :class => 'topic_name' 
     = link_to 'x', 'javascript:void(0)', :class => 'close_topic_tag'
-= render :partial  => 'status_messages/post_reader'      
 .span-8.last.right_bar
   = render 'people/person_list', :person => @person
 :javascript
@@ -54,10 +53,6 @@
   $(document).ready(function () { 
     setInterval("startRequest()",100000); 
 
-    var w = $(window).width();
-    if(w > 750) {
-      $("#post_reader_content").css("left", (w-750)/2 + "px");
-    }
   }); 
   function startRequest() { 
     $.get("/status_messages/refresh");

@@ -49,6 +49,7 @@
             %img{:src => "/images/ui/online_friend_mini.gif"}
             %span="在线好友(#{@online_friends.size})"
             %img{:src => "/images/ui/down_arrow.gif", :class => 'hide down_arrow'}
+      = render :partial  => 'status_messages/post_reader'      
       .brower_notice.hide
         %p='温馨提示:'
         %p='本网站当前只支持IE8及以上版本浏览器，为了更好的用户体验，推荐使用Firefox, Chrome, 或者Safari浏览器' 
@@ -83,7 +84,6 @@
 
 :javascript
   $(function() {
-      
     $("a[data-remote='true']").live('ajax:beforeSend', function(event, xhr, settings) {
       var href =  $( this ).attr("href");
       if( href == "#" ){

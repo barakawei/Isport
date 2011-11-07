@@ -668,7 +668,7 @@
     cursor: pointer;
     height: 20px;
     width: 20px;
-    z-index: 100;
+    z-index: 20;
     text-indent: -9999px; }
   #post_reader .detail_mask {
     position: fixed;
@@ -677,21 +677,51 @@
     top: 0;
     left: 0;
     background-color: black;
-    z-index: 99;
+    z-index: 19;
     opacity: 0.9; }
   #post_reader #post_reader_content {
     position: fixed;
-    width: 750px;
+    width: 700px;
     height: 100%;
     margin: 0 auto;
     padding: 15px;
-    background-color: #111111;
-    z-index: 100; }
-    #post_reader #post_reader_content .post_content {
-      width: 100%;
-      min-height: 600px;
-      background-color: white;
+    background-color: black;
+    z-index: 20; }
+    #post_reader #post_reader_content .reader_content {
+      padding: 10px 20px 80px 20px;
+      width: 660px;
+      background: url("/images/ui/reader_back.png") repeat-x scroll center bottom white;
+      overflow-x: hidden;
+      overflow-y: scroll;
+      height: 400px;
       -moz-border-radius: 5px;
       -webkit-border-radius: 5px;
       border-radius: 5px;
       behavior: url(/javascripts/PIE.htc); }
+      #post_reader #post_reader_content .reader_content .stream_element {
+        border: none; }
+        #post_reader #post_reader_content .reader_content .stream_element .element_body {
+          margin: 0; }
+          #post_reader #post_reader_content .reader_content .stream_element .element_body .topic_name {
+            position: relative;
+            border-bottom: 1px solid #d5ddee;
+            margin-bottom: 15px; }
+            #post_reader #post_reader_content .reader_content .stream_element .element_body .topic_name span {
+              font-size: 16px;
+              line-height: 24px;
+              font-weight: bold;
+              font-family: Georgia, times new roman, verdana; }
+            #post_reader #post_reader_content .reader_content .stream_element .element_body .topic_name a {
+              position: absolute;
+              right: 0;
+              top: 0;
+              padding: 0;
+              margin-top: 5px;
+              color: #999999; }
+          #post_reader #post_reader_content .reader_content .stream_element .element_body .post_content {
+            font-family: Georgia, times new roman;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #555555; }
+          #post_reader #post_reader_content .reader_content .stream_element .element_body a.author {
+            font-size: 14px; }

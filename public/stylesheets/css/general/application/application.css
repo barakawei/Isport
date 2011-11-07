@@ -894,6 +894,17 @@ a.app_black_link_button {
     font-size: 13px;
     margin: 5px 0;
     color: #333333; }
+    .stream_element .post_content a.reader_link, .pic_comments .post_content a.reader_link {
+      background: url("/images/ui/zoom_icon.gif") no-repeat scroll 0 0 transparent;
+      text-indent: -9999px;
+      display: inline-block;
+      font-size: 11px;
+      line-height: 13px;
+      width: 13px;
+      height: 13px;
+      color: #999999; }
+      .stream_element .post_content a.reader_link:hover, .pic_comments .post_content a.reader_link:hover {
+        text-decoration: underline; }
     .stream_element .post_content a.topic_name, .pic_comments .post_content a.topic_name {
       color: #cc3300;
       font-size: 13px; }

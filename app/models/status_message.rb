@@ -142,7 +142,11 @@ class StatusMessage < Post
     links = get_content_links 
     links.each do |link|
       if  !link.index("v.youku.com").nil? 
-        doc = Hpricot(open(link))
+        begin
+          doc = Hpricot(open(link))
+        rescue
+          next 
+        end
         l = (doc/'a[@id="s_sina"]')
         v = (doc/'[@id="link2"]')  
         if l && v
