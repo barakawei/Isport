@@ -1,11 +1,14 @@
 module ApplicationHelper
-  def post_content_tag( post )
+  def post_content_tag( post, reader=false )
     if post.respond_to?(:format_message)
       message = post.format_message(post.content)
     end
     if message.nil?
       message
     else
+      if !reader && message.length > 300
+        message = truncate(message, :length => 300)
+      end
       auto_link(message, :html => { :target => '_blank'}).html_safe
     end
   end

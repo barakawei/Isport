@@ -3,21 +3,20 @@
   - video = post.post_video
   - if topic
     - item = topic.item
-    = link_to item.name, search_item_topic_path(item.id) , :class => "message_topic_type"
-  .author_avatar
-    = person_image_link(post.author,:thumb_small) 
   .element_body
+    .topic_name
+      - if topic
+        %span= topic.name
+        = link_to '更多讨论', item_topic_path(topic), :class => 'right'
+      - else
+        %span= "#{current_user.person.name}的微博" 
     .content
-      .from
-        = person_link(post.author, :class => 'author')
       .post_content
-        - if topic 
-          = link_to "##{topic.name}#", item_topic_path(topic), :class => 'topic_name'  
-        = post_content_tag(post)
-        - if post.content.length > 300
-          = link_to '更多', 'javascript:void(0)', :id => "read_link_#{post.id}", :class => 'reader_link'
+        = post_content_tag(post, true)
       .photos
-        = render 'photos/photos_container',:photos => post.pics
+        .post_pic
+          - post.pics.each do |p|
+            %img{:src => p.url(:thumb_large)}
       - if video 
         %div{:id => "video_thumb_#{video.id}", :class => 'video_thumb'}
           = link_to 'javascript:void(0)', :vid => "#{video.id}", :vhref => "#{video.href}", :id => "open_video_#{video.id}", do
@@ -39,10 +38,6 @@
           - if topic && @post_filter && current_user 
             = follow_topic_link_tag( post.item_topic )
       
-    .action
-      - if current_user && post.author.id == current_user.person.id
-        .delete
-          = link_to image_tag("/images/ui/delete_gray.png" ),post,:remote => true,:method => "delete",:confirm => "确定删除？"
     = render "comments/comments", :post => post, :comments => post.comments
     - if current_user
       .comment_form{:class => ('hide' if post.comments.size == 0)}
@@ -55,28 +50,6 @@
             = f.submit "回复", :class => 'glass_button_ie',"data-disable-with" => t("posting")
             .cancle.glass_button_ie
               = "取消"
-:javascript
-  $("#read_link_#{post.id}").click(function(){
-    var w = $(window).width();
-    var h = $(window).height();
-    if(w > 750) {
-      $("#post_reader_content").css("left", (w-750)/2 + "px");
-    }
-    if (h > 120) {
-      $('#post_reader_content .reader_content').css("height", (h-120) + "px");
-    } else {
-      $('#post_reader_content .reader_content').css("height", h + "px");
-    }
-    $('#post_reader').show(); 
-    $.ajax({  
-      type: 'get',
-      url: "#{read_post_path(post.id)}",
-      async: false,
-      success: function(data) {
-        $('#post_reader_content .reader_content').append(data);
-      }
-    });
-  });
 - if video
   :javascript
     $(".video_thumb a#open_video_#{video.id}").bind('click', open_video);
@@ -110,3 +83,6 @@
       $video_thumb.show();
     }
 
+    $('a.open_post_reader').click(function(){
+      $('#post_reader').show(); 
+    });

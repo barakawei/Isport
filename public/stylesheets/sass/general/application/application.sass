@@ -926,14 +926,26 @@ a.app_black_link_button
     a
       font-size: 13px 
   .post_content
+    :font-size 13px
+    :margin 5px 0
+    :color #333
+    a.reader_link
+      background: url("/images/ui/zoom_icon.gif") no-repeat scroll 0  0 transparent
+      text-indent: -9999px
+      display: inline-block
+      font-size: 11px
+      line-height: 13px
+      :width 13px
+      :height 13px
+      color: #999
+
+      &:hover
+        :text-decoration underline
     a.topic_name
       :color #CC3300
       :font-size 13px
       &:hover
         :text-decoration underline
-    :font-size 13px
-    :margin 5px 0
-    :color #333
   .comment
     :position relative
   .action
@@ -1091,7 +1103,7 @@ a.app_black_link_button
         background: url(/images/ui/follow-white.gif) no-repeat 0 50%
 
 #online_freinds_container
-  :z-index 99999
+  :z-index 88 
   :position fixed
   :bottom 0 
   :right 30px
