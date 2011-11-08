@@ -93,32 +93,54 @@
     :overflow hidden
     :margin-bottom 40px
 
-    .image 
+    .oneitem 
       :float left
       :width 100px
-      :position relative
       :margin-right 14px
-     
-      .nameback
+      :margin-bottom 5px 
+      .image
         :width 100px
-        :height 25px
-        :background-color #747474
-        @include opacity(0.5)
-        @include border-radius-bottom-noie(8px)
-        :position absolute
-        :left 0px
-        :top 75px
+        :position relative
+        :float left
+        .nameback
+          :width 100px
+          :height 25px
+          :background-color #747474
+          @include opacity(0.5)
+          @include border-radius-bottom-noie(8px)
+          :position absolute
+          :left 0px
+          :top 75px
 
-      .itemname
-        :position absolute
-        :left 3px
-        :bottom 22px
-        :font-size 16px
-        :font-weight bold
-        :color #FFFFFF
+        .itemname
+          :position absolute
+          :left 3px
+          :bottom 4px
+          :font-size 16px
+          :font-weight bold
+          :color #FFFFFF
 
       .iteminfo 
         :width 100px
+        :float left
+        a, a.selected
+          :overflow hidden
+          :float left
+          :margin-left 1px
+          :text-align left
+          :cursor pointer
+
+        a
+          :color #00a2b7
+        a.selected
+          :color #D7D2CC
+
+        span.detail 
+          :overflow hidden
+          :text-align right
+          :float right
+          :white-space nowrap
+          :margin-right 1px
 
 span.title 
   overflow: show
@@ -127,10 +149,4 @@ span.title
   display: inline
   height: 20px
 
-span.detail 
-  overflow: hidden
-  float: right
-  text-align: right 
-  white-space: nowrap
-  margin-right: 6px 
 
