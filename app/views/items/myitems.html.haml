@@ -15,10 +15,13 @@
         .itemdetail
           = item[:fans_count].to_s + t('items.fans')
           %br
+          = link_to t('items.topicsrecent', :count => item[:topics_count]), 
+                          search_item_topic_path(item[:item].id, 'order_by_time')
+          %br
           = link_to t('items.eventsthisweek', :count => item[:events_count]), 
                           event_filter_path(@city.id, nil, item[:item].id, 'week')
           %br
           = link_to t('items.groupsthiscity', :count => item[:groups_count]), 
                           group_filter_path(:city => @city.id, :item_id => item[:item].id)
 
-
+          %br

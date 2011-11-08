@@ -227,12 +227,13 @@ zh:
       mavinfo: "想成为达人吗？更多的组织活动，更多的参加活动，你也可以！"
       all: "共有"
       fans: "位粉丝"
-      myitems: "兴趣动态"
+      myitems: "我的兴趣动态"
       eventsthisweek: "本周%{count}个活动"
       my_favorite_item: "我的兴趣"
       citygroups: "同城小组"
       findgroups: "寻找你喜欢的小组吧，认识志同道合的人"
       groupsthiscity: "%{count}个同城小组"
+      topicsrecent: "近期%{count}个话题"
 
   item_topic:
       followers_count: "%{count}人关注"

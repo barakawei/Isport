@@ -1,7 +1,11 @@
 module ApplicationHelper
-  def post_content_tag( post )
+  def post_content_tag( post, reader=false )
+    message = post.content
+    if !reader && post.content.length > 300
+      message = truncate(message, :length => 300)
+    end
     if post.respond_to?(:format_message)
-      message = post.format_message(post.content)
+      message = post.format_message(message)
     end
     if message.nil?
       message

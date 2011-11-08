@@ -37,6 +37,11 @@ class StatusMessagesController < ApplicationController
     render :partial => 'status_messages/video_player',  :locals => {:video => @video}
   end
 
+  def read_post
+    @post = Post.find( params[:id] )
+    render :partial => 'status_messages/element_reader', :locals => {:post => @post}
+  end
+
   def show
     @post = Post.find( params[ :id ] )
   end
