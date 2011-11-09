@@ -95,12 +95,17 @@
                 float: left;
                 padding: 0px 5px;
                 font-size: 12px;
-                line-height: 14px; }
-              #new_items_notice .notice_box .box_center .box_content .new_items .each_item .content .f_action a.follow {
+                line-height: 14px;
                 color: #389a0a;
                 border: 1px solid #d5ddde;
                 background-color: #e3ffd5; }
-                #new_items_notice .notice_box .box_center .box_content .new_items .each_item .content .f_action a.follow:hover {
+                #new_items_notice .notice_box .box_center .box_content .new_items .each_item .content .f_action a:hover {
                   background-color: #99c94b;
                   border: 1px solid #99c94b;
                   color: white; }
+              #new_items_notice .notice_box .box_center .box_content .new_items .each_item .content .f_action a.selected {
+                color: #999999;
+                background-color: #f1f1f1;
+                border: 1px solid #d5ddde; }
+                #new_items_notice .notice_box .box_center .box_content .new_items .each_item .content .f_action a.selected:hover {
+                  background-color: #f1f1f1; }

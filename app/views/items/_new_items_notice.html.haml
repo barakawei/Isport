@@ -22,7 +22,7 @@
                 .fans_count
                   = "#{i.fans.size}位粉丝" 
                 .f_action
-                  = link_to '+关注', 'javascript:void(0)', :class => 'follow'
+                  = link_to '+关注', 'javascript:void(0)', :class => 'follow', :item_id => i.id
           %hr
       .box_border_right
     .box_border_bottom
@@ -37,4 +37,24 @@
       success: function(data) {} 
     });
   });
+
+  $("#new_items_notice .f_action a").bind('click', follow_action);
+
+  function follow_action() {
+    var $link = $(this); 
+    $link.unbind('click');
+    var item_id = $link.attr('item_id');
+    if($link.hasClass('selected')) {
+      $.post("#{remove_fan_ajax_path}", {id: item_id}, function(data, textStatus){
+        $link.text("+关注");
+        $link.toggleClass('selected');
+      });
+    } else {
+      $.post("#{add_fan_ajax_path}", {id: item_id}, function(data, textStatus){
+        $link.text("x 取消关注");
+        $link.toggleClass('selected');
+      });
+    }
+    $link.bind('click', follow_action);
+  }
 
