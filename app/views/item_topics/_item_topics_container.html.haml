@@ -1,0 +1,6 @@
+= render :partial => 'item_topics/item_topic_element',
+         :collection => topics,
+         :as => :t
+.pagination_box
+  = will_paginate topics, {:previous_label => t("pagination.previous"), 
+                            :next_label => t("pagination.next")}

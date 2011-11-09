@@ -1,0 +1,18 @@
+- content_for :head do
+  = include_stylesheets :special_pages_item_topics_element
+.topic_item  
+  = link_to t.posts_count.to_s+'讨论', item_topic_path(t), :class => 'post_count'
+  .pic 
+    = item_topic_image_tag(t, :thumb_medium)
+    .back_bar
+      %br
+    .item_name
+      %span= t.item.name
+  .content
+    .name
+      = link_to truncate(t.name, :length => 30), item_topic_path(t), :class => 't_content'
+    .desc
+      %span= t.description 
+    .author
+      %span.right
+        = time_ago_in_words(t.created_at) + '前发起'          

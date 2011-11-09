@@ -1,0 +1,3 @@
+= render :partial => 'groups/group_box', :collection => groups,
+         :as => :group
+= will_paginate groups,:page_links => false,:next_label=> '',:previous_label=>''

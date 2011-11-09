@@ -124,6 +124,8 @@ stylesheets:
     - public/stylesheets/css/special_pages/item/commom.css
   special_pages_items_active_items:
     - public/stylesheets/css/special_pages/item/active_items.css
+  special_pages_items_new_items_notice:
+    - public/stylesheets/css/special_pages/item/new_items_notice.css
 
   special_pages_item_topics_show:
     - public/stylesheets/css/special_pages/item_topics/show.css
@@ -137,6 +139,8 @@ stylesheets:
     - public/stylesheets/css/special_pages/item_topics/related_topics.css
   special_pages_item_topics_recent_topics:
     - public/stylesheets/css/special_pages/item_topics/recent_topics.css
+  special_pages_item_topics_element:
+    - public/stylesheets/css/special_pages/item_topics/topic_element.css
 
 
   sepcial_pages_groups_form:

@@ -31,6 +31,10 @@ class HomeController < ApplicationController
       #@post = Post.where( :author_id => current_user.person.id,:type => 'StatusMessage' ).order( "posts.created_at DESC" ).limit( 1 )
       @select_tab = 'home'
       @potential_friends = Person.potential_interested_people_limit(current_user.person)
+
+      if current_user.last_new_item_notice_at < current_user.current_sign_in_at
+        @notice_items = Item.where('created_at > ?',  current_user.last_sign_in_at) - @person.interests 
+      end
     end
   end
 
