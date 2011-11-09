@@ -2,6 +2,10 @@
   = include_stylesheets :special_pages_items_show, :media => 'all'
   = include_stylesheets :special_pages_items_commom, :media => 'all'
   =include_javascripts :scroll_page
+  =include_javascripts :status_message
+  =include_javascripts :show_photo
+  = include_javascripts :mention
+  =javascript_include_tag "http://api.youku.com/api/js/swfobject.js"
 
 .span-24.last
   .itemleft.span-6
@@ -53,7 +57,7 @@
           =link_to "小组",show_item_groups_path(@item),:id=>'item_groups',:remote => true        
         .tab_progress
           .progress
-      .stream
+    .stream
 
 :javascript
   

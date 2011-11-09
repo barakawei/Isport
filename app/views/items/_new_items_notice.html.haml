@@ -1,6 +1,6 @@
 =content_for :head do
   = include_stylesheets :special_pages_items_new_items_notice, :media => 'all'
-#new_items_notice
+#new_items_notice.hide
   .overlay
     %br
   .notice_box
@@ -23,7 +23,9 @@
                   = "#{i.fans.size}位粉丝" 
                 .f_action
                   = link_to '+关注', 'javascript:void(0)', :class => 'follow', :item_id => i.id
-          %hr
+          .spacer
+            %p
+            %hr.space
       .box_border_right
     .box_border_bottom
 
