@@ -115,7 +115,7 @@ $darkgray: #74777B
         :color white
     .tab_progress
       :position absolute
-      :left 270px
+      :left 350px
       :top 25px
 
   .event_status_open
@@ -152,7 +152,7 @@ $darkgray: #74777B
       @include border-radius(6px)
       :background-color #ffffff
       :float left
-      :margin 0 10px 14px 15px
+      :margin 0 14px 14px 15px
 
       .group_image
         :width 110px
@@ -346,11 +346,50 @@ $darkgray: #74777B
           height: 25px
           margin: 25px 0 5px 23px
 
+
   .stream
+    :float left
+    :width 670px
     .stream_element
       :background-color white
       :border none
       :margin-bottom 2px
+      .comments
+        :border-top 1px solid #EBEBEB
+        :font-size 13px
+        .comment_body
+          :word-wrap break-word
+          :line-height 1.4
+        .details
+          :color #AAA
+        .comment
+          :position relative
+          :padding 8px
+          :border-bottom 1px dotted #CCCCCC 
+          .replay_info
+            :font-size 12px
+        :margin-bottom 10px
+        .comment_content
+          :margin-left 36px
+        .timeago
+          color: #999
+          text-decoration: none
+          border: none
+        .author_avatar
+          :float left
+          :padding 0
+        .person_avatar_detail
+          :height 32px
+          :width 32px
+      .content_info
+        .action
+          :padding-left 5px
+        .like
+          :position absolute
+          :right -40px
+          a.follow_link
+            .detfollow
+              :color #999
     .event_element
       :height 180px
       :position relative

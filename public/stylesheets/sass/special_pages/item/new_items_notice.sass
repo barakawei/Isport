@@ -6,9 +6,8 @@
     :height 100%
     :top 0
     :left 0
-    :background-color #000
     :z-index 19 
-    :opacity 0.3
+    @include opacity(0.3)
     
   .notice_box
     :position fixed 
@@ -68,7 +67,12 @@
           :padding 20px
           :height 255px
           :overflow-y auto
-
+          
+          .spacer
+            :float left
+            :height 5px
+            :width 100px
+            :margin-top 30px
           .each_item
             :width 215px
             :float left

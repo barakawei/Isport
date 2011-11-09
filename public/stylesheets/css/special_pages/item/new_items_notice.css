@@ -4,8 +4,10 @@
   height: 100%;
   top: 0;
   left: 0;
-  background-color: black;
   z-index: 19;
+  filter: alpha(opacity=30);
+  -moz-opacity: 0.3;
+  -khtml-opacity: 0.3;
   opacity: 0.3; }
 #new_items_notice .notice_box {
   position: fixed;
@@ -63,6 +65,11 @@
         padding: 20px;
         height: 255px;
         overflow-y: auto; }
+        #new_items_notice .notice_box .box_center .box_content .new_items .spacer {
+          float: left;
+          height: 5px;
+          width: 100px;
+          margin-top: 30px; }
         #new_items_notice .notice_box .box_center .box_content .new_items .each_item {
           width: 215px;
           float: left;

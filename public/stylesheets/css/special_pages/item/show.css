@@ -114,7 +114,7 @@
       color: white; }
   .itemright .home_tabs .tab_progress {
     position: absolute;
-    left: 270px;
+    left: 350px;
     top: 25px; }
 .itemright .event_status_open {
   background-color: white; }
@@ -145,7 +145,7 @@
     behavior: url(/javascripts/PIE.htc);
     background-color: white;
     float: left;
-    margin: 0 10px 14px 15px; }
+    margin: 0 14px 14px 15px; }
     .itemright .group_box_panel .group_box .group_image {
       width: 110px;
       height: 100px;
@@ -334,50 +334,87 @@
       width: 29px;
       height: 25px;
       margin: 25px 0 5px 23px; }
-.itemright .stream .stream_element {
-  background-color: white;
-  border: none;
-  margin-bottom: 2px; }
-.itemright .stream .event_element {
-  height: 180px;
-  position: relative;
-  border-top: 1px solid #ebebeb; }
-  .itemright .stream .event_element .event_info {
-    padding-left: 10px;
-    border-left: 1px solid #ebebeb;
-    margin-left: 10px;
-    height: 100px;
-    float: left;
-    font-size: 13px; }
-    .itemright .stream .event_element .event_info .author {
-      font-weight: normal;
-      display: inline; }
-  .itemright .stream .event_element .event_content {
-    width: 450px;
-    padding: 20px 20px;
-    float: left; }
-    .itemright .stream .event_element .event_content .event {
-      margin-top: 20px;
-      height: 110px; }
-      .itemright .stream .event_element .event_content .event .time {
-        display: inline; }
-      .itemright .stream .event_element .event_content .event .address {
-        display: inline; }
-    .itemright .stream .event_element .event_content .event_avatar {
-      float: left; }
-      .itemright .stream .event_element .event_content .event_avatar img {
-        width: 100px;
-        height: 100px; }
-    .itemright .stream .event_element .event_content .attendee {
-      display: block; }
-      .itemright .stream .event_element .event_content .attendee img {
-        width: 30px;
-        height: 30px; }
-    .itemright .stream .event_element .event_content .event_details {
-      width: 220px;
+.itemright .stream {
+  float: left;
+  width: 670px; }
+  .itemright .stream .stream_element {
+    background-color: white;
+    border: none;
+    margin-bottom: 2px; }
+    .itemright .stream .stream_element .comments {
+      border-top: 1px solid #ebebeb;
+      font-size: 13px;
+      margin-bottom: 10px; }
+      .itemright .stream .stream_element .comments .comment_body {
+        word-wrap: break-word;
+        line-height: 1.4; }
+      .itemright .stream .stream_element .comments .details {
+        color: #aaaaaa; }
+      .itemright .stream .stream_element .comments .comment {
+        position: relative;
+        padding: 8px;
+        border-bottom: 1px dotted #cccccc; }
+        .itemright .stream .stream_element .comments .comment .replay_info {
+          font-size: 12px; }
+      .itemright .stream .stream_element .comments .comment_content {
+        margin-left: 36px; }
+      .itemright .stream .stream_element .comments .timeago {
+        color: #999999;
+        text-decoration: none;
+        border: none; }
+      .itemright .stream .stream_element .comments .author_avatar {
+        float: left;
+        padding: 0; }
+      .itemright .stream .stream_element .comments .person_avatar_detail {
+        height: 32px;
+        width: 32px; }
+    .itemright .stream .stream_element .content_info .action {
+      padding-left: 5px; }
+    .itemright .stream .stream_element .content_info .like {
+      position: absolute;
+      right: -40px; }
+      .itemright .stream .stream_element .content_info .like a.follow_link .detfollow {
+        color: #999999; }
+  .itemright .stream .event_element {
+    height: 180px;
+    position: relative;
+    border-top: 1px solid #ebebeb; }
+    .itemright .stream .event_element .event_info {
+      padding-left: 10px;
+      border-left: 1px solid #ebebeb;
+      margin-left: 10px;
+      height: 100px;
       float: left;
-      height: 110px;
-      margin-left: 20px; }
+      font-size: 13px; }
+      .itemright .stream .event_element .event_info .author {
+        font-weight: normal;
+        display: inline; }
+    .itemright .stream .event_element .event_content {
+      width: 450px;
+      padding: 20px 20px;
+      float: left; }
+      .itemright .stream .event_element .event_content .event {
+        margin-top: 20px;
+        height: 110px; }
+        .itemright .stream .event_element .event_content .event .time {
+          display: inline; }
+        .itemright .stream .event_element .event_content .event .address {
+          display: inline; }
+      .itemright .stream .event_element .event_content .event_avatar {
+        float: left; }
+        .itemright .stream .event_element .event_content .event_avatar img {
+          width: 100px;
+          height: 100px; }
+      .itemright .stream .event_element .event_content .attendee {
+        display: block; }
+        .itemright .stream .event_element .event_content .attendee img {
+          width: 30px;
+          height: 30px; }
+      .itemright .stream .event_element .event_content .event_details {
+        width: 220px;
+        float: left;
+        height: 110px;
+        margin-left: 20px; }
 
 .item_mark, .item_unmark {
   width: 100px;
