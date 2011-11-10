@@ -138,5 +138,10 @@ class UsersController < ApplicationController
       render :text => 'false' 
     end
   end
+
+  def reset_new_item_notice 
+    current_user.update_attribute(:last_new_item_notice_at,  current_user.current_sign_in_at)
+    render :nothing => true
+  end
   
 end

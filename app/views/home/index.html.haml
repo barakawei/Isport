@@ -4,6 +4,8 @@
   = include_javascripts :show_photo
   =javascript_include_tag "http://api.youku.com/api/js/swfobject.js"
 
+-if @notice_items && @notice_items.size > 0
+  = render :partial => 'items/new_items_notice', :locals => {:items => @notice_items}
 .span-16.last.content_panel
   #shit
     #fuck
@@ -51,8 +53,26 @@
 
   $(document).ready(function () { 
     setInterval("startRequest()",100000); 
-
+    setNewItemsNotice();
   }); 
+
+  function setNewItemsNotice() {
+    var w = $(window).width();
+    var h = $(window).height();
+
+    var notice_w = $("#new_items_notice .notice_box").width();
+    if (notice_w != null) {  
+      var notice_h = $("#new_items_notice .notice_box").height();
+      
+      if (w > notice_w) {
+        $("#new_items_notice .notice_box").css('marginLeft', (w-notice_w)/2 + "px");
+      }
+      if (h > notice_h) {
+        $("#new_items_notice .notice_box").css('marginTop', (h-notice_h)/2 + "px");
+      }
+    }
+    $("#new_items_notice").show();
+  }
   function startRequest() { 
     $.get("/status_messages/refresh");
   } 

@@ -1,9 +1,14 @@
 -content_for :head do
   = include_stylesheets :special_pages_items_show, :media => 'all'
   = include_stylesheets :special_pages_items_commom, :media => 'all'
+  =include_javascripts :scroll_page
+  =include_javascripts :status_message
+  =include_javascripts :show_photo
+  = include_javascripts :mention
+  =javascript_include_tag "http://api.youku.com/api/js/swfobject.js"
 
 .span-24.last
-  .itemleft
+  .itemleft.span-6
     .item_image
       = item_image_tag(@item, :thumb_large)
       .item_name
@@ -16,22 +21,9 @@
         - unless is_fan_of(@item)
           = link_to url_for(:action=> "add_fan", :id => @item.id), :class => "item_unmark big_button" do
             %span= t('follow')
-          = t('items.likeinfo')
         - else
           = link_to url_for(:action=> "remove_fan", :id => @item.id), :class => "item_mark big_button" do
             %span= t('following')
-          = t('items.unlikeinfo', :name => @item.name)
-
-    - if @topics.length > 0
-      .topics_area
-        .title
-          .flag_name
-            = @item.name + "话题"
-          .link_more
-            = link_to "更多", search_item_topic_path(@item.id)
-
-        .topics
-          = render :partial => 'item_topics/related_topics',:collection => @topics,:as => :topic
 
     - if @actors.length > 0
       .item_star
@@ -44,40 +36,34 @@
             .star_one{:class => ("last" if (index+1)%4==0)}
               = person_image_link(person) 
 
-  .itemright
+  .itemright.span-18.last
     .item_info
-      .info_ele
+      .info_ele.first_item
         = render 'common/big_header_box', :number => @item.fans.size, :text => "粉丝", :background_color => "#FF8A3C"
       .info_ele
         = render 'common/big_header_box', :number => @item.events.size, :text => "活动", :background_color => "#AAD450"
       .info_ele
         = render 'common/big_header_box', :number => @item.groups.size, :text => "小组", :background_color => "#4EBAFF"
 
-    .hot_title
-      .title
-        = render 'common/header_box', :title =>t('items.events')  
-      .link
-        = link_to "更多>>", event_filter_path(@city.id, nil, @item.id, 'week') 
+    .home_tabs
+      %ul
+        %li
+          =link_to "动态",show_item_posts_path(@item),:id => 'item_posts',:remote => true
+        %li
+          =link_to "活动",show_item_events_path(@item),:id=>'item_events',:remote => true        
+        %li
+          =link_to "话题",show_item_topics_path(@item),:id=>'item_topics',:remote => true        
+        %li
+          =link_to "小组",show_item_groups_path(@item),:id=>'item_groups',:remote => true        
+        .tab_progress
+          .progress
+    .stream
 
-    .hot_area.events_panel
-      = render :partial => 'events/event_element',:collection => @events,:as => :event 
-      - if @events.size == 0
-        =render :partial => 'events/new_event_link', :locals => { :question => '最近没有该类型活动?',
-                                                                :link => new_event_path,
-                                                                :action => '发起活动'}
-        
+:javascript
+  
+  $.get("#{show_item_posts_path(@item)}");
+  $(".tab_pregress").show();
 
-    .hot_title
-      .title
-        = render 'common/header_box', :title =>t('items.citygroups')  
-      .link
-        = link_to "更多>>", group_filter_path(:city => @city.id, :item_id => @item.id)
-       
-    .hot_area.groups_panel
-      = render :partial => 'groups/group_box',:collection => @groups,:as => :group
-      - if @groups.size == 0
-        =render :partial => 'events/new_event_link', :locals => { :question => '还没有围绕此兴趣的小组',
-                                                                :link => new_group_path,
-                                                                :action => '创建小组'}
-      
-
+  $( ".home_tabs a" ).live( "click",function( ){
+    $(".tab_progress").show();
+  })

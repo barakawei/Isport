@@ -1,0 +1,18 @@
+content = "<%= escape_javascript(render('status_messages/status_messages_container')) %>"; 
+item_id = "<%=@person.id%>";
+if (page == ''){ 
+  $('.stream').html(content);
+}else{
+  $('.stream').append(content);
+}
+tab = '<%=@tab%>';
+if(tab != ''  ){
+  $( '.current' ).removeClass( 'current' );
+  $( '#'+tab).addClass( 'current' );
+}
+$(".tab_progress").hide();
+$( "#my_posts" ).attr( "href","/people/"+person_id+"/show_posts" );
+
+
+
+

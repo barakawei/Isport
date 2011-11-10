@@ -11,13 +11,20 @@
         = render 'common/header_box', :title => "热门兴趣", :background_color => "#4EBAFF"
     .imagearea
       - @hot_items.each_with_index do |item, index|
-        .image
-          = item_image_link(item, :size => :thumb_medium)
-          .nameback
-          .itemname
-            = item.name
-          %br
+        .oneitem
+          .image
+            = item_image_link(item, :size => :thumb_medium)
+            .nameback
+            .itemname
+              = item.name
           .iteminfo
+            - if current_user 
+              - if current_user.person.interests.include?(item)
+                %a{:class => 'selected', :item_id => item.id}
+                  ="已关注"
+              - else
+                %a{:item_id => item.id}
+                  ="+关注"
             %span.detail= item.fans.size.to_s + t('items.fans')
 
     - @categories.each do |category|
@@ -26,13 +33,20 @@
           = render 'common/header_box', :title =>category.name, :background_color => "#4EBAFF"
       .imagearea
         - category.items.each_with_index do |item, index|
-          .image
-            = item_image_link(item, :size => :thumb_medium)
-            .nameback
-            .itemname
-              = item.name
-            %br
+          .oneitem
+            .image
+              = item_image_link(item, :size => :thumb_medium)
+              .nameback
+              .itemname
+                = item.name
             .iteminfo
+              - if current_user 
+                - if current_user.person.interests.include?(item)
+                  %a{:class => 'selected', :item_id => item.id}
+                    ="已关注"
+                - else
+                  %a{:item_id => item.id}
+                    ="+关注"
               %span.detail= item.fans.size.to_s + t('items.fans')
 
   - if current_user
@@ -63,4 +77,23 @@
     });  
   });
 
+  $('.oneitem .iteminfo a').bind('click', select_item);
+
+  function select_item() {
+    var $this = $(this);
+    $this.unbind('click');
+    var item_id = $this.attr('item_id');
+    if($this.hasClass('selected')) {
+      $.post("#{remove_fan_ajax_path}", {id: item_id}, function(data, textStatus){
+        $this.text("+关注");
+        $this.toggleClass('selected');
+      });
+    } else {
+      $.post("#{add_fan_ajax_path}", {id: item_id}, function(data, textStatus){
+        $this.text("已关注");
+        $this.toggleClass('selected');
+      });
+    }
+    $this.bind('click', select_item);
+  }
 

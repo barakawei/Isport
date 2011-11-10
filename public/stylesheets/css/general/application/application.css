@@ -1114,7 +1114,7 @@ a.app_black_link_button {
         background: url(/images/ui/follow-white.gif) no-repeat 0 50%; }
 
 #online_freinds_container {
-  z-index: 88;
+  z-index: 10;
   position: fixed;
   bottom: 0;
   right: 30px;

@@ -1,0 +1,19 @@
+content = "<%= escape_javascript(render(:partial => 'groups/group_boxs_container', :locals => { :groups => @groups})) %>";
+page = '<%=@page%>';
+item_id = "<%=@item.id%>";
+if (page == ''){ 
+  $('.stream').html(content);
+}else{
+  $('.stream').append(content);
+}
+tab = '<%=@tab%>';
+if(tab != ''  ){
+  $( '.current' ).removeClass( 'current' );
+  $( '#'+tab).addClass( 'current' );
+}
+$(".tab_progress").hide();
+$( "#item_groups" ).attr( "href","/items/"+item_id+"/show_groups");
+
+
+
+

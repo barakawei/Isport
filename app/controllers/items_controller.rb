@@ -138,5 +138,37 @@ class ItemsController < ApplicationController
     raise ActionController::RoutingError.new("such action only can be exeute by admin") unless current_user.try(:admin?)
   end
 
+  def show_posts
+    @item = Item.find(params[:id])
+    @posts = @item.posts.order("posts.created_at DESC").paginate( :page => params[:page], :per_page => 30)
+    @tab = 'item_posts'
+    @page = params[ :page ]
+    respond_with @posts
+  end
+
+  def show_events
+    @item = Item.find(params[:id])
+    @events = @item.events.pass_audit.order("events.start_at desc").paginate(:page => params[:page], :per_page => 30)
+    @page = params[:page]
+    @tab = 'item_events'
+    respond_with @events 
+  end
+
+  def show_topics 
+    @item = Item.find(params[:id])
+    @topics = @item.topics.order("item_topics.updated_at").paginate(:page => params[:page], :per_page => 30)
+    @page = params[:page]
+    @tab = 'item_topics'
+    respond_with @topics
+  end
+
+  def show_groups
+    @item = Item.find(params[:id]) 
+    @groups = @item.groups.order("groups.created_at").paginate(:page => params[:id], :per_page => 30)
+    @page = params[:page]
+    @tab = 'item_groups' 
+    respond_with @groups
+  end
 end
+
 

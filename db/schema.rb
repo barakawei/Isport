@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111102083851) do
+ActiveRecord::Schema.define(:version => 20111109085508) do
 
   create_table "administrators", :force => true do |t|
     t.integer  "user_id"
@@ -127,10 +127,10 @@ ActiveRecord::Schema.define(:version => 20111102083851) do
     t.integer  "group_id",           :default => 0
     t.integer  "status",             :default => 0
     t.string   "status_msg"
-    t.integer  "audit_person_id"
     t.integer  "participants_count", :default => 0
     t.integer  "comments_count",     :default => 0
     t.integer  "fans_count",         :default => 0
+    t.integer  "audit_person_id"
     t.boolean  "selected",           :default => false
   end
 
@@ -225,8 +225,8 @@ ActiveRecord::Schema.define(:version => 20111102083851) do
     t.datetime "updated_at"
     t.integer  "followers_count",  :default => 0
     t.integer  "posts_count",      :default => 0
-    t.integer  "person_id"
     t.text     "description"
+    t.integer  "person_id"
     t.datetime "activated_at"
   end
 
@@ -443,29 +443,30 @@ ActiveRecord::Schema.define(:version => 20111102083851) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "email",                                 :default => "",    :null => false
-    t.string   "encrypted_password",     :limit => 128, :default => ""
+    t.string   "email",                                  :default => "",    :null => false
+    t.string   "encrypted_password",      :limit => 128, :default => ""
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                         :default => 0
+    t.integer  "sign_in_count",                          :default => 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "invitation_token",       :limit => 60
+    t.string   "invitation_token",        :limit => 60
     t.datetime "invitation_sent_at"
     t.integer  "invitation_limit"
     t.integer  "invited_by_id"
     t.string   "invited_by_type"
     t.string   "name"
-    t.boolean  "getting_started",                       :default => true
+    t.boolean  "getting_started",                        :default => true
     t.string   "invitation_service"
     t.string   "invitation_identifier"
-    t.boolean  "admin",                                 :default => false
+    t.boolean  "admin",                                  :default => false
     t.datetime "last_request_at"
+    t.datetime "last_new_item_notice_at"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

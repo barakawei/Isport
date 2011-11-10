@@ -124,6 +124,7 @@ Isport::Application.routes.draw do
     match 'delete_auth' => :delete_auth, :as => 'delete_auth'
     match '/users/connent_error' => :weibo_already_binded_error, :as => 'bind_error' 
     match '/users/potential_interested_people' => :potential_interested_people, :as => 'potential_interested_people'
+    match '/users/reset_new_item_notice' => :reset_new_item_notice, :as => 'reset_new_item_notice'
   end
 
   match '/users/sign_in' => 'users#sign_in', :as => 'sign_in' 
@@ -135,6 +136,14 @@ Isport::Application.routes.draw do
     match '/items/myitems' => :myitems, :as => 'myitems'
     match '/items/add_fan_ajax' => :add_fan_ajax, :as => 'add_fan_ajax'
     match '/items/remove_fan_ajax' => :remove_fan_ajax, :as => 'remove_fan_ajax'
+    match '/items/:id/show_posts' => :show_posts,:as => "show_item_posts",
+          :constraints => {:id => /[1-9]\d*/}
+    match '/items/:id/show_events' => :show_events,:as => "show_item_events",
+          :constraints => {:id => /[1-9]\d*/}
+    match '/items/:id/show_topics' => :show_topics,:as => "show_item_topics",
+          :constraints => {:id => /[1-9]\d*/}
+    match '/items/:id/show_groups' => :show_groups,:as => "show_item_groups",
+          :constraints => {:id => /[1-9]\d*/}
   end
 
   controller :site_info do

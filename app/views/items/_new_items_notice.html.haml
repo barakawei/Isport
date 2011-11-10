@@ -1,0 +1,62 @@
+=content_for :head do
+  = include_stylesheets :special_pages_items_new_items_notice, :media => 'all'
+#new_items_notice.hide
+  .overlay
+    %br
+  .notice_box
+    .box_border_top 
+    .box_center
+      .box_border_left
+      .box_content
+        = link_to 'close', 'javascript:void(0)', :class => 'close_box'
+        .notice_title
+          %span= "好享玩新增了一些兴趣, 喜欢就赶紧关注吧"
+        .new_items
+          - items.each do |i|
+            .each_item
+              .avatar
+                = item_image_tag(i, :thumb_medium)
+              .content
+                .name
+                  = i.name
+                .fans_count
+                  = "#{i.fans.size}位粉丝" 
+                .f_action
+                  = link_to '+关注', 'javascript:void(0)', :class => 'follow', :item_id => i.id
+          .spacer
+            %p
+            %hr.space
+      .box_border_right
+    .box_border_bottom
+
+:javascript
+  $("#new_items_notice .close_box").click(function(){
+    $("#new_items_notice").hide(); 
+    $.ajax({
+      type: 'get',
+      url: "#{reset_new_item_notice_path}",
+      async: false,
+      success: function(data) {} 
+    });
+  });
+
+  $("#new_items_notice .f_action a").bind('click', follow_action);
+
+  function follow_action() {
+    var $link = $(this); 
+    $link.unbind('click');
+    var item_id = $link.attr('item_id');
+    if($link.hasClass('selected')) {
+      $.post("#{remove_fan_ajax_path}", {id: item_id}, function(data, textStatus){
+        $link.text("+关注");
+        $link.toggleClass('selected');
+      });
+    } else {
+      $.post("#{add_fan_ajax_path}", {id: item_id}, function(data, textStatus){
+        $link.text("x 取消关注");
+        $link.toggleClass('selected');
+      });
+    }
+    $link.bind('click', follow_action);
+  }
+

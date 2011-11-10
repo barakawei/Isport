@@ -90,37 +90,58 @@
     width: 800px;
     overflow: hidden;
     margin-bottom: 40px; }
-    .imageboard .imagearea .image {
+    .imageboard .imagearea .oneitem {
       float: left;
       width: 100px;
-      position: relative;
-      margin-right: 14px; }
-      .imageboard .imagearea .image .nameback {
+      margin-right: 14px;
+      margin-bottom: 5px; }
+      .imageboard .imagearea .oneitem .image {
         width: 100px;
-        height: 25px;
-        background-color: #747474;
-        filter: alpha(opacity=50);
-        -moz-opacity: 0.5;
-        -khtml-opacity: 0.5;
-        opacity: 0.5;
-        -moz-border-radius-bottomleft: 8px;
-        -moz-border-radius-bottomright: 8px;
-        -webkit-border-bottom-left-radius: 8px;
-        -webkit-border-bottom-right-radius: 8px;
-        border-bottom-left-radius: 8px;
-        border-bottom-right-radius: 8px;
-        position: absolute;
-        left: 0px;
-        top: 75px; }
-      .imageboard .imagearea .image .itemname {
-        position: absolute;
-        left: 3px;
-        bottom: 22px;
-        font-size: 16px;
-        font-weight: bold;
-        color: white; }
-      .imageboard .imagearea .image .iteminfo {
-        width: 100px; }
+        position: relative;
+        float: left; }
+        .imageboard .imagearea .oneitem .image .nameback {
+          width: 100px;
+          height: 25px;
+          background-color: #747474;
+          filter: alpha(opacity=50);
+          -moz-opacity: 0.5;
+          -khtml-opacity: 0.5;
+          opacity: 0.5;
+          -moz-border-radius-bottomleft: 8px;
+          -moz-border-radius-bottomright: 8px;
+          -webkit-border-bottom-left-radius: 8px;
+          -webkit-border-bottom-right-radius: 8px;
+          border-bottom-left-radius: 8px;
+          border-bottom-right-radius: 8px;
+          position: absolute;
+          left: 0px;
+          top: 75px; }
+        .imageboard .imagearea .oneitem .image .itemname {
+          position: absolute;
+          left: 3px;
+          bottom: 4px;
+          font-size: 16px;
+          font-weight: bold;
+          color: white; }
+      .imageboard .imagearea .oneitem .iteminfo {
+        width: 100px;
+        float: left; }
+        .imageboard .imagearea .oneitem .iteminfo a, .imageboard .imagearea .oneitem .iteminfo a.selected {
+          overflow: hidden;
+          float: left;
+          margin-left: 1px;
+          text-align: left;
+          cursor: pointer; }
+        .imageboard .imagearea .oneitem .iteminfo a {
+          color: #00a2b7; }
+        .imageboard .imagearea .oneitem .iteminfo a.selected {
+          color: #d7d2cc; }
+        .imageboard .imagearea .oneitem .iteminfo span.detail {
+          overflow: hidden;
+          text-align: right;
+          float: right;
+          white-space: nowrap;
+          margin-right: 1px; }
 
 span.title {
   overflow: show;
@@ -128,10 +149,3 @@ span.title {
   float: left;
   display: inline;
   height: 20px; }
-
-span.detail {
-  overflow: hidden;
-  float: right;
-  text-align: right;
-  white-space: nowrap;
-  margin-right: 6px; }

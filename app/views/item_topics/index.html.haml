@@ -17,26 +17,7 @@
         = link_to_unless_current '按热度排序', @sort_by_hot, :class => 'last'
         
     .topic_result
-      - @item_topics.each do |t|
-        .topic_item  
-          = link_to t.posts_count.to_s+'讨论', item_topic_path(t), :class => 'post_count'
-          .pic 
-            = item_topic_image_tag(t, :thumb_medium)
-            .back_bar
-              %br
-            .item_name
-              %span= t.item.name
-          .content
-            .name
-              = link_to truncate(t.name, :length => 30), item_topic_path(t), :class => 't_content'
-            .desc
-              %span= t.description 
-            .author
-              %span.right
-                = time_ago_in_words(t.created_at) + '前发起'          
-    .pagination_box
-      = will_paginate @item_topics, {:previous_label => t("pagination.previous"), 
-                                :next_label => t("pagination.next")}
+      = render :partial => 'item_topics/item_topics_container',  :locals => { :topics => @item_topics }
          
   .span-7.last.subjects
     %h2='话题类型'

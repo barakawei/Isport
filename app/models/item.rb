@@ -17,6 +17,7 @@ class Item < ActiveRecord::Base
                     :conditions => ["groups.status = ?", 2]
 
   has_many :topics, :class_name => 'ItemTopic'  
+  has_many :posts
 
   belongs_to :category
 

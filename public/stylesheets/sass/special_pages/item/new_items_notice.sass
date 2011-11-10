@@ -1,0 +1,126 @@
+@import '../../general/ui/mixins'
+#new_items_notice
+  .overlay
+    :position fixed
+    :width 100%
+    :height 100%
+    :top 0
+    :left 0
+    :z-index 19 
+    @include opacity(0.3)
+    
+  .notice_box
+    :position fixed 
+    :top 0
+    :left 0
+    :width 500px
+    :height 300px
+    :float left
+    :z-index 20
+    
+    .box_border_left, .box_border_right,
+    .box_border_top, .box_border_bottom
+      :float left
+      background: url("/images/ui/popup_box_border.png") repeat scroll 0 0 transparent
+    .box_border_top, .box_border_bottom
+      height: 5px
+      :width 500px 
+    .box_center
+      :float left
+      :width 500px 
+      :height 290px
+
+      .box_border_left, .box_border_right
+        :height 290px 
+        :width 5px
+      .box_content
+        :background-color #ffffff
+        :width 490px 
+        :height 290px
+        :padding 0
+        :float left
+        :overflow-y hidden
+        a.close_box
+          :position absolute
+          :top 10px
+          :right 10px
+          background: url("/images/ui/cross_close_icon.png") no-repeat scroll -26px 0 transparent
+          margin: 0 0 0 10px
+          text-indent: -9999px
+          width: 16px
+
+          &:hover
+            :background-position 0 0  
+        .notice_title
+          :background-color #f3f3f3
+          :float left
+          :width 490px
+          :height 35px
+          span
+            :margin-left 20px
+            :font-size 14px
+            :line-height 35px
+            :color #595959
+        .new_items
+          :float left
+          :width 450px
+          :padding 20px
+          :height 255px
+          :overflow-y auto
+          
+          .spacer
+            :float left
+            :height 5px
+            :width 100px
+            :margin-top 30px
+          .each_item
+            :width 215px
+            :float left
+            :margin-bottom 20px
+            :height 75px
+
+            .avatar
+              :float left
+              img
+                :height 75px
+                :width 75px
+            .content
+              :margin-left 10px
+              :width 130px
+              :height 75px
+              :float left
+              :position relative
+              .name, .fans_count, .f_action
+                :float left
+                :width 130px
+                :font-size 14px
+              .fans_count
+                :font-size 11px
+                :color #999 
+              .f_action
+                :position absolute
+                :left 0
+                :bottom 0
+                a
+                  :display block
+                  :float left
+                  :padding 0px 5px
+                  :font-size 12px
+                  :line-height 14px
+                  :color #389A0A
+                  :border 1px solid #d5ddde
+                  :background-color #E3FFD5
+
+                  &:hover
+                    :background-color #99C94B
+                    :border 1px solid #99C94B
+                    :color #fff
+                a.selected
+                  :color #999
+                  :background-color #f1f1f1
+                  :border 1px solid #d5ddde
+
+                  &:hover
+                    :background-color #f1f1f1 
+
+    :top 0
