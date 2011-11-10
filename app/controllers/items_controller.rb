@@ -1,6 +1,8 @@
 class ItemsController < ApplicationController
   before_filter :registrations_closed?
-  before_filter :is_admin, :except => [:index, :show, :myitems, :add_fan, :remove_fan, :add_fan_ajax, :remove_fan_ajax ]
+  before_filter :is_admin, 
+                :except => [:index, :show, :myitems, :add_fan, :remove_fan, :add_fan_ajax, :remove_fan_ajax,
+                            :show_posts, :show_events, :show_topics, :show_groups]
   respond_to :js 
 
   EVELIMIT = 6
@@ -39,19 +41,15 @@ class ItemsController < ApplicationController
   def show
     @item = Item.find(params[:id])
 
-    if current_user
-      @city = City.find(current_user.city.id)
-    else
-      @city = City.first
-    end
+    
 
-    @events = @item.hot_events(EVELIMIT, @city)  
+#   @events = @item.hot_events(EVELIMIT, @city)  
     @actors = @item.hot_stars(ACTLIMIT)
-    @groups = @item.hot_groups(EVELIMIT, @city) 
+#   @groups = @item.hot_groups(EVELIMIT, @city) 
 
-    @topics = ItemTopic.of_item(@item).recent_hot.limit(50)
-    @topics = ItemTopic.of_item(@item).order_by_hot.limit(50) unless @topics.length > 0
-    @topics = @topics.sort_by{rand}[0..7]
+#   @topics = ItemTopic.of_item(@item).recent_hot.limit(50)
+#   @topics = ItemTopic.of_item(@item).order_by_hot.limit(50) unless @topics.length > 0
+#   @topics = @topics.sort_by{rand}[0..7]
 
     @select_tab = 'item'
     respond_to do |format|
@@ -148,7 +146,11 @@ class ItemsController < ApplicationController
 
   def show_events
     @item = Item.find(params[:id])
-    @events = @item.events.pass_audit.order("events.start_at desc").paginate(:page => params[:page], :per_page => 30)
+    if current_user
+      @events = @item.events.pass_audit.at_city(current_user.city.id).order("events.start_at desc").paginate(:page => params[:page], :per_page => 30)
+    else
+      @events = @item.events.pass_audit.order("events.start_at desc").paginate(:page => params[:page], :per_page => 30)
+    end
     @page = params[:page]
     @tab = 'item_events'
     respond_with @events 
@@ -156,7 +158,7 @@ class ItemsController < ApplicationController
 
   def show_topics 
     @item = Item.find(params[:id])
-    @topics = @item.topics.order("item_topics.updated_at").paginate(:page => params[:page], :per_page => 30)
+    @topics = @item.topics.order("item_topics.activated_at").paginate(:page => params[:page], :per_page => 30)
     @page = params[:page]
     @tab = 'item_topics'
     respond_with @topics
@@ -164,7 +166,11 @@ class ItemsController < ApplicationController
 
   def show_groups
     @item = Item.find(params[:id]) 
-    @groups = @item.groups.order("groups.created_at").paginate(:page => params[:id], :per_page => 30)
+    if current_user
+      @groups = @item.groups.pass_audit.at_city(current_user.city.id).order("groups.created_at").paginate(:page => params[:id], :per_page => 30)
+    else
+      @groups = @item.groups.pass_audit.order("groups.created_at").paginate(:page => params[:id], :per_page => 30)
+    end
     @page = params[:page]
     @tab = 'item_groups' 
     respond_with @groups

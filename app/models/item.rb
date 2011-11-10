@@ -199,23 +199,34 @@ class Item < ActiveRecord::Base
   end
 
   def hot_stars(limited)
-    self.fans.joins(:involved_events)
-                 .where(:events => {:subject_id => self.id}, :involvements => {:is_pending => false})
-                 .group("involvements.person_id").order("count(event_id) DESC").limit(limited).includes(:profile)
-
+#self.fans.joins(:involved_events)
+#                .where(:events => {:subject_id => self.id}, :involvements => {:is_pending => false})
+#                .group("involvements.person_id").order("count(event_id) DESC").limit(limited).includes(:profile)
+    self.fans.joins(:item_topics).where(:item_topics => {:item_id => self.id})
+             .group("item_topics.person_id").order("count(*) DESC").limit(limited).includes(:profile)
   end
 
-  def hot_events(limited, city) 
-    events = self.events.week.not_started.at_city(city.id).not_full.order('start_at').limit(limited)
-    events = self.events.month.not_started.at_city(city.id).not_full.order('start_at').limit(limited) unless events.length == limited
-    events = self.events.week.at_city(city.id).not_full.order('start_at').limit(limited) unless events.length == limited
-    events = self.events.month.at_city(city.id).not_full.order('start_at').limit(limited) unless events.length == limited
-
+  def hot_events(limited, city)
+    if city
+      events = self.events.pass_audit.week.not_started.at_city(city.id).not_full.order('start_at').limit(limited)
+      events = self.events.pass_audit.month.not_started.at_city(city.id).not_full.order('start_at').limit(limited) unless events.length == limited
+      events = self.events.pass_audit.month.at_city(city.id).not_full.order('start_at').limit(limited) unless events.length == limited
+      events = self.events.pass_audit.at_city(city.id).not_full.order('start_at').limit(limited) unless events.length == limited
+    else
+      events = self.events.pass_audit.week.not_started.not_full.order('start_at').limit(limited)
+      events = self.events.pass_audit.month.not_started.not_full.order('start_at').limit(limited) unless events.length == limited
+      events = self.events.pass_audit.month.not_full.order('start_at').limit(limited) unless events.length == limited
+      events = self.events.pass_audit.not_full.order('start_at').limit(limited) unless events.length == limited
+    end
     return events
   end
 
   def hot_groups(limited, city)
-    groups = self.groups.where(:city_id => city.id).order("members_count DESC").limit(limited)
+    if city
+      groups = self.groups.pass_audit.where(:city_id => city_id).order("members_count DESC").limit(limited)
+    else
+      groups = self.groups.pass_audit.order("members_count DESC").limit(limited)
+    end
 
     return groups
   end
