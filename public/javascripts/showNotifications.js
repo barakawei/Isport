@@ -64,21 +64,23 @@
       self.dropdownNotifications.empty();
       $.each(self.notifications.notifications, function(index, notifications) {
         $.each(notifications, function(index, notification) {
+          var note_avatr = $( "<div/>" ).addClass( "note_avatar" )
+            .append($("<img/>", { src: notification.url,"class":"avatar" }));
+          if (notification.size != "1"){
+            note_avatr.append("<div class='avatar_shadow'><div class ='avatar_shadow'></div></div>")
+          }
+
           var notificationElement = $("<div id='"+notification.id+"'/>")
             .click(self.show_detail )
             .addClass("notification_element")
             .html(notification.translation)
-            .prepend($("<img/>", { src: "","class":"avatar" }))
-            .append("<br />")
+            .append(note_avatr)
             .append($("<abbr/>", {
               "class": "timeago",
               "title": notification.created_at
             }))
             .appendTo(self.dropdownNotifications);
           notificationElement.addClass("unread");
-          var notifiaction_detail_element = $("<div/>")
-            .addClass("detail")
-            .html(  )
         
         });
       });

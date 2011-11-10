@@ -3,4 +3,8 @@ class Notifications::CreateEvent < Notification
     "notifications.create_event"
   end
 
+  def translation_link_key
+    "notifications_link.create_event"
+  end
+
 end 

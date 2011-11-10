@@ -10,6 +10,9 @@
     = include_javascripts :main
     = include_javascripts :jqueryui
     = include_javascripts :jquery_form
+    = include_stylesheets :sepcial_pages_home_index, :media => 'all'
+    = include_javascripts :status_message
+    = include_javascripts :mention
     - if current_user
       = include_javascripts :show_avatar
     //= include_javascripts :google_analytics
@@ -84,7 +87,6 @@
 
 :javascript
   $(function() {
-    
     $( "#return_back_note" ).click(function( ){
       $( "#notifications_detail .open" ).hide().removeClass( "open" );
       $( "#notification_element" ).show();

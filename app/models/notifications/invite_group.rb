@@ -3,5 +3,8 @@ class Notifications::InviteGroup < Notification
     "notifications.invite_group"
   end
 
+  def translation_link_key
+    "notifications_link.invite_group"
+  end
 end 
 

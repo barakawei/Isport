@@ -144,6 +144,12 @@ module ApplicationHelper
     "<span class='avatar_container'>#{name_link}</span>".html_safe
   end
 
+  def person_link_show_name( person,size=:thumb_small )
+    name_html = "<span  class=\"avatar person_avatar_detail \" data_person_id=\"#{person.id}\" src=\"#{person.profile.image_url(size)}\">#{person.name}&nbsp;</span>"
+    name_link = "<a href='/people/#{person.id}'>#{name_html}</a>".html_safe
+    "<span class='avatar_container'>#{name_link}</span>".html_safe
+  end
+
 
   def owner_image_link
     person_image_link(current_user.person)

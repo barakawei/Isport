@@ -1,7 +1,7 @@
 class Notification < ActiveRecord::Base
   belongs_to :recipient, :class_name => 'User'
   has_many :notification_actors,:dependent => :destroy
-  has_many :actor, :class_name => 'Person', :through => :notification_actors, :source => :person
+  has_many :actor, :class_name => 'Person', :through => :notification_actors, :source => :person,:order => "created_at DESC"
   belongs_to :target, :polymorphic => true   
 
 
@@ -11,7 +11,13 @@ class Notification < ActiveRecord::Base
       if target.instance_of?(Comment)
         target = target.post
       elsif target.instance_of?(Mention)
-        target = target.post
+        if target.post.nil?
+          target = target.comment.post
+        else
+          target = target.post
+        end
+      elsif target.instance_of?( PicComment )
+        target = target.pic
       end
       note_type.make_notification(recipient, target, actor, note_type)
     end

@@ -3,5 +3,8 @@ class Notifications::StartedSharing < Notification
     "notifications.started_sharing"
   end
 
+  def translation_link_key
+    "notifications_link.started_sharing"
+  end
 end 
 

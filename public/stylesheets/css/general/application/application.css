@@ -1,6 +1,55 @@
 @charset "UTF-8";
-.notification_detail_element .comment_form textarea {
-  width: 210px; }
+.avatar_shadow {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  border-right: 1px solid #aaaaaa;
+  border-bottom: 1px solid #aaaaaa;
+  height: 30px;
+  width: 30px; }
+
+.notification_detail_element .avatar {
+  width: 30px;
+  height: 30px; }
+.notification_detail_element .stream_element {
+  border-top: none;
+  padding-left: 10px !important;
+  padding-top: 3px !important; }
+  .notification_detail_element .stream_element .element_body {
+    margin-left: 40px !important; }
+.notification_detail_element .comment_form {
+  margin-bottom: 50px; }
+  .notification_detail_element .comment_form textarea {
+    width: 245px; }
+.notification_detail_element .notify_desc_link {
+  height: 40px;
+  padding-left: 10px;
+  padding-top: 10px;
+  margin-bottom: 7px;
+  border-bottom: 1px dashed #aaaaaa; }
+  .notification_detail_element .notify_desc_link .person_avatar {
+    float: left; }
+  .notification_detail_element .notify_desc_link .content {
+    float: left;
+    margin-left: 10px; }
+.notification_detail_element .followed_you .followed_person {
+  height: 70px;
+  border-bottom: 1px solid #d2d2d2;
+  padding-top: 10px;
+  padding-right: 5px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  display: block; }
+  .notification_detail_element .followed_you .followed_person .avatar {
+    float: left;
+    width: 70px;
+    height: 70px; }
+  .notification_detail_element .followed_you .followed_person .content {
+    float: left;
+    margin-left: 10px; }
+  .notification_detail_element .followed_you .followed_person .name {
+    font-size: 14px;
+    margin-bottom: 14px; }
 
 .link_tag {
   display: inline-block;

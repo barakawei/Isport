@@ -7,6 +7,8 @@ class NotificationsController < ApplicationController
     @unread_notify_count = Notification.sum(:unread, :conditions => "recipient_id = #{current_user.id}")
 
     @notifications.each do |n|
+        n[:url] = n.actor.first.profile.image_url( :thumb_small )
+        n[ :size ] = n.actor.size
         n[:translation] = object_link(n)
         n[:translation_key] = n.translation_key
         n[:target] = n.target

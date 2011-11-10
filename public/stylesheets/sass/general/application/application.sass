@@ -10,10 +10,59 @@ $group_color: #11a3e1
 $event_color: #4BC5BE
 $error_color: #a10000
 $link_red: #FC4469
+.avatar_shadow
+  position: absolute
+  top: 2px
+  left: 2px
+  border-right: 1px solid #AAA
+  border-bottom: 1px solid #AAA
+  height: 30px
+  width: 30px
+
 .notification_detail_element
+  .avatar
+    :width 30px
+    :height 30px
+  .stream_element
+    :border-top none
+    :padding-left 10px !important
+    :padding-top 3px !important
+    .element_body
+      :margin-left 40px !important
   .comment_form
     textarea
-      :width 210px
+      :width 245px
+    :margin-bottom 50px
+  .notify_desc_link
+    :height 40px
+    :padding-left 10px
+    :padding-top 10px
+    :margin-bottom 7px
+    :border-bottom 1px dashed  #aaa
+    .person_avatar
+      :float left
+    .content
+      :float left
+      :margin-left 10px
+  .followed_you
+    .followed_person
+      :height 70px
+      :border-bottom 1px solid #d2d2d2
+      padding-top: 10px
+      padding-right: 5px
+      padding-bottom: 10px
+      padding-left: 10px
+      :display block
+      .avatar
+        :float left
+        :width 70px
+        :height 70px
+      .content
+        :float left
+        :margin-left 10px
+      .name
+        :font-size 14px
+        :margin-bottom 14px
 
 .link_tag
   :display inline-block

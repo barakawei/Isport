@@ -1,10 +1,24 @@
 .notification_detail_element.hide{ :id => note.id }
+  .notify_desc_link
+    .person_avatar
+      = person_image_link2(note.actor.first)
+      - if note.actor.size > 1
+        .avatar_shadow
+          .avatar_shadow
+    .content
+      = object_link(note,:link => true)
   - if note.target.instance_of?(Person)
-    .title
     .followed_you
       - for a in note.actor
-        .person_avatar
-          = person_image_link(a)
-          = follow_button_tag(a)
-  -else
+        .followed_person
+          = person_image_link2(a,:thumb_medium)
+          .content
+            .name
+              = person_link(a)
+            .follow_button
+              = follow_button_tag(a)
+  -elsif note.target.kind_of?( Post )
     =render 'status_messages/status_message_element',:post => note.target
+  -elsif note.target.instance_of?( Pic )
+    .pic_comment_container
+      = render "pics/pic_show",:pic => note.target

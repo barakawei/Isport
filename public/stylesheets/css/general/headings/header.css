@@ -120,7 +120,6 @@
     font-size: 14px;
     font-weight: normal; }
   .header ul {
-    display: block;
     list-style: none; }
   .header .sections li, .header .setting li {
     position: relative;
@@ -236,7 +235,7 @@
   border-left: 2px solid #dbe1e1;
   border-right: 2px solid #dbe1e1;
   border-bottom: 2px solid #dbe1e1;
-  background-color: #e9eef1;
+  background-color: white;
   position: absolute;
   top: 100px;
   right: -110px;
@@ -256,7 +255,7 @@
       margin-bottom: 0; }
   #notification_dropdown .notification_element,
   #notification_dropdown .title {
-    background-color: #e9eef1;
+    background-color: white;
     border-bottom: 1px solid #dddddd; }
   #notification_dropdown .ajax_loader {
     text-align: center;
@@ -270,11 +269,13 @@
       color: #999999;
       text-decoration: none;
       border: none; }
-    #notification_dropdown .notification_element > img {
-      height: 30px;
-      width: 30px;
-      float: left;
-      margin-right: 10px; }
+    #notification_dropdown .notification_element .note_avatar {
+      position: relative;
+      float: left; }
+      #notification_dropdown .notification_element .note_avatar img {
+        height: 30px;
+        width: 30px;
+        margin-right: 10px; }
     #notification_dropdown .notification_element.unread {
       background-color: whiteSmoke;
       color: black;
