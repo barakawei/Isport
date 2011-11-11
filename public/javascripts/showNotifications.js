@@ -25,13 +25,9 @@
           self.dropdown.css("display", "none");
       });
 
-      this.dropdown.click(function(evt) {
-        evt.stopPropagation();
-      });
-
       this.documentBody.click(function(evt) {
         if(self.dropdownShowing()) {
-          self.badgeLink.click();
+          //self.badgeLink.click();
         }
       });
     };
@@ -53,7 +49,6 @@
     }
 
     this.getNotifications = function(callback) {
-      $.get("/notifications/notifications_detail");
       $.getJSON("/notifications", function(notifications) {
         self.notifications = notifications;
         callback.apply(self, []);

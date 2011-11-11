@@ -87,6 +87,7 @@
 
 :javascript
   $(function() {
+    $.get("/notifications/notifications_detail");
     $( "#return_back_note" ).click(function( ){
       $( "#notifications_detail .open" ).hide().removeClass( "open" );
       $( "#notification_element" ).show();

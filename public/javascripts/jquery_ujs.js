@@ -249,6 +249,8 @@
     $(document).ajaxSend(function(e, xhr){ rails.CSRFProtection(xhr); });
   }
 
+
+
   $(rails.linkClickSelector).live('click.rails', function(e) {
     var link = $(this);
     if (!rails.allowAction(link)) return rails.stopEverything(e);
@@ -261,6 +263,7 @@
       return false;
     }
   });
+  
 
   $(rails.formSubmitSelector).live('submit.rails', function(e) {
     var form = $(this),

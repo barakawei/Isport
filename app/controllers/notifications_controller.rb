@@ -1,7 +1,7 @@
 class NotificationsController < ApplicationController
   include NotificationsHelper
   before_filter :registrations_closed?
-  respond_to :js
+  respond_to :js,:html
   def index
     @notifications = Notification.where( :recipient_id => current_user).order( "updated_at DESC" ).paginate(:page => params[:page], :per_page => 20).all
     @unread_notify_count = Notification.sum(:unread, :conditions => "recipient_id = #{current_user.id}")
