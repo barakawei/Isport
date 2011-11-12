@@ -167,9 +167,9 @@ class ItemsController < ApplicationController
   def show_groups
     @item = Item.find(params[:id]) 
     if current_user
-      @groups = @item.groups.pass_audit.at_city(current_user.city).order("groups.members_count DESC").paginate(:page => params[:id], :per_page => 30)
+      @groups = @item.groups.pass_audit.at_city(current_user.city).order("groups.members_count DESC").paginate(:page => params[:page], :per_page => 30)
     else
-      @groups = @item.groups.pass_audit.order("groups.members_count desc").paginate(:page => params[:id], :per_page => 30)
+      @groups = @item.groups.pass_audit.order("groups.members_count desc").paginate(:page => params[:page], :per_page => 30)
     end
     @page = params[:page]
     @tab = 'item_groups' 
