@@ -1,0 +1,5 @@
+commentId = <%=@comment.id%>;
+comment = $(".event_note_comments .comment[id='"+commentId+"']");
+if( comment.length > 0 ){
+  comment.fadeOut( 100 ); 
+}

@@ -48,8 +48,12 @@ module NotificationsHelper
         translation(target_type, :actor_link => actor_link,:group_link => group_link)
       elsif note.target_type == 'Event'
         event= note.target
-        event_link =  "<a href='#{object_path(event)}'>#{event.title}</a>"
-        translation(target_type, :actor_link => actor_link,:event_link => event_link)
+        event_link =  "<a href='#{object_path(event)}'>#{truncate(event.title,:length => 20)}</a>"
+        if link 
+          translation(target_type, :actors_link=> actors_link,:event_link => event_link)
+        else
+          translation(target_type, :actor_text => actor_text,:event_name => truncate(event.title,:length => 20))
+        end
       elsif note.target_type == 'TopicComment'
         topic = note.target.commentable.commentable
         group = topic.forum.discussable

@@ -11,6 +11,22 @@
 .notification_detail_element .avatar {
   width: 30px;
   height: 30px; }
+.notification_detail_element .event_avatar {
+  float: left; }
+  .notification_detail_element .event_avatar .avatar {
+    width: 100px;
+    height: 100px; }
+.notification_detail_element .event_details {
+  margin-left: 110px;
+  line-height: 16px;
+  color: #22aec1;
+  padding: 10px; }
+  .notification_detail_element .event_details .event_title {
+    color: #e9727e;
+    font-size: 15px; }
+  .notification_detail_element .event_details .event_time {
+    margin-top: 5px;
+    color: #546266; }
 .notification_detail_element .stream_element {
   border-top: none;
   padding-left: 10px !important;

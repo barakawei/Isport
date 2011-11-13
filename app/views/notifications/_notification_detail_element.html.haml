@@ -22,3 +22,5 @@
   -elsif note.target.instance_of?( Pic )
     .pic_comment_container
       = render "pics/pic_show",:pic => note.target
+  -elsif note.target.instance_of?( Event )
+    = render "events/event_note_element",:event => note.target

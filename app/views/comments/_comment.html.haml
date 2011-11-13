@@ -7,7 +7,7 @@
       %span.details
         =":" 
       %span.comment_body
-        -if comment.instance_of?(PicComment)
+        -if comment.instance_of?(PicComment) || comment.instance_of?(EventComment) 
           = comment.content
         -else
           = comment_content_tag(comment)
@@ -20,4 +20,7 @@
   .action
     - if current_user && comment.author.id == current_user.person.id
       .delete
-        = link_to image_tag("/images/ui/delete_gray.png" ),comment,:method => "delete",:remote => true
+        -if comment.instance_of?(Comment) 
+          = link_to image_tag("/images/ui/delete_gray.png" ),comment,:method => "delete",:remote => true
+        -elsif comment.instance_of?(EventComment)
+          = link_to image_tag("/images/ui/delete_gray.png" ),event_comments_path(comment,:note_type => "true"),:method => "delete",:remote => true

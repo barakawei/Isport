@@ -1,0 +1,47 @@
+.stream_element{ :id => event.id }
+  .author_avatar
+    = person_image_link(event.person,:thumb_small) 
+  .element_body
+    .content
+      .from
+        = person_link(event.person, :class => 'author')
+      .post_content
+        .event_note
+          .event_avatar
+            = event_image_link(event, :thumb_medium)
+          .event_details
+            .event_title
+              = link_to truncate(event.title,:length => 30),event_path( event )
+            .event_time
+              = I18n.l(event.start_at,:format => :normal)
+              = "-"
+              = I18n.l(event.end_at,:format => :shortest)
+              = truncate("@"+event.location.to_s,:length => 30)
+            .like.button.hide
+              - if current_user 
+                = event_like_button_tag(event)
+        .clear
+        .description
+          = truncate(event.description,:length => 150)
+        
+        
+      .content_info
+        %span.time.timeago{:datetime => event.created_at}
+          =how_long_ago( event)
+        %span.action
+          - if current_user
+            =link_to "评论","javascript:void(0)",:class => "replay"
+        %span.like
+    .event_note_comments
+      = render "comments/comments", :post => event, :comments => event.comments
+    - if current_user
+      .comment_form{:class => ('hide' if event.comments.size == 0)}
+        .author_avatar
+          = person_image_link(current_user,:thumb_small)
+        = form_for([event,EventComment.new], :remote => true,:html=>{:data_id => event.id}) do |f|
+          = f.text_area :content, :rows => 2,:require => true,:class => 'content'
+          = hidden_field_tag :note_type
+          .comment_button.hide
+            = f.submit "回复", :class => 'glass_button_ie',"data-disable-with" => t("posting")
+            .cancle.glass_button_ie
+              = "取消"

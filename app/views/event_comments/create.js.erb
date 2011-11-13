@@ -1,0 +1,16 @@
+processComment(<%= @comment.commentable_id %>, <%= @comment.id %>,"<%= escape_javascript(render(:partial => 'comments/comment', :locals => { :comment => @comment}))%>");
+
+function processComment(eventId,commentId,html){  
+
+    if( $(".event_note_comments .comment[id='"+commentId+"']").length === 0 ) {
+
+      var event_html = $(".event_note_comments .comments[id='"+eventId+"']");
+      element_body = event_html.parent().parent();
+      comment_form = element_body.find( ".comment_form" );
+      event_html.append($(html).fadeIn( 100 ));
+      $(".event_note_comments .comment[id='"+commentId+"']").css("opacity","100" );
+      event_html.removeClass( "hide" );
+      comment_form.find( "#event_comment_content" ).val("");
+      }
+}
+

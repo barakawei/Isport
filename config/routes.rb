@@ -303,6 +303,9 @@ Isport::Application.routes.draw do
   resources :events do
     resources :event_comments, :controller => 'event_comments' 
   end
+  controller :event_comments do
+    match '/event_comments/:id' => :destroy,:via => :delete, :as => 'event_comments'
+  end
   resources :contacts
   resources :profiles
   resources :posts

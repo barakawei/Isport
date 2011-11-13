@@ -1,5 +1,6 @@
 class NotificationsController < ApplicationController
   include NotificationsHelper
+  include ActionView::Helpers::TextHelper
   before_filter :registrations_closed?
   respond_to :js,:html
   def index

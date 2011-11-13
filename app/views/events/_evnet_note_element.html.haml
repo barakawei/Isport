@@ -1,0 +1,30 @@
+.stream_element{ :id => event.id }
+  .author_avatar
+    = person_image_link(event.person,:thumb_small) 
+  .element_body
+    .content
+      .from
+        = person_link(event.person, :class => 'author')
+      .post_content
+        = event.description
+        
+      .content_info
+        %span.time.timeago{:datetime => event.created_at}
+          =how_long_ago( event)
+        %span.action
+          - if current_user
+            =link_to "评论","javascript:void(0)",:class => "replay"
+        %span.like
+          - if current_user 
+            = event_like_button_tag(event)
+    = render "comments/comments", :post => event, :comments => event.comments
+    - if current_user
+      .comment_form{:class => ('hide' if event.comments.size == 0)}
+        .author_avatar
+          = person_image_link(current_user,:thumb_small)
+        = form_for([event,EventComment.new], :remote => true,:html=>{:data_id => event.id}) do |f|
+          = f.text_area :content, :rows => 2,:require => true,:class => 'content'
+          .comment_button.hide
+            = f.submit "回复", :class => 'glass_button_ie',"data-disable-with" => t("posting")
+            .cancle.glass_button_ie
+              = "取消"

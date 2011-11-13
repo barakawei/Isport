@@ -4,6 +4,7 @@ class EventComment < ActiveRecord::Base
   after_update :update_owner_counter
   belongs_to :commentable, :polymorphic => true
   belongs_to :person 
+  belongs_to :author, :foreign_key => "person_id", :class_name => 'Person'
   has_many :responses, :class_name => "EventComment", :as => :commentable, :dependent => :destroy
   after_destroy :delete_notification
 
