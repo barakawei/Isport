@@ -18,6 +18,8 @@ class Notification < ActiveRecord::Base
         end
       elsif target.instance_of?( PicComment )
         target = target.pic
+      elsif target.instance_of?( EventComment )
+        target = target.commentable
       end
       note_type.make_notification(recipient, target, actor, note_type)
     end

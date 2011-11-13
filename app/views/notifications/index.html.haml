@@ -1,8 +1,17 @@
-.notifactions
-  %h2="通知"
-  =render :partial => 'notifications/notification_element', :collection => @notifications,:as => :note
-  .pagination_box
-    = will_paginate @notifications
+=content_for :head do
+  = include_javascripts :show_photo
+.span-24.last.pic_comment_container.pic_show.note_index
+  .span-16.append-4.prepend-4.last
+    .content_panel.stream.status_message_show.post_element_panel
+      %h2="通知"
+      = render :partial => 'notifications/notification_detail_element', :collection => @notifications,:as => :note
+      .pagination_box
+        = will_paginate @notifications
+
+:javascript
+  $( function(  ){
+    $( ".note_index .notification_detail_element" ).show();
+     } );
 
 
 

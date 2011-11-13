@@ -6,9 +6,9 @@ class TopicCommentsController < ApplicationController
       commentable = topic.comments.find(params[:comment][:commentable_id])
       c = commentable.responses.create(params[:comment]) 
       c.person = current_user.person
-      if c.save
-        c.dispatch_topic_comment
-      end
+    # if c.save
+    #   c.dispatch_topic_comment
+    # end
       render :partial => 'topics/response', :locals => {:person => current_user.person, :comment => c,
                                                         :commentable => commentable, :topic => topic}
     else

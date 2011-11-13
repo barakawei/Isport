@@ -69,7 +69,7 @@
             .click(self.show_detail )
             .addClass("notification_element")
             .html(notification.translation)
-            .append(note_avatr)
+            .prepend(note_avatr)
             .append($("<abbr/>", {
               "class": "timeago",
               "title": notification.created_at
@@ -80,13 +80,7 @@
         });
       });
       message_count = $("#notification_badge .message_count span span");
-      count = parseInt(message_count.html()) || 0;  
-      count = count - 20;
-      if( count > 0 ){
-        message_count.text( count );
-      }else{
-        message_count.remove();
-      }
+      message_count.remove();
       self.ajaxLoader.hide();
     };
   };

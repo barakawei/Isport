@@ -11,6 +11,7 @@ function processComment(eventId,commentId,html){
       $(".event_note_comments .comment[id='"+commentId+"']").css("opacity","100" );
       event_html.removeClass( "hide" );
       comment_form.find( "#event_comment_content" ).val("");
+      return false;
       }
 }
 

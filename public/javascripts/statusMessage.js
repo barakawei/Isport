@@ -4,7 +4,7 @@ var Post = {
     stream_element = $( this ).closest(".stream_element");
     commentBlock = stream_element.find(".comment_form");
     commentBlock.removeClass( "hide" );    
-    textarea = commentBlock.find("#comment_content");
+    textarea = commentBlock.find(".content[id]");
     textarea.focus(); 
     replay_comment = $( this ).closest(".replay_comment");
     if ( replay_comment.length != 0 ){
@@ -68,7 +68,7 @@ var Post = {
   cancle:function(){
     $( ".cancle" ).live( "click",function(  ){
     comment_form = $( this ).closest( ".comment_form" );
-    comment_form.find( "#comment_content" ).val( '' );
+    comment_form.find( ".content[id]" ).val( '' );
     comment_form.find(".contacts").val("");
     Mention.clear();
     if( $( ".comments",comment_form.closest( '.element_body' )).length == 0 ){

@@ -72,6 +72,10 @@ class Event < ActiveRecord::Base
   scope :recent_created, lambda { where("events.created_at >= ?", 7.days.ago) }
   after_destroy :delete_notification
 
+  def relative_people
+    self.participants | self.references
+  end
+
   def last_three_comments
     self.comments.order('created_at DESC').limit(3).includes(:person=> :profile).reverse
   end 

@@ -1,4 +1,12 @@
 @charset "UTF-8";
+.note_index .notify_desc_link {
+  background: white;
+  margin-bottom: 0px !important; }
+.note_index .followed_you {
+  background: white; }
+.note_index .comment_form textarea {
+  width: 345px !important; }
+
 .avatar_shadow {
   position: absolute;
   top: 2px;
@@ -46,8 +54,7 @@
   .notification_detail_element .notify_desc_link .person_avatar {
     float: left; }
   .notification_detail_element .notify_desc_link .content {
-    float: left;
-    margin-left: 10px; }
+    margin-left: 40px; }
 .notification_detail_element .followed_you .followed_person {
   height: 70px;
   border-bottom: 1px solid #d2d2d2;

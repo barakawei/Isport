@@ -6,22 +6,23 @@ class EventCommentsController < ApplicationController
     if params[ :note_type ]
       @comment = event.comments.create(params[:event_comment])
       @comment.person = current_user.person
-      @comment.save 
+      if @comment.save
+        @comment.dispatch_event_comment
+      end
       respond_with @comment
     else
       if params[:comment]
         commentable = event.comments.find(params[:comment][:commentable_id])
         c = commentable.responses.create(params[:comment]) 
         c.person = current_user.person
-        if c.save
-          c.dispatch_event_comment
-        end
         render :partial => 'events/response', :locals => {:person => current_user.person, :comment => c,
                                                           :commentable => commentable, :event => event}
       else
         c = event.comments.create(params[:event_comment])
         c.person = current_user.person
-        c.save 
+        if c.save
+          c.dispatch_event_comment
+        end
         render :partial => 'events/comment', :locals => {:person => current_user.person, :comment => c, :event => event}
       end
     end

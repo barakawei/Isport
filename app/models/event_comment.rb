@@ -25,7 +25,7 @@ class EventComment < ActiveRecord::Base
   end
 
   def subscribers(user,action=false)
-    [self.commentable.person]
+    self.commentable.relative_people
   end
 
   def notification_type( action=false )

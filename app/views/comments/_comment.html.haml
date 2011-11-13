@@ -20,7 +20,7 @@
   .action
     - if current_user && comment.author.id == current_user.person.id
       .delete
-        -if comment.instance_of?(Comment) 
-          = link_to image_tag("/images/ui/delete_gray.png" ),comment,:method => "delete",:remote => true
-        -elsif comment.instance_of?(EventComment)
+        -if comment.instance_of?(EventComment)
           = link_to image_tag("/images/ui/delete_gray.png" ),event_comments_path(comment,:note_type => "true"),:method => "delete",:remote => true
+        -else
+          = link_to image_tag("/images/ui/delete_gray.png" ),comment,:method => "delete",:remote => true
