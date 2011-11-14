@@ -13,6 +13,11 @@ class Pic < ActiveRecord::Base
   has_many :pic_comments, :dependent => :destroy
   has_many :comments, :class_name => 'PicComment',:dependent => :destroy
   attr_accessor :pic_type
+  after_destroy :delete_notification
+
+  def delete_notification
+    Notification.where(:target_type => self.class.name, :target_id => self.id).delete_all
+  end
 
   def last_three_comments
     self.comments.order('created_at DESC').limit(3).includes(:author => :profile).reverse

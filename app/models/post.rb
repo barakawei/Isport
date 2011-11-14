@@ -8,6 +8,11 @@ class Post < ActiveRecord::Base
   belongs_to :item
   scope :by_owner, lambda { |person_id| where(:author_id => person_id,:type =>"StatusMessage")}
   scope :refresh,  lambda { |current_user| where("posts.created_at > ? and author_id != ?",current_user.last_request_at,current_user.person.id) }
+  after_destroy :delete_notification
+
+  def delete_notification
+    Notification.where(:target_type => self.class.name, :target_id => self.id).delete_all
+  end
 
   def subscribers(user,action)
     user.befollowed_people
