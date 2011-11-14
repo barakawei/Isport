@@ -2,6 +2,7 @@ class RegistrationsController < Devise::RegistrationsController
   before_filter :check_registrations_open!
   def create
     @user = User.build( params[:user] )
+    @user.last_new_item_notice_at = Time.now
     if @user.save
       sign_in_and_redirect(:user,@user)
     else
