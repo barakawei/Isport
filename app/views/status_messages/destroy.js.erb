@@ -1,6 +1,16 @@
 status_messageId = <%=@status_message.id%>;
 status_message = $(".stream_element[id='"+status_messageId+"']");
-if( status_message.length === 1 ){
-  status_message.fadeOut( 100 ); 
+if( status_message.length > 0 ){
+  status_message.hide()
+  var nde = status_message.closest( ".notification_detail_element" );
+  if ( nde.length > 0 ){
+    nde.find( ".notify_desc_link" ).hide();
+    $( "#notification_element .notification_element[id='"+nde.attr( "id" )+"']").hide();
+    $( "#notifications_detail .open" ).hide().removeClass( "open" );
+    $( "#notification_element" ).show();
+    $( "#return_back_note" ).hide();
+    $( ".see_all" ).show();
+    $( ".next_note" ).hide();
+  }
 }
 
