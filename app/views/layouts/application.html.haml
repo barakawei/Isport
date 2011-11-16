@@ -87,7 +87,6 @@
 
 :javascript
   $(function() {
-    $.get("/notifications/notifications_detail");
     $( "#return_back_note" ).click(function( ){
       $( "#notifications_detail .open" ).hide().removeClass( "open" );
       $( "#notification_element" ).show();
@@ -175,6 +174,7 @@
 - if current_user
   :javascript
     $(document).ready(function () { 
+    $.get("/notifications/notifications_detail");
     setInterval("refresh_count()",60000); 
     }); 
     function refresh_count() { 

@@ -7,6 +7,7 @@ if(notify_count != "0"){
 if(message_count != "0"){
   message_count_html = $(".inbox .message_count span");
   message_count_html.html( "<span>"+message_count+"</span>" );
+  $.get("/notifications/notifications_detail");
 }
 
 
