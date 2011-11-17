@@ -4,6 +4,7 @@ class Mention < ActiveRecord::Base
   belongs_to :comment
   validates :person, :presence => true
   after_destroy :delete_notification
+  has_one :notification_actor, :dependent => :destroy
 
 
   def subscribers(user,action=false)

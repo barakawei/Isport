@@ -12,26 +12,15 @@ module NotificationsHelper
     else
       target_type = note.translation_key
     end
-    if note.actor.instance_of?( Person )
-      person = note.actor
-    else
-      person = note.actor.first
-    end
-    actor_link = "<a href='#{object_path(person)}'>#{person.name}</a>"
     actors =  note.actor
-    if actors.instance_of?( Person )
-      actor_text = actors.name
-      actors_link = "<a href='#{object_path(person)}'>#{person.name}</a>"
-    else
-      actor_text = actors.first(3).map{ |a|a.name }.join(t( 'dunhao' ))
-      actors_link =  actors.first(3).map{ |a|
-        person_link_show_name( a )
-      }.join(t( 'dunhao' ))
-      size = actors.size
-      if size > 3
-        actor_text = actor_text + t( 'actors',:size => size)
-        actors_link = actors_link + t( 'actors',:size => size)
-      end
+    actor_text = actors.first(3).map{ |a|a.name }.join(t( 'dunhao' ))
+    actors_link =  actors.first(3).map{ |a|
+      person_link_show_name( a )
+    }.join(t( 'dunhao' ))
+    size = actors.size
+    if size > 3
+      actor_text = actor_text + t( 'actors',:size => size)
+      actors_link = actors_link + t( 'actors',:size => size)
     end
     if !note.instance_of?(Notifications::StartedSharing)
       if note.instance_of?( Notifications::StatusComment )
@@ -45,7 +34,7 @@ module NotificationsHelper
       elsif note.target_type == 'Group'
         group = note.target
         group_link =  "<a href='#{object_path(group)}'>#{group.name}</a>"
-        translation(target_type, :actor_link => actor_link,:group_link => group_link)
+        translation(target_type, :actors_link => actor_link,:group_link => group_link)
       elsif note.target_type == 'Event'
         event= note.target
         event_link =  "<a href='#{object_path(event)}'>#{truncate(event.title,:length => 40)}</a>"
@@ -59,13 +48,13 @@ module NotificationsHelper
         group = topic.forum.discussable
         group_link =  "<a href='#{object_path(group)}'>#{group.name}</a>"
         comment_link =  "<a href='#{group_topic_path(group,topic)}'>#{t( 'comment' )}</a>"
-        translation(target_type, :actor_link => actor_link,:comment_link => comment_link,:group_link =>group_link )
+        translation(target_type, :actors_link => actor_link,:comment_link => comment_link,:group_link =>group_link )
       elsif note.target_type == 'EventComment'
         event = note.target.commentable.commentable
         comment =  note.target.commentable
         event_link =  "<a href='#{object_path(event)}'>#{event.title}</a>"
         comment_link =  "<a href='#{object_path(event)}'>#{t( 'comment' )}</a>"
-        translation(target_type, :actor_link => actor_link,:comment_link => comment_link,:event_link =>event_link )
+        translation(target_type, :actors_link => actor_link,:comment_link => comment_link,:event_link =>event_link )
       elsif note.instance_of?( Notifications::Mention )
         post = note.target
         post_link = "<a href='#{object_path(post)}'>#{t( 'message' )}</a>"

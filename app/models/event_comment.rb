@@ -7,6 +7,7 @@ class EventComment < ActiveRecord::Base
   belongs_to :author, :foreign_key => "person_id", :class_name => 'Person'
   has_many :responses, :class_name => "EventComment", :as => :commentable, :dependent => :destroy
   after_destroy :delete_notification
+  has_one :notification_actor,:as => :target,:dependent => :destroy
 
   def delete_notification
     Notification.where(:target_type => self.class.name, :target_id => self.id).delete_all

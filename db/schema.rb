@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111109085508) do
+ActiveRecord::Schema.define(:version => 20111117090056) do
 
   create_table "administrators", :force => true do |t|
     t.integer  "user_id"
@@ -290,6 +290,9 @@ ActiveRecord::Schema.define(:version => 20111109085508) do
     t.integer  "person_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "target_id"
+    t.string   "target_type"
+    t.integer  "unread",          :default => 1
   end
 
   create_table "notifications", :force => true do |t|

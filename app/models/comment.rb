@@ -4,6 +4,7 @@ class Comment < ActiveRecord::Base
   belongs_to :post,:touch => true
   attr_accessor :contacts
   has_many :mentions,:dependent => :destroy
+  has_one :notification_actor,:as => :target,:dependent => :destroy
   after_create :create_mentions
   after_destroy :delete_notification
 

@@ -6,6 +6,7 @@ class PicComment < ActiveRecord::Base
   after_destroy :update_owner_counter
   after_update :update_owner_counter
   after_destroy :delete_notification
+  has_one :notification_actor, :dependent => :destroy,:as => :target
 
   def delete_notification
     Notification.where(:target_type => self.class.name, :target_id => self.id).delete_all
