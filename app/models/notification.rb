@@ -42,6 +42,7 @@ private
         notify.notification_actors << na_new
       else
         na.unread =  na.unread + 1
+        na.save!
       end
       notify.unread = notify.unread + 1
       notify.save!
