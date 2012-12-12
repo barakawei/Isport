@@ -1,6 +1,4 @@
 class PeopleController < ApplicationController
-  before_filter :registrations_closed?
-  before_filter :authenticate_user!
   respond_to :js,:html
 
   def index
@@ -89,6 +87,14 @@ class PeopleController < ApplicationController
     @befollowed_people = @person.user.befollowed_people
     @favorite_items = Item.joins( :favorites ).where( :favorites => {:person_id => @person.id })
     @events_inv = Event.joins(:involvements).where(:involvements => { :person_id => @person.id }  )
+    respond_to do |format|
+      format.json do
+        render :json => @person
+      end
+      format.html do
+        render
+      end 
+    end
   end
 
 
