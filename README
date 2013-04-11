@@ -1,1 +1,4 @@
 Isport site
+msSetImmediate(function () {
+    listView.ensureVisible(data.selectedIndex);
+});
